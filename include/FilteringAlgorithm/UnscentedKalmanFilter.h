@@ -10,16 +10,13 @@
 class UnscentedKalmanFilter: public FilteringAlgorithm {
 private:
 
-    UnscentedKalmanFilteringFunction _ukf_f;
+    UnscentedKalmanFilteringFunction * _ukf_f;
     
 public:
-    
+
     UnscentedKalmanFilter();
-    
-    /**
-     * @param UnscentedKalmanFilteringFunction
-     */
-    UnscentedKalmanFilter(UnscentedKalmanFilteringFunction);
+
+    virtual ~UnscentedKalmanFilter();
 
 };
 

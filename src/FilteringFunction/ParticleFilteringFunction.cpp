@@ -9,23 +9,31 @@ using namespace Eigen;
  * ParticleFilteringFunction implementation
  */
 
-std::mt19937_64 generator2;
-std::normal_distribution<float> distribution2(0.0, 300.0);
-std::normal_distribution<float> distribution3(0.0,  10.0);
+//std::mt19937_64 generator2;
+//std::normal_distribution<float> distribution2(0.0, 300.0);
+//std::normal_distribution<float> distribution3(0.0,  10.0);
 
 
-ParticleFilteringFunction::ParticleFilteringFunction()
+ParticleFilteringFunction::ParticleFilteringFunction() {}
+
+
+bool ParticleFilteringFunction::Configure()
 {
-    _state_cov = 5;
+    _state_cov.resize(2, 1);
+    _state_cov << 300.0,
+                   10.0;
+
+    _obs_cov.resize(2, 2);
     _obs_cov << 10*10,     0,
                     0, 10*10;
 
     generator = new std::mt19937_64(1);
-    distribution_pos = new std::normal_distribution<float>(0.0, 300.0);
-    distribution_vel = new std::normal_distribution<float>(0.0,  10.0);
+    distribution_pos = new std::normal_distribution<float>(0.0, _state_cov(0));
+    distribution_vel = new std::normal_distribution<float>(0.0, _state_cov(1));
     gaussian_random_pos = [&] (int) { return (*distribution_pos)(*generator); };
     gaussian_random_vel = [&] (int) { return (*distribution_vel)(*generator); };
-    
+
+    return true;
 }
 
 
@@ -48,14 +56,6 @@ void ParticleFilteringFunction::StateModel(const Ref<const VectorXf> & prev_stat
 }
 
 
-Ref<VectorXf> ParticleFilteringFunction::ObservationModel(const Ref<const VectorXf> & pred_state)
-{
-    VectorXf m(2);
-    m << pred_state(0), pred_state(2);
-    return m;
-}
-
-
 void ParticleFilteringFunction::Prediction(const Ref<const VectorXf> & prev_state, Ref<VectorXf> pred_state)
 {
     StateModel(prev_state, pred_state);
@@ -67,14 +67,22 @@ void ParticleFilteringFunction::Prediction(const Ref<const VectorXf> & prev_stat
 }
 
 
-void ParticleFilteringFunction::Correction(const Ref<const VectorXf> & pred_particles, const Ref<const VectorXf> & measurements, Ref<VectorXf> cor_state)
+Ref<MatrixXf> ParticleFilteringFunction::ObservationModel(const Ref<const VectorXf> & pred_state)
 {
-    VectorXf innovation(2);
+    MatrixXf m(2, 1);
+    m << pred_state(0), pred_state(2);
+    return m;
+}
+
+
+void ParticleFilteringFunction::Correction(const Ref<const VectorXf> & pred_particles, const Ref<const MatrixXf> & measurements, Ref<VectorXf> cor_state)
+{
+    MatrixXf innovation(2, 1);
     innovation << ObservationModel(pred_particles);
 
     /* Simple Linear sensor for position observations */
-    innovation(0) -= measurements(0);
-    innovation(1) -= measurements(1);
+    innovation(0, 0) -= measurements(0, 0);
+    innovation(1, 0) -= measurements(1, 0);
 
     cor_state = (- 0.5 * static_cast<double>(measurements.rows()) * log(2.0*M_PI) - 0.5 * log(_obs_cov.determinant()) - 0.5 * (innovation.transpose() * _obs_cov.inverse() * innovation).array()).exp();
 }
@@ -120,3 +128,6 @@ float ParticleFilteringFunction::Neff(const Ref<const VectorXf> & cor_weights)
 {
     return 1.0/cor_weights.array().square().sum();
 }
+
+
+void ParticleFilteringFunction::WeightedSum(const Ref<const MatrixXf> & particles, const Ref<const VectorXf> & weights, Ref<MatrixXf> particle) {}

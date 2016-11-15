@@ -5,6 +5,10 @@
  */
 
 
-UnscentedKalmanFilter::UnscentedKalmanFilter() {};
+UnscentedKalmanFilter::UnscentedKalmanFilter()
+{
+    _ukf_f = nullptr;
+}
 
-UnscentedKalmanFilter::UnscentedKalmanFilter(UnscentedKalmanFilteringFunction ukf_f) : _ukf_f(ukf_f) {};
+
+UnscentedKalmanFilter::~UnscentedKalmanFilter() {};

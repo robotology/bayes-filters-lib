@@ -5,6 +5,10 @@
  */
 
 
-KalmanFilter::KalmanFilter() {};
+KalmanFilter::KalmanFilter()
+{
+    _kf_f = nullptr;
+}
 
-KalmanFilter::KalmanFilter(KalmanFilteringFunction kf_f) : _kf_f(kf_f) {};
+
+KalmanFilter::~KalmanFilter() {};

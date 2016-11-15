@@ -8,6 +8,12 @@
 FilteringContext::FilteringContext(FilteringAlgorithm * filter) : _filter(filter) {};
 
 
+FilteringContext::~FilteringContext()
+{
+    delete _filter;
+};
+
+
 void FilteringContext::run()
 {
     _filter->runFilter();

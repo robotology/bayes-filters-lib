@@ -6,32 +6,50 @@
 
 using namespace Eigen;
 
+
+std::mt19937_64 generator_LIN(1);
+std::normal_distribution<float> distribution_LIN(0.0, 100.0);
+
+Vector2f LIN(const Ref<const Vector4f> state)
+{
+    auto gaussian_random = [&] (int) { return distribution_LIN(generator_LIN); };
+
+    return Vector2f(state(0) + VectorXf::NullaryExpr(1, gaussian_random)(0),
+                    state(2) + VectorXf::NullaryExpr(1, gaussian_random)(0));
+}
+
+
 /**
  * SIRParticleFilter implementation
  */
-
-Vector2f LIN(const Ref<const Vector4f> state);
-
-
 SIRParticleFilter::SIRParticleFilter()
 {
-    generator         = new std::mt19937_64(1);
-    distribution_obj  = new std::normal_distribution<float>(0.0,   5.0);
-    gaussian_random   = [&] (int) { return (*distribution_obj)(*generator); };
-};
+    _pf_f = nullptr;
+    generator = nullptr;
+    distribution_obj = nullptr;
+}
 
 
-SIRParticleFilter::SIRParticleFilter(ParticleFilteringFunction pf_f) : _pf_f(pf_f)
+bool SIRParticleFilter::Configure()
 {
-    SIRParticleFilter();
-};
+    generator        = new std::mt19937_64(1);
+    distribution_obj = new std::normal_distribution<float>(0.0, 5.0);
+    gaussian_random  = [&] (int) { return (*distribution_obj)(*generator); };
+
+    _pf_f = new ParticleFilteringFunction;
+    _pf_f->Configure();
+
+    return true;
+}
 
 
 SIRParticleFilter::~SIRParticleFilter()
 {
+    delete _pf_f;
     delete generator;
     delete distribution_obj;
 }
+
 
 void SIRParticleFilter::runFilter()
 {
@@ -87,31 +105,32 @@ void SIRParticleFilter::runFilter()
 
         for (int i = 0; i < num_particle; ++i)
         {
-            _pf_f.Prediction(_init_particle.col(i), _init_particle.col(i));
+            _pf_f->Prediction(_init_particle.col(i), _init_particle.col(i));
         }
 //        Snapshot();
         for (int i = 0; i < num_particle; ++i)
         {
-            _pf_f.Correction(_init_particle.col(i), _measurement.col(k), _init_weight.row(i));
+            _pf_f->Correction(_init_particle.col(i), _measurement.col(k), _init_weight.row(i));
         }
 
-        _init_weight = _pf_f.Normalize(_init_weight);
+        _init_weight = _pf_f->Normalize(_init_weight);
 
 //        Snapshot();
 
         _result_particle[k] = _init_particle;
         _result_weight  [k] = _init_weight;
 
-        if (_pf_f.Neff(_init_weight) < num_particle/3)
+        if (_pf_f->Neff(_init_weight) < num_particle/3)
         {
-            _pf_f.Resampling(_init_particle, _init_weight, temp_particle, temp_weight, temp_parent);
+            _pf_f->Resampling(_init_particle, _init_weight, temp_particle, temp_weight, temp_parent);
 
             _init_particle = temp_particle;
             _init_weight = temp_weight;
         }
 
     }
-};
+}
+
 
 void SIRParticleFilter::Snapshot()
 {
@@ -162,16 +181,4 @@ void SIRParticleFilter::getResult()
     result_file_measurement.close();
     result_file_particle.close();
     result_file_weight.close();
-};
-
-
-std::mt19937_64 generator_LIN(1);
-std::normal_distribution<float> distribution_LIN(0.0, 100.0);
-
-Vector2f LIN(const Ref<const Vector4f> state)
-{
-    auto gaussian_random = [&] (int) { return distribution_LIN(generator_LIN); };
-    
-    return Vector2f(state(0) + VectorXf::NullaryExpr(1, gaussian_random)(0),
-                    state(2) + VectorXf::NullaryExpr(1, gaussian_random)(0));
 }

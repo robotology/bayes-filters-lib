@@ -11,35 +11,32 @@
 
 
 class SIRParticleFilter: public FilteringAlgorithm {
-private:
+protected:
 
-    ParticleFilteringFunction    _pf_f;
+    ParticleFilteringFunction       * _pf_f;
 
-    Eigen::MatrixXf              _object;
-    Eigen::MatrixXf              _measurement;
+    Eigen::MatrixXf                   _object;
+    Eigen::MatrixXf                   _measurement;
     
-    Eigen::MatrixXf              _init_particle;
-    Eigen::VectorXf              _init_weight;
+    Eigen::MatrixXf                   _init_particle;
+    Eigen::VectorXf                   _init_weight;
 
-    std::vector<Eigen::MatrixXf> _result_particle;
-    std::vector<Eigen::VectorXf> _result_weight;
+    std::vector<Eigen::MatrixXf>      _result_particle;
+    std::vector<Eigen::VectorXf>      _result_weight;
 
-    std::mt19937_64 * generator;
+    std::mt19937_64                 * generator;
     std::normal_distribution<float> * distribution_obj;
-    std::function<float (float)> gaussian_random;
+    std::function<float (float)>      gaussian_random;
 
     void Snapshot();
 
 public:
     
     SIRParticleFilter();
-
-    /**
-     * @param ParticleFilteringFunction
-     */
-    SIRParticleFilter(ParticleFilteringFunction pf_f);
     
-    ~SIRParticleFilter();
+    virtual ~SIRParticleFilter();
+
+    virtual bool Configure();
 
     virtual void runFilter();
 

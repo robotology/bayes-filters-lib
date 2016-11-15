@@ -5,6 +5,10 @@
  */
 
 
-ASIRParticleFilter::ASIRParticleFilter() {};
+ASIRParticleFilter::ASIRParticleFilter()
+{
+    _apf_f = nullptr;
+}
 
-ASIRParticleFilter::ASIRParticleFilter(AuxiliaryParticleFilteringFunction apf_f) : _apf_f(apf_f) {};
+
+ASIRParticleFilter::~ASIRParticleFilter() {};

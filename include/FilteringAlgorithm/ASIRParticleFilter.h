@@ -9,16 +9,13 @@
 class ASIRParticleFilter: public FilteringAlgorithm {
 private:
 
-    AuxiliaryParticleFilteringFunction _apf_f;
+    AuxiliaryParticleFilteringFunction * _apf_f;
 
 public:
     
     ASIRParticleFilter();
-    
-    /**
-     * @param AuxiliaryParticleFilteringFunction
-     */
-    ASIRParticleFilter(AuxiliaryParticleFilteringFunction);
+
+    virtual ~ASIRParticleFilter();
 };
 
 #endif /* ASIRPARTICLEFILTER_H */

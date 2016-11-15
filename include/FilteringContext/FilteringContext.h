@@ -12,6 +12,8 @@ private:
 public:
 
     FilteringContext(FilteringAlgorithm * filter);
+
+    ~FilteringContext();
     
     void run();
 

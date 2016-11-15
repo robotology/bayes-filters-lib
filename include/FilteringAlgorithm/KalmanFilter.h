@@ -9,16 +9,13 @@
 class KalmanFilter: public FilteringAlgorithm {
 private:
 
-    KalmanFilteringFunction _kf_f;
+    KalmanFilteringFunction * _kf_f;
 
 public:
     
     KalmanFilter();
-    
-    /**
-     * @param KalmanFilteringFunction
-     */
-    KalmanFilter(KalmanFilteringFunction);
+
+    virtual ~KalmanFilter();
 };
 
 #endif /* KALMANFILTER_H */
