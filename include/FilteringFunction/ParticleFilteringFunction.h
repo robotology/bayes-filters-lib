@@ -41,6 +41,8 @@ public:
 
     virtual void WeightedSum(const Eigen::Ref<const Eigen::MatrixXf> & particles, const Eigen::Ref<const Eigen::VectorXf> & weights, Eigen::Ref<Eigen::MatrixXf> particle);
 
+    virtual void Mode(const Eigen::Ref<const Eigen::MatrixXf> & particles, const Eigen::Ref<const Eigen::VectorXf> & weights, Eigen::Ref<Eigen::MatrixXf> particle);
+
 };
 
 #endif /* PARTICLEFILTERINGFUNCTION_H */

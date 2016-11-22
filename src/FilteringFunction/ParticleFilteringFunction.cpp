@@ -131,3 +131,5 @@ float ParticleFilteringFunction::Neff(const Ref<const VectorXf> & cor_weights)
 
 
 void ParticleFilteringFunction::WeightedSum(const Ref<const MatrixXf> & particles, const Ref<const VectorXf> & weights, Ref<MatrixXf> particle) {}
+
+void ParticleFilteringFunction::Mode(const Ref<const MatrixXf> & particles, const Ref<const VectorXf> & weights, Ref<MatrixXf> particle) {}
