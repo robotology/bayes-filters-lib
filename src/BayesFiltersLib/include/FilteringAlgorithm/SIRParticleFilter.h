@@ -2,7 +2,7 @@
 #define SIRPARTICLEFILTER_H
 
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction/ParticleFilteringFunction.h>
+#include <FilteringFunction_old/ParticleFilteringFunction.h>
 
 #include <vector>
 #include <random>

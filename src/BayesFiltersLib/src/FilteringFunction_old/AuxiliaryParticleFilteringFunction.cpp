@@ -1,4 +1,4 @@
-#include <FilteringFunction/AuxiliaryParticleFilteringFunction.h>
+#include <FilteringFunction_old/AuxiliaryParticleFilteringFunction.h>
 
 /**
  * AuxiliaryParticleFilteringFunction implementation

@@ -1,0 +1,4 @@
+#ifndef INITIALIZATION_H
+#define INITIALIZATION_H
+
+#endif /* INITIALIZATION_H */

@@ -1,7 +1,7 @@
 #ifndef PARTICLEFILTERINGFUNCTION_H
 #define PARTICLEFILTERINGFUNCTION_H
 
-#include <FilteringFunction/BayesianFilteringFunction.h>
+#include <FilteringFunction_old/BayesianFilteringFunction.h>
 
 #include <random>
 

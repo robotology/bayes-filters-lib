@@ -1,7 +1,7 @@
 #ifndef UNSCENTEKALMANFILTERINGFUNCTION_H
 #define UNSCENTEKALMANFILTERINGFUNCTION_H
 
-#include <FilteringFunction/KalmanFilteringFunction.h>
+#include <FilteringFunction_old/KalmanFilteringFunction.h>
 
 
 class UnscentedKalmanFilteringFunction: public KalmanFilteringFunction {

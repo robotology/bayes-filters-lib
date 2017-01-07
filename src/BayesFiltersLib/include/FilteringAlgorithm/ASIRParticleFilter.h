@@ -2,7 +2,7 @@
 #define ASIRPARTICLEFILTER_H
 
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction/AuxiliaryParticleFilteringFunction.h>
+#include <FilteringFunction_old/AuxiliaryParticleFilteringFunction.h>
 
 #include <Eigen/Dense>
 

@@ -2,7 +2,7 @@
 #define KALMANFILTER_H
 
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction/KalmanFilteringFunction.h>
+#include <FilteringFunction_old/KalmanFilteringFunction.h>
 
 #include <Eigen/Dense>
 

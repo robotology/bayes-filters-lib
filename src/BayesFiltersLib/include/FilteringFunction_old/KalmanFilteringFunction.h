@@ -1,7 +1,7 @@
 #ifndef KALMANFILTERINGFUNCTION_H
 #define KALMANFILTERINGFUNCTION_H
 
-#include <FilteringFunction/BayesianFilteringFunction.h>
+#include <FilteringFunction_old/BayesianFilteringFunction.h>
 
 
 class KalmanFilteringFunction: public BayesianFilteringFunction {

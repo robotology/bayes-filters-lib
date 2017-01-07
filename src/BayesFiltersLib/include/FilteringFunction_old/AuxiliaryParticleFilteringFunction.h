@@ -1,7 +1,7 @@
 #ifndef AUXILIARYPARTICLEFILTERINGFUNCTION_H
 #define AUXILIARYPARTICLEFILTERINGFUNCTION_H
 
-#include <FilteringFunction/ParticleFilteringFunction.h>
+#include <FilteringFunction_old/ParticleFilteringFunction.h>
 
 
 class AuxiliaryParticleFilteringFunction: public ParticleFilteringFunction {

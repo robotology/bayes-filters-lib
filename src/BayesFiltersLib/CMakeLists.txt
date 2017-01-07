@@ -2,14 +2,23 @@ set(LIBRARY_TARGET_NAME BayesFiltersLib)
 
 # List of CPP (source) library files
 set(${LIBRARY_TARGET_NAME}_FC_SRC   src/FilteringContext/FilteringContext.cpp)
-set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/KalmanFilter.cpp
-                                    src/FilteringAlgorithm/UnscentedKalmanFilter.cpp
+set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/ASIRParticleFilter.cpp
+                                    src/FilteringAlgorithm/KalmanFilter.cpp
                                     src/FilteringAlgorithm/SIRParticleFilter.cpp
-                                    src/FilteringAlgorithm/ASIRParticleFilter.cpp)
-set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/KalmanFilteringFunction.cpp
-                                    src/FilteringFunction/UnscentedKalmanFilteringFunction.cpp
-                                    src/FilteringFunction/ParticleFilteringFunction.cpp
-                                    src/FilteringFunction/AuxiliaryParticleFilteringFunction.cpp)
+                                    src/FilteringAlgorithm/UnscentedKalmanFilter.cpp)
+set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/AuxiliaryFunction.cpp
+                                    src/FilteringFunction/Correction.cpp
+                                    src/FilteringFunction/Initialization.cpp
+                                    src/FilteringFunction/ObservationModel.cpp
+                                    src/FilteringFunction/Prediction.cpp
+                                    src/FilteringFunction/Resampling.cpp
+                                    src/FilteringFunction/SigmaPointTransform.cpp
+                                    src/FilteringFunction/StateModel.cpp
+
+                                    src/FilteringFunction_old/KalmanFilteringFunction.cpp
+                                    src/FilteringFunction_old/UnscentedKalmanFilteringFunction.cpp
+                                    src/FilteringFunction_old/ParticleFilteringFunction.cpp
+                                    src/FilteringFunction_old/AuxiliaryParticleFilteringFunction.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
@@ -19,17 +28,26 @@ set(${LIBRARY_TARGET_NAME}_SRC
 
 # List of HPP (header) library files
 set(${LIBRARY_TARGET_NAME}_FC_HDR   include/FilteringContext/FilteringContext.h)
-set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/FilteringAlgorithm.h
+set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/ASIRParticleFilter.h
+                                    include/FilteringAlgorithm/FilteringAlgorithm.h
                                     include/FilteringAlgorithm/KalmanFilter.h
-                                    include/FilteringAlgorithm/UnscentedKalmanFilter.h
                                     include/FilteringAlgorithm/SIRParticleFilter.h
-                                    include/FilteringAlgorithm/ASIRParticleFilter.h)
-set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/BayesianFilteringFunction.h
-                                    include/FilteringFunction/KalmanFilteringFunction.h
-                                    include/FilteringFunction/UnscentedKalmanFilteringFunction.h
-                                    include/FilteringFunction/ParticleFilteringFunction.h
-                                    include/FilteringFunction/AuxiliaryParticleFilteringFunction.h
-                                    include/FilteringFunction/MultiObjectsFilteringFunction.h)
+                                    include/FilteringAlgorithm/UnscentedKalmanFilter.h)
+set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/AuxiliaryFunction.h
+                                    include/FilteringFunction/Correction.h
+                                    include/FilteringFunction/Initialization.h
+                                    include/FilteringFunction/ObservationModel.h
+                                    include/FilteringFunction/Prediction.h
+                                    include/FilteringFunction/Resampling.h
+                                    include/FilteringFunction/SigmaPointTransform.h
+                                    include/FilteringFunction/StateModel.h
+
+                                    include/FilteringFunction_old/BayesianFilteringFunction.h
+                                    include/FilteringFunction_old/KalmanFilteringFunction.h
+                                    include/FilteringFunction_old/UnscentedKalmanFilteringFunction.h
+                                    include/FilteringFunction_old/ParticleFilteringFunction.h
+                                    include/FilteringFunction_old/AuxiliaryParticleFilteringFunction.h
+                                    include/FilteringFunction_old/MultiObjectsFilteringFunction.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
