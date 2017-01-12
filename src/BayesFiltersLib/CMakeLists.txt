@@ -7,13 +7,14 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/ASIRParticleFilter.cp
                                     src/FilteringAlgorithm/SIRParticleFilter.cpp
                                     src/FilteringAlgorithm/UnscentedKalmanFilter.cpp)
 set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/AuxiliaryFunction.cpp
-                                    src/FilteringFunction/Correction.cpp
-                                    src/FilteringFunction/Initialization.cpp
-                                    src/FilteringFunction/ObservationModel.cpp
-                                    src/FilteringFunction/Prediction.cpp
+                                    src/FilteringFunction/CorrectionDecorator.cpp
+                                    src/FilteringFunction/LinearSensor.cpp
+                                    src/FilteringFunction/ParticleFilterCorrection.cpp
+                                    src/FilteringFunction/ParticleFilterPrediction.cpp
+                                    src/FilteringFunction/PredictionDecorator.cpp
                                     src/FilteringFunction/Resampling.cpp
-                                    src/FilteringFunction/SigmaPointTransform.cpp
-                                    src/FilteringFunction/StateModel.cpp
+                                    src/FilteringFunction/StateModelDecorator.cpp
+                                    src/FilteringFunction/WhiteNoiseAcceleration.cpp
 
                                     src/FilteringFunction_old/KalmanFilteringFunction.cpp
                                     src/FilteringFunction_old/UnscentedKalmanFilteringFunction.cpp
@@ -35,12 +36,19 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/ASIRParticleFilte
                                     include/FilteringAlgorithm/UnscentedKalmanFilter.h)
 set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/AuxiliaryFunction.h
                                     include/FilteringFunction/Correction.h
+                                    include/FilteringFunction/CorrectionDecorator.h
                                     include/FilteringFunction/Initialization.h
+                                    include/FilteringFunction/LinearSensor.h
                                     include/FilteringFunction/ObservationModel.h
+                                    include/FilteringFunction/ParticleFilterCorrection.h
+                                    include/FilteringFunction/ParticleFilterPrediction.h
                                     include/FilteringFunction/Prediction.h
+                                    include/FilteringFunction/PredictionDecorator.h
                                     include/FilteringFunction/Resampling.h
                                     include/FilteringFunction/SigmaPointTransform.h
                                     include/FilteringFunction/StateModel.h
+                                    include/FilteringFunction/StateModelDecorator.h
+                                    include/FilteringFunction/WhiteNoiseAcceleration.h
 
                                     include/FilteringFunction_old/BayesianFilteringFunction.h
                                     include/FilteringFunction_old/KalmanFilteringFunction.h
