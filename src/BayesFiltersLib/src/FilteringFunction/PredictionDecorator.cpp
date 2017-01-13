@@ -1,19 +1,21 @@
+#include <utility>
+
 #include <FilteringFunction/PredictionDecorator.h>
 
 
 PredictionDecorator::PredictionDecorator(std::shared_ptr<Prediction> prediction) noexcept :
-    prediction_(prediction) { };
+    prediction_(prediction) { }
 
 
-PredictionDecorator::~PredictionDecorator() noexcept { };
+PredictionDecorator::~PredictionDecorator() noexcept { }
 
 
 PredictionDecorator::PredictionDecorator(const PredictionDecorator& prediction) :
-    prediction_(prediction.prediction_) { };
+    prediction_(prediction.prediction_) { }
 
 
 PredictionDecorator::PredictionDecorator(PredictionDecorator&& prediction) noexcept :
-    prediction_(std::move(prediction.prediction_)) { };
+    prediction_(std::move(prediction.prediction_)) { }
 
 
 PredictionDecorator& PredictionDecorator::operator=(const PredictionDecorator& prediction)

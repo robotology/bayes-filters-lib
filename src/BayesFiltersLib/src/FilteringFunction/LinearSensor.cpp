@@ -1,4 +1,5 @@
 #include <cmath>
+#include <utility>
 
 #include <FilteringFunction/LinearSensor.h>
 
@@ -41,7 +42,7 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
     lin_sense.T_       = 0.0;
     lin_sense.sigma_x_ = 0.0;
     lin_sense.sigma_y_ = 0.0;
-};
+}
 
 
 LinearSensor& LinearSensor::operator=(const LinearSensor& lin_sense)
@@ -73,15 +74,25 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-void LinearSensor::observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement)
+void LinearSensor::observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> observation)
 {
-    measurement = H_ * cur_state;
+    observation = H_ * cur_state;
 }
 
 
 void LinearSensor::noiseSample(Eigen::Ref<Eigen::VectorXf> sample)
 {
     sample = Vector2f(sigma_x_, sigma_y_).cwiseProduct(Vector2f::NullaryExpr(2, gauss_rnd_sample_));
+}
+
+
+void LinearSensor::measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement)
+{
+    observe(cur_state, measurement);
+
+    Vector2f sample;
+    noiseSample(sample);
+    measurement += sample;
 }
 
 

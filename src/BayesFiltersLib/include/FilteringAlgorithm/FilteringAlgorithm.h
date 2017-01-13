@@ -2,14 +2,12 @@
 #define FILTERINGALGORITHM_H
 
 class FilteringAlgorithm {
-public: 
+public:
 
-    FilteringAlgorithm() {};
+    virtual ~FilteringAlgorithm() noexcept {};
 
-    virtual ~FilteringAlgorithm() {};
-
-    virtual bool Configure() = 0;
     virtual void runFilter() = 0;
+
     virtual void getResult() = 0;
 
 };

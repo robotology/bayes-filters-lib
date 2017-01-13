@@ -2,46 +2,59 @@
 #define SIRPARTICLEFILTER_H
 
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction_old/ParticleFilteringFunction.h>
+#include <FilteringFunction/FilteringFunction.h>
 
-#include <vector>
+#include <memory>
 #include <random>
 
 #include <Eigen/Dense>
 
 
 class SIRParticleFilter: public FilteringAlgorithm {
-protected:
-
-    ParticleFilteringFunction       * _pf_f;
-
-    Eigen::MatrixXf                   _object;
-    Eigen::MatrixXf                   _measurement;
-    
-    Eigen::MatrixXf                   _init_particle;
-    Eigen::VectorXf                   _init_weight;
-
-    std::vector<Eigen::MatrixXf>      _result_particle;
-    std::vector<Eigen::VectorXf>      _result_weight;
-
-    std::mt19937_64                 * generator;
-    std::normal_distribution<float> * distribution_obj;
-    std::function<float (float)>      gaussian_random;
-
-    void Snapshot();
-
 public:
     
-    SIRParticleFilter();
-    
-    virtual ~SIRParticleFilter();
+    /* Default constructor, disabled */
+    SIRParticleFilter() = delete;
 
-    virtual bool Configure();
+    /* SIR complete constructor */
+    SIRParticleFilter(std::shared_ptr<StateModel> state_model, std::shared_ptr<Prediction> prediction, std::shared_ptr<ObservationModel> observation_model, std::shared_ptr<Correction> correction, std::shared_ptr<Resampling> resampling) noexcept;
 
-    virtual void runFilter();
+    /* Destructor */
+    ~SIRParticleFilter() noexcept override;
 
-    virtual void getResult();
+    /* Copy constructor */
+    SIRParticleFilter(const SIRParticleFilter& sir_pf);
 
+    /* Move constructor */
+    SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept;
+
+    /* Copy assignment operator */
+    SIRParticleFilter& operator=(const SIRParticleFilter& sir_pf);
+
+    /* Move assignment operator */
+    SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
+
+    void runFilter() override;
+
+    void getResult() override;
+
+protected:
+    std::shared_ptr<StateModel>       state_model_;
+    std::shared_ptr<Prediction>       prediction_;
+    std::shared_ptr<ObservationModel> observation_model_;
+    std::shared_ptr<Correction>       correction_;
+    std::shared_ptr<Resampling>       resampling_;
+
+    Eigen::MatrixXf                   object_;
+    Eigen::MatrixXf                   measurement_;
+
+    Eigen::MatrixXf                   init_particle_;
+    Eigen::VectorXf                   init_weight_;
+
+    std::vector<Eigen::MatrixXf>      result_particle_;
+    std::vector<Eigen::VectorXf>      result_weight_;
+
+    void snapshot();
 };
 
 #endif /* SIRPARTICLEFILTER_H */

@@ -1,3 +1,5 @@
+#include <utility>
+
 #include <FilteringFunction/Resampling.h>
 
 using namespace Eigen;
@@ -15,11 +17,11 @@ Resampling::~Resampling() noexcept { }
 
 
 Resampling::Resampling(const Resampling& resampling) :
-    generator_(resampling.generator_) { };
+    generator_(resampling.generator_) { }
 
 
 Resampling::Resampling(Resampling&& resampling) noexcept :
-    generator_(std::move(resampling.generator_)) { };
+    generator_(std::move(resampling.generator_)) { }
 
 
 Resampling& Resampling::operator=(const Resampling& resampling)

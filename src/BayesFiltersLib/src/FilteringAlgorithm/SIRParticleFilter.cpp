@@ -1,144 +1,134 @@
-#include <FilteringAlgorithm/SIRParticleFilter.h>
-
 #include <fstream>
 #include <iostream>
-#include <random>
+#include <utility>
 
 #include <Eigen/Dense>
 
+#include <FilteringAlgorithm/SIRParticleFilter.h>
+
 using namespace Eigen;
 
-/**
- * SIRParticleFilter implementation
- */
+
+SIRParticleFilter::SIRParticleFilter(std::shared_ptr<StateModel> state_model, std::shared_ptr<Prediction> prediction, std::shared_ptr<ObservationModel> observation_model, std::shared_ptr<Correction> correction, std::shared_ptr<Resampling> resampling) noexcept :
+    state_model_(state_model), prediction_(prediction), observation_model_(observation_model), correction_(correction), resampling_(resampling) { };
 
 
-std::mt19937_64 generator_LIN(1);
-std::normal_distribution<float> distribution_LIN(0.0, 100.0);
+SIRParticleFilter::~SIRParticleFilter() noexcept { };
 
-Vector2f LIN(const Ref<const Vector4f> state)
+
+SIRParticleFilter::SIRParticleFilter(const SIRParticleFilter& sir_pf)
 {
-    auto gaussian_random = [&] (int) { return distribution_LIN(generator_LIN); };
+    state_model_       = sir_pf.state_model_;
+    prediction_        = sir_pf.prediction_;
+    observation_model_ = sir_pf.observation_model_;
+    correction_        = sir_pf.correction_;
+    resampling_        = sir_pf.resampling_;
+};
 
-    return Vector2f(state(0) + VectorXf::NullaryExpr(1, gaussian_random)(0),
-                    state(2) + VectorXf::NullaryExpr(1, gaussian_random)(0));
-}
+
+SIRParticleFilter::SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept :
+    prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { };
 
 
-/**
- * SIRParticleFilter implementation
- */
-SIRParticleFilter::SIRParticleFilter()
+SIRParticleFilter& SIRParticleFilter::operator=(const SIRParticleFilter& sir_pf)
 {
-    _pf_f = nullptr;
-    generator = nullptr;
-    distribution_obj = nullptr;
-}
+    SIRParticleFilter tmp(sir_pf);
+    *this = std::move(tmp);
+
+    return *this;
+};
 
 
-bool SIRParticleFilter::Configure()
+SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noexcept
 {
-    generator        = new std::mt19937_64(1);
-    distribution_obj = new std::normal_distribution<float>(0.0, 5.0);
-    gaussian_random  = [&] (int) { return (*distribution_obj)(*generator); };
+    state_model_       = std::move(sir_pf.state_model_);
+    prediction_        = std::move(sir_pf.prediction_);
+    observation_model_ = std::move(sir_pf.observation_model_);
+    correction_        = std::move(sir_pf.correction_);
+    resampling_        = std::move(sir_pf.resampling_);
 
-    _pf_f = new ParticleFilteringFunction;
-    _pf_f->Configure();
-
-    return true;
-}
-
-
-SIRParticleFilter::~SIRParticleFilter()
-{
-    delete _pf_f;
-    delete generator;
-    delete distribution_obj;
-}
+    return *this;
+};
 
 
 void SIRParticleFilter::runFilter()
 {
-    /* GENERATE MEASUREMENTS */
-    _measurement.resize(2, 100);
-    _object.resize(4, 100);
-    
-    _object.col(0) << 0, 10, 0, 10;
-    _measurement.col(0) << LIN(_object.col(0));
+    /* INITIALIZATION */
+    int simulation_time = 100;
+    int num_particle    = 900;
+    int surv_x          = 1000;
+    int surv_y          = 1000;
 
-    Matrix4f A;
-    A << 1, 5, 0, 0,
-         0, 1, 0, 0,
-         0, 0, 1, 5,
-         0, 0, 0, 1;
-    for (int k = 1; k < 100; ++k)
+    /* GENERATE MEASUREMENTS */
+    measurement_.resize(2, simulation_time);
+    object_.resize(4, simulation_time);
+
+    object_.col(0) << 0, 10, 0, 10;
+    observation_model_->measure(object_.col(0), measurement_.col(0));
+
+    for (int k = 1; k < simulation_time; ++k)
     {
-        _object.col(k) = A * _object.col(k-1) + VectorXf::NullaryExpr(4, gaussian_random);
-        _measurement.col(k) << LIN(_object.col(k));
+        state_model_->motion(object_.col(k-1), object_.col(k));
+        observation_model_->measure(object_.col(k), measurement_.col(k));
     }
 
-    /* INITIALIZATION */
-    int num_particle = 10000;
-    int surv_x = 5000;
-    int surv_y = 5000;
+    /* INITIALIZE FILTER */
+    init_weight_.resize(num_particle, 1);
+    init_weight_.setConstant(1.0/num_particle);
 
-    _init_weight.resize(num_particle, 1);
-    _init_weight.setConstant(1.0/num_particle);
-
-    _init_particle.resize(4, num_particle);
-    for (int i = 0; i < 100; ++i)
+    int particle_spread = std::sqrt(num_particle);
+    init_particle_.resize(4, num_particle);
+    for (int i = 0; i < particle_spread; ++i)
     {
-        for (int j = 0; j < 100; ++j)
+        for (int j = 0; j < particle_spread; ++j)
         {
-            _init_particle.col(i*100 + j) << (surv_x / 100) * i,
-                                                              0,
-                                             (surv_y / 100) * j,
-                                                              0;
+            init_particle_.col(i*particle_spread + j) << (surv_x / particle_spread) * i,
+                                                                                      0,
+                                                         (surv_y / particle_spread) * j,
+                                                                                      0;
         }
     }
 
-    _result_particle.resize(100);
-    _result_weight.resize(100);
+    result_particle_.resize(simulation_time);
+    result_weight_.resize(simulation_time);
 
     /* FILTERING */
-    for (int k = 0; k < 100; ++k)
+    for (int k = 0; k < simulation_time; ++k)
     {
-        MatrixXf temp_particle(4, num_particle);
-        VectorXf temp_weight(num_particle, 1);
-        VectorXf temp_parent(num_particle, 1);
-
-//        Snapshot();
+        //Snapshot();
 
         for (int i = 0; i < num_particle; ++i)
-        {
-            _pf_f->Prediction(_init_particle.col(i), _init_particle.col(i));
-        }
-//        Snapshot();
+            prediction_->predict(init_particle_.col(i), init_particle_.col(i));
+
+        //Snapshot();
+
         for (int i = 0; i < num_particle; ++i)
+            correction_->correct(init_particle_.col(i), measurement_.col(k), init_weight_.row(i));
+
+        init_weight_ /= init_weight_.sum();
+
+        //Snapshot();
+
+        result_particle_[k] = init_particle_;
+        result_weight_  [k] = init_weight_;
+
+        if (resampling_->neff(init_weight_) < num_particle/3)
         {
-            _pf_f->Correction(_init_particle.col(i), _measurement.col(k), _init_weight.row(i));
-        }
+            MatrixXf temp_particle(4, num_particle);
+            VectorXf temp_weight(num_particle, 1);
+            VectorXf temp_parent(num_particle, 1);
 
-        _init_weight = _pf_f->Normalize(_init_weight);
+            resampling_->resample(init_particle_, init_weight_, temp_particle, temp_weight, temp_parent);
 
-//        Snapshot();
-
-        _result_particle[k] = _init_particle;
-        _result_weight  [k] = _init_weight;
-
-        if (_pf_f->Neff(_init_weight) < num_particle/3)
-        {
-            _pf_f->Resampling(_init_particle, _init_weight, temp_particle, temp_weight, temp_parent);
-
-            _init_particle = temp_particle;
-            _init_weight = temp_weight;
+            init_particle_ = temp_particle;
+            init_weight_   = temp_weight;
         }
 
     }
 }
 
 
-void SIRParticleFilter::Snapshot()
+void SIRParticleFilter::snapshot()
 {
     std::ofstream result_file_object;
     std::ofstream result_file_measurement;
@@ -150,10 +140,10 @@ void SIRParticleFilter::Snapshot()
     result_file_particle.open   ("../../../../dbg/result_particle.txt"   , std::ios_base::out | std::ios_base::trunc);
     result_file_weight.open     ("../../../../dbg/result_weight.txt"     , std::ios_base::out | std::ios_base::trunc);
 
-    result_file_object      << _object;
-    result_file_measurement << _measurement;
-    result_file_particle    << _init_particle;
-    result_file_weight      << _init_weight;
+    result_file_object      << object_;
+    result_file_measurement << measurement_;
+    result_file_particle    << init_particle_;
+    result_file_weight      << init_weight_;
 
     result_file_object.close();
     result_file_measurement.close();
@@ -174,13 +164,12 @@ void SIRParticleFilter::getResult()
     result_file_particle.open   ("../../../../dbg/result_particle.txt");
     result_file_weight.open     ("../../../../dbg/result_weight.txt");
 
-    result_file_object << _object;
-    result_file_measurement << _measurement;
+    result_file_object       << object_;
+    result_file_measurement  << measurement_;
     for (int k = 0; k < 100; ++k)
     {
-        result_file_particle << _result_particle[k] << std::endl << std::endl;
-
-        result_file_weight << _result_weight[k] << std::endl << std::endl;
+        result_file_particle << result_particle_[k] << std::endl << std::endl;
+        result_file_weight   << result_weight_[k] << std::endl << std::endl;
     }
 
     result_file_object.close();

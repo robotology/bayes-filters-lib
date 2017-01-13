@@ -1,6 +1,7 @@
 #ifndef WHITENOISEACCELERATION_H
 #define WHITENOISEACCELERATION_H
 
+#include <functional>
 #include <random>
 
 #include <FilteringFunction/StateModel.h>
@@ -35,6 +36,8 @@ public:
     void propagate(const Eigen::Ref<const Eigen::VectorXf> & cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+
+    void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> next_state) override;
 
 protected:
     float                           T_;                /* Sampling interval */

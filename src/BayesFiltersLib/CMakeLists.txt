@@ -37,6 +37,7 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/ASIRParticleFilte
 set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/AuxiliaryFunction.h
                                     include/FilteringFunction/Correction.h
                                     include/FilteringFunction/CorrectionDecorator.h
+                                    include/FilteringFunction/FilteringFunction.h
                                     include/FilteringFunction/Initialization.h
                                     include/FilteringFunction/LinearSensor.h
                                     include/FilteringFunction/ObservationModel.h

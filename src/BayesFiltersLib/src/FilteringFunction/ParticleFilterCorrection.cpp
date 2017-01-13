@@ -1,4 +1,5 @@
 #include <cmath>
+#include <utility>
 
 #include <FilteringFunction/ParticleFilterCorrection.h>
 
@@ -6,16 +7,16 @@ using namespace Eigen;
 
 
 ParticleFilterCorrection::ParticleFilterCorrection(std::shared_ptr<ObservationModel> measurement_model) noexcept :
-    measurement_model_(measurement_model) { };
+    measurement_model_(measurement_model) { }
 
 
-ParticleFilterCorrection::~ParticleFilterCorrection() noexcept { };
+ParticleFilterCorrection::~ParticleFilterCorrection() noexcept { }
 
 
 ParticleFilterCorrection::ParticleFilterCorrection(const ParticleFilterCorrection& pf_correction)
 {
     measurement_model_ = pf_correction.measurement_model_;
-};
+}
 
 
 ParticleFilterCorrection::ParticleFilterCorrection(ParticleFilterCorrection&& pf_correction) noexcept :
@@ -28,7 +29,7 @@ ParticleFilterCorrection& ParticleFilterCorrection::operator=(const ParticleFilt
     *this = std::move(tmp);
 
     return *this;
-};
+}
 
 
 ParticleFilterCorrection& ParticleFilterCorrection::operator=(ParticleFilterCorrection&& pf_correction) noexcept
@@ -36,7 +37,7 @@ ParticleFilterCorrection& ParticleFilterCorrection::operator=(ParticleFilterCorr
     measurement_model_ = std::move(pf_correction.measurement_model_);
 
     return *this;
-};
+}
 
 
 void ParticleFilterCorrection::correct(const Eigen::Ref<const Eigen::VectorXf>& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::VectorXf> cor_state)

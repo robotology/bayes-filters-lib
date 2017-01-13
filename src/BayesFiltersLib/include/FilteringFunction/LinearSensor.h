@@ -1,6 +1,7 @@
 #ifndef LINEARSENSOR_H
 #define LINEARSENSOR_H
 
+#include <functional>
 #include <random>
 
 #include <FilteringFunction/ObservationModel.h>
@@ -32,9 +33,11 @@ public:
     /* Move assignment operator */
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement) override;
+    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> observation) override;
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+
+    void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement) override;
 
     Eigen::MatrixXf noiseCovariance() override;
 

@@ -1,4 +1,5 @@
 #include <cmath>
+#include <utility>
 
 #include <Eigen/Cholesky>
 
@@ -41,7 +42,7 @@ WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept { }
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
     T_(wna.T_), F_(wna.F_), Q_(wna.Q_), tilde_q_(wna.tilde_q_),
-    sqrt_Q_(wna.sqrt_Q_), generator_(wna.generator_), distribution_(wna.distribution_), gauss_rnd_sample_(wna.gauss_rnd_sample_) { };
+    sqrt_Q_(wna.sqrt_Q_), generator_(wna.generator_), distribution_(wna.distribution_), gauss_rnd_sample_(wna.gauss_rnd_sample_) { }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept :
@@ -50,7 +51,7 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noe
 {
     wna.T_       = 0.0;
     wna.tilde_q_ = 0.0;
-};
+}
 
 
 WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(const WhiteNoiseAcceleration& wna)
@@ -87,7 +88,17 @@ void WhiteNoiseAcceleration::propagate(const Ref<const VectorXf> & cur_state, Re
 }
 
 
-void WhiteNoiseAcceleration::noiseSample(Eigen::Ref<Eigen::VectorXf> sample)
+void WhiteNoiseAcceleration::noiseSample(Ref<VectorXf> sample)
 {
     sample = sqrt_Q_ * Vector4f::NullaryExpr(4, gauss_rnd_sample_);
+}
+
+
+void WhiteNoiseAcceleration::motion(const Ref<const VectorXf>& cur_state, Ref<VectorXf> next_state)
+{
+    propagate(cur_state, next_state);
+
+    Vector4f sample;
+    noiseSample(sample);
+    next_state += sample;
 }
