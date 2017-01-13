@@ -1,14 +1,7 @@
 #include <FilteringAlgorithm/UnscentedKalmanFilter.h>
 
-/**
- * UnscentedKalmanFilter implementation
- */
+
+UnscentedKalmanFilter::UnscentedKalmanFilter() { }
 
 
-UnscentedKalmanFilter::UnscentedKalmanFilter()
-{
-    _ukf_f = nullptr;
-}
-
-
-UnscentedKalmanFilter::~UnscentedKalmanFilter() {};
+UnscentedKalmanFilter::~UnscentedKalmanFilter() { }

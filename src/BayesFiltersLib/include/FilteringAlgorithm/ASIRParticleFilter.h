@@ -1,21 +1,19 @@
 #ifndef ASIRPARTICLEFILTER_H
 #define ASIRPARTICLEFILTER_H
 
-#include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction_old/AuxiliaryParticleFilteringFunction.h>
-
 #include <Eigen/Dense>
 
+#include <FilteringAlgorithm/FilteringAlgorithm.h>
+
 class ASIRParticleFilter: public FilteringAlgorithm {
-private:
-
-    AuxiliaryParticleFilteringFunction * _apf_f;
-
 public:
-    
     ASIRParticleFilter();
 
     virtual ~ASIRParticleFilter();
+
+    void runFilter() override;
+
+    void getResult() override;
 };
 
 #endif /* ASIRPARTICLEFILTER_H */

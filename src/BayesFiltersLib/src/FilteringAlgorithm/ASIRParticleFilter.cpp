@@ -1,14 +1,7 @@
 #include <FilteringAlgorithm/ASIRParticleFilter.h>
 
-/**
- * ASIRParticleFilter implementation
- */
+
+ASIRParticleFilter::ASIRParticleFilter() { }
 
 
-ASIRParticleFilter::ASIRParticleFilter()
-{
-    _apf_f = nullptr;
-}
-
-
-ASIRParticleFilter::~ASIRParticleFilter() {};
+ASIRParticleFilter::~ASIRParticleFilter() { }

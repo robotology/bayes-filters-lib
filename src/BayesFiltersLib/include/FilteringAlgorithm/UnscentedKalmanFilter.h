@@ -1,23 +1,20 @@
 #ifndef UNSCENTEDKALMANFILTER_H
 #define UNSCENTEDKALMANFILTER_H
 
-#include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction_old/UnscentedKalmanFilteringFunction.h>
-
 #include <Eigen/Dense>
+
+#include <FilteringAlgorithm/FilteringAlgorithm.h>
 
 
 class UnscentedKalmanFilter: public FilteringAlgorithm {
-private:
-
-    UnscentedKalmanFilteringFunction * _ukf_f;
-    
 public:
-
     UnscentedKalmanFilter();
 
     virtual ~UnscentedKalmanFilter();
 
+    virtual void runFilter() = 0;
+
+    virtual void getResult() = 0;
 };
 
 #endif /* UNSCENTEDKALMANFILTER_H */

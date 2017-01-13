@@ -14,12 +14,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/AuxiliaryFunction.cpp
                                     src/FilteringFunction/PredictionDecorator.cpp
                                     src/FilteringFunction/Resampling.cpp
                                     src/FilteringFunction/StateModelDecorator.cpp
-                                    src/FilteringFunction/WhiteNoiseAcceleration.cpp
-
-                                    src/FilteringFunction_old/KalmanFilteringFunction.cpp
-                                    src/FilteringFunction_old/UnscentedKalmanFilteringFunction.cpp
-                                    src/FilteringFunction_old/ParticleFilteringFunction.cpp
-                                    src/FilteringFunction_old/AuxiliaryParticleFilteringFunction.cpp)
+                                    src/FilteringFunction/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
@@ -49,14 +44,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/AuxiliaryFunction.
                                     include/FilteringFunction/SigmaPointTransform.h
                                     include/FilteringFunction/StateModel.h
                                     include/FilteringFunction/StateModelDecorator.h
-                                    include/FilteringFunction/WhiteNoiseAcceleration.h
-
-                                    include/FilteringFunction_old/BayesianFilteringFunction.h
-                                    include/FilteringFunction_old/KalmanFilteringFunction.h
-                                    include/FilteringFunction_old/UnscentedKalmanFilteringFunction.h
-                                    include/FilteringFunction_old/ParticleFilteringFunction.h
-                                    include/FilteringFunction_old/AuxiliaryParticleFilteringFunction.h
-                                    include/FilteringFunction_old/MultiObjectsFilteringFunction.h)
+                                    include/FilteringFunction/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}

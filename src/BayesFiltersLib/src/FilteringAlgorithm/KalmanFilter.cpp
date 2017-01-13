@@ -1,14 +1,7 @@
 #include <FilteringAlgorithm/KalmanFilter.h>
 
-/**
- * KalmanFilter implementation
- */
+
+KalmanFilter::KalmanFilter() { }
 
 
-KalmanFilter::KalmanFilter()
-{
-    _kf_f = nullptr;
-}
-
-
-KalmanFilter::~KalmanFilter() {};
+KalmanFilter::~KalmanFilter() { }
