@@ -5,3 +5,9 @@ UnscentedKalmanFilter::UnscentedKalmanFilter() { }
 
 
 UnscentedKalmanFilter::~UnscentedKalmanFilter() { }
+
+
+void runFilter() { }
+
+
+void getResult() { }

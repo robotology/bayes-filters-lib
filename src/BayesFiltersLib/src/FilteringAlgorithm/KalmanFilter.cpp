@@ -5,3 +5,9 @@ KalmanFilter::KalmanFilter() { }
 
 
 KalmanFilter::~KalmanFilter() { }
+
+
+void runFilter() { }
+
+
+void getResult() { }

@@ -1,19 +1,18 @@
 #ifndef KALMANFILTER_H
 #define KALMANFILTER_H
 
-#include <Eigen/Dense>
-
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
+
 
 class KalmanFilter: public FilteringAlgorithm {
 public:
     KalmanFilter();
 
-    virtual ~KalmanFilter();
+    ~KalmanFilter() noexcept override;
 
-    virtual void runFilter() = 0;
+    void runFilter() override;
 
-    virtual void getResult() = 0;
+    void getResult() override;
 };
 
 #endif /* KALMANFILTER_H */

@@ -1,8 +1,6 @@
 #ifndef UNSCENTEDKALMANFILTER_H
 #define UNSCENTEDKALMANFILTER_H
 
-#include <Eigen/Dense>
-
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
 
 
@@ -10,11 +8,11 @@ class UnscentedKalmanFilter: public FilteringAlgorithm {
 public:
     UnscentedKalmanFilter();
 
-    virtual ~UnscentedKalmanFilter();
+    ~UnscentedKalmanFilter() noexcept override;
 
-    virtual void runFilter() = 0;
+    void runFilter() override;
 
-    virtual void getResult() = 0;
+    void getResult() override;
 };
 
 #endif /* UNSCENTEDKALMANFILTER_H */

@@ -3,8 +3,7 @@
 
 class FilteringAlgorithm {
 public:
-
-    virtual ~FilteringAlgorithm() noexcept {};
+    virtual ~FilteringAlgorithm() noexcept { };
 
     virtual void runFilter() = 0;
 

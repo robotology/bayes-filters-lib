@@ -2,8 +2,7 @@ set(LIBRARY_TARGET_NAME BayesFiltersLib)
 
 # List of CPP (source) library files
 set(${LIBRARY_TARGET_NAME}_FC_SRC   src/FilteringContext/FilteringContext.cpp)
-set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/ASIRParticleFilter.cpp
-                                    src/FilteringAlgorithm/KalmanFilter.cpp
+set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/KalmanFilter.cpp
                                     src/FilteringAlgorithm/SIRParticleFilter.cpp
                                     src/FilteringAlgorithm/UnscentedKalmanFilter.cpp)
 set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/AuxiliaryFunction.cpp
@@ -24,8 +23,7 @@ set(${LIBRARY_TARGET_NAME}_SRC
 
 # List of HPP (header) library files
 set(${LIBRARY_TARGET_NAME}_FC_HDR   include/FilteringContext/FilteringContext.h)
-set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/ASIRParticleFilter.h
-                                    include/FilteringAlgorithm/FilteringAlgorithm.h
+set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/FilteringAlgorithm.h
                                     include/FilteringAlgorithm/KalmanFilter.h
                                     include/FilteringAlgorithm/SIRParticleFilter.h
                                     include/FilteringAlgorithm/UnscentedKalmanFilter.h)
