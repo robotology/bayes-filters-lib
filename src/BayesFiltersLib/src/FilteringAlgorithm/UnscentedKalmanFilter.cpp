@@ -4,10 +4,10 @@
 UnscentedKalmanFilter::UnscentedKalmanFilter() { }
 
 
-UnscentedKalmanFilter::~UnscentedKalmanFilter() { }
+UnscentedKalmanFilter::~UnscentedKalmanFilter() noexcept { }
 
 
-void runFilter() { }
+void UnscentedKalmanFilter::runFilter() { }
 
 
-void getResult() { }
+void UnscentedKalmanFilter::getResult() { }

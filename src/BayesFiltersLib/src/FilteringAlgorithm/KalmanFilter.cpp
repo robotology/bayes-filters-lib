@@ -4,10 +4,10 @@
 KalmanFilter::KalmanFilter() { }
 
 
-KalmanFilter::~KalmanFilter() { }
+KalmanFilter::~KalmanFilter() noexcept { }
 
 
-void runFilter() { }
+void KalmanFilter::runFilter() { }
 
 
-void getResult() { }
+void KalmanFilter::getResult() { }

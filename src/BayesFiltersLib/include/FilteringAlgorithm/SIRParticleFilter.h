@@ -2,7 +2,11 @@
 #define SIRPARTICLEFILTER_H
 
 #include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction/FilteringFunction.h>
+#include <FilteringFunction/StateModel.h>
+#include <FilteringFunction/Prediction.h>
+#include <FilteringFunction/ObservationModel.h>
+#include <FilteringFunction/Correction.h>
+#include <FilteringFunction/Resampling.h>
 
 #include <memory>
 #include <random>
