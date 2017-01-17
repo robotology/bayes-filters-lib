@@ -4,8 +4,8 @@
 #include <memory>
 #include <random>
 
-#include <FilteringFunction/Correction.h>
-#include <FilteringFunction/ObservationModel.h>
+#include "Correction.h"
+#include "ObservationModel.h"
 
 
 class ParticleFilterCorrection: public Correction

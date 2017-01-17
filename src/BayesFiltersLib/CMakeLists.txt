@@ -1,19 +1,19 @@
 set(LIBRARY_TARGET_NAME BayesFiltersLib)
 
 # List of CPP (source) library files
-set(${LIBRARY_TARGET_NAME}_FC_SRC   src/FilteringContext/FilteringContext.cpp)
-set(${LIBRARY_TARGET_NAME}_FA_SRC   src/FilteringAlgorithm/KalmanFilter.cpp
-                                    src/FilteringAlgorithm/SIRParticleFilter.cpp
-                                    src/FilteringAlgorithm/UnscentedKalmanFilter.cpp)
-set(${LIBRARY_TARGET_NAME}_FF_SRC   src/FilteringFunction/AuxiliaryFunction.cpp
-                                    src/FilteringFunction/CorrectionDecorator.cpp
-                                    src/FilteringFunction/LinearSensor.cpp
-                                    src/FilteringFunction/ParticleFilterCorrection.cpp
-                                    src/FilteringFunction/ParticleFilterPrediction.cpp
-                                    src/FilteringFunction/PredictionDecorator.cpp
-                                    src/FilteringFunction/Resampling.cpp
-                                    src/FilteringFunction/StateModelDecorator.cpp
-                                    src/FilteringFunction/WhiteNoiseAcceleration.cpp)
+set(${LIBRARY_TARGET_NAME}_FC_SRC   src/FilteringContext.cpp)
+set(${LIBRARY_TARGET_NAME}_FA_SRC   src/KalmanFilter.cpp
+                                    src/SIRParticleFilter.cpp
+                                    src/UnscentedKalmanFilter.cpp)
+set(${LIBRARY_TARGET_NAME}_FF_SRC   src/AuxiliaryFunction.cpp
+                                    src/CorrectionDecorator.cpp
+                                    src/LinearSensor.cpp
+                                    src/ParticleFilterCorrection.cpp
+                                    src/ParticleFilterPrediction.cpp
+                                    src/PredictionDecorator.cpp
+                                    src/Resampling.cpp
+                                    src/StateModelDecorator.cpp
+                                    src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
@@ -22,27 +22,27 @@ set(${LIBRARY_TARGET_NAME}_SRC
 )
 
 # List of HPP (header) library files
-set(${LIBRARY_TARGET_NAME}_FC_HDR   include/FilteringContext/FilteringContext.h)
-set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm/FilteringAlgorithm.h
-                                    include/FilteringAlgorithm/KalmanFilter.h
-                                    include/FilteringAlgorithm/SIRParticleFilter.h
-                                    include/FilteringAlgorithm/UnscentedKalmanFilter.h)
-set(${LIBRARY_TARGET_NAME}_FF_HDR   include/FilteringFunction/AuxiliaryFunction.h
-                                    include/FilteringFunction/Correction.h
-                                    include/FilteringFunction/CorrectionDecorator.h
-                                    include/FilteringFunction/FilteringFunction.h
-                                    include/FilteringFunction/Initialization.h
-                                    include/FilteringFunction/LinearSensor.h
-                                    include/FilteringFunction/ObservationModel.h
-                                    include/FilteringFunction/ParticleFilterCorrection.h
-                                    include/FilteringFunction/ParticleFilterPrediction.h
-                                    include/FilteringFunction/Prediction.h
-                                    include/FilteringFunction/PredictionDecorator.h
-                                    include/FilteringFunction/Resampling.h
-                                    include/FilteringFunction/SigmaPointTransform.h
-                                    include/FilteringFunction/StateModel.h
-                                    include/FilteringFunction/StateModelDecorator.h
-                                    include/FilteringFunction/WhiteNoiseAcceleration.h)
+set(${LIBRARY_TARGET_NAME}_FC_HDR   include/FilteringContext.h)
+set(${LIBRARY_TARGET_NAME}_FA_HDR   include/FilteringAlgorithm.h
+                                    include/KalmanFilter.h
+                                    include/SIRParticleFilter.h
+                                    include/UnscentedKalmanFilter.h)
+set(${LIBRARY_TARGET_NAME}_FF_HDR   include/AuxiliaryFunction.h
+                                    include/Correction.h
+                                    include/CorrectionDecorator.h
+                                    include/FilteringFunction.h
+                                    include/Initialization.h
+                                    include/LinearSensor.h
+                                    include/ObservationModel.h
+                                    include/ParticleFilterCorrection.h
+                                    include/ParticleFilterPrediction.h
+                                    include/Prediction.h
+                                    include/PredictionDecorator.h
+                                    include/Resampling.h
+                                    include/SigmaPointTransform.h
+                                    include/StateModel.h
+                                    include/StateModelDecorator.h
+                                    include/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}

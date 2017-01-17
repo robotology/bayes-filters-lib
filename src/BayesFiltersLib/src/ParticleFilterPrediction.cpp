@@ -1,7 +1,7 @@
 #include <utility>
 
-#include <FilteringFunction/ParticleFilterPrediction.h>
-#include <FilteringFunction/StateModel.h>
+#include "ParticleFilterPrediction.h"
+#include "StateModel.h"
 
 using namespace Eigen;
 

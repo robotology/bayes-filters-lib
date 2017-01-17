@@ -1,12 +1,8 @@
 #include <iostream>
 #include <memory>
 
-#include <FilteringAlgorithm/SIRParticleFilter.h>
-#include <FilteringFunction/WhiteNoiseAcceleration.h>
-#include <FilteringFunction/ParticleFilterPrediction.h>
-#include <FilteringFunction/LinearSensor.h>
-#include <FilteringFunction/ParticleFilterCorrection.h>
-#include <FilteringFunction/Resampling.h>
+#include "SIRParticleFilter.h"
+#include "FilteringFunction.h"
 
 
 int main()

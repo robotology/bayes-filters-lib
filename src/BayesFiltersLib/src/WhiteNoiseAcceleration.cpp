@@ -3,7 +3,7 @@
 
 #include <Eigen/Cholesky>
 
-#include <FilteringFunction/WhiteNoiseAcceleration.h>
+#include "WhiteNoiseAcceleration.h"
 
 using namespace Eigen;
 

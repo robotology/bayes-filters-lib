@@ -4,7 +4,7 @@
 #include <functional>
 #include <random>
 
-#include <FilteringFunction/StateModel.h>
+#include "StateModel.h"
 
 
 class WhiteNoiseAcceleration : public StateModel {

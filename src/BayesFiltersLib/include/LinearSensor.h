@@ -4,7 +4,7 @@
 #include <functional>
 #include <random>
 
-#include <FilteringFunction/ObservationModel.h>
+#include "ObservationModel.h"
 
 
 class LinearSensor : public ObservationModel {

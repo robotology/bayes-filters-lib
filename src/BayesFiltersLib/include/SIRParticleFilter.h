@@ -1,17 +1,17 @@
 #ifndef SIRPARTICLEFILTER_H
 #define SIRPARTICLEFILTER_H
 
-#include <FilteringAlgorithm/FilteringAlgorithm.h>
-#include <FilteringFunction/StateModel.h>
-#include <FilteringFunction/Prediction.h>
-#include <FilteringFunction/ObservationModel.h>
-#include <FilteringFunction/Correction.h>
-#include <FilteringFunction/Resampling.h>
-
 #include <memory>
 #include <random>
 
 #include <Eigen/Dense>
+
+#include "FilteringAlgorithm.h"
+#include "StateModel.h"
+#include "Prediction.h"
+#include "ObservationModel.h"
+#include "Correction.h"
+#include "Resampling.h"
 
 
 class SIRParticleFilter: public FilteringAlgorithm {

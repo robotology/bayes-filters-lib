@@ -4,7 +4,7 @@
 
 #include <Eigen/Dense>
 
-#include <FilteringAlgorithm/SIRParticleFilter.h>
+#include "SIRParticleFilter.h"
 
 using namespace Eigen;
 

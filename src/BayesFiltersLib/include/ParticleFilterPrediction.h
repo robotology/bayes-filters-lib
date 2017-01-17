@@ -4,8 +4,8 @@
 #include <memory>
 #include <random>
 
-#include <FilteringFunction/Prediction.h>
-#include <FilteringFunction/StateModel.h>
+#include "Prediction.h"
+#include "StateModel.h"
 
 
 class ParticleFilterPrediction: public Prediction

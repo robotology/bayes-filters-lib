@@ -1,1 +1,0 @@
-#include <FilteringFunction/StateModelDecorator.h>

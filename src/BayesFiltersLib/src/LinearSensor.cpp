@@ -1,7 +1,7 @@
 #include <cmath>
 #include <utility>
 
-#include <FilteringFunction/LinearSensor.h>
+#include "LinearSensor.h"
 
 using namespace Eigen;
 

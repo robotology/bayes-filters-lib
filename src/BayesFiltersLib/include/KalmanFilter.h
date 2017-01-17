@@ -1,7 +1,7 @@
 #ifndef KALMANFILTER_H
 #define KALMANFILTER_H
 
-#include <FilteringAlgorithm/FilteringAlgorithm.h>
+#include "FilteringAlgorithm.h"
 
 
 class KalmanFilter: public FilteringAlgorithm {

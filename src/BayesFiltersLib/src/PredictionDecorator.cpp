@@ -1,6 +1,6 @@
 #include <utility>
 
-#include <FilteringFunction/PredictionDecorator.h>
+#include "PredictionDecorator.h"
 
 
 PredictionDecorator::PredictionDecorator(std::shared_ptr<Prediction> prediction) noexcept :

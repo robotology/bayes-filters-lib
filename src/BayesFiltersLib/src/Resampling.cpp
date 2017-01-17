@@ -1,6 +1,6 @@
 #include <utility>
 
-#include <FilteringFunction/Resampling.h>
+#include "Resampling.h"
 
 using namespace Eigen;
 

@@ -1,7 +1,7 @@
 #ifndef UNSCENTEDKALMANFILTER_H
 #define UNSCENTEDKALMANFILTER_H
 
-#include <FilteringAlgorithm/FilteringAlgorithm.h>
+#include "FilteringAlgorithm.h"
 
 
 class UnscentedKalmanFilter: public FilteringAlgorithm {

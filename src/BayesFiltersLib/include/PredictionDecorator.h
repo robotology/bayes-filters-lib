@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include <FilteringFunction/Prediction.h>
+#include "Prediction.h"
 
 
 class PredictionDecorator : public Prediction {
