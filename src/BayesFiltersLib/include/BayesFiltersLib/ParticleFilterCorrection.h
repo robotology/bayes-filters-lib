@@ -8,6 +8,9 @@
 #include "ObservationModel.h"
 
 
+namespace bfl
+{
+
 class ParticleFilterCorrection: public Correction
 {
 public:
@@ -37,5 +40,7 @@ public:
 protected:
     std::shared_ptr<ObservationModel> measurement_model_;
 };
+
+} // namespace bfl
 
 #endif /* PARTICLEFILTERCORRECTION_H */

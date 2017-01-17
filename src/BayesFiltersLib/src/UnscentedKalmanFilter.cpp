@@ -1,5 +1,8 @@
-#include "UnscentedKalmanFilter.h"
+#include "BayesFiltersLib/UnscentedKalmanFilter.h"
 
+
+namespace bfl
+{
 
 UnscentedKalmanFilter::UnscentedKalmanFilter() { }
 
@@ -11,3 +14,5 @@ void UnscentedKalmanFilter::runFilter() { }
 
 
 void UnscentedKalmanFilter::getResult() { }
+
+} // namespace bfl

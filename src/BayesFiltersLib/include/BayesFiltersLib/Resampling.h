@@ -6,6 +6,9 @@
 #include <Eigen/Dense>
 
 
+namespace bfl
+{
+
 class Resampling {
 public:
     /* Resampling complete constructor */
@@ -37,5 +40,7 @@ public:
 private:
     std::mt19937_64 generator_;
 };
+
+} // namespace bfl
 
 #endif /* RESAMPLING_H */

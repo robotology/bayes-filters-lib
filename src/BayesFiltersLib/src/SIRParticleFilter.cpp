@@ -4,11 +4,14 @@
 
 #include <Eigen/Dense>
 
-#include "SIRParticleFilter.h"
+#include "BayesFiltersLib/SIRParticleFilter.h"
 
 using namespace Eigen;
 
 
+namespace bfl
+{
+    
 SIRParticleFilter::SIRParticleFilter(std::shared_ptr<StateModel> state_model, std::shared_ptr<Prediction> prediction, std::shared_ptr<ObservationModel> observation_model, std::shared_ptr<Correction> correction, std::shared_ptr<Resampling> resampling) noexcept :
     state_model_(state_model), prediction_(prediction), observation_model_(observation_model), correction_(correction), resampling_(resampling) { };
 
@@ -177,3 +180,5 @@ void SIRParticleFilter::getResult()
     result_file_particle.close();
     result_file_weight.close();
 }
+
+} // namespace bfl

@@ -3,10 +3,13 @@
 
 #include <Eigen/Cholesky>
 
-#include "WhiteNoiseAcceleration.h"
+#include "BayesFiltersLib/WhiteNoiseAcceleration.h"
 
 using namespace Eigen;
 
+
+namespace bfl
+{
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept :
     T_(T), tilde_q_(tilde_q),
@@ -58,7 +61,7 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(const WhiteNoiseAccele
 {
     WhiteNoiseAcceleration tmp(wna);
     *this = std::move(tmp);
-    
+
     return *this;
 }
 
@@ -102,3 +105,5 @@ void WhiteNoiseAcceleration::motion(const Ref<const VectorXf>& cur_state, Ref<Ve
     noiseSample(sample);
     next_state += sample;
 }
+
+} // namespace bfl

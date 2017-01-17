@@ -7,6 +7,9 @@
 #include "StateModel.h"
 
 
+namespace bfl
+{
+
 class WhiteNoiseAcceleration : public StateModel {
 public:
     /* WNA complete constructor */
@@ -50,5 +53,7 @@ protected:
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
+
+} // namespace bfl
 
 #endif /* WHITENOISEACCELERATION_H */

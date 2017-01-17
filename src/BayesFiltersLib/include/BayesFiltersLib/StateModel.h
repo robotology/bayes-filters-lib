@@ -4,6 +4,9 @@
 #include <Eigen/Dense>
 
 
+namespace bfl
+{
+
 class StateModel
 {
 public:
@@ -17,5 +20,7 @@ public:
 
     virtual void motion(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> next_state) = 0;
 };
+
+} // namespace bfl
 
 #endif /* STATEMODEL_H */

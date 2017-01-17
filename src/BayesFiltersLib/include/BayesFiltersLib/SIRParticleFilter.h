@@ -14,6 +14,9 @@
 #include "Resampling.h"
 
 
+namespace bfl
+{
+
 class SIRParticleFilter: public FilteringAlgorithm {
 public:
     
@@ -60,5 +63,7 @@ protected:
 
     void snapshot();
 };
+
+} // namespace bfl
 
 #endif /* SIRPARTICLEFILTER_H */

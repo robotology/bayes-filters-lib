@@ -8,6 +8,9 @@
 #include "StateModel.h"
 
 
+namespace bfl
+{
+
 class ParticleFilterPrediction: public Prediction
 {
 public:
@@ -37,5 +40,7 @@ public:
 protected:
     std::shared_ptr<StateModel> transition_model_;
 };
+
+} // namespace bfl
 
 #endif /* PARTICLEFILTERPREDICTION_H */

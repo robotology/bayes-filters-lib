@@ -4,6 +4,9 @@
 #include "FilteringAlgorithm.h"
 
 
+namespace bfl
+{
+
 class UnscentedKalmanFilter: public FilteringAlgorithm {
 public:
     UnscentedKalmanFilter();
@@ -14,5 +17,7 @@ public:
 
     void getResult() override;
 };
+
+} // namespace bfl
 
 #endif /* UNSCENTEDKALMANFILTER_H */

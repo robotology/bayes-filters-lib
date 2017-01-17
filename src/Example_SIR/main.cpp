@@ -1,8 +1,10 @@
 #include <iostream>
 #include <memory>
 
-#include "SIRParticleFilter.h"
-#include "FilteringFunction.h"
+#include "BayesFiltersLib/SIRParticleFilter.h"
+#include "BayesFiltersLib/FilteringFunction.h"
+
+using namespace bfl;
 
 
 int main()

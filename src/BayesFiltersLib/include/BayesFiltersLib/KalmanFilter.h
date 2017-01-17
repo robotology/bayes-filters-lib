@@ -3,6 +3,8 @@
 
 #include "FilteringAlgorithm.h"
 
+namespace bfl
+{
 
 class KalmanFilter: public FilteringAlgorithm {
 public:
@@ -14,5 +16,7 @@ public:
 
     void getResult() override;
 };
+
+} // namespace bfl
 
 #endif /* KALMANFILTER_H */

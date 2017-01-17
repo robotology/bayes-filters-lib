@@ -1,10 +1,13 @@
 #include <cmath>
 #include <utility>
 
-#include "ParticleFilterCorrection.h"
+#include "BayesFiltersLib/ParticleFilterCorrection.h"
 
 using namespace Eigen;
 
+
+namespace bfl
+{
 
 ParticleFilterCorrection::ParticleFilterCorrection(std::shared_ptr<ObservationModel> measurement_model) noexcept :
     measurement_model_(measurement_model) { }
@@ -51,3 +54,5 @@ void ParticleFilterCorrection::correct(const Eigen::Ref<const Eigen::VectorXf>& 
 
     cor_state = (- 0.5 * static_cast<float>(measurements.rows()) * log(2.0*M_PI) - 0.5 * log(measurement_model_->noiseCovariance().determinant()) - 0.5 * (innovation.transpose() * measurement_model_->noiseCovariance().inverse() * innovation).array()).exp();
 }
+    
+} // namespace bfl

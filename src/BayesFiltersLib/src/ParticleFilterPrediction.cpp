@@ -1,10 +1,13 @@
 #include <utility>
 
-#include "ParticleFilterPrediction.h"
-#include "StateModel.h"
+#include "BayesFiltersLib/ParticleFilterPrediction.h"
+#include "BayesFiltersLib/StateModel.h"
 
 using namespace Eigen;
 
+
+namespace bfl
+{
 
 ParticleFilterPrediction::ParticleFilterPrediction(std::shared_ptr<StateModel> transition_model) noexcept :
     transition_model_(transition_model) { }
@@ -35,7 +38,7 @@ ParticleFilterPrediction& ParticleFilterPrediction::operator=(const ParticleFilt
 ParticleFilterPrediction& ParticleFilterPrediction::operator=(ParticleFilterPrediction&& pf_prediction) noexcept
 {
     transition_model_ = std::move(pf_prediction.transition_model_);
-    
+
     return *this;
 }
 
@@ -44,3 +47,5 @@ void ParticleFilterPrediction::predict(const Ref<const VectorXf> & prev_state, R
 {
     transition_model_->motion(prev_state, pred_state);
 }
+
+} // namespace bfl

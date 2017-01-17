@@ -4,6 +4,9 @@
 #include <Eigen/Dense>
 
 
+namespace bfl
+{
+
 class ObservationModel
 {
 public:
@@ -20,5 +23,7 @@ public:
 
     virtual void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement) = 0;
 };
+
+} // namespace bfl
 
 #endif /* OBSERVATIONMODEL_H */

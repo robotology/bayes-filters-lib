@@ -36,7 +36,7 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
 ### Compile- and install-related commands
 add_subdirectory(src)
 
-# Install the files necessary to call find_package(LibTemplateCMake) in CMake projects
+# Install the files necessary to call find_package(BayesFiltersLib) in CMake projects
 include(InstallBasicPackageFiles)
 get_property(${PROJECT_NAME}_TARGETS GLOBAL PROPERTY ${PROJECT_NAME}_TARGETS)
 foreach(ELEMENT IN LISTS ${PROJECT_NAME}_TARGETS)

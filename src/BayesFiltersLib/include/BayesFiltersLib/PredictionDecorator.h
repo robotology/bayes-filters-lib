@@ -6,6 +6,9 @@
 #include "Prediction.h"
 
 
+namespace bfl
+{
+
 class PredictionDecorator : public Prediction {
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
@@ -34,5 +37,7 @@ protected:
 
     std::shared_ptr<Prediction> prediction_;
 };
+
+} // namespace bfl
 
 #endif /* PREDICTIONDECORATOR_H */

@@ -1,6 +1,9 @@
 #ifndef FILTERINGALGORITHM_H
 #define FILTERINGALGORITHM_H
 
+namespace bfl
+{
+
 class FilteringAlgorithm {
 public:
     virtual ~FilteringAlgorithm() noexcept { };
@@ -10,5 +13,7 @@ public:
     virtual void getResult() = 0;
 
 };
+
+} // namespace bfl
 
 #endif /* FILTERINGALGORITHM_H */

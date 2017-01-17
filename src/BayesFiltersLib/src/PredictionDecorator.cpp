@@ -1,8 +1,11 @@
 #include <utility>
 
-#include "PredictionDecorator.h"
+#include "BayesFiltersLib/PredictionDecorator.h"
 
 
+namespace bfl
+{
+    
 PredictionDecorator::PredictionDecorator(std::shared_ptr<Prediction> prediction) noexcept :
     prediction_(prediction) { }
 
@@ -22,7 +25,7 @@ PredictionDecorator& PredictionDecorator::operator=(const PredictionDecorator& p
 {
     PredictionDecorator tmp(prediction);
     *this = std::move(tmp);
-    
+
     return *this;
 }
 
@@ -39,3 +42,5 @@ void PredictionDecorator::predict(const Eigen::Ref<const Eigen::VectorXf> & prev
 {
     prediction_->predict(prev_state, pred_state);
 }
+
+} // namespace bfl

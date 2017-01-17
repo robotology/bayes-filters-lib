@@ -6,6 +6,9 @@
 #include "FilteringAlgorithm.h"
 
 
+namespace bfl
+{
+
 class FilteringContext {
 public:
     FilteringContext(std::shared_ptr<FilteringAlgorithm> filter);
@@ -21,5 +24,7 @@ public:
 private:
     std::shared_ptr<FilteringAlgorithm> filter_;
 };
+
+} // namespace bfl
 
 #endif /* FILTERINGCONTEXT_H */
