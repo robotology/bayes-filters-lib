@@ -42,7 +42,9 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR   include/BayesFiltersLib/AuxiliaryFunction.h
                                     include/BayesFiltersLib/SigmaPointTransform.h
                                     include/BayesFiltersLib/StateModel.h
                                     include/BayesFiltersLib/StateModelDecorator.h
-                                    include/BayesFiltersLib/WhiteNoiseAcceleration.h)
+                                    include/BayesFiltersLib/WhiteNoiseAcceleration.h
+                                    include/BayesFiltersLib/VisualCorrection.h
+                                include/BayesFiltersLib/VisualObservationModel.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
@@ -51,6 +53,7 @@ set(${LIBRARY_TARGET_NAME}_HDR
 )
 
 find_package(EIGEN3 REQUIRED)
+find_package(OpenCV REQUIRED)
 
 add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
 
@@ -60,6 +63,8 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJEC
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                             "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}>"
                                                             ${EIGEN3_INCLUDE_DIRS})
+
+target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS})
 
 # Specify installation targets, typology and destination folders.
 install(TARGETS ${LIBRARY_TARGET_NAME}
