@@ -36,7 +36,7 @@ public:
     /* Move assignment operator */
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
-    void propagate(const Eigen::Ref<const Eigen::VectorXf> & cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
+    void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 

@@ -36,11 +36,11 @@ public:
     /* Move assignment operator */
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> observation) override;
+    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> measurement) override;
+    void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
 
     Eigen::MatrixXf noiseCovariance() override;
 

@@ -43,7 +43,7 @@ ParticleFilterPrediction& ParticleFilterPrediction::operator=(ParticleFilterPred
 }
 
 
-void ParticleFilterPrediction::predict(const Ref<const VectorXf> & prev_state, Ref<VectorXf> pred_state)
+void ParticleFilterPrediction::predict(const Ref<const VectorXf>& prev_state, Ref<VectorXf> pred_state)
 {
     transition_model_->motion(prev_state, pred_state);
 }

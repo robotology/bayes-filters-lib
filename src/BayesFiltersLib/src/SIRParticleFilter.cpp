@@ -13,24 +13,17 @@ namespace bfl
 {
     
 SIRParticleFilter::SIRParticleFilter(std::shared_ptr<StateModel> state_model, std::shared_ptr<Prediction> prediction, std::shared_ptr<ObservationModel> observation_model, std::shared_ptr<Correction> correction, std::shared_ptr<Resampling> resampling) noexcept :
-    state_model_(state_model), prediction_(prediction), observation_model_(observation_model), correction_(correction), resampling_(resampling) { };
+    state_model_(state_model), prediction_(prediction), observation_model_(observation_model), correction_(correction), resampling_(resampling) { }
 
 
-SIRParticleFilter::~SIRParticleFilter() noexcept { };
+SIRParticleFilter::~SIRParticleFilter() noexcept { }
 
 
-SIRParticleFilter::SIRParticleFilter(const SIRParticleFilter& sir_pf)
-{
-    state_model_       = sir_pf.state_model_;
-    prediction_        = sir_pf.prediction_;
-    observation_model_ = sir_pf.observation_model_;
-    correction_        = sir_pf.correction_;
-    resampling_        = sir_pf.resampling_;
-};
+SIRParticleFilter::SIRParticleFilter(const SIRParticleFilter& sir_pf) : state_model_(sir_pf.state_model_), prediction_(sir_pf.prediction_), observation_model_(sir_pf.observation_model_), correction_(sir_pf.correction_), resampling_(sir_pf.resampling_) { }
 
 
 SIRParticleFilter::SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept :
-    prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { };
+    prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { }
 
 
 SIRParticleFilter& SIRParticleFilter::operator=(const SIRParticleFilter& sir_pf)
@@ -39,7 +32,7 @@ SIRParticleFilter& SIRParticleFilter::operator=(const SIRParticleFilter& sir_pf)
     *this = std::move(tmp);
 
     return *this;
-};
+}
 
 
 SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noexcept
@@ -51,7 +44,7 @@ SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noex
     resampling_        = std::move(sir_pf.resampling_);
 
     return *this;
-};
+}
 
 
 void SIRParticleFilter::runFilter()

@@ -19,6 +19,7 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned 
           0.0, 1.0, 0.0, 0.0,
           0.0, 0.0, 1.0,  T_,
           0.0, 0.0, 0.0, 1.0;
+    F_ *= tilde_q;
 
     float q11 = 1.0/3.0 * std::pow(T_, 3.0);
     float q2  = 1.0/2.0 * std::pow(T_, 2.0);
@@ -85,7 +86,7 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-void WhiteNoiseAcceleration::propagate(const Ref<const VectorXf> & cur_state, Ref<VectorXf> prop_state)
+void WhiteNoiseAcceleration::propagate(const Ref<const VectorXf>& cur_state, Ref<VectorXf> prop_state)
 {
     prop_state = F_ * cur_state;
 }

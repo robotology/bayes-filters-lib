@@ -38,7 +38,7 @@ PredictionDecorator& PredictionDecorator::operator=(PredictionDecorator&& predic
 }
 
 
-void PredictionDecorator::predict(const Eigen::Ref<const Eigen::VectorXf> & prev_state, Eigen::Ref<Eigen::VectorXf> pred_state)
+void PredictionDecorator::predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state)
 {
     prediction_->predict(prev_state, pred_state);
 }
