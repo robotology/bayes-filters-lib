@@ -38,11 +38,6 @@ add_subdirectory(src)
 
 # Install the files necessary to call find_package(BayesFiltersLib) in CMake projects
 include(InstallBasicPackageFiles)
-get_property(${PROJECT_NAME}_TARGETS GLOBAL PROPERTY ${PROJECT_NAME}_TARGETS)
-foreach(ELEMENT IN LISTS ${PROJECT_NAME}_TARGETS)
-    get_property(BUILD_${ELEMENT}_INCLUDEDIR   GLOBAL PROPERTY BUILD_${ELEMENT}_INCLUDEDIR)
-    get_property(INSTALL_${ELEMENT}_INCLUDEDIR GLOBAL PROPERTY INSTALL_${ELEMENT}_INCLUDEDIR)
-endforeach()
 install_basic_package_files(${PROJECT_NAME} VARS_PREFIX ${PROJECT_NAME}
                                             VERSION ${${PROJECT_NAME}_VERSION}
                                             COMPATIBILITY AnyNewerVersion
