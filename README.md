@@ -27,13 +27,9 @@ BayesFiltersLib depends on
  Once the library is installed, add to your project `CMakeLists.txt`
  ~~~cmake
  ...
- find_package(OpenCV          REQUIRED)
- find_package(EIGEN3          REQUIRED)
  find_package(BayesFiltersLib REQUIRED)
  ...
- target_include_directories(<target> ${EIGEN3_INCLUDE_DIRS})
- target_link_libraries(<target> BayesFiltersLib
-                                ${OpenCV_LIBS})
+ target_link_libraries(<target> BayesFiltersLib)
  ...
  ~~~
 
