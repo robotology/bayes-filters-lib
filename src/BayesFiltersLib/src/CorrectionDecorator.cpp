@@ -1,0 +1,1 @@
+#include "BayesFiltersLib/CorrectionDecorator.h"

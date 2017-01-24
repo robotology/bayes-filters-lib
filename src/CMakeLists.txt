@@ -1,0 +1,2 @@
+add_subdirectory(BayesFiltersLib)
+add_subdirectory(Example_SIR)
