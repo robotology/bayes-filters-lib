@@ -16,7 +16,7 @@ namespace bfl
 
         virtual ~VisualObservationModel() noexcept { };
 
-        virtual void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, cv::OutputArray observation) = 0;
+        virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) = 0;
     };
     
 } // namespace bfl
