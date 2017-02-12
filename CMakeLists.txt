@@ -6,7 +6,7 @@ endif()
 
 project(BayesFiltersLib
         LANGUAGES CXX
-        VERSION 0.1.0.0)
+        VERSION 0.2.0.0)
 
 include(GNUInstallDirs)
 
@@ -43,7 +43,7 @@ install_basic_package_files(${PROJECT_NAME} VARS_PREFIX ${PROJECT_NAME}
                                             COMPATIBILITY AnyNewerVersion
                                             TARGETS_PROPERTY ${PROJECT_NAME}_TARGETS
                                             NO_CHECK_REQUIRED_COMPONENTS_MACRO)
-                                            
+
 # Add the uninstall target
 include(AddUninstallTarget)
 
