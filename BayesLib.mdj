@@ -7945,7 +7945,7 @@
 							"width": 127,
 							"height": 103,
 							"autoResize": false,
-							"text": "Possibile interazione tra FilteringAlgorithm e FilteringFunction2: 1. Builder; 2. Composer",
+							"text": "Possibile interazione tra FilteringAlgorithm e FilteringFunction: 1. Facade",
 							"wordWrap": true
 						},
 						{
