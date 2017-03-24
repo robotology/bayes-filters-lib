@@ -18,19 +18,13 @@ public:
     ParticleFilterCorrection() = delete;
 
     /* PF correction constructor */
-    ParticleFilterCorrection(std::shared_ptr<ObservationModel> observation_model) noexcept;
+    ParticleFilterCorrection(std::unique_ptr<ObservationModel> observation_model) noexcept;
 
     /* Destructor */
     ~ParticleFilterCorrection() noexcept override;
 
-    /* Copy constructor */
-    ParticleFilterCorrection(const ParticleFilterCorrection& pf_correction);
-
     /* Move constructor */
     ParticleFilterCorrection(ParticleFilterCorrection&& pf_correction) noexcept;
-
-    /* Copy assignment operator */
-    ParticleFilterCorrection& operator=(const ParticleFilterCorrection& pf_correction);
 
     /* Move assignment operator */
     ParticleFilterCorrection& operator=(ParticleFilterCorrection&& pf_correction) noexcept;
@@ -43,8 +37,11 @@ public:
 
     void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::VectorXf> cor_state) override;
 
+    /* TEMPORARY - WILL BE REMOVED AFTER IMPLEMENTING Initialization CLASS */
+    void observation(const Eigen::Ref<const Eigen::VectorXf>& state, Eigen::Ref<Eigen::MatrixXf> measurements);
+
 protected:
-    std::shared_ptr<ObservationModel> measurement_model_;
+    std::unique_ptr<ObservationModel> measurement_model_;
 };
 
 } // namespace bfl

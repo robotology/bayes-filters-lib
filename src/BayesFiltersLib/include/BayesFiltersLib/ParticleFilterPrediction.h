@@ -18,19 +18,13 @@ public:
     ParticleFilterPrediction() = delete;
 
     /* PF prediction constructor */
-    ParticleFilterPrediction(std::shared_ptr<StateModel> transition_model) noexcept;
+    ParticleFilterPrediction(std::unique_ptr<StateModel> transition_model) noexcept;
 
     /* Destructor */
     ~ParticleFilterPrediction() noexcept override;
 
-    /* Copy constructor */
-    ParticleFilterPrediction(const ParticleFilterPrediction& pf_prediction);
-
     /* Move constructor */
     ParticleFilterPrediction(ParticleFilterPrediction&& pf_prediction) noexcept;
-
-    /* Copy assignment operator */
-    ParticleFilterPrediction& operator=(const ParticleFilterPrediction& pf_prediction);
 
     /* Move assignment operator */
     ParticleFilterPrediction& operator=(ParticleFilterPrediction&& pf_prediction) noexcept;
@@ -38,7 +32,7 @@ public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
 protected:
-    std::shared_ptr<StateModel> transition_model_;
+    std::unique_ptr<StateModel> transition_model_;
 };
 
 } // namespace bfl

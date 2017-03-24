@@ -9,14 +9,25 @@ using namespace bfl;
 
 int main()
 {
-    std::shared_ptr<WhiteNoiseAcceleration>   wna(new WhiteNoiseAcceleration());
-    std::shared_ptr<ParticleFilterPrediction> pf_prediction(new ParticleFilterPrediction(wna));
-    std::shared_ptr<LinearSensor>             lin_sense(new LinearSensor());
-    std::shared_ptr<ParticleFilterCorrection> pf_correction(new ParticleFilterCorrection(lin_sense));
-    std::shared_ptr<Resampling>               resampling(new Resampling());
+    /* Initialize a white noise acceleration motion model */
+    std::unique_ptr<WhiteNoiseAcceleration>   wna(new WhiteNoiseAcceleration());
+
+    /* Pass ownershp of the motion model to the prediction step */
+    std::unique_ptr<ParticleFilterPrediction> pf_prediction(new ParticleFilterPrediction(std::move(wna)));
+
+
+    /* Initialize a linear sensor (provides direct observation of the state) */
+    std::unique_ptr<LinearSensor>             lin_sense(new LinearSensor());
+
+    /* Pass ownershp of the observation model (the sensor) to the prediction step */
+    std::unique_ptr<ParticleFilterCorrection> pf_correction(new ParticleFilterCorrection(std::move(lin_sense)));
+
+
+    /* Initialize a resampling algorithm */
+    std::unique_ptr<Resampling>               resampling(new Resampling());
 
     std::cout << "Configuring SIR particle filter..." << std::flush;
-    SIRParticleFilter sir_pf(wna, pf_prediction, lin_sense, pf_correction, resampling);
+    SIRParticleFilter sir_pf(std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
     std::cout << "done!" << std::endl;
 
     std::cout << "Running SIR particle filter..." << std::flush;

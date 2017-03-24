@@ -44,6 +44,14 @@ Resampling& Resampling::operator=(Resampling&& resampling) noexcept
 }
 
 
+Resampling& Resampling::operator=(const Resampling&& resampling) noexcept
+{
+    generator_ = std::move(resampling.generator_);
+
+    return *this;
+}
+
+
 void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<const VectorXf>& cor_weights,
                           Ref<MatrixXf> res_particles, Ref<VectorXf> res_weights, Ref<VectorXf> res_parents)
 {

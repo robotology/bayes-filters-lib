@@ -32,6 +32,9 @@ public:
     /* Move assignment operator */
     Resampling& operator=(Resampling&& resampling) noexcept;
 
+    /* Move assignment operator */
+    Resampling& operator=(const Resampling&& resampling) noexcept;
+
     void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
                   Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents);
 

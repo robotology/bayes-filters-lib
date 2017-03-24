@@ -77,19 +77,19 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-void LinearSensor::observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation)
+void LinearSensor::observe(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> observation)
 {
     observation = H_ * cur_state;
 }
 
 
-void LinearSensor::noiseSample(Eigen::Ref<Eigen::VectorXf> sample)
+void LinearSensor::noiseSample(Ref<VectorXf> sample)
 {
     sample = Vector2f(sigma_x_, sigma_y_).cwiseProduct(Vector2f::NullaryExpr(2, gauss_rnd_sample_));
 }
 
 
-void LinearSensor::measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement)
+void LinearSensor::measure(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> measurement)
 {
     observe(cur_state, measurement);
 
@@ -99,7 +99,7 @@ void LinearSensor::measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, E
 }
 
 
-Eigen::MatrixXf LinearSensor::noiseCovariance()
+MatrixXf LinearSensor::noiseCovariance()
 {
     return R_;
 }

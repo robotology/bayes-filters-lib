@@ -18,13 +18,10 @@ protected:
     PredictionDecorator() = delete;
 
     /* Decorator constructor */
-    PredictionDecorator(std::shared_ptr<Prediction> prediction) noexcept;
+    PredictionDecorator(std::unique_ptr<Prediction> prediction) noexcept;
 
     /* Destructor */
     ~PredictionDecorator() noexcept override;
-
-    /* Copy constructor */
-    PredictionDecorator(const PredictionDecorator& prediction);
 
     /* Move constructor */
     PredictionDecorator(PredictionDecorator&& prediction) noexcept;
@@ -35,7 +32,7 @@ protected:
     /* Move assignment operator */
     PredictionDecorator& operator=(PredictionDecorator&& prediction) noexcept;
 
-    std::shared_ptr<Prediction> prediction_;
+    std::unique_ptr<Prediction> prediction_;
 };
 
 } // namespace bfl
