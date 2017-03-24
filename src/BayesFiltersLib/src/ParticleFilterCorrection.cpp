@@ -50,12 +50,20 @@ void ParticleFilterCorrection::correct(const Eigen::Ref<const Eigen::VectorXf>& 
     likelihood(innovate, cor_state);
 }
 
-void ParticleFilterCorrection::innovation(const Eigen::Ref<const Eigen::VectorXf>& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovation)
-{
-    Vector2f virtual_measurement;
-    measurement_model_->observe(pred_state, virtual_measurement);
 
-    innovation = measurements - virtual_measurement;
+void ParticleFilterCorrection::virtual_observation(const Ref<const VectorXf>& state, Ref<MatrixXf> virtual_measurements)
+{
+    measurement_model_->observe(state, virtual_measurements);
+}
+
+
+void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& pred_state, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovation)
+{
+    Vector2f virtual_measurements;
+
+    virtual_observation(pred_state, virtual_measurements);
+
+    innovation = measurements - virtual_measurements;
 }
 
 void ParticleFilterCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::VectorXf> cor_state)
