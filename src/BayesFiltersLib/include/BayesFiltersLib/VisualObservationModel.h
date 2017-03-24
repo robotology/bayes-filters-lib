@@ -8,16 +8,15 @@
 namespace bfl
 {
 
-    class VisualObservationModel
-    {
-    public:
+class VisualObservationModel
+{
+public:
+    VisualObservationModel() = default;
 
-        VisualObservationModel() = default;
+    virtual ~VisualObservationModel() noexcept { };
 
-        virtual ~VisualObservationModel() noexcept { };
-
-        virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) = 0;
-    };
+    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) = 0;
+};
     
 } // namespace bfl
 

@@ -8,17 +8,17 @@
 namespace bfl
 {
 
-    class VisualCorrection
-    {
-    public:
-        virtual ~VisualCorrection() noexcept { };
+class VisualCorrection
+{
+public:
+    virtual ~VisualCorrection() noexcept { };
 
-        virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
+    virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
 
-        virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovation) = 0;
+    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovation) = 0;
 
-        virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
-    };
+    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
+};
     
 } // namespace bfl
 

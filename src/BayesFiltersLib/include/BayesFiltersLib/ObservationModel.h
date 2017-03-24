@@ -10,7 +10,6 @@ namespace bfl
 class ObservationModel
 {
 public:
-
     ObservationModel() = default;
 
     virtual ~ObservationModel() noexcept { };
