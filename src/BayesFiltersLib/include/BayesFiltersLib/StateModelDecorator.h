@@ -23,19 +23,19 @@ protected:
     StateModelDecorator() = delete;
 
     /* Decorator constructor */
-    StateModelDecorator(std::unique_ptr<StateModel> prediction) noexcept;
+    StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 
     /* Destructor */
     ~StateModelDecorator() noexcept override;
 
     /* Move constructor */
-    StateModelDecorator(StateModelDecorator&& prediction) noexcept;
+    StateModelDecorator(StateModelDecorator&& state_model) noexcept;
 
     /* Move assignment operator */
-    StateModelDecorator& operator=(StateModelDecorator&& prediction) noexcept;
+    StateModelDecorator& operator=(StateModelDecorator&& state_model) noexcept;
 
 private:
-    std::unique_ptr<StateModel> prediction_;
+    std::unique_ptr<StateModel> state_model_;
 };
 
 } // namespace bfl
