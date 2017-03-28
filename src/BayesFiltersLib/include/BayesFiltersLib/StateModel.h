@@ -10,8 +10,6 @@ namespace bfl
 class StateModel
 {
 public:
-    StateModel() = default;
-
     virtual ~StateModel() noexcept { };
 
     virtual void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) = 0;

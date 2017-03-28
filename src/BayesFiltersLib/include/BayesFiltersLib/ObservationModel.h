@@ -10,8 +10,6 @@ namespace bfl
 class ObservationModel
 {
 public:
-    ObservationModel() = default;
-
     virtual ~ObservationModel() noexcept { };
 
     virtual Eigen::MatrixXf noiseCovariance() = 0;
