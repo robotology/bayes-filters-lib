@@ -26,12 +26,10 @@ protected:
     /* Move constructor */
     PredictionDecorator(PredictionDecorator&& prediction) noexcept;
 
-    /* Copy assignment operator */
-    PredictionDecorator& operator=(const PredictionDecorator& prediction);
-
     /* Move assignment operator */
     PredictionDecorator& operator=(PredictionDecorator&& prediction) noexcept;
 
+private:
     std::unique_ptr<Prediction> prediction_;
 };
 

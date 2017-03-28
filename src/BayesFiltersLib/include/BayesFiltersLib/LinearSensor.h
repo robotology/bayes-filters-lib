@@ -10,7 +10,8 @@
 namespace bfl
 {
 
-class LinearSensor : public ObservationModel {
+class LinearSensor : public ObservationModel
+{
 public:
     /* Linear sensor complete constructor */
     LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept;
