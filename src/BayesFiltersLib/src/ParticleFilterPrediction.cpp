@@ -32,11 +32,10 @@ void ParticleFilterPrediction::predict(const Ref<const VectorXf>& prev_state, Re
 {
     transition_model_->propagate(prev_state, pred_state);
 
-    VectorXf sample(VectorXf::Zero(6, 1));
+    VectorXf sample(VectorXf::Zero(prev_state.rows(), 1));
     transition_model_->noiseSample(sample);
 
-    pred_state.head<3>() += sample.head<3>();
-    pred_state.tail<3>() += sample.tail<3>();
+    pred_state += sample;
 }
 
 } // namespace bfl
