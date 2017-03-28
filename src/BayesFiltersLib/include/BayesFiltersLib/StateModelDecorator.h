@@ -9,7 +9,8 @@
 namespace bfl
 {
 
-class StateModelDecorator : public StateModel {
+class StateModelDecorator : public StateModel
+{
 public:
     void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
 
@@ -35,7 +36,6 @@ protected:
 
 private:
     std::unique_ptr<StateModel> prediction_;
-
 };
 
 } // namespace bfl
