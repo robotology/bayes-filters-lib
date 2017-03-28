@@ -18,12 +18,6 @@ void StateModelDecorator::noiseSample(Ref<VectorXf> sample)
 }
 
 
-void StateModelDecorator::motion(const Ref<const VectorXf>& prev_state, Ref<VectorXf> next_state)
-{
-    state_model_->motion(prev_state, next_state);
-}
-
-
 StateModelDecorator::StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept :
     state_model_(std::move(state_model)) { }
 

@@ -97,14 +97,4 @@ void WhiteNoiseAcceleration::noiseSample(Ref<VectorXf> sample)
     sample = sqrt_Q_ * Vector4f::NullaryExpr(4, gauss_rnd_sample_);
 }
 
-
-void WhiteNoiseAcceleration::motion(const Ref<const VectorXf>& cur_state, Ref<VectorXf> next_state)
-{
-    propagate(cur_state, next_state);
-
-    Vector4f sample;
-    noiseSample(sample);
-    next_state += sample;
-}
-
 } // namespace bfl

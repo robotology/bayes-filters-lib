@@ -40,8 +40,6 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> next_state) override;
-
 protected:
     float                           T_;                /* Sampling interval */
     Eigen::Matrix4f                 F_;                /* State transition matrix */

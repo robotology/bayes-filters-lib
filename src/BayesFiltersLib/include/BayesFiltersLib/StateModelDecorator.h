@@ -16,8 +16,6 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    void motion(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> next_state) override;
-
 protected:
     /* Default constructor, disabled */
     StateModelDecorator() = delete;
