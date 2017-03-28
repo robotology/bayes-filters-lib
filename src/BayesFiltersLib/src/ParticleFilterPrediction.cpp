@@ -30,7 +30,13 @@ ParticleFilterPrediction& ParticleFilterPrediction::operator=(ParticleFilterPred
 
 void ParticleFilterPrediction::predict(const Ref<const VectorXf>& prev_state, Ref<VectorXf> pred_state)
 {
-    transition_model_->motion(prev_state, pred_state);
+    transition_model_->propagate(prev_state, pred_state);
+
+    VectorXf sample(VectorXf::Zero(6, 1));
+    transition_model_->noiseSample(sample);
+
+    pred_state.head<3>() += sample.head<3>();
+    pred_state.tail<3>() += sample.tail<3>();
 }
 
 } // namespace bfl
