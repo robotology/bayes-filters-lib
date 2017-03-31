@@ -40,6 +40,8 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
+    bool setProperty(const std::string& property) override { return false; };
+
 protected:
     float                           T_;                /* Sampling interval */
     Eigen::Matrix4f                 F_;                /* State transition matrix */

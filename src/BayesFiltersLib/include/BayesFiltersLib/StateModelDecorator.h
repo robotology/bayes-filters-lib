@@ -16,6 +16,8 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
+    bool setProperty(const std::string& property) override;
+
 protected:
     /* Default constructor, disabled */
     StateModelDecorator() = delete;

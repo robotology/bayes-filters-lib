@@ -1,7 +1,6 @@
 #ifndef PARTICLEFILTERPREDICTION_H
 #define PARTICLEFILTERPREDICTION_H
 
-#include <memory>
 #include <random>
 
 #include "Prediction.h"
@@ -31,8 +30,10 @@ public:
 
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
+    bool setMotionModelProperty(const std::string& property) override;
+
 protected:
-    std::unique_ptr<StateModel> transition_model_;
+    std::unique_ptr<StateModel> state_model_;
 };
 
 } // namespace bfl

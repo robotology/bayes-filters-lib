@@ -31,4 +31,9 @@ void PredictionDecorator::predict(const Ref<const VectorXf>& prev_state, Ref<Vec
     prediction_->predict(prev_state, pred_state);
 }
 
+bool PredictionDecorator::setMotionModelProperty(const std::string& property)
+{
+    return prediction_->setMotionModelProperty(property);
+}
+
 } // namespace bfl

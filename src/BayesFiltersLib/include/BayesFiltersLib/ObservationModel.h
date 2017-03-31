@@ -2,6 +2,7 @@
 #define OBSERVATIONMODEL_H
 
 #include <Eigen/Dense>
+#include <string>
 
 
 namespace bfl
@@ -17,6 +18,8 @@ public:
     virtual void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) = 0;
 
     virtual void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) = 0;
+
+    virtual bool setProperty(const std::string property) = 0;
 
     virtual void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) = 0;
 };

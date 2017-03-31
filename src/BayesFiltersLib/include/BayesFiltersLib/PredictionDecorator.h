@@ -13,6 +13,8 @@ class PredictionDecorator : public Prediction {
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
+    bool setMotionModelProperty(const std::string& property) override;
+
 protected:
     /* Default constructor, disabled */
     PredictionDecorator() = delete;
