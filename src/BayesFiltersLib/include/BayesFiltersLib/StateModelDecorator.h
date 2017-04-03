@@ -5,11 +5,13 @@
 
 #include <memory>
 
-
 namespace bfl
 {
+    class StateModelDecorator;
+}
 
-class StateModelDecorator : public StateModel
+
+class bfl::StateModelDecorator : public StateModel
 {
 public:
     void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
@@ -37,8 +39,5 @@ protected:
 private:
     std::unique_ptr<StateModel> state_model_;
 };
-
-} // namespace bfl
-
 
 #endif /* STATEMODELDECORATOR_H */

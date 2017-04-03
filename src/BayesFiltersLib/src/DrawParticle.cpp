@@ -2,11 +2,9 @@
 
 #include "BayesFiltersLib/DrawParticle.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
 
 DrawParticle::DrawParticle(std::unique_ptr<StateModel> transition_model) noexcept :
     state_model_(std::move(transition_model)) { }
@@ -53,5 +51,3 @@ bool DrawParticle::setMotionModelProperty(const std::string& property)
 {
     return state_model_->setProperty(property);
 }
-
-} // namespace bfl

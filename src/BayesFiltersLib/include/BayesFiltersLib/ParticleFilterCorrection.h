@@ -7,11 +7,13 @@
 #include "Correction.h"
 #include "ObservationModel.h"
 
-
 namespace bfl
 {
+    class ParticleFilterCorrection;
+}
 
-class ParticleFilterCorrection: public Correction
+
+class bfl::ParticleFilterCorrection: public Correction
 {
 public:
     /* Default constructor, disabled */
@@ -43,7 +45,5 @@ public:
 protected:
     std::unique_ptr<ObservationModel> measurement_model_;
 };
-
-} // namespace bfl
 
 #endif /* PARTICLEFILTERCORRECTION_H */

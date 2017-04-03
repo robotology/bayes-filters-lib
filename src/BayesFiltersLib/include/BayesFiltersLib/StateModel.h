@@ -3,11 +3,13 @@
 
 #include <Eigen/Dense>
 
-
 namespace bfl
 {
+    class StateModel;
+}
 
-class StateModel
+
+class bfl::StateModel
 {
 public:
     virtual ~StateModel() noexcept { };
@@ -18,7 +20,5 @@ public:
 
     virtual bool setProperty(const std::string& property) = 0;
 };
-
-} // namespace bfl
 
 #endif /* STATEMODEL_H */

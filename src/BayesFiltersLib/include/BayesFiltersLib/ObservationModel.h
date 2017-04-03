@@ -4,11 +4,13 @@
 #include <Eigen/Dense>
 #include <string>
 
-
 namespace bfl
 {
+    class ObservationModel;
+}
 
-class ObservationModel
+
+class bfl::ObservationModel
 {
 public:
     virtual ~ObservationModel() noexcept { };
@@ -23,7 +25,5 @@ public:
 
     virtual void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) = 0;
 };
-
-} // namespace bfl
 
 #endif /* OBSERVATIONMODEL_H */

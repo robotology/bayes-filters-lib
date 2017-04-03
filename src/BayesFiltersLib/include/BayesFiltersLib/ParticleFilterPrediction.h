@@ -4,11 +4,13 @@
 #include <Eigen/Dense>
 #include <string>
 
-
 namespace bfl
 {
+    class ParticleFilterPrediction;
+}
 
-class ParticleFilterPrediction
+
+class bfl::ParticleFilterPrediction
 {
 public:
     virtual ~ParticleFilterPrediction() noexcept { };
@@ -21,7 +23,5 @@ public:
 
     virtual bool setMotionModelProperty(const std::string& property) = 0;
 };
-
-} // namespace bfl
 
 #endif /* PREDICTION_H */

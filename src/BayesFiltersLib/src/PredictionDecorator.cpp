@@ -2,10 +2,9 @@
 
 #include "BayesFiltersLib/PredictionDecorator.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-namespace bfl
-{
     
 PredictionDecorator::PredictionDecorator(std::unique_ptr<ParticleFilterPrediction> prediction) noexcept :
     prediction_(std::move(prediction)) { }
@@ -48,5 +47,3 @@ bool PredictionDecorator::setMotionModelProperty(const std::string& property)
 {
     return prediction_->setMotionModelProperty(property);
 }
-
-} // namespace bfl

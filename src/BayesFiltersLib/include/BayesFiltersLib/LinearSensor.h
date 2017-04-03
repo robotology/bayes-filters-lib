@@ -6,11 +6,13 @@
 
 #include "ObservationModel.h"
 
-
 namespace bfl
 {
+    class LinearSensor;
+}
 
-class LinearSensor : public ObservationModel
+
+class bfl::LinearSensor : public ObservationModel
 {
 public:
     /* Linear sensor complete constructor */
@@ -58,7 +60,5 @@ protected:
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
-
-} // namespace bfl
 
 #endif /* LINEARSENSOR_HPP */

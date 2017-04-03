@@ -5,11 +5,9 @@
 
 #include "BayesFiltersLib/WhiteNoiseAcceleration.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept :
     T_(T), tilde_q_(tilde_q),
@@ -96,5 +94,3 @@ void WhiteNoiseAcceleration::noiseSample(Ref<VectorXf> sample)
 {
     sample = sqrt_Q_ * Vector4f::NullaryExpr(4, gauss_rnd_sample_);
 }
-
-} // namespace bfl

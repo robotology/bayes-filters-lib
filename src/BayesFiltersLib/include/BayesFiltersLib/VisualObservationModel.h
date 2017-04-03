@@ -5,11 +5,13 @@
 #include <opencv2/core/core.hpp>
 #include <string>
 
-
 namespace bfl
 {
+    class VisualObservationModel;
+}
 
-class VisualObservationModel
+
+class bfl::VisualObservationModel
 {
 public:
     VisualObservationModel() = default;
@@ -20,7 +22,5 @@ public:
 
     virtual bool setProperty(const std::string property) = 0;
 };
-    
-} // namespace bfl
 
 #endif /* VISUALOBSERVATIONMODEL_H */

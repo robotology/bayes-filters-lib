@@ -6,11 +6,13 @@
 #include "ParticleFilterPrediction.h"
 #include "StateModel.h"
 
-
 namespace bfl
 {
+    class DrawParticle;
+}
 
-class DrawParticle: public ParticleFilterPrediction
+
+class bfl::DrawParticle: public ParticleFilterPrediction
 {
 public:
     /* Default constructor, disabled */
@@ -39,7 +41,5 @@ public:
 protected:
     std::unique_ptr<StateModel> state_model_;
 };
-
-} // namespace bfl
 
 #endif /* PARTICLEFILTERPREDICTION_H */

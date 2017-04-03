@@ -5,11 +5,13 @@
 
 #include "ParticleFilterPrediction.h"
 
-
 namespace bfl
 {
+    class PredictionDecorator;
+}
 
-class PredictionDecorator : public ParticleFilterPrediction {
+
+class bfl::PredictionDecorator : public ParticleFilterPrediction {
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
@@ -38,7 +40,5 @@ protected:
 private:
     std::unique_ptr<ParticleFilterPrediction> prediction_;
 };
-
-} // namespace bfl
 
 #endif /* PREDICTIONDECORATOR_H */
