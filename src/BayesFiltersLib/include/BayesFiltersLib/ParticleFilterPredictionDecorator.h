@@ -7,11 +7,11 @@
 
 namespace bfl
 {
-    class PredictionDecorator;
+    class ParticleFilterPredictionDecorator;
 }
 
 
-class bfl::PredictionDecorator : public ParticleFilterPrediction {
+class bfl::ParticleFilterPredictionDecorator : public ParticleFilterPrediction {
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
@@ -23,19 +23,19 @@ public:
 
 protected:
     /* Default constructor, disabled */
-    PredictionDecorator() = delete;
+    ParticleFilterPredictionDecorator() = delete;
 
     /* Decorator constructor */
-    PredictionDecorator(std::unique_ptr<ParticleFilterPrediction> prediction) noexcept;
+    ParticleFilterPredictionDecorator(std::unique_ptr<ParticleFilterPrediction> prediction) noexcept;
 
     /* Destructor */
-    ~PredictionDecorator() noexcept override;
+    ~ParticleFilterPredictionDecorator() noexcept override;
 
     /* Move constructor */
-    PredictionDecorator(PredictionDecorator&& prediction) noexcept;
+    ParticleFilterPredictionDecorator(ParticleFilterPredictionDecorator&& prediction) noexcept;
 
     /* Move assignment operator */
-    PredictionDecorator& operator=(PredictionDecorator&& prediction) noexcept;
+    ParticleFilterPredictionDecorator& operator=(ParticleFilterPredictionDecorator&& prediction) noexcept;
 
 private:
     std::unique_ptr<ParticleFilterPrediction> prediction_;
