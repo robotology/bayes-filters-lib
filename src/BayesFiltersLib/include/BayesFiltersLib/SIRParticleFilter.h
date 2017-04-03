@@ -8,7 +8,7 @@
 
 #include "FilteringAlgorithm.h"
 #include "StateModel.h"
-#include "Prediction.h"
+#include "ParticleFilterPrediction.h"
 #include "ObservationModel.h"
 #include "Correction.h"
 #include "Resampling.h"
@@ -24,7 +24,7 @@ public:
     SIRParticleFilter() = delete;
 
     /* SIR complete constructor */
-    SIRParticleFilter(std::unique_ptr<Prediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept;
+    SIRParticleFilter(std::unique_ptr<ParticleFilterPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     /* Destructor */
     ~SIRParticleFilter() noexcept override;
@@ -40,7 +40,7 @@ public:
     void getResult() override;
 
 protected:
-    std::unique_ptr<Prediction>       prediction_;
+    std::unique_ptr<ParticleFilterPrediction>       prediction_;
     std::unique_ptr<Correction>       correction_;
     std::unique_ptr<Resampling>       resampling_;
 

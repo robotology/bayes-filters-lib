@@ -3,15 +3,19 @@
 
 #include <memory>
 
-#include "Prediction.h"
+#include "ParticleFilterPrediction.h"
 
 
 namespace bfl
 {
 
-class PredictionDecorator : public Prediction {
+class PredictionDecorator : public ParticleFilterPrediction {
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
+
+    void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
+
+    void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) override;
 
     bool setMotionModelProperty(const std::string& property) override;
 
@@ -20,7 +24,7 @@ protected:
     PredictionDecorator() = delete;
 
     /* Decorator constructor */
-    PredictionDecorator(std::unique_ptr<Prediction> prediction) noexcept;
+    PredictionDecorator(std::unique_ptr<ParticleFilterPrediction> prediction) noexcept;
 
     /* Destructor */
     ~PredictionDecorator() noexcept override;
@@ -32,7 +36,7 @@ protected:
     PredictionDecorator& operator=(PredictionDecorator&& prediction) noexcept;
 
 private:
-    std::unique_ptr<Prediction> prediction_;
+    std::unique_ptr<ParticleFilterPrediction> prediction_;
 };
 
 } // namespace bfl
