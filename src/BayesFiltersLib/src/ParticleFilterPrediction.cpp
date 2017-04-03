@@ -1,7 +1,6 @@
 #include <utility>
 
 #include "BayesFiltersLib/ParticleFilterPrediction.h"
-#include "BayesFiltersLib/StateModel.h"
 
 using namespace Eigen;
 
