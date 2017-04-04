@@ -1,5 +1,5 @@
-#ifndef PARTICLEFILTERPREDICTION_H
-#define PARTICLEFILTERPREDICTION_H
+#ifndef DRAWPARTICLE_H
+#define DRAWPARTICLE_H
 
 #include <random>
 
@@ -42,4 +42,4 @@ protected:
     std::unique_ptr<StateModel> state_model_;
 };
 
-#endif /* PARTICLEFILTERPREDICTION_H */
+#endif /* DRAWPARTICLE_H */
