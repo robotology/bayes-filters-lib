@@ -1,10 +1,8 @@
 #include "BayesFiltersLib/StateModelDecorator.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
 
 void StateModelDecorator::propagate(const Ref<const VectorXf>& cur_state, Ref<VectorXf> prop_state)
 {
@@ -18,9 +16,9 @@ void StateModelDecorator::noiseSample(Ref<VectorXf> sample)
 }
 
 
-void StateModelDecorator::motion(const Ref<const VectorXf>& prev_state, Ref<VectorXf> next_state)
+bool StateModelDecorator::setProperty(const std::string& property)
 {
-    state_model_->motion(prev_state, next_state);
+    return state_model_->setProperty(property);
 }
 
 
@@ -40,6 +38,4 @@ StateModelDecorator& StateModelDecorator::operator=(StateModelDecorator&& state_
     state_model_ = std::move(state_model.state_model_);
 
     return *this;
-}
-
 }

@@ -5,18 +5,20 @@
 
 #include <memory>
 
-
 namespace bfl
 {
+    class StateModelDecorator;
+}
 
-class StateModelDecorator : public StateModel
+
+class bfl::StateModelDecorator : public StateModel
 {
 public:
     void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    void motion(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> next_state) override;
+    bool setProperty(const std::string& property) override;
 
 protected:
     /* Default constructor, disabled */
@@ -37,8 +39,5 @@ protected:
 private:
     std::unique_ptr<StateModel> state_model_;
 };
-
-} // namespace bfl
-
 
 #endif /* STATEMODELDECORATOR_H */

@@ -6,11 +6,13 @@
 
 #include "ObservationModel.h"
 
-
 namespace bfl
 {
+    class LinearSensor;
+}
 
-class LinearSensor : public ObservationModel
+
+class bfl::LinearSensor : public ObservationModel
 {
 public:
     /* Linear sensor complete constructor */
@@ -41,6 +43,8 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
+    bool setProperty(const std::string property) override { return false; };
+
     void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
 
     Eigen::MatrixXf noiseCovariance() override;
@@ -56,7 +60,5 @@ protected:
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
-
-} // namespace bfl
 
 #endif /* LINEARSENSOR_HPP */

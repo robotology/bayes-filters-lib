@@ -3,11 +3,9 @@
 
 #include "BayesFiltersLib/ParticleFilterCorrection.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
 
 ParticleFilterCorrection::ParticleFilterCorrection(std::unique_ptr<ObservationModel> measurement_model) noexcept :
     measurement_model_(std::move(measurement_model)) { }
@@ -63,5 +61,3 @@ void ParticleFilterCorrection::observation(const Eigen::Ref<const Eigen::VectorX
 {
     measurement_model_->measure(state, measurements);
 }
-
-} // namespace bfl

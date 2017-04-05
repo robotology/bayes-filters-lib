@@ -3,11 +3,13 @@
 
 #include <Eigen/Dense>
 
-
 namespace bfl
 {
+    class Correction;
+}
 
-class Correction
+
+class bfl::Correction
 {
 public:
     virtual ~Correction() noexcept { };
@@ -20,7 +22,5 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::VectorXf> cor_state) = 0;
 };
-
-} // namespace bfl
 
 #endif /* CORRECTION_H */

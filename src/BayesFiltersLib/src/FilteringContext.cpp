@@ -1,8 +1,7 @@
 #include "BayesFiltersLib/FilteringContext.h"
 
+using namespace bfl;
 
-namespace bfl
-{
 
 FilteringContext::FilteringContext(std::shared_ptr<FilteringAlgorithm> filter) : filter_(filter) { };
 
@@ -23,5 +22,3 @@ void FilteringContext::saveResult()
 
 
 void FilteringContext::setParameter() { };
-
-} // namespace bfl

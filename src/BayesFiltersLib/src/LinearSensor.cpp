@@ -3,11 +3,9 @@
 
 #include "BayesFiltersLib/LinearSensor.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
 
 LinearSensor::LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept :
     T_(T), sigma_x_(sigma_x), sigma_y_(sigma_y),
@@ -103,5 +101,3 @@ MatrixXf LinearSensor::noiseCovariance()
 {
     return R_;
 }
-
-} // namespace bfl

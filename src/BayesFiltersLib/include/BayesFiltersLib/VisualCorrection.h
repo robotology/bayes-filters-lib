@@ -4,11 +4,13 @@
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 
-
 namespace bfl
 {
+    class VisualCorrection;
+}
 
-class VisualCorrection
+
+class bfl::VisualCorrection
 {
 public:
     virtual ~VisualCorrection() noexcept { };
@@ -19,7 +21,5 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
 };
-    
-} // namespace bfl
 
 #endif /* VISUALCORRECTION_H */
