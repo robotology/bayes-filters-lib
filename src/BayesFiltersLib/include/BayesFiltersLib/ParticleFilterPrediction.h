@@ -1,46 +1,27 @@
-#ifndef PARTICLEFILTERPREDICTION_H
-#define PARTICLEFILTERPREDICTION_H
+#ifndef PREDICTION_H
+#define PREDICTION_H
 
-#include <memory>
-#include <random>
-
-#include "Prediction.h"
-#include "StateModel.h"
-
+#include <Eigen/Dense>
+#include <string>
 
 namespace bfl
 {
+    class ParticleFilterPrediction;
+}
 
-class ParticleFilterPrediction: public Prediction
+
+class bfl::ParticleFilterPrediction
 {
 public:
-    /* Default constructor, disabled */
-    ParticleFilterPrediction() = delete;
+    virtual ~ParticleFilterPrediction() noexcept { };
 
-    /* PF prediction constructor */
-    ParticleFilterPrediction(std::shared_ptr<StateModel> transition_model) noexcept;
+    virtual void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) = 0;
 
-    /* Destructor */
-    ~ParticleFilterPrediction() noexcept override;
+    virtual void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) = 0;
 
-    /* Copy constructor */
-    ParticleFilterPrediction(const ParticleFilterPrediction& pf_prediction);
+    virtual void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) = 0;
 
-    /* Move constructor */
-    ParticleFilterPrediction(ParticleFilterPrediction&& pf_prediction) noexcept;
-
-    /* Copy assignment operator */
-    ParticleFilterPrediction& operator=(const ParticleFilterPrediction& pf_prediction);
-
-    /* Move assignment operator */
-    ParticleFilterPrediction& operator=(ParticleFilterPrediction&& pf_prediction) noexcept;
-
-    void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
-
-protected:
-    std::shared_ptr<StateModel> transition_model_;
+    virtual bool setMotionModelProperty(const std::string& property) = 0;
 };
 
-} // namespace bfl
-
-#endif /* PARTICLEFILTERPREDICTION_H */
+#endif /* PREDICTION_H */

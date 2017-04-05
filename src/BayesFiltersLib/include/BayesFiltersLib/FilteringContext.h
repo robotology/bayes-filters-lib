@@ -8,8 +8,10 @@
 
 namespace bfl
 {
+    class FilteringContext;
+}
 
-class FilteringContext {
+class bfl::FilteringContext {
 public:
     FilteringContext(std::shared_ptr<FilteringAlgorithm> filter);
 
@@ -24,7 +26,5 @@ public:
 private:
     std::shared_ptr<FilteringAlgorithm> filter_;
 };
-
-} // namespace bfl
 
 #endif /* FILTERINGCONTEXT_H */

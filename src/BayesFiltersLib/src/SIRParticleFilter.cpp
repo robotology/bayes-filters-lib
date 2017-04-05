@@ -4,44 +4,29 @@
 
 #include <Eigen/Dense>
 
+#include "BayesFiltersLib/ParticleFilterCorrection.h"
 #include "BayesFiltersLib/SIRParticleFilter.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
     
-SIRParticleFilter::SIRParticleFilter(std::shared_ptr<StateModel> state_model, std::shared_ptr<Prediction> prediction, std::shared_ptr<ObservationModel> observation_model, std::shared_ptr<Correction> correction, std::shared_ptr<Resampling> resampling) noexcept :
-    state_model_(state_model), prediction_(prediction), observation_model_(observation_model), correction_(correction), resampling_(resampling) { }
+SIRParticleFilter::SIRParticleFilter(std::unique_ptr<ParticleFilterPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept :
+    prediction_(std::move(prediction)), correction_(std::move(correction)), resampling_(std::move(resampling)) { }
 
 
 SIRParticleFilter::~SIRParticleFilter() noexcept { }
-
-
-SIRParticleFilter::SIRParticleFilter(const SIRParticleFilter& sir_pf) : state_model_(sir_pf.state_model_), prediction_(sir_pf.prediction_), observation_model_(sir_pf.observation_model_), correction_(sir_pf.correction_), resampling_(sir_pf.resampling_) { }
 
 
 SIRParticleFilter::SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept :
     prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { }
 
 
-SIRParticleFilter& SIRParticleFilter::operator=(const SIRParticleFilter& sir_pf)
-{
-    SIRParticleFilter tmp(sir_pf);
-    *this = std::move(tmp);
-
-    return *this;
-}
-
-
 SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noexcept
 {
-    state_model_       = std::move(sir_pf.state_model_);
-    prediction_        = std::move(sir_pf.prediction_);
-    observation_model_ = std::move(sir_pf.observation_model_);
-    correction_        = std::move(sir_pf.correction_);
-    resampling_        = std::move(sir_pf.resampling_);
+    prediction_ = std::move(sir_pf.prediction_);
+    correction_ = std::move(sir_pf.correction_);
+    resampling_ = std::move(sir_pf.resampling_);
 
     return *this;
 }
@@ -60,12 +45,11 @@ void SIRParticleFilter::runFilter()
     object_.resize(4, simulation_time);
 
     object_.col(0) << 0, 10, 0, 10;
-    observation_model_->measure(object_.col(0), measurement_.col(0));
-
+    correction_->virtual_observation(object_.col(0), measurement_.col(0));
     for (int k = 1; k < simulation_time; ++k)
     {
-        state_model_->motion(object_.col(k-1), object_.col(k));
-        observation_model_->measure(object_.col(k), measurement_.col(k));
+        prediction_->predict(object_.col(k-1), object_.col(k));
+        dynamic_cast<ParticleFilterCorrection*>(correction_.get())->observation(object_.col(k), measurement_.col(k));
     }
 
     /* INITIALIZE FILTER */
@@ -173,5 +157,3 @@ void SIRParticleFilter::getResult()
     result_file_particle.close();
     result_file_weight.close();
 }
-
-} // namespace bfl

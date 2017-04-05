@@ -6,11 +6,13 @@
 
 #include "StateModel.h"
 
-
 namespace bfl
 {
+    class WhiteNoiseAcceleration;
+}
 
-class WhiteNoiseAcceleration : public StateModel {
+
+class bfl::WhiteNoiseAcceleration : public StateModel {
 public:
     /* WNA complete constructor */
     WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;
@@ -40,7 +42,7 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> next_state) override;
+    bool setProperty(const std::string& property) override { return false; };
 
 protected:
     float                           T_;                /* Sampling interval */
@@ -53,7 +55,5 @@ protected:
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
-
-} // namespace bfl
 
 #endif /* WHITENOISEACCELERATION_H */

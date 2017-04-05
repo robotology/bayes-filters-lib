@@ -5,8 +5,11 @@
 
 namespace bfl
 {
+    class KalmanFilter;
+}
 
-class KalmanFilter: public FilteringAlgorithm {
+
+class bfl::KalmanFilter: public FilteringAlgorithm {
 public:
     KalmanFilter();
 
@@ -16,7 +19,5 @@ public:
 
     void getResult() override;
 };
-
-} // namespace bfl
 
 #endif /* KALMANFILTER_H */

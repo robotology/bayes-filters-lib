@@ -1,8 +1,7 @@
 #include "BayesFiltersLib/KalmanFilter.h"
 
+using namespace bfl;
 
-namespace bfl
-{
     
 KalmanFilter::KalmanFilter() { }
 
@@ -14,6 +13,3 @@ void KalmanFilter::runFilter() { }
 
 
 void KalmanFilter::getResult() { }
-
-} // namespace bfl
-

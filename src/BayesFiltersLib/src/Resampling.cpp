@@ -2,11 +2,9 @@
 
 #include "BayesFiltersLib/Resampling.h"
 
+using namespace bfl;
 using namespace Eigen;
 
-
-namespace bfl
-{
     
 Resampling::Resampling(unsigned int seed) noexcept :
     generator_(std::mt19937_64(seed)) { }
@@ -37,6 +35,14 @@ Resampling& Resampling::operator=(const Resampling& resampling)
 
 
 Resampling& Resampling::operator=(Resampling&& resampling) noexcept
+{
+    generator_ = std::move(resampling.generator_);
+
+    return *this;
+}
+
+
+Resampling& Resampling::operator=(const Resampling&& resampling) noexcept
 {
     generator_ = std::move(resampling.generator_);
 
@@ -79,5 +85,3 @@ float Resampling::neff(const Ref<const VectorXf>& cor_weights)
 {
     return 1.0/cor_weights.array().square().sum();
 }
-
-} // namespace bfl
