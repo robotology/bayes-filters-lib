@@ -3,11 +3,13 @@
 
 #include "FilteringAlgorithm.h"
 
-
 namespace bfl
 {
+    class UnscentedKalmanFilter;
+}
 
-class UnscentedKalmanFilter: public FilteringAlgorithm {
+
+class bfl::UnscentedKalmanFilter: public FilteringAlgorithm {
 public:
     UnscentedKalmanFilter();
 
@@ -17,7 +19,5 @@ public:
 
     void getResult() override;
 };
-
-} // namespace bfl
 
 #endif /* UNSCENTEDKALMANFILTER_H */

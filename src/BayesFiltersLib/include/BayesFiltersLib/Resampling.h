@@ -5,11 +5,13 @@
 
 #include <Eigen/Dense>
 
-
 namespace bfl
 {
+    class Resampling;
+}
 
-class Resampling {
+
+class bfl::Resampling {
 public:
     /* Resampling complete constructor */
     Resampling(unsigned int seed) noexcept;
@@ -32,6 +34,9 @@ public:
     /* Move assignment operator */
     Resampling& operator=(Resampling&& resampling) noexcept;
 
+    /* Move assignment operator */
+    Resampling& operator=(const Resampling&& resampling) noexcept;
+
     void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
                   Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents);
 
@@ -40,7 +45,5 @@ public:
 private:
     std::mt19937_64 generator_;
 };
-
-} // namespace bfl
 
 #endif /* RESAMPLING_H */

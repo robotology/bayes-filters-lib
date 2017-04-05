@@ -12,10 +12,10 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
         src/CorrectionDecorator.cpp
+        src/DrawParticle.cpp
         src/LinearSensor.cpp
         src/ParticleFilterCorrection.cpp
-        src/ParticleFilterPrediction.cpp
-        src/PredictionDecorator.cpp
+        src/ParticleFilterPredictionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
         src/WhiteNoiseAcceleration.cpp)
@@ -40,21 +40,21 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFiltersLib/AuxiliaryFunction.h
         include/BayesFiltersLib/Correction.h
         include/BayesFiltersLib/CorrectionDecorator.h
+        include/BayesFiltersLib/DrawParticle.h
         include/BayesFiltersLib/FilteringFunction.h
         include/BayesFiltersLib/Initialization.h
         include/BayesFiltersLib/LinearSensor.h
         include/BayesFiltersLib/ObservationModel.h
         include/BayesFiltersLib/ParticleFilterCorrection.h
         include/BayesFiltersLib/ParticleFilterPrediction.h
-        include/BayesFiltersLib/Prediction.h
-        include/BayesFiltersLib/PredictionDecorator.h
+        include/BayesFiltersLib/ParticleFilterPredictionDecorator.h
         include/BayesFiltersLib/Resampling.h
         include/BayesFiltersLib/SigmaPointTransform.h
         include/BayesFiltersLib/StateModel.h
         include/BayesFiltersLib/StateModelDecorator.h
-        include/BayesFiltersLib/WhiteNoiseAcceleration.h
         include/BayesFiltersLib/VisualCorrection.h
-        include/BayesFiltersLib/VisualObservationModel.h)
+        include/BayesFiltersLib/VisualObservationModel.h
+        include/BayesFiltersLib/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}

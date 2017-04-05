@@ -2,17 +2,17 @@
 #define OBSERVATIONMODEL_H
 
 #include <Eigen/Dense>
-
+#include <string>
 
 namespace bfl
 {
+    class ObservationModel;
+}
 
-class ObservationModel
+
+class bfl::ObservationModel
 {
 public:
-
-    ObservationModel() = default;
-
     virtual ~ObservationModel() noexcept { };
 
     virtual Eigen::MatrixXf noiseCovariance() = 0;
@@ -21,9 +21,9 @@ public:
 
     virtual void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) = 0;
 
+    virtual bool setProperty(const std::string property) = 0;
+
     virtual void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) = 0;
 };
-
-} // namespace bfl
 
 #endif /* OBSERVATIONMODEL_H */
