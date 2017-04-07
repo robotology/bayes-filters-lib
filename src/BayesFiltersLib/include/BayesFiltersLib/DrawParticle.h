@@ -2,6 +2,7 @@
 #define DRAWPARTICLE_H
 
 #include <random>
+#include <memory>
 
 #include "ParticleFilterPrediction.h"
 #include "StateModel.h"
