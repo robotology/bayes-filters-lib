@@ -5,8 +5,7 @@
 #include <opencv2/core/core.hpp>
 #include <string>
 
-namespace bfl
-{
+namespace bfl {
     class VisualObservationModel;
 }
 

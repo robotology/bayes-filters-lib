@@ -5,8 +5,7 @@
 
 #include <memory>
 
-namespace bfl
-{
+namespace bfl {
     class StateModelDecorator;
 }
 

@@ -5,13 +5,13 @@
 
 #include "ParticleFilterPrediction.h"
 
-namespace bfl
-{
+namespace bfl {
     class ParticleFilterPredictionDecorator;
 }
 
 
-class bfl::ParticleFilterPredictionDecorator : public ParticleFilterPrediction {
+class bfl::ParticleFilterPredictionDecorator : public ParticleFilterPrediction
+{
 public:
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 

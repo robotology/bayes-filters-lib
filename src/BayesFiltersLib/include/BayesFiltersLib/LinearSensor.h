@@ -6,8 +6,7 @@
 
 #include "ObservationModel.h"
 
-namespace bfl
-{
+namespace bfl {
     class LinearSensor;
 }
 

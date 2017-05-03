@@ -4,8 +4,7 @@
 #include <Eigen/Dense>
 #include <string>
 
-namespace bfl
-{
+namespace bfl {
     class ParticleFilterPrediction;
 }
 

@@ -3,8 +3,7 @@
 
 #include "FilteringAlgorithm.h"
 
-namespace bfl
-{
+namespace bfl {
     class KalmanFilter;
 }
 

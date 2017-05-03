@@ -4,8 +4,7 @@
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 
-namespace bfl
-{
+namespace bfl {
     class VisualCorrection;
 }
 

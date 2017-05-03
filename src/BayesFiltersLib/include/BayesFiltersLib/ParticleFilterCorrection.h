@@ -7,8 +7,7 @@
 #include "Correction.h"
 #include "ObservationModel.h"
 
-namespace bfl
-{
+namespace bfl {
     class ParticleFilterCorrection;
 }
 

@@ -5,13 +5,13 @@
 
 #include "FilteringAlgorithm.h"
 
-
-namespace bfl
-{
+namespace bfl {
     class FilteringContext;
 }
 
-class bfl::FilteringContext {
+
+class bfl::FilteringContext
+{
 public:
     FilteringContext(std::shared_ptr<FilteringAlgorithm> filter);
 
