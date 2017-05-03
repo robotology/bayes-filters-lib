@@ -7,8 +7,7 @@
 #include "ParticleFilterPrediction.h"
 #include "StateModel.h"
 
-namespace bfl
-{
+namespace bfl {
     class DrawParticle;
 }
 

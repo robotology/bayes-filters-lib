@@ -3,8 +3,7 @@
 
 #include <Eigen/Dense>
 
-namespace bfl
-{
+namespace bfl {
     class StateModel;
 }
 
