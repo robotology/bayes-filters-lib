@@ -43,7 +43,7 @@ void ParticleFilterPredictionDecorator::motionDisturbance(Eigen::Ref<Eigen::Vect
 }
 
 
-bool ParticleFilterPredictionDecorator::setMotionModelProperty(const std::string& property)
+bool ParticleFilterPredictionDecorator::setStateModelProperty(const std::string& property)
 {
-    return prediction_->setMotionModelProperty(property);
+    return prediction_->setStateModelProperty(property);
 }
