@@ -20,7 +20,7 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
 
-    virtual bool setVisualCorrectionProperty(const std::string& property) = 0;
+    virtual bool setObservationModelProperty(const std::string& property) = 0;
 };
 
 #endif /* VISUALCORRECTION_H */

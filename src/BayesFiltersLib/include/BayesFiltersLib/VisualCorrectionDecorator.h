@@ -19,7 +19,7 @@ public:
 
     void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) override;
 
-    bool setVisualCorrectionProperty(const std::string& property) override;
+    bool setObservationModelProperty(const std::string& property) override;
     
 protected:
     /* Default constructor, disabled */
