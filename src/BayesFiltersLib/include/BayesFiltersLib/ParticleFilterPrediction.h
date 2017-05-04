@@ -20,7 +20,7 @@ public:
 
     virtual void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) = 0;
 
-    virtual bool setMotionModelProperty(const std::string& property) = 0;
+    virtual bool setStateModelProperty(const std::string& property) = 0;
 };
 
 #endif /* PREDICTION_H */

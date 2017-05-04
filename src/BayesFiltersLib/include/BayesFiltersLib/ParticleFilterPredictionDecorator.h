@@ -19,7 +19,7 @@ public:
 
     void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    bool setMotionModelProperty(const std::string& property) override;
+    bool setStateModelProperty(const std::string& property) override;
 
 protected:
     /* Default constructor, disabled */
