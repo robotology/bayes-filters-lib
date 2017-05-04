@@ -25,7 +25,7 @@ void VisualCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovation
 
 bool VisualCorrectionDecorator::setVisualCorrectionProperty(const std::string& property)
 {
-    return visual_correction_->setMotionModelProperty(property);
+    return visual_correction_->setVisualCorrectionProperty(property);
 }
 
 
