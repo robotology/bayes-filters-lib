@@ -14,7 +14,6 @@ public:
     virtual void runFilter() = 0;
 
     virtual void getResult() = 0;
-
 };
 
 #endif /* FILTERINGALGORITHM_H */
