@@ -1,8 +1,12 @@
 #include <iostream>
 #include <memory>
 
-#include "BayesFiltersLib/SIRParticleFilter.h"
-#include "BayesFiltersLib/FilteringFunction.h"
+#include <BayesFiltersLib/DrawParticle.h>
+#include <BayesFiltersLib/LinearSensor.h>
+#include <BayesFiltersLib/ParticleFilterCorrection.h>
+#include <BayesFiltersLib/Resampling.h>
+#include <BayesFiltersLib/SIRParticleFilter.h>
+#include <BayesFiltersLib/WhiteNoiseAcceleration.h>
 
 using namespace bfl;
 

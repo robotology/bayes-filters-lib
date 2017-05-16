@@ -42,7 +42,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFiltersLib/Correction.h
         include/BayesFiltersLib/CorrectionDecorator.h
         include/BayesFiltersLib/DrawParticle.h
-        include/BayesFiltersLib/FilteringFunction.h
         include/BayesFiltersLib/Initialization.h
         include/BayesFiltersLib/LinearSensor.h
         include/BayesFiltersLib/ObservationModel.h
