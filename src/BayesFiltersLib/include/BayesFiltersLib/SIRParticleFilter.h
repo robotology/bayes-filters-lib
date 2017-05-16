@@ -18,7 +18,7 @@ namespace bfl {
 }
 
 
-class bfl::SIRParticleFilter: public FilteringAlgorithm
+class bfl::SIRParticleFilter : public FilteringAlgorithm
 {
 public:
     
