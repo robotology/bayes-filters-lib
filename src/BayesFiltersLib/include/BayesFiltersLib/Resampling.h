@@ -5,13 +5,13 @@
 
 #include <Eigen/Dense>
 
-namespace bfl
-{
+namespace bfl {
     class Resampling;
 }
 
 
-class bfl::Resampling {
+class bfl::Resampling
+{
 public:
     /* Resampling complete constructor */
     Resampling(unsigned int seed) noexcept;

@@ -47,7 +47,7 @@ void DrawParticle::predict(const Ref<const VectorXf>& prev_state, Ref<VectorXf> 
     pred_state += sample;
 }
 
-bool DrawParticle::setMotionModelProperty(const std::string& property)
+bool DrawParticle::setStateModelProperty(const std::string& property)
 {
     return state_model_->setProperty(property);
 }

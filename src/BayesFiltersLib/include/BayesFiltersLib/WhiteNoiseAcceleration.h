@@ -6,13 +6,13 @@
 
 #include "StateModel.h"
 
-namespace bfl
-{
+namespace bfl {
     class WhiteNoiseAcceleration;
 }
 
 
-class bfl::WhiteNoiseAcceleration : public StateModel {
+class bfl::WhiteNoiseAcceleration : public StateModel
+{
 public:
     /* WNA complete constructor */
     WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;

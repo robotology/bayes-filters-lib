@@ -13,13 +13,13 @@
 #include "Correction.h"
 #include "Resampling.h"
 
-namespace bfl
-{
+namespace bfl {
     class SIRParticleFilter;
 }
 
 
-class bfl::SIRParticleFilter: public FilteringAlgorithm {
+class bfl::SIRParticleFilter : public FilteringAlgorithm
+{
 public:
     
     /* Default constructor, disabled */

@@ -2,12 +2,12 @@
 #define DRAWPARTICLE_H
 
 #include <random>
+#include <memory>
 
 #include "ParticleFilterPrediction.h"
 #include "StateModel.h"
 
-namespace bfl
-{
+namespace bfl {
     class DrawParticle;
 }
 
@@ -36,7 +36,7 @@ public:
 
     void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    bool setMotionModelProperty(const std::string& property) override;
+    bool setStateModelProperty(const std::string& property) override;
 
 protected:
     std::unique_ptr<StateModel> state_model_;
