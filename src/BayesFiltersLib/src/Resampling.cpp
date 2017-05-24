@@ -5,7 +5,7 @@
 using namespace bfl;
 using namespace Eigen;
 
-    
+
 Resampling::Resampling(unsigned int seed) noexcept :
     generator_(std::mt19937_64(seed)) { }
 
@@ -58,9 +58,7 @@ void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<c
 
     csw(0) = cor_weights(0);
     for (int i = 1; i < num_particles; ++i)
-    {
         csw(i) = csw(i-1) + cor_weights(i);
-    }
 
     std::uniform_real_distribution<float> distribution_res(0.0, 1.0/num_particles);
     std::function<float()> uniform = [&] {return distribution_res(generator_);};
@@ -69,7 +67,7 @@ void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<c
     int idx_csw = 0;
     for (int j = 0; j < num_particles; ++j)
     {
-        float u_j = u_1 + static_cast<float>((j))/num_particles;
+        float u_j = u_1 + static_cast<float>(j)/num_particles;
 
         while (u_j > csw(idx_csw)) { idx_csw += 1; }
 
@@ -77,7 +75,6 @@ void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<c
         res_weights(j)       = 1.0/num_particles;
         res_parents(j)       = idx_csw;
     }
-
 }
 
 
