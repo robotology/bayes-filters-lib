@@ -37,10 +37,10 @@ public:
     /* Move assignment operator */
     Resampling& operator=(const Resampling&& resampling) noexcept;
 
-    void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
-                  Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents);
+    virtual void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
+                          Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents);
 
-    float neff(const Eigen::Ref<const Eigen::VectorXf>& cor_weights);
+    virtual float neff(const Eigen::Ref<const Eigen::VectorXf>& cor_weights);
 
 private:
     std::mt19937_64 generator_;
