@@ -3,7 +3,7 @@
 
 #include <Eigen/Cholesky>
 
-#include "BayesFiltersLib/WhiteNoiseAcceleration.h"
+#include "BayesFilters/WhiteNoiseAcceleration.h"
 
 using namespace bfl;
 using namespace Eigen;

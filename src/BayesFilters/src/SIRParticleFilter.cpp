@@ -4,8 +4,8 @@
 
 #include <Eigen/Dense>
 
-#include "BayesFiltersLib/ParticleFilterCorrection.h"
-#include "BayesFiltersLib/SIRParticleFilter.h"
+#include "BayesFilters/ParticleFilterCorrection.h"
+#include "BayesFilters/SIRParticleFilter.h"
 
 using namespace bfl;
 using namespace Eigen;

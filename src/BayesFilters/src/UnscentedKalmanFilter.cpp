@@ -1,4 +1,4 @@
-#include "BayesFiltersLib/UnscentedKalmanFilter.h"
+#include "BayesFilters/UnscentedKalmanFilter.h"
 
 using namespace bfl;
 

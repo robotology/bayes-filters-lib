@@ -1,7 +1,7 @@
 #include <cmath>
 #include <utility>
 
-#include "BayesFiltersLib/ParticleFilterCorrection.h"
+#include "BayesFilters/ParticleFilterCorrection.h"
 
 using namespace bfl;
 using namespace Eigen;

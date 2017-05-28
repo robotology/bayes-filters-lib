@@ -1,7 +1,7 @@
 #include <cmath>
 #include <utility>
 
-#include "BayesFiltersLib/LinearSensor.h"
+#include "BayesFilters/LinearSensor.h"
 
 using namespace bfl;
 using namespace Eigen;

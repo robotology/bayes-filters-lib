@@ -1,4 +1,4 @@
-#include "BayesFiltersLib/VisualCorrectionDecorator.h"
+#include "BayesFilters/VisualCorrectionDecorator.h"
 
 using namespace bfl;
 using namespace cv;
