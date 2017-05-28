@@ -1,6 +1,6 @@
 #include <utility>
 
-#include "BayesFiltersLib/ParticleFilterPredictionDecorator.h"
+#include "BayesFilters/ParticleFilterPredictionDecorator.h"
 
 using namespace bfl;
 using namespace Eigen;

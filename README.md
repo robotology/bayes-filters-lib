@@ -1,20 +1,20 @@
-BayesFiltersLib
+BayesFilters
 ===
 
-The BayesFiltersLib provides flexible, modern, C++ recursive Bayesian estimation library.
+The BayesFilters provides flexible, modern, C++ recursive Bayesian estimation library.
 
-BayesFiltersLib works on Linux, macOS and Windows.
+BayesFilters works on Linux, macOS and Windows.
 
 ## Dependencies
-BayesFiltersLib depends on
+BayesFilters library depends on
  - [OpenCV](https://github.com/opencv/opencv) (>= 3.0)
  - [Eigen3](https://bitbucket.org/eigen/eigen/) (>= 3.3)
 
 ## Build the library
 ### Linux / macOS
 ```shell
-git clone https://github.com/claudiofantacci/BayesFiltersLib
-cd BayesFiltersLib
+git clone https://github.com/robotology/bayes-filters-lib
+cd bayes-filters-lib
 mkdir build && cd build
 cmake ..
 make
@@ -27,9 +27,9 @@ make
 Once the library is installed, add to your project `CMakeLists.txt`
 ```cmake
 ...
-find_package(BayesFiltersLib REQUIRED)
+find_package(BayesFilters REQUIRED)
 ...
-target_link_libraries(<target> BayesFiltersLib::BayesFiltersLib)
+target_link_libraries(<target> BayesFilters::BayesFilters)
 ...
 ```
 

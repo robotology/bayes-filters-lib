@@ -1,4 +1,4 @@
-#include "BayesFiltersLib/StateModelDecorator.h"
+#include "BayesFilters/StateModelDecorator.h"
 
 using namespace bfl;
 using namespace Eigen;

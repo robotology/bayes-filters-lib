@@ -1,4 +1,4 @@
-#include "BayesFiltersLib/KalmanFilter.h"
+#include "BayesFilters/KalmanFilter.h"
 
 using namespace bfl;
 

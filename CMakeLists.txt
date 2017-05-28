@@ -4,7 +4,7 @@ else()
     cmake_minimum_required(VERSION 3.0)
 endif()
 
-project(BayesFiltersLib
+project(BayesFilters
         LANGUAGES CXX
         VERSION 0.4.0.0)
 
@@ -36,7 +36,7 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
 ### Compile- and install-related commands
 add_subdirectory(src)
 
-# Install the files necessary to call find_package(BayesFiltersLib) in CMake projects
+# Install the files necessary to call find_package(BayesFilters) in CMake projects
 include(InstallBasicPackageFiles)
 install_basic_package_files(${PROJECT_NAME} VARS_PREFIX ${PROJECT_NAME}
                                             VERSION ${${PROJECT_NAME}_VERSION}
