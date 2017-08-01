@@ -9,7 +9,10 @@ UnscentedKalmanFilter::UnscentedKalmanFilter() { }
 UnscentedKalmanFilter::~UnscentedKalmanFilter() noexcept { }
 
 
-void UnscentedKalmanFilter::runFilter() { }
+void UnscentedKalmanFilter::initialization() { }
+
+
+void UnscentedKalmanFilter::filteringStep() { }
 
 
 void UnscentedKalmanFilter::getResult() { }

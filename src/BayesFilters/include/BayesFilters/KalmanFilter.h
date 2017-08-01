@@ -14,7 +14,9 @@ public:
 
     ~KalmanFilter() noexcept override;
 
-    void runFilter() override;
+    void initialization() override;
+    
+    void filteringStep() override;
 
     void getResult() override;
 };

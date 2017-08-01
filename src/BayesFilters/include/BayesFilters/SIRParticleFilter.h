@@ -37,14 +37,23 @@ public:
     /* Move assignment operator */
     SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
 
-    void runFilter() override;
+    void initialization() override;
+
+    void filteringStep() override;
 
     void getResult() override;
+
+    bool runCondition() override { return (getFilteringStep() < simulation_time_); };
 
 protected:
     std::unique_ptr<ParticleFilterPrediction> prediction_;
     std::unique_ptr<Correction>               correction_;
     std::unique_ptr<Resampling>               resampling_;
+
+    int                                       simulation_time_;
+    int                                       num_particle_;
+    int                                       surv_x_;
+    int                                       surv_y_;
 
     Eigen::MatrixXf                           object_;
     Eigen::MatrixXf                           measurement_;
