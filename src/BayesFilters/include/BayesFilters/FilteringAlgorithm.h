@@ -38,6 +38,8 @@ public:
 
     virtual unsigned int getFilteringStep() final { return filtering_step_; }
 
+    virtual bool         isRunning() final { return run_; }
+
 private:
     void filteringRecursion();
 
