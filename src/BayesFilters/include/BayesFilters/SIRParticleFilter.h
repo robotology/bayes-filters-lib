@@ -21,7 +21,6 @@ namespace bfl {
 class bfl::SIRParticleFilter : public FilteringAlgorithm
 {
 public:
-    
     /* Default constructor, disabled */
     SIRParticleFilter() = delete;
 
