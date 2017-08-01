@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include <memory>
 
@@ -30,12 +31,19 @@ int main()
     /* Initialize a resampling algorithm */
     std::unique_ptr<Resampling> resampling(new Resampling());
 
-    std::cout << "Configuring SIR particle filter..." << std::flush;
+    std::cout << "Constructing SIR particle filter..." << std::flush;
     SIRParticleFilter sir_pf(std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
     std::cout << "done!" << std::endl;
 
+    std::cout << "Preparing SIR particle filter..." << std::flush;
+    sir_pf.prepare();
+    std::cout << "completed!" << std::endl;
+
     std::cout << "Running SIR particle filter..." << std::flush;
-    sir_pf.runFilter();
+    sir_pf.run();
+    std::cout << "...waiting..." << std::flush;
+    if (!sir_pf.wait())
+        return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
 
     std::cout << "Storing filtering results..." << std::flush;
