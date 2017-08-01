@@ -115,4 +115,6 @@ void FilteringAlgorithm::filteringRecursion()
         }
     }
     while (runCondition() && (run_ || reset_) && !teardown_);
+
+    run_ = false;
 }
