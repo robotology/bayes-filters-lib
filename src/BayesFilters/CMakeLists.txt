@@ -5,6 +5,7 @@ set(${LIBRARY_TARGET_NAME}_FC_SRC
         src/FilteringContext.cpp)
 
 set(${LIBRARY_TARGET_NAME}_FA_SRC
+        src/FilteringAlgorithm.cpp
         src/KalmanFilter.cpp
         src/SIRParticleFilter.cpp
         src/UnscentedKalmanFilter.cpp)
