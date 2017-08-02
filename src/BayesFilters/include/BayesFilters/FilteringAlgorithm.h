@@ -26,17 +26,17 @@ public:
     virtual bool runCondition() = 0;
 
 
-    virtual bool prepare() final;
+    bool prepare();
 
-    virtual void run() final;
+    void run();
 
-    virtual bool wait() final;
+    bool wait();
 
-    virtual void reset() final;
+    void reset();
 
-    virtual void reboot() final;
+    void reboot();
 
-    virtual bool teardown() final;
+    bool teardown();
 
 
     virtual unsigned int getFilteringStep() final { return filtering_step_; }
