@@ -1,7 +1,7 @@
 #ifndef VISUALCORRECTIONDECORATOR_H
 #define VISUALCORRECTIONDECORATOR_H
 
-#include "VisualCorrection.h"
+#include "AbstractVisualCorrection.h"
 
 #include <memory>
 
@@ -10,7 +10,7 @@ namespace bfl {
 }
 
 
-class bfl::VisualCorrectionDecorator : public VisualCorrection
+class bfl::VisualCorrectionDecorator : public AbstractVisualCorrection
 {
 public:
     void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) override;
@@ -20,13 +20,12 @@ public:
     void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) override;
 
     bool setObservationModelProperty(const std::string& property) override;
+
+    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) override;
     
 protected:
-    /* Default constructor, disabled */
-    VisualCorrectionDecorator() = delete;
-
-    /* Decorator constructor */
-    VisualCorrectionDecorator(std::unique_ptr<VisualCorrection> visual_correction) noexcept;
+    /* Constructor */
+    VisualCorrectionDecorator(std::unique_ptr<AbstractVisualCorrection> visual_correction) noexcept;
 
     /* Destructor */
     ~VisualCorrectionDecorator() noexcept override;
@@ -38,7 +37,7 @@ protected:
     VisualCorrectionDecorator& operator=(VisualCorrectionDecorator&& visual_correction) noexcept;
 
 private:
-    std::unique_ptr<VisualCorrection> visual_correction_;
+    std::unique_ptr<AbstractVisualCorrection> visual_correction_;
 };
 
 #endif /* VISUALCORRECTIONDECORATOR_H */

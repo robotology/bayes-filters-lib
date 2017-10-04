@@ -29,7 +29,13 @@ bool VisualCorrectionDecorator::setObservationModelProperty(const std::string& p
 }
 
 
-VisualCorrectionDecorator::VisualCorrectionDecorator(std::unique_ptr<VisualCorrection> visual_correction) noexcept :
+void VisualCorrectionDecorator::observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation)
+{
+    return visual_correction_->observe(cur_state, observation);
+}
+
+
+VisualCorrectionDecorator::VisualCorrectionDecorator(std::unique_ptr<AbstractVisualCorrection> visual_correction) noexcept :
     visual_correction_(std::move(visual_correction)) { }
 
 

@@ -1,6 +1,9 @@
 #ifndef VISUALCORRECTION_H
 #define VISUALCORRECTION_H
 
+#include "AbstractVisualCorrection.h"
+#include "VisualObservationModel.h"
+
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 
@@ -9,18 +12,22 @@ namespace bfl {
 }
 
 
-class bfl::VisualCorrection
+class bfl::VisualCorrection : public AbstractVisualCorrection
 {
 public:
+    VisualCorrection(std::unique_ptr<VisualObservationModel> visual_obs_model) noexcept :
+        visual_obs_model_(std::move(visual_obs_model))
+    { };
+
     virtual ~VisualCorrection() noexcept { };
 
-    virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
+    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) override
+    {
+        visual_obs_model_->observe(cur_state, observation);
+    };
 
-    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovation) = 0;
-
-    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
-
-    virtual bool setObservationModelProperty(const std::string& property) = 0;
+private:
+    std::unique_ptr<VisualObservationModel> visual_obs_model_;
 };
 
 #endif /* VISUALCORRECTION_H */
