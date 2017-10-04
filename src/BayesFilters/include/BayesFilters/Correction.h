@@ -12,7 +12,7 @@ class bfl::Correction
 {
 public:
     virtual ~Correction() noexcept { };
-    
+
     virtual void correct(const Eigen::Ref<const Eigen::VectorXf>& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::VectorXf> cor_state) = 0;
 
     virtual void virtual_observation(const Eigen::Ref<const Eigen::VectorXf>& state, Eigen::Ref<Eigen::MatrixXf> virtual_measurements) = 0;
