@@ -1,5 +1,44 @@
 set(LIBRARY_TARGET_NAME BayesFilters)
 
+# List of HPP (header) library files
+set(${LIBRARY_TARGET_NAME}_FC_HDR
+        include/BayesFilters/FilteringContext.h)
+
+set(${LIBRARY_TARGET_NAME}_FA_HDR
+        include/BayesFilters/FilteringAlgorithm.h
+        include/BayesFilters/KalmanFilter.h
+        include/BayesFilters/SIRParticleFilter.h
+        include/BayesFilters/UnscentedKalmanFilter.h)
+
+set(${LIBRARY_TARGET_NAME}_FF_HDR
+        include/BayesFilters/AuxiliaryFunction.h
+        include/BayesFilters/AbstractCorrection.h
+        include/BayesFilters/AbstractPrediction.h
+        include/BayesFilters/AbstractVisualCorrection.h
+        include/BayesFilters/Correction.h
+        include/BayesFilters/CorrectionDecorator.h
+        include/BayesFilters/DrawParticle.h
+        include/BayesFilters/Initialization.h
+        include/BayesFilters/LinearSensor.h
+        include/BayesFilters/ObservationModel.h
+        include/BayesFilters/ParticleFilterCorrection.h
+        include/BayesFilters/ParticleFilterPrediction.h
+        include/BayesFilters/ParticleFilterPredictionDecorator.h
+        include/BayesFilters/Resampling.h
+        include/BayesFilters/SigmaPointTransform.h
+        include/BayesFilters/StateModel.h
+        include/BayesFilters/StateModelDecorator.h
+        include/BayesFilters/VisualCorrection.h
+        include/BayesFilters/VisualCorrectionDecorator.h
+        include/BayesFilters/VisualObservationModel.h
+        include/BayesFilters/WhiteNoiseAcceleration.h)
+
+set(${LIBRARY_TARGET_NAME}_HDR
+        ${${LIBRARY_TARGET_NAME}_FC_HDR}
+        ${${LIBRARY_TARGET_NAME}_FA_HDR}
+        ${${LIBRARY_TARGET_NAME}_FF_HDR}
+)
+
 # List of CPP (source) library files
 set(${LIBRARY_TARGET_NAME}_FC_SRC
         src/FilteringContext.cpp)
@@ -26,42 +65,6 @@ set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
         ${${LIBRARY_TARGET_NAME}_FA_SRC}
         ${${LIBRARY_TARGET_NAME}_FF_SRC}
-)
-
-# List of HPP (header) library files
-set(${LIBRARY_TARGET_NAME}_FC_HDR
-        include/BayesFilters/FilteringContext.h)
-
-set(${LIBRARY_TARGET_NAME}_FA_HDR
-        include/BayesFilters/FilteringAlgorithm.h
-        include/BayesFilters/KalmanFilter.h
-        include/BayesFilters/SIRParticleFilter.h
-        include/BayesFilters/UnscentedKalmanFilter.h)
-
-set(${LIBRARY_TARGET_NAME}_FF_HDR
-        include/BayesFilters/AuxiliaryFunction.h
-        include/BayesFilters/Correction.h
-        include/BayesFilters/CorrectionDecorator.h
-        include/BayesFilters/DrawParticle.h
-        include/BayesFilters/Initialization.h
-        include/BayesFilters/LinearSensor.h
-        include/BayesFilters/ObservationModel.h
-        include/BayesFilters/ParticleFilterCorrection.h
-        include/BayesFilters/ParticleFilterPrediction.h
-        include/BayesFilters/ParticleFilterPredictionDecorator.h
-        include/BayesFilters/Resampling.h
-        include/BayesFilters/SigmaPointTransform.h
-        include/BayesFilters/StateModel.h
-        include/BayesFilters/StateModelDecorator.h
-        include/BayesFilters/VisualCorrection.h
-        include/BayesFilters/VisualCorrectionDecorator.h
-        include/BayesFilters/VisualObservationModel.h
-        include/BayesFilters/WhiteNoiseAcceleration.h)
-
-set(${LIBRARY_TARGET_NAME}_HDR
-        ${${LIBRARY_TARGET_NAME}_FC_HDR}
-        ${${LIBRARY_TARGET_NAME}_FA_HDR}
-        ${${LIBRARY_TARGET_NAME}_FF_HDR}
 )
 
 find_package(EIGEN3 REQUIRED)
