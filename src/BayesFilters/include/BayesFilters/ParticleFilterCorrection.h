@@ -15,10 +15,7 @@ namespace bfl {
 class bfl::ParticleFilterCorrection: public Correction
 {
 public:
-    /* Default constructor, disabled */
-    ParticleFilterCorrection() = delete;
-
-    /* PF correction constructor */
+    /* Constructor */
     ParticleFilterCorrection(std::unique_ptr<ObservationModel> observation_model) noexcept;
 
     /* Destructor */

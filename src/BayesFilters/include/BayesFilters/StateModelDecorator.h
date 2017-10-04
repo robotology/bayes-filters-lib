@@ -20,10 +20,7 @@ public:
     bool setProperty(const std::string& property) override;
 
 protected:
-    /* Default constructor, disabled */
-    StateModelDecorator() = delete;
-
-    /* Decorator constructor */
+    /* Constructor */
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 
     /* Destructor */
