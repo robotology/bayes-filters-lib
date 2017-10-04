@@ -13,7 +13,7 @@ namespace bfl {
 class bfl::VisualObservationModel
 {
 public:
-    VisualObservationModel() = default;
+    VisualObservationModel();
 
     virtual ~VisualObservationModel() noexcept { };
 
