@@ -6,7 +6,7 @@ endif()
 
 project(BayesFilters
         LANGUAGES CXX
-        VERSION 0.5.1.0)
+        VERSION 0.6.0.0)
 
 include(GNUInstallDirs)
 
