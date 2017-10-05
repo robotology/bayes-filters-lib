@@ -45,11 +45,11 @@ void SIRParticleFilter::initialization()
     object_.resize(4, simulation_time_);
 
     object_.col(0) << 0, 10, 0, 10;
-    correction_->virtual_observation(object_.col(0), measurement_.col(0));
+    correction_->observeState(object_.col(0), measurement_.col(0));
     for (int k = 1; k < simulation_time_; ++k)
     {
         prediction_->predict(object_.col(k-1), object_.col(k));
-        dynamic_cast<ParticleFilterCorrection*>(correction_.get())->observation(object_.col(k), measurement_.col(k));
+        correction_->measureState(object_.col(k), measurement_.col(k));
     }
 
     /* INITIALIZE FILTER */
