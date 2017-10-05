@@ -38,9 +38,9 @@ void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& states, con
 {
     Vector2f virtual_measurements;
 
-    obs_model_->observe(states, measurements);
+    obs_model_->observe(states, virtual_measurements);
 
-    innovation = measurements - measurements;
+    innovation = measurements - virtual_measurements;
 }
 
 
