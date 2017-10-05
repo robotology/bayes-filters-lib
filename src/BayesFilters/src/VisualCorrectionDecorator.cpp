@@ -5,21 +5,21 @@ using namespace cv;
 using namespace Eigen;
 
 
-void VisualCorrectionDecorator::correct(const Ref<const MatrixXf>& pred_state, InputArray measurements, Ref<MatrixXf> cor_state)
+void VisualCorrectionDecorator::correct(Ref<MatrixXf> states, Ref<MatrixXf> weights, cv::InputArray measurements)
 {
-    visual_correction_->correct(pred_state, measurements, cor_state);
+    visual_correction_->correct(states, weights, measurements);
 }
 
 
-void VisualCorrectionDecorator::innovation(const Ref<const MatrixXf>& pred_state, InputArray measurements, Ref<MatrixXf> innovation)
+void VisualCorrectionDecorator::innovation(const Ref<const MatrixXf>& states, InputArray measurements, Ref<MatrixXf> innovations)
 {
-    visual_correction_->innovation(pred_state, measurements, innovation);
+    visual_correction_->innovation(states, measurements, innovations);
 }
 
 
-void VisualCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovation, Ref<MatrixXf> cor_state)
+void VisualCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovations, Ref<MatrixXf> weights)
 {
-    visual_correction_->likelihood(innovation, cor_state);
+    visual_correction_->likelihood(innovations, weights);
 }
 
 
@@ -29,9 +29,9 @@ bool VisualCorrectionDecorator::setObservationModelProperty(const std::string& p
 }
 
 
-void VisualCorrectionDecorator::observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation)
+void VisualCorrectionDecorator::observe(const Ref<const MatrixXf>& states, cv::OutputArray observations)
 {
-    return visual_correction_->observe(cur_state, observation);
+    return visual_correction_->observe(states, observations);
 }
 
 

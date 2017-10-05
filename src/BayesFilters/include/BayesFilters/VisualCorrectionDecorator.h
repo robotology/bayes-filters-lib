@@ -13,15 +13,15 @@ namespace bfl {
 class bfl::VisualCorrectionDecorator : public AbstractVisualCorrection
 {
 public:
-    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) override;
+    virtual void correct(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::MatrixXf> weights, cv::InputArray measurements) override;
 
-    void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovation) override;
+    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;
 
-    void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) override;
+    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::MatrixXf> weights) override;
 
-    bool setObservationModelProperty(const std::string& property) override;
+    virtual bool setObservationModelProperty(const std::string& property) override;
 
-    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) override;
+    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray observations) override;
     
 protected:
     /* Constructor */

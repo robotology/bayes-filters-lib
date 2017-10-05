@@ -16,15 +16,15 @@ class bfl::AbstractVisualCorrection
 public:
     virtual ~AbstractVisualCorrection() noexcept { };
 
-    virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
+    virtual void correct(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::MatrixXf> weights, cv::InputArray measurements) = 0;
 
-    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_state, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovation) = 0;
+    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
 
-    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::MatrixXf> cor_state) = 0;
+    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::MatrixXf> weights) = 0;
 
     virtual bool setObservationModelProperty(const std::string& property) = 0;
 
-    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) = 0;
+    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray observations) = 0;
 };
 
 #endif /* ABSTRACTVISUALCORRECTION_H */
