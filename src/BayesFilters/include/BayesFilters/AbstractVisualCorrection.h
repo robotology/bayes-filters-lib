@@ -1,8 +1,6 @@
 #ifndef ABSTRACTVISUALCORRECTION_H
 #define ABSTRACTVISUALCORRECTION_H
 
-#include "VisualObservationModel.h"
-
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 
