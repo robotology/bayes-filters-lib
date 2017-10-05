@@ -26,7 +26,7 @@ ParticleFilterCorrection& ParticleFilterCorrection::operator=(ParticleFilterCorr
 }
 
 
-void ParticleFilterCorrection::correct(Eigen::Ref<Eigen::VectorXf> states, Eigen::Ref<Eigen::VectorXf> weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements)
+void ParticleFilterCorrection::correct(Ref<VectorXf> states, Ref<VectorXf> weights, const Ref<const MatrixXf>& measurements)
 {
     Vector2f innovate;
     innovation(states, measurements, innovate);
@@ -34,7 +34,7 @@ void ParticleFilterCorrection::correct(Eigen::Ref<Eigen::VectorXf> states, Eigen
 }
 
 
-void ParticleFilterCorrection::innovation(const Eigen::Ref<const Eigen::VectorXf>& states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovation)
+void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& states, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovation)
 {
     Vector2f virtual_measurements;
 
@@ -44,7 +44,7 @@ void ParticleFilterCorrection::innovation(const Eigen::Ref<const Eigen::VectorXf
 }
 
 
-void ParticleFilterCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights)
+void ParticleFilterCorrection::likelihood(const Ref<const MatrixXf>& innovations, Ref<VectorXf> weights)
 {
     weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->noiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->noiseCovariance().inverse() * innovations).array()).exp();
 }
