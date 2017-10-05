@@ -8,56 +8,49 @@ using namespace Eigen;
 
 
 ParticleFilterCorrection::ParticleFilterCorrection(std::unique_ptr<ObservationModel> measurement_model) noexcept :
-    measurement_model_(std::move(measurement_model)) { }
+    Correction(std::move(measurement_model)) { }
 
 
 ParticleFilterCorrection::~ParticleFilterCorrection() noexcept { }
 
 
 ParticleFilterCorrection::ParticleFilterCorrection(ParticleFilterCorrection&& pf_correction) noexcept :
-    measurement_model_(std::move(pf_correction.measurement_model_)) { };
+    Correction::Correction(std::move(pf_correction)) { };
 
 
 ParticleFilterCorrection& ParticleFilterCorrection::operator=(ParticleFilterCorrection&& pf_correction) noexcept
 {
-    measurement_model_ = std::move(pf_correction.measurement_model_);
+    Correction::operator=(std::move(pf_correction));
 
     return *this;
 }
 
 
-void ParticleFilterCorrection::correct(const Ref<const VectorXf>& pred_state, const Ref<const MatrixXf>& measurements, Ref<VectorXf> cor_state)
+void ParticleFilterCorrection::correct(Eigen::Ref<Eigen::VectorXf> states, Eigen::Ref<Eigen::VectorXf> weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements)
 {
     Vector2f innovate;
-    innovation(pred_state, measurements, innovate);
-    likelihood(innovate, cor_state);
+    innovation(states, measurements, innovate);
+    likelihood(innovate, weights);
 }
 
 
-void ParticleFilterCorrection::virtual_observation(const Ref<const VectorXf>& state, Ref<MatrixXf> virtual_measurements)
-{
-    measurement_model_->observe(state, virtual_measurements);
-}
-
-
-void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& pred_state, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovation)
+void ParticleFilterCorrection::innovation(const Eigen::Ref<const Eigen::VectorXf>& states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovation)
 {
     Vector2f virtual_measurements;
 
-    virtual_observation(pred_state, virtual_measurements);
+    observe(states, measurements);
 
-    innovation = measurements - virtual_measurements;
+    innovation = measurements - measurements;
 }
 
 
-void ParticleFilterCorrection::likelihood(const Ref<const MatrixXf>& innovation, Ref<VectorXf> cor_state)
+void ParticleFilterCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights)
 {
-    cor_state = (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(measurement_model_->noiseCovariance().determinant()) - 0.5 * (innovation.transpose() * measurement_model_->noiseCovariance().inverse() * innovation).array()).exp();
+    weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->noiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->noiseCovariance().inverse() * innovations).array()).exp();
 }
 
 
-/* TEMPORARY - WILL BE REMOVED AFTER IMPLEMENTING Initialization CLASS */
-void ParticleFilterCorrection::observation(const Eigen::Ref<const Eigen::VectorXf>& state, Eigen::Ref<Eigen::MatrixXf> measurements)
+bool ParticleFilterCorrection::setObservationModelProperty(const std::string& property)
 {
-    measurement_model_->measure(state, measurements);
+    return obs_model_->setProperty(property);
 }

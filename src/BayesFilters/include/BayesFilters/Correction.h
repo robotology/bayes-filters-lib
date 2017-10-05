@@ -1,6 +1,9 @@
 #ifndef CORRECTION_H
 #define CORRECTION_H
 
+#include "AbstractCorrection.h"
+#include "ObservationModel.h"
+
 #include <Eigen/Dense>
 
 namespace bfl {
@@ -8,18 +11,33 @@ namespace bfl {
 }
 
 
-class bfl::Correction
+class bfl::Correction : public AbstractCorrection
 {
 public:
+    Correction(std::unique_ptr<ObservationModel> obs_model) noexcept :
+        obs_model_(std::move(obs_model))
+    { };
+
     virtual ~Correction() noexcept { };
 
-    virtual void correct(const Eigen::Ref<const Eigen::VectorXf>& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::VectorXf> cor_state) = 0;
+    Correction(Correction&& pf_correction) noexcept :
+        obs_model_(std::move(pf_correction.obs_model_))
+    { };
 
-    virtual void virtual_observation(const Eigen::Ref<const Eigen::VectorXf>& state, Eigen::Ref<Eigen::MatrixXf> virtual_measurements) = 0;
+    Correction& operator=(Correction&& pf_correction) noexcept
+    {
+        obs_model_ = std::move(pf_correction.obs_model_);
 
-    virtual void innovation(const Eigen::Ref<const Eigen::VectorXf>& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovation) = 0;
+        return *this;
+    }
 
-    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovation, Eigen::Ref<Eigen::VectorXf> cor_state) = 0;
+    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) override
+    {
+        obs_model_->observe(states, observations);
+    };
+
+protected:
+    std::unique_ptr<ObservationModel> obs_model_;
 };
 
 #endif /* CORRECTION_H */
