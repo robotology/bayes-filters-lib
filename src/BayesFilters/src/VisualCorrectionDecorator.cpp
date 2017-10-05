@@ -23,15 +23,21 @@ void VisualCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovation
 }
 
 
-bool VisualCorrectionDecorator::setObservationModelProperty(const std::string& property)
+bool VisualCorrectionDecorator::setModelProperty(const std::string& property)
 {
-    return visual_correction_->setObservationModelProperty(property);
+    return visual_correction_->setModelProperty(property);
 }
 
 
-void VisualCorrectionDecorator::observe(const Ref<const MatrixXf>& states, cv::OutputArray observations)
+void VisualCorrectionDecorator::observeState(const Ref<const MatrixXf>& states, cv::OutputArray observations)
 {
-    return visual_correction_->observe(states, observations);
+    return visual_correction_->observeState(states, observations);
+}
+
+
+void VisualCorrectionDecorator::measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements)
+{
+    return visual_correction_->measureState(states, measurements);
 }
 
 
