@@ -29,7 +29,7 @@ public:
         return *this;
     }
 
-    virtual void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) override
+    void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) override
     {
         obs_model_->observe(states, observations);
     }
