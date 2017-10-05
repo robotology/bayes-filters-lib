@@ -1,10 +1,10 @@
 #ifndef PARTICLEFILTERCORRECTION_H
 #define PARTICLEFILTERCORRECTION_H
 
+#include "Correction.h"
+
 #include <memory>
 #include <random>
-
-#include "Correction.h"
 
 namespace bfl {
     class ParticleFilterCorrection;
