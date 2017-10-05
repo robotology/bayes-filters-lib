@@ -38,7 +38,7 @@ void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& states, con
 {
     Vector2f virtual_measurements;
 
-    observe(states, measurements);
+    obs_model_->observe(states, measurements);
 
     innovation = measurements - measurements;
 }
@@ -50,7 +50,7 @@ void ParticleFilterCorrection::likelihood(const Ref<const MatrixXf>& innovations
 }
 
 
-bool ParticleFilterCorrection::setObservationModelProperty(const std::string& property)
+bool ParticleFilterCorrection::setModelProperty(const std::string& property)
 {
     return obs_model_->setProperty(property);
 }

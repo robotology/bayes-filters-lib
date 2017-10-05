@@ -19,9 +19,11 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights) = 0;
 
-    virtual bool setObservationModelProperty(const std::string& property) = 0;
+    virtual bool setModelProperty(const std::string& property) = 0;
 
-    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) = 0;
+    virtual void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) = 0;
+
+    virtual void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> measurements) = 0;
 };
 
 #endif /* ABSTRACTCORRECTION_H */

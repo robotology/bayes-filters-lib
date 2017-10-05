@@ -14,13 +14,13 @@ class bfl::Correction : public AbstractCorrection
 public:
     Correction(std::unique_ptr<ObservationModel> obs_model) noexcept :
         obs_model_(std::move(obs_model))
-    { };
+    { }
 
     virtual ~Correction() noexcept { };
 
     Correction(Correction&& pf_correction) noexcept :
         obs_model_(std::move(pf_correction.obs_model_))
-    { };
+    { }
 
     Correction& operator=(Correction&& pf_correction) noexcept
     {
@@ -29,10 +29,15 @@ public:
         return *this;
     }
 
-    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) override
+    virtual void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> observations) override
     {
         obs_model_->observe(states, observations);
-    };
+    }
+
+    void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, Eigen::Ref<Eigen::MatrixXf> measurements) override
+    {
+        obs_model_->measure(states, measurements);
+    }
 
 protected:
     std::unique_ptr<ObservationModel> obs_model_;

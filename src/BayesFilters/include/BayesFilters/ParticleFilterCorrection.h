@@ -28,7 +28,7 @@ public:
 
     void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights) override;
 
-    bool setObservationModelProperty(const std::string& property) override;
+    bool setModelProperty(const std::string& property) override;
 };
 
 #endif /* PARTICLEFILTERCORRECTION_H */
