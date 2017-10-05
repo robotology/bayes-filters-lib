@@ -4,9 +4,6 @@
 #include "AbstractVisualCorrection.h"
 #include "VisualObservationModel.h"
 
-#include <Eigen/Dense>
-#include <opencv2/core/core.hpp>
-
 namespace bfl {
     class VisualCorrection;
 }
@@ -21,12 +18,23 @@ public:
 
     virtual ~VisualCorrection() noexcept { };
 
+    VisualCorrection(VisualCorrection&& vpf_correction) noexcept :
+        obs_model_(std::move(vpf_correction.visual_obs_model_))
+    { };
+
+    VisualCorrection& operator=(VisualCorrection&& vpf_correction) noexcept
+    {
+        visual_obs_model_ = std::move(vpf_correction.visual_obs_model_);
+
+        return *this;
+    }
+
     void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, cv::OutputArray observation) override
     {
         visual_obs_model_->observe(cur_state, observation);
     };
 
-private:
+protected:
     std::unique_ptr<VisualObservationModel> visual_obs_model_;
 };
 

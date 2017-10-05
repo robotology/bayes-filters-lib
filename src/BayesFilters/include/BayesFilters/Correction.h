@@ -4,8 +4,6 @@
 #include "AbstractCorrection.h"
 #include "ObservationModel.h"
 
-#include <Eigen/Dense>
-
 namespace bfl {
     class Correction;
 }
