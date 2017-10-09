@@ -14,28 +14,20 @@ namespace bfl {
 class bfl::WhiteNoiseAcceleration : public StateModel
 {
 public:
-    /* WNA complete constructor */
     WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;
 
-    /* WNA constructor, no rnd seed */
     WhiteNoiseAcceleration(float T, float tilde_q) noexcept;
 
-    /* Default constructor */
     WhiteNoiseAcceleration() noexcept;
 
-    /* Destructor */
     ~WhiteNoiseAcceleration() noexcept override;
 
-    /* Copy constructor */
     WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna);
 
-    /* Move constructor */
     WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept;
 
-    /* Copy assignment operator */
     WhiteNoiseAcceleration& operator=(const WhiteNoiseAcceleration& wna);
 
-    /* Move assignment operator */
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
     void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;

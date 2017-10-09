@@ -26,16 +26,12 @@ public:
     void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements) override;
     
 protected:
-    /* Constructor */
     VisualCorrectionDecorator(std::unique_ptr<AbstractVisualCorrection> visual_correction) noexcept;
 
-    /* Destructor */
-    ~VisualCorrectionDecorator() noexcept override;
-
-    /* Move constructor */
     VisualCorrectionDecorator(VisualCorrectionDecorator&& visual_correction) noexcept;
 
-    /* Move assignment operator */
+    ~VisualCorrectionDecorator() noexcept override;
+
     VisualCorrectionDecorator& operator=(VisualCorrectionDecorator&& visual_correction) noexcept;
 
 private:

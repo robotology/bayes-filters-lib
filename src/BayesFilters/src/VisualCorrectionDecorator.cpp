@@ -5,6 +5,24 @@ using namespace cv;
 using namespace Eigen;
 
 
+VisualCorrectionDecorator::VisualCorrectionDecorator(std::unique_ptr<AbstractVisualCorrection> visual_correction) noexcept :
+visual_correction_(std::move(visual_correction)) { }
+
+
+VisualCorrectionDecorator::VisualCorrectionDecorator(VisualCorrectionDecorator&& visual_correction) noexcept :
+visual_correction_(std::move(visual_correction.visual_correction_)) { }
+
+
+VisualCorrectionDecorator::~VisualCorrectionDecorator() noexcept { }
+
+
+VisualCorrectionDecorator& VisualCorrectionDecorator::operator=(VisualCorrectionDecorator&& visual_correction) noexcept
+{
+    visual_correction_ = std::move(visual_correction.visual_correction_);
+
+    return *this;
+}
+
 void VisualCorrectionDecorator::correct(Ref<MatrixXf> states, Ref<MatrixXf> weights, cv::InputArray measurements)
 {
     visual_correction_->correct(states, weights, measurements);
@@ -38,23 +56,4 @@ void VisualCorrectionDecorator::observeState(const Ref<const MatrixXf>& states, 
 void VisualCorrectionDecorator::measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements)
 {
     return visual_correction_->measureState(states, measurements);
-}
-
-
-VisualCorrectionDecorator::VisualCorrectionDecorator(std::unique_ptr<AbstractVisualCorrection> visual_correction) noexcept :
-    visual_correction_(std::move(visual_correction)) { }
-
-
-VisualCorrectionDecorator::~VisualCorrectionDecorator() noexcept { }
-
-
-VisualCorrectionDecorator::VisualCorrectionDecorator(VisualCorrectionDecorator&& visual_correction) noexcept :
-    visual_correction_(std::move(visual_correction.visual_correction_)) { }
-
-
-VisualCorrectionDecorator& VisualCorrectionDecorator::operator=(VisualCorrectionDecorator&& visual_correction) noexcept
-{
-    visual_correction_ = std::move(visual_correction.visual_correction_);
-
-    return *this;
 }

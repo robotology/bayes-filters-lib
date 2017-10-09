@@ -14,28 +14,20 @@ namespace bfl {
 class bfl::LinearSensor : public ObservationModel
 {
 public:
-    /* Linear sensor complete constructor */
     LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept;
 
-    /* Linear sensor constructor, no rnd seed */
     LinearSensor(float T, float sigma_x, float sigma_y) noexcept;
 
-    /* Default constructor */
     LinearSensor() noexcept;
 
-    /* Destructor */
     ~LinearSensor() noexcept override;
 
-    /* Copy constructor */
     LinearSensor(const LinearSensor& lin_sense);
 
-    /* Move constructor */
     LinearSensor(LinearSensor&& lin_sense) noexcept;
 
-    /* Copy assignment operator */
     LinearSensor& operator=(const LinearSensor& lin_sense);
 
-    /* Move assignment operator */
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
     void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
