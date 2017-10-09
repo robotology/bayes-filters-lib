@@ -5,14 +5,14 @@
 #include <string>
 
 namespace bfl {
-    class ParticleFilterPrediction;
+    class AbstractPrediction;
 }
 
 
-class bfl::ParticleFilterPrediction
+class bfl::AbstractPrediction
 {
 public:
-    virtual ~ParticleFilterPrediction() noexcept { };
+    virtual ~AbstractPrediction() noexcept { };
 
     virtual void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) = 0;
 
@@ -20,7 +20,7 @@ public:
 
     virtual void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) = 0;
 
-    virtual bool setStateModelProperty(const std::string& property) = 0;
+    virtual bool setModelProperty(const std::string& property) = 0;
 };
 
 #endif /* ABSTRACTPREDICTION_H */
