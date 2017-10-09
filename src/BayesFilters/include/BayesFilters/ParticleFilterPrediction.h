@@ -1,5 +1,7 @@
-#ifndef PREDICTION_H
-#define PREDICTION_H
+#ifndef PFPREDICTION_H
+#define PFPREDICTION_H
+
+#include "StateModel.h"
 
 #include <Eigen/Dense>
 #include <string>
@@ -16,11 +18,7 @@ public:
 
     virtual void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) = 0;
 
-    virtual void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) = 0;
-
-    virtual void motionDisturbance(Eigen::Ref<Eigen::VectorXf> sample) = 0;
-
-    virtual bool setStateModelProperty(const std::string& property) = 0;
+    virtual StateModel getStateModel() = 0;
 };
 
-#endif /* PREDICTION_H */
+#endif /* PFPREDICTION_H */
