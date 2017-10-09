@@ -40,13 +40,13 @@ public:
 
     void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
 
-    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
-
-    bool setProperty(const std::string property) override { return false; };
-
     void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
 
-    Eigen::MatrixXf noiseCovariance() override;
+    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+
+    Eigen::MatrixXf getNoiseCovariance() override;
+
+    bool setProperty(const std::string property) override { return false; };
 
 protected:
     float                           T_;                /* Sampling interval */

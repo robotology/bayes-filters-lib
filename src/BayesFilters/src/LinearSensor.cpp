@@ -97,7 +97,7 @@ void LinearSensor::measure(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> m
 }
 
 
-MatrixXf LinearSensor::noiseCovariance()
+MatrixXf LinearSensor::getNoiseCovariance()
 {
     return R_;
 }
