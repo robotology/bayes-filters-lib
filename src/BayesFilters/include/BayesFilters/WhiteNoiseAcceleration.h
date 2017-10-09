@@ -40,7 +40,11 @@ public:
 
     void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
 
-    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+    void motion(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
+
+    Eigen::VectorXf getNoiseSample() override;
+
+    Eigen::MatrixXf getNoiseCovariance() override;
 
     bool setProperty(const std::string& property) override { return false; };
 

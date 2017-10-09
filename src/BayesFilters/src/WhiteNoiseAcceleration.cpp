@@ -90,7 +90,21 @@ void WhiteNoiseAcceleration::propagate(const Ref<const VectorXf>& cur_state, Ref
 }
 
 
-void WhiteNoiseAcceleration::noiseSample(Ref<VectorXf> sample)
+void WhiteNoiseAcceleration::motion(const Ref<const VectorXf>& cur_state, Ref<VectorXf> prop_state)
 {
-    sample = sqrt_Q_ * Vector4f::NullaryExpr(4, gauss_rnd_sample_);
+    propagate(cur_state, prop_state);
+
+    prop_state += getNoiseSample();
+}
+
+
+VectorXf WhiteNoiseAcceleration::getNoiseSample()
+{
+    return sqrt_Q_ * Vector4f::NullaryExpr(4, gauss_rnd_sample_);
+}
+
+
+MatrixXf WhiteNoiseAcceleration::getNoiseCovariance()
+{
+    return Q_;
 }
