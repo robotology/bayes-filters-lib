@@ -46,7 +46,7 @@ void ParticleFilterCorrection::innovation(const Ref<const VectorXf>& states, con
 
 void ParticleFilterCorrection::likelihood(const Ref<const MatrixXf>& innovations, Ref<VectorXf> weights)
 {
-    weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->noiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->noiseCovariance().inverse() * innovations).array()).exp();
+    weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->getNoiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->getNoiseCovariance().inverse() * innovations).array()).exp();
 }
 
 
