@@ -21,7 +21,7 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights) = 0;
 
-    virtual ObservationModel getObservationModel() = 0;
+    virtual ObservationModel& getObservationModel() = 0;
 };
 
 #endif /* PFCORRECTION_H */

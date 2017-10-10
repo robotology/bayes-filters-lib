@@ -28,7 +28,7 @@ public:
 
     void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::VectorXf> weights) override;
 
-    ObservationModel getObservationModel() override;
+    ObservationModel& getObservationModel() override;
 
 protected:
     std::unique_ptr<ObservationModel> obs_model_;

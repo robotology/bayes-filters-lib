@@ -1,7 +1,7 @@
+#include "BayesFilters/UpdateParticles.h"
+
 #include <cmath>
 #include <utility>
-
-#include "BayesFilters/UpdateParticles.h"
 
 using namespace bfl;
 using namespace Eigen;
@@ -49,7 +49,7 @@ void UpdateParticles::likelihood(const Ref<const MatrixXf>& innovations, Ref<Vec
     weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->getNoiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->getNoiseCovariance().inverse() * innovations).array()).exp();
 }
 
-ObservationModel UpdateParticles::getObservationModel()
+ObservationModel& UpdateParticles::getObservationModel()
 {
     return *obs_model_;
 }
