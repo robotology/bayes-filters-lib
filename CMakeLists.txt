@@ -8,6 +8,8 @@ project(BayesFilters
         LANGUAGES CXX
         VERSION 0.6.0.0)
 
+set(CMAKE_CXX_STANDARD 11)
+
 include(GNUInstallDirs)
 
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)

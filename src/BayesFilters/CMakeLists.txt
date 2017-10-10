@@ -1,6 +1,6 @@
 set(LIBRARY_TARGET_NAME BayesFilters)
 
-# List of HPP (header) library files
+# List of library header files
 set(${LIBRARY_TARGET_NAME}_FC_HDR
         include/BayesFilters/FilteringContext.h)
 
@@ -37,7 +37,7 @@ set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FF_HDR}
 )
 
-# List of CPP (source) library files
+# List of library source files
 set(${LIBRARY_TARGET_NAME}_FC_SRC
         src/FilteringContext.cpp)
 
@@ -88,9 +88,6 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
         PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
 
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
-
-# Extra options
-target_compile_features(${LIBRARY_TARGET_NAME} PUBLIC cxx_nullptr cxx_constexpr)
 
 if(${CMAKE_GENERATOR} MATCHES "Xcode")
     source_group("src\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
