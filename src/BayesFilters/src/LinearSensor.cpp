@@ -1,7 +1,7 @@
+#include "BayesFilters/LinearSensor.h"
+
 #include <cmath>
 #include <utility>
-
-#include "BayesFilters/LinearSensor.h"
 
 using namespace bfl;
 using namespace Eigen;
@@ -81,12 +81,6 @@ void LinearSensor::observe(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> o
 }
 
 
-void LinearSensor::noiseSample(Ref<VectorXf> sample)
-{
-    sample = Vector2f(sigma_x_, sigma_y_).cwiseProduct(Vector2f::NullaryExpr(2, gauss_rnd_sample_));
-}
-
-
 void LinearSensor::measure(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> measurement)
 {
     observe(cur_state, measurement);
@@ -96,6 +90,11 @@ void LinearSensor::measure(const Ref<const VectorXf>& cur_state, Ref<MatrixXf> m
     measurement += sample;
 }
 
+
+void LinearSensor::noiseSample(Ref<VectorXf> sample)
+{
+    sample = Vector2f(sigma_x_, sigma_y_).cwiseProduct(Vector2f::NullaryExpr(2, gauss_rnd_sample_));
+}
 
 MatrixXf LinearSensor::getNoiseCovariance()
 {

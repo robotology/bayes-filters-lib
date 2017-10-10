@@ -1,9 +1,9 @@
+#include "BayesFilters/WhiteNoiseAcceleration.h"
+
 #include <cmath>
 #include <utility>
 
 #include <Eigen/Cholesky>
-
-#include "BayesFilters/WhiteNoiseAcceleration.h"
 
 using namespace bfl;
 using namespace Eigen;

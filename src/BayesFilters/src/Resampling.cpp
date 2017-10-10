@@ -1,6 +1,6 @@
-#include <utility>
-
 #include "BayesFilters/Resampling.h"
+
+#include <utility>
 
 using namespace bfl;
 using namespace Eigen;

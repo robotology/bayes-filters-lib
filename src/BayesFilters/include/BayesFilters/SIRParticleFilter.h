@@ -1,17 +1,14 @@
 #ifndef SIRPARTICLEFILTER_H
 #define SIRPARTICLEFILTER_H
 
-#include <memory>
-#include <random>
-
-#include <Eigen/Dense>
-
 #include "FilteringAlgorithm.h"
-#include "StateModel.h"
 #include "PFCorrection.h"
 #include "PFPrediction.h"
-#include "ObservationModel.h"
 #include "Resampling.h"
+
+#include <memory>
+
+#include <Eigen/Dense>
 
 namespace bfl {
     class SIRParticleFilter;
@@ -21,19 +18,14 @@ namespace bfl {
 class bfl::SIRParticleFilter : public FilteringAlgorithm
 {
 public:
-    /* Default constructor, disabled */
     SIRParticleFilter() = delete;
 
-    /* SIR complete constructor */
     SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    /* Destructor */
-    ~SIRParticleFilter() noexcept override;
-
-    /* Move constructor */
     SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept;
 
-    /* Move assignment operator */
+    ~SIRParticleFilter() noexcept override;
+
     SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
 
     void initialization() override;

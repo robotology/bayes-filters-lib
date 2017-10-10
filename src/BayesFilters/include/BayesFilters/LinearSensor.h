@@ -36,9 +36,9 @@ public:
 
     void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
 
-    Eigen::MatrixXf getNoiseCovariance() override;
-
     bool setProperty(const std::string property) override { return false; };
+
+    Eigen::MatrixXf getNoiseCovariance() override;
 
 protected:
     float                           T_;                /* Sampling interval */
@@ -52,4 +52,4 @@ protected:
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
 
-#endif /* LINEARSENSOR_HPP */
+#endif /* LINEARSENSOR_H */

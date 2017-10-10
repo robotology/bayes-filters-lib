@@ -1,6 +1,6 @@
-#include <utility>
-
 #include "BayesFilters/DrawParticles.h"
+
+#include <utility>
 
 using namespace bfl;
 using namespace Eigen;

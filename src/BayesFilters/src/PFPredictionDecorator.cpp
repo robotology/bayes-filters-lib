@@ -1,6 +1,6 @@
-#include <utility>
-
 #include "BayesFilters/PFPredictionDecorator.h"
+
+#include <utility>
 
 using namespace bfl;
 using namespace Eigen;
