@@ -7,14 +7,14 @@
 #include <string>
 
 namespace bfl {
-    class ParticleFilterPrediction;
+    class PFPrediction;
 }
 
 
-class bfl::ParticleFilterPrediction
+class bfl::PFPrediction
 {
 public:
-    virtual ~ParticleFilterPrediction() noexcept { };
+    virtual ~PFPrediction() noexcept { };
 
     virtual void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) = 0;
 

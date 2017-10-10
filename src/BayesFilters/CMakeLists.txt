@@ -13,7 +13,6 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/AbstractCorrection.h
-        include/BayesFilters/AbstractPrediction.h
         include/BayesFilters/AbstractVisualCorrection.h
         include/BayesFilters/Correction.h
         include/BayesFilters/CorrectionDecorator.h
@@ -22,8 +21,8 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
         include/BayesFilters/ParticleFilterCorrection.h
-        include/BayesFilters/ParticleFilterPrediction.h
-        include/BayesFilters/ParticleFilterPredictionDecorator.h
+        include/BayesFilters/PFPrediction.h
+        include/BayesFilters/PFPredictionDecorator.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/SigmaPointTransform.h
         include/BayesFilters/StateModel.h
@@ -55,7 +54,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/DrawParticle.cpp
         src/LinearSensor.cpp
         src/ParticleFilterCorrection.cpp
-        src/ParticleFilterPredictionDecorator.cpp
+        src/PFPredictionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
         src/VisualCorrectionDecorator.cpp

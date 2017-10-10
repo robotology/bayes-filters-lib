@@ -11,7 +11,7 @@ using namespace bfl;
 using namespace Eigen;
 
     
-SIRParticleFilter::SIRParticleFilter(std::unique_ptr<ParticleFilterPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept :
+SIRParticleFilter::SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept :
     prediction_(std::move(prediction)), correction_(std::move(correction)), resampling_(std::move(resampling)) { }
 
 

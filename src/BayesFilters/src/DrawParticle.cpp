@@ -6,8 +6,8 @@ using namespace bfl;
 using namespace Eigen;
 
 
-DrawParticle::DrawParticle(std::unique_ptr<StateModel> transition_model) noexcept :
-    state_model_(std::move(transition_model)) { }
+DrawParticle::DrawParticle(std::unique_ptr<StateModel> state_model) noexcept :
+    state_model_(std::move(state_model)) { }
 
 
 DrawParticle::DrawParticle(DrawParticle&& pf_prediction) noexcept :

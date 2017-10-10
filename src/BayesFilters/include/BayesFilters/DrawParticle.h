@@ -4,7 +4,7 @@
 #include <random>
 #include <memory>
 
-#include "ParticleFilterPrediction.h"
+#include "PFPrediction.h"
 #include "StateModel.h"
 
 namespace bfl {
@@ -12,10 +12,10 @@ namespace bfl {
 }
 
 
-class bfl::DrawParticle: public ParticleFilterPrediction
+class bfl::DrawParticle: public PFPrediction
 {
 public:
-    DrawParticle(std::unique_ptr<StateModel> transition_model) noexcept;
+    DrawParticle(std::unique_ptr<StateModel> state_model) noexcept;
 
     DrawParticle(DrawParticle&& pf_prediction) noexcept;
 
