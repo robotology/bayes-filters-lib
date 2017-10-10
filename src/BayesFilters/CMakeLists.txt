@@ -12,15 +12,13 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
-        include/BayesFilters/AbstractCorrection.h
         include/BayesFilters/AbstractVisualCorrection.h
-        include/BayesFilters/Correction.h
-        include/BayesFilters/CorrectionDecorator.h
         include/BayesFilters/DrawParticle.h
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
-        include/BayesFilters/ParticleFilterCorrection.h
+        include/BayesFilters/PFCorrection.h
+        include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
         include/BayesFilters/PFPredictionDecorator.h
         include/BayesFilters/Resampling.h
@@ -28,6 +26,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/VisualCorrection.h
+        include/BayesFilters/UpdateParticles.h
         include/BayesFilters/VisualCorrectionDecorator.h
         include/BayesFilters/VisualObservationModel.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
@@ -50,13 +49,13 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
-        src/CorrectionDecorator.cpp
         src/DrawParticle.cpp
         src/LinearSensor.cpp
-        src/ParticleFilterCorrection.cpp
+        src/PFCorrectionDecorator.cpp
         src/PFPredictionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
+        src/UpdateParticles.cpp
         src/VisualCorrectionDecorator.cpp
         src/WhiteNoiseAcceleration.cpp)
 
