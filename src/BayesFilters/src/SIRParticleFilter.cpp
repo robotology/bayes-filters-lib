@@ -1,11 +1,10 @@
+#include "BayesFilters/SIRParticleFilter.h"
+
 #include <fstream>
 #include <iostream>
 #include <utility>
 
 #include <Eigen/Dense>
-
-#include "BayesFilters/ParticleFilterCorrection.h"
-#include "BayesFilters/SIRParticleFilter.h"
 
 using namespace bfl;
 using namespace Eigen;
@@ -45,7 +44,7 @@ void SIRParticleFilter::initialization()
     object_.resize(4, simulation_time_);
 
     object_.col(0) << 0, 10, 0, 10;
-    correction_->getObservationModel().observe(object_.col(0), measurement_.col(0));
+    correction_->getObservationModel().measure(object_.col(0), measurement_.col(0));
     for (int k = 1; k < simulation_time_; ++k)
     {
         prediction_->predict(object_.col(k-1), object_.col(k));
