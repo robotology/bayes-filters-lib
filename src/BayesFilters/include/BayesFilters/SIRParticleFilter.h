@@ -8,9 +8,9 @@
 
 #include "FilteringAlgorithm.h"
 #include "StateModel.h"
+#include "PFCorrection.h"
 #include "PFPrediction.h"
 #include "ObservationModel.h"
-#include "Correction.h"
 #include "Resampling.h"
 
 namespace bfl {
@@ -25,7 +25,7 @@ public:
     SIRParticleFilter() = delete;
 
     /* SIR complete constructor */
-    SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept;
+    SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     /* Destructor */
     ~SIRParticleFilter() noexcept override;
@@ -46,7 +46,7 @@ public:
 
 protected:
     std::unique_ptr<PFPrediction> prediction_;
-    std::unique_ptr<Correction>   correction_;
+    std::unique_ptr<PFCorrection> correction_;
     std::unique_ptr<Resampling>   resampling_;
 
     int                           simulation_time_;

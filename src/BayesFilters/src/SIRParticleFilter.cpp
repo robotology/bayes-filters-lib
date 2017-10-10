@@ -11,7 +11,7 @@ using namespace bfl;
 using namespace Eigen;
 
     
-SIRParticleFilter::SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept :
+SIRParticleFilter::SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept :
     prediction_(std::move(prediction)), correction_(std::move(correction)), resampling_(std::move(resampling)) { }
 
 
@@ -45,11 +45,11 @@ void SIRParticleFilter::initialization()
     object_.resize(4, simulation_time_);
 
     object_.col(0) << 0, 10, 0, 10;
-    correction_->observeState(object_.col(0), measurement_.col(0));
+    correction_->getObservationModel().observe(object_.col(0), measurement_.col(0));
     for (int k = 1; k < simulation_time_; ++k)
     {
         prediction_->predict(object_.col(k-1), object_.col(k));
-        correction_->measureState(object_.col(k), measurement_.col(k));
+        correction_->getObservationModel().measure(object_.col(k), measurement_.col(k));
     }
 
     /* INITIALIZE FILTER */
