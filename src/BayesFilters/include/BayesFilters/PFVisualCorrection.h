@@ -1,18 +1,20 @@
-#ifndef ABSTRACTVISUALCORRECTION_H
-#define ABSTRACTVISUALCORRECTION_H
+#ifndef PFVISUALCORRECTION_H
+#define PFVISUALCORRECTION_H
+
+#include "VisualObservationModel.h"
 
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 
 namespace bfl {
-    class AbstractVisualCorrection;
+    class PFVisualCorrection;
 }
 
 
-class bfl::AbstractVisualCorrection
+class bfl::PFVisualCorrection
 {
 public:
-    virtual ~AbstractVisualCorrection() noexcept { };
+    virtual ~PFVisualCorrection() noexcept { };
 
     virtual void correct(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::MatrixXf> weights, cv::InputArray measurements) = 0;
 
@@ -24,7 +26,7 @@ public:
 
     virtual void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements) = 0;
 
-    virtual bool setModelProperty(const std::string& property) = 0;
+    virtual VisualObservationModel& getVisualObservationModel() = 0;
 };
 
-#endif /* ABSTRACTVISUALCORRECTION_H */
+#endif /* PFVISUALCORRECTION_H */

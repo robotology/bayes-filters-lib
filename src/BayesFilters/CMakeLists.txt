@@ -11,7 +11,6 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/UnscentedKalmanFilter.h)
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
-        include/BayesFilters/AbstractVisualCorrection.h
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/Initialization.h
@@ -21,13 +20,13 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
         include/BayesFilters/PFPredictionDecorator.h
+        include/BayesFilters/PFVisualCorrection.h
+        include/BayesFilters/PFVisualCorrectionDecorator.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/SigmaPointTransform.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
-        include/BayesFilters/VisualCorrection.h
-        include/BayesFilters/VisualCorrectionDecorator.h
         include/BayesFilters/VisualObservationModel.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
@@ -53,10 +52,10 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/LinearSensor.cpp
         src/PFCorrectionDecorator.cpp
         src/PFPredictionDecorator.cpp
+        src/PFVisualCorrectionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
-        src/VisualCorrectionDecorator.cpp
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
