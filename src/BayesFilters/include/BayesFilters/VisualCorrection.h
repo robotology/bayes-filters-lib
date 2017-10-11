@@ -13,14 +13,12 @@ class bfl::VisualCorrection : public AbstractVisualCorrection
 {
 public:
     VisualCorrection(std::unique_ptr<VisualObservationModel> visual_obs_model) noexcept :
-        visual_obs_model_(std::move(visual_obs_model))
-    { }
+        visual_obs_model_(std::move(visual_obs_model)) { }
 
     virtual ~VisualCorrection() noexcept { };
 
     VisualCorrection(VisualCorrection&& vpf_correction) noexcept :
-        obs_model_(std::move(vpf_correction.visual_obs_model_))
-    { }
+        obs_model_(std::move(vpf_correction.visual_obs_model_)) { }
 
     VisualCorrection& operator=(VisualCorrection&& vpf_correction) noexcept
     {
