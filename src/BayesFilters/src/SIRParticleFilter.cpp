@@ -81,7 +81,7 @@ void SIRParticleFilter::filteringStep()
         prediction_->predict(init_particle_.col(i), init_particle_.col(i));
 
     for (int i = 0; i < num_particle_; ++i)
-        correction_->correct(init_particle_.col(i), measurement_.col(k), init_weight_.row(i));
+        correction_->correct(init_particle_.col(i), init_weight_.row(i), measurement_.col(k));
 
     init_weight_ /= init_weight_.sum();
 
