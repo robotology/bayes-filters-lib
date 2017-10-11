@@ -22,10 +22,6 @@ public:
 
     virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::MatrixXf> weights) = 0;
 
-    virtual void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray observations) = 0;
-
-    virtual void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements) = 0;
-
     virtual VisualObservationModel& getVisualObservationModel() = 0;
 };
 
