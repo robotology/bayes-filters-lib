@@ -18,7 +18,7 @@ public:
 
     virtual void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) = 0;
 
-    virtual StateModel getStateModel() = 0;
+    virtual StateModel& getStateModel() = 0;
 };
 
 #endif /* PFPREDICTION_H */

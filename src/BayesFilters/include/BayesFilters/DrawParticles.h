@@ -25,7 +25,7 @@ public:
 
     void predict(const Eigen::Ref<const Eigen::VectorXf>& prev_state, Eigen::Ref<Eigen::VectorXf> pred_state) override;
 
-    StateModel getStateModel() override;
+    StateModel& getStateModel() override;
 
 protected:
     std::unique_ptr<StateModel> state_model_;

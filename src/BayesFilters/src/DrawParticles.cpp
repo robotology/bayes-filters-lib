@@ -31,7 +31,7 @@ void DrawParticles::predict(const Ref<const VectorXf>& prev_state, Ref<VectorXf>
 }
 
 
-StateModel DrawParticles::getStateModel()
+StateModel& DrawParticles::getStateModel()
 {
     return *state_model_;
 }
