@@ -13,28 +13,19 @@ namespace bfl {
 class bfl::Resampling
 {
 public:
-    /* Resampling complete constructor */
     Resampling(unsigned int seed) noexcept;
 
-    /* Default constructor */
     Resampling() noexcept;
 
-    /* Destructor */
     ~Resampling() noexcept;
-
-    /* Copy constructor */
     Resampling(const Resampling& resampling);
 
-    /* Move constructor */
     Resampling(Resampling&& resampling) noexcept;
 
-    /* Copy assignment operator */
     Resampling& operator=(const Resampling& resampling);
 
-    /* Move assignment operator */
     Resampling& operator=(Resampling&& resampling) noexcept;
 
-    /* Move assignment operator */
     Resampling& operator=(const Resampling&& resampling) noexcept;
 
     virtual void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,

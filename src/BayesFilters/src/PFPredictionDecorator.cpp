@@ -10,11 +10,11 @@ PFPredictionDecorator::PFPredictionDecorator(std::unique_ptr<PFPrediction> predi
     prediction_(std::move(prediction)) { }
 
 
-PFPredictionDecorator::~PFPredictionDecorator() noexcept { }
-
-
 PFPredictionDecorator::PFPredictionDecorator(PFPredictionDecorator&& prediction) noexcept :
     prediction_(std::move(prediction.prediction_)) { }
+
+
+PFPredictionDecorator::~PFPredictionDecorator() noexcept { }
 
 
 PFPredictionDecorator& PFPredictionDecorator::operator=(PFPredictionDecorator&& prediction) noexcept

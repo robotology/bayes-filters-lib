@@ -1,9 +1,9 @@
 #ifndef PFPREDICTIONDECORATOR_H
 #define PFPREDICTIONDECORATOR_H
 
-#include <memory>
-
 #include "PFPrediction.h"
+
+#include <memory>
 
 namespace bfl {
     class PFPredictionDecorator;
