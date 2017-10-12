@@ -16,6 +16,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
+        include/BayesFilters/ObservationModelDecorator.h
         include/BayesFilters/PFCorrection.h
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
@@ -50,6 +51,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
         src/LinearSensor.cpp
+        src/ObservationModelDecorator.cpp
         src/PFCorrectionDecorator.cpp
         src/PFPredictionDecorator.cpp
         src/PFVisualCorrectionDecorator.cpp
