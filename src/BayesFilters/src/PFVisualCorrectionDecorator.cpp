@@ -37,11 +37,9 @@ void PFVisualCorrectionDecorator::innovation(const Eigen::Ref<const Eigen::Matri
 }
 
 
-void PFVisualCorrectionDecorator::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                                             Eigen::Ref<Eigen::VectorXf>& likelihoods)
+double PFVisualCorrectionDecorator::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations)
 {
-    visual_correction_->likelihood(innovations, pred_weights,
-                                   likelihoods);
+    return visual_correction_->likelihood(innovations);
 }
 
 

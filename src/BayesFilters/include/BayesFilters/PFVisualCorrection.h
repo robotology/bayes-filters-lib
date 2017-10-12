@@ -21,8 +21,7 @@ public:
 
     virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
 
-    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                            Eigen::Ref<Eigen::VectorXf>& likelihoods) = 0;
+    virtual double likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) = 0;
 
     virtual VisualObservationModel& getVisualObservationModel() = 0;
 };

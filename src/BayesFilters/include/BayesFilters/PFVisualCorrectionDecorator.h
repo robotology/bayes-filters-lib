@@ -18,8 +18,7 @@ public:
 
     void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;
 
-    void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                    Eigen::Ref<Eigen::VectorXf>& likelihoods) override;
+    double likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) override;
 
     VisualObservationModel& getVisualObservationModel() override;
     
