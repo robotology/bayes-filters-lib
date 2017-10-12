@@ -49,11 +49,17 @@ protected:
     Eigen::MatrixXf               object_;
     Eigen::MatrixXf               measurement_;
 
-    Eigen::MatrixXf               init_particle_;
-    Eigen::VectorXf               init_weight_;
+    Eigen::MatrixXf               pred_particle_;
+    Eigen::VectorXf               pred_weight_;
 
-    std::vector<Eigen::MatrixXf>  result_particle_;
-    std::vector<Eigen::VectorXf>  result_weight_;
+    Eigen::MatrixXf               cor_particle_;
+    Eigen::VectorXf               cor_weight_;
+
+    std::vector<Eigen::MatrixXf>  result_pred_particle_;
+    std::vector<Eigen::VectorXf>  result_pred_weight_;
+
+    std::vector<Eigen::MatrixXf>  result_cor_particle_;
+    std::vector<Eigen::VectorXf>  result_cor_weight_;
 
     void snapshot();
 };

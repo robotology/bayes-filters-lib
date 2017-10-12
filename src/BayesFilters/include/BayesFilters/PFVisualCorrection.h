@@ -16,11 +16,13 @@ class bfl::PFVisualCorrection
 public:
     virtual ~PFVisualCorrection() noexcept { };
 
-    virtual void correct(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::MatrixXf> weights, cv::InputArray measurements) = 0;
+    virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
+                         Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
 
-    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
+    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
 
-    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::MatrixXf> weights) = 0;
+    virtual void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
+                            Eigen::Ref<Eigen::VectorXf>& likelihoods) = 0;
 
     virtual VisualObservationModel& getVisualObservationModel() = 0;
 };

@@ -22,21 +22,21 @@ StateModelDecorator& StateModelDecorator::operator=(StateModelDecorator&& state_
 }
 
 
-void StateModelDecorator::propagate(const Ref<const VectorXf>& cur_state, Ref<VectorXf> prop_state)
+void StateModelDecorator::propagate(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> prop_state)
 {
     state_model_->propagate(cur_state, prop_state);
 }
 
 
-void StateModelDecorator::motion(const Ref<const VectorXf>& cur_state, Ref<VectorXf> mot_state)
+void StateModelDecorator::motion(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> mot_state)
 {
     state_model_->motion(cur_state, mot_state);
 }
 
 
-VectorXf StateModelDecorator::getNoiseSample()
+MatrixXf StateModelDecorator::getNoiseSample(const int num)
 {
-    return state_model_->getNoiseSample();
+    return state_model_->getNoiseSample(num);
 }
 
 

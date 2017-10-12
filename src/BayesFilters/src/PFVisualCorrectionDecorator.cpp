@@ -23,33 +23,25 @@ PFVisualCorrectionDecorator& PFVisualCorrectionDecorator::operator=(PFVisualCorr
     return *this;
 }
 
-void PFVisualCorrectionDecorator::correct(Ref<MatrixXf> states, Ref<MatrixXf> weights, cv::InputArray measurements)
+void PFVisualCorrectionDecorator::correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
+                                          Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights)
 {
-    visual_correction_->correct(states, weights, measurements);
+    visual_correction_->correct(pred_states, pred_weights, measurements,
+                                cor_states, cor_weights);
 }
 
 
-void PFVisualCorrectionDecorator::innovation(const Ref<const MatrixXf>& states, InputArray measurements, Ref<MatrixXf> innovations)
+void PFVisualCorrectionDecorator::innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations)
 {
-    visual_correction_->innovation(states, measurements, innovations);
+    visual_correction_->innovation(pred_states, measurements, innovations);
 }
 
 
-void PFVisualCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovations, Ref<MatrixXf> weights)
+void PFVisualCorrectionDecorator::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
+                                             Eigen::Ref<Eigen::VectorXf>& likelihoods)
 {
-    visual_correction_->likelihood(innovations, weights);
-}
-
-
-void PFVisualCorrectionDecorator::observeState(const Ref<const MatrixXf>& states, cv::OutputArray observations)
-{
-    return visual_correction_->observeState(states, observations);
-}
-
-
-void PFVisualCorrectionDecorator::measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements)
-{
-    return visual_correction_->measureState(states, measurements);
+    visual_correction_->likelihood(innovations, pred_weights,
+                                   likelihoods);
 }
 
 

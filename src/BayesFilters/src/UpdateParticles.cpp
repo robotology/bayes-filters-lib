@@ -26,27 +26,31 @@ UpdateParticles& UpdateParticles::operator=(UpdateParticles&& pf_correction) noe
 }
 
 
-void UpdateParticles::correct(Ref<VectorXf> states, Ref<VectorXf> weights, const Ref<const MatrixXf>& measurements)
+void UpdateParticles::correct(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
+                              Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
 {
-    Vector2f innovate;
-    innovation(states, measurements, innovate);
-    likelihood(innovate, weights);
+    cor_states = pred_states;
+
+    MatrixXf innovations(measurements.rows(), pred_states.cols());
+    innovation(pred_states, measurements, innovations);
+
+    for (unsigned int i = 0; i < innovations.cols(); ++i)
+        cor_weights(i) = likelihood(innovations.col(i));
 }
 
 
-void UpdateParticles::innovation(const Ref<const VectorXf>& states, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovation)
+void UpdateParticles::innovation(const Ref<const MatrixXf>& pred_states, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovations)
 {
-    Vector2f virtual_measurements;
+    MatrixXf virtual_measurements(measurements.rows(), pred_states.cols());
+    obs_model_->observe(pred_states, virtual_measurements);
 
-    obs_model_->observe(states, virtual_measurements);
-
-    innovation = measurements - virtual_measurements;
+    innovations = virtual_measurements.colwise() - measurements.col(0);
 }
 
 
-void UpdateParticles::likelihood(const Ref<const MatrixXf>& innovations, Ref<VectorXf> weights)
+double UpdateParticles::likelihood(const Ref<const VectorXf>& innovation)
 {
-    weights = (- 0.5 * static_cast<float>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->getNoiseCovariance().determinant()) - 0.5 * (innovations.transpose() * obs_model_->getNoiseCovariance().inverse() * innovations).array()).exp();
+    return (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(obs_model_->getNoiseCovariance().determinant()) - 0.5 * (innovation.transpose() * obs_model_->getNoiseCovariance().inverse() * innovation).array()).exp().cast<double>().coeff(0);
 }
 
 ObservationModel& UpdateParticles::getObservationModel()

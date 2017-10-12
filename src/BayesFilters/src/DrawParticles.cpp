@@ -25,7 +25,7 @@ DrawParticles& DrawParticles::operator=(DrawParticles&& pf_prediction) noexcept
 }
 
 
-void DrawParticles::predict(const Ref<const VectorXf>& prev_state, Ref<VectorXf> pred_state)
+void DrawParticles::predict(const Ref<const MatrixXf>& prev_state, Ref<MatrixXf> pred_state)
 {
     state_model_->motion(prev_state, pred_state);
 }

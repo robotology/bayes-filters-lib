@@ -30,15 +30,15 @@ public:
 
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
+    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
 
-    void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
+    void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
 
-    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
-
-    bool setProperty(const std::string property) override { return false; };
+    Eigen::MatrixXf getNoiseSample(const int num) override;
 
     Eigen::MatrixXf getNoiseCovariance() override;
+
+    bool setProperty(const std::string property) override { return false; };
 
 protected:
     float                           T_;                /* Sampling interval */
@@ -47,6 +47,7 @@ protected:
     Eigen::MatrixXf                 H_;                /* Measurement matrix */
     Eigen::Matrix2f                 R_;                /* Measurement white noise convariance matrix */
 
+    Eigen::Matrix2f                 sqrt_R_;           /* Square root matrix of the measurement white noise convariance matrix */
     std::mt19937_64                 generator_;
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */

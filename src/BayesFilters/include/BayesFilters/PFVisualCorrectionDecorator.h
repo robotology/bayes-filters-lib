@@ -13,15 +13,13 @@ namespace bfl {
 class bfl::PFVisualCorrectionDecorator : public PFVisualCorrection
 {
 public:
-    void correct(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::MatrixXf> weights, cv::InputArray measurements) override;
+    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
+                 Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
 
-    void innovation(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;
+    void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;
 
-    void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations, Eigen::Ref<Eigen::MatrixXf> weights) override;
-
-    void observeState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray observations) override;
-
-    void measureState(const Eigen::Ref<const Eigen::MatrixXf>& states, cv::OutputArray measurements) override;
+    void likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations,const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
+                    Eigen::Ref<Eigen::VectorXf>& likelihoods) override;
 
     VisualObservationModel& getVisualObservationModel() override;
     
