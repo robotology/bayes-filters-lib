@@ -19,7 +19,7 @@ public:
 
     DrawParticles(DrawParticles&& pf_prediction) noexcept;
 
-    ~DrawParticles() noexcept override;
+    ~DrawParticles() noexcept;
 
     DrawParticles& operator=(DrawParticles&& pf_prediction) noexcept;
 

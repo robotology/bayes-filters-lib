@@ -28,7 +28,7 @@ protected:
 
     PFVisualCorrectionDecorator(PFVisualCorrectionDecorator&& visual_correction) noexcept;
 
-    ~PFVisualCorrectionDecorator() noexcept override;
+    ~PFVisualCorrectionDecorator() noexcept;
 
     PFVisualCorrectionDecorator& operator=(PFVisualCorrectionDecorator&& visual_correction) noexcept;
 

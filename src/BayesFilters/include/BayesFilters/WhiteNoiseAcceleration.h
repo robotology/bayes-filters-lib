@@ -20,11 +20,11 @@ public:
 
     WhiteNoiseAcceleration() noexcept;
 
-    ~WhiteNoiseAcceleration() noexcept override;
-
     WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna);
 
     WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept;
+
+    ~WhiteNoiseAcceleration() noexcept;
 
     WhiteNoiseAcceleration& operator=(const WhiteNoiseAcceleration& wna);
 

@@ -20,13 +20,13 @@ public:
 
     LinearSensor() noexcept;
 
-    ~LinearSensor() noexcept override;
-
     LinearSensor(const LinearSensor& lin_sense);
 
     LinearSensor(LinearSensor&& lin_sense) noexcept;
 
-    LinearSensor& operator=(const LinearSensor& lin_sense);
+    ~LinearSensor() noexcept;
+
+    LinearSensor& operator=(const LinearSensor& lin_sense) noexcept;
 
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 

@@ -18,7 +18,7 @@ public:
 
     UpdateParticles(UpdateParticles&& pf_correction) noexcept;
 
-    ~UpdateParticles() noexcept override;
+    ~UpdateParticles() noexcept;
 
     UpdateParticles& operator=(UpdateParticles&& pf_correction) noexcept;
 

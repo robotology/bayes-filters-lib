@@ -17,10 +17,11 @@ public:
 
     Resampling() noexcept;
 
-    ~Resampling() noexcept;
     Resampling(const Resampling& resampling);
 
     Resampling(Resampling&& resampling) noexcept;
+
+    ~Resampling() noexcept;
 
     Resampling& operator=(const Resampling& resampling);
 

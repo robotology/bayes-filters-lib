@@ -28,7 +28,7 @@ protected:
 
     StateModelDecorator(StateModelDecorator&& state_model) noexcept;
 
-    ~StateModelDecorator() noexcept override;
+    ~StateModelDecorator() noexcept;
 
     StateModelDecorator& operator=(StateModelDecorator&& state_model) noexcept;
 

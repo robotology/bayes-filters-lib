@@ -24,7 +24,7 @@ public:
 
     SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept;
 
-    ~SIRParticleFilter() noexcept override;
+    ~SIRParticleFilter() noexcept;
 
     SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
 

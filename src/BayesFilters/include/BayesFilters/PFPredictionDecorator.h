@@ -20,7 +20,7 @@ protected:
 
     PFPredictionDecorator(PFPredictionDecorator&& prediction) noexcept;
 
-    ~PFPredictionDecorator() noexcept override;
+    ~PFPredictionDecorator() noexcept;
 
     PFPredictionDecorator& operator=(PFPredictionDecorator&& prediction) noexcept;
 
