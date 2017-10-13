@@ -22,15 +22,15 @@ ObservationModelDecorator& ObservationModelDecorator::operator=(ObservationModel
 }
 
 
-void ObservationModelDecorator::observe(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> observation)
+void ObservationModelDecorator::observe(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> observations)
 {
-    observation_model_->observe(cur_state, observation);
+    observation_model_->observe(cur_states, observations);
 }
 
 
-void ObservationModelDecorator::measure(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> measurement)
+void ObservationModelDecorator::measure(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> measurements)
 {
-    observation_model_->measure(cur_state, measurement);
+    observation_model_->measure(cur_states, measurements);
 }
 
 

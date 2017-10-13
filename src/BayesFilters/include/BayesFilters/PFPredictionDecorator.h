@@ -13,7 +13,7 @@ namespace bfl {
 class bfl::PFPredictionDecorator : public PFPrediction
 {
 public:
-    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_state, Eigen::Ref<Eigen::MatrixXf> pred_state) override;
+    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> pred_states) override;
 
 protected:
     PFPredictionDecorator(std::unique_ptr<PFPrediction> prediction) noexcept;

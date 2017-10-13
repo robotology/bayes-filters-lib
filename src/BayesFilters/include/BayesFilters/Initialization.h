@@ -13,7 +13,7 @@ class bfl::Initialization
 public:
     virtual ~Initialization() noexcept { };
 
-    virtual void initialize(Eigen::Ref<Eigen::MatrixXf> state, Eigen::Ref<Eigen::VectorXf> weight) = 0;
+    virtual void initialize(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::VectorXf> weights) = 0;
 };
 
 #endif /* INITIALIZATION_H */

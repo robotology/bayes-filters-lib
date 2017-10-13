@@ -79,17 +79,17 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-void LinearSensor::observe(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> observation)
+void LinearSensor::observe(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> observations)
 {
-    observation = H_ * cur_state;
+    observations = H_ * cur_states;
 }
 
 
-void LinearSensor::measure(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> measurement)
+void LinearSensor::measure(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> measurements)
 {
-    observe(cur_state, measurement);
+    observe(cur_states, measurements);
 
-    measurement += getNoiseSample(measurement.cols());
+    measurements += getNoiseSample(measurements.cols());
 }
 
 

@@ -23,7 +23,7 @@ public:
 
     DrawParticles& operator=(DrawParticles&& pf_prediction) noexcept;
 
-    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_state, Eigen::Ref<Eigen::MatrixXf> pred_state) override;
+    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> pred_states) override;
 
     StateModel& getStateModel() override;
 

@@ -30,9 +30,9 @@ public:
 
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
+    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> observations) override;
 
-    void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
+    void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> measurements) override;
 
     Eigen::MatrixXf getNoiseSample(const int num) override;
 

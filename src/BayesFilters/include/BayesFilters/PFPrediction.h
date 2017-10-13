@@ -16,7 +16,7 @@ class bfl::PFPrediction
 public:
     virtual ~PFPrediction() noexcept { };
 
-    virtual void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_state, Eigen::Ref<Eigen::MatrixXf> pred_state) = 0;
+    virtual void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> pred_states) = 0;
 
     virtual StateModel& getStateModel() = 0;
 };

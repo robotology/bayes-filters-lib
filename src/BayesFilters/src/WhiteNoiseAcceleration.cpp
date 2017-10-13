@@ -84,17 +84,17 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-void WhiteNoiseAcceleration::propagate(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> prop_state)
+void WhiteNoiseAcceleration::propagate(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
 {
-    prop_state = F_ * cur_state;
+    prop_states = F_ * cur_states;
 }
 
 
-void WhiteNoiseAcceleration::motion(const Ref<const MatrixXf>& cur_state, Ref<MatrixXf> prop_state)
+void WhiteNoiseAcceleration::motion(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
 {
-    propagate(cur_state, prop_state);
+    propagate(cur_states, prop_states);
 
-    prop_state += getNoiseSample(prop_state.cols());
+    prop_states += getNoiseSample(prop_states.cols());
 }
 
 
