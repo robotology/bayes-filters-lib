@@ -77,9 +77,9 @@ void SIRParticleFilter::filteringStep()
 {
     unsigned int k = getFilteringStep();
 
-
     if (k != 0)
-        prediction_->predict(pred_particle_, pred_particle_);
+        prediction_->predict(cor_particle_, cor_weight_,
+                             pred_particle_, pred_weight_);
 
     correction_->correct(pred_particle_, pred_weight_, measurement_.col(k),
                          cor_particle_, cor_weight_);
@@ -103,13 +103,8 @@ void SIRParticleFilter::filteringStep()
         resampling_->resample(cor_particle_, cor_weight_,
                               res_particle, res_weight, res_parent);
 
-        pred_particle_ = res_particle;
-        pred_weight_   = res_weight;
-    }
-    else
-    {
-        pred_particle_ = cor_particle_;
-        pred_weight_   = cor_weight_;
+        cor_particle_ = res_particle;
+        cor_weight_   = res_weight;
     }
 }
 

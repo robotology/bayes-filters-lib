@@ -25,7 +25,9 @@ PFPredictionDecorator& PFPredictionDecorator::operator=(PFPredictionDecorator&& 
 }
 
 
-void PFPredictionDecorator::predict(const Ref<const MatrixXf>& prev_states, Ref<MatrixXf> pred_states)
+void PFPredictionDecorator::predict(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
+                                    Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
 {
-    prediction_->predict(prev_states, pred_states);
+    prediction_->predict(prev_states, prev_weights,
+                         pred_states, pred_weights);
 }
