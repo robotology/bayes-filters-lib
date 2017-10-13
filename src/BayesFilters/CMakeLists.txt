@@ -1,34 +1,6 @@
 set(LIBRARY_TARGET_NAME BayesFilters)
 
-# List of CPP (source) library files
-set(${LIBRARY_TARGET_NAME}_FC_SRC
-        src/FilteringContext.cpp)
-
-set(${LIBRARY_TARGET_NAME}_FA_SRC
-        src/FilteringAlgorithm.cpp
-        src/KalmanFilter.cpp
-        src/SIRParticleFilter.cpp
-        src/UnscentedKalmanFilter.cpp)
-
-set(${LIBRARY_TARGET_NAME}_FF_SRC
-        src/AuxiliaryFunction.cpp
-        src/CorrectionDecorator.cpp
-        src/DrawParticle.cpp
-        src/LinearSensor.cpp
-        src/ParticleFilterCorrection.cpp
-        src/ParticleFilterPredictionDecorator.cpp
-        src/Resampling.cpp
-        src/StateModelDecorator.cpp
-        src/VisualCorrectionDecorator.cpp
-        src/WhiteNoiseAcceleration.cpp)
-
-set(${LIBRARY_TARGET_NAME}_SRC
-        ${${LIBRARY_TARGET_NAME}_FC_SRC}
-        ${${LIBRARY_TARGET_NAME}_FA_SRC}
-        ${${LIBRARY_TARGET_NAME}_FF_SRC}
-)
-
-# List of HPP (header) library files
+# List of library header files
 set(${LIBRARY_TARGET_NAME}_FC_HDR
         include/BayesFilters/FilteringContext.h)
 
@@ -40,21 +12,22 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
-        include/BayesFilters/Correction.h
-        include/BayesFilters/CorrectionDecorator.h
-        include/BayesFilters/DrawParticle.h
+        include/BayesFilters/DrawParticles.h
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
-        include/BayesFilters/ParticleFilterCorrection.h
-        include/BayesFilters/ParticleFilterPrediction.h
-        include/BayesFilters/ParticleFilterPredictionDecorator.h
+        include/BayesFilters/ObservationModelDecorator.h
+        include/BayesFilters/PFCorrection.h
+        include/BayesFilters/PFCorrectionDecorator.h
+        include/BayesFilters/PFPrediction.h
+        include/BayesFilters/PFPredictionDecorator.h
+        include/BayesFilters/PFVisualCorrection.h
+        include/BayesFilters/PFVisualCorrectionDecorator.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/SigmaPointTransform.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
-        include/BayesFilters/VisualCorrection.h
-        include/BayesFilters/VisualCorrectionDecorator.h
+        include/BayesFilters/UpdateParticles.h
         include/BayesFilters/VisualObservationModel.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
@@ -62,6 +35,35 @@ set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
         ${${LIBRARY_TARGET_NAME}_FA_HDR}
         ${${LIBRARY_TARGET_NAME}_FF_HDR}
+)
+
+# List of library source files
+set(${LIBRARY_TARGET_NAME}_FC_SRC
+        src/FilteringContext.cpp)
+
+set(${LIBRARY_TARGET_NAME}_FA_SRC
+        src/FilteringAlgorithm.cpp
+        src/KalmanFilter.cpp
+        src/SIRParticleFilter.cpp
+        src/UnscentedKalmanFilter.cpp)
+
+set(${LIBRARY_TARGET_NAME}_FF_SRC
+        src/AuxiliaryFunction.cpp
+        src/DrawParticles.cpp
+        src/LinearSensor.cpp
+        src/ObservationModelDecorator.cpp
+        src/PFCorrectionDecorator.cpp
+        src/PFPredictionDecorator.cpp
+        src/PFVisualCorrectionDecorator.cpp
+        src/Resampling.cpp
+        src/StateModelDecorator.cpp
+        src/UpdateParticles.cpp
+        src/WhiteNoiseAcceleration.cpp)
+
+set(${LIBRARY_TARGET_NAME}_SRC
+        ${${LIBRARY_TARGET_NAME}_FC_SRC}
+        ${${LIBRARY_TARGET_NAME}_FA_SRC}
+        ${${LIBRARY_TARGET_NAME}_FF_SRC}
 )
 
 find_package(EIGEN3 REQUIRED)
@@ -87,9 +89,6 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
         PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
 
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
-
-# Extra options
-target_compile_features(${LIBRARY_TARGET_NAME} PUBLIC cxx_nullptr cxx_constexpr)
 
 if(${CMAKE_GENERATOR} MATCHES "Xcode")
     source_group("src\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})

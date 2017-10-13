@@ -1,6 +1,6 @@
-#include <utility>
-
 #include "BayesFilters/Resampling.h"
+
+#include <utility>
 
 using namespace bfl;
 using namespace Eigen;
@@ -50,7 +50,7 @@ Resampling& Resampling::operator=(const Resampling&& resampling) noexcept
 }
 
 
-void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<const VectorXf>& cor_weights,
+void Resampling::resample(const Ref<const MatrixXf>& cor_particles, const Ref<const VectorXf>& cor_weights,
                           Ref<MatrixXf> res_particles, Ref<VectorXf> res_weights, Ref<VectorXf> res_parents)
 {
     int num_particles = static_cast<int>(cor_weights.rows());
@@ -71,7 +71,7 @@ void Resampling::resample(const Ref<const MatrixXf>& pred_particles, const Ref<c
 
         while (u_j > csw(idx_csw)) { idx_csw += 1; }
 
-        res_particles.col(j) = pred_particles.col(idx_csw);
+        res_particles.col(j) = cor_particles.col(idx_csw);
         res_weights(j)       = 1.0/num_particles;
         res_parents(j)       = idx_csw;
     }

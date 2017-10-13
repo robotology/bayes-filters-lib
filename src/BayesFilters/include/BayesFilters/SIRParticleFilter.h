@@ -1,17 +1,14 @@
 #ifndef SIRPARTICLEFILTER_H
 #define SIRPARTICLEFILTER_H
 
+#include "FilteringAlgorithm.h"
+#include "PFCorrection.h"
+#include "PFPrediction.h"
+#include "Resampling.h"
+
 #include <memory>
-#include <random>
 
 #include <Eigen/Dense>
-
-#include "FilteringAlgorithm.h"
-#include "StateModel.h"
-#include "ParticleFilterPrediction.h"
-#include "ObservationModel.h"
-#include "Correction.h"
-#include "Resampling.h"
 
 namespace bfl {
     class SIRParticleFilter;
@@ -21,19 +18,14 @@ namespace bfl {
 class bfl::SIRParticleFilter : public FilteringAlgorithm
 {
 public:
-    /* Default constructor, disabled */
     SIRParticleFilter() = delete;
 
-    /* SIR complete constructor */
-    SIRParticleFilter(std::unique_ptr<ParticleFilterPrediction> prediction, std::unique_ptr<Correction> correction, std::unique_ptr<Resampling> resampling) noexcept;
+    SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    /* Destructor */
-    ~SIRParticleFilter() noexcept override;
-
-    /* Move constructor */
     SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept;
 
-    /* Move assignment operator */
+    ~SIRParticleFilter() noexcept;
+
     SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
 
     void initialization() override;
@@ -45,23 +37,29 @@ public:
     bool runCondition() override { return (getFilteringStep() < simulation_time_); };
 
 protected:
-    std::unique_ptr<ParticleFilterPrediction> prediction_;
-    std::unique_ptr<Correction>               correction_;
-    std::unique_ptr<Resampling>               resampling_;
+    std::unique_ptr<PFPrediction> prediction_;
+    std::unique_ptr<PFCorrection> correction_;
+    std::unique_ptr<Resampling>   resampling_;
 
-    int                                       simulation_time_;
-    int                                       num_particle_;
-    int                                       surv_x_;
-    int                                       surv_y_;
+    int                           simulation_time_;
+    int                           num_particle_;
+    int                           surv_x_;
+    int                           surv_y_;
 
-    Eigen::MatrixXf                           object_;
-    Eigen::MatrixXf                           measurement_;
+    Eigen::MatrixXf               object_;
+    Eigen::MatrixXf               measurement_;
 
-    Eigen::MatrixXf                           init_particle_;
-    Eigen::VectorXf                           init_weight_;
+    Eigen::MatrixXf               pred_particle_;
+    Eigen::VectorXf               pred_weight_;
 
-    std::vector<Eigen::MatrixXf>              result_particle_;
-    std::vector<Eigen::VectorXf>              result_weight_;
+    Eigen::MatrixXf               cor_particle_;
+    Eigen::VectorXf               cor_weight_;
+
+    std::vector<Eigen::MatrixXf>  result_pred_particle_;
+    std::vector<Eigen::VectorXf>  result_pred_weight_;
+
+    std::vector<Eigen::MatrixXf>  result_cor_particle_;
+    std::vector<Eigen::VectorXf>  result_cor_weight_;
 
     void snapshot();
 };

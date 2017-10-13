@@ -14,39 +14,31 @@ namespace bfl {
 class bfl::LinearSensor : public ObservationModel
 {
 public:
-    /* Linear sensor complete constructor */
     LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept;
 
-    /* Linear sensor constructor, no rnd seed */
     LinearSensor(float T, float sigma_x, float sigma_y) noexcept;
 
-    /* Default constructor */
     LinearSensor() noexcept;
 
-    /* Destructor */
-    ~LinearSensor() noexcept override;
-
-    /* Copy constructor */
     LinearSensor(const LinearSensor& lin_sense);
 
-    /* Move constructor */
     LinearSensor(LinearSensor&& lin_sense) noexcept;
 
-    /* Copy assignment operator */
-    LinearSensor& operator=(const LinearSensor& lin_sense);
+    ~LinearSensor() noexcept;
 
-    /* Move assignment operator */
+    LinearSensor& operator=(const LinearSensor& lin_sense) noexcept;
+
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) override;
+    void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> observations) override;
 
-    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+    void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> measurements) override;
+
+    Eigen::MatrixXf getNoiseSample(const int num) override;
+
+    Eigen::MatrixXf getNoiseCovariance() override;
 
     bool setProperty(const std::string property) override { return false; };
-
-    void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) override;
-
-    Eigen::MatrixXf noiseCovariance() override;
 
 protected:
     float                           T_;                /* Sampling interval */
@@ -55,9 +47,10 @@ protected:
     Eigen::MatrixXf                 H_;                /* Measurement matrix */
     Eigen::Matrix2f                 R_;                /* Measurement white noise convariance matrix */
 
+    Eigen::Matrix2f                 sqrt_R_;           /* Square root matrix of the measurement white noise convariance matrix */
     std::mt19937_64                 generator_;
     std::normal_distribution<float> distribution_;
     std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
 };
 
-#endif /* LINEARSENSOR_HPP */
+#endif /* LINEARSENSOR_H */
