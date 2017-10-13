@@ -13,8 +13,6 @@ namespace bfl {
 class bfl::VisualObservationModel
 {
 public:
-    VisualObservationModel();
-
     virtual ~VisualObservationModel() noexcept { };
 
     virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, cv::OutputArray observations) = 0;
