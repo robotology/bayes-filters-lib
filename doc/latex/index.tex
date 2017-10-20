@@ -1,0 +1,83 @@
+\hypertarget{index_overview}{}\doxysection{Overview}\label{index_overview}
+A flexible, modern, cross-\/platform C++ recursive Bayesian estimation library.\hypertarget{index_versioning}{}\doxysection{⚠️ About versioning}\label{index_versioning}
+\DoxyHorRuler{0}
+ The project is undergoing {\itshape heavy} development\+: A\+P\+Is will be subject to changes quite often. To be able to understand A\+PI compatibility during development, the project will follow \href{http://semver.org/}{\texttt{ Sem\+Ver}} specs.
+
+In particular, the library will have {\bfseries{zero major version}}, i.\+e. {\bfseries{0.\+M\+I\+N\+O\+R.\+P\+A\+T\+CH}}, as specified by \href{http://semver.org/\#spec-item-4}{\texttt{ Sem\+Ver spec. 4}} and the project will comply with the following rules\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{M\+I\+N\+OR}} version increases when A\+PI compatibility is broken;
+\item {\bfseries{P\+A\+T\+CH}} version increases when functionality are added in a backwards-\/compatible manner;
+\item Additional labels for pre-\/release and build metadata are available as extensions to the 0.\+M\+I\+N\+O\+R.\+P\+A\+T\+CH format.
+\end{DoxyEnumerate}\hypertarget{index_background}{}\doxysection{📖 Background}\label{index_background}
+\DoxyHorRuler{0}
+ The main interest of the present library is estimation, which refers to inferring the values of a set of unknown variables from information provided by a set of noisy measurements whose values depend on such unknown variables. Estimation theory dates back to the work of Gauss on determining the orbit of celestial bodies from their observations. These studies led to the technique known as {\itshape Least Squares}. Over centuries, many other techniques have been proposed in the field of estimation theory, e.\+g., the {\itshape Maximum Likelihood}, the {\itshape Maximum a Posteriori} and the {\itshape Minimum Mean Square Error} estimation. The {\bfseries{Bayesian approach}} models the quantities to be estimated as random variables characterized by Probability Density Functions (P\+D\+Fs), and provides an improved estimation of such quantities by conditioning the P\+D\+Fs on the available noisy measurements. Recursive Bayesian estimation (or Bayesian filtering/filters) are a renowned and well-\/established probabilistic approach for recursively propagating, in a principled way via a two-\/step procedure, a P\+DF of a given time-\/dependent variable of interest. Popular Bayes filters are the {\bfseries{Kalman}} \mbox{[}1\mbox{]}-\/\mbox{[}4\mbox{]} and {\bfseries{Particle}} filters \mbox{[}5\mbox{]}-\/\mbox{[}7\mbox{]}.
+
+The aim of this library is to provide {\itshape interfaces} to implement new Bayes filters as well as {\itshape providing implementation} of existing filters.\hypertarget{index_dependencies}{}\doxysection{🎛 Dependencies}\label{index_dependencies}
+\DoxyHorRuler{0}
+ Bayes Filters Library depends on
+\begin{DoxyItemize}
+\item \href{https://bitbucket.org/eigen/eigen/}{\texttt{ Eigen3}} -\/ {\ttfamily version $>$= 3.\+3 (no beta)}
+\end{DoxyItemize}\hypertarget{index_build-and-link-the-library}{}\doxysection{🔨 Build and link the library}\label{index_build-and-link-the-library}
+\DoxyHorRuler{0}
+
+
+Use the following commands to build, install and link the library.\hypertarget{index_build}{}\doxysubsection{Build}\label{index_build}
+With {\ttfamily make} facilities\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ git clone https://github.com/robotology/bayes-\/filters-\/lib}
+\DoxyCodeLine{\$ cd bayes-\/filters-\/lib}
+\DoxyCodeLine{\$ mkdir build \&\& cd build}
+\DoxyCodeLine{\$ cmake ..}
+\DoxyCodeLine{\$ make}
+\DoxyCodeLine{\$ [sudo] make install}
+\end{DoxyCode}
+
+
+With {\ttfamily ninja} generator\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ git clone https://github.com/robotology/bayes-\/filters-\/lib}
+\DoxyCodeLine{\$ cd bayes-\/filters-\/lib}
+\DoxyCodeLine{\$ mkdir build \&\& cd build}
+\DoxyCodeLine{\$ cmake -\/GNinja ..}
+\DoxyCodeLine{\$ ninja}
+\DoxyCodeLine{\$ [sudo] ninja install}
+\end{DoxyCode}
+
+
+You can also generate I\+DE project (e.\+g. Visual Studio and Xcode) to use their build tool facilities.\hypertarget{index_link}{}\doxysubsection{Link}\label{index_link}
+Once the library is installed, you can link it using {\ttfamily C\+Make} with as little effort as writing the following line of code in your project {\ttfamily C\+Make\+Lists.\+txt}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{find\_package(BayesFilters 0.MINOR.PATCH EXACT REQUIRED)}
+\DoxyCodeLine{...}
+\DoxyCodeLine{target\_link\_libraries(<target> BayesFilters::BayesFilters)}
+\DoxyCodeLine{...}
+\end{DoxyCode}
+\hypertarget{index_test-the-library}{}\doxysection{🔬 Test the library}\label{index_test-the-library}
+\DoxyHorRuler{0}
+ We have designed some test to run with {\ttfamily C\+Make} to see whether everything run smoothly or not. Simply use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ ctest [-\/VV]}
+\end{DoxyCode}
+
+
+to run all the tests.
+
+Tests are also a nice {\bfseries{starting points}} to learn how to use the library and how to implement your own filters! {\itshape Just have a look at them!}\hypertarget{index_tutorials}{}\doxysection{📘 Tutorials}\label{index_tutorials}
+\DoxyHorRuler{0}
+ The best way to learn the basic principles about the library is by examples\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{kf}{The first Kalman filter}}
+\item \mbox{\hyperlink{ukf}{Another Kalman-\/like filter\+: the Unscented Kalman Filter}}
+\item \mbox{\hyperlink{sis}{The first particle filter\+: the Sequential Importance Sampling PF}}
+\item \mbox{\hyperlink{upf}{The best from particle and Kalman filtering\+: the Unscented Particle Filter}}
+\end{DoxyItemize}\hypertarget{index_reference}{}\doxysection{📑 Reference}\label{index_reference}
+\DoxyHorRuler{0}
+ \mbox{[}1\mbox{]} R. E. Kalman, “A new approach to linear filtering and prediction problems,” Trans. {\itshape Trans. A\+S\+ME -\/ Journal of Basic Engineering}, vol. 82 (Series D), no. 1, pp. 35– 45, 1960.~\newline
+ \mbox{[}2\mbox{]} R. E. Kalman and R. S. Bucy, “\+New results in linear filtering and prediction theory,” {\itshape Trans. A\+S\+ME -\/ Journal of Basic Engineering}, vol. 83 (Series D), no. 1, pp. 95–108, 1961.~\newline
+ \mbox{[}3\mbox{]} L. A. Mc\+Gee, S. F. Schmidt and G. L. Smith, “\+Applications of statistical filter theory to the optimal estimation of position and velocity on board a circumlunar vehicle”, {\itshape N\+A\+SA Technical Report R-\/135}, Tech. Rep., 1962.~\newline
+ \mbox{[}4\mbox{]} S. J. Julier and J. K. Uhlmann, \char`\"{}\+Unscented filtering and nonlinear estimation\char`\"{}, {\itshape Proceedings of the I\+E\+EE}, vol. 92, num. 3, pp. 401-\/422, 2004.~\newline
+ \mbox{[}5\mbox{]} A. Doucet, N. De Freitas, N. Gordon, {\itshape Sequential Monte Carlo methods in practice}. Springer-\/\+Verlag, 2001.~\newline
+ \mbox{[}6\mbox{]} M. S. Arulampalam, S. Maskell, N. Gordon and T. Clapp, \char`\"{}\+A tutorial on particle filters for online nonlinear/non-\/\+Gaussian Bayesian tracking.\char`\"{} {\itshape I\+E\+EE Transactions on signal processing}, vol. 50, num. 2, pp. 174-\/188, 2002.~\newline
+ \mbox{[}7\mbox{]} N. Gordon, B. Ristic and S. Arulampalam. {\itshape Beyond the kalman filter\+: Particle filters for tracking applications}. Artech House, Boston, London, 2004.~\newline
+ 

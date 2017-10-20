@@ -1,0 +1,200 @@
+The following snippet code shows how to run a Sequential Importance Sampling (S\+IS) particle filter using the implementation provided by the library.~\newline
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2016-\/2019 Istituto Italiano di Tecnologia (IIT)}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This software may be modified and distributed under the terms of the}}
+\DoxyCodeLine{5 \textcolor{comment}{ * BSD 3-\/Clause license. See the accompanying LICENSE file for details.}}
+\DoxyCodeLine{6 \textcolor{comment}{ */}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{BootstrapCorrection_8h}{BayesFilters/BootstrapCorrection.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{DrawParticles_8h}{BayesFilters/DrawParticles.h}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{EstimatesExtraction_8h}{BayesFilters/EstimatesExtraction.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{GaussianLikelihood_8h}{BayesFilters/GaussianLikelihood.h}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{InitSurveillanceAreaGrid_8h}{BayesFilters/InitSurveillanceAreaGrid.h}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{SimulatedLinearSensor_8h}{BayesFilters/SimulatedLinearSensor.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{SimulatedStateModel_8h}{BayesFilters/SimulatedStateModel.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{Resampling_8h}{BayesFilters/Resampling.h}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{SIS_8h}{BayesFilters/SIS.h}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{WhiteNoiseAcceleration_8h}{BayesFilters/WhiteNoiseAcceleration.h}}>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{utils_8h}{BayesFilters/utils.h}}>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacebfl}{bfl}};}
+\DoxyCodeLine{26 \textcolor{keyword}{using namespace }Eigen;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }SISSimulation : \textcolor{keyword}{public} \mbox{\hyperlink{classbfl_1_1SIS}{SIS}}}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     SISSimulation}
+\DoxyCodeLine{33     (}
+\DoxyCodeLine{34         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} num\_particle,}
+\DoxyCodeLine{35         std::size\_t state\_size,}
+\DoxyCodeLine{36         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} simulation\_steps,}
+\DoxyCodeLine{37         std::unique\_ptr<ParticleSetInitialization> initialization,}
+\DoxyCodeLine{38         std::unique\_ptr<PFPrediction> prediction,}
+\DoxyCodeLine{39         std::unique\_ptr<PFCorrection> correction,}
+\DoxyCodeLine{40         std::unique\_ptr<Resampling> resampling}
+\DoxyCodeLine{41     ) noexcept :}
+\DoxyCodeLine{42         \mbox{\hyperlink{classbfl_1_1SIS}{SIS}}(num\_particle, state\_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),}
+\DoxyCodeLine{43         simulation\_steps\_(simulation\_steps),}
+\DoxyCodeLine{44         estimates\_extraction\_(state\_size)}
+\DoxyCodeLine{45     \{ \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{48     \textcolor{keywordtype}{bool} run\_condition()\textcolor{keyword}{ override}}
+\DoxyCodeLine{49 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{50         \textcolor{keywordflow}{if} (step\_number() < simulation\_steps\_)}
+\DoxyCodeLine{51             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{52         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{53             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{54     \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     std::vector<std::string> log\_file\_names(\textcolor{keyword}{const} std::string\& folder\_path, \textcolor{keyword}{const} std::string\& file\_name\_prefix)\textcolor{keyword}{ override}}
+\DoxyCodeLine{57 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{58         std::vector<std::string> sis\_filenames = \mbox{\hyperlink{classbfl_1_1SIS_a5ea76b03f1add313c42552ec24bf1f2f}{SIS::log\_file\_names}}(folder\_path, file\_name\_prefix);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60         \textcolor{comment}{/* Add file names for logging of the conditional expected value. */}}
+\DoxyCodeLine{61         sis\_filenames.push\_back(folder\_path + \textcolor{stringliteral}{"/"} + file\_name\_prefix + \textcolor{stringliteral}{"\_mean"});}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63         \textcolor{keywordflow}{return}  sis\_filenames;}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{bool} initialization\_step()\textcolor{keyword}{ override}}
+\DoxyCodeLine{67 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{68         estimates\_extraction\_.setMethod(\mbox{\hyperlink{classbfl_1_1EstimatesExtraction_a8489976af4025f0bbc3288ff7f17ffb0ab93db188572fc4d76cce5660f3823b0a}{EstimatesExtraction::ExtractionMethod::mean}});}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classbfl_1_1SIS_a2365c40d6d150e57012f3d745e20c4ea}{SIS::initialization\_step}}())}
+\DoxyCodeLine{71             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} log()\textcolor{keyword}{ override}}
+\DoxyCodeLine{77 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{78         VectorXd mean;}
+\DoxyCodeLine{79         std::tie(std::ignore, mean) = estimates\_extraction\_.extract(cor\_particle\_.state(), cor\_particle\_.weight());}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81         logger(pred\_particle\_.state().transpose(), pred\_particle\_.weight().transpose(),}
+\DoxyCodeLine{82                cor\_particle\_.state().transpose(), cor\_particle\_.weight().transpose(),}
+\DoxyCodeLine{83                mean.transpose());}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{keyword}{private}:}
+\DoxyCodeLine{87     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} simulation\_steps\_;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \mbox{\hyperlink{classbfl_1_1EstimatesExtraction}{EstimatesExtraction}} estimates\_extraction\_;}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[])}
+\DoxyCodeLine{94 \{}
+\DoxyCodeLine{95     std::cout << \textcolor{stringliteral}{"Running a SIS particle filter on a simulated target."} << std::endl;}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} write\_to\_file = (argc > 1 ? std::string(argv[1]) == \textcolor{stringliteral}{"ON"} : \textcolor{keyword}{false});}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (write\_to\_file)}
+\DoxyCodeLine{99         std::cout << \textcolor{stringliteral}{"Data is logged in the test folder with prefix testSIS."} << std::endl;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     \textcolor{comment}{/* A set of parameters needed to run a SIS particle filter in a simulated environment. */}}
+\DoxyCodeLine{103     \textcolor{keywordtype}{double} surv\_x = 1000.0;}
+\DoxyCodeLine{104     \textcolor{keywordtype}{double} surv\_y = 1000.0;}
+\DoxyCodeLine{105     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} num\_particle\_x = 30;}
+\DoxyCodeLine{106     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} num\_particle\_y = 30;}
+\DoxyCodeLine{107     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} num\_particle = num\_particle\_x * num\_particle\_y;}
+\DoxyCodeLine{108     Vector4d initial\_state(10.0f, 0.0f, 10.0f, 0.0f);}
+\DoxyCodeLine{109     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} simulation\_time = 100;}
+\DoxyCodeLine{110     std::size\_t state\_size = 4;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     \textcolor{comment}{/* Step 1 -\/ Initialization */}}
+\DoxyCodeLine{113     \textcolor{comment}{/* Initialize initialization class. */}}
+\DoxyCodeLine{114     std::unique\_ptr<ParticleSetInitialization> grid\_initialization = utils::make\_unique<InitSurveillanceAreaGrid>(surv\_x, surv\_y, num\_particle\_x, num\_particle\_y);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     \textcolor{comment}{/* Step 2 -\/ Prediction */}}
+\DoxyCodeLine{118     \textcolor{comment}{/* Step 2.1 -\/ Define the state model */}}
+\DoxyCodeLine{119     \textcolor{comment}{/* Initialize a white noise acceleration state model. */}}
+\DoxyCodeLine{120     \textcolor{keywordtype}{double} T = 1.0f;}
+\DoxyCodeLine{121     \textcolor{keywordtype}{double} tilde\_q = 10.0f;}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     std::unique\_ptr<LinearStateModel> wna = utils::make\_unique<WhiteNoiseAcceleration>(\mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_ad38237bda14ccceba94d06ac1155f3cea7fec533aaab2dc4c675964c8ff8a747b}{WhiteNoiseAcceleration::Dim::TwoD}}, T, tilde\_q);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     \textcolor{comment}{/* Step 2.2 -\/ Define the prediction step */}}
+\DoxyCodeLine{126     \textcolor{comment}{/* Initialize the particle filter prediction step and pass the ownership of the state model. */}}
+\DoxyCodeLine{127     std::unique\_ptr<PFPrediction> pf\_prediction = utils::make\_unique<DrawParticles>(std::move(wna));}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     \textcolor{comment}{/* Step 3 -\/ Correction */}}
+\DoxyCodeLine{131     \textcolor{comment}{/* Step 3.1 -\/ Define where the measurement are originated from (either simulated or from a real process) */}}
+\DoxyCodeLine{132     \textcolor{comment}{/* Initialize simulaterd target model with a white noise acceleration. */}}
+\DoxyCodeLine{133     std::unique\_ptr<StateModel> target\_model = utils::make\_unique<WhiteNoiseAcceleration>(\mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_ad38237bda14ccceba94d06ac1155f3cea7fec533aaab2dc4c675964c8ff8a747b}{WhiteNoiseAcceleration::Dim::TwoD}}, T, tilde\_q);}
+\DoxyCodeLine{134     std::unique\_ptr<SimulatedStateModel> simulated\_state\_model = utils::make\_unique<SimulatedStateModel>(std::move(target\_model), initial\_state, simulation\_time);}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{keywordflow}{if} (write\_to\_file)}
+\DoxyCodeLine{137         simulated\_state\_model-\/>enable\_log(\textcolor{stringliteral}{"./"}, \textcolor{stringliteral}{"testSIS"});}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{comment}{/* Initialize a measurement model (a linear sensor reading x and y coordinates). */}}
+\DoxyCodeLine{140     \textcolor{keywordtype}{double} sigma\_x = 10.0;}
+\DoxyCodeLine{141     \textcolor{keywordtype}{double} sigma\_y = 10.0;}
+\DoxyCodeLine{142     Eigen::MatrixXd R(2, 2);}
+\DoxyCodeLine{143     R << std::pow(sigma\_x, 2.0),                    0.0,}
+\DoxyCodeLine{144                             0.0, std::pow(sigma\_y, 2.0);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     std::unique\_ptr<MeasurementModel> simulated\_linear\_sensor = utils::make\_unique<SimulatedLinearSensor>(std::move(simulated\_state\_model), \mbox{\hyperlink{classbfl_1_1LinearModel_a35a55d925652256ca6865a4b324315ee}{SimulatedLinearSensor::LinearMatrixComponent}}\{ 4, std::vector<std::size\_t>\{ 0, 2 \} \}, R);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     \textcolor{keywordflow}{if} (write\_to\_file)}
+\DoxyCodeLine{149         simulated\_linear\_sensor-\/>enable\_log(\textcolor{stringliteral}{"./"}, \textcolor{stringliteral}{"testSIS"});}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152     \textcolor{comment}{/* Step 3.3 -\/ Define the likelihood model */}}
+\DoxyCodeLine{153     \textcolor{comment}{/* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */}}
+\DoxyCodeLine{154     std::unique\_ptr<LikelihoodModel> exp\_likelihood = utils::make\_unique<GaussianLikelihood>();}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{comment}{/* Step 3.4 -\/ Define the correction step */}}
+\DoxyCodeLine{157     \textcolor{comment}{/* Initialize the particle filter correction step and pass the ownership of the measurement model. */}}
+\DoxyCodeLine{158     std::unique\_ptr<PFCorrection> pf\_correction = utils::make\_unique<BootstrapCorrection>(std::move(simulated\_linear\_sensor), std::move(exp\_likelihood));}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{comment}{/* Step 4 -\/ Resampling */}}
+\DoxyCodeLine{162     \textcolor{comment}{/* Initialize a resampling algorithm */}}
+\DoxyCodeLine{163     std::unique\_ptr<Resampling> resampling = utils::make\_unique<Resampling>();}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{comment}{/* Step 5 -\/ Assemble the particle filter */}}
+\DoxyCodeLine{167     std::cout << \textcolor{stringliteral}{"Constructing SIS particle filter..."} << std::flush;}
+\DoxyCodeLine{168     SISSimulation sis\_pf(num\_particle, state\_size, simulation\_time, std::move(grid\_initialization), std::move(pf\_prediction), std::move(pf\_correction), std::move(resampling));}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{keywordflow}{if} (write\_to\_file)}
+\DoxyCodeLine{171         sis\_pf.enable\_log(\textcolor{stringliteral}{"./"}, \textcolor{stringliteral}{"testSIS"});}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     std::cout << \textcolor{stringliteral}{"done!"} << std::endl;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{comment}{/* Step 6 -\/ Prepare the filter to be run */}}
+\DoxyCodeLine{177     std::cout << \textcolor{stringliteral}{"Booting SIS particle filter..."} << std::flush;}
+\DoxyCodeLine{178     sis\_pf.boot();}
+\DoxyCodeLine{179     std::cout << \textcolor{stringliteral}{"completed!"} << std::endl;}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     \textcolor{comment}{/* Step 7 -\/ Run the filter and wait until it is closed */}}
+\DoxyCodeLine{183     \textcolor{comment}{/* Note that since this is a simulation, the filter will end upon simulation termination */}}
+\DoxyCodeLine{184     std::cout << \textcolor{stringliteral}{"Running SIS particle filter..."} << std::flush;}
+\DoxyCodeLine{185     sis\_pf.run();}
+\DoxyCodeLine{186     std::cout << \textcolor{stringliteral}{"waiting..."} << std::flush;}
+\DoxyCodeLine{187     \textcolor{keywordflow}{if} (!sis\_pf.wait())}
+\DoxyCodeLine{188         \textcolor{keywordflow}{return} EXIT\_FAILURE;}
+\DoxyCodeLine{189     std::cout << \textcolor{stringliteral}{"completed!"} << std::endl;}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{193 \}}
+\end{DoxyCodeInclude}
+ 

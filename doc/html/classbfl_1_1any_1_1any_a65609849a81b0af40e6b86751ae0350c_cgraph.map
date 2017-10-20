@@ -1,0 +1,6 @@
+<map id="bfl::any::any::operator=" name="bfl::any::any::operator=">
+<area shape="rect" id="node1" title="Assigns contents to the contained value." alt="" coords="5,31,180,57"/>
+<area shape="rect" id="node2" href="$classbfl_1_1any_1_1any.html#a55b5d940fdb6f1e7215332b7d97c6365" title="Constructs an empty object." alt="" coords="233,5,365,32"/>
+<area shape="rect" id="node3" href="$classbfl_1_1any_1_1any.html#a0441e5816aa5ef4721f134868b7ca402" title="Swaps the content of two any objects." alt="" coords="228,56,371,83"/>
+<area shape="rect" id="node4" href="$namespacebfl_1_1any.html#adb1328ea975e3bf9c0addc1689215bad" title="Overloads the std::swap algorithm for std::any." alt="" coords="419,56,529,83"/>
+</map>

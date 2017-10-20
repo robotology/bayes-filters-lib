@@ -1,0 +1,966 @@
+\hypertarget{classbfl_1_1ParticleFilter}{}\doxysection{bfl\+::Particle\+Filter Class Reference}
+\label{classbfl_1_1ParticleFilter}\index{bfl::ParticleFilter@{bfl::ParticleFilter}}
+
+
+{\ttfamily \#include $<$Particle\+Filter.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Particle\+Filter\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classbfl_1_1ParticleFilter__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1ParticleFilter_a21e485c56e5167c5c45fd873401ac32a}{$\sim$\+Particle\+Filter}} () noexcept=default
+\item 
+bool \mbox{\hyperlink{classbfl_1_1ParticleFilter_a2d7a5e7aaad179037273d35be229056d}{skip}} (const std\+::string \&what\+\_\+step, const bool status) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a87f4dd4606fcdd4af099fb07f9cf3ce2}{boot}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a0fe98da422a96e04e11c9a590f21cff3}{run}} () override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a080da064b0553740bfe4110e3340eff6}{wait}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_aa62a2b913e56bb8a732be7248404f3d4}{reset}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a59ab74296293d86f9f771fb74acc2e2b}{reboot}} () override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a0ef409e20e3ec14c04ecb367a54873b9}{teardown}} () override
+\item 
+unsigned int \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a2919754bdd066d06b2423e785341c182}{step\+\_\+number}} () override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a91b17e233235af77e8089ce89cbdee21}{is\+\_\+running}} () override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}{enable\+\_\+log}} (const std\+::string \&folder\+\_\+path, const std\+::string \&file\+\_\+name\+\_\+prefix)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}{disable\+\_\+log}} ()
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}{get\+\_\+folder\+\_\+path}} () const
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}{get\+\_\+file\+\_\+name\+\_\+prefix}} () const
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}{logger}} (Datum\+Type datum)
+\item 
+{\footnotesize template$<$typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}{logger}} (Data\+Type... data)
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}{logger}} (Datum\+Type datum) const
+\item 
+{\footnotesize template$<$typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}{logger}} (Data\+Type... data) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleFilter_a849f01a7651c350438c31bf364ef59c3}{Particle\+Filter}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a29a14e6a306bc080924b8e61c0353f49}{initialization}}, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a88e7b3390b298c50ea452455d160ee68}{prediction}}, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a014918c974aca4f0f75c9a8e4f552fbb}{correction}}, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a01ba35da580f54492657f7bb6fff3449}{resampling}}) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleFilter_ab315e69e2a53e78f01dbf6bd235b0b91}{Particle\+Filter}} (const \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&filter) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a70263744ffee198c3b6f38e125b59f3b}{operator=}} (const \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&filter) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleFilter_a83ab0a5efc503d73d39b1494d56414f9}{Particle\+Filter}} (\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&\&filter) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a70d888a83ffb21513d23424a18a2122e}{operator=}} (\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&\&filter) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a29a14e6a306bc080924b8e61c0353f49}{initialization}} ()
+\item 
+\mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a88e7b3390b298c50ea452455d160ee68}{prediction}} ()
+\item 
+\mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a014918c974aca4f0f75c9a8e4f552fbb}{correction}} ()
+\item 
+\mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}} \& \mbox{\hyperlink{classbfl_1_1ParticleFilter_a01ba35da580f54492657f7bb6fff3449}{resampling}} ()
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a657476652814c79d4cecfd4cd94f1731}{initialization\+\_\+step}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a08a551b474611c8b50626bba3b9e6999}{filtering\+\_\+step}} ()=0
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_ae7d472ffb1ce16e3966ca3c95a949fe7}{run\+\_\+condition}} ()=0
+\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}{log\+\_\+file\+\_\+names}} (const std\+::string \&folder\+\_\+path, const std\+::string \&file\+\_\+name\+\_\+prefix)
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}{log}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a6fc63d20813ea58fd54257394354ffcf}{filtering\+\_\+recursion}} ()
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum)
+\item 
+{\footnotesize template$<$typename Datum\+Type , typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum, Data\+Type... data)
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum) const
+\item 
+{\footnotesize template$<$typename Datum\+Type , typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum, Data\+Type... data) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_aeb2120d4b99b0abc79ec3c2109952322}{initialization\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_ab86f707d29a823423fe35de37e8f9d8e}{prediction\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a691428357c812ba009e995175778c173}{correction\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}} $>$ \mbox{\hyperlink{classbfl_1_1ParticleFilter_a9b0b855942fa4fb847443b10fe26c589}{resampling\+\_\+}}
+\item 
+unsigned int \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a1d08a5db263e415138d88c9a01535767}{filtering\+\_\+step\+\_\+}} = 0
+\item 
+std\+::thread \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a2fa16711fd751628977afbbf9f7e9d6d}{filtering\+\_\+thread\+\_\+}}
+\item 
+std\+::mutex \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a8983a40e915d3dbbc306d8f281ac449b}{mtx\+\_\+run\+\_\+}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_ae92a6d82ce18c35516f42a7109c931af}{cv\+\_\+run\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a826eea2b551a2c2beab38394ed4c57c9}{run\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a4edf8ab29c4a1f8148ea276561299acb}{reset\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classbfl_1_1FilteringAlgorithm_a3bc20cde7fc24767328f8a1ebd3e8cc8}{teardown\+\_\+}} = false
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}{folder\+\_\+path\+\_\+}}
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}{file\+\_\+name\+\_\+prefix\+\_\+}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}{file\+\_\+names\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}{log\+\_\+enabled\+\_\+}} = false
+\item 
+std\+::vector$<$ std\+::ofstream $>$ \mbox{\hyperlink{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}{log\+\_\+files\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 24 of file Particle\+Filter.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a21e485c56e5167c5c45fd873401ac32a}\label{classbfl_1_1ParticleFilter_a21e485c56e5167c5c45fd873401ac32a}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!````~ParticleFilter@{$\sim$ParticleFilter}}
+\index{````~ParticleFilter@{$\sim$ParticleFilter}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{$\sim$ParticleFilter()}{~ParticleFilter()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Particle\+Filter\+::$\sim$\+Particle\+Filter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a849f01a7651c350438c31bf364ef59c3}\label{classbfl_1_1ParticleFilter_a849f01a7651c350438c31bf364ef59c3}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\index{ParticleFilter@{ParticleFilter}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{ParticleFilter()}{ParticleFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Particle\+Filter\+::\+Particle\+Filter (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}} $>$}]{initialization,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}} $>$}]{prediction,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}} $>$}]{correction,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}} $>$}]{resampling }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line 14 of file Particle\+Filter.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_ab315e69e2a53e78f01dbf6bd235b0b91}\label{classbfl_1_1ParticleFilter_ab315e69e2a53e78f01dbf6bd235b0b91}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\index{ParticleFilter@{ParticleFilter}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{ParticleFilter()}{ParticleFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bfl\+::\+Particle\+Filter\+::\+Particle\+Filter (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a83ab0a5efc503d73d39b1494d56414f9}\label{classbfl_1_1ParticleFilter_a83ab0a5efc503d73d39b1494d56414f9}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!ParticleFilter@{ParticleFilter}}
+\index{ParticleFilter@{ParticleFilter}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{ParticleFilter()}{ParticleFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bfl\+::\+Particle\+Filter\+::\+Particle\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&\&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a87f4dd4606fcdd4af099fb07f9cf3ce2}\label{classbfl_1_1FilteringAlgorithm_a87f4dd4606fcdd4af099fb07f9cf3ce2}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!boot@{boot}}
+\index{boot@{boot}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{boot()}{boot()}}
+{\footnotesize\ttfamily bool Filtering\+Algorithm\+::boot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_adde3ba3596251d34ac128d28a924cc11}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 15 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), and bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+thread\+\_\+.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1FilteringAlgorithm_a87f4dd4606fcdd4af099fb07f9cf3ce2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a014918c974aca4f0f75c9a8e4f552fbb}\label{classbfl_1_1ParticleFilter_a014918c974aca4f0f75c9a8e4f552fbb}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!correction@{correction}}
+\index{correction@{correction}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{correction()}{correction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}} \& Particle\+Filter\+::correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 65 of file Particle\+Filter.\+cpp.
+
+
+
+References correction\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}\label{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!disable\_log@{disable\_log}}
+\index{disable\_log@{disable\_log}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{disable\_log()}{disable\_log()}}
+{\footnotesize\ttfamily bool Logger\+::disable\+\_\+log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 68 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+names\+\_\+, bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Logger\+::$\sim$\+Logger().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}\label{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!enable\_log@{enable\_log}}
+\index{enable\_log@{enable\_log}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{enable\_log()}{enable\_log()}}
+{\footnotesize\ttfamily bool Logger\+::enable\+\_\+log (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{folder\+\_\+path,  }\item[{const std\+::string \&}]{file\+\_\+name\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 22 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+, bfl\+::\+Logger\+::file\+\_\+names\+\_\+, bfl\+::\+Logger\+::folder\+\_\+path\+\_\+, bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, bfl\+::\+Logger\+::log\+\_\+file\+\_\+names(), and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a6fc63d20813ea58fd54257394354ffcf}\label{classbfl_1_1FilteringAlgorithm_a6fc63d20813ea58fd54257394354ffcf}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!filtering\_recursion@{filtering\_recursion}}
+\index{filtering\_recursion@{filtering\_recursion}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{filtering\_recursion()}{filtering\_recursion()}}
+{\footnotesize\ttfamily void Filtering\+Algorithm\+::filtering\+\_\+recursion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 102 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::cv\+\_\+run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+step(), bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+step\+\_\+, bfl\+::\+Filtering\+Algorithm\+::initialization\+\_\+step(), bfl\+::\+Filtering\+Algorithm\+::mtx\+\_\+run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::reset\+\_\+, bfl\+::\+Filtering\+Algorithm\+::run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::run\+\_\+condition(), and bfl\+::\+Filtering\+Algorithm\+::teardown\+\_\+.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::boot().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1FilteringAlgorithm_a6fc63d20813ea58fd54257394354ffcf_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a08a551b474611c8b50626bba3b9e6999}\label{classbfl_1_1FilteringAlgorithm_a08a551b474611c8b50626bba3b9e6999}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!filtering\_step@{filtering\_step}}
+\index{filtering\_step@{filtering\_step}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{filtering\_step()}{filtering\_step()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1SIS_a1946a34ba4e3d7cca0e58beadc0725be}{bfl\+::\+S\+IS}}.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}\label{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!get\_file\_name\_prefix@{get\_file\_name\_prefix}}
+\index{get\_file\_name\_prefix@{get\_file\_name\_prefix}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{get\_file\_name\_prefix()}{get\_file\_name\_prefix()}}
+{\footnotesize\ttfamily std\+::string Logger\+::get\+\_\+file\+\_\+name\+\_\+prefix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 91 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}\label{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!get\_folder\_path@{get\_folder\_path}}
+\index{get\_folder\_path@{get\_folder\_path}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{get\_folder\_path()}{get\_folder\_path()}}
+{\footnotesize\ttfamily std\+::string Logger\+::get\+\_\+folder\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 85 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::folder\+\_\+path\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a29a14e6a306bc080924b8e61c0353f49}\label{classbfl_1_1ParticleFilter_a29a14e6a306bc080924b8e61c0353f49}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!initialization@{initialization}}
+\index{initialization@{initialization}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{initialization()}{initialization()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}} \& Particle\+Filter\+::initialization (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 53 of file Particle\+Filter.\+cpp.
+
+
+
+References initialization\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a657476652814c79d4cecfd4cd94f1731}\label{classbfl_1_1FilteringAlgorithm_a657476652814c79d4cecfd4cd94f1731}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!initialization\_step@{initialization\_step}}
+\index{initialization\_step@{initialization\_step}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{initialization\_step()}{initialization\_step()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+Filtering\+Algorithm\+::initialization\+\_\+step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1SIS_a2365c40d6d150e57012f3d745e20c4ea}{bfl\+::\+S\+IS}}.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a91b17e233235af77e8089ce89cbdee21}\label{classbfl_1_1FilteringAlgorithm_a91b17e233235af77e8089ce89cbdee21}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!is\_running@{is\_running}}
+\index{is\_running@{is\_running}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{is\_running()}{is\_running()}}
+{\footnotesize\ttfamily bool Filtering\+Algorithm\+::is\+\_\+running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_abe32797a0f92d19a5aeb33e0333300ad}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 96 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::run\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}\label{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!log@{log}}
+\index{log@{log}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily void Logger\+::log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1SimulatedStateModel_aa022eb0d50d898ffcc831af2907265b2}{bfl\+::\+Simulated\+State\+Model}}, \mbox{\hyperlink{classbfl_1_1SIS_aeb0b87af1cc1fc4b616989ef489ecccc}{bfl\+::\+S\+IS}}, and \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_ab75bbe744d8516c97dfc90ad499b10e6}{bfl\+::\+Simulated\+Linear\+Sensor}}.
+
+
+
+Definition at line 109 of file Logger.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}\label{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!log\_file\_names@{log\_file\_names}}
+\index{log\_file\_names@{log\_file\_names}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{log\_file\_names()}{log\_file\_names()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Logger\+::log\+\_\+file\+\_\+names (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{folder\+\_\+path,  }\item[{const std\+::string \&}]{file\+\_\+name\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1LinearModel_ae5a2b5dad901d04da403834eecafe3ef}{bfl\+::\+Linear\+Model}}, \mbox{\hyperlink{classbfl_1_1SimulatedStateModel_aa090e76042ece13013ad6ff6546f1459}{bfl\+::\+Simulated\+State\+Model}}, and \mbox{\hyperlink{classbfl_1_1SIS_a5ea76b03f1add313c42552ec24bf1f2f}{bfl\+::\+S\+IS}}.
+
+
+
+Definition at line 97 of file Logger.\+cpp.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}\label{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger@{logger}}
+\index{logger@{logger}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Data\+Type...}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 42 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}\label{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger@{logger}}
+\index{logger@{logger}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Data\+Type...}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 56 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}\label{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger@{logger}}
+\index{logger@{logger}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Datum\+Type}]{datum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 35 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Simulated\+Linear\+Sensor\+::log().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}\label{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger@{logger}}
+\index{logger@{logger}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Datum\+Type}]{datum }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 49 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}\label{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 81 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}\label{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 95 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}\label{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type , typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum,  }\item[{Data\+Type...}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 87 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}\label{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type , typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum,  }\item[{Data\+Type...}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 101 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a70263744ffee198c3b6f38e125b59f3b}\label{classbfl_1_1ParticleFilter_a70263744ffee198c3b6f38e125b59f3b}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}}\& bfl\+::\+Particle\+Filter\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a70d888a83ffb21513d23424a18a2122e}\label{classbfl_1_1ParticleFilter_a70d888a83ffb21513d23424a18a2122e}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}}\& bfl\+::\+Particle\+Filter\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1ParticleFilter}{Particle\+Filter}} \&\&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a88e7b3390b298c50ea452455d160ee68}\label{classbfl_1_1ParticleFilter_a88e7b3390b298c50ea452455d160ee68}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!prediction@{prediction}}
+\index{prediction@{prediction}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{prediction()}{prediction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}} \& Particle\+Filter\+::prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 59 of file Particle\+Filter.\+cpp.
+
+
+
+References prediction\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a59ab74296293d86f9f771fb74acc2e2b}\label{classbfl_1_1FilteringAlgorithm_a59ab74296293d86f9f771fb74acc2e2b}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!reboot@{reboot}}
+\index{reboot@{reboot}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{reboot()}{reboot()}}
+{\footnotesize\ttfamily void Filtering\+Algorithm\+::reboot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_a45aff008f45c23351ae0d69668817472}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 73 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::cv\+\_\+run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::mtx\+\_\+run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::reset\+\_\+, and bfl\+::\+Filtering\+Algorithm\+::run\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a01ba35da580f54492657f7bb6fff3449}\label{classbfl_1_1ParticleFilter_a01ba35da580f54492657f7bb6fff3449}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!resampling@{resampling}}
+\index{resampling@{resampling}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{resampling()}{resampling()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}} \& Particle\+Filter\+::resampling (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 71 of file Particle\+Filter.\+cpp.
+
+
+
+References resampling\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_aa62a2b913e56bb8a732be7248404f3d4}\label{classbfl_1_1FilteringAlgorithm_aa62a2b913e56bb8a732be7248404f3d4}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!reset@{reset}}
+\index{reset@{reset}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Filtering\+Algorithm\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_a99a90bb712f36fa299245dbe05f87ddc}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 67 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::reset\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a0fe98da422a96e04e11c9a590f21cff3}\label{classbfl_1_1FilteringAlgorithm_a0fe98da422a96e04e11c9a590f21cff3}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!run@{run}}
+\index{run@{run}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Filtering\+Algorithm\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_ab8ea3f8a67c57bc945496e0a75dd1b72}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 33 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::cv\+\_\+run\+\_\+, bfl\+::\+Filtering\+Algorithm\+::mtx\+\_\+run\+\_\+, and bfl\+::\+Filtering\+Algorithm\+::run\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_ae7d472ffb1ce16e3966ca3c95a949fe7}\label{classbfl_1_1FilteringAlgorithm_ae7d472ffb1ce16e3966ca3c95a949fe7}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!run\_condition@{run\_condition}}
+\index{run\_condition@{run\_condition}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{run\_condition()}{run\_condition()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+Filtering\+Algorithm\+::run\+\_\+condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1SIS_a736cc8837b2caa973174d95fc4d954e9}{bfl\+::\+S\+IS}}.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a2d7a5e7aaad179037273d35be229056d}\label{classbfl_1_1ParticleFilter_a2d7a5e7aaad179037273d35be229056d}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!skip@{skip}}
+\index{skip@{skip}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool Particle\+Filter\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skipper_a480791ffa93338dc91153965fb386ece}{bfl\+::\+Skipper}}.
+
+
+
+Definition at line 28 of file Particle\+Filter.\+cpp.
+
+
+
+References correction\+\_\+, and prediction\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a2919754bdd066d06b2423e785341c182}\label{classbfl_1_1FilteringAlgorithm_a2919754bdd066d06b2423e785341c182}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!step\_number@{step\_number}}
+\index{step\_number@{step\_number}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{step\_number()}{step\_number()}}
+{\footnotesize\ttfamily unsigned int Filtering\+Algorithm\+::step\+\_\+number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_af637ca0b655b2abecf3fdd2318888a71}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 90 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+step\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a0ef409e20e3ec14c04ecb367a54873b9}\label{classbfl_1_1FilteringAlgorithm_a0ef409e20e3ec14c04ecb367a54873b9}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!teardown@{teardown}}
+\index{teardown@{teardown}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{teardown()}{teardown()}}
+{\footnotesize\ttfamily bool Filtering\+Algorithm\+::teardown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_a3c5f2b61557b69fd9434198e0bb25a78}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 82 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::teardown\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a080da064b0553740bfe4110e3340eff6}\label{classbfl_1_1FilteringAlgorithm_a080da064b0553740bfe4110e3340eff6}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!wait@{wait}}
+\index{wait@{wait}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily bool Filtering\+Algorithm\+::wait (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Filter_a9f62573c22b831a9df5525bc3acf3fc5}{bfl\+::\+Filter}}.
+
+
+
+Definition at line 41 of file Filtering\+Algorithm.\+cpp.
+
+
+
+References bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+thread\+\_\+.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a691428357c812ba009e995175778c173}\label{classbfl_1_1ParticleFilter_a691428357c812ba009e995175778c173}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!correction\_@{correction\_}}
+\index{correction\_@{correction\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{correction\_}{correction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1PFCorrection}{P\+F\+Correction}}$>$ bfl\+::\+Particle\+Filter\+::correction\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Particle\+Filter.\+h.
+
+
+
+Referenced by correction(), and skip().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_ae92a6d82ce18c35516f42a7109c931af}\label{classbfl_1_1FilteringAlgorithm_ae92a6d82ce18c35516f42a7109c931af}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!cv\_run\_@{cv\_run\_}}
+\index{cv\_run\_@{cv\_run\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{cv\_run\_}{cv\_run\_}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable bfl\+::\+Filtering\+Algorithm\+::cv\+\_\+run\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 75 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), bfl\+::\+Filtering\+Algorithm\+::reboot(), and bfl\+::\+Filtering\+Algorithm\+::run().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}\label{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!file\_name\_prefix\_@{file\_name\_prefix\_}}
+\index{file\_name\_prefix\_@{file\_name\_prefix\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{file\_name\_prefix\_}{file\_name\_prefix\_}}
+{\footnotesize\ttfamily std\+::string bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 72 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log(), and bfl\+::\+Logger\+::get\+\_\+file\+\_\+name\+\_\+prefix().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}\label{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!file\_names\_@{file\_names\_}}
+\index{file\_names\_@{file\_names\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{file\_names\_}{file\_names\_}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ bfl\+::\+Logger\+::file\+\_\+names\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 74 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), and bfl\+::\+Logger\+::enable\+\_\+log().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a1d08a5db263e415138d88c9a01535767}\label{classbfl_1_1FilteringAlgorithm_a1d08a5db263e415138d88c9a01535767}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!filtering\_step\_@{filtering\_step\_}}
+\index{filtering\_step\_@{filtering\_step\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{filtering\_step\_}{filtering\_step\_}}
+{\footnotesize\ttfamily unsigned int bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+step\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 69 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), and bfl\+::\+Filtering\+Algorithm\+::step\+\_\+number().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a2fa16711fd751628977afbbf9f7e9d6d}\label{classbfl_1_1FilteringAlgorithm_a2fa16711fd751628977afbbf9f7e9d6d}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!filtering\_thread\_@{filtering\_thread\_}}
+\index{filtering\_thread\_@{filtering\_thread\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{filtering\_thread\_}{filtering\_thread\_}}
+{\footnotesize\ttfamily std\+::thread bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+thread\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 71 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::boot(), and bfl\+::\+Filtering\+Algorithm\+::wait().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}\label{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!folder\_path\_@{folder\_path\_}}
+\index{folder\_path\_@{folder\_path\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{folder\_path\_}{folder\_path\_}}
+{\footnotesize\ttfamily std\+::string bfl\+::\+Logger\+::folder\+\_\+path\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 70 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log(), and bfl\+::\+Logger\+::get\+\_\+folder\+\_\+path().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_aeb2120d4b99b0abc79ec3c2109952322}\label{classbfl_1_1ParticleFilter_aeb2120d4b99b0abc79ec3c2109952322}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!initialization\_@{initialization\_}}
+\index{initialization\_@{initialization\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{initialization\_}{initialization\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1ParticleSetInitialization}{Particle\+Set\+Initialization}}$>$ bfl\+::\+Particle\+Filter\+::initialization\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 54 of file Particle\+Filter.\+h.
+
+
+
+Referenced by initialization().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}\label{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!log\_enabled\_@{log\_enabled\_}}
+\index{log\_enabled\_@{log\_enabled\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{log\_enabled\_}{log\_enabled\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 76 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), bfl\+::\+Logger\+::enable\+\_\+log(), bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::$\sim$\+Logger().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}\label{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!log\_files\_@{log\_files\_}}
+\index{log\_files\_@{log\_files\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{log\_files\_}{log\_files\_}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::ofstream$>$ bfl\+::\+Logger\+::log\+\_\+files\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 78 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), bfl\+::\+Logger\+::enable\+\_\+log(), bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a8983a40e915d3dbbc306d8f281ac449b}\label{classbfl_1_1FilteringAlgorithm_a8983a40e915d3dbbc306d8f281ac449b}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!mtx\_run\_@{mtx\_run\_}}
+\index{mtx\_run\_@{mtx\_run\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{mtx\_run\_}{mtx\_run\_}}
+{\footnotesize\ttfamily std\+::mutex bfl\+::\+Filtering\+Algorithm\+::mtx\+\_\+run\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 73 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), bfl\+::\+Filtering\+Algorithm\+::reboot(), and bfl\+::\+Filtering\+Algorithm\+::run().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_ab86f707d29a823423fe35de37e8f9d8e}\label{classbfl_1_1ParticleFilter_ab86f707d29a823423fe35de37e8f9d8e}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!prediction\_@{prediction\_}}
+\index{prediction\_@{prediction\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{prediction\_}{prediction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1PFPrediction}{P\+F\+Prediction}}$>$ bfl\+::\+Particle\+Filter\+::prediction\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file Particle\+Filter.\+h.
+
+
+
+Referenced by prediction(), and skip().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleFilter_a9b0b855942fa4fb847443b10fe26c589}\label{classbfl_1_1ParticleFilter_a9b0b855942fa4fb847443b10fe26c589}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!resampling\_@{resampling\_}}
+\index{resampling\_@{resampling\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{resampling\_}{resampling\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1Resampling}{Resampling}}$>$ bfl\+::\+Particle\+Filter\+::resampling\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file Particle\+Filter.\+h.
+
+
+
+Referenced by resampling().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a4edf8ab29c4a1f8148ea276561299acb}\label{classbfl_1_1FilteringAlgorithm_a4edf8ab29c4a1f8148ea276561299acb}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!reset\_@{reset\_}}
+\index{reset\_@{reset\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{reset\_}{reset\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Filtering\+Algorithm\+::reset\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 79 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), bfl\+::\+Filtering\+Algorithm\+::reboot(), and bfl\+::\+Filtering\+Algorithm\+::reset().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a826eea2b551a2c2beab38394ed4c57c9}\label{classbfl_1_1FilteringAlgorithm_a826eea2b551a2c2beab38394ed4c57c9}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!run\_@{run\_}}
+\index{run\_@{run\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{run\_}{run\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Filtering\+Algorithm\+::run\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 77 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), bfl\+::\+Filtering\+Algorithm\+::is\+\_\+running(), bfl\+::\+Filtering\+Algorithm\+::reboot(), and bfl\+::\+Filtering\+Algorithm\+::run().
+
+\mbox{\Hypertarget{classbfl_1_1FilteringAlgorithm_a3bc20cde7fc24767328f8a1ebd3e8cc8}\label{classbfl_1_1FilteringAlgorithm_a3bc20cde7fc24767328f8a1ebd3e8cc8}} 
+\index{bfl::ParticleFilter@{bfl::ParticleFilter}!teardown\_@{teardown\_}}
+\index{teardown\_@{teardown\_}!bfl::ParticleFilter@{bfl::ParticleFilter}}
+\doxysubsubsection{\texorpdfstring{teardown\_}{teardown\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Filtering\+Algorithm\+::teardown\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 81 of file Filtering\+Algorithm.\+h.
+
+
+
+Referenced by bfl\+::\+Filtering\+Algorithm\+::filtering\+\_\+recursion(), and bfl\+::\+Filtering\+Algorithm\+::teardown().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{ParticleFilter_8h}{Particle\+Filter.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{ParticleFilter_8cpp}{Particle\+Filter.\+cpp}}\end{DoxyCompactItemize}

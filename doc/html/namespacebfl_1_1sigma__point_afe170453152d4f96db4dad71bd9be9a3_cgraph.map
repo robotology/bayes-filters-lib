@@ -1,0 +1,16 @@
+<map id="bfl::sigma_point::unscented_transform" name="bfl::sigma_point::unscented_transform">
+<area shape="rect" id="node1" title=" " alt="" coords="5,232,207,273"/>
+<area shape="rect" id="node2" href="$classbfl_1_1VectorDescription.html#a08a52559af5e67e1f225466a77d852ff" title=" " alt="" coords="270,5,435,47"/>
+<area shape="rect" id="node3" href="$classbfl_1_1GaussianMixture.html#a63afff5b5e09399a51ac4dbe50de568b" title=" " alt="" coords="514,49,670,91"/>
+<area shape="rect" id="node4" href="$namespacebfl_1_1utils.html#a26bbb191de2e28c267c505a1e9ef0951" title="Evaluate the colwise difference between a set of unit quaternions &#160;and a unit quaternion ." alt="" coords="263,239,443,266"/>
+<area shape="rect" id="node6" href="$namespacebfl_1_1directional__statistics.html#ad8758aac208bc2baa75aad514a3f53e6" title=" " alt="" coords="262,291,443,332"/>
+<area shape="rect" id="node7" href="$namespacebfl_1_1directional__statistics.html#a18bffca88c7ea5f4ea11d2ad910736fe" title=" " alt="" coords="262,356,443,397"/>
+<area shape="rect" id="node8" href="$classbfl_1_1VectorDescription.html#ac5cd5eaafcfc8f8428dc3e6dccef09e3" title=" " alt="" coords="272,421,433,463"/>
+<area shape="rect" id="node9" href="$classbfl_1_1GaussianMixture.html#a7b33a3796b65b8a8b44f9569f226b4cf" title=" " alt="" coords="514,115,670,156"/>
+<area shape="rect" id="node10" href="$namespacebfl_1_1utils.html#ae8f8bf6fbbee917d1ff3e2bf6578ea19" title="Evaluate the weighted mean of a set of unit quaternions &#160;given a set of weights ." alt="" coords="255,487,451,514"/>
+<area shape="rect" id="node11" href="$namespacebfl_1_1sigma__point.html#ab919aca5fccc30ee2acd5cd966cd9dc9" title=" " alt="" coords="265,173,440,215"/>
+<area shape="rect" id="node5" href="$namespacebfl_1_1utils.html#a294bdf526be6ef1c5bad59e737f2af63" title="Convert a matrix of unit quaternions &#160;to their rotation vector representation &#160;in the tangent space a..." alt="" coords="516,311,668,352"/>
+<area shape="rect" id="node12" href="$namespacebfl_1_1directional__statistics.html#af9984a4df2b3f6f0bc0c264783181123" title=" " alt="" coords="501,245,683,287"/>
+<area shape="rect" id="node13" href="$namespacebfl_1_1utils.html#ab1ca09c6f5d699242615c8dbc89fa2e0" title="Evaluate the colwise sum between a unit quaternion &#160;and a set of rotation vectors &#160;in the tangent spa..." alt="" coords="499,180,685,221"/>
+<area shape="rect" id="node14" href="$namespacebfl_1_1utils.html#af901548c98d811c2b176e1d9b02aabb3" title="Convert a matrix of rotation vectors &#160;in the tangent space at the identity to their unitary quaternio..." alt="" coords="733,180,900,221"/>
+</map>

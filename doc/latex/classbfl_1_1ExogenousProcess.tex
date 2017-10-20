@@ -1,0 +1,61 @@
+\hypertarget{classbfl_1_1ExogenousProcess}{}\doxysection{bfl\+::Exogenous\+Process Class Reference}
+\label{classbfl_1_1ExogenousProcess}\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+
+
+{\ttfamily \#include $<$Exogenous\+Process.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Exogenous\+Process\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classbfl_1_1ExogenousProcess__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}{propagate}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ prop\+\_\+states)=0
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}{set\+Property}} (const std\+::string \&property)=0
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1ExogenousProcess_a15728a39dba2a8407c52fa9a00657aa6}{get\+State\+Description}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the vector description of the output of the state equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 20 of file Exogenous\+Process.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_a15728a39dba2a8407c52fa9a00657aa6}\label{classbfl_1_1ExogenousProcess_a15728a39dba2a8407c52fa9a00657aa6}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!getStateDescription@{getStateDescription}}
+\index{getStateDescription@{getStateDescription}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{getStateDescription()}{getStateDescription()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} bfl\+::\+Exogenous\+Process\+::get\+State\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the vector description of the output of the state equation. 
+
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}\label{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!propagate@{propagate}}
+\index{propagate@{propagate}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{propagate()}{propagate()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+Exogenous\+Process\+::propagate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{prop\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}\label{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+Exogenous\+Process\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{ExogenousProcess_8h}{Exogenous\+Process.\+h}}\end{DoxyCompactItemize}

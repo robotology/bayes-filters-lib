@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['data_56',['Data',['../namespacebfl.html#a8759eacc75ff9a63abe0842e487d6c06',1,'bfl']]],
+  ['data_2eh_57',['Data.h',['../Data_8h.html',1,'']]],
+  ['data_5fsimulated_5fstate_5fmodel_5f_58',['data_simulated_state_model_',['../classbfl_1_1SimulatedStateModel.html#a865eeb0f3df65b4fbdbc512b354a219f',1,'bfl::SimulatedStateModel']]],
+  ['decreasehistorysize_59',['decreaseHistorySize',['../classbfl_1_1HistoryBuffer.html#a3113fb73683eb5001e7fef0c6d3806cb',1,'bfl::HistoryBuffer']]],
+  ['diff_5fquaternion_60',['diff_quaternion',['../namespacebfl_1_1utils.html#a26bbb191de2e28c267c505a1e9ef0951',1,'bfl::utils']]],
+  ['dim_61',['dim',['../classbfl_1_1GaussianMixture.html#a3f2b18801e72fa3bf0d6edc778662a8d',1,'bfl::GaussianMixture::dim()'],['../classbfl_1_1WhiteNoiseAcceleration.html#ad38237bda14ccceba94d06ac1155f3ce',1,'bfl::WhiteNoiseAcceleration::Dim()']]],
+  ['dim_5fcircular_62',['dim_circular',['../classbfl_1_1GaussianMixture.html#a23f3b92753266475a9bff8ee7e1c9518',1,'bfl::GaussianMixture']]],
+  ['dim_5fcircular_5fcomponent_63',['dim_circular_component',['../classbfl_1_1GaussianMixture.html#ad9a86c5f0d3ce529af303fe9f209de15',1,'bfl::GaussianMixture']]],
+  ['dim_5fcovariance_64',['dim_covariance',['../classbfl_1_1GaussianMixture.html#a1ac4bfc65133fdeaff8151506d33057c',1,'bfl::GaussianMixture']]],
+  ['dim_5flinear_65',['dim_linear',['../classbfl_1_1GaussianMixture.html#a22a0fbc77f90d9d75e89d7898484c05a',1,'bfl::GaussianMixture']]],
+  ['dim_5fnoise_66',['dim_noise',['../classbfl_1_1GaussianMixture.html#adaa8d9c6d03be835769cc848aba81067',1,'bfl::GaussianMixture']]],
+  ['directional_5fadd_67',['directional_add',['../namespacebfl_1_1directional__statistics.html#af9984a4df2b3f6f0bc0c264783181123',1,'bfl::directional_statistics']]],
+  ['directional_5fmean_68',['directional_mean',['../namespacebfl_1_1directional__statistics.html#ad8758aac208bc2baa75aad514a3f53e6',1,'bfl::directional_statistics']]],
+  ['directional_5fstatistics_2ecpp_69',['directional_statistics.cpp',['../directional__statistics_8cpp.html',1,'']]],
+  ['directional_5fstatistics_2eh_70',['directional_statistics.h',['../directional__statistics_8h.html',1,'']]],
+  ['directional_5fsub_71',['directional_sub',['../namespacebfl_1_1directional__statistics.html#a18bffca88c7ea5f4ea11d2ad910736fe',1,'bfl::directional_statistics']]],
+  ['disable_5flog_72',['disable_log',['../classbfl_1_1Logger.html#a440467a28ccc46490d767fe0ef6f556a',1,'bfl::Logger']]],
+  ['distribution_5f_73',['distribution_',['../classbfl_1_1GPFCorrection.html#a9d2f1ed3b529e340e5d019d80e572d8d',1,'bfl::GPFCorrection::distribution_()'],['../classbfl_1_1LinearModel.html#a3a12555172d2f2fa284ec47bb4799559',1,'bfl::LinearModel::distribution_()'],['../structWhiteNoiseAcceleration_1_1ImplData.html#abb26cebe97b423d4f1f1c5f91d586e7e',1,'bfl::WhiteNoiseAcceleration::ImplData::distribution_()']]],
+  ['dof_5fsize_74',['dof_size',['../classbfl_1_1VectorDescription.html#a0522f96ed1f567d3a39fe436a7c01154',1,'bfl::VectorDescription']]],
+  ['drawparticles_75',['DrawParticles',['../classbfl_1_1DrawParticles.html',1,'bfl::DrawParticles'],['../classbfl_1_1DrawParticles.html#ac064fd803f632d003da28fa418eaef96',1,'bfl::DrawParticles::DrawParticles(std::unique_ptr&lt; StateModel &gt; state_model) noexcept'],['../classbfl_1_1DrawParticles.html#a7b61c9d9be1f3d2b178c8824ecf64d9a',1,'bfl::DrawParticles::DrawParticles(std::unique_ptr&lt; StateModel &gt; state_model, std::unique_ptr&lt; ExogenousModel &gt; exogenous_model) noexcept'],['../classbfl_1_1DrawParticles.html#a82850cb05b467a4957ed8b3cbb95d5d0',1,'bfl::DrawParticles::DrawParticles(const DrawParticles &amp;prediction) noexcept=delete'],['../classbfl_1_1DrawParticles.html#a19cb0555e82db89ae5c20c2d1c27a25d',1,'bfl::DrawParticles::DrawParticles(DrawParticles &amp;&amp;prediction) noexcept']]],
+  ['drawparticles_2ecpp_76',['DrawParticles.cpp',['../DrawParticles_8cpp.html',1,'']]],
+  ['drawparticles_2eh_77',['DrawParticles.h',['../DrawParticles_8h.html',1,'']]]
+];

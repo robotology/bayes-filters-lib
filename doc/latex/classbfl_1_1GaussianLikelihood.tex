@@ -1,0 +1,117 @@
+\hypertarget{classbfl_1_1GaussianLikelihood}{}\doxysection{bfl\+::Gaussian\+Likelihood Class Reference}
+\label{classbfl_1_1GaussianLikelihood}\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+
+
+{\ttfamily \#include $<$Gaussian\+Likelihood.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Gaussian\+Likelihood\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classbfl_1_1GaussianLikelihood__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianLikelihood_a431a2163fac8be200939266f28b62e6f}{Gaussian\+Likelihood}} () noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianLikelihood_ade56bbd79aa46bb5d97abcae2590489d}{Gaussian\+Likelihood}} (const double scale\+\_\+factor) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1GaussianLikelihood_a7566aa7eda36f50c5360436ecc3d40ea}{$\sim$\+Gaussian\+Likelihood}} () noexcept=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianLikelihood_a07bbe94864e1cf4ccb2232e51673575a}{likelihood}} (const \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \&measurement\+\_\+model, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&pred\+\_\+states) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classbfl_1_1GaussianLikelihood_ad08436040da927c3a2bdeac9eab8aedf}{scale\+\_\+factor\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file Gaussian\+Likelihood.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianLikelihood_a431a2163fac8be200939266f28b62e6f}\label{classbfl_1_1GaussianLikelihood_a431a2163fac8be200939266f28b62e6f}} 
+\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}!GaussianLikelihood@{GaussianLikelihood}}
+\index{GaussianLikelihood@{GaussianLikelihood}!bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+\doxysubsubsection{\texorpdfstring{GaussianLikelihood()}{GaussianLikelihood()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Gaussian\+Likelihood\+::\+Gaussian\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 15 of file Gaussian\+Likelihood.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianLikelihood_ade56bbd79aa46bb5d97abcae2590489d}\label{classbfl_1_1GaussianLikelihood_ade56bbd79aa46bb5d97abcae2590489d}} 
+\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}!GaussianLikelihood@{GaussianLikelihood}}
+\index{GaussianLikelihood@{GaussianLikelihood}!bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+\doxysubsubsection{\texorpdfstring{GaussianLikelihood()}{GaussianLikelihood()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Gaussian\+Likelihood\+::\+Gaussian\+Likelihood (\begin{DoxyParamCaption}\item[{const double}]{scale\+\_\+factor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 20 of file Gaussian\+Likelihood.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianLikelihood_a7566aa7eda36f50c5360436ecc3d40ea}\label{classbfl_1_1GaussianLikelihood_a7566aa7eda36f50c5360436ecc3d40ea}} 
+\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}!````~GaussianLikelihood@{$\sim$GaussianLikelihood}}
+\index{````~GaussianLikelihood@{$\sim$GaussianLikelihood}!bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+\doxysubsubsection{\texorpdfstring{$\sim$GaussianLikelihood()}{~GaussianLikelihood()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Gaussian\+Likelihood\+::$\sim$\+Gaussian\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianLikelihood_a07bbe94864e1cf4ccb2232e51673575a}\label{classbfl_1_1GaussianLikelihood_a07bbe94864e1cf4ccb2232e51673575a}} 
+\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}!likelihood@{likelihood}}
+\index{likelihood@{likelihood}!bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+\doxysubsubsection{\texorpdfstring{likelihood()}{likelihood()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Vector\+Xd $>$ Gaussian\+Likelihood\+::likelihood (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \&}]{measurement\+\_\+model,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{pred\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1LikelihoodModel_a401a363bea9178f568ca4968f9d170b0}{bfl\+::\+Likelihood\+Model}}.
+
+
+
+Definition at line 26 of file Gaussian\+Likelihood.\+cpp.
+
+
+
+References bfl\+::\+Measurement\+Model\+::get\+Noise\+Covariance\+Matrix(), bfl\+::\+Measurement\+Model\+::innovation(), bfl\+::\+Measurement\+Model\+::measure(), bfl\+::utils\+::multivariate\+\_\+gaussian\+\_\+density(), and bfl\+::\+Measurement\+Model\+::predicted\+Measure().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1GaussianLikelihood_a07bbe94864e1cf4ccb2232e51673575a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianLikelihood_ad08436040da927c3a2bdeac9eab8aedf}\label{classbfl_1_1GaussianLikelihood_ad08436040da927c3a2bdeac9eab8aedf}} 
+\index{bfl::GaussianLikelihood@{bfl::GaussianLikelihood}!scale\_factor\_@{scale\_factor\_}}
+\index{scale\_factor\_@{scale\_factor\_}!bfl::GaussianLikelihood@{bfl::GaussianLikelihood}}
+\doxysubsubsection{\texorpdfstring{scale\_factor\_}{scale\_factor\_}}
+{\footnotesize\ttfamily double bfl\+::\+Gaussian\+Likelihood\+::scale\+\_\+factor\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 31 of file Gaussian\+Likelihood.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{GaussianLikelihood_8h}{Gaussian\+Likelihood.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{GaussianLikelihood_8cpp}{Gaussian\+Likelihood.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="bfl::utils::multivariate_gaussian_density" name="bfl::utils::multivariate_gaussian_density">
+<area shape="rect" id="node1" title="Evaluate a multivariate Gaussian probability density function." alt="" coords="5,5,168,47"/>
+<area shape="rect" id="node2" href="$namespacebfl_1_1utils.html#af89fbb3248597e49b8fcdf38363b3dcd" title="Evaluate the logarithm of a multivariate Gaussian probability density function." alt="" coords="216,5,385,47"/>
+</map>

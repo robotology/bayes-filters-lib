@@ -1,0 +1,198 @@
+\hypertarget{structWhiteNoiseAcceleration_1_1ImplData}{}\doxysection{bfl\+::White\+Noise\+Acceleration\+::Impl\+Data Struct Reference}
+\label{structWhiteNoiseAcceleration_1_1ImplData}\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a8ffba6fae4e00cc38f255f468e10ae59}{Impl\+Data}} (const \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_ad38237bda14ccceba94d06ac1155f3ce}{Dim}} dim, const double sampling\+\_\+interval, const double tilde\+\_\+q, const unsigned int seed)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a41afc1879600800e6e000633dbc4f9c1}{T\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Sampling interval in \mbox{[}time\mbox{]}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_ac317dd1622aadb73a3ca3f25fbd2ea50}{tilde\+\_\+q\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Power spectral density \mbox{[}length\mbox{]}$^\wedge$2/\mbox{[}time\mbox{]}$^\wedge$3. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_af7dd7189be80ae54a64d9bd7cd2bedc2}{state\+\_\+description\+\_\+}}
+\begin{DoxyCompactList}\small\item\em State description. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_aef69f5502e76e97a650cf54bb1061c85}{F\+\_\+}}
+\begin{DoxyCompactList}\small\item\em State transition matrix. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a5cbd57d6476f444ddf80822460c88bc1}{Q\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Convariance matrix of the additive white noise of the state model. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a8eee76bb8ff839ada4dddc483e09632b}{sqrt\+\_\+\+Q\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Square root matrix of R\+\_\+. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a6f7b618a3fe72d2f590913dd5fb7af45}{seed\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Seed of the random number generator. \end{DoxyCompactList}\item 
+std\+::mt19937\+\_\+64 \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_aeefb074bc4e412fee54abed74a9a9c4d}{generator\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Random number generator. \end{DoxyCompactList}\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_abb26cebe97b423d4f1f1c5f91d586e7e}{distribution\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Normal distribution for random number generation functions. \end{DoxyCompactList}\item 
+std\+::function$<$ double()$>$ \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a77c90f2f87d589b877efafdf13ad39eb}{gauss\+\_\+rnd\+\_\+sample\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Random number generator function from a Normal distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 20 of file White\+Noise\+Acceleration.\+cpp.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a8ffba6fae4e00cc38f255f468e10ae59}\label{structWhiteNoiseAcceleration_1_1ImplData_a8ffba6fae4e00cc38f255f468e10ae59}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!ImplData@{ImplData}}
+\index{ImplData@{ImplData}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{ImplData()}{ImplData()}}
+{\footnotesize\ttfamily bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::\+Impl\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_ad38237bda14ccceba94d06ac1155f3ce}{Dim}}}]{dim,  }\item[{const double}]{sampling\+\_\+interval,  }\item[{const double}]{tilde\+\_\+q,  }\item[{const unsigned int}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 23 of file White\+Noise\+Acceleration.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_abb26cebe97b423d4f1f1c5f91d586e7e}\label{structWhiteNoiseAcceleration_1_1ImplData_abb26cebe97b423d4f1f1c5f91d586e7e}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!distribution\_@{distribution\_}}
+\index{distribution\_@{distribution\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{distribution\_}{distribution\_}}
+{\footnotesize\ttfamily std\+::normal\+\_\+distribution$<$double$>$ bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::distribution\+\_\+}
+
+
+
+Normal distribution for random number generation functions. 
+
+
+
+Definition at line 142 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_aef69f5502e76e97a650cf54bb1061c85}\label{structWhiteNoiseAcceleration_1_1ImplData_aef69f5502e76e97a650cf54bb1061c85}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!F\_@{F\_}}
+\index{F\_@{F\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{F\_}{F\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::\+F\+\_\+}
+
+
+
+State transition matrix. 
+
+
+
+Definition at line 117 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a77c90f2f87d589b877efafdf13ad39eb}\label{structWhiteNoiseAcceleration_1_1ImplData_a77c90f2f87d589b877efafdf13ad39eb}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!gauss\_rnd\_sample\_@{gauss\_rnd\_sample\_}}
+\index{gauss\_rnd\_sample\_@{gauss\_rnd\_sample\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{gauss\_rnd\_sample\_}{gauss\_rnd\_sample\_}}
+{\footnotesize\ttfamily std\+::function$<$double()$>$ bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::gauss\+\_\+rnd\+\_\+sample\+\_\+}
+
+
+
+Random number generator function from a Normal distribution. 
+
+A call to {\ttfamily \mbox{\hyperlink{structWhiteNoiseAcceleration_1_1ImplData_a77c90f2f87d589b877efafdf13ad39eb}{gauss\+\_\+rnd\+\_\+sample\+\_\+()}}} returns a double-\/precision floating point random number. 
+
+Definition at line 148 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_aeefb074bc4e412fee54abed74a9a9c4d}\label{structWhiteNoiseAcceleration_1_1ImplData_aeefb074bc4e412fee54abed74a9a9c4d}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!generator\_@{generator\_}}
+\index{generator\_@{generator\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{generator\_}{generator\_}}
+{\footnotesize\ttfamily std\+::mt19937\+\_\+64 bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::generator\+\_\+}
+
+
+
+Random number generator. 
+
+
+
+Definition at line 137 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a5cbd57d6476f444ddf80822460c88bc1}\label{structWhiteNoiseAcceleration_1_1ImplData_a5cbd57d6476f444ddf80822460c88bc1}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!Q\_@{Q\_}}
+\index{Q\_@{Q\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{Q\_}{Q\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::\+Q\+\_\+}
+
+
+
+Convariance matrix of the additive white noise of the state model. 
+
+
+
+Definition at line 122 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a6f7b618a3fe72d2f590913dd5fb7af45}\label{structWhiteNoiseAcceleration_1_1ImplData_a6f7b618a3fe72d2f590913dd5fb7af45}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!seed\_@{seed\_}}
+\index{seed\_@{seed\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{seed\_}{seed\_}}
+{\footnotesize\ttfamily unsigned int bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::seed\+\_\+}
+
+
+
+Seed of the random number generator. 
+
+
+
+Definition at line 132 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a8eee76bb8ff839ada4dddc483e09632b}\label{structWhiteNoiseAcceleration_1_1ImplData_a8eee76bb8ff839ada4dddc483e09632b}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!sqrt\_Q\_@{sqrt\_Q\_}}
+\index{sqrt\_Q\_@{sqrt\_Q\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{sqrt\_Q\_}{sqrt\_Q\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::sqrt\+\_\+\+Q\+\_\+}
+
+
+
+Square root matrix of R\+\_\+. 
+
+
+
+Definition at line 127 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_af7dd7189be80ae54a64d9bd7cd2bedc2}\label{structWhiteNoiseAcceleration_1_1ImplData_af7dd7189be80ae54a64d9bd7cd2bedc2}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!state\_description\_@{state\_description\_}}
+\index{state\_description\_@{state\_description\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{state\_description\_}{state\_description\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::state\+\_\+description\+\_\+}
+
+
+
+State description. 
+
+
+
+Definition at line 112 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_a41afc1879600800e6e000633dbc4f9c1}\label{structWhiteNoiseAcceleration_1_1ImplData_a41afc1879600800e6e000633dbc4f9c1}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!T\_@{T\_}}
+\index{T\_@{T\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{T\_}{T\_}}
+{\footnotesize\ttfamily double bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::\+T\+\_\+}
+
+
+
+Sampling interval in \mbox{[}time\mbox{]}. 
+
+
+
+Definition at line 102 of file White\+Noise\+Acceleration.\+cpp.
+
+\mbox{\Hypertarget{structWhiteNoiseAcceleration_1_1ImplData_ac317dd1622aadb73a3ca3f25fbd2ea50}\label{structWhiteNoiseAcceleration_1_1ImplData_ac317dd1622aadb73a3ca3f25fbd2ea50}} 
+\index{bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}!tilde\_q\_@{tilde\_q\_}}
+\index{tilde\_q\_@{tilde\_q\_}!bfl::WhiteNoiseAcceleration::ImplData@{bfl::WhiteNoiseAcceleration::ImplData}}
+\doxysubsubsection{\texorpdfstring{tilde\_q\_}{tilde\_q\_}}
+{\footnotesize\ttfamily double bfl\+::\+White\+Noise\+Acceleration\+::\+Impl\+Data\+::tilde\+\_\+q\+\_\+}
+
+
+
+Power spectral density \mbox{[}length\mbox{]}$^\wedge$2/\mbox{[}time\mbox{]}$^\wedge$3. 
+
+
+
+Definition at line 107 of file White\+Noise\+Acceleration.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{WhiteNoiseAcceleration_8cpp}{White\+Noise\+Acceleration.\+cpp}}\end{DoxyCompactItemize}

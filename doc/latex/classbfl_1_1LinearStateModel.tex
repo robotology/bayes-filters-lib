@@ -1,0 +1,381 @@
+\hypertarget{classbfl_1_1LinearStateModel}{}\doxysection{bfl\+::Linear\+State\+Model Class Reference}
+\label{classbfl_1_1LinearStateModel}\index{bfl::LinearStateModel@{bfl::LinearStateModel}}
+
+
+{\ttfamily \#include $<$Linear\+State\+Model.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Linear\+State\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1LinearStateModel__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1LinearStateModel_a97b8cd643c324eb006ba920e789fa9d9}{$\sim$\+Linear\+State\+Model}} () noexcept=default
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1LinearStateModel_aa0397d043b2ee925dbb39f070ab5ed01}{propagate}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ prop\+\_\+states) override
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1LinearStateModel_a58db2093c6d255b8d41dbf0f0c5c28e5}{get\+State\+Transition\+Matrix}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1AdditiveStateModel_a9f145bf8c592fc0092d84421f26dbb8b}{motion}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ mot\+\_\+states) override
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1AdditiveStateModel_aa569777c62dc49c2f7ed854b162d1c0f}{get\+Input\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector description of the input to the state equation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbfl_1_1StateModel_a7f248de4b5e0b5bf5aee0dd56e1d4af6}{skip}} (const std\+::string \&what\+\_\+step, const bool status) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1StateModel_ada1e9f9aaa46eef66281747901e3b252}{is\+\_\+skipping}} () override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1StateModel_a0102aa7a1ddd25461a820bd8eaa7db45}{add\+\_\+exogenous\+\_\+model}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1StateModel_ae6b888a7291c5661efb4b18cc68e5cec}{exogenous\+\_\+model}})
+\item 
+bool \mbox{\hyperlink{classbfl_1_1StateModel_a8ad38421051270ea7b43b77a41b453d2}{have\+\_\+exogenous\+\_\+model}} () noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} \& \mbox{\hyperlink{classbfl_1_1StateModel_ae6b888a7291c5661efb4b18cc68e5cec}{exogenous\+\_\+model}} ()
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1StateModel_a78df4b39578345142fcfb18abaab2177}{get\+Jacobian}} ()
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1StateModel_a8daede3be54e1a9244a4ed5c20742f62}{get\+Transition\+Probability}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&prev\+\_\+states, const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states)
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1StateModel_a423c1fa86b9d60c8663dedc6cdcae276}{get\+Noise\+Covariance\+Matrix}} ()
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1StateModel_acc6733af2dcba2a330bf7c59c3725e42}{get\+Noise\+Sample}} (const std\+::size\+\_\+t num)
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1StateModel_a6db76f4bf4db18c2d8a7abcd3a6d121c}{set\+Sampling\+Time}} (const double \&time)
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}{set\+Property}} (const std\+::string \&property)=0
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}{get\+State\+Description}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the vector description of the output of the state equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1LinearStateModel_a0fad0d24aa13cfe629c596b8021a9c8f}{Linear\+State\+Model}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1LinearStateModel_a7407c9dd7f6e2ae0a696c6f4fe129d61}{Linear\+State\+Model}} (const \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&state\+\_\+model) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \& \mbox{\hyperlink{classbfl_1_1LinearStateModel_aecf417d4408f96df4acd983dd4eb3733}{operator=}} (const \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&state\+\_\+model) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1LinearStateModel_ac5c63a1a14d07a28e25bc30d1eb7438a}{Linear\+State\+Model}} (\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&\&state\+\_\+model) noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \& \mbox{\hyperlink{classbfl_1_1LinearStateModel_a38b05184273b10cfb7e997979980032b}{operator=}} (\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&\&state\+\_\+model) noexcept=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1StateModel_a866b45170a854155dec0344d0998ffef}{skip\+\_\+}} = false
+\begin{DoxyCompactList}\small\item\em Skip status. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1StateModel_a45aea19c30793901a9edbdf8e31716d9}{exogenous\+\_\+model\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Exogenous model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file Linear\+State\+Model.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_a97b8cd643c324eb006ba920e789fa9d9}\label{classbfl_1_1LinearStateModel_a97b8cd643c324eb006ba920e789fa9d9}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!````~LinearStateModel@{$\sim$LinearStateModel}}
+\index{````~LinearStateModel@{$\sim$LinearStateModel}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{$\sim$LinearStateModel()}{~LinearStateModel()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Linear\+State\+Model\+::$\sim$\+Linear\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_a0fad0d24aa13cfe629c596b8021a9c8f}\label{classbfl_1_1LinearStateModel_a0fad0d24aa13cfe629c596b8021a9c8f}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!LinearStateModel@{LinearStateModel}}
+\index{LinearStateModel@{LinearStateModel}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{LinearStateModel()}{LinearStateModel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bfl\+::\+Linear\+State\+Model\+::\+Linear\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_a7407c9dd7f6e2ae0a696c6f4fe129d61}\label{classbfl_1_1LinearStateModel_a7407c9dd7f6e2ae0a696c6f4fe129d61}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!LinearStateModel@{LinearStateModel}}
+\index{LinearStateModel@{LinearStateModel}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{LinearStateModel()}{LinearStateModel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bfl\+::\+Linear\+State\+Model\+::\+Linear\+State\+Model (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_ac5c63a1a14d07a28e25bc30d1eb7438a}\label{classbfl_1_1LinearStateModel_ac5c63a1a14d07a28e25bc30d1eb7438a}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!LinearStateModel@{LinearStateModel}}
+\index{LinearStateModel@{LinearStateModel}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{LinearStateModel()}{LinearStateModel()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bfl\+::\+Linear\+State\+Model\+::\+Linear\+State\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&\&}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1StateModel_a0102aa7a1ddd25461a820bd8eaa7db45}\label{classbfl_1_1StateModel_a0102aa7a1ddd25461a820bd8eaa7db45}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!add\_exogenous\_model@{add\_exogenous\_model}}
+\index{add\_exogenous\_model@{add\_exogenous\_model}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{add\_exogenous\_model()}{add\_exogenous\_model()}}
+{\footnotesize\ttfamily bool State\+Model\+::add\+\_\+exogenous\+\_\+model (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$}]{exogenous\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 33 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_ae6b888a7291c5661efb4b18cc68e5cec}\label{classbfl_1_1StateModel_ae6b888a7291c5661efb4b18cc68e5cec}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!exogenous\_model@{exogenous\_model}}
+\index{exogenous\_model@{exogenous\_model}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{exogenous\_model()}{exogenous\_model()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} \& State\+Model\+::exogenous\+\_\+model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 50 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1AdditiveStateModel_aa569777c62dc49c2f7ed854b162d1c0f}\label{classbfl_1_1AdditiveStateModel_aa569777c62dc49c2f7ed854b162d1c0f}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getInputDescription@{getInputDescription}}
+\index{getInputDescription@{getInputDescription}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getInputDescription()}{getInputDescription()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} Additive\+State\+Model\+::get\+Input\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Returns the vector description of the input to the state equation. 
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1StateProcess_a7dc2f9b2b2bb543b4b10d557c5d61170}{bfl\+::\+State\+Process}}.
+
+
+
+Definition at line 22 of file Additive\+State\+Model.\+cpp.
+
+
+
+References bfl\+::\+Vector\+Description\+::add\+\_\+noise\+\_\+components().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1AdditiveStateModel_aa569777c62dc49c2f7ed854b162d1c0f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1StateModel_a78df4b39578345142fcfb18abaab2177}\label{classbfl_1_1StateModel_a78df4b39578345142fcfb18abaab2177}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getJacobian@{getJacobian}}
+\index{getJacobian@{getJacobian}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getJacobian()}{getJacobian()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd State\+Model\+::get\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1LTIStateModel_a88e04004fcc798bb725d85eadfa1d37e}{bfl\+::\+L\+T\+I\+State\+Model}}.
+
+
+
+Definition at line 60 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a423c1fa86b9d60c8663dedc6cdcae276}\label{classbfl_1_1StateModel_a423c1fa86b9d60c8663dedc6cdcae276}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}}
+\index{getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getNoiseCovarianceMatrix()}{getNoiseCovarianceMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd State\+Model\+::get\+Noise\+Covariance\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a453df5960973059b35ee8686dc12ab0d}{bfl\+::\+White\+Noise\+Acceleration}}, and \mbox{\hyperlink{classbfl_1_1LTIStateModel_af158aaf5d964d222a66aad996c91a469}{bfl\+::\+L\+T\+I\+State\+Model}}.
+
+
+
+Definition at line 72 of file State\+Model.\+cpp.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_acc6733af2dcba2a330bf7c59c3725e42}\label{classbfl_1_1StateModel_acc6733af2dcba2a330bf7c59c3725e42}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getNoiseSample@{getNoiseSample}}
+\index{getNoiseSample@{getNoiseSample}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getNoiseSample()}{getNoiseSample()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd State\+Model\+::get\+Noise\+Sample (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a819bd0d5510c9863272b422ab33b7adc}{bfl\+::\+White\+Noise\+Acceleration}}.
+
+
+
+Definition at line 78 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}\label{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getStateDescription@{getStateDescription}}
+\index{getStateDescription@{getStateDescription}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getStateDescription()}{getStateDescription()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} bfl\+::\+State\+Process\+::get\+State\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Returns the vector description of the output of the state equation. 
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a40a58370ce387aea9ca327ea4391e66d}{bfl\+::\+White\+Noise\+Acceleration}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_a58db2093c6d255b8d41dbf0f0c5c28e5}\label{classbfl_1_1LinearStateModel_a58db2093c6d255b8d41dbf0f0c5c28e5}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getStateTransitionMatrix@{getStateTransitionMatrix}}
+\index{getStateTransitionMatrix@{getStateTransitionMatrix}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getStateTransitionMatrix()}{getStateTransitionMatrix()}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Matrix\+Xd bfl\+::\+Linear\+State\+Model\+::get\+State\+Transition\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_aa304ad7f628e84c06393ba3835d2bb2f}{bfl\+::\+White\+Noise\+Acceleration}}, and \mbox{\hyperlink{classbfl_1_1LTIStateModel_a8c2d2b32911eb9687a1ff68efb8f83ca}{bfl\+::\+L\+T\+I\+State\+Model}}.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a8daede3be54e1a9244a4ed5c20742f62}\label{classbfl_1_1StateModel_a8daede3be54e1a9244a4ed5c20742f62}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!getTransitionProbability@{getTransitionProbability}}
+\index{getTransitionProbability@{getTransitionProbability}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{getTransitionProbability()}{getTransitionProbability()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd State\+Model\+::get\+Transition\+Probability (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{prev\+\_\+states,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a9f6cdfbb0970442439c51b068684969f}{bfl\+::\+White\+Noise\+Acceleration}}.
+
+
+
+Definition at line 66 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a8ad38421051270ea7b43b77a41b453d2}\label{classbfl_1_1StateModel_a8ad38421051270ea7b43b77a41b453d2}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!have\_exogenous\_model@{have\_exogenous\_model}}
+\index{have\_exogenous\_model@{have\_exogenous\_model}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{have\_exogenous\_model()}{have\_exogenous\_model()}}
+{\footnotesize\ttfamily bool State\+Model\+::have\+\_\+exogenous\+\_\+model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 41 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_ada1e9f9aaa46eef66281747901e3b252}\label{classbfl_1_1StateModel_ada1e9f9aaa46eef66281747901e3b252}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!is\_skipping@{is\_skipping}}
+\index{is\_skipping@{is\_skipping}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{is\_skipping()}{is\_skipping()}}
+{\footnotesize\ttfamily bool State\+Model\+::is\+\_\+skipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skippable_a897c639a3fced9b35fcf87ed3c38cfc4}{bfl\+::\+Skippable}}.
+
+
+
+Definition at line 27 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1AdditiveStateModel_a9f145bf8c592fc0092d84421f26dbb8b}\label{classbfl_1_1AdditiveStateModel_a9f145bf8c592fc0092d84421f26dbb8b}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!motion@{motion}}
+\index{motion@{motion}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{motion()}{motion()}}
+{\footnotesize\ttfamily void Additive\+State\+Model\+::motion (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{mot\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}{bfl\+::\+State\+Process}}.
+
+
+
+Definition at line 14 of file Additive\+State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_aecf417d4408f96df4acd983dd4eb3733}\label{classbfl_1_1LinearStateModel_aecf417d4408f96df4acd983dd4eb3733}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}}\& bfl\+::\+Linear\+State\+Model\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_a38b05184273b10cfb7e997979980032b}\label{classbfl_1_1LinearStateModel_a38b05184273b10cfb7e997979980032b}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}}\& bfl\+::\+Linear\+State\+Model\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} \&\&}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1LinearStateModel_aa0397d043b2ee925dbb39f070ab5ed01}\label{classbfl_1_1LinearStateModel_aa0397d043b2ee925dbb39f070ab5ed01}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!propagate@{propagate}}
+\index{propagate@{propagate}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{propagate()}{propagate()}}
+{\footnotesize\ttfamily void Linear\+State\+Model\+::propagate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{prop\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}{bfl\+::\+State\+Process}}.
+
+
+
+Definition at line 16 of file Linear\+State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}\label{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+State\+Process\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a503c75c72f65c6029b1de7b7f35d8c93}{bfl\+::\+White\+Noise\+Acceleration}}, and \mbox{\hyperlink{classbfl_1_1LTIStateModel_afc2264780111fe41b6a82e97bcb5e87c}{bfl\+::\+L\+T\+I\+State\+Model}}.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a6db76f4bf4db18c2d8a7abcd3a6d121c}\label{classbfl_1_1StateModel_a6db76f4bf4db18c2d8a7abcd3a6d121c}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!setSamplingTime@{setSamplingTime}}
+\index{setSamplingTime@{setSamplingTime}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{setSamplingTime()}{setSamplingTime()}}
+{\footnotesize\ttfamily bool State\+Model\+::set\+Sampling\+Time (\begin{DoxyParamCaption}\item[{const double \&}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 84 of file State\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a7f248de4b5e0b5bf5aee0dd56e1d4af6}\label{classbfl_1_1StateModel_a7f248de4b5e0b5bf5aee0dd56e1d4af6}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!skip@{skip}}
+\index{skip@{skip}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool State\+Model\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skipper_a480791ffa93338dc91153965fb386ece}{bfl\+::\+Skipper}}.
+
+
+
+Definition at line 14 of file State\+Model.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1StateModel_a45aea19c30793901a9edbdf8e31716d9}\label{classbfl_1_1StateModel_a45aea19c30793901a9edbdf8e31716d9}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!exogenous\_model\_@{exogenous\_model\_}}
+\index{exogenous\_model\_@{exogenous\_model\_}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{exogenous\_model\_}{exogenous\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}}$>$ bfl\+::\+State\+Model\+::exogenous\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Exogenous model. 
+
+
+
+Definition at line 68 of file State\+Model.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1StateModel_a866b45170a854155dec0344d0998ffef}\label{classbfl_1_1StateModel_a866b45170a854155dec0344d0998ffef}} 
+\index{bfl::LinearStateModel@{bfl::LinearStateModel}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::LinearStateModel@{bfl::LinearStateModel}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+State\+Model\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Skip status. 
+
+
+
+Definition at line 63 of file State\+Model.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{LinearStateModel_8h}{Linear\+State\+Model.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{LinearStateModel_8cpp}{Linear\+State\+Model.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="bfl::MeasurementModelDecorator" name="bfl::MeasurementModelDecorator">
+<area shape="rect" id="node1" title=" " alt="" coords="5,155,245,181"/>
+<area shape="rect" id="node2" href="$classbfl_1_1MeasurementModel.html" title="This class represent a generic measurement model f(x, w), where x is a state vector and w is random n..." alt="" coords="37,80,213,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1Logger.html" title=" " alt="" coords="80,5,171,32"/>
+</map>

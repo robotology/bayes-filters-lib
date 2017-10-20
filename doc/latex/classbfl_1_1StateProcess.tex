@@ -1,0 +1,113 @@
+\hypertarget{classbfl_1_1StateProcess}{}\doxysection{bfl\+::State\+Process Class Reference}
+\label{classbfl_1_1StateProcess}\index{bfl::StateProcess@{bfl::StateProcess}}
+
+
+{\ttfamily \#include $<$State\+Process.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::State\+Process\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1StateProcess__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}{propagate}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ prop\+\_\+states)=0
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}{motion}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ mot\+\_\+states)=0
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}{set\+Property}} (const std\+::string \&property)=0
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1StateProcess_a7dc2f9b2b2bb543b4b10d557c5d61170}{get\+Input\+Description}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the vector description of the input to the state equation. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}{get\+State\+Description}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the vector description of the output of the state equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 20 of file State\+Process.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1StateProcess_a7dc2f9b2b2bb543b4b10d557c5d61170}\label{classbfl_1_1StateProcess_a7dc2f9b2b2bb543b4b10d557c5d61170}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!getInputDescription@{getInputDescription}}
+\index{getInputDescription@{getInputDescription}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{getInputDescription()}{getInputDescription()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} bfl\+::\+State\+Process\+::get\+Input\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the vector description of the input to the state equation. 
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1AdditiveStateModel_aa569777c62dc49c2f7ed854b162d1c0f}{bfl\+::\+Additive\+State\+Model}}.
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}\label{classbfl_1_1StateProcess_a9c58e7fa4a7faa13c3b86eafc15bde7a}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!getStateDescription@{getStateDescription}}
+\index{getStateDescription@{getStateDescription}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{getStateDescription()}{getStateDescription()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} bfl\+::\+State\+Process\+::get\+State\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the vector description of the output of the state equation. 
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a40a58370ce387aea9ca327ea4391e66d}{bfl\+::\+White\+Noise\+Acceleration}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}\label{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!motion@{motion}}
+\index{motion@{motion}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{motion()}{motion()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+State\+Process\+::motion (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{mot\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1AdditiveStateModel_a9f145bf8c592fc0092d84421f26dbb8b}{bfl\+::\+Additive\+State\+Model}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}\label{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!propagate@{propagate}}
+\index{propagate@{propagate}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{propagate()}{propagate()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+State\+Process\+::propagate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{prop\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1LinearStateModel_aa0397d043b2ee925dbb39f070ab5ed01}{bfl\+::\+Linear\+State\+Model}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}\label{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+State\+Process\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a503c75c72f65c6029b1de7b7f35d8c93}{bfl\+::\+White\+Noise\+Acceleration}}, and \mbox{\hyperlink{classbfl_1_1LTIStateModel_afc2264780111fe41b6a82e97bcb5e87c}{bfl\+::\+L\+T\+I\+State\+Model}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{StateProcess_8h}{State\+Process.\+h}}\end{DoxyCompactItemize}

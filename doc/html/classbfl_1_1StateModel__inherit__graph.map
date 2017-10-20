@@ -1,0 +1,10 @@
+<map id="bfl::StateModel" name="bfl::StateModel">
+<area shape="rect" id="node1" title=" " alt="" coords="112,155,232,181"/>
+<area shape="rect" id="node5" href="$classbfl_1_1AdditiveStateModel.html" title=" " alt="" coords="85,229,259,256"/>
+<area shape="rect" id="node2" href="$classbfl_1_1StateProcess.html" title=" " alt="" coords="35,80,165,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1Skippable.html" title=" " alt="" coords="190,80,301,107"/>
+<area shape="rect" id="node4" href="$classbfl_1_1Skipper.html" title=" " alt="" coords="198,5,293,32"/>
+<area shape="rect" id="node6" href="$classbfl_1_1LinearStateModel.html" title=" " alt="" coords="92,304,252,331"/>
+<area shape="rect" id="node7" href="$classbfl_1_1LTIStateModel.html" title=" " alt="" coords="5,379,144,405"/>
+<area shape="rect" id="node8" href="$classbfl_1_1WhiteNoiseAcceleration.html" title=" " alt="" coords="168,379,371,405"/>
+</map>

@@ -1,0 +1,376 @@
+\hypertarget{classbfl_1_1VectorDescription}{}\doxysection{bfl\+::Vector\+Description Class Reference}
+\label{classbfl_1_1VectorDescription}\index{bfl::VectorDescription@{bfl::VectorDescription}}
+
+
+{\ttfamily \#include $<$Vector\+Description.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{Circular\+Type}} \{ \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}{Circular\+Type\+::\+Euler}}, 
+\mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba3743af167c53361d795405561faac2b2}{Circular\+Type\+::\+Quaternion}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription_a805491816db813469b8d8cc7ba498113}{Vector\+Description}} ()=default
+\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription_a2c7d127012ddd92a544f32dca190a0b2}{Vector\+Description}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_ac5cd5eaafcfc8f8428dc3e6dccef09e3}{linear\+\_\+components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a08a52559af5e67e1f225466a77d852ff}{circular\+\_\+components}}=0, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a9fff1ca651dd99defdb8da8cc66ae849}{noise\+\_\+components}}=0, const \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{Circular\+Type}} \&\mbox{\hyperlink{classbfl_1_1VectorDescription_ac622eed8006c26feadb2a390a8adfc75}{circular\+\_\+type}}=\mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}{Circular\+Type\+::\+Euler}})
+\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription_a414e6118832d2755398121c7a46cb099}{$\sim$\+Vector\+Description}} ()=default
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_ac5cd5eaafcfc8f8428dc3e6dccef09e3}{linear\+\_\+components}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a08a52559af5e67e1f225466a77d852ff}{circular\+\_\+components}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a9fff1ca651dd99defdb8da8cc66ae849}{noise\+\_\+components}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a6f6e3b3a084ca449ff1ac4c7b82aec6f}{linear\+\_\+size}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a02aa208e08cb3130f6f2c1393dc9aa1a}{circular\+\_\+size}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a45e0d5245f401ede3601dd7e653a6b4e}{noise\+\_\+size}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a1c3807b9dc0336dacd3fe2a723c77cbd}{total\+\_\+size}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a0522f96ed1f567d3a39fe436a7c01154}{dof\+\_\+size}} () const
+\item 
+void \mbox{\hyperlink{classbfl_1_1VectorDescription_a4ed02a48a9fd73381d0d497c6f1e15f8}{add\+\_\+noise\+\_\+components}} (const std\+::size\+\_\+t \&components)
+\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1VectorDescription_ac187e0e55168d1eb2755f9ab8f780e46}{noiseless\+\_\+description}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{Circular\+Type}} \mbox{\hyperlink{classbfl_1_1VectorDescription_ac622eed8006c26feadb2a390a8adfc75}{circular\+\_\+type}} = \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}{Circular\+Type\+::\+Euler}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a20482db8010538bb599d45318db3c589}{linear\+\_\+components\+\_\+}} = 0
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_afdd258bc5827710e17f143df67e44d53}{circular\+\_\+components\+\_\+}} = 0
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1VectorDescription_a5fd8e20eef059098a6c6cbac6b65bb3f}{noise\+\_\+components\+\_\+}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file Vector\+Description.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}\label{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!CircularType@{CircularType}}
+\index{CircularType@{CircularType}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{CircularType}{CircularType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{bfl\+::\+Vector\+Description\+::\+Circular\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Euler@{Euler}!bfl::VectorDescription@{bfl::VectorDescription}}\index{bfl::VectorDescription@{bfl::VectorDescription}!Euler@{Euler}}}\mbox{\Hypertarget{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}\label{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}} 
+Euler&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Quaternion@{Quaternion}!bfl::VectorDescription@{bfl::VectorDescription}}\index{bfl::VectorDescription@{bfl::VectorDescription}!Quaternion@{Quaternion}}}\mbox{\Hypertarget{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba3743af167c53361d795405561faac2b2}\label{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba3743af167c53361d795405561faac2b2}} 
+Quaternion&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 21 of file Vector\+Description.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a805491816db813469b8d8cc7ba498113}\label{classbfl_1_1VectorDescription_a805491816db813469b8d8cc7ba498113}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!VectorDescription@{VectorDescription}}
+\index{VectorDescription@{VectorDescription}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{VectorDescription()}{VectorDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bfl\+::\+Vector\+Description\+::\+Vector\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Referenced by noiseless\+\_\+description().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a2c7d127012ddd92a544f32dca190a0b2}\label{classbfl_1_1VectorDescription_a2c7d127012ddd92a544f32dca190a0b2}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!VectorDescription@{VectorDescription}}
+\index{VectorDescription@{VectorDescription}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{VectorDescription()}{VectorDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Vector\+Description\+::\+Vector\+Description (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{linear\+\_\+components,  }\item[{const std\+::size\+\_\+t}]{circular\+\_\+components = {\ttfamily 0},  }\item[{const std\+::size\+\_\+t}]{noise\+\_\+components = {\ttfamily 0},  }\item[{const \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{Circular\+Type}} \&}]{circular\+\_\+type = {\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}{Circular\+Type\+::\+Euler}}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file Vector\+Description.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a414e6118832d2755398121c7a46cb099}\label{classbfl_1_1VectorDescription_a414e6118832d2755398121c7a46cb099}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!````~VectorDescription@{$\sim$VectorDescription}}
+\index{````~VectorDescription@{$\sim$VectorDescription}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{$\sim$VectorDescription()}{~VectorDescription()}}
+{\footnotesize\ttfamily bfl\+::\+Vector\+Description\+::$\sim$\+Vector\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a4ed02a48a9fd73381d0d497c6f1e15f8}\label{classbfl_1_1VectorDescription_a4ed02a48a9fd73381d0d497c6f1e15f8}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!add\_noise\_components@{add\_noise\_components}}
+\index{add\_noise\_components@{add\_noise\_components}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{add\_noise\_components()}{add\_noise\_components()}}
+{\footnotesize\ttfamily void Vector\+Description\+::add\+\_\+noise\+\_\+components (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{components }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file Vector\+Description.\+cpp.
+
+
+
+References noise\+\_\+components\+\_\+.
+
+
+
+Referenced by bfl\+::\+Additive\+State\+Model\+::get\+Input\+Description().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a08a52559af5e67e1f225466a77d852ff}\label{classbfl_1_1VectorDescription_a08a52559af5e67e1f225466a77d852ff}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!circular\_components@{circular\_components}}
+\index{circular\_components@{circular\_components}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{circular\_components()}{circular\_components()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::circular\+\_\+components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 33 of file Vector\+Description.\+cpp.
+
+
+
+References circular\+\_\+components\+\_\+.
+
+
+
+Referenced by dof\+\_\+size(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a02aa208e08cb3130f6f2c1393dc9aa1a}\label{classbfl_1_1VectorDescription_a02aa208e08cb3130f6f2c1393dc9aa1a}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!circular\_size@{circular\_size}}
+\index{circular\_size@{circular\_size}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{circular\_size()}{circular\_size()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::circular\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 51 of file Vector\+Description.\+cpp.
+
+
+
+References circular\+\_\+components\+\_\+, circular\+\_\+type, and Quaternion.
+
+
+
+Referenced by total\+\_\+size().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a0522f96ed1f567d3a39fe436a7c01154}\label{classbfl_1_1VectorDescription_a0522f96ed1f567d3a39fe436a7c01154}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!dof\_size@{dof\_size}}
+\index{dof\_size@{dof\_size}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{dof\_size()}{dof\_size()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::dof\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 72 of file Vector\+Description.\+cpp.
+
+
+
+References circular\+\_\+components(), circular\+\_\+type, linear\+\_\+size(), noise\+\_\+size(), Quaternion, and total\+\_\+size().
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::\+U\+T\+Weight\+::\+U\+T\+Weight().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1VectorDescription_a0522f96ed1f567d3a39fe436a7c01154_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_ac5cd5eaafcfc8f8428dc3e6dccef09e3}\label{classbfl_1_1VectorDescription_ac5cd5eaafcfc8f8428dc3e6dccef09e3}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!linear\_components@{linear\_components}}
+\index{linear\_components@{linear\_components}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{linear\_components()}{linear\_components()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::linear\+\_\+components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 27 of file Vector\+Description.\+cpp.
+
+
+
+References linear\+\_\+components\+\_\+.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a6f6e3b3a084ca449ff1ac4c7b82aec6f}\label{classbfl_1_1VectorDescription_a6f6e3b3a084ca449ff1ac4c7b82aec6f}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!linear\_size@{linear\_size}}
+\index{linear\_size@{linear\_size}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{linear\_size()}{linear\_size()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::linear\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 45 of file Vector\+Description.\+cpp.
+
+
+
+References linear\+\_\+components\+\_\+.
+
+
+
+Referenced by dof\+\_\+size(), and total\+\_\+size().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a9fff1ca651dd99defdb8da8cc66ae849}\label{classbfl_1_1VectorDescription_a9fff1ca651dd99defdb8da8cc66ae849}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!noise\_components@{noise\_components}}
+\index{noise\_components@{noise\_components}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{noise\_components()}{noise\_components()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::noise\+\_\+components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 39 of file Vector\+Description.\+cpp.
+
+
+
+References noise\+\_\+components\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a45e0d5245f401ede3601dd7e653a6b4e}\label{classbfl_1_1VectorDescription_a45e0d5245f401ede3601dd7e653a6b4e}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!noise\_size@{noise\_size}}
+\index{noise\_size@{noise\_size}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{noise\_size()}{noise\_size()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::noise\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 60 of file Vector\+Description.\+cpp.
+
+
+
+References noise\+\_\+components\+\_\+.
+
+
+
+Referenced by dof\+\_\+size(), and total\+\_\+size().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_ac187e0e55168d1eb2755f9ab8f780e46}\label{classbfl_1_1VectorDescription_ac187e0e55168d1eb2755f9ab8f780e46}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!noiseless\_description@{noiseless\_description}}
+\index{noiseless\_description@{noiseless\_description}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{noiseless\_description()}{noiseless\_description()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} Vector\+Description\+::noiseless\+\_\+description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 91 of file Vector\+Description.\+cpp.
+
+
+
+References circular\+\_\+components\+\_\+, circular\+\_\+type, linear\+\_\+components\+\_\+, and Vector\+Description().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1VectorDescription_ac187e0e55168d1eb2755f9ab8f780e46_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a1c3807b9dc0336dacd3fe2a723c77cbd}\label{classbfl_1_1VectorDescription_a1c3807b9dc0336dacd3fe2a723c77cbd}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!total\_size@{total\_size}}
+\index{total\_size@{total\_size}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{total\_size()}{total\_size()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Vector\+Description\+::total\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 66 of file Vector\+Description.\+cpp.
+
+
+
+References circular\+\_\+size(), linear\+\_\+size(), and noise\+\_\+size().
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), dof\+\_\+size(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1VectorDescription_a1c3807b9dc0336dacd3fe2a723c77cbd_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_afdd258bc5827710e17f143df67e44d53}\label{classbfl_1_1VectorDescription_afdd258bc5827710e17f143df67e44d53}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!circular\_components\_@{circular\_components\_}}
+\index{circular\_components\_@{circular\_components\_}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{circular\_components\_}{circular\_components\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Vector\+Description\+::circular\+\_\+components\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 55 of file Vector\+Description.\+h.
+
+
+
+Referenced by circular\+\_\+components(), circular\+\_\+size(), and noiseless\+\_\+description().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_ac622eed8006c26feadb2a390a8adfc75}\label{classbfl_1_1VectorDescription_ac622eed8006c26feadb2a390a8adfc75}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!circular\_type@{circular\_type}}
+\index{circular\_type@{circular\_type}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{circular\_type}{circular\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845b}{Circular\+Type}} bfl\+::\+Vector\+Description\+::circular\+\_\+type = \mbox{\hyperlink{classbfl_1_1VectorDescription_a2a2e8399d54c62c2c86d23590530845ba0a7532036415f2491bf5f952220827b8}{Circular\+Type\+::\+Euler}}}
+
+
+
+Definition at line 49 of file Vector\+Description.\+h.
+
+
+
+Referenced by circular\+\_\+size(), dof\+\_\+size(), noiseless\+\_\+description(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a20482db8010538bb599d45318db3c589}\label{classbfl_1_1VectorDescription_a20482db8010538bb599d45318db3c589}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!linear\_components\_@{linear\_components\_}}
+\index{linear\_components\_@{linear\_components\_}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{linear\_components\_}{linear\_components\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Vector\+Description\+::linear\+\_\+components\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Vector\+Description.\+h.
+
+
+
+Referenced by linear\+\_\+components(), linear\+\_\+size(), and noiseless\+\_\+description().
+
+\mbox{\Hypertarget{classbfl_1_1VectorDescription_a5fd8e20eef059098a6c6cbac6b65bb3f}\label{classbfl_1_1VectorDescription_a5fd8e20eef059098a6c6cbac6b65bb3f}} 
+\index{bfl::VectorDescription@{bfl::VectorDescription}!noise\_components\_@{noise\_components\_}}
+\index{noise\_components\_@{noise\_components\_}!bfl::VectorDescription@{bfl::VectorDescription}}
+\doxysubsubsection{\texorpdfstring{noise\_components\_}{noise\_components\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Vector\+Description\+::noise\+\_\+components\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Vector\+Description.\+h.
+
+
+
+Referenced by add\+\_\+noise\+\_\+components(), noise\+\_\+components(), and noise\+\_\+size().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{VectorDescription_8h}{Vector\+Description.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{VectorDescription_8cpp}{Vector\+Description.\+cpp}}\end{DoxyCompactItemize}

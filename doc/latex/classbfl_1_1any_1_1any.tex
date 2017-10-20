@@ -1,0 +1,429 @@
+\hypertarget{classbfl_1_1any_1_1any}{}\doxysection{bfl\+::any\+::any Class Reference}
+\label{classbfl_1_1any_1_1any}\index{bfl::any::any@{bfl::any::any}}
+
+
+The class any describes a type-\/safe container for single values of any type.  
+
+
+
+
+{\ttfamily \#include $<$any.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any_1_1holder}{holder}}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any_1_1placeholder}{placeholder}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any_a55b5d940fdb6f1e7215332b7d97c6365}{any}} () noexcept
+\begin{DoxyCompactList}\small\item\em Constructs an empty object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any_a85f150e4daa7d447586df005cc8d9846}{any}} (const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&other)
+\begin{DoxyCompactList}\small\item\em Copies content of other into a new instance, so that any content is equivalent in both type and value to those of other prior to the constructor call, or empty if other is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any_ab3caf90d0d0e9a57a9cacc690fa57bf5}{any}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Moves content of other into a new instance, so that any content is equivalent in both type and value to those of other prior to the constructor call, or empty if other is empty. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classbfl_1_1any_1_1any_a71949c13d541881e9e61de1064710616}{any}} (const Value\+Type \&value)
+\begin{DoxyCompactList}\small\item\em Constructs an object with initial content an object of type std\+::decay\+\_\+t$<$\+Value\+Type$>$, direct-\/initialized from std\+::forward$<$\+Value\+Type$>$(value). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classbfl_1_1any_1_1any_a63e0156e4ee3e737fa3144aea6fd55e0}{any}} (Value\+Type \&\&value, typename std\+::enable\+\_\+if$<$!std\+::is\+\_\+same$<$ \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&, Value\+Type $>$\+::value $>$\+::\mbox{\hyperlink{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}{type}} $\ast$=nullptr, typename std\+::enable\+\_\+if$<$!std\+::is\+\_\+const$<$ Value\+Type $>$\+::value $>$\+::\mbox{\hyperlink{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}{type}} $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs an object with initial content an object of type std\+::decay\+\_\+t$<$\+Value\+Type$>$, direct-\/initialized from std\+::forward$<$\+Value\+Type$>$(value). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \& \mbox{\hyperlink{classbfl_1_1any_1_1any_a067d769bffdf2782e8d1dc080f66d948}{operator=}} (const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Assigns contents to the contained value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \& \mbox{\hyperlink{classbfl_1_1any_1_1any_a65609849a81b0af40e6b86751ae0350c}{operator=}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Assigns contents to the contained value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Value\+Type $>$ }\\\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \& \mbox{\hyperlink{classbfl_1_1any_1_1any_a62a6777ca18bd10bf05ffa0f6d131435}{operator=}} (Value\+Type \&\&rhs)
+\begin{DoxyCompactList}\small\item\em Assigns contents to the contained value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any_a14390d38352d52e2a447dc62d0b19941}{$\sim$any}} () noexcept
+\begin{DoxyCompactList}\small\item\em Destruct the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbfl_1_1any_1_1any_ae4e063fb12711ea99a78bdab4d5c3e36}{reset}} () noexcept
+\begin{DoxyCompactList}\small\item\em If not empty, destroys the contained object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \& \mbox{\hyperlink{classbfl_1_1any_1_1any_a0441e5816aa5ef4721f134868b7ca402}{swap}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Swaps the content of two any objects. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbfl_1_1any_1_1any_a6ec222b8ae338c3392b0538ec1d94766}{has\+\_\+value}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Checks whether the object contains a value. \end{DoxyCompactList}\item 
+const std\+::type\+\_\+info \& \mbox{\hyperlink{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}{type}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Queries the contained type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1any_1_1any_1_1placeholder}{placeholder}} $\ast$ \mbox{\hyperlink{classbfl_1_1any_1_1any_a3b81eea753ab84d245b0b360bcb38540}{content}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type $\ast$ \mbox{\hyperlink{classbfl_1_1any_1_1any_a5666447bac58089bd4d211e76044664a}{any\+\_\+cast}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$operand) noexcept
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class any describes a type-\/safe container for single values of any type. 
+
+An object of class any stores an instance of any type that satisfies the constructor requirements or is empty, and this is referred to as the state of the class any object. The stored instance is called the contained object. Two states are equivalent if they are either both empty or if both are not empty and if the contained objects are equivalent. The non-\/member any\+\_\+cast functions provide type-\/safe access to the contained object. 
+
+Definition at line 77 of file any.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a55b5d940fdb6f1e7215332b7d97c6365}\label{classbfl_1_1any_1_1any_a55b5d940fdb6f1e7215332b7d97c6365}} 
+\index{bfl::any::any@{bfl::any::any}!any@{any}}
+\index{any@{any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily bfl\+::any\+::any\+::any (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Constructs an empty object. 
+
+Postconditions\+: this-\/$>$empty(). 
+
+Definition at line 85 of file any.\+h.
+
+
+
+Referenced by operator=(), and reset().
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a85f150e4daa7d447586df005cc8d9846}\label{classbfl_1_1any_1_1any_a85f150e4daa7d447586df005cc8d9846}} 
+\index{bfl::any::any@{bfl::any::any}!any@{any}}
+\index{any@{any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily bfl\+::any\+::any\+::any (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copies content of other into a new instance, so that any content is equivalent in both type and value to those of other prior to the constructor call, or empty if other is empty. 
+
+Throws\+: may fail with a std\+::bad\+\_\+alloc exception or any exceptions arising from the copy constructor of the contained type. 
+
+Definition at line 98 of file any.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_ab3caf90d0d0e9a57a9cacc690fa57bf5}\label{classbfl_1_1any_1_1any_ab3caf90d0d0e9a57a9cacc690fa57bf5}} 
+\index{bfl::any::any@{bfl::any::any}!any@{any}}
+\index{any@{any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily bfl\+::any\+::any\+::any (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Moves content of other into a new instance, so that any content is equivalent in both type and value to those of other prior to the constructor call, or empty if other is empty. 
+
+Postconditions\+: other-\/$>$empty() 
+
+Definition at line 110 of file any.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a71949c13d541881e9e61de1064710616}\label{classbfl_1_1any_1_1any_a71949c13d541881e9e61de1064710616}} 
+\index{bfl::any::any@{bfl::any::any}!any@{any}}
+\index{any@{any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bfl\+::any\+::any\+::any (\begin{DoxyParamCaption}\item[{const Value\+Type \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an object with initial content an object of type std\+::decay\+\_\+t$<$\+Value\+Type$>$, direct-\/initialized from std\+::forward$<$\+Value\+Type$>$(value). 
+
+If std\+::is\+\_\+copy\+\_\+constructible$<$std\+::decay\+\_\+t$<$\+Value\+Type$>$$>$\+::value is false, the program is ill-\/formed.
+
+Throws\+: std\+::bad\+\_\+alloc or any exceptions arising from the copy constructor of the contained type. 
+
+Definition at line 125 of file any.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a63e0156e4ee3e737fa3144aea6fd55e0}\label{classbfl_1_1any_1_1any_a63e0156e4ee3e737fa3144aea6fd55e0}} 
+\index{bfl::any::any@{bfl::any::any}!any@{any}}
+\index{any@{any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bfl\+::any\+::any\+::any (\begin{DoxyParamCaption}\item[{Value\+Type \&\&}]{value,  }\item[{typename std\+::enable\+\_\+if$<$!std\+::is\+\_\+same$<$ \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&, Value\+Type $>$\+::value $>$\+::\mbox{\hyperlink{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}{type}} $\ast$}]{ = {\ttfamily nullptr},  }\item[{typename std\+::enable\+\_\+if$<$!std\+::is\+\_\+const$<$ Value\+Type $>$\+::value $>$\+::\mbox{\hyperlink{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}{type}} $\ast$}]{ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an object with initial content an object of type std\+::decay\+\_\+t$<$\+Value\+Type$>$, direct-\/initialized from std\+::forward$<$\+Value\+Type$>$(value). 
+
+If std\+::is\+\_\+copy\+\_\+constructible$<$std\+::decay\+\_\+t$<$\+Value\+Type$>$$>$\+::value is false, the program is ill-\/formed.
+
+Throws\+: std\+::bad\+\_\+alloc or any exceptions arising from the copy constructor of the contained type. 
+
+Definition at line 138 of file any.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a14390d38352d52e2a447dc62d0b19941}\label{classbfl_1_1any_1_1any_a14390d38352d52e2a447dc62d0b19941}} 
+\index{bfl::any::any@{bfl::any::any}!````~any@{$\sim$any}}
+\index{````~any@{$\sim$any}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{$\sim$any()}{~any()}}
+{\footnotesize\ttfamily bfl\+::any\+::any\+::$\sim$any (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Destruct the object. 
+
+
+
+Definition at line 203 of file any.\+h.
+
+
+
+References content.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a6ec222b8ae338c3392b0538ec1d94766}\label{classbfl_1_1any_1_1any_a6ec222b8ae338c3392b0538ec1d94766}} 
+\index{bfl::any::any@{bfl::any::any}!has\_value@{has\_value}}
+\index{has\_value@{has\_value}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{has\_value()}{has\_value()}}
+{\footnotesize\ttfamily bool bfl\+::any\+::any\+::has\+\_\+value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Checks whether the object contains a value. 
+
+\begin{DoxyReturn}{Returns}
+true if instance contains a value, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file any.\+h.
+
+
+
+References content.
+
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a65609849a81b0af40e6b86751ae0350c}\label{classbfl_1_1any_1_1any_a65609849a81b0af40e6b86751ae0350c}} 
+\index{bfl::any::any@{bfl::any::any}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}}\& bfl\+::any\+::any\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Assigns contents to the contained value. 
+
+Assigns by moving the state of rhs, as if by any(std\+::move(rhs)).swap($\ast$this). rhs is left in a valid but unspecified state after the assignment.
+
+Postconditions\+: rhs-\/$>$empty()
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & object whose contained value to assign \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file any.\+h.
+
+
+
+References any(), and swap().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1any_1_1any_a65609849a81b0af40e6b86751ae0350c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a067d769bffdf2782e8d1dc080f66d948}\label{classbfl_1_1any_1_1any_a067d769bffdf2782e8d1dc080f66d948}} 
+\index{bfl::any::any@{bfl::any::any}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}}\& bfl\+::any\+::any\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns contents to the contained value. 
+
+Assigns by copying the state of rhs, as if by any(rhs).swap($\ast$this).
+
+Throws\+: std\+::bad\+\_\+alloc or any exceptions arising from the copy constructor of the contained type. Assignment satisfies the strong guarantee of exception safety.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & object whose contained value to assign \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 152 of file any.\+h.
+
+
+
+References any().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classbfl_1_1any_1_1any_a067d769bffdf2782e8d1dc080f66d948_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a62a6777ca18bd10bf05ffa0f6d131435}\label{classbfl_1_1any_1_1any_a62a6777ca18bd10bf05ffa0f6d131435}} 
+\index{bfl::any::any@{bfl::any::any}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Value\+Type $>$ \\
+\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}}\& bfl\+::any\+::any\+::operator= (\begin{DoxyParamCaption}\item[{Value\+Type \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns contents to the contained value. 
+
+Assigns the type and value of rhs, as if by any(std\+::forward$<$\+Value\+Type$>$(rhs)).swap($\ast$this). This overload only participates in overload resolution if std\+::decay\+\_\+t$<$\+Value\+Type$>$ is not the same type as any and std\+::is\+\_\+copy\+\_\+constructible\+\_\+v$<$std\+::decay\+\_\+t$<$\+Value\+Type$>$$>$ is true.
+
+Throws\+: std\+::bad\+\_\+alloc or any exceptions arising from the move or copy constructor of the contained type. Assignment satisfies the strong guarantee of exception safety.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & object whose contained value to assign \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 192 of file any.\+h.
+
+
+
+References any().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classbfl_1_1any_1_1any_a62a6777ca18bd10bf05ffa0f6d131435_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_ae4e063fb12711ea99a78bdab4d5c3e36}\label{classbfl_1_1any_1_1any_ae4e063fb12711ea99a78bdab4d5c3e36}} 
+\index{bfl::any::any@{bfl::any::any}!reset@{reset}}
+\index{reset@{reset}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void bfl\+::any\+::any\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+If not empty, destroys the contained object. 
+
+
+
+Definition at line 212 of file any.\+h.
+
+
+
+References any().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{classbfl_1_1any_1_1any_ae4e063fb12711ea99a78bdab4d5c3e36_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a0441e5816aa5ef4721f134868b7ca402}\label{classbfl_1_1any_1_1any_a0441e5816aa5ef4721f134868b7ca402}} 
+\index{bfl::any::any@{bfl::any::any}!swap@{swap}}
+\index{swap@{swap}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}}\& bfl\+::any\+::any\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Swaps the content of two any objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & object to swap with \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 223 of file any.\+h.
+
+
+
+References content, and bfl\+::any\+::swap().
+
+
+
+Referenced by operator=(), and bfl\+::any\+::swap().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{classbfl_1_1any_1_1any_a0441e5816aa5ef4721f134868b7ca402_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}\label{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500}} 
+\index{bfl::any::any@{bfl::any::any}!type@{type}}
+\index{type@{type}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily const std\+::type\+\_\+info\& bfl\+::any\+::any\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Queries the contained type. 
+
+The typeid of the contained value if instance is non-\/empty, otherwise typeid(void). 
+
+Definition at line 246 of file any.\+h.
+
+
+
+References content, and bfl\+::any\+::any\+::placeholder\+::type().
+
+
+
+Referenced by bfl\+::any\+::any\+\_\+cast().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1any_1_1any_ad84c3b30ce2ed9d04fe28465b60f2500_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a5666447bac58089bd4d211e76044664a}\label{classbfl_1_1any_1_1any_a5666447bac58089bd4d211e76044664a}} 
+\index{bfl::any::any@{bfl::any::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast}{any\_cast}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+Value\+Type$\ast$ any\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 352 of file any.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1any_1_1any_a3b81eea753ab84d245b0b360bcb38540}\label{classbfl_1_1any_1_1any_a3b81eea753ab84d245b0b360bcb38540}} 
+\index{bfl::any::any@{bfl::any::any}!content@{content}}
+\index{content@{content}!bfl::any::any@{bfl::any::any}}
+\doxysubsubsection{\texorpdfstring{content}{content}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1any_1_1any_1_1placeholder}{placeholder}}$\ast$ bfl\+::any\+::any\+::content\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 307 of file any.\+h.
+
+
+
+Referenced by has\+\_\+value(), swap(), type(), and $\sim$any().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{any_8h}{any.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="bfl::utils::sum_quaternion_rotation_vector" name="bfl::utils::sum_quaternion_rotation_vector">
+<area shape="rect" id="node1" title="Evaluate the colwise sum between a unit quaternion &#160;and a set of rotation vectors &#160;in the tangent spa..." alt="" coords="5,5,192,47"/>
+<area shape="rect" id="node2" href="$namespacebfl_1_1utils.html#af901548c98d811c2b176e1d9b02aabb3" title="Convert a matrix of rotation vectors &#160;in the tangent space at the identity to their unitary quaternio..." alt="" coords="240,5,407,47"/>
+</map>

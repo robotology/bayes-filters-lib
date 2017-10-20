@@ -1,0 +1,288 @@
+\hypertarget{classbfl_1_1BootstrapCorrection}{}\doxysection{bfl\+::Bootstrap\+Correction Class Reference}
+\label{classbfl_1_1BootstrapCorrection}\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+
+
+{\ttfamily \#include $<$Bootstrap\+Correction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Bootstrap\+Correction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classbfl_1_1BootstrapCorrection__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a230602e8e34ce21eaaf73034817d8053}{Bootstrap\+Correction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} $>$ measurement\+\_\+model, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$ likelihood\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a9722119f74811b89eb0c0aebdda8261b}{Bootstrap\+Correction}} (const \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&correction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \& \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_ae48dad5d749fbad2b55663fcf1c97ba5}{operator=}} (const \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&correction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1BootstrapCorrection_aad40b4068f24f0bacbc0b850cb225ec1}{Bootstrap\+Correction}} (\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&\&correction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \& \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_aab80bf487ffe4a699b84b13af185c7e7}{operator=}} (\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&\&correction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_ada097490899cb031770854c9be1c4c11}{$\sim$\+Bootstrap\+Correction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a2fe2a1ff24ff52a600df728c2b687541}{get\+Measurement\+Model}} () noexcept override
+\item 
+\mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} \& \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_adf3face98e2c6486b9c5979b1f1f1c0e}{get\+Likelihood\+Model}} () noexcept override
+\item 
+std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a231ceec8b2a076ae41d1ffd3c0fab791}{get\+Likelihood}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}{correct}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&cor\+\_\+particles)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}{skip}} (const bool status) noexcept
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}{freeze\+\_\+measurements}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a6c7af518c5599d5c9699e352c672fe36}{correct\+Step}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&cor\+\_\+particles) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_af129cdd336ea2d2b5cd8c84cb96c72b5}{measurement\+\_\+model\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_afdb55ea514b1ca6dead6b10462a896b3}{likelihood\+\_\+model\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a54eb0bcde4472e763f1e4ab54ee28edf}{valid\+\_\+likelihood\+\_\+}} = false
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1BootstrapCorrection_a095e4ee913719bdede069bd76551cf3b}{likelihood\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 22 of file Bootstrap\+Correction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a230602e8e34ce21eaaf73034817d8053}\label{classbfl_1_1BootstrapCorrection_a230602e8e34ce21eaaf73034817d8053}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!BootstrapCorrection@{BootstrapCorrection}}
+\index{BootstrapCorrection@{BootstrapCorrection}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{BootstrapCorrection()}{BootstrapCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Bootstrap\+Correction\+::\+Bootstrap\+Correction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} $>$}]{measurement\+\_\+model,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$}]{likelihood\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 17 of file Bootstrap\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a9722119f74811b89eb0c0aebdda8261b}\label{classbfl_1_1BootstrapCorrection_a9722119f74811b89eb0c0aebdda8261b}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!BootstrapCorrection@{BootstrapCorrection}}
+\index{BootstrapCorrection@{BootstrapCorrection}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{BootstrapCorrection()}{BootstrapCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bfl\+::\+Bootstrap\+Correction\+::\+Bootstrap\+Correction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_aad40b4068f24f0bacbc0b850cb225ec1}\label{classbfl_1_1BootstrapCorrection_aad40b4068f24f0bacbc0b850cb225ec1}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!BootstrapCorrection@{BootstrapCorrection}}
+\index{BootstrapCorrection@{BootstrapCorrection}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{BootstrapCorrection()}{BootstrapCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Bootstrap\+Correction\+::\+Bootstrap\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&\&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 23 of file Bootstrap\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_ada097490899cb031770854c9be1c4c11}\label{classbfl_1_1BootstrapCorrection_ada097490899cb031770854c9be1c4c11}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!````~BootstrapCorrection@{$\sim$BootstrapCorrection}}
+\index{````~BootstrapCorrection@{$\sim$BootstrapCorrection}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{$\sim$BootstrapCorrection()}{~BootstrapCorrection()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Bootstrap\+Correction\+::$\sim$\+Bootstrap\+Correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}\label{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!correct@{correct}}
+\index{correct@{correct}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{correct()}{correct()}}
+{\footnotesize\ttfamily void P\+F\+Correction\+::correct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{cor\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 14 of file P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a6c7af518c5599d5c9699e352c672fe36}\label{classbfl_1_1BootstrapCorrection_a6c7af518c5599d5c9699e352c672fe36}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!correctStep@{correctStep}}
+\index{correctStep@{correctStep}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{correctStep()}{correctStep()}}
+{\footnotesize\ttfamily void Bootstrap\+Correction\+::correct\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{cor\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a1bccf75e6193b93f86d26cd2c61cf597}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 50 of file Bootstrap\+Correction.\+cpp.
+
+
+
+References bfl\+::\+Particle\+Set\+::state(), and bfl\+::\+Gaussian\+Mixture\+::weight().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1BootstrapCorrection_a6c7af518c5599d5c9699e352c672fe36_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}\label{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!freeze\_measurements@{freeze\_measurements}}
+\index{freeze\_measurements@{freeze\_measurements}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{freeze\_measurements()}{freeze\_measurements()}}
+{\footnotesize\ttfamily bool P\+F\+Correction\+::freeze\+\_\+measurements (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 32 of file P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a231ceec8b2a076ae41d1ffd3c0fab791}\label{classbfl_1_1BootstrapCorrection_a231ceec8b2a076ae41d1ffd3c0fab791}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!getLikelihood@{getLikelihood}}
+\index{getLikelihood@{getLikelihood}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihood()}{getLikelihood()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Vector\+Xd $>$ Bootstrap\+Correction\+::get\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_ab6eca766077c4ab1db3417dab6c44d27}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 61 of file Bootstrap\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_adf3face98e2c6486b9c5979b1f1f1c0e}\label{classbfl_1_1BootstrapCorrection_adf3face98e2c6486b9c5979b1f1f1c0e}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!getLikelihoodModel@{getLikelihoodModel}}
+\index{getLikelihoodModel@{getLikelihoodModel}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihoodModel()}{getLikelihoodModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} \& Bootstrap\+Correction\+::get\+Likelihood\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a4160297fd6aa59264aa23ac033e70f1d}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 44 of file Bootstrap\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a2fe2a1ff24ff52a600df728c2b687541}\label{classbfl_1_1BootstrapCorrection_a2fe2a1ff24ff52a600df728c2b687541}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!getMeasurementModel@{getMeasurementModel}}
+\index{getMeasurementModel@{getMeasurementModel}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{getMeasurementModel()}{getMeasurementModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& Bootstrap\+Correction\+::get\+Measurement\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a9b10140c6be7131c1dc0d58cf1af32b4}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 38 of file Bootstrap\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_aab80bf487ffe4a699b84b13af185c7e7}\label{classbfl_1_1BootstrapCorrection_aab80bf487ffe4a699b84b13af185c7e7}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \& Bootstrap\+Correction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&\&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 30 of file Bootstrap\+Correction.\+cpp.
+
+
+
+References bfl\+::\+P\+F\+Correction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1BootstrapCorrection_aab80bf487ffe4a699b84b13af185c7e7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_ae48dad5d749fbad2b55663fcf1c97ba5}\label{classbfl_1_1BootstrapCorrection_ae48dad5d749fbad2b55663fcf1c97ba5}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}}\& bfl\+::\+Bootstrap\+Correction\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1BootstrapCorrection}{Bootstrap\+Correction}} \&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}\label{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!skip@{skip}}
+\index{skip@{skip}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool P\+F\+Correction\+::skip (\begin{DoxyParamCaption}\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 24 of file P\+F\+Correction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a095e4ee913719bdede069bd76551cf3b}\label{classbfl_1_1BootstrapCorrection_a095e4ee913719bdede069bd76551cf3b}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!likelihood\_@{likelihood\_}}
+\index{likelihood\_@{likelihood\_}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{likelihood\_}{likelihood\_}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd bfl\+::\+Bootstrap\+Correction\+::likelihood\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 55 of file Bootstrap\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_afdb55ea514b1ca6dead6b10462a896b3}\label{classbfl_1_1BootstrapCorrection_afdb55ea514b1ca6dead6b10462a896b3}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!likelihood\_model\_@{likelihood\_model\_}}
+\index{likelihood\_model\_@{likelihood\_model\_}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{likelihood\_model\_}{likelihood\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}}$>$ bfl\+::\+Bootstrap\+Correction\+::likelihood\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Bootstrap\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_af129cdd336ea2d2b5cd8c84cb96c72b5}\label{classbfl_1_1BootstrapCorrection_af129cdd336ea2d2b5cd8c84cb96c72b5}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!measurement\_model\_@{measurement\_model\_}}
+\index{measurement\_model\_@{measurement\_model\_}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{measurement\_model\_}{measurement\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}}$>$ bfl\+::\+Bootstrap\+Correction\+::measurement\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 49 of file Bootstrap\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}\label{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+P\+F\+Correction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 58 of file P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1BootstrapCorrection_a54eb0bcde4472e763f1e4ab54ee28edf}\label{classbfl_1_1BootstrapCorrection_a54eb0bcde4472e763f1e4ab54ee28edf}} 
+\index{bfl::BootstrapCorrection@{bfl::BootstrapCorrection}!valid\_likelihood\_@{valid\_likelihood\_}}
+\index{valid\_likelihood\_@{valid\_likelihood\_}!bfl::BootstrapCorrection@{bfl::BootstrapCorrection}}
+\doxysubsubsection{\texorpdfstring{valid\_likelihood\_}{valid\_likelihood\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Bootstrap\+Correction\+::valid\+\_\+likelihood\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Bootstrap\+Correction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{BootstrapCorrection_8h}{Bootstrap\+Correction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{BootstrapCorrection_8cpp}{Bootstrap\+Correction.\+cpp}}\end{DoxyCompactItemize}

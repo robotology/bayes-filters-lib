@@ -1,0 +1,10 @@
+<map id="bfl::MeasurementModel" name="bfl::MeasurementModel">
+<area shape="rect" id="node1" title="This class represent a generic measurement model f(x, w), where x is a state vector and w is random n..." alt="" coords="145,80,321,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1AdditiveMeasurementModel.html" title="This class represent an additive measurement model f(x) + w, where x is a state vector and w is rando..." alt="" coords="18,155,209,196"/>
+<area shape="rect" id="node8" href="$classbfl_1_1MeasurementModelDecorator.html" title=" " alt="" coords="233,162,473,189"/>
+<area shape="rect" id="node2" href="$classbfl_1_1Logger.html" title=" " alt="" coords="188,5,279,32"/>
+<area shape="rect" id="node4" href="$classbfl_1_1LinearMeasurementModel.html" title="This class represent an linear measurement model Hx + w, where H is a time&#45;variant measurement matrix..." alt="" coords="5,244,221,271"/>
+<area shape="rect" id="node5" href="$classbfl_1_1LTIMeasurementModel.html" title="This class represent an linear measurement model Hx + w, where H is a time&#45;invariant measurement matr..." alt="" coords="16,319,211,345"/>
+<area shape="rect" id="node6" href="$classbfl_1_1LinearModel.html" title=" " alt="" coords="50,393,177,420"/>
+<area shape="rect" id="node7" href="$classbfl_1_1SimulatedLinearSensor.html" title=" " alt="" coords="15,468,211,495"/>
+</map>

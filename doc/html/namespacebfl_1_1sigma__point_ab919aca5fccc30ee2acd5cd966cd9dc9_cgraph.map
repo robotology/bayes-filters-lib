@@ -1,0 +1,8 @@
+<map id="bfl::sigma_point::sigma_point" name="bfl::sigma_point::sigma_point">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,180,145"/>
+<area shape="rect" id="node2" href="$classbfl_1_1GaussianMixture.html#a63afff5b5e09399a51ac4dbe50de568b" title=" " alt="" coords="243,5,399,47"/>
+<area shape="rect" id="node3" href="$namespacebfl_1_1directional__statistics.html#af9984a4df2b3f6f0bc0c264783181123" title=" " alt="" coords="231,71,412,112"/>
+<area shape="rect" id="node4" href="$classbfl_1_1GaussianMixture.html#a7b33a3796b65b8a8b44f9569f226b4cf" title=" " alt="" coords="243,136,399,177"/>
+<area shape="rect" id="node5" href="$namespacebfl_1_1utils.html#ab1ca09c6f5d699242615c8dbc89fa2e0" title="Evaluate the colwise sum between a unit quaternion &#160;and a set of rotation vectors &#160;in the tangent spa..." alt="" coords="228,201,415,243"/>
+<area shape="rect" id="node6" href="$namespacebfl_1_1utils.html#af901548c98d811c2b176e1d9b02aabb3" title="Convert a matrix of rotation vectors &#160;in the tangent space at the identity to their unitary quaternio..." alt="" coords="463,201,629,243"/>
+</map>

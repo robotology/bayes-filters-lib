@@ -1,0 +1,490 @@
+\hypertarget{classbfl_1_1GaussianMixture}{}\doxysection{bfl\+::Gaussian\+Mixture Class Reference}
+\label{classbfl_1_1GaussianMixture}\index{bfl::GaussianMixture@{bfl::GaussianMixture}}
+
+
+{\ttfamily \#include $<$Gaussian\+Mixture.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Gaussian\+Mixture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{classbfl_1_1GaussianMixture__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianMixture_a325f53c914eccc50c760f4e6befce5d2}{Gaussian\+Mixture}} () noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianMixture_af03e69dc2cef3b5342ae4912b10f288d}{Gaussian\+Mixture}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}{dim}}) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianMixture_a75aa1f6735b291c6ee42b24bfbb1267a}{Gaussian\+Mixture}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}, const bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}{use\+\_\+quaternion}}=false) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1GaussianMixture_a9f8b7fcf498f1fa73c8132b50fb838df}{$\sim$\+Gaussian\+Mixture}} () noexcept=default
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1GaussianMixture_af8a4c7df4fe68c241cbdffa2648e85d2}{resize}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}=0)
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}{mean}} ()
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}{mean}} (const std\+::size\+\_\+t i)
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}{mean}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}{mean}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}{mean}} (const std\+::size\+\_\+t i) const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}{mean}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j) const
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}{covariance}} ()
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}{covariance}} (const std\+::size\+\_\+t i)
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}{covariance}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j, const std\+::size\+\_\+t k)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}{covariance}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}{covariance}} (const std\+::size\+\_\+t i) const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}{covariance}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j, const std\+::size\+\_\+t k) const
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}{weight}} ()
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}{weight}} (const std\+::size\+\_\+t i)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}{weight}} () const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}{weight}} (const std\+::size\+\_\+t i) const
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}{augment\+With\+Noise}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&noise\+\_\+covariance\+\_\+matrix)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}{use\+\_\+quaternion}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}{dim\+\_\+circular\+\_\+component}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}{dim}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}{dim\+\_\+noise}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}{dim\+\_\+covariance}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}{mean\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}{covariance\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}{weight\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 20 of file Gaussian\+Mixture.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a325f53c914eccc50c760f4e6befce5d2}\label{classbfl_1_1GaussianMixture_a325f53c914eccc50c760f4e6befce5d2}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!GaussianMixture@{GaussianMixture}}
+\index{GaussianMixture@{GaussianMixture}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{GaussianMixture()}{GaussianMixture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Gaussian\+Mixture\+::\+Gaussian\+Mixture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 14 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_af03e69dc2cef3b5342ae4912b10f288d}\label{classbfl_1_1GaussianMixture_af03e69dc2cef3b5342ae4912b10f288d}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!GaussianMixture@{GaussianMixture}}
+\index{GaussianMixture@{GaussianMixture}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{GaussianMixture()}{GaussianMixture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Gaussian\+Mixture\+::\+Gaussian\+Mixture (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 19 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a75aa1f6735b291c6ee42b24bfbb1267a}\label{classbfl_1_1GaussianMixture_a75aa1f6735b291c6ee42b24bfbb1267a}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!GaussianMixture@{GaussianMixture}}
+\index{GaussianMixture@{GaussianMixture}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{GaussianMixture()}{GaussianMixture()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Gaussian\+Mixture\+::\+Gaussian\+Mixture (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+linear,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+circular,  }\item[{const bool}]{use\+\_\+quaternion = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 25 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a9f8b7fcf498f1fa73c8132b50fb838df}\label{classbfl_1_1GaussianMixture_a9f8b7fcf498f1fa73c8132b50fb838df}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!````~GaussianMixture@{$\sim$GaussianMixture}}
+\index{````~GaussianMixture@{$\sim$GaussianMixture}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{$\sim$GaussianMixture()}{~GaussianMixture()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Gaussian\+Mixture\+::$\sim$\+Gaussian\+Mixture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}\label{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!augmentWithNoise@{augmentWithNoise}}
+\index{augmentWithNoise@{augmentWithNoise}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{augmentWithNoise()}{augmentWithNoise()}}
+{\footnotesize\ttfamily bool Gaussian\+Mixture\+::augment\+With\+Noise (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{noise\+\_\+covariance\+\_\+matrix }\end{DoxyParamCaption})}
+
+
+
+Definition at line 190 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::\+U\+K\+F\+Prediction\+::predict\+Step().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}\label{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 130 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::\+Resampling\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}\label{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}\label{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Ref$<$ Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 136 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}\label{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 154 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}\label{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j,  }\item[{const std\+::size\+\_\+t}]{k }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}\label{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j,  }\item[{const std\+::size\+\_\+t}]{k }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 160 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}\label{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 94 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::\+Resampling\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}\label{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}\label{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Ref$<$ Vector\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}\label{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Vector\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 118 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}\label{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})}
+
+
+
+Definition at line 106 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}\label{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean@{mean}}
+\index{mean@{mean}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 124 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_af8a4c7df4fe68c241cbdffa2648e85d2}\label{classbfl_1_1GaussianMixture_af8a4c7df4fe68c241cbdffa2648e85d2}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!resize@{resize}}
+\index{resize@{resize}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void Gaussian\+Mixture\+::resize (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+linear,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+circular = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1ParticleSet_ac1db7a214fc3739fb8ae6fc65dfc2ab1}{bfl\+::\+Particle\+Set}}.
+
+
+
+Definition at line 64 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+Particle\+Set\+::resize(), and bfl\+::\+Gaussian\+::resize().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}\label{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!weight@{weight}}
+\index{weight@{weight}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily const Ref$<$ const Vector\+Xd $>$ Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 166 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+Bootstrap\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+Init\+Surveillance\+Area\+Grid\+::initialize(), bfl\+::\+Draw\+Particles\+::predict\+Step(), bfl\+::\+G\+P\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), and bfl\+::\+Resampling\+::resample().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}\label{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!weight@{weight}}
+\index{weight@{weight}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}\label{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!weight@{weight}}
+\index{weight@{weight}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 172 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}\label{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!weight@{weight}}
+\index{weight@{weight}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 184 of file Gaussian\+Mixture.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}\label{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!components@{components}}
+\index{components@{components}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::components}
+
+
+
+Definition at line 67 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Particle\+Set\+::operator+=(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}\label{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!covariance\_@{covariance\_}}
+\index{covariance\_@{covariance\_}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{covariance\_}{covariance\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+Gaussian\+Mixture\+::covariance\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 86 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+Particle\+Set\+::operator+=().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}\label{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim@{dim}}
+\index{dim@{dim}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim}{dim}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim}
+
+
+
+Definition at line 73 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::sigma\+\_\+point\+::sigma\+\_\+point().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}\label{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim\_circular@{dim\_circular}}
+\index{dim\_circular@{dim\_circular}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim\_circular}{dim\_circular}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+circular}
+
+
+
+Definition at line 77 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}\label{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim\_circular\_component@{dim\_circular\_component}}
+\index{dim\_circular\_component@{dim\_circular\_component}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim\_circular\_component}{dim\_circular\_component}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+circular\+\_\+component}
+
+
+
+Definition at line 71 of file Gaussian\+Mixture.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}\label{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim\_covariance@{dim\_covariance}}
+\index{dim\_covariance@{dim\_covariance}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim\_covariance}{dim\_covariance}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+covariance}
+
+
+
+Definition at line 81 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}\label{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim\_linear@{dim\_linear}}
+\index{dim\_linear@{dim\_linear}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim\_linear}{dim\_linear}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+linear}
+
+
+
+Definition at line 75 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}\label{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!dim\_noise@{dim\_noise}}
+\index{dim\_noise@{dim\_noise}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{dim\_noise}{dim\_noise}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+noise}
+
+
+
+Definition at line 79 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}\label{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+Gaussian\+Mixture\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 84 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+Particle\+Set\+::operator+=().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}\label{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!use\_quaternion@{use\_quaternion}}
+\index{use\_quaternion@{use\_quaternion}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{use\_quaternion}{use\_quaternion}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Mixture\+::use\+\_\+quaternion}
+
+
+
+Definition at line 69 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}\label{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}} 
+\index{bfl::GaussianMixture@{bfl::GaussianMixture}!weight\_@{weight\_}}
+\index{weight\_@{weight\_}!bfl::GaussianMixture@{bfl::GaussianMixture}}
+\doxysubsubsection{\texorpdfstring{weight\_}{weight\_}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd bfl\+::\+Gaussian\+Mixture\+::weight\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 88 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+Particle\+Set\+::operator+=().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{GaussianMixture_8h}{Gaussian\+Mixture.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{GaussianMixture_8cpp}{Gaussian\+Mixture.\+cpp}}\end{DoxyCompactItemize}

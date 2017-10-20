@@ -1,0 +1,232 @@
+\hypertarget{classbfl_1_1KFCorrection}{}\doxysection{bfl\+::K\+F\+Correction Class Reference}
+\label{classbfl_1_1KFCorrection}\index{bfl::KFCorrection@{bfl::KFCorrection}}
+
+
+{\ttfamily \#include $<$K\+F\+Correction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::K\+F\+Correction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classbfl_1_1KFCorrection__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1KFCorrection_a4d676d6417b521731f2e88d3507168b7}{K\+F\+Correction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel}{Linear\+Measurement\+Model}} $>$ measurement\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1KFCorrection_a5c3aced3721909b74dcc26b431411196}{K\+F\+Correction}} (\mbox{\hyperlink{classbfl_1_1KFCorrection}{K\+F\+Correction}} \&\&kf\+\_\+prediction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1KFCorrection_ae24bc674721c94bd235122adbed67c51}{$\sim$\+K\+F\+Correction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& \mbox{\hyperlink{classbfl_1_1KFCorrection_a71faf84180752e4e31b4eaa5db1c18d1}{get\+Measurement\+Model}} () override
+\item 
+std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1KFCorrection_a9ab5cc64f6d37843bf08393650317d81}{get\+Likelihood}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}{correct}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&corr\+\_\+state)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}{skip}} (const bool status)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}{freeze\+\_\+measurements}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1KFCorrection_ac97f8001212bd43071a1e4f2f7fe649d}{correct\+Step}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&corr\+\_\+state) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel}{Linear\+Measurement\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1KFCorrection_a4e6d053bf4a6fb2270b34c7c866b4347}{measurement\+\_\+model\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1KFCorrection_a2af91e2e89ddd4dc7f30b9523529c167}{innovations\+\_\+}}
+\item 
+\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \mbox{\hyperlink{classbfl_1_1KFCorrection_af63db28183a16b4843c6ae63cca438c1}{meas\+\_\+covariances\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 22 of file K\+F\+Correction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a4d676d6417b521731f2e88d3507168b7}\label{classbfl_1_1KFCorrection_a4d676d6417b521731f2e88d3507168b7}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!KFCorrection@{KFCorrection}}
+\index{KFCorrection@{KFCorrection}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{KFCorrection()}{KFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily K\+F\+Correction\+::\+K\+F\+Correction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel}{Linear\+Measurement\+Model}} $>$}]{measurement\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 15 of file K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a5c3aced3721909b74dcc26b431411196}\label{classbfl_1_1KFCorrection_a5c3aced3721909b74dcc26b431411196}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!KFCorrection@{KFCorrection}}
+\index{KFCorrection@{KFCorrection}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{KFCorrection()}{KFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily K\+F\+Correction\+::\+K\+F\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1KFCorrection}{K\+F\+Correction}} \&\&}]{kf\+\_\+prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 20 of file K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_ae24bc674721c94bd235122adbed67c51}\label{classbfl_1_1KFCorrection_ae24bc674721c94bd235122adbed67c51}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!````~KFCorrection@{$\sim$KFCorrection}}
+\index{````~KFCorrection@{$\sim$KFCorrection}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{$\sim$KFCorrection()}{~KFCorrection()}}
+{\footnotesize\ttfamily virtual bfl\+::\+K\+F\+Correction\+::$\sim$\+K\+F\+Correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}\label{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!correct@{correct}}
+\index{correct@{correct}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{correct()}{correct()}}
+{\footnotesize\ttfamily void Gaussian\+Correction\+::correct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{corr\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 16 of file Gaussian\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_ac97f8001212bd43071a1e4f2f7fe649d}\label{classbfl_1_1KFCorrection_ac97f8001212bd43071a1e4f2f7fe649d}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!correctStep@{correctStep}}
+\index{correctStep@{correctStep}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{correctStep()}{correctStep()}}
+{\footnotesize\ttfamily void K\+F\+Correction\+::correct\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{corr\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianCorrection_af30322d949e8135e1ec243bd6df00c18}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 46 of file K\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::components, bfl\+::\+Gaussian\+Mixture\+::covariance(), and bfl\+::\+Gaussian\+Mixture\+::mean().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classbfl_1_1KFCorrection_ac97f8001212bd43071a1e4f2f7fe649d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}\label{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!freeze\_measurements@{freeze\_measurements}}
+\index{freeze\_measurements@{freeze\_measurements}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{freeze\_measurements()}{freeze\_measurements()}}
+{\footnotesize\ttfamily bool Gaussian\+Correction\+::freeze\+\_\+measurements (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 34 of file Gaussian\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a9ab5cc64f6d37843bf08393650317d81}\label{classbfl_1_1KFCorrection_a9ab5cc64f6d37843bf08393650317d81}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!getLikelihood@{getLikelihood}}
+\index{getLikelihood@{getLikelihood}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihood()}{getLikelihood()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Vector\+Xd $>$ K\+F\+Correction\+::get\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a955702adbdad6448d8f306752d3d0868}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 31 of file K\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::utils\+::multivariate\+\_\+gaussian\+\_\+density().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1KFCorrection_a9ab5cc64f6d37843bf08393650317d81_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a71faf84180752e4e31b4eaa5db1c18d1}\label{classbfl_1_1KFCorrection_a71faf84180752e4e31b4eaa5db1c18d1}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!getMeasurementModel@{getMeasurementModel}}
+\index{getMeasurementModel@{getMeasurementModel}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{getMeasurementModel()}{getMeasurementModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& K\+F\+Correction\+::get\+Measurement\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianCorrection_af609a22d84cc17a7337486c339ef30c3}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 25 of file K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}\label{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!skip@{skip}}
+\index{skip@{skip}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool Gaussian\+Correction\+::skip (\begin{DoxyParamCaption}\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 26 of file Gaussian\+Correction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a2af91e2e89ddd4dc7f30b9523529c167}\label{classbfl_1_1KFCorrection_a2af91e2e89ddd4dc7f30b9523529c167}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!innovations\_@{innovations\_}}
+\index{innovations\_@{innovations\_}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{innovations\_}{innovations\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+K\+F\+Correction\+::innovations\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 42 of file K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_af63db28183a16b4843c6ae63cca438c1}\label{classbfl_1_1KFCorrection_af63db28183a16b4843c6ae63cca438c1}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!meas\_covariances\_@{meas\_covariances\_}}
+\index{meas\_covariances\_@{meas\_covariances\_}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{meas\_covariances\_}{meas\_covariances\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} bfl\+::\+K\+F\+Correction\+::meas\+\_\+covariances\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 44 of file K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1KFCorrection_a4e6d053bf4a6fb2270b34c7c866b4347}\label{classbfl_1_1KFCorrection_a4e6d053bf4a6fb2270b34c7c866b4347}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!measurement\_model\_@{measurement\_model\_}}
+\index{measurement\_model\_@{measurement\_model\_}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{measurement\_model\_}{measurement\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1LinearMeasurementModel}{Linear\+Measurement\+Model}}$>$ bfl\+::\+K\+F\+Correction\+::measurement\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 40 of file K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}\label{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}} 
+\index{bfl::KFCorrection@{bfl::KFCorrection}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::KFCorrection@{bfl::KFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Correction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 52 of file Gaussian\+Correction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{KFCorrection_8h}{K\+F\+Correction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{KFCorrection_8cpp}{K\+F\+Correction.\+cpp}}\end{DoxyCompactItemize}

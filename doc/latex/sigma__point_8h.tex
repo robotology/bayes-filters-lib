@@ -1,0 +1,60 @@
+\hypertarget{sigma__point_8h}{}\doxysection{/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/sigma\+\_\+point.h File Reference}
+\label{sigma__point_8h}\index{/home/user/bayes-\/filters-\/lib/src/BayesFilters/include/BayesFilters/sigma\_point.h@{/home/user/bayes-\/filters-\/lib/src/BayesFilters/include/BayesFilters/sigma\_point.h}}
+{\ttfamily \#include $<$Bayes\+Filters/\+Additive\+Measurement\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Additive\+State\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Data.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Exogenous\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Gaussian\+Mixture.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Measurement\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+State\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$Bayes\+Filters/\+Vector\+Description.\+h$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+Include dependency graph for sigma\+\_\+point.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sigma__point_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sigma__point_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{bfl\+::sigma\+\_\+point\+::\+U\+T\+Weight}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacebfl}{bfl}}
+\begin{DoxyCompactList}\small\item\em Port of boost\+::any for C++11 compilers. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacebfl_1_1sigma__point}{bfl\+::sigma\+\_\+point}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacebfl_1_1sigma__point_aaf8acb0a1c09488986c8cdc9654869e5}{bfl\+::sigma\+\_\+point\+::\+Function\+Evaluation}} = std\+::function$<$ std\+::tuple$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}}, \mbox{\hyperlink{classbfl_1_1VectorDescription}{bfl\+::\+Vector\+Description}} $>$(const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&)$>$
+\begin{DoxyCompactList}\small\item\em A Function\+Evaluation return. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacebfl_1_1sigma__point_a2cdca209c158edd6440c2f077b345799}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+weights}} (const std\+::size\+\_\+t n, const double alpha, const double beta, const double kappa, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ weight\+\_\+mean, Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ weight\+\_\+covariance, double \&c)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{namespacebfl_1_1sigma__point_ab919aca5fccc30ee2acd5cd966cd9dc9}{bfl\+::sigma\+\_\+point\+::sigma\+\_\+point}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&state, const double c)
+\item 
+std\+::tuple$<$ bool, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}}, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacebfl_1_1sigma__point_afe170453152d4f96db4dad71bd9be9a3}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&input, const \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{U\+T\+Weight}} \&weight, \mbox{\hyperlink{namespacebfl_1_1sigma__point_aaf8acb0a1c09488986c8cdc9654869e5}{Function\+Evaluation}} function)
+\item 
+std\+::pair$<$ \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}}, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacebfl_1_1sigma__point_a49b40777ee901dfbe3752e8f165fb439}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&state, const \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{U\+T\+Weight}} \&weight, \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \&state\+\_\+model)
+\item 
+std\+::pair$<$ \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}}, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacebfl_1_1sigma__point_ab1a8018531dbd8a28c08dd3418d1976d}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&state, const \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{U\+T\+Weight}} \&weight, \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}} \&state\+\_\+model)
+\item 
+std\+::tuple$<$ bool, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}}, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacebfl_1_1sigma__point_a5b51d83e121121ecc6d65e9e5e7d6859}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&state, const \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{U\+T\+Weight}} \&weight, \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \&meas\+\_\+model)
+\item 
+std\+::tuple$<$ bool, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}}, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{namespacebfl_1_1sigma__point_a27f6087b127407402338b68bf7853ae6}{bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&state, const \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{U\+T\+Weight}} \&weight, \mbox{\hyperlink{classbfl_1_1AdditiveMeasurementModel}{Additive\+Measurement\+Model}} \&meas\+\_\+model)
+\end{DoxyCompactItemize}

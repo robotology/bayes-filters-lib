@@ -1,0 +1,601 @@
+\hypertarget{classbfl_1_1ParticleSet}{}\doxysection{bfl\+::Particle\+Set Class Reference}
+\label{classbfl_1_1ParticleSet}\index{bfl::ParticleSet@{bfl::ParticleSet}}
+
+
+{\ttfamily \#include $<$Particle\+Set.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Particle\+Set\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classbfl_1_1ParticleSet__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleSet_a37f038148d98352c1d6b0e45b0511f9f}{Particle\+Set}} () noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleSet_a129747cd8ae551459f3c84e3da6cc537}{Particle\+Set}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}{dim}}) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleSet_ae45bf67143ec4f8200451a0e1dffb5b3}{Particle\+Set}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}, const bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}{use\+\_\+quaternion}}=false) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1ParticleSet_a3f68e8615309d77448ca7428d53be822}{$\sim$\+Particle\+Set}} () noexcept=default
+\item 
+void \mbox{\hyperlink{classbfl_1_1ParticleSet_ac1db7a214fc3739fb8ae6fc65dfc2ab1}{resize}} (const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}, const std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}=0) override
+\item 
+\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \& \mbox{\hyperlink{classbfl_1_1ParticleSet_a79153d8980f985a33ddf9b4abd40f8ed}{operator+=}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&rhs)
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1ParticleSet_a1e169ba2f78bb9c158ea7728223c3664}{state}} ()
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1ParticleSet_abac71061f890d8356bd83e69a07fd86b}{state}} (const std\+::size\+\_\+t i)
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1ParticleSet_a363c8f374c6708b347233ed70c3f678f}{state}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1ParticleSet_ab4614aaa1e2a6e98508507ee4087b320}{state}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1ParticleSet_a8867cf0347f12e0a4368d8daea832df9}{state}} (const std\+::size\+\_\+t i) const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1ParticleSet_ac3545004318c37e1ec73abb42bc72c71}{state}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j) const
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}{mean}} ()
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}{mean}} (const std\+::size\+\_\+t i)
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}{mean}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}{mean}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}{mean}} (const std\+::size\+\_\+t i) const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}{mean}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j) const
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}{covariance}} ()
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}{covariance}} (const std\+::size\+\_\+t i)
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}{covariance}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j, const std\+::size\+\_\+t k)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}{covariance}} () const
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}{covariance}} (const std\+::size\+\_\+t i) const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}{covariance}} (const std\+::size\+\_\+t i, const std\+::size\+\_\+t j, const std\+::size\+\_\+t k) const
+\item 
+Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}{weight}} ()
+\item 
+double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}{weight}} (const std\+::size\+\_\+t i)
+\item 
+const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}{weight}} () const
+\item 
+const double \& \mbox{\hyperlink{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}{weight}} (const std\+::size\+\_\+t i) const
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}{augment\+With\+Noise}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&noise\+\_\+covariance\+\_\+matrix)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}{components}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}{use\+\_\+quaternion}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}{dim\+\_\+circular\+\_\+component}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}{dim}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}{dim\+\_\+linear}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}{dim\+\_\+circular}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}{dim\+\_\+noise}}
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}{dim\+\_\+covariance}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1ParticleSet_aa22f8487821f64e1428e37a82752c28e}{state\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}{mean\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}{covariance\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}{weight\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 20 of file Particle\+Set.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a37f038148d98352c1d6b0e45b0511f9f}\label{classbfl_1_1ParticleSet_a37f038148d98352c1d6b0e45b0511f9f}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!ParticleSet@{ParticleSet}}
+\index{ParticleSet@{ParticleSet}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{ParticleSet()}{ParticleSet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Particle\+Set\+::\+Particle\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 13 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a129747cd8ae551459f3c84e3da6cc537}\label{classbfl_1_1ParticleSet_a129747cd8ae551459f3c84e3da6cc537}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!ParticleSet@{ParticleSet}}
+\index{ParticleSet@{ParticleSet}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{ParticleSet()}{ParticleSet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Particle\+Set\+::\+Particle\+Set (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 18 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_ae45bf67143ec4f8200451a0e1dffb5b3}\label{classbfl_1_1ParticleSet_ae45bf67143ec4f8200451a0e1dffb5b3}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!ParticleSet@{ParticleSet}}
+\index{ParticleSet@{ParticleSet}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{ParticleSet()}{ParticleSet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Particle\+Set\+::\+Particle\+Set (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+linear,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+circular,  }\item[{const bool}]{use\+\_\+quaternion = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 24 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a3f68e8615309d77448ca7428d53be822}\label{classbfl_1_1ParticleSet_a3f68e8615309d77448ca7428d53be822}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!````~ParticleSet@{$\sim$ParticleSet}}
+\index{````~ParticleSet@{$\sim$ParticleSet}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{$\sim$ParticleSet()}{~ParticleSet()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Particle\+Set\+::$\sim$\+Particle\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}\label{classbfl_1_1GaussianMixture_aec4e807341e18c18faed041c41121cb7}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!augmentWithNoise@{augmentWithNoise}}
+\index{augmentWithNoise@{augmentWithNoise}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{augmentWithNoise()}{augmentWithNoise()}}
+{\footnotesize\ttfamily bool Gaussian\+Mixture\+::augment\+With\+Noise (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{noise\+\_\+covariance\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 190 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::\+U\+K\+F\+Prediction\+::predict\+Step().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}\label{classbfl_1_1GaussianMixture_a63afff5b5e09399a51ac4dbe50de568b}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 130 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::\+Resampling\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}\label{classbfl_1_1GaussianMixture_a5f3819e80f78a9e8a043992c0e5762a7}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}\label{classbfl_1_1GaussianMixture_a80a6fa7d9edfc95103236378b4da3f7f}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Ref$<$ Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 136 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}\label{classbfl_1_1GaussianMixture_a3cff0f507ed950fe6a5e0aba1bf8467a}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 154 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}\label{classbfl_1_1GaussianMixture_ad2c74407e682e3b4322df2d0e1cef28e}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j,  }\item[{const std\+::size\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 142 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}\label{classbfl_1_1GaussianMixture_a4ca0b098be0fc923f454e73e9dccf78f}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance@{covariance}}
+\index{covariance@{covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance()}{covariance()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::covariance (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j,  }\item[{const std\+::size\+\_\+t}]{k }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 160 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}\label{classbfl_1_1GaussianMixture_a7b33a3796b65b8a8b44f9569f226b4cf}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 94 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::\+Resampling\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}\label{classbfl_1_1GaussianMixture_abbd4d5186f16ed2f8cfa5678f970a2f2}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}\label{classbfl_1_1GaussianMixture_ad57440f7d524e5129afe70fc36f4fe99}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Ref$<$ Vector\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 100 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}\label{classbfl_1_1GaussianMixture_ad0dab37b16097d498dedaf23d0af3c18}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Vector\+Xd $>$ Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 118 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}\label{classbfl_1_1GaussianMixture_a21013d54d99ca5bfd1ec566a0815821e}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 106 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}\label{classbfl_1_1GaussianMixture_ac3baa237bc22f156f57d4c02deb4f518}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean@{mean}}
+\index{mean@{mean}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::mean (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 124 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a79153d8980f985a33ddf9b4abd40f8ed}\label{classbfl_1_1ParticleSet_a79153d8980f985a33ddf9b4abd40f8ed}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \& Particle\+Set\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file Particle\+Set.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::components, bfl\+::\+Gaussian\+Mixture\+::covariance\+\_\+, bfl\+::\+Gaussian\+Mixture\+::mean\+\_\+, state\+\_\+, and bfl\+::\+Gaussian\+Mixture\+::weight\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_ac1db7a214fc3739fb8ae6fc65dfc2ab1}\label{classbfl_1_1ParticleSet_ac1db7a214fc3739fb8ae6fc65dfc2ab1}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!resize@{resize}}
+\index{resize@{resize}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void Particle\+Set\+::resize (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{components,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+linear,  }\item[{const std\+::size\+\_\+t}]{dim\+\_\+circular = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classbfl_1_1GaussianMixture_af8a4c7df4fe68c241cbdffa2648e85d2}{bfl\+::\+Gaussian\+Mixture}}.
+
+
+
+Definition at line 35 of file Particle\+Set.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::resize().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1ParticleSet_ac1db7a214fc3739fb8ae6fc65dfc2ab1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a1e169ba2f78bb9c158ea7728223c3664}\label{classbfl_1_1ParticleSet_a1e169ba2f78bb9c158ea7728223c3664}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Particle\+Set\+::state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 84 of file Particle\+Set.\+cpp.
+
+
+
+Referenced by bfl\+::\+Bootstrap\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+Init\+Surveillance\+Area\+Grid\+::initialize(), bfl\+::\+Draw\+Particles\+::predict\+Step(), bfl\+::\+G\+P\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), and bfl\+::\+Resampling\+::resample().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_ab4614aaa1e2a6e98508507ee4087b320}\label{classbfl_1_1ParticleSet_ab4614aaa1e2a6e98508507ee4087b320}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Matrix\+Xd$>$ bfl\+::\+Particle\+Set\+::state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_abac71061f890d8356bd83e69a07fd86b}\label{classbfl_1_1ParticleSet_abac71061f890d8356bd83e69a07fd86b}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Ref$<$ Matrix\+Xd $>$ Particle\+Set\+::state (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 90 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a8867cf0347f12e0a4368d8daea832df9}\label{classbfl_1_1ParticleSet_a8867cf0347f12e0a4368d8daea832df9}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily const Ref$<$ const Matrix\+Xd $>$ Particle\+Set\+::state (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 108 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_a363c8f374c6708b347233ed70c3f678f}\label{classbfl_1_1ParticleSet_a363c8f374c6708b347233ed70c3f678f}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily double \& Particle\+Set\+::state (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})}
+
+
+
+Definition at line 96 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_ac3545004318c37e1ec73abb42bc72c71}\label{classbfl_1_1ParticleSet_ac3545004318c37e1ec73abb42bc72c71}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state@{state}}
+\index{state@{state}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily const double \& Particle\+Set\+::state (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i,  }\item[{const std\+::size\+\_\+t}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 114 of file Particle\+Set.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}\label{classbfl_1_1GaussianMixture_a82c919e4e81aecb4f0665dcdd20914b1}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!weight@{weight}}
+\index{weight@{weight}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily const Ref$<$ const Vector\+Xd $>$ Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 166 of file Gaussian\+Mixture.\+cpp.
+
+
+
+Referenced by bfl\+::\+Bootstrap\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+Init\+Surveillance\+Area\+Grid\+::initialize(), bfl\+::\+Draw\+Particles\+::predict\+Step(), bfl\+::\+G\+P\+F\+Prediction\+::predict\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), and bfl\+::\+Resampling\+::resample().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}\label{classbfl_1_1GaussianMixture_abad8c1a1073960321481cc8d3f05f177}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!weight@{weight}}
+\index{weight@{weight}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily const Eigen\+::\+Ref$<$const Eigen\+::\+Vector\+Xd$>$ bfl\+::\+Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}\label{classbfl_1_1GaussianMixture_a44885fb208e33f37015d47f55d02ef50}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!weight@{weight}}
+\index{weight@{weight}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily double \& Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 172 of file Gaussian\+Mixture.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}\label{classbfl_1_1GaussianMixture_a42672f88d9126f018715a4d258a57731}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!weight@{weight}}
+\index{weight@{weight}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{weight()}{weight()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily const double \& Gaussian\+Mixture\+::weight (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 184 of file Gaussian\+Mixture.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}\label{classbfl_1_1GaussianMixture_a02cc284327dbaa6b90c653dd2faccf88}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!components@{components}}
+\index{components@{components}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::components\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 67 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+G\+P\+F\+Correction\+::correct\+Step(), bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), operator+=(), bfl\+::\+K\+F\+Prediction\+::predict\+Step(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}\label{classbfl_1_1GaussianMixture_aab086cc1a89a8b7efd15303853e52920}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!covariance\_@{covariance\_}}
+\index{covariance\_@{covariance\_}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{covariance\_}{covariance\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+Gaussian\+Mixture\+::covariance\+\_\+\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 86 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by operator+=().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}\label{classbfl_1_1GaussianMixture_a3f2b18801e72fa3bf0d6edc778662a8d}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim@{dim}}
+\index{dim@{dim}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim}{dim}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 73 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::sigma\+\_\+point\+::sigma\+\_\+point().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}\label{classbfl_1_1GaussianMixture_a23f3b92753266475a9bff8ee7e1c9518}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim\_circular@{dim\_circular}}
+\index{dim\_circular@{dim\_circular}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim\_circular}{dim\_circular}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+circular\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 77 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}\label{classbfl_1_1GaussianMixture_ad9a86c5f0d3ce529af303fe9f209de15}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim\_circular\_component@{dim\_circular\_component}}
+\index{dim\_circular\_component@{dim\_circular\_component}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim\_circular\_component}{dim\_circular\_component}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+circular\+\_\+component\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 71 of file Gaussian\+Mixture.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}\label{classbfl_1_1GaussianMixture_a1ac4bfc65133fdeaff8151506d33057c}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim\_covariance@{dim\_covariance}}
+\index{dim\_covariance@{dim\_covariance}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim\_covariance}{dim\_covariance}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+covariance\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 81 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}\label{classbfl_1_1GaussianMixture_a22a0fbc77f90d9d75e89d7898484c05a}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim\_linear@{dim\_linear}}
+\index{dim\_linear@{dim\_linear}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim\_linear}{dim\_linear}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+linear\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 75 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::\+S\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Resampling\+With\+Prior\+::resample(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}\label{classbfl_1_1GaussianMixture_adaa8d9c6d03be835769cc848aba81067}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!dim\_noise@{dim\_noise}}
+\index{dim\_noise@{dim\_noise}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{dim\_noise}{dim\_noise}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+noise\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 79 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}\label{classbfl_1_1GaussianMixture_a12a1175e838a753129f4cc133b2c1a9c}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!mean\_@{mean\_}}
+\index{mean\_@{mean\_}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{mean\_}{mean\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+Gaussian\+Mixture\+::mean\+\_\+\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 84 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by operator+=().
+
+\mbox{\Hypertarget{classbfl_1_1ParticleSet_aa22f8487821f64e1428e37a82752c28e}\label{classbfl_1_1ParticleSet_aa22f8487821f64e1428e37a82752c28e}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!state\_@{state\_}}
+\index{state\_@{state\_}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{state\_}{state\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+Particle\+Set\+::state\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 49 of file Particle\+Set.\+h.
+
+
+
+Referenced by operator+=().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}\label{classbfl_1_1GaussianMixture_aa5ab9b0a24cd06ad25065d74afd8a1d9}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!use\_quaternion@{use\_quaternion}}
+\index{use\_quaternion@{use\_quaternion}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{use\_quaternion}{use\_quaternion}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Mixture\+::use\+\_\+quaternion\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 69 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}\label{classbfl_1_1GaussianMixture_ac9ce000575d6b29ad8e1a756d750faff}} 
+\index{bfl::ParticleSet@{bfl::ParticleSet}!weight\_@{weight\_}}
+\index{weight\_@{weight\_}!bfl::ParticleSet@{bfl::ParticleSet}}
+\doxysubsubsection{\texorpdfstring{weight\_}{weight\_}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd bfl\+::\+Gaussian\+Mixture\+::weight\+\_\+\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 88 of file Gaussian\+Mixture.\+h.
+
+
+
+Referenced by operator+=().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{ParticleSet_8h}{Particle\+Set.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{ParticleSet_8cpp}{Particle\+Set.\+cpp}}\end{DoxyCompactItemize}

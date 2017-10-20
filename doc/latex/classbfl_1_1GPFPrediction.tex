@@ -1,0 +1,220 @@
+\hypertarget{classbfl_1_1GPFPrediction}{}\doxysection{bfl\+::G\+P\+F\+Prediction Class Reference}
+\label{classbfl_1_1GPFPrediction}\index{bfl::GPFPrediction@{bfl::GPFPrediction}}
+
+
+{\ttfamily \#include $<$G\+P\+F\+Prediction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::G\+P\+F\+Prediction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classbfl_1_1GPFPrediction__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFPrediction_ad6fa00ad66be1e82ef3e108c2493cb50}{G\+P\+F\+Prediction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianPrediction}{Gaussian\+Prediction}} $>$ gauss\+\_\+prediction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFPrediction_ae39ce37ed23684fbbf147dc64c380265}{G\+P\+F\+Prediction}} (const \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1GPFPrediction_a0224fd395a9271a4814a8537afdcf4f6}{operator=}} (const \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFPrediction_a8532018b3ebcacd9a2dd12c15cbea531}{G\+P\+F\+Prediction}} (\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1GPFPrediction_aa48b3a9b4b29a3e28127b54002e090c0}{operator=}} (\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1GPFPrediction_a4dfaeccca705adb5f869a096198ca521}{$\sim$\+G\+P\+F\+Prediction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& \mbox{\hyperlink{classbfl_1_1GPFPrediction_ae7e1ddb4bf63c74a688ae57135002161}{get\+State\+Model}} () noexcept override
+\item 
+void \mbox{\hyperlink{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}{predict}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&prev\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}{skip}} (const std\+::string \&what\+\_\+step, const bool status)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}{is\+\_\+skipping}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1GPFPrediction_a2ee3a4fdf003589ad528926d81aa124c}{predict\+Step}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&previous\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&predicted\+\_\+particles) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianPrediction}{Gaussian\+Prediction}} $>$ \mbox{\hyperlink{classbfl_1_1GPFPrediction_a9d1807d49231bfcea49e35ecaef440ef}{gaussian\+\_\+prediction\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 24 of file G\+P\+F\+Prediction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_ad6fa00ad66be1e82ef3e108c2493cb50}\label{classbfl_1_1GPFPrediction_ad6fa00ad66be1e82ef3e108c2493cb50}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!GPFPrediction@{GPFPrediction}}
+\index{GPFPrediction@{GPFPrediction}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{GPFPrediction()}{GPFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily G\+P\+F\+Prediction\+::\+G\+P\+F\+Prediction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianPrediction}{Gaussian\+Prediction}} $>$}]{gauss\+\_\+prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 16 of file G\+P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_ae39ce37ed23684fbbf147dc64c380265}\label{classbfl_1_1GPFPrediction_ae39ce37ed23684fbbf147dc64c380265}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!GPFPrediction@{GPFPrediction}}
+\index{GPFPrediction@{GPFPrediction}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{GPFPrediction()}{GPFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bfl\+::\+G\+P\+F\+Prediction\+::\+G\+P\+F\+Prediction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_a8532018b3ebcacd9a2dd12c15cbea531}\label{classbfl_1_1GPFPrediction_a8532018b3ebcacd9a2dd12c15cbea531}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!GPFPrediction@{GPFPrediction}}
+\index{GPFPrediction@{GPFPrediction}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{GPFPrediction()}{GPFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily G\+P\+F\+Prediction\+::\+G\+P\+F\+Prediction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 21 of file G\+P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_a4dfaeccca705adb5f869a096198ca521}\label{classbfl_1_1GPFPrediction_a4dfaeccca705adb5f869a096198ca521}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!````~GPFPrediction@{$\sim$GPFPrediction}}
+\index{````~GPFPrediction@{$\sim$GPFPrediction}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{$\sim$GPFPrediction()}{~GPFPrediction()}}
+{\footnotesize\ttfamily virtual bfl\+::\+G\+P\+F\+Prediction\+::$\sim$\+G\+P\+F\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_ae7e1ddb4bf63c74a688ae57135002161}\label{classbfl_1_1GPFPrediction_ae7e1ddb4bf63c74a688ae57135002161}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!getStateModel@{getStateModel}}
+\index{getStateModel@{getStateModel}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{getStateModel()}{getStateModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& G\+P\+F\+Prediction\+::get\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFPrediction_aabd2d29bcc679c7c3bd641e8479e8337}{bfl\+::\+P\+F\+Prediction}}.
+
+
+
+Definition at line 40 of file G\+P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}\label{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!is\_skipping@{is\_skipping}}
+\index{is\_skipping@{is\_skipping}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{is\_skipping()}{is\_skipping()}}
+{\footnotesize\ttfamily bool P\+F\+Prediction\+::is\+\_\+skipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 55 of file P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_a0224fd395a9271a4814a8537afdcf4f6}\label{classbfl_1_1GPFPrediction_a0224fd395a9271a4814a8537afdcf4f6}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}}\& bfl\+::\+G\+P\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_aa48b3a9b4b29a3e28127b54002e090c0}\label{classbfl_1_1GPFPrediction_aa48b3a9b4b29a3e28127b54002e090c0}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \& G\+P\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1GPFPrediction}{G\+P\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 27 of file G\+P\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+P\+F\+Prediction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{classbfl_1_1GPFPrediction_aa48b3a9b4b29a3e28127b54002e090c0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}\label{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!predict@{predict}}
+\index{predict@{predict}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily void P\+F\+Prediction\+::predict (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{prev\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 17 of file P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_a2ee3a4fdf003589ad528926d81aa124c}\label{classbfl_1_1GPFPrediction_a2ee3a4fdf003589ad528926d81aa124c}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!predictStep@{predictStep}}
+\index{predictStep@{predictStep}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{predictStep()}{predictStep()}}
+{\footnotesize\ttfamily void G\+P\+F\+Prediction\+::predict\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{previous\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{predicted\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFPrediction_a4dcf0af769d02e2a6296bd4141f9387f}{bfl\+::\+P\+F\+Prediction}}.
+
+
+
+Definition at line 46 of file G\+P\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+Particle\+Set\+::state(), and bfl\+::\+Gaussian\+Mixture\+::weight().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{classbfl_1_1GPFPrediction_a2ee3a4fdf003589ad528926d81aa124c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}\label{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!skip@{skip}}
+\index{skip@{skip}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool P\+F\+Prediction\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 26 of file P\+F\+Prediction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GPFPrediction_a9d1807d49231bfcea49e35ecaef440ef}\label{classbfl_1_1GPFPrediction_a9d1807d49231bfcea49e35ecaef440ef}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!gaussian\_prediction\_@{gaussian\_prediction\_}}
+\index{gaussian\_prediction\_@{gaussian\_prediction\_}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{gaussian\_prediction\_}{gaussian\_prediction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1GaussianPrediction}{Gaussian\+Prediction}}$>$ bfl\+::\+G\+P\+F\+Prediction\+::gaussian\+\_\+prediction\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 47 of file G\+P\+F\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}\label{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}} 
+\index{bfl::GPFPrediction@{bfl::GPFPrediction}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::GPFPrediction@{bfl::GPFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+P\+F\+Prediction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 54 of file P\+F\+Prediction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{GPFPrediction_8h}{G\+P\+F\+Prediction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{GPFPrediction_8cpp}{G\+P\+F\+Prediction.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,14 @@
+<map id="bfl::SUKFCorrection::correctStep" name="bfl::SUKFCorrection::correctStep">
+<area shape="rect" id="node1" title=" " alt="" coords="5,129,153,171"/>
+<area shape="rect" id="node2" href="$classbfl_1_1GaussianMixture.html#a63afff5b5e09399a51ac4dbe50de568b" title=" " alt="" coords="446,5,602,47"/>
+<area shape="rect" id="node3" href="$namespacebfl_1_1directional__statistics.html#a18bffca88c7ea5f4ea11d2ad910736fe" title=" " alt="" coords="201,195,383,236"/>
+<area shape="rect" id="node4" href="$classbfl_1_1GaussianMixture.html#a7b33a3796b65b8a8b44f9569f226b4cf" title=" " alt="" coords="446,71,602,112"/>
+<area shape="rect" id="node5" href="$namespacebfl_1_1sigma__point.html#ab919aca5fccc30ee2acd5cd966cd9dc9" title=" " alt="" coords="205,129,379,171"/>
+<area shape="rect" id="node9" href="$classbfl_1_1VectorDescription.html#a1c3807b9dc0336dacd3fe2a723c77cbd" title=" " alt="" coords="211,299,373,340"/>
+<area shape="rect" id="node6" href="$namespacebfl_1_1directional__statistics.html#af9984a4df2b3f6f0bc0c264783181123" title=" " alt="" coords="433,201,615,243"/>
+<area shape="rect" id="node7" href="$namespacebfl_1_1utils.html#ab1ca09c6f5d699242615c8dbc89fa2e0" title="Evaluate the colwise sum between a unit quaternion &#160;and a set of rotation vectors &#160;in the tangent spa..." alt="" coords="431,136,617,177"/>
+<area shape="rect" id="node8" href="$namespacebfl_1_1utils.html#af901548c98d811c2b176e1d9b02aabb3" title="Convert a matrix of rotation vectors &#160;in the tangent space at the identity to their unitary quaternio..." alt="" coords="665,136,832,177"/>
+<area shape="rect" id="node10" href="$classbfl_1_1VectorDescription.html#a02aa208e08cb3130f6f2c1393dc9aa1a" title=" " alt="" coords="443,267,605,308"/>
+<area shape="rect" id="node11" href="$classbfl_1_1VectorDescription.html#a6f6e3b3a084ca449ff1ac4c7b82aec6f" title=" " alt="" coords="443,332,605,373"/>
+<area shape="rect" id="node12" href="$classbfl_1_1VectorDescription.html#a45e0d5245f401ede3601dd7e653a6b4e" title=" " alt="" coords="443,397,605,439"/>
+</map>

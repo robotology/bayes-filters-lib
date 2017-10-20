@@ -1,0 +1,394 @@
+\hypertarget{classbfl_1_1GPFCorrection}{}\doxysection{bfl\+::G\+P\+F\+Correction Class Reference}
+\label{classbfl_1_1GPFCorrection}\index{bfl::GPFCorrection@{bfl::GPFCorrection}}
+
+
+{\ttfamily \#include $<$G\+P\+F\+Correction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::G\+P\+F\+Correction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classbfl_1_1GPFCorrection__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection_a4ba6adb5535f3cf4d9fe7ae81476d049}{G\+P\+F\+Correction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$ likelihood\+\_\+model, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}} $>$ gaussian\+\_\+correction, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ state\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection_a21ed17b7f9ede6b53cc8b4742ee6a2b4}{G\+P\+F\+Correction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$ likelihood\+\_\+model, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}} $>$ gaussian\+\_\+correction, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ state\+\_\+model, unsigned int seed) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection_ab41c11805b35da7f9cdca48872cd905c}{G\+P\+F\+Correction}} (const \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&correction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \& \mbox{\hyperlink{classbfl_1_1GPFCorrection_a8728576d94acd0d7a1646b6fa67185b7}{operator=}} (const \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&correction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection_abf8264bdf6c5bfc8e241376e57868255}{G\+P\+F\+Correction}} (\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&\&correction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \& \mbox{\hyperlink{classbfl_1_1GPFCorrection_afe51f97399a0c52cf9e18a3a334c0b4f}{operator=}} (\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&\&correction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1GPFCorrection_ad0e441ddb44fa83097380d6f030a22de}{$\sim$\+G\+P\+F\+Correction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& \mbox{\hyperlink{classbfl_1_1GPFCorrection_a1909a3d0e5586c51185724b8888b6b1d}{get\+Measurement\+Model}} () noexcept override
+\item 
+\mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} \& \mbox{\hyperlink{classbfl_1_1GPFCorrection_a274556e275cb1d3cb4b9ffa34333e84b}{get\+Likelihood\+Model}} () noexcept override
+\item 
+std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_a0df1185be7731e9077eec265b8d6ff8e}{get\+Likelihood}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}{correct}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&cor\+\_\+particles)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}{skip}} (const bool status) noexcept
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}{freeze\+\_\+measurements}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1GPFCorrection_a6e5705b9c87b1175bcc77cab9ac59c2b}{correct\+Step}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&corr\+\_\+particles) override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1GPFCorrection_a6f8f793f647296a407fbeefbac781908}{sample\+From\+Proposal}} (const Eigen\+::\+Vector\+Xd \&mean, const Eigen\+::\+Matrix\+Xd \&covariance)
+\item 
+double \mbox{\hyperlink{classbfl_1_1GPFCorrection_a076c8609b08b17fb3c32eaa4e5b7c3eb}{evaluate\+Proposal}} (const Eigen\+::\+Vector\+Xd \&state, const Eigen\+::\+Vector\+Xd \&mean, const Eigen\+::\+Matrix\+Xd \&covariance)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ double()$>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_acec1a6f0c4634b864bc4d22d7f861307}{gaussian\+\_\+random\+\_\+sample\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Random number generator function from a Normal distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_a15f64121f80ed7e7eba69a04907cafa3}{likelihood\+\_\+model\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}} $>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_a8b14a2e9805c1cbe518d1affc8ecdca6}{gaussian\+\_\+correction\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_afce79b04a77273f16bbfd4f34c49d1e2}{state\+\_\+model\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The state model is required to evaluate the Markov transition probability that is used in the update of the particles weight. \end{DoxyCompactList}\item 
+std\+::mt19937\+\_\+64 \mbox{\hyperlink{classbfl_1_1GPFCorrection_ac1021f6b12969d08231bcefdd0303f80}{generator\+\_\+}}
+\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{classbfl_1_1GPFCorrection_a9d2f1ed3b529e340e5d019d80e572d8d}{distribution\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GPFCorrection_a862b3b2e68bcfec4ecf252f427842df0}{valid\+\_\+likelihood\+\_\+}}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classbfl_1_1GPFCorrection_a9166ad59bdbc22adf5b6421618d8bfa8}{likelihood\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 27 of file G\+P\+F\+Correction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a4ba6adb5535f3cf4d9fe7ae81476d049}\label{classbfl_1_1GPFCorrection_a4ba6adb5535f3cf4d9fe7ae81476d049}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!GPFCorrection@{GPFCorrection}}
+\index{GPFCorrection@{GPFCorrection}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{GPFCorrection()}{GPFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily G\+P\+F\+Correction\+::\+G\+P\+F\+Correction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$}]{likelihood\+\_\+model,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}} $>$}]{gaussian\+\_\+correction,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 20 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a21ed17b7f9ede6b53cc8b4742ee6a2b4}\label{classbfl_1_1GPFCorrection_a21ed17b7f9ede6b53cc8b4742ee6a2b4}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!GPFCorrection@{GPFCorrection}}
+\index{GPFCorrection@{GPFCorrection}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{GPFCorrection()}{GPFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily G\+P\+F\+Correction\+::\+G\+P\+F\+Correction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} $>$}]{likelihood\+\_\+model,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}} $>$}]{gaussian\+\_\+correction,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$}]{state\+\_\+model,  }\item[{unsigned int}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 30 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_ab41c11805b35da7f9cdca48872cd905c}\label{classbfl_1_1GPFCorrection_ab41c11805b35da7f9cdca48872cd905c}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!GPFCorrection@{GPFCorrection}}
+\index{GPFCorrection@{GPFCorrection}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{GPFCorrection()}{GPFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily bfl\+::\+G\+P\+F\+Correction\+::\+G\+P\+F\+Correction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_abf8264bdf6c5bfc8e241376e57868255}\label{classbfl_1_1GPFCorrection_abf8264bdf6c5bfc8e241376e57868255}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!GPFCorrection@{GPFCorrection}}
+\index{GPFCorrection@{GPFCorrection}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{GPFCorrection()}{GPFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily G\+P\+F\+Correction\+::\+G\+P\+F\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&\&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 45 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_ad0e441ddb44fa83097380d6f030a22de}\label{classbfl_1_1GPFCorrection_ad0e441ddb44fa83097380d6f030a22de}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!````~GPFCorrection@{$\sim$GPFCorrection}}
+\index{````~GPFCorrection@{$\sim$GPFCorrection}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{$\sim$GPFCorrection()}{~GPFCorrection()}}
+{\footnotesize\ttfamily virtual bfl\+::\+G\+P\+F\+Correction\+::$\sim$\+G\+P\+F\+Correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}\label{classbfl_1_1PFCorrection_a662c99c1a1de45aa92803cd70f9167ba}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!correct@{correct}}
+\index{correct@{correct}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{correct()}{correct()}}
+{\footnotesize\ttfamily void P\+F\+Correction\+::correct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{cor\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 14 of file P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a6e5705b9c87b1175bcc77cab9ac59c2b}\label{classbfl_1_1GPFCorrection_a6e5705b9c87b1175bcc77cab9ac59c2b}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!correctStep@{correctStep}}
+\index{correctStep@{correctStep}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{correctStep()}{correctStep()}}
+{\footnotesize\ttfamily void G\+P\+F\+Correction\+::correct\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{bfl\+::\+Particle\+Set}} \&}]{corr\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a1bccf75e6193b93f86d26cd2c61cf597}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 98 of file G\+P\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::components, bfl\+::\+Gaussian\+Mixture\+::covariance(), bfl\+::\+Gaussian\+Mixture\+::mean(), bfl\+::\+Particle\+Set\+::state(), and bfl\+::\+Gaussian\+Mixture\+::weight().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classbfl_1_1GPFCorrection_a6e5705b9c87b1175bcc77cab9ac59c2b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a076c8609b08b17fb3c32eaa4e5b7c3eb}\label{classbfl_1_1GPFCorrection_a076c8609b08b17fb3c32eaa4e5b7c3eb}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!evaluateProposal@{evaluateProposal}}
+\index{evaluateProposal@{evaluateProposal}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{evaluateProposal()}{evaluateProposal()}}
+{\footnotesize\ttfamily double G\+P\+F\+Correction\+::evaluate\+Proposal (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{state,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{mean,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{covariance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 153 of file G\+P\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::utils\+::multivariate\+\_\+gaussian\+\_\+density().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1GPFCorrection_a076c8609b08b17fb3c32eaa4e5b7c3eb_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}\label{classbfl_1_1PFCorrection_afd22c750af8a16d568f570a6345c5756}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!freeze\_measurements@{freeze\_measurements}}
+\index{freeze\_measurements@{freeze\_measurements}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{freeze\_measurements()}{freeze\_measurements()}}
+{\footnotesize\ttfamily bool P\+F\+Correction\+::freeze\+\_\+measurements (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 32 of file P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a0df1185be7731e9077eec265b8d6ff8e}\label{classbfl_1_1GPFCorrection_a0df1185be7731e9077eec265b8d6ff8e}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!getLikelihood@{getLikelihood}}
+\index{getLikelihood@{getLikelihood}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihood()}{getLikelihood()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ G\+P\+F\+Correction\+::get\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_ab6eca766077c4ab1db3417dab6c44d27}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 92 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a274556e275cb1d3cb4b9ffa34333e84b}\label{classbfl_1_1GPFCorrection_a274556e275cb1d3cb4b9ffa34333e84b}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!getLikelihoodModel@{getLikelihoodModel}}
+\index{getLikelihoodModel@{getLikelihoodModel}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihoodModel()}{getLikelihoodModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}} \& G\+P\+F\+Correction\+::get\+Likelihood\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a4160297fd6aa59264aa23ac033e70f1d}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 86 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a1909a3d0e5586c51185724b8888b6b1d}\label{classbfl_1_1GPFCorrection_a1909a3d0e5586c51185724b8888b6b1d}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!getMeasurementModel@{getMeasurementModel}}
+\index{getMeasurementModel@{getMeasurementModel}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{getMeasurementModel()}{getMeasurementModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& G\+P\+F\+Correction\+::get\+Measurement\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFCorrection_a9b10140c6be7131c1dc0d58cf1af32b4}{bfl\+::\+P\+F\+Correction}}.
+
+
+
+Definition at line 80 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a8728576d94acd0d7a1646b6fa67185b7}\label{classbfl_1_1GPFCorrection_a8728576d94acd0d7a1646b6fa67185b7}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}}\& bfl\+::\+G\+P\+F\+Correction\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_afe51f97399a0c52cf9e18a3a334c0b4f}\label{classbfl_1_1GPFCorrection_afe51f97399a0c52cf9e18a3a334c0b4f}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \& G\+P\+F\+Correction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1GPFCorrection}{G\+P\+F\+Correction}} \&\&}]{correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 58 of file G\+P\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::\+P\+F\+Correction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{classbfl_1_1GPFCorrection_afe51f97399a0c52cf9e18a3a334c0b4f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a6f8f793f647296a407fbeefbac781908}\label{classbfl_1_1GPFCorrection_a6f8f793f647296a407fbeefbac781908}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!sampleFromProposal@{sampleFromProposal}}
+\index{sampleFromProposal@{sampleFromProposal}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{sampleFromProposal()}{sampleFromProposal()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd G\+P\+F\+Correction\+::sample\+From\+Proposal (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{mean,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{covariance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 133 of file G\+P\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}\label{classbfl_1_1PFCorrection_afb7509df7b6a1d7ba6904f32d1c6c155}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!skip@{skip}}
+\index{skip@{skip}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool P\+F\+Correction\+::skip (\begin{DoxyParamCaption}\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 24 of file P\+F\+Correction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a9d2f1ed3b529e340e5d019d80e572d8d}\label{classbfl_1_1GPFCorrection_a9d2f1ed3b529e340e5d019d80e572d8d}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!distribution\_@{distribution\_}}
+\index{distribution\_@{distribution\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{distribution\_}{distribution\_}}
+{\footnotesize\ttfamily std\+::normal\+\_\+distribution$<$double$>$ bfl\+::\+G\+P\+F\+Correction\+::distribution\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 77 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a8b14a2e9805c1cbe518d1affc8ecdca6}\label{classbfl_1_1GPFCorrection_a8b14a2e9805c1cbe518d1affc8ecdca6}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!gaussian\_correction\_@{gaussian\_correction\_}}
+\index{gaussian\_correction\_@{gaussian\_correction\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{gaussian\_correction\_}{gaussian\_correction\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1GaussianCorrection}{Gaussian\+Correction}}$>$ bfl\+::\+G\+P\+F\+Correction\+::gaussian\+\_\+correction\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 67 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_acec1a6f0c4634b864bc4d22d7f861307}\label{classbfl_1_1GPFCorrection_acec1a6f0c4634b864bc4d22d7f861307}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!gaussian\_random\_sample\_@{gaussian\_random\_sample\_}}
+\index{gaussian\_random\_sample\_@{gaussian\_random\_sample\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{gaussian\_random\_sample\_}{gaussian\_random\_sample\_}}
+{\footnotesize\ttfamily std\+::function$<$double()$>$ bfl\+::\+G\+P\+F\+Correction\+::gaussian\+\_\+random\+\_\+sample\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Random number generator function from a Normal distribution. 
+
+A call to {\ttfamily \mbox{\hyperlink{classbfl_1_1GPFCorrection_acec1a6f0c4634b864bc4d22d7f861307}{gaussian\+\_\+random\+\_\+sample\+\_\+()}}} returns a double-\/precision floating-\/point random number. 
+
+Definition at line 62 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_ac1021f6b12969d08231bcefdd0303f80}\label{classbfl_1_1GPFCorrection_ac1021f6b12969d08231bcefdd0303f80}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!generator\_@{generator\_}}
+\index{generator\_@{generator\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{generator\_}{generator\_}}
+{\footnotesize\ttfamily std\+::mt19937\+\_\+64 bfl\+::\+G\+P\+F\+Correction\+::generator\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 75 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a9166ad59bdbc22adf5b6421618d8bfa8}\label{classbfl_1_1GPFCorrection_a9166ad59bdbc22adf5b6421618d8bfa8}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!likelihood\_@{likelihood\_}}
+\index{likelihood\_@{likelihood\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{likelihood\_}{likelihood\_}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd bfl\+::\+G\+P\+F\+Correction\+::likelihood\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 81 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a15f64121f80ed7e7eba69a04907cafa3}\label{classbfl_1_1GPFCorrection_a15f64121f80ed7e7eba69a04907cafa3}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!likelihood\_model\_@{likelihood\_model\_}}
+\index{likelihood\_model\_@{likelihood\_model\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{likelihood\_model\_}{likelihood\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1LikelihoodModel}{Likelihood\+Model}}$>$ bfl\+::\+G\+P\+F\+Correction\+::likelihood\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 65 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}\label{classbfl_1_1PFCorrection_aac7b1063a3207bd00547ad5490bbc935}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+P\+F\+Correction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 58 of file P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_afce79b04a77273f16bbfd4f34c49d1e2}\label{classbfl_1_1GPFCorrection_afce79b04a77273f16bbfd4f34c49d1e2}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!state\_model\_@{state\_model\_}}
+\index{state\_model\_@{state\_model\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{state\_model\_}{state\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}}$>$ bfl\+::\+G\+P\+F\+Correction\+::state\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The state model is required to evaluate the Markov transition probability that is used in the update of the particles weight. 
+
+
+
+Definition at line 73 of file G\+P\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GPFCorrection_a862b3b2e68bcfec4ecf252f427842df0}\label{classbfl_1_1GPFCorrection_a862b3b2e68bcfec4ecf252f427842df0}} 
+\index{bfl::GPFCorrection@{bfl::GPFCorrection}!valid\_likelihood\_@{valid\_likelihood\_}}
+\index{valid\_likelihood\_@{valid\_likelihood\_}!bfl::GPFCorrection@{bfl::GPFCorrection}}
+\doxysubsubsection{\texorpdfstring{valid\_likelihood\_}{valid\_likelihood\_}}
+{\footnotesize\ttfamily bool bfl\+::\+G\+P\+F\+Correction\+::valid\+\_\+likelihood\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 79 of file G\+P\+F\+Correction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{GPFCorrection_8h}{G\+P\+F\+Correction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{GPFCorrection_8cpp}{G\+P\+F\+Correction.\+cpp}}\end{DoxyCompactItemize}

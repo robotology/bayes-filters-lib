@@ -1,0 +1,4 @@
+<map id="bfl::any::swap" name="bfl::any::swap">
+<area shape="rect" id="node1" title="Overloads the std::swap algorithm for std::any." alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$classbfl_1_1any_1_1any.html#a0441e5816aa5ef4721f134868b7ca402" title="Swaps the content of two any objects." alt="" coords="164,5,307,32"/>
+</map>

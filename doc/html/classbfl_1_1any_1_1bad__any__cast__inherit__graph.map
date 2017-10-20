@@ -1,0 +1,4 @@
+<map id="bfl::any::bad_any_cast" name="bfl::any::bad_any_cast">
+<area shape="rect" id="node1" title="Defines a type of object to be thrown by the value&#45;returning forms of blf::any::any_cast on failure." alt="" coords="5,80,172,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="35,5,143,32"/>
+</map>

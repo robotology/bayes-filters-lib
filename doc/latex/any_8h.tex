@@ -1,0 +1,54 @@
+\hypertarget{any_8h}{}\doxysection{/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/any.h File Reference}
+\label{any_8h}\index{/home/user/bayes-\/filters-\/lib/src/BayesFilters/include/BayesFilters/any.h@{/home/user/bayes-\/filters-\/lib/src/BayesFilters/include/BayesFilters/any.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$typeinfo$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+Include dependency graph for any.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{any_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{any_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any}{bfl\+::any\+::any}}
+\begin{DoxyCompactList}\small\item\em The class any describes a type-\/safe container for single values of any type. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any_1_1placeholder}{bfl\+::any\+::any\+::placeholder}}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any_1_1holder}{bfl\+::any\+::any\+::holder$<$ Value\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1bad__any__cast}{bfl\+::any\+::bad\+\_\+any\+\_\+cast}}
+\begin{DoxyCompactList}\small\item\em Defines a type of object to be thrown by the value-\/returning forms of blf\+::any\+::any\+\_\+cast on failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacebfl}{bfl}}
+\begin{DoxyCompactList}\small\item\em Port of boost\+::any for C++11 compilers. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacebfl_1_1any}{bfl\+::any}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacebfl_1_1any_adb1328ea975e3bf9c0addc1689215bad}{bfl\+::any\+::swap}} (any \&lhs, any \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Overloads the std\+::swap algorithm for std\+::any. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type $\ast$ \mbox{\hyperlink{namespacebfl_1_1any_a4ecb51ad57b3fa935cabdc0dcdcb4df1}{bfl\+::any\+::any\+\_\+cast}} (any $\ast$operand) noexcept
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\const Value\+Type $\ast$ \mbox{\hyperlink{namespacebfl_1_1any_a16c163e06edb8565e3b47c4bf6136a52}{bfl\+::any\+::any\+\_\+cast}} (const any $\ast$operand) noexcept
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_a2b5d2dbb287832915598b087083885be}{bfl\+::any\+::any\+\_\+cast}} (any \&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_aa10ebe32454df7c7769d7391c72f2230}{bfl\+::any\+::any\+\_\+cast}} (const any \&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_ad3725007dbc3ccb1af3f821dc5a3afd3}{bfl\+::any\+::any\+\_\+cast}} (any \&\&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\end{DoxyCompactItemize}

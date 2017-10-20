@@ -1,0 +1,190 @@
+\hypertarget{namespacebfl_1_1any}{}\doxysection{bfl\+::any Namespace Reference}
+\label{namespacebfl_1_1any}\index{bfl::any@{bfl::any}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}}
+\begin{DoxyCompactList}\small\item\em The class any describes a type-\/safe container for single values of any type. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classbfl_1_1any_1_1bad__any__cast}{bad\+\_\+any\+\_\+cast}}
+\begin{DoxyCompactList}\small\item\em Defines a type of object to be thrown by the value-\/returning forms of blf\+::any\+::any\+\_\+cast on failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacebfl_1_1any_adb1328ea975e3bf9c0addc1689215bad}{swap}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&lhs, \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Overloads the std\+::swap algorithm for std\+::any. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type $\ast$ \mbox{\hyperlink{namespacebfl_1_1any_a4ecb51ad57b3fa935cabdc0dcdcb4df1}{any\+\_\+cast}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$operand) noexcept
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\const Value\+Type $\ast$ \mbox{\hyperlink{namespacebfl_1_1any_a16c163e06edb8565e3b47c4bf6136a52}{any\+\_\+cast}} (const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$operand) noexcept
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_a2b5d2dbb287832915598b087083885be}{any\+\_\+cast}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_aa10ebe32454df7c7769d7391c72f2230}{any\+\_\+cast}} (const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\Value\+Type \mbox{\hyperlink{namespacebfl_1_1any_ad3725007dbc3ccb1af3f821dc5a3afd3}{any\+\_\+cast}} (\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&operand)
+\begin{DoxyCompactList}\small\item\em Performs type-\/safe access to the contained object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacebfl_1_1any_ad3725007dbc3ccb1af3f821dc5a3afd3}\label{namespacebfl_1_1any_ad3725007dbc3ccb1af3f821dc5a3afd3}} 
+\index{bfl::any@{bfl::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast()}{any\_cast()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+Value\+Type bfl\+::any\+::any\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&\&}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 422 of file any.\+h.
+
+\mbox{\Hypertarget{namespacebfl_1_1any_a2b5d2dbb287832915598b087083885be}\label{namespacebfl_1_1any_a2b5d2dbb287832915598b087083885be}} 
+\index{bfl::any@{bfl::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast()}{any\_cast()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+Value\+Type bfl\+::any\+::any\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{operand }\end{DoxyParamCaption})}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 382 of file any.\+h.
+
+
+
+References bfl\+::any\+::any\+::type().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacebfl_1_1any_a2b5d2dbb287832915598b087083885be_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacebfl_1_1any_a4ecb51ad57b3fa935cabdc0dcdcb4df1}\label{namespacebfl_1_1any_a4ecb51ad57b3fa935cabdc0dcdcb4df1}} 
+\index{bfl::any@{bfl::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast()}{any\_cast()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+Value\+Type$\ast$ bfl\+::any\+::any\+\_\+cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 352 of file any.\+h.
+
+
+
+References bfl\+::any\+::any\+::holder$<$ Value\+Type $>$\+::held.
+
+\mbox{\Hypertarget{namespacebfl_1_1any_aa10ebe32454df7c7769d7391c72f2230}\label{namespacebfl_1_1any_aa10ebe32454df7c7769d7391c72f2230}} 
+\index{bfl::any@{bfl::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast()}{any\_cast()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+Value\+Type bfl\+::any\+::any\+\_\+cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 405 of file any.\+h.
+
+\mbox{\Hypertarget{namespacebfl_1_1any_a16c163e06edb8565e3b47c4bf6136a52}\label{namespacebfl_1_1any_a16c163e06edb8565e3b47c4bf6136a52}} 
+\index{bfl::any@{bfl::any}!any\_cast@{any\_cast}}
+\index{any\_cast@{any\_cast}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{any\_cast()}{any\_cast()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+const Value\+Type$\ast$ bfl\+::any\+::any\+\_\+cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} $\ast$}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Performs type-\/safe access to the contained object. 
+
+Throws blf\+::any\+::bad\+\_\+any\+\_\+cast if the typeid of the requested Value\+Type does not match that of the contents of operand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & target any object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 367 of file any.\+h.
+
+\mbox{\Hypertarget{namespacebfl_1_1any_adb1328ea975e3bf9c0addc1689215bad}\label{namespacebfl_1_1any_adb1328ea975e3bf9c0addc1689215bad}} 
+\index{bfl::any@{bfl::any}!swap@{swap}}
+\index{swap@{swap}!bfl::any@{bfl::any}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void bfl\+::any\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{lhs,  }\item[{\mbox{\hyperlink{classbfl_1_1any_1_1any}{any}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Overloads the std\+::swap algorithm for std\+::any. 
+
+Swaps the content of two any objects by calling lhs.\+swap(rhs).
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & objects to swap \\
+\hline
+{\em rhs} & objects to swap \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 317 of file any.\+h.
+
+
+
+References bfl\+::any\+::any\+::swap().
+
+
+
+Referenced by bfl\+::any\+::any\+::swap().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{namespacebfl_1_1any_adb1328ea975e3bf9c0addc1689215bad_cgraph}
+\end{center}
+\end{figure}

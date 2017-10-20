@@ -1,0 +1,247 @@
+\hypertarget{classbfl_1_1DrawParticles}{}\doxysection{bfl\+::Draw\+Particles Class Reference}
+\label{classbfl_1_1DrawParticles}\index{bfl::DrawParticles@{bfl::DrawParticles}}
+
+
+{\ttfamily \#include $<$Draw\+Particles.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Draw\+Particles\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classbfl_1_1DrawParticles__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles_ac064fd803f632d003da28fa418eaef96}{Draw\+Particles}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ state\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles_a7b61c9d9be1f3d2b178c8824ecf64d9a}{Draw\+Particles}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ state\+\_\+model, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$ exogenous\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles_a82850cb05b467a4957ed8b3cbb95d5d0}{Draw\+Particles}} (const \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \& \mbox{\hyperlink{classbfl_1_1DrawParticles_a27df5e541c4cef5fbce08c374cb6e355}{operator=}} (const \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles_a19cb0555e82db89ae5c20c2d1c27a25d}{Draw\+Particles}} (\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&\&prediction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \& \mbox{\hyperlink{classbfl_1_1DrawParticles_a651057099bad11eb8493a95afef20e5e}{operator=}} (\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&\&prediction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1DrawParticles_a92e2ad00cc58bba8fd73fd56873eada4}{$\sim$\+Draw\+Particles}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& \mbox{\hyperlink{classbfl_1_1DrawParticles_abf89f540f1b9e712d6a3648971d09b25}{get\+State\+Model}} () noexcept override
+\item 
+void \mbox{\hyperlink{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}{predict}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&prev\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}{skip}} (const std\+::string \&what\+\_\+step, const bool status)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}{is\+\_\+skipping}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1DrawParticles_a36deaed86f1146431cacefa23f0445d0}{predict\+Step}} (const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&prev\+\_\+particles, \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&pred\+\_\+particles) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1DrawParticles_a4acbc6e750895a3a27e68d0a9656b8cf}{state\+\_\+model\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1DrawParticles_ae1e01773bea93896ddf0a42297ad5258}{exogenous\+\_\+model\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 19 of file Draw\+Particles.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_ac064fd803f632d003da28fa418eaef96}\label{classbfl_1_1DrawParticles_ac064fd803f632d003da28fa418eaef96}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!DrawParticles@{DrawParticles}}
+\index{DrawParticles@{DrawParticles}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{DrawParticles()}{DrawParticles()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Draw\+Particles\+::\+Draw\+Particles (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 16 of file Draw\+Particles.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a7b61c9d9be1f3d2b178c8824ecf64d9a}\label{classbfl_1_1DrawParticles_a7b61c9d9be1f3d2b178c8824ecf64d9a}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!DrawParticles@{DrawParticles}}
+\index{DrawParticles@{DrawParticles}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{DrawParticles()}{DrawParticles()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Draw\+Particles\+::\+Draw\+Particles (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$}]{state\+\_\+model,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}} $>$}]{exogenous\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 21 of file Draw\+Particles.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a82850cb05b467a4957ed8b3cbb95d5d0}\label{classbfl_1_1DrawParticles_a82850cb05b467a4957ed8b3cbb95d5d0}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!DrawParticles@{DrawParticles}}
+\index{DrawParticles@{DrawParticles}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{DrawParticles()}{DrawParticles()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily bfl\+::\+Draw\+Particles\+::\+Draw\+Particles (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a19cb0555e82db89ae5c20c2d1c27a25d}\label{classbfl_1_1DrawParticles_a19cb0555e82db89ae5c20c2d1c27a25d}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!DrawParticles@{DrawParticles}}
+\index{DrawParticles@{DrawParticles}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{DrawParticles()}{DrawParticles()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Draw\+Particles\+::\+Draw\+Particles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 27 of file Draw\+Particles.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a92e2ad00cc58bba8fd73fd56873eada4}\label{classbfl_1_1DrawParticles_a92e2ad00cc58bba8fd73fd56873eada4}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!````~DrawParticles@{$\sim$DrawParticles}}
+\index{````~DrawParticles@{$\sim$DrawParticles}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{$\sim$DrawParticles()}{~DrawParticles()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Draw\+Particles\+::$\sim$\+Draw\+Particles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_abf89f540f1b9e712d6a3648971d09b25}\label{classbfl_1_1DrawParticles_abf89f540f1b9e712d6a3648971d09b25}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!getStateModel@{getStateModel}}
+\index{getStateModel@{getStateModel}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{getStateModel()}{getStateModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& Draw\+Particles\+::get\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFPrediction_aabd2d29bcc679c7c3bd641e8479e8337}{bfl\+::\+P\+F\+Prediction}}.
+
+
+
+Definition at line 46 of file Draw\+Particles.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}\label{classbfl_1_1PFPrediction_a05aa047506b94974b0afd7a897e372b4}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!is\_skipping@{is\_skipping}}
+\index{is\_skipping@{is\_skipping}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{is\_skipping()}{is\_skipping()}}
+{\footnotesize\ttfamily bool P\+F\+Prediction\+::is\+\_\+skipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 55 of file P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a27df5e541c4cef5fbce08c374cb6e355}\label{classbfl_1_1DrawParticles_a27df5e541c4cef5fbce08c374cb6e355}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}}\& bfl\+::\+Draw\+Particles\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a651057099bad11eb8493a95afef20e5e}\label{classbfl_1_1DrawParticles_a651057099bad11eb8493a95afef20e5e}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \& Draw\+Particles\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1DrawParticles}{Draw\+Particles}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 34 of file Draw\+Particles.\+cpp.
+
+
+
+References bfl\+::\+P\+F\+Prediction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classbfl_1_1DrawParticles_a651057099bad11eb8493a95afef20e5e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}\label{classbfl_1_1PFPrediction_aa09f33ba549c0f1b03b9604317a2202f}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!predict@{predict}}
+\index{predict@{predict}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily void P\+F\+Prediction\+::predict (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{prev\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 17 of file P\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a36deaed86f1146431cacefa23f0445d0}\label{classbfl_1_1DrawParticles_a36deaed86f1146431cacefa23f0445d0}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!predictStep@{predictStep}}
+\index{predictStep@{predictStep}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{predictStep()}{predictStep()}}
+{\footnotesize\ttfamily void Draw\+Particles\+::predict\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{prev\+\_\+particles,  }\item[{\mbox{\hyperlink{classbfl_1_1ParticleSet}{Particle\+Set}} \&}]{pred\+\_\+particles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1PFPrediction_a4dcf0af769d02e2a6296bd4141f9387f}{bfl\+::\+P\+F\+Prediction}}.
+
+
+
+Definition at line 52 of file Draw\+Particles.\+cpp.
+
+
+
+References bfl\+::\+Particle\+Set\+::state(), and bfl\+::\+Gaussian\+Mixture\+::weight().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classbfl_1_1DrawParticles_a36deaed86f1146431cacefa23f0445d0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}\label{classbfl_1_1PFPrediction_a364cc35a151e5298c4024d681f3e04d9}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!skip@{skip}}
+\index{skip@{skip}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool P\+F\+Prediction\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 26 of file P\+F\+Prediction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_ae1e01773bea93896ddf0a42297ad5258}\label{classbfl_1_1DrawParticles_ae1e01773bea93896ddf0a42297ad5258}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!exogenous\_model\_@{exogenous\_model\_}}
+\index{exogenous\_model\_@{exogenous\_model\_}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{exogenous\_model\_}{exogenous\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1ExogenousModel}{Exogenous\+Model}}$>$ bfl\+::\+Draw\+Particles\+::exogenous\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 44 of file Draw\+Particles.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}\label{classbfl_1_1PFPrediction_a4edcd7697a3a695d0ce07318b9571e23}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+P\+F\+Prediction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 54 of file P\+F\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1DrawParticles_a4acbc6e750895a3a27e68d0a9656b8cf}\label{classbfl_1_1DrawParticles_a4acbc6e750895a3a27e68d0a9656b8cf}} 
+\index{bfl::DrawParticles@{bfl::DrawParticles}!state\_model\_@{state\_model\_}}
+\index{state\_model\_@{state\_model\_}!bfl::DrawParticles@{bfl::DrawParticles}}
+\doxysubsubsection{\texorpdfstring{state\_model\_}{state\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}}$>$ bfl\+::\+Draw\+Particles\+::state\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 42 of file Draw\+Particles.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{DrawParticles_8h}{Draw\+Particles.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{DrawParticles_8cpp}{Draw\+Particles.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,318 @@
+\hypertarget{classbfl_1_1UKFPrediction}{}\doxysection{bfl\+::U\+K\+F\+Prediction Class Reference}
+\label{classbfl_1_1UKFPrediction}\index{bfl::UKFPrediction@{bfl::UKFPrediction}}
+
+
+{\ttfamily \#include $<$U\+K\+F\+Prediction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::U\+K\+F\+Prediction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classbfl_1_1UKFPrediction__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}{U\+K\+F\+Prediction\+Type}} \{ \mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a8045a0a6c688b0635e3caccc408a1446}{U\+K\+F\+Prediction\+Type\+::\+Generic}}, 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a3f7b3d8ee7bf0d542bd50821c083888f}{U\+K\+F\+Prediction\+Type\+::\+Additive}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_ab0dcd6769c8ad563aa25e57c41752a89}{U\+K\+F\+Prediction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ state\+\_\+model, const double alpha, const double beta, const double kappa) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_a56c1d19fa340e0e1e23fc1e4aacff203}{U\+K\+F\+Prediction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}} $>$ state\+\_\+model, const double alpha, const double beta, const double kappa) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_a8fadd64d4de6392f99f4cb51d683618b}{U\+K\+F\+Prediction}} (const \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1UKFPrediction_a22f8a6ef686c4fb1e1973ed292c96c27}{operator=}} (const \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_a1994caaeb4c36e2dbc305b858922a91a}{U\+K\+F\+Prediction}} (\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1UKFPrediction_af6aec56792c54e01d42df32f868385a3}{operator=}} (\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1UKFPrediction_ae650d189489b840997299c54752fc9e3}{$\sim$\+U\+K\+F\+Prediction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& \mbox{\hyperlink{classbfl_1_1UKFPrediction_a966c0267ad1021ab9dc8dd1d6c8fdc0d}{get\+State\+Model}} () noexcept override
+\item 
+void \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}{predict}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&prev\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}{skip}} (const std\+::string \&what\+\_\+step, const bool status) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}{is\+\_\+skipping}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1UKFPrediction_a9cc3e869976f5d55cbf7a807edb37df7}{predict\+Step}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&prev\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1UKFPrediction_abec8450e399318a5ad812aad291c42e0}{state\+\_\+model\+\_\+}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1UKFPrediction_aab5eb096f0428f1230fa79f05ae1f1f2}{add\+\_\+state\+\_\+model\+\_\+}}
+\item 
+\mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}{U\+K\+F\+Prediction\+Type}} \mbox{\hyperlink{classbfl_1_1UKFPrediction_ad5497af3dfea5662a7a8dc0f4f9d09d3}{type\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Distinguish between a \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} using a generic \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} and a \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} using an \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{sigma\+\_\+point\+::\+U\+T\+Weight}} \mbox{\hyperlink{classbfl_1_1UKFPrediction_a56ff8508b7117bb445d9ad2ebfddc0d8}{ut\+\_\+weight\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Unscented transform weight. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 25 of file U\+K\+F\+Prediction.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}\label{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!UKFPredictionType@{UKFPredictionType}}
+\index{UKFPredictionType@{UKFPredictionType}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{UKFPredictionType}{UKFPredictionType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}{bfl\+::\+U\+K\+F\+Prediction\+::\+U\+K\+F\+Prediction\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Generic@{Generic}!bfl::UKFPrediction@{bfl::UKFPrediction}}\index{bfl::UKFPrediction@{bfl::UKFPrediction}!Generic@{Generic}}}\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a8045a0a6c688b0635e3caccc408a1446}\label{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a8045a0a6c688b0635e3caccc408a1446}} 
+Generic&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Additive@{Additive}!bfl::UKFPrediction@{bfl::UKFPrediction}}\index{bfl::UKFPrediction@{bfl::UKFPrediction}!Additive@{Additive}}}\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a3f7b3d8ee7bf0d542bd50821c083888f}\label{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68a3f7b3d8ee7bf0d542bd50821c083888f}} 
+Additive&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 28 of file U\+K\+F\+Prediction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_ab0dcd6769c8ad563aa25e57c41752a89}\label{classbfl_1_1UKFPrediction_ab0dcd6769c8ad563aa25e57c41752a89}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!UKFPrediction@{UKFPrediction}}
+\index{UKFPrediction@{UKFPrediction}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{UKFPrediction()}{UKFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily U\+K\+F\+Prediction\+::\+U\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} $>$}]{state\+\_\+model,  }\item[{const double}]{alpha,  }\item[{const double}]{beta,  }\item[{const double}]{kappa }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 16 of file U\+K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a56c1d19fa340e0e1e23fc1e4aacff203}\label{classbfl_1_1UKFPrediction_a56c1d19fa340e0e1e23fc1e4aacff203}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!UKFPrediction@{UKFPrediction}}
+\index{UKFPrediction@{UKFPrediction}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{UKFPrediction()}{UKFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily U\+K\+F\+Prediction\+::\+U\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}} $>$}]{state\+\_\+model,  }\item[{const double}]{alpha,  }\item[{const double}]{beta,  }\item[{const double}]{kappa }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 29 of file U\+K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a8fadd64d4de6392f99f4cb51d683618b}\label{classbfl_1_1UKFPrediction_a8fadd64d4de6392f99f4cb51d683618b}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!UKFPrediction@{UKFPrediction}}
+\index{UKFPrediction@{UKFPrediction}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{UKFPrediction()}{UKFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily bfl\+::\+U\+K\+F\+Prediction\+::\+U\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a1994caaeb4c36e2dbc305b858922a91a}\label{classbfl_1_1UKFPrediction_a1994caaeb4c36e2dbc305b858922a91a}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!UKFPrediction@{UKFPrediction}}
+\index{UKFPrediction@{UKFPrediction}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{UKFPrediction()}{UKFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily U\+K\+F\+Prediction\+::\+U\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 41 of file U\+K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_ae650d189489b840997299c54752fc9e3}\label{classbfl_1_1UKFPrediction_ae650d189489b840997299c54752fc9e3}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!````~UKFPrediction@{$\sim$UKFPrediction}}
+\index{````~UKFPrediction@{$\sim$UKFPrediction}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{$\sim$UKFPrediction()}{~UKFPrediction()}}
+{\footnotesize\ttfamily virtual bfl\+::\+U\+K\+F\+Prediction\+::$\sim$\+U\+K\+F\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a966c0267ad1021ab9dc8dd1d6c8fdc0d}\label{classbfl_1_1UKFPrediction_a966c0267ad1021ab9dc8dd1d6c8fdc0d}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!getStateModel@{getStateModel}}
+\index{getStateModel@{getStateModel}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{getStateModel()}{getStateModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1StateModel}{bfl\+::\+State\+Model}} \& U\+K\+F\+Prediction\+::get\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a12e852ef03c819183eceb94f2c07bd91}{bfl\+::\+Gaussian\+Prediction}}.
+
+
+
+Definition at line 69 of file U\+K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}\label{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!is\_skipping@{is\_skipping}}
+\index{is\_skipping@{is\_skipping}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{is\_skipping()}{is\_skipping()}}
+{\footnotesize\ttfamily bool Gaussian\+Prediction\+::is\+\_\+skipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skippable_a897c639a3fced9b35fcf87ed3c38cfc4}{bfl\+::\+Skippable}}.
+
+
+
+Definition at line 56 of file Gaussian\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a22f8a6ef686c4fb1e1973ed292c96c27}\label{classbfl_1_1UKFPrediction_a22f8a6ef686c4fb1e1973ed292c96c27}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}}\& bfl\+::\+U\+K\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_af6aec56792c54e01d42df32f868385a3}\label{classbfl_1_1UKFPrediction_af6aec56792c54e01d42df32f868385a3}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \& U\+K\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 50 of file U\+K\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Prediction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classbfl_1_1UKFPrediction_af6aec56792c54e01d42df32f868385a3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}\label{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!predict@{predict}}
+\index{predict@{predict}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily void Gaussian\+Prediction\+::predict (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{prev\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianMixturePrediction_aef11b6691574fd1f39eaf127e5a6fea3}{bfl\+::\+Gaussian\+Mixture\+Prediction}}.
+
+
+
+Definition at line 18 of file Gaussian\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a9cc3e869976f5d55cbf7a807edb37df7}\label{classbfl_1_1UKFPrediction_a9cc3e869976f5d55cbf7a807edb37df7}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!predictStep@{predictStep}}
+\index{predictStep@{predictStep}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{predictStep()}{predictStep()}}
+{\footnotesize\ttfamily void U\+K\+F\+Prediction\+::predict\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{prev\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a35e7c490378c9bb48e4becad7fdcb2a1}{bfl\+::\+Gaussian\+Prediction}}.
+
+
+
+Definition at line 78 of file U\+K\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::augment\+With\+Noise(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1UKFPrediction_a9cc3e869976f5d55cbf7a807edb37df7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}\label{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!skip@{skip}}
+\index{skip@{skip}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool Gaussian\+Prediction\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skipper_a480791ffa93338dc91153965fb386ece}{bfl\+::\+Skipper}}.
+
+
+
+Definition at line 27 of file Gaussian\+Prediction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_aab5eb096f0428f1230fa79f05ae1f1f2}\label{classbfl_1_1UKFPrediction_aab5eb096f0428f1230fa79f05ae1f1f2}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!add\_state\_model\_@{add\_state\_model\_}}
+\index{add\_state\_model\_@{add\_state\_model\_}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{add\_state\_model\_}{add\_state\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}}$>$ bfl\+::\+U\+K\+F\+Prediction\+::add\+\_\+state\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file U\+K\+F\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}\label{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Prediction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 52 of file Gaussian\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_abec8450e399318a5ad812aad291c42e0}\label{classbfl_1_1UKFPrediction_abec8450e399318a5ad812aad291c42e0}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!state\_model\_@{state\_model\_}}
+\index{state\_model\_@{state\_model\_}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{state\_model\_}{state\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}}$>$ bfl\+::\+U\+K\+F\+Prediction\+::state\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file U\+K\+F\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_ad5497af3dfea5662a7a8dc0f4f9d09d3}\label{classbfl_1_1UKFPrediction_ad5497af3dfea5662a7a8dc0f4f9d09d3}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!type\_@{type\_}}
+\index{type\_@{type\_}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{type\_}{type\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1UKFPrediction_a122c74f8d8efa4d14f92abf82f96df68}{U\+K\+F\+Prediction\+Type}} bfl\+::\+U\+K\+F\+Prediction\+::type\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Distinguish between a \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} using a generic \mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} and a \mbox{\hyperlink{classbfl_1_1UKFPrediction}{U\+K\+F\+Prediction}} using an \mbox{\hyperlink{classbfl_1_1AdditiveStateModel}{Additive\+State\+Model}}. 
+
+
+
+Definition at line 64 of file U\+K\+F\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1UKFPrediction_a56ff8508b7117bb445d9ad2ebfddc0d8}\label{classbfl_1_1UKFPrediction_a56ff8508b7117bb445d9ad2ebfddc0d8}} 
+\index{bfl::UKFPrediction@{bfl::UKFPrediction}!ut\_weight\_@{ut\_weight\_}}
+\index{ut\_weight\_@{ut\_weight\_}!bfl::UKFPrediction@{bfl::UKFPrediction}}
+\doxysubsubsection{\texorpdfstring{ut\_weight\_}{ut\_weight\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{sigma\+\_\+point\+::\+U\+T\+Weight}} bfl\+::\+U\+K\+F\+Prediction\+::ut\+\_\+weight\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Unscented transform weight. 
+
+
+
+Definition at line 69 of file U\+K\+F\+Prediction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{UKFPrediction_8h}{U\+K\+F\+Prediction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{UKFPrediction_8cpp}{U\+K\+F\+Prediction.\+cpp}}\end{DoxyCompactItemize}

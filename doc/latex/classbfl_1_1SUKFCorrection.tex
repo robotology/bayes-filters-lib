@@ -1,0 +1,291 @@
+\hypertarget{classbfl_1_1SUKFCorrection}{}\doxysection{bfl\+::S\+U\+K\+F\+Correction Class Reference}
+\label{classbfl_1_1SUKFCorrection}\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+
+
+This class implements the algorithm\+: Barfoot, T., Mc\+Manus, C.  
+
+
+
+
+{\ttfamily \#include $<$S\+U\+K\+F\+Correction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::S\+U\+K\+F\+Correction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classbfl_1_1SUKFCorrection__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1SUKFCorrection_aaf5d91fe05226a1a03c7e2b214688719}{S\+U\+K\+F\+Correction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1AdditiveMeasurementModel}{Additive\+Measurement\+Model}} $>$ measurement\+\_\+model, const double alpha, const double beta, const double kappa, const std\+::size\+\_\+t measurement\+\_\+sub\+\_\+size, const bool use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix) noexcept
+\begin{DoxyCompactList}\small\item\em If input argument use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix is set to true, when the algorithm calls measurement\+\_\+model\+\_\+.\+get\+Noise\+Covariance\+Matrix() it expects to receive a noise covariance matrix of size measurement\+\_\+sub\+\_\+size\+\_\+ x measurement\+\_\+sub\+\_\+size\+\_\+ and uses it for all the sub-\/vectors beloning to the current measurement. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classbfl_1_1SUKFCorrection_a74f7500ab29ca256f83993e838047735}{S\+U\+K\+F\+Correction}} (\mbox{\hyperlink{classbfl_1_1SUKFCorrection}{S\+U\+K\+F\+Correction}} \&\&sukf\+\_\+correction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1SUKFCorrection_ae42ef8943fdc5cc865727e10b567539d}{$\sim$\+S\+U\+K\+F\+Correction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a499e3b64cc82faa71227e9ed47fc78b8}{get\+Measurement\+Model}} () override
+\item 
+std\+::pair$<$ bool, Eigen\+::\+Vector\+Xd $>$ \mbox{\hyperlink{classbfl_1_1SUKFCorrection_ab3c828f4a8732b7dd0ce8cee96c3f12f}{get\+Likelihood}} () override
+\item 
+void \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}{correct}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&corr\+\_\+state)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}{skip}} (const bool status)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}{freeze\+\_\+measurements}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1SUKFCorrection_af58d64c5e6c1ef373df94e4c4179226b}{correct\+Step}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&corr\+\_\+state) override
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a65cad252b30972be380a1078902e5c84}{get\+Noise\+Covariance\+Matrix}} (const std\+::size\+\_\+t index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a78fcc3b8a9f377898c424613cb7365c6}{measurement\+\_\+model\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a6008450b75222c1ab4d366db966ece17}{propagated\+\_\+sigma\+\_\+points\+\_\+}}
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a42a208a16bd29cedd106a4bc29d473b4}{innovations\+\_\+}}
+\item 
+\mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{sigma\+\_\+point\+::\+U\+T\+Weight}} \mbox{\hyperlink{classbfl_1_1SUKFCorrection_aac350b1d9b5e68802186d374c15bb1c5}{ut\+\_\+weight\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Unscented transform weight. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a669bac317d875f6e5df0695a7d6b2277}{measurement\+\_\+sub\+\_\+size\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1SUKFCorrection_a2eb05f0dbcb8ae4a3983d995f8145c44}{use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class implements the algorithm\+: Barfoot, T., Mc\+Manus, C. 
+
+(2011), \textquotesingle{}A Serial Approach to Handling High-\/\+Dimensional Measurements in the Sigma-\/\+Point Kalman \mbox{\hyperlink{classbfl_1_1Filter}{Filter}}.\textquotesingle{}, Science and Systems V\+II, M\+IT Press 
+
+Definition at line 32 of file S\+U\+K\+F\+Correction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_aaf5d91fe05226a1a03c7e2b214688719}\label{classbfl_1_1SUKFCorrection_aaf5d91fe05226a1a03c7e2b214688719}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!SUKFCorrection@{SUKFCorrection}}
+\index{SUKFCorrection@{SUKFCorrection}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{SUKFCorrection()}{SUKFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bfl\+::\+S\+U\+K\+F\+Correction\+::\+S\+U\+K\+F\+Correction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1AdditiveMeasurementModel}{Additive\+Measurement\+Model}} $>$}]{measurement\+\_\+model,  }\item[{const double}]{alpha,  }\item[{const double}]{beta,  }\item[{const double}]{kappa,  }\item[{const std\+::size\+\_\+t}]{measurement\+\_\+sub\+\_\+size,  }\item[{const bool}]{use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+If input argument use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix is set to true, when the algorithm calls measurement\+\_\+model\+\_\+.\+get\+Noise\+Covariance\+Matrix() it expects to receive a noise covariance matrix of size measurement\+\_\+sub\+\_\+size\+\_\+ x measurement\+\_\+sub\+\_\+size\+\_\+ and uses it for all the sub-\/vectors beloning to the current measurement. 
+
+If set to false, the algorithms expects to receive the complete noise covariance matrix consisting in (M / meas\+\_\+sub\+\_\+size) diagonal blocks of size measurement\+\_\+sub\+\_\+size\+\_\+ x measurement\+\_\+sub\+\_\+size\+\_\+ where M is the size of the current measurement. The input argument meas\+\_\+sub\+\_\+size is the sub-\/size, J, of the measurement vector y in R$^\wedge$M such that M = k $\ast$ J for some positive integer k. \mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a74f7500ab29ca256f83993e838047735}\label{classbfl_1_1SUKFCorrection_a74f7500ab29ca256f83993e838047735}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!SUKFCorrection@{SUKFCorrection}}
+\index{SUKFCorrection@{SUKFCorrection}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{SUKFCorrection()}{SUKFCorrection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily S\+U\+K\+F\+Correction\+::\+S\+U\+K\+F\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1SUKFCorrection}{S\+U\+K\+F\+Correction}} \&\&}]{sukf\+\_\+correction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 34 of file S\+U\+K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_ae42ef8943fdc5cc865727e10b567539d}\label{classbfl_1_1SUKFCorrection_ae42ef8943fdc5cc865727e10b567539d}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!````~SUKFCorrection@{$\sim$SUKFCorrection}}
+\index{````~SUKFCorrection@{$\sim$SUKFCorrection}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{$\sim$SUKFCorrection()}{~SUKFCorrection()}}
+{\footnotesize\ttfamily virtual bfl\+::\+S\+U\+K\+F\+Correction\+::$\sim$\+S\+U\+K\+F\+Correction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}\label{classbfl_1_1GaussianCorrection_a6308c8af37a1a451eba8e87e73952c84}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!correct@{correct}}
+\index{correct@{correct}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{correct()}{correct()}}
+{\footnotesize\ttfamily void Gaussian\+Correction\+::correct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{corr\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 16 of file Gaussian\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_af58d64c5e6c1ef373df94e4c4179226b}\label{classbfl_1_1SUKFCorrection_af58d64c5e6c1ef373df94e4c4179226b}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!correctStep@{correctStep}}
+\index{correctStep@{correctStep}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{correctStep()}{correctStep()}}
+{\footnotesize\ttfamily void S\+U\+K\+F\+Correction\+::correct\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{corr\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianCorrection_af30322d949e8135e1ec243bd6df00c18}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 77 of file S\+U\+K\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::components, bfl\+::\+Gaussian\+Mixture\+::covariance(), bfl\+::\+Gaussian\+Mixture\+::dim, bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+circular, bfl\+::\+Gaussian\+Mixture\+::dim\+\_\+linear, bfl\+::directional\+\_\+statistics\+::directional\+\_\+sub(), bfl\+::\+Gaussian\+Mixture\+::mean(), bfl\+::sigma\+\_\+point\+::sigma\+\_\+point(), and bfl\+::\+Vector\+Description\+::total\+\_\+size().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1SUKFCorrection_af58d64c5e6c1ef373df94e4c4179226b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}\label{classbfl_1_1GaussianCorrection_a14f985944c8550b1c80ee660eed22df9}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!freeze\_measurements@{freeze\_measurements}}
+\index{freeze\_measurements@{freeze\_measurements}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{freeze\_measurements()}{freeze\_measurements()}}
+{\footnotesize\ttfamily bool Gaussian\+Correction\+::freeze\+\_\+measurements (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 34 of file Gaussian\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_ab3c828f4a8732b7dd0ce8cee96c3f12f}\label{classbfl_1_1SUKFCorrection_ab3c828f4a8732b7dd0ce8cee96c3f12f}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!getLikelihood@{getLikelihood}}
+\index{getLikelihood@{getLikelihood}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{getLikelihood()}{getLikelihood()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Vector\+Xd $>$ S\+U\+K\+F\+Correction\+::get\+Likelihood (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classbfl_1_1GaussianCorrection_a955702adbdad6448d8f306752d3d0868}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 48 of file S\+U\+K\+F\+Correction.\+cpp.
+
+
+
+References bfl\+::utils\+::multivariate\+\_\+gaussian\+\_\+density\+\_\+\+U\+V\+R().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1SUKFCorrection_ab3c828f4a8732b7dd0ce8cee96c3f12f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a499e3b64cc82faa71227e9ed47fc78b8}\label{classbfl_1_1SUKFCorrection_a499e3b64cc82faa71227e9ed47fc78b8}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!getMeasurementModel@{getMeasurementModel}}
+\index{getMeasurementModel@{getMeasurementModel}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{getMeasurementModel()}{getMeasurementModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}} \& S\+U\+K\+F\+Correction\+::get\+Measurement\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianCorrection_af609a22d84cc17a7337486c339ef30c3}{bfl\+::\+Gaussian\+Correction}}.
+
+
+
+Definition at line 42 of file S\+U\+K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a65cad252b30972be380a1078902e5c84}\label{classbfl_1_1SUKFCorrection_a65cad252b30972be380a1078902e5c84}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}}
+\index{getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{getNoiseCovarianceMatrix()}{getNoiseCovarianceMatrix()}}
+{\footnotesize\ttfamily Matrix\+Xd S\+U\+K\+F\+Correction\+::get\+Noise\+Covariance\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 193 of file S\+U\+K\+F\+Correction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}\label{classbfl_1_1GaussianCorrection_a986b05b149650ea4dd725b10700db57f}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!skip@{skip}}
+\index{skip@{skip}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool Gaussian\+Correction\+::skip (\begin{DoxyParamCaption}\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 26 of file Gaussian\+Correction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a42a208a16bd29cedd106a4bc29d473b4}\label{classbfl_1_1SUKFCorrection_a42a208a16bd29cedd106a4bc29d473b4}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!innovations\_@{innovations\_}}
+\index{innovations\_@{innovations\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{innovations\_}{innovations\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+S\+U\+K\+F\+Correction\+::innovations\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 68 of file S\+U\+K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a78fcc3b8a9f377898c424613cb7365c6}\label{classbfl_1_1SUKFCorrection_a78fcc3b8a9f377898c424613cb7365c6}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!measurement\_model\_@{measurement\_model\_}}
+\index{measurement\_model\_@{measurement\_model\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{measurement\_model\_}{measurement\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1MeasurementModel}{Measurement\+Model}}$>$ bfl\+::\+S\+U\+K\+F\+Correction\+::measurement\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 64 of file S\+U\+K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a669bac317d875f6e5df0695a7d6b2277}\label{classbfl_1_1SUKFCorrection_a669bac317d875f6e5df0695a7d6b2277}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!measurement\_sub\_size\_@{measurement\_sub\_size\_}}
+\index{measurement\_sub\_size\_@{measurement\_sub\_size\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{measurement\_sub\_size\_}{measurement\_sub\_size\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t bfl\+::\+S\+U\+K\+F\+Correction\+::measurement\+\_\+sub\+\_\+size\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 75 of file S\+U\+K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a6008450b75222c1ab4d366db966ece17}\label{classbfl_1_1SUKFCorrection_a6008450b75222c1ab4d366db966ece17}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!propagated\_sigma\_points\_@{propagated\_sigma\_points\_}}
+\index{propagated\_sigma\_points\_@{propagated\_sigma\_points\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{propagated\_sigma\_points\_}{propagated\_sigma\_points\_}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd bfl\+::\+S\+U\+K\+F\+Correction\+::propagated\+\_\+sigma\+\_\+points\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 66 of file S\+U\+K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}\label{classbfl_1_1GaussianCorrection_a6941174f7c3e3bb380e89bb6b4429f5e}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Correction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 52 of file Gaussian\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_a2eb05f0dbcb8ae4a3983d995f8145c44}\label{classbfl_1_1SUKFCorrection_a2eb05f0dbcb8ae4a3983d995f8145c44}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!use\_reduced\_noise\_covariance\_matrix\_@{use\_reduced\_noise\_covariance\_matrix\_}}
+\index{use\_reduced\_noise\_covariance\_matrix\_@{use\_reduced\_noise\_covariance\_matrix\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{use\_reduced\_noise\_covariance\_matrix\_}{use\_reduced\_noise\_covariance\_matrix\_}}
+{\footnotesize\ttfamily bool bfl\+::\+S\+U\+K\+F\+Correction\+::use\+\_\+reduced\+\_\+noise\+\_\+covariance\+\_\+matrix\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 77 of file S\+U\+K\+F\+Correction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1SUKFCorrection_aac350b1d9b5e68802186d374c15bb1c5}\label{classbfl_1_1SUKFCorrection_aac350b1d9b5e68802186d374c15bb1c5}} 
+\index{bfl::SUKFCorrection@{bfl::SUKFCorrection}!ut\_weight\_@{ut\_weight\_}}
+\index{ut\_weight\_@{ut\_weight\_}!bfl::SUKFCorrection@{bfl::SUKFCorrection}}
+\doxysubsubsection{\texorpdfstring{ut\_weight\_}{ut\_weight\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbfl_1_1sigma__point_1_1UTWeight}{sigma\+\_\+point\+::\+U\+T\+Weight}} bfl\+::\+S\+U\+K\+F\+Correction\+::ut\+\_\+weight\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Unscented transform weight. 
+
+
+
+Definition at line 73 of file S\+U\+K\+F\+Correction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{SUKFCorrection_8h}{S\+U\+K\+F\+Correction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{SUKFCorrection_8cpp}{S\+U\+K\+F\+Correction.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,231 @@
+\hypertarget{classbfl_1_1utils_1_1CpuTimer}{}\doxysection{bfl\+::utils\+::Cpu\+Timer$<$ timetype $>$ Class Template Reference}
+\label{classbfl_1_1utils_1_1CpuTimer}\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+
+
+This template class provides methods to keep track of time.  
+
+
+
+
+{\ttfamily \#include $<$utils.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start}} ()
+\begin{DoxyCompactList}\small\item\em Start the timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stop the timer. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ac7702cd9061b12db77c9e249d7b77046}{elapsed}} ()
+\begin{DoxyCompactList}\small\item\em Get the time passed between a \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} and \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}} call. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_adf29a51b31dd9442679c1f97b7c31db4}{now}} ()
+\begin{DoxyCompactList}\small\item\em Get the absolute time from epoch. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a2eb7137dc7b2ccae9742b14d4a5e2b86}{is\+\_\+running}} ()
+\begin{DoxyCompactList}\small\item\em Check if the timer is running or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a18c264012224f9c13dd85c841a7a5d6a}{start\+\_\+time\+\_\+}} = std\+::chrono\+::steady\+\_\+clock\+::now()
+\begin{DoxyCompactList}\small\item\em The start time. \end{DoxyCompactList}\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a089dfb17334208b596a7c500490ed2c4}{stop\+\_\+time\+\_\+}} = \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a18c264012224f9c13dd85c841a7a5d6a}{start\+\_\+time\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The stop time. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a20a53b77b785583226e0f8cf86f2459d}{running\+\_\+}} = false
+\begin{DoxyCompactList}\small\item\em Running status flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename timetype = std\+::chrono\+::milliseconds$>$\newline
+class bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$}
+
+This template class provides methods to keep track of time. 
+
+The default time unit is milliseconds, but can be changed during object creation using a different std\+::chrono\+::duration type. See \href{https://en.cppreference.com/w/cpp/chrono/duration}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/chrono/duration}} for reference. The timer starts and stops using, respectively, \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} and \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}} method. The get the time elapsed between a \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} and \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}} call, use the \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ac7702cd9061b12db77c9e249d7b77046}{elapsed()}} method. The \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ac7702cd9061b12db77c9e249d7b77046}{elapsed()}} method can be used to get the elapsed time from the \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} call, before calling \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}}. To get the absolute time from epoch use the \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_adf29a51b31dd9442679c1f97b7c31db4}{now()}} method. 
+
+Definition at line 463 of file utils.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_ac7702cd9061b12db77c9e249d7b77046}\label{classbfl_1_1utils_1_1CpuTimer_ac7702cd9061b12db77c9e249d7b77046}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!elapsed@{elapsed}}
+\index{elapsed@{elapsed}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{elapsed()}{elapsed()}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+double \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::elapsed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the time passed between a \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} and \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}} call. 
+
+If used between a \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} and \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}{stop()}} call, returns the time elapsed from the \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}{start()}} call.
+
+\begin{DoxyReturn}{Returns}
+The elapsed time. 
+\end{DoxyReturn}
+
+
+Definition at line 494 of file utils.\+h.
+
+
+
+References bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::running\+\_\+, bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::start\+\_\+time\+\_\+, and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::stop\+\_\+time\+\_\+.
+
+
+
+Referenced by bfl\+::\+Time\+Decreasing\+Dynamics\+::set\+Property().
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_a2eb7137dc7b2ccae9742b14d4a5e2b86}\label{classbfl_1_1utils_1_1CpuTimer_a2eb7137dc7b2ccae9742b14d4a5e2b86}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!is\_running@{is\_running}}
+\index{is\_running@{is\_running}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{is\_running()}{is\_running()}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+bool \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::is\+\_\+running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the timer is running or not. 
+
+\begin{DoxyReturn}{Returns}
+True/false if the timer is running/not running. 
+\end{DoxyReturn}
+
+
+Definition at line 523 of file utils.\+h.
+
+
+
+References bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::running\+\_\+.
+
+
+
+Referenced by bfl\+::\+Time\+Decreasing\+Dynamics\+::set\+Property().
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_adf29a51b31dd9442679c1f97b7c31db4}\label{classbfl_1_1utils_1_1CpuTimer_adf29a51b31dd9442679c1f97b7c31db4}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!now@{now}}
+\index{now@{now}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{now()}{now()}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+double \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::now (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the absolute time from epoch. 
+
+\begin{DoxyReturn}{Returns}
+The elapsed time from epoch. 
+\end{DoxyReturn}
+
+
+Definition at line 512 of file utils.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}\label{classbfl_1_1utils_1_1CpuTimer_aafb5ec4ed5936f14bb066d9e809f1f0e}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!start@{start}}
+\index{start@{start}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+void \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start the timer. 
+
+
+
+Definition at line 469 of file utils.\+h.
+
+
+
+References bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::running\+\_\+, and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::start\+\_\+time\+\_\+.
+
+
+
+Referenced by bfl\+::\+Time\+Decreasing\+Dynamics\+::set\+Property().
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}\label{classbfl_1_1utils_1_1CpuTimer_ad8e710e2a21b97c5e13ff2f338445a96}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!stop@{stop}}
+\index{stop@{stop}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+void \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stop the timer. 
+
+
+
+Definition at line 480 of file utils.\+h.
+
+
+
+References bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::running\+\_\+, and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::stop\+\_\+time\+\_\+.
+
+
+
+Referenced by bfl\+::\+Time\+Decreasing\+Dynamics\+::set\+Property().
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_a20a53b77b785583226e0f8cf86f2459d}\label{classbfl_1_1utils_1_1CpuTimer_a20a53b77b785583226e0f8cf86f2459d}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!running\_@{running\_}}
+\index{running\_@{running\_}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{running\_}{running\_}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+bool \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::running\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Running status flag. 
+
+
+
+Definition at line 544 of file utils.\+h.
+
+
+
+Referenced by bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::elapsed(), bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::is\+\_\+running(), bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::start(), and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::stop().
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_a18c264012224f9c13dd85c841a7a5d6a}\label{classbfl_1_1utils_1_1CpuTimer_a18c264012224f9c13dd85c841a7a5d6a}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!start\_time\_@{start\_time\_}}
+\index{start\_time\_@{start\_time\_}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{start\_time\_}{start\_time\_}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::start\+\_\+time\+\_\+ = std\+::chrono\+::steady\+\_\+clock\+::now()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The start time. 
+
+
+
+Definition at line 532 of file utils.\+h.
+
+
+
+Referenced by bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::elapsed(), and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::start().
+
+\mbox{\Hypertarget{classbfl_1_1utils_1_1CpuTimer_a089dfb17334208b596a7c500490ed2c4}\label{classbfl_1_1utils_1_1CpuTimer_a089dfb17334208b596a7c500490ed2c4}} 
+\index{bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}!stop\_time\_@{stop\_time\_}}
+\index{stop\_time\_@{stop\_time\_}!bfl::utils::CpuTimer$<$ timetype $>$@{bfl::utils::CpuTimer$<$ timetype $>$}}
+\doxysubsubsection{\texorpdfstring{stop\_time\_}{stop\_time\_}}
+{\footnotesize\ttfamily template$<$typename timetype  = std\+::chrono\+::milliseconds$>$ \\
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer}{bfl\+::utils\+::\+Cpu\+Timer}}$<$ timetype $>$\+::stop\+\_\+time\+\_\+ = \mbox{\hyperlink{classbfl_1_1utils_1_1CpuTimer_a18c264012224f9c13dd85c841a7a5d6a}{start\+\_\+time\+\_\+}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The stop time. 
+
+
+
+Definition at line 538 of file utils.\+h.
+
+
+
+Referenced by bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::elapsed(), and bfl\+::utils\+::\+Cpu\+Timer$<$ timetype $>$\+::stop().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{utils_8h}{utils.\+h}}\end{DoxyCompactItemize}

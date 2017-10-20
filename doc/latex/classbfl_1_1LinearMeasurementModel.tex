@@ -1,0 +1,569 @@
+\hypertarget{classbfl_1_1LinearMeasurementModel}{}\doxysection{bfl\+::Linear\+Measurement\+Model Class Reference}
+\label{classbfl_1_1LinearMeasurementModel}\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+
+
+This class represent an linear measurement model Hx + w, where H is a time-\/variant measurement matrix, x is a state vector and w is random noise.  
+
+
+
+
+{\ttfamily \#include $<$Linear\+Measurement\+Model.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Linear\+Measurement\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classbfl_1_1LinearMeasurementModel__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel_a2c4b64fc17565256b0076f5eaca689b2}{$\sim$\+Linear\+Measurement\+Model}} () noexcept=default
+\item 
+virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel_a719734ef024a766f03b86e51dc849953}{get\+Measurement\+Matrix}} () const =0
+\item 
+virtual std\+::pair$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} $>$ \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel_a8831b8acb4790db4c69db73200375c69}{predicted\+Measure}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states) const override
+\item 
+virtual std\+::pair$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} $>$ \mbox{\hyperlink{classbfl_1_1LinearMeasurementModel_a12485b4b6d511e97e338a4db6861b277}{innovation}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} \&predicted\+\_\+measurements, const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} \&measurements) const override
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1MeasurementModel_ad3316a249dfb30d5722dd3c4c23cf2bf}{freeze}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}())=0
+\item 
+virtual std\+::pair$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} $>$ \mbox{\hyperlink{classbfl_1_1MeasurementModel_a4e4180af8aba033a33f0d6942b9e6b18}{measure}} (const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&data=\mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()) const =0
+\item 
+virtual std\+::pair$<$ bool, Eigen\+::\+Matrix\+Xd $>$ \mbox{\hyperlink{classbfl_1_1MeasurementModel_af25f42076b69e0c6cab47d36d796536f}{get\+Noise\+Covariance\+Matrix}} () const
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1MeasurementModel_af97e18b52d1a3f365dd5982b8cc4aff7}{set\+Property}} (const std\+::string \&property)
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1MeasurementModel_ae50e95bbf51c374504fa8db3619b2fab}{get\+Input\+Description}} () const
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} \mbox{\hyperlink{classbfl_1_1MeasurementModel_a7e1134b6efa79a7e88e4162fd68a7d6a}{get\+Measurement\+Description}} () const
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}{enable\+\_\+log}} (const std\+::string \&folder\+\_\+path, const std\+::string \&file\+\_\+name\+\_\+prefix)
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}{disable\+\_\+log}} ()
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}{get\+\_\+folder\+\_\+path}} () const
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}{get\+\_\+file\+\_\+name\+\_\+prefix}} () const
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}{logger}} (Datum\+Type datum)
+\item 
+{\footnotesize template$<$typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}{logger}} (Data\+Type... data)
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}{logger}} (Datum\+Type datum) const
+\item 
+{\footnotesize template$<$typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}{logger}} (Data\+Type... data) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}{log\+\_\+file\+\_\+names}} (const std\+::string \&folder\+\_\+path, const std\+::string \&file\+\_\+name\+\_\+prefix)
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}{log}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum)
+\item 
+{\footnotesize template$<$typename Datum\+Type , typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum, Data\+Type... data)
+\item 
+{\footnotesize template$<$typename Datum\+Type $>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum) const
+\item 
+{\footnotesize template$<$typename Datum\+Type , typename... Data\+Type$>$ }\\void \mbox{\hyperlink{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}{logger\+\_\+helper}} (const size\+\_\+t pos, Datum\+Type datum, Data\+Type... data) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}{folder\+\_\+path\+\_\+}}
+\item 
+std\+::string \mbox{\hyperlink{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}{file\+\_\+name\+\_\+prefix\+\_\+}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}{file\+\_\+names\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}{log\+\_\+enabled\+\_\+}} = false
+\item 
+std\+::vector$<$ std\+::ofstream $>$ \mbox{\hyperlink{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}{log\+\_\+files\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represent an linear measurement model Hx + w, where H is a time-\/variant measurement matrix, x is a state vector and w is random noise. 
+
+Definition at line 21 of file Linear\+Measurement\+Model.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1LinearMeasurementModel_a2c4b64fc17565256b0076f5eaca689b2}\label{classbfl_1_1LinearMeasurementModel_a2c4b64fc17565256b0076f5eaca689b2}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!````~LinearMeasurementModel@{$\sim$LinearMeasurementModel}}
+\index{````~LinearMeasurementModel@{$\sim$LinearMeasurementModel}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{$\sim$LinearMeasurementModel()}{~LinearMeasurementModel()}}
+{\footnotesize\ttfamily virtual bfl\+::\+Linear\+Measurement\+Model\+::$\sim$\+Linear\+Measurement\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}\label{classbfl_1_1Logger_a440467a28ccc46490d767fe0ef6f556a}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!disable\_log@{disable\_log}}
+\index{disable\_log@{disable\_log}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{disable\_log()}{disable\_log()}}
+{\footnotesize\ttfamily bool Logger\+::disable\+\_\+log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 68 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+names\+\_\+, bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Logger\+::$\sim$\+Logger().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}\label{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!enable\_log@{enable\_log}}
+\index{enable\_log@{enable\_log}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{enable\_log()}{enable\_log()}}
+{\footnotesize\ttfamily bool Logger\+::enable\+\_\+log (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{folder\+\_\+path,  }\item[{const std\+::string \&}]{file\+\_\+name\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 22 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+, bfl\+::\+Logger\+::file\+\_\+names\+\_\+, bfl\+::\+Logger\+::folder\+\_\+path\+\_\+, bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, bfl\+::\+Logger\+::log\+\_\+file\+\_\+names(), and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classbfl_1_1Logger_af5ba0a631ff9e2d3d8e3951458768ea9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_ad3316a249dfb30d5722dd3c4c23cf2bf}\label{classbfl_1_1MeasurementModel_ad3316a249dfb30d5722dd3c4c23cf2bf}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!freeze@{freeze}}
+\index{freeze@{freeze}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{freeze()}{freeze()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+Measurement\+Model\+::freeze (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1MeasurementModelDecorator_a74bfa72a839bf64f50d227df7f6a103c}{bfl\+::\+Measurement\+Model\+Decorator}}, and \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_a911f19aa20f971d7c5aa4c18a1c44304}{bfl\+::\+Simulated\+Linear\+Sensor}}.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}\label{classbfl_1_1Logger_a092a1d4ad55c6cfad8cae557e090a0dd}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!get\_file\_name\_prefix@{get\_file\_name\_prefix}}
+\index{get\_file\_name\_prefix@{get\_file\_name\_prefix}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{get\_file\_name\_prefix()}{get\_file\_name\_prefix()}}
+{\footnotesize\ttfamily std\+::string Logger\+::get\+\_\+file\+\_\+name\+\_\+prefix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 91 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}\label{classbfl_1_1Logger_a780257968af073312c9970caabd0aee1}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!get\_folder\_path@{get\_folder\_path}}
+\index{get\_folder\_path@{get\_folder\_path}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{get\_folder\_path()}{get\_folder\_path()}}
+{\footnotesize\ttfamily std\+::string Logger\+::get\+\_\+folder\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line 85 of file Logger.\+cpp.
+
+
+
+References bfl\+::\+Logger\+::folder\+\_\+path\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_ae50e95bbf51c374504fa8db3619b2fab}\label{classbfl_1_1MeasurementModel_ae50e95bbf51c374504fa8db3619b2fab}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!getInputDescription@{getInputDescription}}
+\index{getInputDescription@{getInputDescription}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{getInputDescription()}{getInputDescription()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} Measurement\+Model\+::get\+Input\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_aac88ecd26c559fa48d4e4321ffb7078a}{bfl\+::\+Simulated\+Linear\+Sensor}}.
+
+
+
+Definition at line 30 of file Measurement\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_a7e1134b6efa79a7e88e4162fd68a7d6a}\label{classbfl_1_1MeasurementModel_a7e1134b6efa79a7e88e4162fd68a7d6a}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!getMeasurementDescription@{getMeasurementDescription}}
+\index{getMeasurementDescription@{getMeasurementDescription}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{getMeasurementDescription()}{getMeasurementDescription()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1VectorDescription}{Vector\+Description}} Measurement\+Model\+::get\+Measurement\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_a2ba7cbce357c93a28a0c21221dc2aa3e}{bfl\+::\+Simulated\+Linear\+Sensor}}.
+
+
+
+Definition at line 37 of file Measurement\+Model.\+cpp.
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1LinearMeasurementModel_a719734ef024a766f03b86e51dc849953}\label{classbfl_1_1LinearMeasurementModel_a719734ef024a766f03b86e51dc849953}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!getMeasurementMatrix@{getMeasurementMatrix}}
+\index{getMeasurementMatrix@{getMeasurementMatrix}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{getMeasurementMatrix()}{getMeasurementMatrix()}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Matrix\+Xd bfl\+::\+Linear\+Measurement\+Model\+::get\+Measurement\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1LinearModel_a7dbfa7e8cbdc9ee863febf92e6046400}{bfl\+::\+Linear\+Model}}, and \mbox{\hyperlink{classbfl_1_1LTIMeasurementModel_a2eb547472621fd60e461ae40665daabf}{bfl\+::\+L\+T\+I\+Measurement\+Model}}.
+
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_af25f42076b69e0c6cab47d36d796536f}\label{classbfl_1_1MeasurementModel_af25f42076b69e0c6cab47d36d796536f}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}}
+\index{getNoiseCovarianceMatrix@{getNoiseCovarianceMatrix}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{getNoiseCovarianceMatrix()}{getNoiseCovarianceMatrix()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, Matrix\+Xd $>$ Measurement\+Model\+::get\+Noise\+Covariance\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1LinearModel_a9adc7aabd58e79ce71c283866ddbf655}{bfl\+::\+Linear\+Model}}, \mbox{\hyperlink{classbfl_1_1LTIMeasurementModel_a227ed150a9fdcb2b5b59f7b71eb7e462}{bfl\+::\+L\+T\+I\+Measurement\+Model}}, and \mbox{\hyperlink{classbfl_1_1MeasurementModelDecorator_a690917b537b72bd6278968bbd5b030b0}{bfl\+::\+Measurement\+Model\+Decorator}}.
+
+
+
+Definition at line 16 of file Measurement\+Model.\+cpp.
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), bfl\+::\+Gaussian\+Likelihood\+::likelihood(), and bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1LinearMeasurementModel_a12485b4b6d511e97e338a4db6861b277}\label{classbfl_1_1LinearMeasurementModel_a12485b4b6d511e97e338a4db6861b277}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!innovation@{innovation}}
+\index{innovation@{innovation}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{innovation()}{innovation()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} $>$ Linear\+Measurement\+Model\+::innovation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} \&}]{predicted\+\_\+measurements,  }\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} \&}]{measurements }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1MeasurementModel_ae9d3627dd9e935795d1e4c76bb34029c}{bfl\+::\+Measurement\+Model}}.
+
+
+
+Definition at line 24 of file Linear\+Measurement\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}\label{classbfl_1_1Logger_ad44f46593cb8c4c87c1178eb326e2f64}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!log@{log}}
+\index{log@{log}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily void Logger\+::log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1SimulatedStateModel_aa022eb0d50d898ffcc831af2907265b2}{bfl\+::\+Simulated\+State\+Model}}, \mbox{\hyperlink{classbfl_1_1SIS_aeb0b87af1cc1fc4b616989ef489ecccc}{bfl\+::\+S\+IS}}, and \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_ab75bbe744d8516c97dfc90ad499b10e6}{bfl\+::\+Simulated\+Linear\+Sensor}}.
+
+
+
+Definition at line 109 of file Logger.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}\label{classbfl_1_1Logger_a5b9ed20033fc3a68c78351f615556050}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!log\_file\_names@{log\_file\_names}}
+\index{log\_file\_names@{log\_file\_names}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{log\_file\_names()}{log\_file\_names()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Logger\+::log\+\_\+file\+\_\+names (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{folder\+\_\+path,  }\item[{const std\+::string \&}]{file\+\_\+name\+\_\+prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1LinearModel_ae5a2b5dad901d04da403834eecafe3ef}{bfl\+::\+Linear\+Model}}, \mbox{\hyperlink{classbfl_1_1SimulatedStateModel_aa090e76042ece13013ad6ff6546f1459}{bfl\+::\+Simulated\+State\+Model}}, and \mbox{\hyperlink{classbfl_1_1SIS_a5ea76b03f1add313c42552ec24bf1f2f}{bfl\+::\+S\+IS}}.
+
+
+
+Definition at line 97 of file Logger.\+cpp.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}\label{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger@{logger}}
+\index{logger@{logger}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Data\+Type...}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 42 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_aca2086c9256e5c404872b91f7f25b97d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}\label{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger@{logger}}
+\index{logger@{logger}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Data\+Type...}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 56 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_a0f0cf7ce956546d94dfb1feb7cebf171_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}\label{classbfl_1_1Logger_a1033ff31398484f2132f84fd140da9e3}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger@{logger}}
+\index{logger@{logger}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Datum\+Type}]{datum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 35 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Simulated\+Linear\+Sensor\+::log().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}\label{classbfl_1_1Logger_a50b1c109730fa98f66e66f420f0158fe}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger@{logger}}
+\index{logger@{logger}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger()}{logger()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger (\begin{DoxyParamCaption}\item[{Datum\+Type}]{datum }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 49 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+, and bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}\label{classbfl_1_1Logger_a0904d00289e404f5bae335db56ceacae}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 81 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+
+
+Referenced by bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}\label{classbfl_1_1Logger_a73ff9a8b5a316a2338967fdfb7440aea}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type $>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 95 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+.
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}\label{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type , typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum,  }\item[{Data\+Type...}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 87 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_ac45b73649e685802837bf97c10146c3a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}\label{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!logger\_helper@{logger\_helper}}
+\index{logger\_helper@{logger\_helper}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{logger\_helper()}{logger\_helper()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Datum\+Type , typename... Data\+Type$>$ \\
+void bfl\+::\+Logger\+::logger\+\_\+helper (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{pos,  }\item[{Datum\+Type}]{datum,  }\item[{Data\+Type...}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 101 of file Logger.\+h.
+
+
+
+References bfl\+::\+Logger\+::log\+\_\+files\+\_\+, and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbfl_1_1Logger_a9ac71d17bc482feeda35c6d91396cac2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_a4e4180af8aba033a33f0d6942b9e6b18}\label{classbfl_1_1MeasurementModel_a4e4180af8aba033a33f0d6942b9e6b18}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!measure@{measure}}
+\index{measure@{measure}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{measure()}{measure()}}
+{\footnotesize\ttfamily virtual std\+::pair$<$bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}$>$ bfl\+::\+Measurement\+Model\+::measure (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}} \&}]{data = {\ttfamily \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{Data}}()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1SimulatedLinearSensor_a0bc0bb41e9b52a4e69c221b8e70faa09}{bfl\+::\+Simulated\+Linear\+Sensor}}, and \mbox{\hyperlink{classbfl_1_1MeasurementModelDecorator_af6ea6e51bfb6d10afa7a077d2a490f86}{bfl\+::\+Measurement\+Model\+Decorator}}.
+
+
+
+Referenced by bfl\+::\+U\+K\+F\+Correction\+::correct\+Step(), and bfl\+::\+Gaussian\+Likelihood\+::likelihood().
+
+\mbox{\Hypertarget{classbfl_1_1LinearMeasurementModel_a8831b8acb4790db4c69db73200375c69}\label{classbfl_1_1LinearMeasurementModel_a8831b8acb4790db4c69db73200375c69}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!predictedMeasure@{predictedMeasure}}
+\index{predictedMeasure@{predictedMeasure}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{predictedMeasure()}{predictedMeasure()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{namespacebfl_a8759eacc75ff9a63abe0842e487d6c06}{bfl\+::\+Data}} $>$ Linear\+Measurement\+Model\+::predicted\+Measure (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1MeasurementModel_abd47546b1038cc28b6d7375667427504}{bfl\+::\+Measurement\+Model}}.
+
+
+
+Definition at line 16 of file Linear\+Measurement\+Model.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1MeasurementModel_af97e18b52d1a3f365dd5982b8cc4aff7}\label{classbfl_1_1MeasurementModel_af97e18b52d1a3f365dd5982b8cc4aff7}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily bool Measurement\+Model\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classbfl_1_1MeasurementModelDecorator_a531a891152d7bf83e56370664d54f42f}{bfl\+::\+Measurement\+Model\+Decorator}}.
+
+
+
+Definition at line 22 of file Measurement\+Model.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}\label{classbfl_1_1Logger_a7c20c26bac523ba1492b6a0756dcbc91}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!file\_name\_prefix\_@{file\_name\_prefix\_}}
+\index{file\_name\_prefix\_@{file\_name\_prefix\_}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{file\_name\_prefix\_}{file\_name\_prefix\_}}
+{\footnotesize\ttfamily std\+::string bfl\+::\+Logger\+::file\+\_\+name\+\_\+prefix\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 72 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log(), and bfl\+::\+Logger\+::get\+\_\+file\+\_\+name\+\_\+prefix().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}\label{classbfl_1_1Logger_ac6cb274f1b9dc648d7762fee78358bcd}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!file\_names\_@{file\_names\_}}
+\index{file\_names\_@{file\_names\_}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{file\_names\_}{file\_names\_}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ bfl\+::\+Logger\+::file\+\_\+names\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 74 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), and bfl\+::\+Logger\+::enable\+\_\+log().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}\label{classbfl_1_1Logger_afb97446c94033c76144ead3165354e1e}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!folder\_path\_@{folder\_path\_}}
+\index{folder\_path\_@{folder\_path\_}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{folder\_path\_}{folder\_path\_}}
+{\footnotesize\ttfamily std\+::string bfl\+::\+Logger\+::folder\+\_\+path\+\_\+\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 70 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::enable\+\_\+log(), and bfl\+::\+Logger\+::get\+\_\+folder\+\_\+path().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}\label{classbfl_1_1Logger_a1cd59822387b9c61b38699e011bfb277}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!log\_enabled\_@{log\_enabled\_}}
+\index{log\_enabled\_@{log\_enabled\_}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{log\_enabled\_}{log\_enabled\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Logger\+::log\+\_\+enabled\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 76 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), bfl\+::\+Logger\+::enable\+\_\+log(), bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::$\sim$\+Logger().
+
+\mbox{\Hypertarget{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}\label{classbfl_1_1Logger_a3cc2276bf1ad03941f1eca92c352b9c4}} 
+\index{bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}!log\_files\_@{log\_files\_}}
+\index{log\_files\_@{log\_files\_}!bfl::LinearMeasurementModel@{bfl::LinearMeasurementModel}}
+\doxysubsubsection{\texorpdfstring{log\_files\_}{log\_files\_}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::ofstream$>$ bfl\+::\+Logger\+::log\+\_\+files\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 78 of file Logger.\+h.
+
+
+
+Referenced by bfl\+::\+Logger\+::disable\+\_\+log(), bfl\+::\+Logger\+::enable\+\_\+log(), bfl\+::\+Logger\+::logger(), and bfl\+::\+Logger\+::logger\+\_\+helper().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{LinearMeasurementModel_8h}{Linear\+Measurement\+Model.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{LinearMeasurementModel_8cpp}{Linear\+Measurement\+Model.\+cpp}}\end{DoxyCompactItemize}

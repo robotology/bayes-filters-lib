@@ -1,0 +1,4 @@
+<map id="bfl::utils::diff_quaternion" name="bfl::utils::diff_quaternion">
+<area shape="rect" id="node1" title="Evaluate the colwise difference between a set of unit quaternions &#160;and a unit quaternion ." alt="" coords="5,13,185,39"/>
+<area shape="rect" id="node2" href="$namespacebfl_1_1utils.html#a294bdf526be6ef1c5bad59e737f2af63" title="Convert a matrix of unit quaternions &#160;to their rotation vector representation &#160;in the tangent space a..." alt="" coords="233,5,385,47"/>
+</map>

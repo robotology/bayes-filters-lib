@@ -1,0 +1,7 @@
+<map id="bfl::TimeDecreasingDynamics::setProperty" name="bfl::TimeDecreasingDynamics::setProperty">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,223,145"/>
+<area shape="rect" id="node2" href="$classbfl_1_1utils_1_1CpuTimer.html#ac7702cd9061b12db77c9e249d7b77046" title="Get the time passed between a start() and stop() call." alt="" coords="271,5,416,47"/>
+<area shape="rect" id="node3" href="$classbfl_1_1utils_1_1CpuTimer.html#a2eb7137dc7b2ccae9742b14d4a5e2b86" title="Check if the timer is running or not." alt="" coords="271,71,416,112"/>
+<area shape="rect" id="node4" href="$classbfl_1_1utils_1_1CpuTimer.html#aafb5ec4ed5936f14bb066d9e809f1f0e" title="Start the timer." alt="" coords="271,136,416,177"/>
+<area shape="rect" id="node5" href="$classbfl_1_1utils_1_1CpuTimer.html#ad8e710e2a21b97c5e13ff2f338445a96" title="Stop the timer." alt="" coords="271,201,416,243"/>
+</map>

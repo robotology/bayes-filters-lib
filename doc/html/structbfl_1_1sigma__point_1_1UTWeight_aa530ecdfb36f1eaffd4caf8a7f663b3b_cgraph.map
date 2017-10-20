@@ -1,0 +1,10 @@
+<map id="bfl::sigma_point::UTWeight::UTWeight" name="bfl::sigma_point::UTWeight::UTWeight">
+<area shape="rect" id="node1" title="Constructs the weights from a bfl::VectorDescription and UT parameters alpha, beta and kappa." alt="" coords="5,127,203,168"/>
+<area shape="rect" id="node2" href="$classbfl_1_1VectorDescription.html#a0522f96ed1f567d3a39fe436a7c01154" title=" " alt="" coords="271,93,432,135"/>
+<area shape="rect" id="node8" href="$namespacebfl_1_1sigma__point.html#a2cdca209c158edd6440c2f077b345799" title=" " alt="" coords="251,159,452,200"/>
+<area shape="rect" id="node3" href="$classbfl_1_1VectorDescription.html#a08a52559af5e67e1f225466a77d852ff" title=" " alt="" coords="500,5,665,47"/>
+<area shape="rect" id="node4" href="$classbfl_1_1VectorDescription.html#a6f6e3b3a084ca449ff1ac4c7b82aec6f" title=" " alt="" coords="713,57,875,99"/>
+<area shape="rect" id="node5" href="$classbfl_1_1VectorDescription.html#a45e0d5245f401ede3601dd7e653a6b4e" title=" " alt="" coords="713,188,875,229"/>
+<area shape="rect" id="node6" href="$classbfl_1_1VectorDescription.html#a1c3807b9dc0336dacd3fe2a723c77cbd" title=" " alt="" coords="502,123,663,164"/>
+<area shape="rect" id="node7" href="$classbfl_1_1VectorDescription.html#a02aa208e08cb3130f6f2c1393dc9aa1a" title=" " alt="" coords="713,123,875,164"/>
+</map>

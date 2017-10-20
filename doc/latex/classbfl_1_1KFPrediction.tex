@@ -1,0 +1,232 @@
+\hypertarget{classbfl_1_1KFPrediction}{}\doxysection{bfl\+::K\+F\+Prediction Class Reference}
+\label{classbfl_1_1KFPrediction}\index{bfl::KFPrediction@{bfl::KFPrediction}}
+
+
+{\ttfamily \#include $<$K\+F\+Prediction.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::K\+F\+Prediction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classbfl_1_1KFPrediction__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbfl_1_1KFPrediction_a91e58a83fceb6fe2ec6ef9221ac1eef9}{K\+F\+Prediction}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} $>$ state\+\_\+model) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1KFPrediction_a9904a9eee74659520f05a4d3abd4c055}{K\+F\+Prediction}} (const \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1KFPrediction_a6611fe88fba2e9fa078b8b4c7591266e}{operator=}} (const \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&prediction) noexcept=delete
+\item 
+\mbox{\hyperlink{classbfl_1_1KFPrediction_a726fe1957b5477d4e0ee5072fe705495}{K\+F\+Prediction}} (\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \& \mbox{\hyperlink{classbfl_1_1KFPrediction_a110e4302ca022015bab08358bf5260f2}{operator=}} (\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&\&prediction) noexcept
+\item 
+virtual \mbox{\hyperlink{classbfl_1_1KFPrediction_a172c4bcaafaec5d01a4d4bc5817cd87d}{$\sim$\+K\+F\+Prediction}} () noexcept=default
+\item 
+\mbox{\hyperlink{classbfl_1_1StateModel}{State\+Model}} \& \mbox{\hyperlink{classbfl_1_1KFPrediction_a823c0101dbf00af4db612772080be40c}{get\+State\+Model}} () noexcept override
+\item 
+void \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}{predict}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&prev\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}{skip}} (const std\+::string \&what\+\_\+step, const bool status) override
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}{is\+\_\+skipping}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classbfl_1_1KFPrediction_aa71d6b8ac030c54e86d3e91a94bb2db9}{predict\+Step}} (const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&prev\+\_\+state, \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&pred\+\_\+state) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} $>$ \mbox{\hyperlink{classbfl_1_1KFPrediction_ab3230d88e673642feced141b05c2a804}{state\+\_\+model\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}{skip\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 23 of file K\+F\+Prediction.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a91e58a83fceb6fe2ec6ef9221ac1eef9}\label{classbfl_1_1KFPrediction_a91e58a83fceb6fe2ec6ef9221ac1eef9}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!KFPrediction@{KFPrediction}}
+\index{KFPrediction@{KFPrediction}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{KFPrediction()}{KFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily K\+F\+Prediction\+::\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}} $>$}]{state\+\_\+model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 14 of file K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a9904a9eee74659520f05a4d3abd4c055}\label{classbfl_1_1KFPrediction_a9904a9eee74659520f05a4d3abd4c055}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!KFPrediction@{KFPrediction}}
+\index{KFPrediction@{KFPrediction}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{KFPrediction()}{KFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bfl\+::\+K\+F\+Prediction\+::\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a726fe1957b5477d4e0ee5072fe705495}\label{classbfl_1_1KFPrediction_a726fe1957b5477d4e0ee5072fe705495}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!KFPrediction@{KFPrediction}}
+\index{KFPrediction@{KFPrediction}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{KFPrediction()}{KFPrediction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily K\+F\+Prediction\+::\+K\+F\+Prediction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 19 of file K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a172c4bcaafaec5d01a4d4bc5817cd87d}\label{classbfl_1_1KFPrediction_a172c4bcaafaec5d01a4d4bc5817cd87d}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!````~KFPrediction@{$\sim$KFPrediction}}
+\index{````~KFPrediction@{$\sim$KFPrediction}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{$\sim$KFPrediction()}{~KFPrediction()}}
+{\footnotesize\ttfamily virtual bfl\+::\+K\+F\+Prediction\+::$\sim$\+K\+F\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a823c0101dbf00af4db612772080be40c}\label{classbfl_1_1KFPrediction_a823c0101dbf00af4db612772080be40c}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!getStateModel@{getStateModel}}
+\index{getStateModel@{getStateModel}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{getStateModel()}{getStateModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1StateModel}{bfl\+::\+State\+Model}} \& K\+F\+Prediction\+::get\+State\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a12e852ef03c819183eceb94f2c07bd91}{bfl\+::\+Gaussian\+Prediction}}.
+
+
+
+Definition at line 38 of file K\+F\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}\label{classbfl_1_1GaussianPrediction_a17ee46b108ee15e31c379bf06bb65d1f}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!is\_skipping@{is\_skipping}}
+\index{is\_skipping@{is\_skipping}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{is\_skipping()}{is\_skipping()}}
+{\footnotesize\ttfamily bool Gaussian\+Prediction\+::is\+\_\+skipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skippable_a897c639a3fced9b35fcf87ed3c38cfc4}{bfl\+::\+Skippable}}.
+
+
+
+Definition at line 56 of file Gaussian\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a6611fe88fba2e9fa078b8b4c7591266e}\label{classbfl_1_1KFPrediction_a6611fe88fba2e9fa078b8b4c7591266e}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}}\& bfl\+::\+K\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_a110e4302ca022015bab08358bf5260f2}\label{classbfl_1_1KFPrediction_a110e4302ca022015bab08358bf5260f2}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!operator=@{operator=}}
+\index{operator=@{operator=}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \& K\+F\+Prediction\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classbfl_1_1KFPrediction}{K\+F\+Prediction}} \&\&}]{prediction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Definition at line 25 of file K\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Prediction\+::operator=().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classbfl_1_1KFPrediction_a110e4302ca022015bab08358bf5260f2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}\label{classbfl_1_1GaussianPrediction_a5dd0150eff7615b4e52dfb236d834c1f}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!predict@{predict}}
+\index{predict@{predict}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{predict()}{predict()}}
+{\footnotesize\ttfamily void Gaussian\+Prediction\+::predict (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{prev\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianMixturePrediction_aef11b6691574fd1f39eaf127e5a6fea3}{bfl\+::\+Gaussian\+Mixture\+Prediction}}.
+
+
+
+Definition at line 18 of file Gaussian\+Prediction.\+cpp.
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_aa71d6b8ac030c54e86d3e91a94bb2db9}\label{classbfl_1_1KFPrediction_aa71d6b8ac030c54e86d3e91a94bb2db9}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!predictStep@{predictStep}}
+\index{predictStep@{predictStep}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{predictStep()}{predictStep()}}
+{\footnotesize\ttfamily void K\+F\+Prediction\+::predict\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{prev\+\_\+state,  }\item[{\mbox{\hyperlink{classbfl_1_1GaussianMixture}{Gaussian\+Mixture}} \&}]{pred\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1GaussianPrediction_a35e7c490378c9bb48e4becad7fdcb2a1}{bfl\+::\+Gaussian\+Prediction}}.
+
+
+
+Definition at line 44 of file K\+F\+Prediction.\+cpp.
+
+
+
+References bfl\+::\+Gaussian\+Mixture\+::components, bfl\+::\+Gaussian\+Mixture\+::covariance(), and bfl\+::\+Gaussian\+Mixture\+::mean().
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{classbfl_1_1KFPrediction_aa71d6b8ac030c54e86d3e91a94bb2db9_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}\label{classbfl_1_1GaussianPrediction_abcd9552cddf82459cb47194c715714e9}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!skip@{skip}}
+\index{skip@{skip}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily bool Gaussian\+Prediction\+::skip (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{what\+\_\+step,  }\item[{const bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [inherited]}}
+
+
+
+Implements \mbox{\hyperlink{classbfl_1_1Skipper_a480791ffa93338dc91153965fb386ece}{bfl\+::\+Skipper}}.
+
+
+
+Definition at line 27 of file Gaussian\+Prediction.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}\label{classbfl_1_1GaussianPrediction_a1f398bda5461f0d61013284cfb0dd8a2}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!skip\_@{skip\_}}
+\index{skip\_@{skip\_}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{skip\_}{skip\_}}
+{\footnotesize\ttfamily bool bfl\+::\+Gaussian\+Prediction\+::skip\+\_\+ = false\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line 52 of file Gaussian\+Prediction.\+h.
+
+\mbox{\Hypertarget{classbfl_1_1KFPrediction_ab3230d88e673642feced141b05c2a804}\label{classbfl_1_1KFPrediction_ab3230d88e673642feced141b05c2a804}} 
+\index{bfl::KFPrediction@{bfl::KFPrediction}!state\_model\_@{state\_model\_}}
+\index{state\_model\_@{state\_model\_}!bfl::KFPrediction@{bfl::KFPrediction}}
+\doxysubsubsection{\texorpdfstring{state\_model\_}{state\_model\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classbfl_1_1LinearStateModel}{Linear\+State\+Model}}$>$ bfl\+::\+K\+F\+Prediction\+::state\+\_\+model\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 46 of file K\+F\+Prediction.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{KFPrediction_8h}{K\+F\+Prediction.\+h}}\item 
+/home/user/bayes-\/filters-\/lib/src/\+Bayes\+Filters/src/\mbox{\hyperlink{KFPrediction_8cpp}{K\+F\+Prediction.\+cpp}}\end{DoxyCompactItemize}
