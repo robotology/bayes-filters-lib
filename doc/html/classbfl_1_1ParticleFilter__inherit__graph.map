@@ -1,0 +1,8 @@
+<map id="bfl::ParticleFilter" name="bfl::ParticleFilter">
+<area shape="rect" id="node1" title=" " alt="" coords="89,155,206,181"/>
+<area shape="rect" id="node6" href="$classbfl_1_1SIS.html" title=" " alt="" coords="114,229,181,256"/>
+<area shape="rect" id="node2" href="$classbfl_1_1FilteringAlgorithm.html" title=" " alt="" coords="75,80,220,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1Filter.html" title=" " alt="" coords="5,5,79,32"/>
+<area shape="rect" id="node4" href="$classbfl_1_1Skipper.html" title=" " alt="" coords="103,5,191,32"/>
+<area shape="rect" id="node5" href="$classbfl_1_1Logger.html" title=" " alt="" coords="215,5,298,32"/>
+</map>

@@ -1,0 +1,16 @@
+var searchData=
+[
+  ['wait_409',['wait',['../classbfl_1_1Filter.html#a9f62573c22b831a9df5525bc3acf3fc5',1,'bfl::Filter::wait()'],['../classbfl_1_1FilteringAlgorithm.html#a080da064b0553740bfe4110e3340eff6',1,'bfl::FilteringAlgorithm::wait()']]],
+  ['weight_410',['weight',['../classbfl_1_1Gaussian.html#aac053b84b9cf54506236bb38a9be7baa',1,'bfl::Gaussian::weight()'],['../classbfl_1_1Gaussian.html#a84a8482a20306e29b508a7235c01f2a6',1,'bfl::Gaussian::weight() const'],['../classbfl_1_1GaussianMixture.html#ada5625de6a3e2f98afb5aaa148503dad',1,'bfl::GaussianMixture::weight()'],['../classbfl_1_1GaussianMixture.html#a44885fb208e33f37015d47f55d02ef50',1,'bfl::GaussianMixture::weight(const std::size_t i)'],['../classbfl_1_1GaussianMixture.html#a9ef04270bbccfe01f481665a1f390167',1,'bfl::GaussianMixture::weight() const'],['../classbfl_1_1GaussianMixture.html#a42672f88d9126f018715a4d258a57731',1,'bfl::GaussianMixture::weight(const std::size_t i) const']]],
+  ['weight_5f_411',['weight_',['../classbfl_1_1GaussianMixture.html#ac9ce000575d6b29ad8e1a756d750faff',1,'bfl::GaussianMixture']]],
+  ['weightedaverage_412',['weightedAverage',['../classbfl_1_1EstimatesExtraction.html#a8bfae77188e232b8305725fde9a376cc',1,'bfl::EstimatesExtraction']]],
+  ['what_413',['what',['../classbfl_1_1any_1_1bad__any__cast.html#a5e59fa8f7c57b8a06fb35bf66dd887eb',1,'bfl::any::bad_any_cast']]],
+  ['whitenoiseacceleration_414',['WhiteNoiseAcceleration',['../classbfl_1_1WhiteNoiseAcceleration.html',1,'bfl::WhiteNoiseAcceleration'],['../classbfl_1_1WhiteNoiseAcceleration.html#a29bbc0e8817099c6a6249bb635627fd8',1,'bfl::WhiteNoiseAcceleration::WhiteNoiseAcceleration(const Dim dim, const double sampling_interval, const double tilde_q) noexcept'],['../classbfl_1_1WhiteNoiseAcceleration.html#a365619b11159baaa12f7d326e6febb91',1,'bfl::WhiteNoiseAcceleration::WhiteNoiseAcceleration(const Dim dim, const double sampling_interval, const double tilde_q, const unsigned int seed) noexcept'],['../classbfl_1_1WhiteNoiseAcceleration.html#afd78f0603bf9c0851aa1bf24f40ccee0',1,'bfl::WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration &amp;state_model) noexcept=delete'],['../classbfl_1_1WhiteNoiseAcceleration.html#aba44b9afe2a730a6a0713611eca1a9d9',1,'bfl::WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration &amp;&amp;state_model) noexcept']]],
+  ['whitenoiseacceleration_2ecpp_415',['WhiteNoiseAcceleration.cpp',['../WhiteNoiseAcceleration_8cpp.html',1,'']]],
+  ['whitenoiseacceleration_2eh_416',['WhiteNoiseAcceleration.h',['../WhiteNoiseAcceleration_8h.html',1,'']]],
+  ['window_5f_417',['window_',['../classbfl_1_1HistoryBuffer.html#a135dd1829747ba2f414f12fd8282f75a',1,'bfl::HistoryBuffer']]],
+  ['wm_5fweights_5f_418',['wm_weights_',['../classbfl_1_1EstimatesExtraction.html#aeeea600b8591d00e0c15939a0684b77a',1,'bfl::EstimatesExtraction']]],
+  ['wmap_419',['wmap',['../classbfl_1_1EstimatesExtraction.html#a8489976af4025f0bbc3288ff7f17ffb0a26482eac73e7c8ed1217545dfa7cd48f',1,'bfl::EstimatesExtraction']]],
+  ['wmean_420',['wmean',['../classbfl_1_1EstimatesExtraction.html#a8489976af4025f0bbc3288ff7f17ffb0a1d2c4e9e69cf765aa9ff84e8a69501cd',1,'bfl::EstimatesExtraction']]],
+  ['wmode_421',['wmode',['../classbfl_1_1EstimatesExtraction.html#a8489976af4025f0bbc3288ff7f17ffb0ac6e4db54fbd05bde785ef07a442b50f5',1,'bfl::EstimatesExtraction']]]
+];

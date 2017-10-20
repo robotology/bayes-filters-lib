@@ -1,0 +1,9 @@
+<map id="bfl::ResamplingWithPrior::resample" name="bfl::ResamplingWithPrior::resample">
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,172,172"/>
+<area shape="rect" id="node2" href="$classbfl_1_1GaussianMixture.html#a65a60ef46d16ac33196a09963bbccdee" title=" " alt="" coords="444,5,587,47"/>
+<area shape="rect" id="node3" href="$namespacebfl_1_1utils.html#a6ca41188b9a6ef3d0d5d5c62df6ed318" title="Return the element&#45;wise logarithm of the sum of exponentials of the input data." alt="" coords="231,265,384,291"/>
+<area shape="rect" id="node4" href="$classbfl_1_1GaussianMixture.html#af4fd865a97ac27c72510cfbf9429bd97" title=" " alt="" coords="444,72,587,113"/>
+<area shape="rect" id="node5" href="$classbfl_1_1Resampling.html#a7527025ad8afc6dbae2225213571391c" title=" " alt="" coords="220,113,395,139"/>
+<area shape="rect" id="node6" href="$classbfl_1_1ParticleSet.html#a85950583083c2903f4235801cc03130c" title=" " alt="" coords="443,141,588,167"/>
+<area shape="rect" id="node7" href="$classbfl_1_1GaussianMixture.html#ada5625de6a3e2f98afb5aaa148503dad" title=" " alt="" coords="444,197,587,239"/>
+</map>

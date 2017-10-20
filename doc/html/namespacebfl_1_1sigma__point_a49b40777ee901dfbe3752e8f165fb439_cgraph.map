@@ -1,0 +1,12 @@
+<map id="bfl::sigma_point::unscented_transform" name="bfl::sigma_point::unscented_transform">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,188,112"/>
+<area shape="rect" id="node2" href="$classbfl_1_1StateProcess.html#ad1d669b1ceb6ff91b3a305a0360d4bb3" title="Returns the linear and circular size of the output of the state equation." alt="" coords="262,5,393,47"/>
+<area shape="rect" id="node3" href="$classbfl_1_1StateProcess.html#ac28929ad52b7860758179cf8921cb7d2" title=" " alt="" coords="262,71,393,112"/>
+<area shape="rect" id="node4" href="$namespacebfl_1_1sigma__point.html#afe170453152d4f96db4dad71bd9be9a3" title=" " alt="" coords="236,136,419,177"/>
+<area shape="rect" id="node5" href="$classbfl_1_1GaussianMixture.html#a65a60ef46d16ac33196a09963bbccdee" title=" " alt="" coords="687,71,830,112"/>
+<area shape="rect" id="node6" href="$namespacebfl_1_1directional__statistics.html#ad8758aac208bc2baa75aad514a3f53e6" title=" " alt="" coords="467,71,629,112"/>
+<area shape="rect" id="node7" href="$namespacebfl_1_1directional__statistics.html#a18bffca88c7ea5f4ea11d2ad910736fe" title=" " alt="" coords="467,136,629,177"/>
+<area shape="rect" id="node8" href="$classbfl_1_1GaussianMixture.html#af4fd865a97ac27c72510cfbf9429bd97" title=" " alt="" coords="687,260,830,301"/>
+<area shape="rect" id="node9" href="$namespacebfl_1_1sigma__point.html#ab919aca5fccc30ee2acd5cd966cd9dc9" title=" " alt="" coords="469,201,627,243"/>
+<area shape="rect" id="node10" href="$namespacebfl_1_1directional__statistics.html#af9984a4df2b3f6f0bc0c264783181123" title=" " alt="" coords="677,195,840,236"/>
+</map>

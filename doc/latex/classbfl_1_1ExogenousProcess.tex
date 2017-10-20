@@ -1,0 +1,62 @@
+\hypertarget{classbfl_1_1ExogenousProcess}{}\doxysection{bfl\+::Exogenous\+Process Class Reference}
+\label{classbfl_1_1ExogenousProcess}\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+
+
+{\ttfamily \#include $<$Exogenous\+Process.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::Exogenous\+Process\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{classbfl_1_1ExogenousProcess__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}{propagate}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ prop\+\_\+states)=0
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}{set\+Property}} (const std\+::string \&property)=0
+\item 
+virtual std\+::pair$<$ std\+::size\+\_\+t, std\+::size\+\_\+t $>$ \mbox{\hyperlink{classbfl_1_1ExogenousProcess_aa00fb2a4bd7f09399e7f37f7df3a7da4}{get\+Output\+Size}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the linear and circular size of the output of the state equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file Exogenous\+Process.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_aa00fb2a4bd7f09399e7f37f7df3a7da4}\label{classbfl_1_1ExogenousProcess_aa00fb2a4bd7f09399e7f37f7df3a7da4}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!getOutputSize@{getOutputSize}}
+\index{getOutputSize@{getOutputSize}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{getOutputSize()}{getOutputSize()}}
+{\footnotesize\ttfamily virtual std\+::pair$<$std\+::size\+\_\+t, std\+::size\+\_\+t$>$ bfl\+::\+Exogenous\+Process\+::get\+Output\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the linear and circular size of the output of the state equation. 
+
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}\label{classbfl_1_1ExogenousProcess_a6bb2a48066784fce0c9eac9b61094767}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!propagate@{propagate}}
+\index{propagate@{propagate}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{propagate()}{propagate()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+Exogenous\+Process\+::propagate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{prop\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}\label{classbfl_1_1ExogenousProcess_ae4b198b443ec296b25192174a0d0960c}} 
+\index{bfl::ExogenousProcess@{bfl::ExogenousProcess}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::ExogenousProcess@{bfl::ExogenousProcess}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+Exogenous\+Process\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/xenvre/robot-\/code/bfl\+\_\+robotology/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{ExogenousProcess_8h}{Exogenous\+Process.\+h}}\end{DoxyCompactItemize}

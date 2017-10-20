@@ -1,0 +1,6 @@
+<map id="bfl::GaussianCorrection" name="bfl::GaussianCorrection">
+<area shape="rect" id="node1" title=" " alt="" coords="141,5,300,32"/>
+<area shape="rect" id="node2" href="$classbfl_1_1KFCorrection.html" title=" " alt="" coords="5,80,127,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1SUKFCorrection.html" title="This class implements the algorithm: Barfoot, T., McManus, C." alt="" coords="151,80,291,107"/>
+<area shape="rect" id="node4" href="$classbfl_1_1UKFCorrection.html" title=" " alt="" coords="315,80,446,107"/>
+</map>

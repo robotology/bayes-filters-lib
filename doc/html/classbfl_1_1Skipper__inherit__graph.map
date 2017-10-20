@@ -1,0 +1,17 @@
+<map id="bfl::Skipper" name="bfl::Skipper">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,93,133"/>
+<area shape="rect" id="node2" href="$classbfl_1_1FilteringAlgorithm.html" title=" " alt="" coords="141,56,287,83"/>
+<area shape="rect" id="node6" href="$classbfl_1_1Skippable.html" title=" " alt="" coords="163,132,265,159"/>
+<area shape="rect" id="node3" href="$classbfl_1_1GaussianFilter.html" title=" " alt="" coords="349,5,477,32"/>
+<area shape="rect" id="node4" href="$classbfl_1_1ParticleFilter.html" title=" " alt="" coords="355,56,472,83"/>
+<area shape="rect" id="node5" href="$classbfl_1_1SIS.html" title=" " alt="" coords="585,56,652,83"/>
+<area shape="rect" id="node7" href="$classbfl_1_1ExogenousModel.html" title=" " alt="" coords="341,107,485,133"/>
+<area shape="rect" id="node8" href="$classbfl_1_1GaussianPrediction.html" title=" " alt="" coords="335,157,492,184"/>
+<area shape="rect" id="node11" href="$classbfl_1_1StateModel.html" title=" " alt="" coords="358,208,469,235"/>
+<area shape="rect" id="node9" href="$classbfl_1_1KFPrediction.html" title=" " alt="" coords="559,107,678,133"/>
+<area shape="rect" id="node10" href="$classbfl_1_1UKFPrediction.html" title=" " alt="" coords="554,157,683,184"/>
+<area shape="rect" id="node12" href="$classbfl_1_1AdditiveStateModel.html" title=" " alt="" coords="540,208,697,235"/>
+<area shape="rect" id="node13" href="$classbfl_1_1LinearStateModel.html" title=" " alt="" coords="745,208,891,235"/>
+<area shape="rect" id="node14" href="$classbfl_1_1LTIStateModel.html" title=" " alt="" coords="966,183,1095,209"/>
+<area shape="rect" id="node15" href="$classbfl_1_1WhiteNoiseAcceleration.html" title=" " alt="" coords="939,233,1123,260"/>
+</map>

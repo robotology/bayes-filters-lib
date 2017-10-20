@@ -1,0 +1,98 @@
+\hypertarget{classbfl_1_1StateProcess}{}\doxysection{bfl\+::State\+Process Class Reference}
+\label{classbfl_1_1StateProcess}\index{bfl::StateProcess@{bfl::StateProcess}}
+
+
+{\ttfamily \#include $<$State\+Process.\+h$>$}
+
+
+
+Inheritance diagram for bfl\+::State\+Process\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classbfl_1_1StateProcess__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}{propagate}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ prop\+\_\+states)=0
+\item 
+virtual void \mbox{\hyperlink{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}{motion}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&cur\+\_\+states, Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ mot\+\_\+states)=0
+\item 
+virtual bool \mbox{\hyperlink{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}{set\+Property}} (const std\+::string \&property)=0
+\item 
+virtual std\+::pair$<$ std\+::size\+\_\+t, std\+::size\+\_\+t $>$ \mbox{\hyperlink{classbfl_1_1StateProcess_ad1d669b1ceb6ff91b3a305a0360d4bb3}{get\+Output\+Size}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the linear and circular size of the output of the state equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 18 of file State\+Process.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ad1d669b1ceb6ff91b3a305a0360d4bb3}\label{classbfl_1_1StateProcess_ad1d669b1ceb6ff91b3a305a0360d4bb3}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!getOutputSize@{getOutputSize}}
+\index{getOutputSize@{getOutputSize}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{getOutputSize()}{getOutputSize()}}
+{\footnotesize\ttfamily virtual std\+::pair$<$std\+::size\+\_\+t, std\+::size\+\_\+t$>$ bfl\+::\+State\+Process\+::get\+Output\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the linear and circular size of the output of the state equation. 
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_ac3e447bf2f520b543c67d066f72423b7}{bfl\+::\+White\+Noise\+Acceleration}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}\label{classbfl_1_1StateProcess_ac28929ad52b7860758179cf8921cb7d2}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!motion@{motion}}
+\index{motion@{motion}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{motion()}{motion()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+State\+Process\+::motion (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{mot\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1AdditiveStateModel_a9f145bf8c592fc0092d84421f26dbb8b}{bfl\+::\+Additive\+State\+Model}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}\label{classbfl_1_1StateProcess_ac8cf052b2a6d2d6c25eebf3f1c331053}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!propagate@{propagate}}
+\index{propagate@{propagate}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{propagate()}{propagate()}}
+{\footnotesize\ttfamily virtual void bfl\+::\+State\+Process\+::propagate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Matrix\+Xd $>$ \&}]{cur\+\_\+states,  }\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{prop\+\_\+states }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1LinearStateModel_aa0397d043b2ee925dbb39f070ab5ed01}{bfl\+::\+Linear\+State\+Model}}.
+
+
+
+Referenced by bfl\+::sigma\+\_\+point\+::unscented\+\_\+transform().
+
+\mbox{\Hypertarget{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}\label{classbfl_1_1StateProcess_ad5707f0a22ca712e879111b7aaadb572}} 
+\index{bfl::StateProcess@{bfl::StateProcess}!setProperty@{setProperty}}
+\index{setProperty@{setProperty}!bfl::StateProcess@{bfl::StateProcess}}
+\doxysubsubsection{\texorpdfstring{setProperty()}{setProperty()}}
+{\footnotesize\ttfamily virtual bool bfl\+::\+State\+Process\+::set\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classbfl_1_1WhiteNoiseAcceleration_a503c75c72f65c6029b1de7b7f35d8c93}{bfl\+::\+White\+Noise\+Acceleration}}, and \mbox{\hyperlink{classbfl_1_1LTIStateModel_afc2264780111fe41b6a82e97bcb5e87c}{bfl\+::\+LTIState\+Model}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/xenvre/robot-\/code/bfl\+\_\+robotology/src/\+Bayes\+Filters/include/\+Bayes\+Filters/\mbox{\hyperlink{StateProcess_8h}{State\+Process.\+h}}\end{DoxyCompactItemize}

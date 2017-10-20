@@ -1,0 +1,8 @@
+<map id="bfl::GaussianPrediction" name="bfl::GaussianPrediction">
+<area shape="rect" id="node1" title=" " alt="" coords="113,155,271,181"/>
+<area shape="rect" id="node5" href="$classbfl_1_1KFPrediction.html" title=" " alt="" coords="59,229,178,256"/>
+<area shape="rect" id="node6" href="$classbfl_1_1UKFPrediction.html" title=" " alt="" coords="202,229,331,256"/>
+<area shape="rect" id="node2" href="$classbfl_1_1GaussianMixturePrediction.html" title=" " alt="" coords="5,80,205,107"/>
+<area shape="rect" id="node3" href="$classbfl_1_1Skippable.html" title=" " alt="" coords="229,80,331,107"/>
+<area shape="rect" id="node4" href="$classbfl_1_1Skipper.html" title=" " alt="" coords="236,5,324,32"/>
+</map>
