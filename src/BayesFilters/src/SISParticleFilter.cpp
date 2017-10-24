@@ -1,4 +1,4 @@
-#include "BayesFilters/SIRParticleFilter.h"
+#include "BayesFilters/SISParticleFilter.h"
 
 #include <fstream>
 #include <iostream>
@@ -10,18 +10,18 @@ using namespace bfl;
 using namespace Eigen;
 
     
-SIRParticleFilter::SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept :
+SISParticleFilter::SISParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept :
     prediction_(std::move(prediction)), correction_(std::move(correction)), resampling_(std::move(resampling)) { }
 
 
-SIRParticleFilter::~SIRParticleFilter() noexcept { }
+SISParticleFilter::~SISParticleFilter() noexcept { }
 
 
-SIRParticleFilter::SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept :
+SISParticleFilter::SISParticleFilter(SISParticleFilter&& sir_pf) noexcept :
     prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { }
 
 
-SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noexcept
+SISParticleFilter& SISParticleFilter::operator=(SISParticleFilter&& sir_pf) noexcept
 {
     prediction_ = std::move(sir_pf.prediction_);
     correction_ = std::move(sir_pf.correction_);
@@ -31,7 +31,7 @@ SIRParticleFilter& SIRParticleFilter::operator=(SIRParticleFilter&& sir_pf) noex
 }
 
 
-void SIRParticleFilter::initialization()
+void SISParticleFilter::initialization()
 {
     /* INITIALIZATION */
     simulation_time_ = 100;
@@ -73,7 +73,7 @@ void SIRParticleFilter::initialization()
 }
 
 
-void SIRParticleFilter::filteringStep()
+void SISParticleFilter::filteringStep()
 {
     unsigned int k = getFilteringStep();
 
@@ -109,7 +109,7 @@ void SIRParticleFilter::filteringStep()
 }
 
 
-void SIRParticleFilter::getResult()
+void SISParticleFilter::getResult()
 {
     std::ofstream result_file_object;
     std::ofstream result_file_measurement;

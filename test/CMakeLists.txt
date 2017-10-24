@@ -1,2 +1,2 @@
 add_subdirectory(test_FilteringAlgorithm)
-add_subdirectory(test_SIR)
+add_subdirectory(test_SIS)

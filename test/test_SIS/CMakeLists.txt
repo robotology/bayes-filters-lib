@@ -1,4 +1,4 @@
-set(TEST_TARGET_NAME test_SIR)
+set(TEST_TARGET_NAME test_SIS)
 
 set(${TEST_TARGET_NAME}_SRC
         main.cpp

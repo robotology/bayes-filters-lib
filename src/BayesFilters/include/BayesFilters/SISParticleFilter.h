@@ -1,5 +1,5 @@
-#ifndef SIRPARTICLEFILTER_H
-#define SIRPARTICLEFILTER_H
+#ifndef SISPARTICLEFILTER_H
+#define SISPARTICLEFILTER_H
 
 #include "FilteringAlgorithm.h"
 #include "PFCorrection.h"
@@ -11,22 +11,22 @@
 #include <Eigen/Dense>
 
 namespace bfl {
-    class SIRParticleFilter;
+    class SISParticleFilter;
 }
 
 
-class bfl::SIRParticleFilter : public FilteringAlgorithm
+class bfl::SISParticleFilter : public FilteringAlgorithm
 {
 public:
-    SIRParticleFilter() = delete;
+    SISParticleFilter() = delete;
 
-    SIRParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
+    SISParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    SIRParticleFilter(SIRParticleFilter&& sir_pf) noexcept;
+    SISParticleFilter(SISParticleFilter&& sir_pf) noexcept;
 
-    ~SIRParticleFilter() noexcept;
+    ~SISParticleFilter() noexcept;
 
-    SIRParticleFilter& operator=(SIRParticleFilter&& sir_pf) noexcept;
+    SISParticleFilter& operator=(SISParticleFilter&& sir_pf) noexcept;
 
     void initialization() override;
 
@@ -64,4 +64,4 @@ protected:
     void snapshot();
 };
 
-#endif /* SIRPARTICLEFILTER_H */
+#endif /* SISPARTICLEFILTER_H */

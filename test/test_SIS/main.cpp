@@ -5,7 +5,7 @@
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/LinearSensor.h>
 #include <BayesFilters/Resampling.h>
-#include <BayesFilters/SIRParticleFilter.h>
+#include <BayesFilters/SISParticleFilter.h>
 #include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 
@@ -32,26 +32,26 @@ int main()
     std::unique_ptr<Resampling> resampling(new Resampling());
 
 
-    std::cout << "Constructing SIR particle filter..." << std::flush;
-    SIRParticleFilter sir_pf(std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
+    std::cout << "Constructing SIS particle filter..." << std::flush;
+    SISParticleFilter sis_pf(std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
     std::cout << "done!" << std::endl;
 
 
-    std::cout << "Preparing SIR particle filter..." << std::flush;
-    sir_pf.prepare();
+    std::cout << "Preparing SIS particle filter..." << std::flush;
+    sis_pf.prepare();
     std::cout << "completed!" << std::endl;
 
 
-    std::cout << "Running SIR particle filter..." << std::flush;
-    sir_pf.run();
+    std::cout << "Running SIS particle filter..." << std::flush;
+    sis_pf.run();
     std::cout << "...waiting..." << std::flush;
-    if (!sir_pf.wait())
+    if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
 
 
     std::cout << "Storing filtering results..." << std::flush;
-    sir_pf.getResult();
+    sis_pf.getResult();
     std::cout << "done!" << std::endl;
 
 
