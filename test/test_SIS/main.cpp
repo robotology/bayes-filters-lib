@@ -17,14 +17,14 @@ int main()
     /* Initialize a white noise acceleration motion model */
     std::unique_ptr<WhiteNoiseAcceleration> wna(new WhiteNoiseAcceleration());
 
-    /* Pass ownershp of the motion model to the prediction step */
+    /* Pass ownership of the motion model to the prediction step */
     std::unique_ptr<DrawParticles> pf_prediction(new DrawParticles(std::move(wna)));
 
 
     /* Initialize a linear sensor (provides direct observation of the state) */
     std::unique_ptr<LinearSensor> lin_sense(new LinearSensor());
 
-    /* Pass ownershp of the observation model (the sensor) to the prediction step */
+    /* Pass ownership of the observation model (the sensor) to the prediction step */
     std::unique_ptr<UpdateParticles> pf_correction(new UpdateParticles(std::move(lin_sense)));
 
 
