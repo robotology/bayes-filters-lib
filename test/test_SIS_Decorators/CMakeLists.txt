@@ -1,0 +1,11 @@
+set(TEST_TARGET_NAME test_SIS_Decorators)
+
+set(${TEST_TARGET_NAME}_SRC
+        main.cpp
+)
+
+add_executable(${TEST_TARGET_NAME} ${${TEST_TARGET_NAME}_SRC})
+
+target_link_libraries(${TEST_TARGET_NAME} BayesFilters)
+
+add_test(NAME ${TEST_TARGET_NAME} COMMAND ${TEST_TARGET_NAME})

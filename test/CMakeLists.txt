@@ -1,2 +1,3 @@
 add_subdirectory(test_FilteringAlgorithm)
 add_subdirectory(test_SIS)
+add_subdirectory(test_SIS_Decorators)
