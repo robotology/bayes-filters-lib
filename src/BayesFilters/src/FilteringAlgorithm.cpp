@@ -5,7 +5,7 @@
 using namespace bfl;
 
 
-bool FilteringAlgorithm::prepare()
+bool FilteringAlgorithm::boot()
 {
     try
     {

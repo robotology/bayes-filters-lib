@@ -30,7 +30,7 @@ public:
     virtual bool runCondition() = 0;
 
 
-    bool prepare();
+    bool boot();
 
     void run();
 

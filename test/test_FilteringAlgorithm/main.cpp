@@ -26,7 +26,7 @@ int main()
     std::cout << "done!" << std::endl;
 
     std::cout << "Preparing dummy filter..." << std::flush;
-    if (!dummy.prepare())
+    if (!dummy.boot())
         return EXIT_FAILURE;
     std::cout << "done!" << std::endl;
 

@@ -38,7 +38,7 @@ int main()
 
 
     std::cout << "Preparing SIS particle filter..." << std::flush;
-    sis_pf.prepare();
+    sis_pf.boot();
     std::cout << "completed!" << std::endl;
 
 
