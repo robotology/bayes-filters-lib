@@ -15,14 +15,38 @@ class bfl::PFCorrection
 public:
     virtual ~PFCorrection() noexcept { };
 
-    virtual void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
-                         Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
+
+    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
+                 Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);
 
     virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
 
     virtual double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation) = 0;
 
-    virtual ObservationModel& getObservationModel() = 0;
+
+    bool skip(const bool status);
+
+
+    ObservationModel& getObservationModel();
+
+    void setObservationModel(std::unique_ptr<ObservationModel> observation_model);
+
+protected:
+    PFCorrection() noexcept;
+
+    PFCorrection(PFCorrection&& pf_correction) noexcept;
+
+
+    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
+                             Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
+
+
+    std::unique_ptr<ObservationModel> observation_model_;
+
+private:
+    bool skip_ = false;
+
+    friend class PFCorrectionDecorator;
 };
 
 #endif /* PFCORRECTION_H */

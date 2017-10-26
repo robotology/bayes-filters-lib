@@ -54,6 +54,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/DrawParticles.cpp
         src/LinearSensor.cpp
         src/ObservationModelDecorator.cpp
+        src/PFCorrection.cpp
         src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
         src/PFPredictionDecorator.cpp
