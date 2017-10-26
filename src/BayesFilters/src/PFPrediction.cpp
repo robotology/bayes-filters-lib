@@ -1,6 +1,7 @@
 #include "BayesFilters/PFPrediction.h"
 
 using namespace bfl;
+using namespace Eigen;
 
 
 PFPrediction::PFPrediction() noexcept { };
@@ -10,8 +11,8 @@ PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept :
     state_model_(std::move(pf_prediction.state_model_)) { }
 
 
-void PFPrediction::predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
-                           Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights)
+void PFPrediction::predict(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
+                           Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
 {
     if (!skip_)
         predictStep(prev_states, prev_weights,
