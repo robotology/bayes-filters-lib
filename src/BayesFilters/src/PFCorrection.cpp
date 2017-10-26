@@ -7,8 +7,7 @@ using namespace Eigen;
 PFCorrection::PFCorrection() noexcept { };
 
 
-PFCorrection::PFCorrection(PFCorrection&& pf_prediction) noexcept :
-    observation_model_(std::move(pf_prediction.observation_model_)) { }
+PFCorrection::PFCorrection(PFCorrection&& pf_prediction) noexcept { }
 
 
 void PFCorrection::correct(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
@@ -30,16 +29,4 @@ bool PFCorrection::skip(const bool status)
     skip_ = status;
 
     return true;
-}
-
-
-ObservationModel& PFCorrection::getObservationModel()
-{
-    return *observation_model_;
-}
-
-
-void PFCorrection::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
-{
-    observation_model_ = std::move(observation_model);
 }

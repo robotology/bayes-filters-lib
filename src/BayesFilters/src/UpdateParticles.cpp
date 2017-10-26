@@ -42,3 +42,15 @@ double UpdateParticles::likelihood(const Ref<const VectorXf>& innovation)
 {
     return (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(observation_model_->getNoiseCovariance().determinant()) - 0.5 * (innovation.transpose() * observation_model_->getNoiseCovariance().inverse() * innovation).array()).exp().cast<double>().coeff(0);
 }
+
+
+ObservationModel& UpdateParticles::getObservationModel()
+{
+    return *observation_model_;
+}
+
+
+void UpdateParticles::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
+{
+    observation_model_ = std::move(observation_model);
+}

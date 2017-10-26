@@ -31,3 +31,15 @@ void PFPredictionDecorator::predictStep(const Ref<const MatrixXf>& prev_states, 
     prediction_->predictStep(prev_states, prev_weights,
                              pred_states, pred_weights);
 }
+
+
+StateModel& PFPredictionDecorator::getStateModel()
+{
+    return prediction_->getStateModel();
+}
+
+
+void PFPredictionDecorator::setStateModel(std::unique_ptr<StateModel> state_model)
+{
+    prediction_->setStateModel(std::move(state_model));
+}

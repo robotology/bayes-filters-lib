@@ -24,9 +24,9 @@ public:
     bool skip(const bool status);
 
 
-    StateModel& getStateModel();
+    virtual StateModel& getStateModel() = 0;
 
-    void setStateModel(std::unique_ptr<StateModel> state_model);
+    virtual void setStateModel(std::unique_ptr<StateModel> state_model) = 0;
 
 protected:
     PFPrediction() noexcept;
@@ -36,9 +36,6 @@ protected:
 
     virtual void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
                              Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) = 0;
-
-
-    std::unique_ptr<StateModel> state_model_;
 
 private:
     bool skip_ = false;

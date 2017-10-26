@@ -35,3 +35,15 @@ void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, 
     correction_->correctStep(pred_states, pred_weights, measurements,
                              cor_states, cor_weights);
 }
+
+
+ObservationModel& PFCorrectionDecorator::getObservationModel()
+{
+    return correction_->getObservationModel();
+}
+
+
+void PFCorrectionDecorator::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
+{
+    correction_->setObservationModel(std::move(observation_model));
+}

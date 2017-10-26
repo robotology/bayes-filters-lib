@@ -11,6 +11,7 @@ state_model_(std::move(state_model)) { }
 StateModelDecorator::StateModelDecorator(StateModelDecorator&& state_model) noexcept :
 state_model_(std::move(state_model.state_model_)) { }
 
+
 StateModelDecorator::~StateModelDecorator() noexcept { }
 
 

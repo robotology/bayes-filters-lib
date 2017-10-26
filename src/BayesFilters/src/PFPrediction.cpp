@@ -7,8 +7,7 @@ using namespace Eigen;
 PFPrediction::PFPrediction() noexcept { };
 
 
-PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept :
-    state_model_(std::move(pf_prediction.state_model_)) { }
+PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept { }
 
 
 void PFPrediction::predict(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
@@ -30,16 +29,4 @@ bool PFPrediction::skip(const bool status)
     skip_ = status;
 
     return true;
-}
-
-
-StateModel& PFPrediction::getStateModel()
-{
-    return *state_model_;
-}
-
-
-void PFPrediction::setStateModel(std::unique_ptr<StateModel> state_model)
-{
-    state_model_ = std::move(state_model);
 }

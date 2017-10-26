@@ -23,3 +23,14 @@ void DrawParticles::predictStep(const Ref<const MatrixXf>& prev_states, const Re
     
     pred_weights = prev_weights;
 }
+
+StateModel& DrawParticles::getStateModel()
+{
+    return *state_model_;
+}
+
+
+void DrawParticles::setStateModel(std::unique_ptr<StateModel> state_model)
+{
+    state_model_ = std::move(state_model);
+}

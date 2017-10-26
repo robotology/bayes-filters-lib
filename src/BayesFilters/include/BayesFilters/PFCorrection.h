@@ -27,9 +27,9 @@ public:
     bool skip(const bool status);
 
 
-    ObservationModel& getObservationModel();
+    virtual ObservationModel& getObservationModel() = 0;
 
-    void setObservationModel(std::unique_ptr<ObservationModel> observation_model);
+    virtual void setObservationModel(std::unique_ptr<ObservationModel> observation_model) = 0;
 
 protected:
     PFCorrection() noexcept;
@@ -39,9 +39,6 @@ protected:
 
     virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
                              Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
-
-
-    std::unique_ptr<ObservationModel> observation_model_;
 
 private:
     bool skip_ = false;

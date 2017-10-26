@@ -17,6 +17,10 @@ public:
 
     double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation) override;
 
+    virtual ObservationModel& getObservationModel() override;
+
+    virtual void setObservationModel(std::unique_ptr<ObservationModel> observation_model) override;
+
 protected:
     PFCorrectionDecorator(std::unique_ptr<PFCorrection> correction) noexcept;
 
