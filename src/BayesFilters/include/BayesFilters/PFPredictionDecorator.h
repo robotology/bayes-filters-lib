@@ -12,10 +12,6 @@ namespace bfl {
 
 class bfl::PFPredictionDecorator : public PFPrediction
 {
-public:
-    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
-                 Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) override;
-
 protected:
     PFPredictionDecorator(std::unique_ptr<PFPrediction> prediction) noexcept;
 
@@ -24,6 +20,9 @@ protected:
     ~PFPredictionDecorator() noexcept;
 
     PFPredictionDecorator& operator=(PFPredictionDecorator&& prediction) noexcept;
+
+    void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
+                     Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) override;
 
 private:
     std::unique_ptr<PFPrediction> prediction_;

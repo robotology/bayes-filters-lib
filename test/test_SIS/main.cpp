@@ -18,7 +18,8 @@ int main()
     std::unique_ptr<WhiteNoiseAcceleration> wna(new WhiteNoiseAcceleration());
 
     /* Pass ownership of the motion model to the prediction step */
-    std::unique_ptr<DrawParticles> pf_prediction(new DrawParticles(std::move(wna)));
+    std::unique_ptr<DrawParticles> pf_prediction(new DrawParticles());
+    pf_prediction->setStateModel(std::move(wna));
 
 
     /* Initialize a linear sensor (provides direct observation of the state) */
