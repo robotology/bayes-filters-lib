@@ -26,8 +26,8 @@ int main()
     std::unique_ptr<LinearSensor> lin_sense(new LinearSensor());
 
     /* Pass ownership of the observation model (the sensor) to the prediction step */
-    std::unique_ptr<UpdateParticles> pf_correction(new UpdateParticles(std::move(lin_sense)));
-
+    std::unique_ptr<UpdateParticles> pf_correction(new UpdateParticles());
+    pf_correction->setObservationModel(std::move(lin_sense));
 
     /* Initialize a resampling algorithm */
     std::unique_ptr<Resampling> resampling(new Resampling());
@@ -48,7 +48,7 @@ int main()
 
     std::cout << "Running SIS particle filter..." << std::flush;
     sis_pf.run();
-    std::cout << "...waiting..." << std::flush;
+    std::cout << "waiting..." << std::flush;
     if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
