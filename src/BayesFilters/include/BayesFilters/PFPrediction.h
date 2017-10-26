@@ -16,10 +16,13 @@ class bfl::PFPrediction
 public:
     virtual ~PFPrediction() noexcept { };
 
+
     void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
                  Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights);
 
+
     bool skip(const bool status);
+
 
     StateModel& getStateModel();
 
@@ -30,8 +33,10 @@ protected:
 
     PFPrediction(PFPrediction&& pf_prediction) noexcept;
 
+
     virtual void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
                              Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) = 0;
+
 
     std::unique_ptr<StateModel> state_model_;
 

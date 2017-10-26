@@ -9,19 +9,11 @@ using namespace Eigen;
 DrawParticles::DrawParticles() noexcept { }
 
 
-DrawParticles::DrawParticles(DrawParticles&& pf_prediction) noexcept :
-    PFPrediction(std::move(pf_prediction)) { };
+DrawParticles::DrawParticles(DrawParticles&& draw_particles) noexcept :
+    PFPrediction(std::move(draw_particles)) { };
 
 
 DrawParticles::~DrawParticles() noexcept { }
-
-
-DrawParticles& DrawParticles::operator=(DrawParticles&& pf_prediction) noexcept
-{
-    state_model_ = std::move(pf_prediction.state_model_);
-
-    return *this;
-}
 
 
 void DrawParticles::predictStep(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,

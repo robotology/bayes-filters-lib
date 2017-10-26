@@ -17,11 +17,9 @@ class bfl::DrawParticles: public PFPrediction
 public:
     DrawParticles() noexcept;
 
-    DrawParticles(DrawParticles&& pf_prediction) noexcept;
+    DrawParticles(DrawParticles&& draw_particles) noexcept;
 
     ~DrawParticles() noexcept;
-
-    DrawParticles& operator=(DrawParticles&& pf_prediction) noexcept;
 
 protected:
     void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
