@@ -84,6 +84,18 @@ bool FilteringAlgorithm::teardown()
 }
 
 
+unsigned int FilteringAlgorithm::getFilteringStep()
+{
+    return filtering_step_;
+}
+
+
+bool FilteringAlgorithm::isRunning()
+{
+    return run_;
+}
+
+
 void FilteringAlgorithm::filteringRecursion()
 {
     do

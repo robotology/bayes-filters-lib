@@ -5,7 +5,7 @@
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/LinearSensor.h>
 #include <BayesFilters/Resampling.h>
-#include <BayesFilters/SISParticleFilter.h>
+#include <BayesFilters/SIS.h>
 #include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 
@@ -33,7 +33,10 @@ int main()
 
 
     std::cout << "Constructing SIS particle filter..." << std::flush;
-    SISParticleFilter sis_pf(std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
+    SIS sis_pf;
+    sis_pf.setPrediction(std::move(pf_prediction));
+    sis_pf.setCorrection(std::move(pf_correction));
+    sis_pf.setResampling(std::move(resampling));
     std::cout << "done!" << std::endl;
 
 

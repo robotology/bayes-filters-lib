@@ -1,7 +1,7 @@
-#ifndef SISPARTICLEFILTER_H
-#define SISPARTICLEFILTER_H
+#ifndef SIS_H
+#define SIS_H
 
-#include "FilteringAlgorithm.h"
+#include "ParticleFilter.h"
 #include "PFCorrection.h"
 #include "PFPrediction.h"
 #include "Resampling.h"
@@ -11,22 +11,20 @@
 #include <Eigen/Dense>
 
 namespace bfl {
-    class SISParticleFilter;
+    class SIS;
 }
 
 
-class bfl::SISParticleFilter : public FilteringAlgorithm
+class bfl::SIS : public ParticleFilter
 {
 public:
-    SISParticleFilter() = delete;
+    SIS() noexcept;
 
-    SISParticleFilter(std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
+    SIS(SIS&& sir_pf) noexcept;
 
-    SISParticleFilter(SISParticleFilter&& sir_pf) noexcept;
+    ~SIS() noexcept;
 
-    ~SISParticleFilter() noexcept;
-
-    SISParticleFilter& operator=(SISParticleFilter&& sir_pf) noexcept;
+    SIS& operator=(SIS&& sir_pf) noexcept;
 
     void initialization() override;
 
@@ -35,6 +33,12 @@ public:
     void getResult() override;
 
     bool runCondition() override { return (getFilteringStep() < simulation_time_); };
+
+    void setPrediction(std::unique_ptr<PFPrediction> prediction) override;
+
+    void setCorrection(std::unique_ptr<PFCorrection> correction) override;
+
+    void setResampling(std::unique_ptr<Resampling> resampling) override;
 
 protected:
     std::unique_ptr<PFPrediction> prediction_;
@@ -64,4 +68,4 @@ protected:
     void snapshot();
 };
 
-#endif /* SISPARTICLEFILTER_H */
+#endif /* SIS_H */
