@@ -17,14 +17,12 @@ SIS::~SIS() noexcept { }
 
 
 SIS::SIS(SIS&& sir_pf) noexcept :
-    prediction_(std::move(sir_pf.prediction_)), correction_(std::move(sir_pf.correction_)), resampling_(std::move(sir_pf.resampling_)) { }
+    ParticleFilter(std::move(sir_pf)) { }
 
 
 SIS& SIS::operator=(SIS&& sir_pf) noexcept
 {
-    prediction_ = std::move(sir_pf.prediction_);
-    correction_ = std::move(sir_pf.correction_);
-    resampling_ = std::move(sir_pf.resampling_);
+    ParticleFilter::operator=(std::move(sir_pf));
 
     return *this;
 }
@@ -141,22 +139,4 @@ void SIS::getResult()
     result_file_pred_weight.close();
     result_file_cor_particle.close();
     result_file_cor_weight.close();
-}
-
-
-void SIS::setPrediction(std::unique_ptr<PFPrediction> prediction)
-{
-    prediction_ = std::move(prediction);
-}
-
-
-void SIS::setCorrection(std::unique_ptr<PFCorrection> correction)
-{
-    correction_ = std::move(correction);
-}
-
-
-void SIS::setResampling(std::unique_ptr<Resampling> resampling)
-{
-    resampling_ = std::move(resampling);
 }

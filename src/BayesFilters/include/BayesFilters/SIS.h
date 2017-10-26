@@ -34,17 +34,7 @@ public:
 
     bool runCondition() override { return (getFilteringStep() < simulation_time_); };
 
-    void setPrediction(std::unique_ptr<PFPrediction> prediction) override;
-
-    void setCorrection(std::unique_ptr<PFCorrection> correction) override;
-
-    void setResampling(std::unique_ptr<Resampling> resampling) override;
-
 protected:
-    std::unique_ptr<PFPrediction> prediction_;
-    std::unique_ptr<PFCorrection> correction_;
-    std::unique_ptr<Resampling>   resampling_;
-
     int                           simulation_time_;
     int                           num_particle_;
     int                           surv_x_;

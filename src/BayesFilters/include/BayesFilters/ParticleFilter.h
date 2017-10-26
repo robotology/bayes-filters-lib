@@ -16,15 +16,21 @@ namespace bfl{
 class bfl::ParticleFilter : public FilteringAlgorithm
 {
 public:
-    virtual void setPrediction(std::unique_ptr<PFPrediction> prediction) = 0;
+    void setPrediction(std::unique_ptr<PFPrediction> prediction);
 
-    virtual void setCorrection(std::unique_ptr<PFCorrection> correction) = 0;
+    void setCorrection(std::unique_ptr<PFCorrection> correction);
 
-    virtual void setResampling(std::unique_ptr<Resampling> resampling) = 0;
+    void setResampling(std::unique_ptr<Resampling> resampling);
 
     virtual void skip(const std::string& what_step, const bool status) override;
 
 protected:
+    ParticleFilter() noexcept;
+
+    ParticleFilter(ParticleFilter&& pf) noexcept;
+
+    ParticleFilter& operator=(ParticleFilter&& pf) noexcept;
+
     std::unique_ptr<PFPrediction> prediction_;
     std::unique_ptr<PFCorrection> correction_;
     std::unique_ptr<Resampling>   resampling_;
