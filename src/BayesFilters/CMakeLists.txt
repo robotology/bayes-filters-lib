@@ -30,6 +30,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/VisualObservationModel.h
+        include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
@@ -63,6 +64,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Resampling.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
+        src/VisualParticleFilter.cpp
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
