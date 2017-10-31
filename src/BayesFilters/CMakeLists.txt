@@ -58,6 +58,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
         src/PFPredictionDecorator.cpp
+        src/PFVisualCorrection.cpp
         src/PFVisualCorrectionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
