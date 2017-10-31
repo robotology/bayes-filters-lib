@@ -7,16 +7,26 @@ ParticleFilter::ParticleFilter() noexcept { }
 
 
 ParticleFilter::ParticleFilter(ParticleFilter&& pf) noexcept :
-    prediction_(std::move(pf.prediction_)), correction_(std::move(pf.correction_)), resampling_(std::move(pf.resampling_)) { }
+    initialization_(std::move(pf.initialization_)),
+    prediction_(std::move(pf.prediction_)),
+    correction_(std::move(pf.correction_)),
+    resampling_(std::move(pf.resampling_)) { }
 
 
 ParticleFilter& ParticleFilter::operator=(ParticleFilter&& pf) noexcept
 {
-    prediction_ = std::move(pf.prediction_);
-    correction_ = std::move(pf.correction_);
-    resampling_ = std::move(pf.resampling_);
+    initialization_ = std::move(pf.initialization_);
+    prediction_     = std::move(pf.prediction_);
+    correction_     = std::move(pf.correction_);
+    resampling_     = std::move(pf.resampling_);
 
     return *this;
+}
+
+
+void ParticleFilter::setInitialization(std::unique_ptr<Initialization> initialization)
+{
+    initialization_ = std::move(initialization);
 }
 
 
