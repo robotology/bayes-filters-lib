@@ -29,14 +29,6 @@ double PFCorrectionDecorator::likelihood(const Ref<const VectorXf>& innovation)
 }
 
 
-void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
-                                        Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
-{
-    correction_->correctStep(pred_states, pred_weights, measurements,
-                             cor_states, cor_weights);
-}
-
-
 ObservationModel& PFCorrectionDecorator::getObservationModel()
 {
     return correction_->getObservationModel();
@@ -46,4 +38,12 @@ ObservationModel& PFCorrectionDecorator::getObservationModel()
 void PFCorrectionDecorator::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
 {
     correction_->setObservationModel(std::move(observation_model));
+}
+
+
+void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
+                                        Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+{
+    correction_->correctStep(pred_states, pred_weights, measurements,
+                             cor_states, cor_weights);
 }
