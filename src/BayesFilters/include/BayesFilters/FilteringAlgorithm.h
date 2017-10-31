@@ -36,7 +36,7 @@ public:
 
     bool isRunning();
 
-    virtual void skip(const std::string& what_step, const bool status) = 0;
+    virtual bool skip(const std::string& what_step, const bool status) = 0;
 
 protected:
     virtual void initialization() = 0;

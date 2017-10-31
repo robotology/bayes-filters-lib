@@ -22,7 +22,7 @@ public:
 
     void setResampling(std::unique_ptr<Resampling> resampling);
 
-    virtual void skip(const std::string& what_step, const bool status) override;
+    virtual bool skip(const std::string& what_step, const bool status) override;
 
 protected:
     ParticleFilter() noexcept;

@@ -38,11 +38,13 @@ void ParticleFilter::setResampling(std::unique_ptr<Resampling> resampling)
 }
 
 
-void ParticleFilter::skip(const std::string& what_step, const bool status)
+bool ParticleFilter::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
-        prediction_->skip(status);
+        return prediction_->skip(status);
 
     if (what_step == "correction")
-        correction_->skip(status);
+        return correction_->skip(status);
+
+    return false;
 }
