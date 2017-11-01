@@ -14,8 +14,8 @@ bool FilteringAlgorithm::boot()
     catch (const std::system_error& e)
     {
         std::cerr << "ERROR::FILTERINGALGORITHM::PREAPRE" << std::endl;
-        std::cerr << "ERROR CODE: " << e.code() << std::endl;
-        std::cerr << "ERROR LOG: "  << e.what() << std::endl;
+        std::cerr << "ERROR::CODE: " << e.code() << std::endl;
+        std::cerr << "ERROR::LOG: "  << e.what() << std::endl;
         return false;
     }
 
@@ -40,8 +40,8 @@ bool FilteringAlgorithm::wait()
     catch (const std::system_error& e)
     {
         std::cerr << "ERROR::FILTERINGALGORITHM::WAIT" << std::endl;
-        std::cerr << "ERROR CODE: " << e.code() << std::endl;
-        std::cerr << "ERROR LOG: "  << e.what() << std::endl;
+        std::cerr << "ERROR::CODE: " << e.code() << std::endl;
+        std::cerr << "ERROR::LOG: "  << e.what() << std::endl;
         return false;
     }
 
@@ -75,8 +75,8 @@ bool FilteringAlgorithm::teardown()
     catch (const std::system_error& e)
     {
         std::cerr << "ERROR::FILTERINGALGORITHM::TEARDOWN" << std::endl;
-        std::cerr << "ERROR CODE: " << e.code() << std::endl;
-        std::cerr << "ERROR LOG: "  << e.what() << std::endl;
+        std::cerr << "ERROR::CODE: " << e.code() << std::endl;
+        std::cerr << "ERROR::LOG: "  << e.what() << std::endl;
         return false;
     }
 
@@ -114,8 +114,8 @@ void FilteringAlgorithm::filteringRecursion()
         catch (const std::system_error& e)
         {
             std::cerr << "ERROR::FILTERINGALGORITHM::FILTERINGRECURSION" << std::endl;
-            std::cerr << "ERROR CODE: " << e.code() << std::endl;
-            std::cerr << "ERROR LOG: " << e.what() << std::endl;
+            std::cerr << "ERROR::CODE: " << e.code() << std::endl;
+            std::cerr << "ERROR::LOG: " << e.what() << std::endl;
             teardown_ = true;
         }
 
