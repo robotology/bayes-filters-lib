@@ -20,7 +20,7 @@ public:
 
     virtual Eigen::MatrixXf getNoiseSample(const int num) = 0;
 
-    virtual Eigen::MatrixXf getNoiseCovariance() = 0;
+    virtual Eigen::MatrixXf getNoiseCovarianceMatrix() = 0;
 
     virtual bool setProperty(const std::string property) = 0;
 };

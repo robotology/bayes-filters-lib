@@ -40,7 +40,7 @@ void UpdateParticles::innovation(const Ref<const MatrixXf>& pred_states, const R
 
 double UpdateParticles::likelihood(const Ref<const VectorXf>& innovation)
 {
-    return (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(observation_model_->getNoiseCovariance().determinant()) - 0.5 * (innovation.transpose() * observation_model_->getNoiseCovariance().inverse() * innovation).array()).exp().cast<double>().coeff(0);
+    return (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(observation_model_->getNoiseCovarianceMatrix().determinant()) - 0.5 * (innovation.transpose() * observation_model_->getNoiseCovarianceMatrix().inverse() * innovation).array()).exp().cast<double>().coeff(0);
 }
 
 

@@ -40,9 +40,9 @@ MatrixXf ObservationModelDecorator::getNoiseSample(const int num)
 }
 
 
-MatrixXf ObservationModelDecorator::getNoiseCovariance()
+MatrixXf ObservationModelDecorator::getNoiseCovarianceMatrix()
 {
-    return observation_model_->getNoiseCovariance();
+    return observation_model_->getNoiseCovarianceMatrix();
 }
 
 

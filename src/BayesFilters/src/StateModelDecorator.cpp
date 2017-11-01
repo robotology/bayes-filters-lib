@@ -41,9 +41,9 @@ MatrixXf StateModelDecorator::getNoiseSample(const int num)
 }
 
 
-MatrixXf StateModelDecorator::getNoiseCovariance()
+MatrixXf StateModelDecorator::getNoiseCovarianceMatrix()
 {
-    return state_model_->getNoiseCovariance();
+    return state_model_->getNoiseCovarianceMatrix();
 }
 
 

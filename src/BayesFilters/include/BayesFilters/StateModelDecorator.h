@@ -19,7 +19,7 @@ public:
 
     Eigen::MatrixXf getNoiseSample(const int num) override;
 
-    Eigen::MatrixXf getNoiseCovariance() override;
+    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
 
     bool setProperty(const std::string& property) override;
 

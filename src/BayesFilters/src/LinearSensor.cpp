@@ -98,7 +98,7 @@ MatrixXf LinearSensor::getNoiseSample(const int num)
     return sqrt_R_ * Vector2f::NullaryExpr(2, num, gauss_rnd_sample_);
 }
 
-MatrixXf LinearSensor::getNoiseCovariance()
+MatrixXf LinearSensor::getNoiseCovarianceMatrix()
 {
     return R_;
 }
