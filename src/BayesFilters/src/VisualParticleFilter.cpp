@@ -51,7 +51,7 @@ void VisualParticleFilter::setResampling(std::unique_ptr<Resampling> resampling)
 bool VisualParticleFilter::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
-        return prediction_->skip(status);
+        return prediction_->skip(what_step, status);
 
     if (what_step == "correction")
         return correction_->skip(status);

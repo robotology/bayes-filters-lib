@@ -1,6 +1,7 @@
 #ifndef PFPREDICTION_H
 #define PFPREDICTION_H
 
+#include "ExogenousModel.h"
 #include "StateModel.h"
 
 #include <Eigen/Dense>
@@ -21,12 +22,20 @@ public:
                  Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights);
 
 
-    bool skip(const bool status);
+    bool skip(const std::string& what_step, const bool status);
+
+    bool getSkipState();
+
+    bool getSkipExogenous();
 
 
     virtual StateModel& getStateModel() = 0;
 
     virtual void setStateModel(std::unique_ptr<StateModel> state_model) = 0;
+
+    virtual ExogenousModel& getExogenousModel();
+
+    virtual void setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model);
 
 protected:
     PFPrediction() noexcept;
@@ -38,7 +47,11 @@ protected:
                              Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) = 0;
 
 private:
-    bool skip_ = false;
+    bool skip_prediction_ = false;
+
+    bool skip_state_      = false;
+
+    bool skip_exogenous_  = false;
 
     friend class PFPredictionDecorator;
 };

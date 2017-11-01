@@ -14,6 +14,7 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
+        include/BayesFilters/ExogenousModel.h
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
