@@ -106,7 +106,7 @@ void FilteringAlgorithm::filteringRecursion()
         initialization();
 
         std::unique_lock<std::mutex> lk(mtx_run_);
-        cv_run_.wait(lk, [this]{ return this->run_; });
+        cv_run_.wait(lk, [this]{ return (this->run_ && !this->teardown_); });
         try
         {
             lk.unlock();
