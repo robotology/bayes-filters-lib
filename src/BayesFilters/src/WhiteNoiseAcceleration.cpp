@@ -104,7 +104,7 @@ MatrixXf WhiteNoiseAcceleration::getNoiseSample(const int num)
 }
 
 
-MatrixXf WhiteNoiseAcceleration::getNoiseCovariance()
+MatrixXf WhiteNoiseAcceleration::getNoiseCovarianceMatrix()
 {
     return Q_;
 }

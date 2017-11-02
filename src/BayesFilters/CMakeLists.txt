@@ -7,12 +7,14 @@ set(${LIBRARY_TARGET_NAME}_FC_HDR
 set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/FilteringAlgorithm.h
         include/BayesFilters/KalmanFilter.h
-        include/BayesFilters/SISParticleFilter.h
+        include/BayesFilters/ParticleFilter.h
+        include/BayesFilters/SIS.h
         include/BayesFilters/UnscentedKalmanFilter.h)
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
+        include/BayesFilters/ExogenousModel.h
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/ObservationModel.h
@@ -29,6 +31,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/VisualObservationModel.h
+        include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
@@ -44,7 +47,8 @@ set(${LIBRARY_TARGET_NAME}_FC_SRC
 set(${LIBRARY_TARGET_NAME}_FA_SRC
         src/FilteringAlgorithm.cpp
         src/KalmanFilter.cpp
-        src/SISParticleFilter.cpp
+        src/ParticleFilter.cpp
+        src/SIS.cpp
         src/UnscentedKalmanFilter.cpp)
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
@@ -52,12 +56,16 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/DrawParticles.cpp
         src/LinearSensor.cpp
         src/ObservationModelDecorator.cpp
+        src/PFCorrection.cpp
         src/PFCorrectionDecorator.cpp
+        src/PFPrediction.cpp
         src/PFPredictionDecorator.cpp
+        src/PFVisualCorrection.cpp
         src/PFVisualCorrectionDecorator.cpp
         src/Resampling.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
+        src/VisualParticleFilter.cpp
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC

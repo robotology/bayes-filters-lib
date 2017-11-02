@@ -20,17 +20,7 @@ class bfl::FilteringAlgorithm
 public:
     virtual ~FilteringAlgorithm() noexcept { };
 
-
-    virtual void initialization() = 0;
-
-    virtual void filteringStep() = 0;
-
-    virtual void getResult() = 0;
-
-    virtual bool runCondition() = 0;
-
-
-    bool prepare();
+    bool boot();
 
     void run();
 
@@ -42,10 +32,20 @@ public:
 
     bool teardown();
 
+    unsigned int getFilteringStep();
 
-    virtual unsigned int getFilteringStep() final { return filtering_step_; }
+    bool isRunning();
 
-    virtual bool         isRunning() final { return run_; }
+    virtual bool skip(const std::string& what_step, const bool status) = 0;
+
+protected:
+    virtual void initialization() = 0;
+
+    virtual void filteringStep() = 0;
+
+    virtual void getResult() = 0;
+
+    virtual bool runCondition() = 0;
 
 private:
     unsigned int filtering_step_ = 0;
