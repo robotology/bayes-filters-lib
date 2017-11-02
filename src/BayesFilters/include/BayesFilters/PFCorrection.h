@@ -3,6 +3,8 @@
 
 #include "ObservationModel.h"
 
+#include <memory>
+
 #include <Eigen/Dense>
 
 namespace bfl {

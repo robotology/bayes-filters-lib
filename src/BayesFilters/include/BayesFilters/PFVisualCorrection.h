@@ -3,6 +3,8 @@
 
 #include "VisualObservationModel.h"
 
+#include <memory>
+
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 

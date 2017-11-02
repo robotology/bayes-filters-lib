@@ -5,6 +5,7 @@
 #include "StateModel.h"
 
 #include <Eigen/Dense>
+#include <memory>
 #include <string>
 
 namespace bfl {
