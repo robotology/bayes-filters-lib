@@ -68,5 +68,11 @@ int main()
     std::cout << "done!" << std::endl;
 
 
+    std::cout << "Waiting dummy particle filter to close..." << std::flush;
+    if (!dummy.wait())
+        return EXIT_FAILURE;
+    std::cout << "done!" << std::endl;
+
+
     return EXIT_SUCCESS;
 }
