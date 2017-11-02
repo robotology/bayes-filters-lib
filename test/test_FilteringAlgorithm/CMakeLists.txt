@@ -8,7 +8,7 @@ add_executable(${TEST_TARGET_NAME} ${${TEST_TARGET_NAME}_SRC})
 
 target_link_libraries(${TEST_TARGET_NAME} BayesFilters)
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
     set(THREADS_PREFER_PTHREAD_FLAG TRUE)
     find_package(Threads REQUIRED)
