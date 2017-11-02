@@ -50,7 +50,9 @@ void ParticleFilter::setResampling(std::unique_ptr<Resampling> resampling)
 
 bool ParticleFilter::skip(const std::string& what_step, const bool status)
 {
-    if (what_step == "prediction")
+    if (what_step == "prediction" ||
+        what_step == "state"      ||
+        what_step == "exogenous"    )
         return prediction_->skip(what_step, status);
 
     if (what_step == "correction")
