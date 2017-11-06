@@ -13,9 +13,11 @@ class bfl::UnscentedKalmanFilter: public FilteringAlgorithm
 public:
     UnscentedKalmanFilter();
 
-    ~UnscentedKalmanFilter() noexcept override;
+    ~UnscentedKalmanFilter() noexcept;
 
-    void runFilter() override;
+    void initialization() override;
+
+    void filteringStep() override;
 
     void getResult() override;
 };

@@ -13,26 +13,23 @@ namespace bfl {
 class bfl::StateModelDecorator : public StateModel
 {
 public:
-    void propagate(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::VectorXf> prop_state) override;
+    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
 
-    void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) override;
+    void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override;
+
+    Eigen::MatrixXf getNoiseSample(const int num) override;
+
+    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
 
     bool setProperty(const std::string& property) override;
 
 protected:
-    /* Default constructor, disabled */
-    StateModelDecorator() = delete;
-
-    /* Decorator constructor */
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 
-    /* Destructor */
-    ~StateModelDecorator() noexcept override;
-
-    /* Move constructor */
     StateModelDecorator(StateModelDecorator&& state_model) noexcept;
 
-    /* Move assignment operator */
+    ~StateModelDecorator() noexcept;
+
     StateModelDecorator& operator=(StateModelDecorator&& state_model) noexcept;
 
 private:

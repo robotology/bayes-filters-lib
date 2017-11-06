@@ -14,15 +14,15 @@ class bfl::ObservationModel
 public:
     virtual ~ObservationModel() noexcept { };
 
-    virtual Eigen::MatrixXf noiseCovariance() = 0;
+    virtual void observe(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> observations) = 0;
 
-    virtual void observe(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> observation) = 0;
+    virtual void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> measurements) = 0;
 
-    virtual void noiseSample(Eigen::Ref<Eigen::VectorXf> sample) = 0;
+    virtual Eigen::MatrixXf getNoiseSample(const int num) = 0;
+
+    virtual Eigen::MatrixXf getNoiseCovarianceMatrix() = 0;
 
     virtual bool setProperty(const std::string property) = 0;
-
-    virtual void measure(const Eigen::Ref<const Eigen::VectorXf>& cur_state, Eigen::Ref<Eigen::MatrixXf> measurement) = 0;
 };
 
 #endif /* OBSERVATIONMODEL_H */

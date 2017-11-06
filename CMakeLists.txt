@@ -6,7 +6,9 @@ endif()
 
 project(BayesFilters
         LANGUAGES CXX
-        VERSION 0.5.1.0)
+        VERSION 0.6.0.0)
+
+set(CMAKE_CXX_STANDARD 11)
 
 include(GNUInstallDirs)
 
@@ -32,6 +34,14 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
                           LIB_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
                           DEPENDS ENABLE_RPATH
                           USE_LINK_PATH)
+
+# Default Build type to Release
+if(NOT CMAKE_CONFIGURATION_TYPES)
+    if(NOT CMAKE_BUILD_TYPE)
+        message(STATUS "Setting build type to 'Release' as none was specified.")
+        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE "Release")
+    endif()
+endif()
 
 ### Compile- and install-related commands
 add_subdirectory(src)

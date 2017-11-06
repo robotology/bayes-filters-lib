@@ -12,9 +12,11 @@ class bfl::KalmanFilter: public FilteringAlgorithm {
 public:
     KalmanFilter();
 
-    ~KalmanFilter() noexcept override;
+    ~KalmanFilter() noexcept;
 
-    void runFilter() override;
+    void initialization() override;
+    
+    void filteringStep() override;
 
     void getResult() override;
 };

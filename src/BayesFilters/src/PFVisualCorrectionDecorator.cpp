@@ -1,0 +1,48 @@
+#include "BayesFilters/PFVisualCorrectionDecorator.h"
+
+using namespace bfl;
+using namespace cv;
+using namespace Eigen;
+
+
+PFVisualCorrectionDecorator::PFVisualCorrectionDecorator(std::unique_ptr<PFVisualCorrection> visual_correction) noexcept :
+visual_correction_(std::move(visual_correction)) { }
+
+
+PFVisualCorrectionDecorator::PFVisualCorrectionDecorator(PFVisualCorrectionDecorator&& visual_correction) noexcept :
+visual_correction_(std::move(visual_correction.visual_correction_)) { }
+
+
+PFVisualCorrectionDecorator::~PFVisualCorrectionDecorator() noexcept { }
+
+
+void PFVisualCorrectionDecorator::innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, cv::InputArray measurements, Eigen::Ref<Eigen::MatrixXf> innovations)
+{
+    visual_correction_->innovation(pred_states, measurements, innovations);
+}
+
+
+double PFVisualCorrectionDecorator::likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations)
+{
+    return visual_correction_->likelihood(innovations);
+}
+
+
+VisualObservationModel& PFVisualCorrectionDecorator::getVisualObservationModel()
+{
+    return visual_correction_->getVisualObservationModel();
+}
+
+
+void PFVisualCorrectionDecorator::setVisualObservationModel(std::unique_ptr<VisualObservationModel> visual_observation_model)
+{
+    visual_correction_->setVisualObservationModel(std::move(visual_observation_model));
+}
+
+
+void PFVisualCorrectionDecorator::correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
+                                              Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights)
+{
+    visual_correction_->correctStep(pred_states, pred_weights, measurements,
+                                    cor_states, cor_weights);
+}

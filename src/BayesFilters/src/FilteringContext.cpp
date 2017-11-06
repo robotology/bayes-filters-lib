@@ -9,16 +9,10 @@ FilteringContext::FilteringContext(std::shared_ptr<FilteringAlgorithm> filter) :
 FilteringContext::~FilteringContext() { };
 
 
-void FilteringContext::run()
-{
-    filter_->runFilter();
-}
+void FilteringContext::run() { }
 
 
-void FilteringContext::saveResult()
-{
-    filter_->getResult();
-}
+void FilteringContext::saveResult() { }
 
 
 void FilteringContext::setParameter() { };
