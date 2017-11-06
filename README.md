@@ -11,7 +11,7 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 - [🎛 Dependencies](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-dependencies)
 - [🔨 Build and link the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-build-and-link-the-library)
 - [🔬 Test the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-test-the-library)
-- [📝 API documentaion and example code](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-api-documentaion-and-example-code)
+- [📝 API documentation and example code](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-api-documentaion-and-example-code)
 - [📑 Reference](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-reference)
 
 
