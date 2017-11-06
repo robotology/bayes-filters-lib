@@ -2,7 +2,7 @@
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
-[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-blue.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html)
+[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-E0C57F.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html)
 
 
 # Overview
