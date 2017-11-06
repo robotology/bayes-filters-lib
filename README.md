@@ -1,6 +1,8 @@
-# 📚 BayesFilters Library
+# 📚 BayesFilters Library [![Latest Release](	https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases)
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
+
+[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-blue.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html) [![Build Status](https://travis-ci.org/robotology/bayes-filters-lib/master.svg?style=flat-square)](https://travis-ci.org/robotology/bayes-filters-lib) [![Build status](https://img.shields.io/appveyor/ci/robotology/bayes-filters-lib/master.svg?style=flat-square)](https://ci.appveyor.com/project/robotology/bayes-filters-lib/branch/master)
 
 
 # Overview
@@ -13,7 +15,7 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 - [📑 Reference](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-reference)
 
 
-# ⚠️ About versioning
+# ⚠️ About versioning [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/)
 The project is undergoing _heavy_ development: APIs will be subject to changes quite often.
 To be able to understand API compatibility during development, the project will follow [SemVer](http://semver.org/) specs.
 
