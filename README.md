@@ -4,7 +4,7 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
 
 # Overview
-- [⚠️ Disclaimer](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#️-disclaimer)
+- [⚠️ About versioning](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#️-about-versioning)
 - [📖 Background](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-background)
 - [🎛 Dependencies](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-dependencies)
 - [🔨 Build and link the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-build-and-link-the-library)
@@ -13,14 +13,14 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 - [📑 Reference](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-reference)
 
 
-# ⚠️ Disclaimer
+# ⚠️ About versioning
 The project is undergoing _heavy_ development: APIs will be subject to changes quite often.
-To be able to understand API compatibility during development, the project will follow a **revised** [SemVer](http://semver.org/) specifications **until** release 1.0.0.
+To be able to understand API compatibility during development, the project will follow [SemVer](http://semver.org/) specs.
 
-In particular, the library version will be **0.MAJOR.MINOR**, follwoing [SemVer](http://semver.org/) specifications:
- - **MAJOR** version change when incompatible API changes are made
- - **MINOR** version change when functionality are added in a backwards-compatible manner
- - Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format
+In particular, the library will have **zero major version**, i.e. **0.MINOR.PATCH**, as specified by [SemVer spec. 4](http://semver.org/#spec-item-4) and the project will comply with the following rules:
+ 1. **MINOR** version increases when API compatibility is broken;
+ 2. **PATCH** version increases when functionality are added in a backwards-compatible manner;
+ 3. Additional labels for pre-release and build metadata are available as extensions to the 0.MINOR.PATCH format.
 
 
 # 📖 Background
@@ -30,21 +30,21 @@ These studies led to the technique known as _Least Squares_.
 Over centuries, many other techniques have been proposed in the field of estimation theory, e.g., the _Maximum Likelihood_, the _Maximum a Posteriori_ and the _Minimum Mean Square Error_ estimation.
 The **Bayesian approach** models the quantities to be estimated as random variables characterized by Probability Density Functions (PDFs), and provides an improved estimation of such quantities by conditioning the PDFs on the available noisy measurements.
 Recursive Bayesian estimation (or Bayesian filtering/filters) are a renowned and well-established probabilistic approach for recursively propagating, in a principled way via a two-step procedure, a PDF of a given time-dependent variable of interest.
-Popular Bayes filters are the **Kalman** [1]-[4] and **Particle** filters [5]-[6].
+Popular Bayes filters are the **Kalman** [1]-[4] and **Particle** filters [5]-[7].
 
 The aim of this library is to provide _interfaces_ to implement new Bayes filters as well as _providing implementation_ of existing filters.
 
 
 # 🎛 Dependencies
 BayesFilters library depends on
- - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3`
+ - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3 (no beta)`
  - [OpenCV](https://github.com/opencv/opencv) - `version >= 3.0`
 
 
 # 🔨 Build and link the library
-Use the following commands to compile, install and link the library.
+Use the following commands to build, install and link the library.
 
-## Build on Linux / macOS
+### Build
 ```bash
 $ git clone https://github.com/robotology/bayes-filters-lib
 $ cd bayes-filters-lib
@@ -54,10 +54,7 @@ $ make
 $ [sudo] make install
 ```
 
-## Build on Windows
-[WIP]
-
-## Link the library
+### Link
 Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your poject `CMakeLists.txt`:
 ```cmake
 ...
@@ -66,9 +63,6 @@ find_package(BayesFilters 0.MAJOR.MINOR EXACT REQUIRED)
 target_link_libraries(<target> BayesFilters::BayesFilters)
 ...
 ```
-
-
-# 📘 API structure
 
 
 # 🔬 Test the library
@@ -82,7 +76,7 @@ Tests are also a nice **starting point** to learn how to use the library and how
 
 
 # 📝 API documentaion and example code
-Doxygen-generated documentation is available [here]().
+Doxygen-generated documentation is available [here](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html).
 
 
 # 📑 Reference
@@ -90,8 +84,9 @@ Doxygen-generated documentation is available [here]().
 [2] R. E. Kalman and R. S. Bucy, “New results in linear filtering and prediction theory,” _Trans. ASME - Journal of Basic Engineering_, vol. 83 (Series D), no. 1, pp. 95–108, 1961.  
 [3] L. A. McGee, S. F. Schmidt and G. L. Smith, “Applications of statistical filter theory to the optimal estimation of position and velocity on board a circumlunar vehicle”, _NASA Technical Report R-135_, Tech. Rep., 1962.  
 [4] S. J. Julier and J. K. Uhlmann, "Unscented filtering and nonlinear estimation", _Proceedings of the IEEE_, vol. 92, num. 3, pp. 401-422, 2004.  
-[5] A. Doucet, N. De Freitas, N. Gordon, _Sequential Monte Carlo methods for neural networks_. Springer New York, 2001.  
-[6] M. S. Arulampalam, S. Maskell, N. Gordon and T. Clapp, "A tutorial on particle filters for online nonlinear/non-Gaussian Bayesian tracking." _IEEE Transactions on signal processing_, vol. 50, num. 2, pp. 174-188, 2002.
+[5] A. Doucet, N. De Freitas, N. Gordon, _Sequential Monte Carlo methods in practice_. Springer-Verlag, 2001.
+[6] M. S. Arulampalam, S. Maskell, N. Gordon and T. Clapp, "A tutorial on particle filters for online nonlinear/non-Gaussian Bayesian tracking." _IEEE Transactions on signal processing_, vol. 50, num. 2, pp. 174-188, 2002.  
+[7] N. Gordon, B. Ristic and S. Arulampalam. _Beyond the kalman filter: Particle filters for tracking applications_. Artech House, Boston, London, 2004.
 
 
 ---
