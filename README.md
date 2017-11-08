@@ -2,7 +2,7 @@
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
-[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-blue.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html) [![Build Status](https://travis-ci.org/robotology/bayes-filters-lib/master.svg?style=flat-square)](https://travis-ci.org/robotology/bayes-filters-lib) [![Build status](https://img.shields.io/appveyor/ci/robotology/bayes-filters-lib/master.svg?style=flat-square)](https://ci.appveyor.com/project/robotology/bayes-filters-lib/branch/master)
+[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-E0C57F.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html)
 
 
 # Overview
@@ -11,7 +11,7 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 - [🎛 Dependencies](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-dependencies)
 - [🔨 Build and link the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-build-and-link-the-library)
 - [🔬 Test the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-test-the-library)
-- [📝 API documentaion and example code](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-api-documentaion-and-example-code)
+- [📝 API documentation and example code](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-api-documentaion-and-example-code)
 - [📑 Reference](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-reference)
 
 
@@ -60,7 +60,7 @@ $ [sudo] make install
 Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your poject `CMakeLists.txt`:
 ```cmake
 ...
-find_package(BayesFilters 0.MAJOR.MINOR EXACT REQUIRED)
+find_package(BayesFilters 0.MINOR.PATCH EXACT REQUIRED)
 ...
 target_link_libraries(<target> BayesFilters::BayesFilters)
 ...
