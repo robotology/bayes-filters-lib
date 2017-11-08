@@ -102,8 +102,6 @@ void FilteringAlgorithm::filteringRecursion()
         reset_          = false;
         filtering_step_ = 0;
 
-        initialization();
-
         std::unique_lock<std::mutex> lk(mtx_run_);
         cv_run_.wait(lk, [this]{ return (this->run_ || this->teardown_); });
         try
@@ -117,6 +115,8 @@ void FilteringAlgorithm::filteringRecursion()
             std::cerr << "ERROR::LOG:\n\t"  << e.what() << std::endl;
             teardown_ = true;
         }
+
+        initialization();
 
         while (runCondition() && !teardown_ && !reset_)
         {
