@@ -85,7 +85,8 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJEC
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                          "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}>")
 
-target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Eigen3::Eigen)
+target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS}
+                                                    Eigen3::Eigen)
 
 # Specify installation targets, typology and destination folders.
 install(TARGETS ${LIBRARY_TARGET_NAME}

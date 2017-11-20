@@ -32,6 +32,7 @@ mark_as_advanced(ENABLE_RPATH)
 include(AddInstallRPATHSupport)
 add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}"
                           LIB_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}"
+                          INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}"
                           DEPENDS ENABLE_RPATH
                           USE_LINK_PATH)
 
@@ -48,11 +49,14 @@ add_subdirectory(src)
 
 # Install the files necessary to call find_package(BayesFilters) in CMake projects
 include(InstallBasicPackageFiles)
-install_basic_package_files(${PROJECT_NAME} VARS_PREFIX ${PROJECT_NAME}
-                                            VERSION ${${PROJECT_NAME}_VERSION}
-                                            COMPATIBILITY AnyNewerVersion
-                                            TARGETS_PROPERTY ${PROJECT_NAME}_TARGETS
-                                            NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+install_basic_package_files(${PROJECT_NAME}
+                            VERSION ${${PROJECT_NAME}_VERSION}
+                            COMPATIBILITY ExactVersion
+                            TARGETS_PROPERTY ${PROJECT_NAME}_TARGETS
+                            NO_SET_AND_CHECK_MACRO
+                            VARS_PREFIX ${PROJECT_NAME}
+                            NO_CHECK_REQUIRED_COMPONENTS_MACRO
+                            DEPENDENCIES OpenCV)
 
 # Add the uninstall target
 include(AddUninstallTarget)
