@@ -17,7 +17,7 @@ public:
 
     Resampling() noexcept;
 
-    Resampling(const Resampling& resampling);
+    Resampling(const Resampling& resampling) noexcept;
 
     Resampling(Resampling&& resampling) noexcept;
 
