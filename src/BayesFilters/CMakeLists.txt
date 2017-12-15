@@ -34,10 +34,15 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
+set(${LIBRARY_TARGET_NAME}_FU_HDR
+        include/BayesFilters/EstimatesExtraction.h
+        include/BayesFilters/HistoryBuffer.h)
+
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
         ${${LIBRARY_TARGET_NAME}_FA_HDR}
         ${${LIBRARY_TARGET_NAME}_FF_HDR}
+        ${${LIBRARY_TARGET_NAME}_FU_HDR}
 )
 
 # List of library source files
@@ -68,10 +73,15 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/VisualParticleFilter.cpp
         src/WhiteNoiseAcceleration.cpp)
 
+set(${LIBRARY_TARGET_NAME}_FU_SRC
+        src/EstimatesExtraction.cpp
+        src/HistoryBuffer.cpp)
+
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
         ${${LIBRARY_TARGET_NAME}_FA_SRC}
         ${${LIBRARY_TARGET_NAME}_FF_SRC}
+        ${${LIBRARY_TARGET_NAME}_FU_SRC}
 )
 
 find_package(Eigen3 REQUIRED CONFIG)
@@ -99,11 +109,13 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
 
 if(${CMAKE_GENERATOR} MATCHES "Xcode")
-    source_group("src\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
-    source_group("src\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_SRC})
-    source_group("src\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_SRC})
+    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_HDR})
+    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_HDR})
+    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_HDR})
+    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringUtility"   FILES ${${LIBRARY_TARGET_NAME}_FU_HDR})
 
-    source_group("include\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_HDR})
-    source_group("include\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_HDR})
-    source_group("include\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_HDR})
+    source_group("src\\FilteringContext"                               FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
+    source_group("src\\FilteringAlgorithm"                             FILES ${${LIBRARY_TARGET_NAME}_FA_SRC})
+    source_group("src\\FilteringFunction"                              FILES ${${LIBRARY_TARGET_NAME}_FF_SRC})
+    source_group("src\\FilteringUtility"                               FILES ${${LIBRARY_TARGET_NAME}_FU_SRC})
 endif()
