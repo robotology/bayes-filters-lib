@@ -16,9 +16,9 @@ namespace bfl {
 class bfl::ResamplingWithPrior : public Resampling
 {
 public:
-    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, double prior_ratio, unsigned int seed) noexcept;
+    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, const double prior_ratio, const unsigned int seed) noexcept;
 
-    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, unsigned int seed) noexcept;
+    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, const double prior_ratio) noexcept;
 
     ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model) noexcept;
 
