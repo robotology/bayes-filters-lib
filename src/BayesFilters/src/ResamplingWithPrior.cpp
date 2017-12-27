@@ -27,7 +27,7 @@ ResamplingWithPrior::ResamplingWithPrior(ResamplingWithPrior&& resampling) noexc
     init_model_(std::move(resampling.init_model_))
 {
     prior_ratio_ = resampling.prior_ratio_;
-    resampling.prior_ratio_ = 2.0;
+    resampling.prior_ratio_ = 0.5;
 }
 
 

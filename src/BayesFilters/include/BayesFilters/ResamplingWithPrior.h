@@ -35,7 +35,7 @@ public:
 protected:
     std::unique_ptr<bfl::Initialization> init_model_;
 
-    double prior_ratio_ = 2.0;
+    double prior_ratio_ = 0.5;
 
 private:
     std::vector<unsigned int> sort_indices(const Eigen::Ref<const Eigen::VectorXf>& vector);
