@@ -17,7 +17,7 @@ protected:
 
     PFPredictionDecorator(PFPredictionDecorator&& prediction) noexcept;
 
-    ~PFPredictionDecorator() noexcept;
+    virtual ~PFPredictionDecorator() noexcept;
 
     PFPredictionDecorator& operator=(PFPredictionDecorator&& prediction) noexcept;
 

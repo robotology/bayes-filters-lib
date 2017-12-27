@@ -6,6 +6,9 @@ using namespace bfl;
 ParticleFilter::ParticleFilter() noexcept { }
 
 
+ParticleFilter::~ParticleFilter() noexcept { }
+
+
 ParticleFilter::ParticleFilter(ParticleFilter&& pf) noexcept :
     initialization_(std::move(pf.initialization_)),
     prediction_(std::move(pf.prediction_)),

@@ -12,7 +12,7 @@ class bfl::KalmanFilter: public FilteringAlgorithm {
 public:
     KalmanFilter();
 
-    ~KalmanFilter() noexcept;
+    virtual ~KalmanFilter() noexcept;
 
     void initialization() override;
     

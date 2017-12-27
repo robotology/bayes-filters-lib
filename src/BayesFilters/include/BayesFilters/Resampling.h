@@ -21,7 +21,7 @@ public:
 
     Resampling(Resampling&& resampling) noexcept;
 
-    ~Resampling() noexcept;
+    virtual ~Resampling() noexcept;
 
     Resampling& operator=(const Resampling& resampling);
 

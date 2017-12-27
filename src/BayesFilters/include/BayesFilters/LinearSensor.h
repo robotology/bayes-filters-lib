@@ -24,7 +24,7 @@ public:
 
     LinearSensor(LinearSensor&& lin_sense) noexcept;
 
-    ~LinearSensor() noexcept;
+    virtual ~LinearSensor() noexcept;
 
     LinearSensor& operator=(const LinearSensor& lin_sense) noexcept;
 

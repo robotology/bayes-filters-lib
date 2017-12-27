@@ -8,6 +8,9 @@ using namespace Eigen;
 PFVisualCorrection::PFVisualCorrection() noexcept { };
 
 
+PFVisualCorrection::~PFVisualCorrection() noexcept { };
+
+
 PFVisualCorrection::PFVisualCorrection(PFVisualCorrection&& pf_prediction) noexcept { }
 
 

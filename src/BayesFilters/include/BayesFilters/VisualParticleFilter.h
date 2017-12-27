@@ -30,6 +30,8 @@ public:
 protected:
     VisualParticleFilter() noexcept;
 
+    virtual ~VisualParticleFilter() noexcept;
+
     VisualParticleFilter(VisualParticleFilter&& pf) noexcept;
 
     VisualParticleFilter& operator=(VisualParticleFilter&& pf) noexcept;

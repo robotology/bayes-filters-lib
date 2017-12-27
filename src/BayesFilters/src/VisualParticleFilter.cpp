@@ -6,6 +6,9 @@ using namespace bfl;
 VisualParticleFilter::VisualParticleFilter() noexcept { }
 
 
+VisualParticleFilter::~VisualParticleFilter() noexcept { };
+
+
 VisualParticleFilter::VisualParticleFilter(VisualParticleFilter&& pf) noexcept :
     initialization_(std::move(pf.initialization_)),
     prediction_(std::move(pf.prediction_)),

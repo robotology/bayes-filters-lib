@@ -24,7 +24,7 @@ public:
 
     WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept;
 
-    ~WhiteNoiseAcceleration() noexcept;
+    virtual ~WhiteNoiseAcceleration() noexcept;
 
     WhiteNoiseAcceleration& operator=(const WhiteNoiseAcceleration& wna);
 

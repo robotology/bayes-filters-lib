@@ -22,7 +22,7 @@ public:
 
     SIS(SIS&& sir_pf) noexcept;
 
-    ~SIS() noexcept;
+    virtual ~SIS() noexcept;
 
     SIS& operator=(SIS&& sir_pf) noexcept;
 

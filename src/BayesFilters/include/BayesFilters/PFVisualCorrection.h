@@ -16,7 +16,7 @@ namespace bfl {
 class bfl::PFVisualCorrection
 {
 public:
-    virtual ~PFVisualCorrection() noexcept { };
+    virtual ~PFVisualCorrection() noexcept;
 
     void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
                  Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);

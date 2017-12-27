@@ -24,7 +24,7 @@ public:
 
     ResamplingWithPrior(ResamplingWithPrior&& resampling) noexcept;
 
-    ~ResamplingWithPrior() noexcept;
+    virtual ~ResamplingWithPrior() noexcept;
 
     ResamplingWithPrior& operator=(ResamplingWithPrior&& resampling) noexcept;
 

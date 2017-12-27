@@ -28,7 +28,7 @@ protected:
 
     ObservationModelDecorator(ObservationModelDecorator&& observation_model) noexcept;
 
-    ~ObservationModelDecorator() noexcept;
+    virtual ~ObservationModelDecorator() noexcept;
 
     ObservationModelDecorator& operator=(ObservationModelDecorator&& observation_model) noexcept;
 

@@ -11,6 +11,7 @@ ObservationModelDecorator::ObservationModelDecorator(std::unique_ptr<Observation
 ObservationModelDecorator::ObservationModelDecorator(ObservationModelDecorator&& observation_model) noexcept :
     observation_model_(std::move(observation_model.observation_model_)) { }
 
+
 ObservationModelDecorator::~ObservationModelDecorator() noexcept { }
 
 

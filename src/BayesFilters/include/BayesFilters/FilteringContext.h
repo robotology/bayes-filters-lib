@@ -15,7 +15,7 @@ class bfl::FilteringContext
 public:
     FilteringContext(std::shared_ptr<FilteringAlgorithm> filter);
 
-    ~FilteringContext();
+    virtual ~FilteringContext();
     
     void run();
 
