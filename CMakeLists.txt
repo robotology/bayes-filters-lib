@@ -16,7 +16,13 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-add_definitions(-D_USE_MATH_DEFINES)
+if(WIN32)
+    add_definitions(-D_USE_MATH_DEFINES)
+    if(MSVC)
+        set(CMAKE_CXX_FLAGS "/MP")
+        set(CMAKE_C_FLAGS "/MP")
+    endif()
+endif()
 
 ### Options
 # Shared/Dynamic or Static library?
