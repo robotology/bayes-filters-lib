@@ -1,5 +1,7 @@
 #include "BayesFilters/ResamplingWithPrior.h"
 
+#include <algorithm>
+#include <numeric>
 #include <vector>
 
 using namespace bfl;
@@ -85,10 +87,10 @@ void ResamplingWithPrior::resample(const Ref<const MatrixXf>& pred_particles, co
 std::vector<unsigned int> ResamplingWithPrior::sort_indices(const Ref<const VectorXf>& vector)
 {
     std::vector<unsigned int> idx(vector.size());
-    iota(idx.begin(), idx.end(), 0);
+    std::iota(idx.begin(), idx.end(), 0);
 
-    sort(idx.begin(), idx.end(),
-         [&vector](size_t idx1, size_t idx2) { return vector[idx1] < vector[idx2]; });
+    std::sort(idx.begin(), idx.end(),
+              [&vector](size_t idx1, size_t idx2) { return vector[idx1] < vector[idx2]; });
 
     return idx;
 }
