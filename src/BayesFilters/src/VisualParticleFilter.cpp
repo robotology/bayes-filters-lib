@@ -61,5 +61,18 @@ bool VisualParticleFilter::skip(const std::string& what_step, const bool status)
     if (what_step == "correction")
         return correction_->skip(status);
 
+    if (what_step == "all")
+    {
+        bool return_status = true;
+
+        return_status &= prediction_->skip("prediction", status);
+        return_status &= prediction_->skip("state", status);
+        return_status &= prediction_->skip("exogenous", status);
+
+        return_status &= correction_->skip(status);
+
+        return return_status;
+    }
+
     return false;
 }
