@@ -27,7 +27,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/PFVisualCorrectionDecorator.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
-        include/BayesFilters/SigmaPointTransform.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
@@ -42,6 +41,7 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/HistoryBuffer.h
         include/BayesFilters/Particle.h
         include/BayesFilters/ParticleSet.h
+        include/BayesFilters/UnscentedTransform.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
@@ -86,6 +86,7 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/HistoryBuffer.cpp
         src/Particle.cpp
         src/ParticleSet.cpp
+        src/UnscentedTransform.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
