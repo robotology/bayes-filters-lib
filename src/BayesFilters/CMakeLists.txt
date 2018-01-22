@@ -28,6 +28,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SPCorrection.h
+        include/BayesFilters/SPPrediction.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
@@ -76,6 +77,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Resampling.cpp
         src/ResamplingWithPrior.cpp
         src/SPCorrection.cpp
+        src/SPPrediction.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
         src/VisualParticleFilter.cpp
