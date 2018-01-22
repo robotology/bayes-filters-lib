@@ -37,9 +37,9 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
 
 set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/EstimatesExtraction.h
-        include/BayesFilters/HistoryBuffer.h)
         include/BayesFilters/Gaussian.h
         include/BayesFilters/GaussianMixture.h
+        include/BayesFilters/HistoryBuffer.h
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
@@ -79,9 +79,9 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/EstimatesExtraction.cpp
-        src/HistoryBuffer.cpp)
         src/Gaussian.cpp
         src/GaussianMixture.cpp
+        src/HistoryBuffer.cpp
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
