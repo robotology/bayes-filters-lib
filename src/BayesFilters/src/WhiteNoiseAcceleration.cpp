@@ -100,7 +100,11 @@ void WhiteNoiseAcceleration::motion(const Ref<const MatrixXf>& cur_states, Ref<M
 
 MatrixXf WhiteNoiseAcceleration::getNoiseSample(const int num)
 {
-    return sqrt_Q_ * MatrixXf::NullaryExpr(4, num, gauss_rnd_sample_);
+    MatrixXf rand_vectors(4, num);
+    for (int i = 0; i < rand_vectors.size(); i++)
+        *(rand_vectors.data() + i) = gauss_rnd_sample_();
+
+    return sqrt_Q_ * rand_vectors;
 }
 
 

@@ -95,7 +95,11 @@ void LinearSensor::measure(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> 
 
 MatrixXf LinearSensor::getNoiseSample(const int num)
 {
-    return sqrt_R_ * Vector2f::NullaryExpr(2, num, gauss_rnd_sample_);
+    MatrixXf rand_vectors(2, num);
+    for (int i = 0; i < rand_vectors.size(); i++)
+        *(rand_vectors.data() + i) = gauss_rnd_sample_();
+
+    return sqrt_R_ * rand_vectors;
 }
 
 MatrixXf LinearSensor::getNoiseCovarianceMatrix()
