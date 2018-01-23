@@ -86,7 +86,12 @@ set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FU_SRC}
 )
 
-find_package(Eigen3 REQUIRED CONFIG)
+set(EIGEN3_NO_TARGET FALSE)
+find_package(Eigen3 QUIET CONFIG)
+if (NOT EIGEN3_FOUND)
+    find_package(Eigen3 REQUIRED)
+    set(EIGEN3_NO_TARGET TRUE)
+endif()
 find_package(OpenCV REQUIRED)
 
 add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
@@ -96,9 +101,13 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJEC
 
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                          "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}>")
+if (EIGEN3_NO_TARGET)
+    target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC ${EIGEN3_INCLUDE_DIR})
 
-target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS}
-                                                    Eigen3::Eigen)
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS})
+else()
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Eigen3::Eigen)
+endif()
 
 # Specify installation targets, typology and destination folders.
 install(TARGETS ${LIBRARY_TARGET_NAME}
