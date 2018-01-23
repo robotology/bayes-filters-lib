@@ -1,4 +1,4 @@
-set(TEST_TARGET_NAME test_FilteringAlgorithm)
+set(TEST_TARGET_NAME test_ParticleFilter)
 
 set(${TEST_TARGET_NAME}_SRC
         main.cpp

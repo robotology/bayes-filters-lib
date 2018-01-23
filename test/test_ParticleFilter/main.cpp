@@ -30,8 +30,6 @@ int main()
         return EXIT_FAILURE;
     std::cout << "done!" << std::endl;
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
     std::cout << "Running dummy particle filter..." << std::flush;
     dummy.run();
     std::cout << "done!" << std::endl;
@@ -52,7 +50,9 @@ int main()
     dummy.reboot();
     std::cout << "done!" << std::endl;
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
 
     std::cout << "Running dummy particle filter again..." << std::flush;
     dummy.run();
