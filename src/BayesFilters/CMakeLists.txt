@@ -103,9 +103,9 @@ target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CM
 if(NOT TARGET Eigen3)
     target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC ${EIGEN3_INCLUDE_DIR})
 
-    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Threads::Threads)
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
 else()
-    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Eigen3::Eigen Threads::Threads)
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Eigen3::Eigen Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 # Specify installation targets, typology and destination folders.
