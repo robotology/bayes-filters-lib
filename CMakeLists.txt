@@ -6,7 +6,7 @@ endif()
 
 project(BayesFilters
         LANGUAGES CXX
-        VERSION 0.6.1.0)
+        VERSION 0.6.2.0)
 
 set(CMAKE_CXX_STANDARD 11)
 
