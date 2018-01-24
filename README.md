@@ -1,4 +1,4 @@
-# 📚 BayesFilters Library [![Latest Release](	https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases)
+# 📚 BayesFilters Library [![Latest Release](	https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/)
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
@@ -6,16 +6,16 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
 
 # Overview
-- [⚠️ About versioning](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#️-about-versioning)
-- [📖 Background](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-background)
-- [🎛 Dependencies](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-dependencies)
-- [🔨 Build and link the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-build-and-link-the-library)
-- [🔬 Test the library](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-test-the-library)
-- [📝 API documentation and example code](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-api-documentaion-and-example-code)
-- [📑 Reference](https://github.com/robotology/bayes-filters-lib/blob/devel/README.md#-reference)
+- [⚠️ About versioning](#️-about-versioning)
+- [📖 Background](#-background)
+- [🎛 Dependencies](#-dependencies)
+- [🔨 Build and link the library](#-build-and-link-the-library)
+- [🔬 Test the library](#-test-the-library)
+- [📝 API documentation and example code](#-api-documentaion-and-example-code)
+- [📑 Reference](#-reference)
 
 
-# ⚠️ About versioning [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/)
+# ⚠️ About versioning
 The project is undergoing _heavy_ development: APIs will be subject to changes quite often.
 To be able to understand API compatibility during development, the project will follow [SemVer](http://semver.org/) specs.
 
@@ -39,7 +39,7 @@ The aim of this library is to provide _interfaces_ and _implementations_ for new
 
 # 🎛 Dependencies
 BayesFilters library depends on
- - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3 (no beta)`
+ - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.0`
  - [OpenCV](https://github.com/opencv/opencv) - `version >= 3.0`
 
 
@@ -47,6 +47,7 @@ BayesFilters library depends on
 Use the following commands to build, install and link the library.
 
 ### Build
+With `make` facilities:
 ```bash
 $ git clone https://github.com/robotology/bayes-filters-lib
 $ cd bayes-filters-lib
@@ -54,6 +55,16 @@ $ mkdir build && cd build
 $ cmake ..
 $ make
 $ [sudo] make install
+```
+
+With IDE build tool facilities:
+```bash
+$ git clone https://github.com/robotology/bayes-filters-lib
+$ cd bayes-filters-lib
+$ mkdir build && cd build
+$ cmake ..
+$ cmake --build . --target ALL_BUILD --config Release
+$ cmake --build . --target INSTALL --config Release
 ```
 
 ### Link
