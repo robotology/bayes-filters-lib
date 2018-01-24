@@ -59,11 +59,56 @@
 # The ``<Name>ConfigVersion.cmake`` is generated using
 # ``write_basic_package_version_file``.  The ``VERSION``,
 # ``COMPATIBILITY``, ``NO_SET_AND_CHECK_MACRO``, and
-# ``NO_CHECK_REQUIRED_COMPONENTS_MACRO`` are passed to this function.
-# See the documentation for the :module:`CMakePackageConfigHelpers`
-# module for further information. The files in the build and install
-# directory are exactly the same. The ``VERSION`` argument is also used
+# ``NO_CHECK_REQUIRED_COMPONENTS_MACRO`` are passed to this function
+# and are used internally by :module:`CMakePackageConfigHelpers` module.
+#
+# ``VERSION`` shall be in the form ``<major>[.<minor>[.<patch>[.<tweak>]]]]``.
+# If no ``VERSION`` is given, the ``PROJECT_VERSION`` variable is used.
+# If this hasn’t been set, it errors out.  The ``VERSION`` argument is also used
 # to replace the ``@PACKAGE_VERSION@`` string in the configuration file.
+#
+# ``COMPATIBILITY`` shall be any of ``<AnyNewerVersion|SameMajorVersion|
+# ExactVersion>``.
+# The ``COMPATIBILITY`` mode ``AnyNewerVersion`` means that the installed
+# package version will be considered compatible if it is newer or exactly the
+# same as the requested version. This mode should be used for packages which are
+# fully backward compatible, also across major versions.
+# If ``SameMajorVersion`` is used instead, then the behaviour differs from
+# ``AnyNewerVersion`` in that the major version number must be the same as
+# requested, e.g. version 2.0 will not be considered compatible if 1.0 is
+# requested. This mode should be used for packages which guarantee backward
+# compatibility within the same major version. If ``ExactVersion`` is used, then
+# the package is only considered compatible if the requested version matches
+# exactly its own version number (not considering the tweak version). For
+# example, version 1.2.3 of a package is only considered compatible to requested
+# version 1.2.3. This mode is for packages without compatibility guarantees. If
+# your project has more elaborated version matching rules, you will need to
+# write your own custom ConfigVersion.cmake file instead of using this macro.
+#
+# By default ``install_basic_package_files`` also generates the two helper
+# macros ``set_and_check()`` and ``check_required_components()`` into the
+# ``<Name>Config.cmake`` file. ``set_and_check()`` should be used instead of the
+# normal set() command for setting directories and file locations. Additionally
+# to setting the variable it also checks that the referenced file or directory
+# actually exists and fails with a ``FATAL_ERROR`` otherwise. This makes sure
+# that the created ``<Name>Config.cmake`` file does not contain wrong
+# references. When using the ``NO_SET_AND_CHECK_MACRO, this macro is not
+# generated into the ``<Name>Config.cmake`` file.
+#
+# By default, ``install_basic_package_files`` append a call to
+# ``check_required_components(<Name>)`` in <Name>Config.cmake file if the
+# package supports components. This macro checks whether all requested,
+# non-optional components have been found, and if this is not the case, sets the
+# ``<Name>_FOUND`` variable to ``FALSE``, so that the package is considered to
+# be not found. It does that by testing the ``<Name>_<Component>_FOUND``
+# variables for all requested required components. When using the
+# ``NO_CHECK_REQUIRED_COMPONENTS_MACRO`` option, this macro is not generated
+# into the <Name>Config.cmake file.
+#
+# Finally, the files in the build and install directory are exactly the same.
+#
+# See the documentation of :module:`CMakePackageConfigHelpers` module for
+# further information and references therein.
 #
 #
 # The ``<Name>Config.cmake`` is generated using

@@ -84,6 +84,8 @@ void SIS::filteringStep()
     cor_weight_ /= cor_weight_.sum();
 
 
+    /* Here results should be save. */
+    /* Proper stragy is WIP. */
     result_pred_particle_[k] = pred_particle_;
     result_pred_weight_  [k] = pred_weight_;
 

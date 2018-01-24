@@ -18,7 +18,7 @@ public:
 
     UpdateParticles(UpdateParticles&& pf_correction) noexcept;
 
-    ~UpdateParticles() noexcept;
+    virtual ~UpdateParticles() noexcept;
 
 
     void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;

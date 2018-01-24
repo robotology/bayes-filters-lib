@@ -5,11 +5,11 @@ using namespace Eigen;
 
 
 StateModelDecorator::StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept :
-state_model_(std::move(state_model)) { }
+    state_model_(std::move(state_model)) { }
 
 
 StateModelDecorator::StateModelDecorator(StateModelDecorator&& state_model) noexcept :
-state_model_(std::move(state_model.state_model_)) { }
+    state_model_(std::move(state_model.state_model_)) { }
 
 
 StateModelDecorator::~StateModelDecorator() noexcept { }

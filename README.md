@@ -32,9 +32,9 @@ These studies led to the technique known as _Least Squares_.
 Over centuries, many other techniques have been proposed in the field of estimation theory, e.g., the _Maximum Likelihood_, the _Maximum a Posteriori_ and the _Minimum Mean Square Error_ estimation.
 The **Bayesian approach** models the quantities to be estimated as random variables characterized by Probability Density Functions (PDFs), and provides an improved estimation of such quantities by conditioning the PDFs on the available noisy measurements.
 Recursive Bayesian estimation (or Bayesian filtering/filters) are a renowned and well-established probabilistic approach for recursively propagating, in a principled way via a two-step procedure, a PDF of a given time-dependent variable of interest.
-Popular Bayes filters are the **Kalman** [1]-[4] and **Particle** filters [5]-[7].
+Popular Bayes filters are the **Kalman** [1]-[4] and **particle filters** [5]-[7].
 
-The aim of this library is to provide _interfaces_ to implement new Bayes filters as well as _providing implementation_ of existing filters.
+The aim of this library is to provide _interfaces_ and _implementations_ for new and existing recursive Bayesian filters!
 
 
 # 🎛 Dependencies
@@ -74,7 +74,7 @@ $ ctest [-VV]
 ```
 to run all the tests.
 
-Tests are also a nice **starting point** to learn how to use the library and how to implement your own filters! _Just have a look at them!_
+Tests are also a nice **starting points** to learn how to use the library and how to implement your own filters! _Just have a look at them!_
 
 
 # 📝 API documentaion and example code

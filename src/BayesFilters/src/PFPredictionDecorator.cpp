@@ -43,3 +43,15 @@ void PFPredictionDecorator::setStateModel(std::unique_ptr<StateModel> state_mode
 {
     prediction_->setStateModel(std::move(state_model));
 }
+
+
+ExogenousModel& PFPredictionDecorator::getExogenousModel()
+{
+    return prediction_->getExogenousModel();
+}
+
+
+void PFPredictionDecorator::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
+{
+    prediction_->setExogenousModel(std::move(exogenous_model));
+}

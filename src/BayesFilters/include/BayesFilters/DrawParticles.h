@@ -18,7 +18,7 @@ public:
 
     DrawParticles(DrawParticles&& draw_particles) noexcept;
 
-    ~DrawParticles() noexcept;
+    virtual ~DrawParticles() noexcept;
 
     virtual StateModel& getStateModel() override;
 

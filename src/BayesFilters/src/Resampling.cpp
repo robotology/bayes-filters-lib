@@ -17,7 +17,7 @@ Resampling::Resampling() noexcept :
 Resampling::~Resampling() noexcept { }
 
 
-Resampling::Resampling(const Resampling& resampling) :
+Resampling::Resampling(const Resampling& resampling) noexcept :
     generator_(resampling.generator_) { }
 
 
@@ -61,8 +61,7 @@ void Resampling::resample(const Ref<const MatrixXf>& cor_particles, const Ref<co
         csw(i) = csw(i-1) + cor_weights(i);
 
     std::uniform_real_distribution<float> distribution_res(0.0, 1.0/num_particles);
-    std::function<float()> uniform = [&] {return distribution_res(generator_);};
-    float u_1 = VectorXf::NullaryExpr(1, uniform).coeff(0);
+    float u_1 = distribution_res(generator_);
 
     int idx_csw = 0;
     for (int j = 0; j < num_particles; ++j)
