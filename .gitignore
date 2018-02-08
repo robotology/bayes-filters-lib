@@ -54,3 +54,5 @@ Thumbs.db
 dbg*/
 build*/
 xcodeenvvar.txt
+.vs/
+CMakeSettings.json
