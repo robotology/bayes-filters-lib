@@ -1,6 +1,8 @@
 #ifndef GAUSSIAN_H
 #define GAUSSIAN_H
 
+#include <memory>
+
 #include <Eigen/Core>
 
 namespace bfl {
@@ -11,13 +13,28 @@ namespace bfl {
 class bfl::Gaussian
 {
 public:
+    Gaussian();
+
     Gaussian(unsigned int dim);
 
-    virtual ~Gaussian();
+    virtual ~Gaussian() noexcept;
 
-    Eigen::VectorXd mean;
+    Eigen::Ref<Eigen::VectorXd> mean;
 
-    Eigen::MatrixXd covariance;
+    Eigen::Ref<Eigen::MatrixXd> covariance;
+
+    double& weight;
+
+    unsigned int dim;
+
+protected:
+    Gaussian(Eigen::Ref<Eigen::VectorXd> mean, Eigen::Ref<Eigen::MatrixXd> covariance, double& weight);
+
+    friend class GaussianMixture;
+
+private:
+    bool used_public_ctor_;
+
 };
 
 #endif /* GAUSSIAN_H */

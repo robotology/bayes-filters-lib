@@ -28,6 +28,7 @@ if(WIN32)
         set(CMAKE_C_FLAGS "/MP /EHsc")
     endif()
 endif()
+add_definitions(-DEIGEN_INITIALIZE_MATRICES_BY_ZERO)
 
 ### Options
 # Shared/Dynamic or Static library?
