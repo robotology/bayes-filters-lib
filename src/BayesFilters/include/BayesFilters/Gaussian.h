@@ -15,7 +15,7 @@ class bfl::Gaussian
 public:
     Gaussian();
 
-    Gaussian(unsigned int dim);
+    Gaussian(const unsigned int dim);
 
     virtual ~Gaussian() noexcept;
 

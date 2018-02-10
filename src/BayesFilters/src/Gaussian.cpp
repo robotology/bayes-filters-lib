@@ -10,7 +10,7 @@ Gaussian::Gaussian() :
     Gaussian(1) { }
 
 
-Gaussian::Gaussian(unsigned int dim) :
+Gaussian::Gaussian(const unsigned int dim) :
     mean(*(new VectorXd(dim))),
     covariance(*(new MatrixXd(dim, dim))),
     weight(*(new double{1.0})),
