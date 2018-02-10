@@ -31,16 +31,16 @@ endif()
 add_definitions(-DEIGEN_INITIALIZE_MATRICES_BY_ZERO)
 
 ### Options
-# Shared/Dynamic or Static library?
 option(BUILD_SHARED_LIBS "Build libraries as shared as opposed to static" ON)
 
-# Build test related commands?
+# Build tests?
 option(BUILD_TESTING "Create tests using CMake" OFF)
 if(BUILD_TESTING)
+    message(STATUS "Test enabled")
     enable_testing()
 endif()
 
-# Support RPATH?
+# Enable RPATH?
 option(ENABLE_RPATH "Enable RPATH for this library" ON)
 mark_as_advanced(ENABLE_RPATH)
 include(AddInstallRPATHSupport)
@@ -50,7 +50,7 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
                           DEPENDS ENABLE_RPATH
                           USE_LINK_PATH)
 
-# Default Build type to Release
+# Default build type to Release
 if(NOT CMAKE_CONFIGURATION_TYPES)
     if(NOT CMAKE_BUILD_TYPE)
         message(STATUS "Setting build type to 'Release' as none was specified.")
