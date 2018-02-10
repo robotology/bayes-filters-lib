@@ -13,24 +13,24 @@ namespace bfl {
 class bfl::GaussianMixture
 {
 public:
-    GaussianMixture(unsigned int components, unsigned int dim);
+    GaussianMixture(const unsigned int components, const unsigned int dim);
 
     virtual ~GaussianMixture() noexcept;
 
     Gaussian&       operator[](unsigned int i);
     const Gaussian& operator[](unsigned int i) const;
 
+    Eigen::MatrixXd means;
+
+    Eigen::MatrixXd covariances;
+
+    Eigen::VectorXd weights;
+
     unsigned int components;
 
     unsigned int dim;
 
 private:
-    Eigen::MatrixXd mean;
-
-    std::vector<Eigen::MatrixXd> covariance;
-
-    Eigen::VectorXd weight;
-
     std::vector<Gaussian> gaussian_;
 };
 

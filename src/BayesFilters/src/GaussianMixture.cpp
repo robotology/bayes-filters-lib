@@ -4,17 +4,17 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GaussianMixture::GaussianMixture(unsigned int components, unsigned int dim) :
+GaussianMixture::GaussianMixture(const unsigned int components, const unsigned int dim) :
+    means(dim, components),
+    covariances(dim, dim * components),
+    weights(components),
     components(components),
-    dim(dim),
-    mean(dim, components),
-    covariance(components, MatrixXd(dim, dim)),
-    weight(components)
+    dim(dim)
 {
     for (int i = 0; i < this->components; ++i)
     {
-        weight(i) = 1.0 / this->components;
-        gaussian_.emplace_back(Gaussian(mean.col(i), covariance[i], weight(i)));
+        weights(i) = 1.0 / this->components;
+        gaussian_.emplace_back(Gaussian(means.col(i), covariances.middleCols(dim * i, dim), weights(i)));
     }
 }
 
