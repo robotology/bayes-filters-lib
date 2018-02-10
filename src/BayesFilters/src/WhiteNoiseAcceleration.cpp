@@ -10,8 +10,11 @@ using namespace Eigen;
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept :
-    T_(T), tilde_q_(tilde_q),
-    generator_(std::mt19937_64(seed)), distribution_(std::normal_distribution<float>(0.0, 1.0)), gauss_rnd_sample_([&] { return (distribution_)(generator_); })
+    T_(T),
+    tilde_q_(tilde_q),
+    generator_(std::mt19937_64(seed)),
+    distribution_(std::normal_distribution<float>(0.0, 1.0)),
+    gauss_rnd_sample_([&] { return (distribution_)(generator_); })
 {
     F_ << 1.0,  T_, 0.0, 0.0,
           0.0, 1.0, 0.0, 0.0,
@@ -43,13 +46,25 @@ WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept { }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
-    T_(wna.T_), F_(wna.F_), Q_(wna.Q_), tilde_q_(wna.tilde_q_),
-    sqrt_Q_(wna.sqrt_Q_), generator_(wna.generator_), distribution_(wna.distribution_), gauss_rnd_sample_(wna.gauss_rnd_sample_) { }
+    T_(wna.T_),
+    F_(wna.F_),
+    Q_(wna.Q_),
+    tilde_q_(wna.tilde_q_),
+    sqrt_Q_(wna.sqrt_Q_),
+    generator_(wna.generator_),
+    distribution_(wna.distribution_),
+    gauss_rnd_sample_(wna.gauss_rnd_sample_) { }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept :
-    T_(wna.T_), F_(std::move(wna.F_)), Q_(std::move(wna.Q_)), tilde_q_(wna.tilde_q_),
-    sqrt_Q_(std::move(wna.sqrt_Q_)), generator_(std::move(wna.generator_)), distribution_(std::move(wna.distribution_)), gauss_rnd_sample_(std::move(wna.gauss_rnd_sample_))
+    T_(wna.T_),
+    F_(std::move(wna.F_)),
+    Q_(std::move(wna.Q_)),
+    tilde_q_(wna.tilde_q_),
+    sqrt_Q_(std::move(wna.sqrt_Q_)),
+    generator_(std::move(wna.generator_)),
+    distribution_(std::move(wna.distribution_)),
+    gauss_rnd_sample_(std::move(wna.gauss_rnd_sample_))
 {
     wna.T_       = 0.0;
     wna.tilde_q_ = 0.0;
