@@ -1,4 +1,3 @@
-#include <chrono>
 #include <iostream>
 #include <thread>
 
@@ -129,7 +128,7 @@ int main()
 
 
 
-    std::cout << "Assign values to the Gaussian mixture with 5 3D components..." << std::flush;
+    std::cout << "Assign values to the Gaussian mixture with 5 3D components..." << std::endl;
 
     for (int i = 0; i < gaussian_mixture.components; ++i)
     {
@@ -172,6 +171,15 @@ int main()
 
     std::cout << "done!\n" << std::endl;
 
+
+
+    std::cout << "Reading values altogether to the Gaussian mixture with 5 3D components..." << std::endl;
+
+    std::cout << "Means:\n" << gaussian_mixture.means << std::endl;
+    std::cout << "Covariances:\n" << gaussian_mixture.covariances << std::endl;
+    std::cout << "weights:\n" << gaussian_mixture.weights << std::endl;
+
+    std::cout << "done!\n" << std::endl;
 
     return EXIT_SUCCESS;
 }
