@@ -1,6 +1,7 @@
 #ifndef SPCORRECTION_H
 #define SPCORRECTION_H
 
+#include "Gaussian.h"
 #include "ObservationModel.h"
 
 #include <memory>
@@ -19,8 +20,7 @@ public:
     virtual ~SPCorrection() noexcept { };
 
 
-    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const std::vector<Eigen::MatrixXf>& pred_covariances, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
-                 Eigen::Ref<Eigen::MatrixXf> cor_states, std::vector<Eigen::MatrixXf>& cor_covariances);
+    Gaussian correct(const Gaussian& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements);
 
 
     bool skip(const bool status);
@@ -36,10 +36,9 @@ protected:
     SPCorrection(SPCorrection&& pf_correction) noexcept;
 
 
-    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const std::vector<Eigen::MatrixXf>& prev_covariances, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
-                             Eigen::Ref<Eigen::MatrixXf> cor_states, std::vector<Eigen::MatrixXf>& cor_covariances) = 0;
+    virtual Gaussian correctStep(const Gaussian& prev_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
 
-    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
+    virtual Eigen::MatrixXf innovation(const Gaussian& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
 
     virtual double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation, const Eigen::Ref<const Eigen::MatrixXf>& innovation_covariance) = 0;
 
