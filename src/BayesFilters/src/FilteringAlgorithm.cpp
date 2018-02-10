@@ -13,8 +13,8 @@ bool FilteringAlgorithm::boot()
     }
     catch (const std::system_error& e)
     {
-        std::cerr << "ERROR::FILTERINGALGORITHM::PREAPRE" << std::endl;
-        std::cerr << "ERROR::CODE:\n\t" << e.code() << std::endl;
+        std::cerr << "ERROR::FILTERINGALGORITHM::PREAPRE\n";
+        std::cerr << "ERROR::CODE:\n\t" << e.code() << "\n";
         std::cerr << "ERROR::LOG:\n\t"  << e.what() << std::endl;
         return false;
     }
@@ -41,16 +41,16 @@ bool FilteringAlgorithm::wait()
         }
         catch (const std::system_error& e)
         {
-            std::cerr << "ERROR::FILTERINGALGORITHM::WAIT" << std::endl;
-            std::cerr << "ERROR::CODE:\n\t" << e.code() << std::endl;
+            std::cerr << "ERROR::FILTERINGALGORITHM::WAIT\n";
+            std::cerr << "ERROR::CODE:\n\t" << e.code() << "\n";
             std::cerr << "ERROR::LOG:\n\t"  << e.what() << std::endl;
             return false;
         }
     }
     else
     {
-        std::cout << "WARNING::FILTERINGALGORITHM::WAIT" << std::endl;
-        std::cout << "WARNING::LOG: filtering thread is not joinable. Returning 'true'." << std::endl;
+        std::cout << "WARNING::FILTERINGALGORITHM::WAIT\n";
+        std::cout << "WARNING::LOG:\n\tfiltering thread is not joinable. Returning 'true'." << std::endl;
     }
 
     return true;
@@ -76,8 +76,8 @@ bool FilteringAlgorithm::teardown()
 {
     teardown_ = true;
 
-    std::cout << "INFO::FILTERINGALGORITHM::TEARDOWN" << std::endl;
-    std::cout << "INFO::LOG: filtering thread instructed to close." << std::endl;
+    std::cout << "INFO::FILTERINGALGORITHM::TEARDOWN\n";
+    std::cout << "INFO::LOG:\n\tfiltering thread instructed to close." << std::endl;
 
     return true;
 }
@@ -110,8 +110,8 @@ void FilteringAlgorithm::filteringRecursion()
         }
         catch (const std::system_error& e)
         {
-            std::cerr << "ERROR::FILTERINGALGORITHM::FILTERINGRECURSION" << std::endl;
-            std::cerr << "ERROR::CODE:\n\t" << e.code() << std::endl;
+            std::cerr << "ERROR::FILTERINGALGORITHM::FILTERINGRECURSION\n";
+            std::cerr << "ERROR::CODE:\n\t" << e.code() << "\n";
             std::cerr << "ERROR::LOG:\n\t"  << e.what() << std::endl;
             teardown_ = true;
         }
