@@ -2,6 +2,7 @@
 #define SPPREDICTION_H
 
 #include "ExogenousModel.h"
+#include "Gaussian.h"
 #include "StateModel.h"
 
 #include <Eigen/Dense>
@@ -20,8 +21,7 @@ public:
     virtual ~SPPrediction() noexcept { };
 
 
-    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const std::vector<Eigen::MatrixXf>& prev_covariances,
-                 Eigen::Ref<Eigen::MatrixXf> pred_states, std::vector<Eigen::MatrixXf>& pred_weights);
+    Gaussian predict(const Gaussian& prev_state);
 
 
     bool skip(const std::string& what_step, const bool status);
@@ -42,11 +42,10 @@ public:
 protected:
     SPPrediction() noexcept;
 
-    SPPrediction(SPPrediction&& pf_prediction) noexcept;
+    SPPrediction(SPPrediction&& sp_prediction) noexcept;
 
 
-    virtual void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const std::vector<Eigen::MatrixXf>& prev_covariances,
-                             Eigen::Ref<Eigen::MatrixXf> pred_states, std::vector<Eigen::MatrixXf>& pred_weights) = 0;
+    virtual Gaussian predictStep(const Gaussian& prev_state) = 0;
 
 private:
     bool skip_prediction_ = false;
