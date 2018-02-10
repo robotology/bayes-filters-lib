@@ -85,7 +85,7 @@ void SIS::filteringStep()
 
 
     /* Here results should be save. */
-    /* Proper stragy is WIP. */
+    /* Proper strategy is WIP. */
     result_pred_particle_[k] = pred_particle_;
     result_pred_weight_  [k] = pred_weight_;
 
