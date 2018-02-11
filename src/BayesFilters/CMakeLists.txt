@@ -85,6 +85,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
+        src/directionalstatisticsutils.cpp
         src/EstimatesExtraction.cpp
         src/Gaussian.cpp
         src/GaussianMixture.cpp

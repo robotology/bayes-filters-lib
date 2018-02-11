@@ -32,27 +32,6 @@ int main()
         std::cout << "Directional add produced correct results.\n" << std::endl;
 
 
-
-    std::cout << "With Vector3f:\n" << std::endl;
-
-    Vector3f angle_f_a(1.0, 2.0, 3.0);
-    Vector3f angle_f_b(1.0, 2.0, 3.0);
-
-    Vector3f angle_f_result = directional_add(angle_f_a, angle_f_b);
-
-    std::cout << "Vector a:\n" << angle_f_a << "\nVector b:\n" << angle_f_b << "\nResult:\n" << angle_f_result << "\n" << std::endl;
-
-    if (!(((angle_f_result(0) -  2.0     ) < 0.00001) &&
-          ((angle_f_result(1) - -2.28319 ) < 0.00001) &&
-          ((angle_f_result(2) - -0.283185) < 0.00001)   ))
-    {
-        std::cerr << "Directional add produced wrong results, should be (2.0, -2.28319, -0.283185)." << std::endl;
-        return EXIT_FAILURE;
-    }
-    else
-        std::cout << "Directional add produced correct results.\n" << std::endl;
-
-
     std::cout << "...done!\n" << std::endl;
 
 
@@ -80,27 +59,6 @@ int main()
         std::cout << "Directional sub produced correct results.\n" << std::endl;
 
 
-
-    std::cout << "With Vector3f:\n" << std::endl;
-
-    angle_f_a << 1.0,  2.0,  3.0;
-    angle_f_b << 1.0, -2.0, -3.0;
-
-    angle_f_result = directional_sub(angle_f_a, angle_f_b);
-
-    std::cout << "Vector a:\n" << angle_f_a << "\nVector b:\n" << angle_f_b << "\nResult:\n" << angle_f_result << "\n" << std::endl;
-
-    if (!(((angle_f_result(0) -  0       ) < 0.00001) &&
-          ((angle_f_result(1) - -2.28319 ) < 0.00001) &&
-          ((angle_f_result(2) - -0.283185) < 0.00001)   ))
-    {
-        std::cerr << "Directional sub produced wrong results, should be (2.0, -2.28319, -0.283185)." << std::endl;
-        return EXIT_FAILURE;
-    }
-    else
-        std::cout << "Directional sub produced correct results.\n" << std::endl;
-    
-    
     std::cout << "...done!\n" << std::endl;
 
 
@@ -126,25 +84,6 @@ int main()
         std::cout << "Directional mean produced correct results.\n" << std::endl;
 
 
-
-    std::cout << "With Vector3f:\n" << std::endl;
-
-    Vector2f angle_f_mean(3.14, -3.14);
-    Vector2f angle_f_weights(1, 1);
-
-    d_mean = directional_mean(angle_f_mean, angle_f_weights);
-
-    std::cout << "Vector a:\n" << angle_f_mean << "\nVector w:\n" << angle_f_weights << "\nResult: " << d_mean << "\n" << std::endl;
-
-    if (!((d_mean -  3.14) < 0.01))
-    {
-        std::cerr << "Directional mean produced wrong results, should be +/-3.14." << std::endl;
-        return EXIT_FAILURE;
-    }
-    else
-        std::cout << "Directional add produced correct results.\n" << std::endl;
-
-    
     std::cout << "...done!\n" << std::endl;
 
 
