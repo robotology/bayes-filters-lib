@@ -1,4 +1,5 @@
 #include "BayesFilters/sigmapointutils.h"
+#include "BayesFilters/directionalstatisticsutils.h"
 
 #include <Eigen/SVD>
 
@@ -35,11 +36,15 @@ GaussianMixture bfl::UnscentedTransform(const Gaussian& state, const double c)
 
     MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
 
-    GaussianMixture sigma_points((state.dim * 2) + 1, state.dim);
+    GaussianMixture sigma_points((state.dim * 2) + 1, state.dim_linear, state.dim_circular);
 
     sigma_points.means << VectorXd::Zero(state.dim), std::sqrt(c) * A, -std::sqrt(c) * A;
 
-    sigma_points.means.colwise() += state.mean;
+    if (sigma_points.dim_linear > 0)
+        sigma_points.means.topRows(sigma_points.dim_linear).colwise() += state.mean.topRows(state.dim_linear);
+
+    if (sigma_points.dim_circular > 0)
+        sigma_points.means.bottomRows(sigma_points.dim_circular) = directional_add(sigma_points.means.bottomRows(sigma_points.dim_circular), state.mean.bottomRows(state.dim_circular));
 
     return sigma_points;
 }
