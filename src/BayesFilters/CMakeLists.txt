@@ -37,6 +37,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_FU_HDR
+        include/BayesFilters/directionalstatisticsutils.h
         include/BayesFilters/EstimatesExtraction.h
         include/BayesFilters/Gaussian.h
         include/BayesFilters/GaussianMixture.h
