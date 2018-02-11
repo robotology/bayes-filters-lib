@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 
-#include <BayesFilters/UnscentedTransform.h>
+#include <BayesFilters/sigmapointutils.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -9,7 +9,7 @@ using namespace Eigen;
 
 int main()
 {
-    std::cout << "Running Unscented Transform..." << std::endl;
+    std::cout << "Running Unscented Weights..." << std::endl;
 
     unsigned int n     = 4;
     double       alpha = 1.0;
@@ -20,8 +20,8 @@ int main()
     VectorXd wight_covariance((2 * n) + 1);
     double   c;
 
-    UnscentedTransform(n, alpha, beta, kappa,
-                       wight_mean, wight_covariance, c);
+    UnscentedWeights(n, alpha, beta, kappa,
+                     wight_mean, wight_covariance, c);
 
     std::cout << "Weight mean:\n" << wight_mean << std::endl;
     std::cout << "Weight sum: " << wight_mean.sum() << std::endl << std::endl;

@@ -1,5 +1,5 @@
 add_subdirectory(test_Gaussian)
 add_subdirectory(test_ParticleFilter)
+add_subdirectory(test_SigmaPointUtils)
 add_subdirectory(test_SIS)
 add_subdirectory(test_SIS_Decorators)
-add_subdirectory(test_UnscentedTransform)

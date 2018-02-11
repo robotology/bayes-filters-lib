@@ -1,4 +1,4 @@
-set(TEST_TARGET_NAME test_UnscentedTransform)
+set(TEST_TARGET_NAME test_SigmaPointUtils)
 
 set(${TEST_TARGET_NAME}_SRC
         main.cpp
