@@ -31,11 +31,6 @@ void bfl::UnscentedWeights(const unsigned int n, const double alpha, const doubl
 
 GaussianMixture bfl::UnscentedTransform(const Gaussian& state, const double c)
 {
-//    [U, S] = svd(P);
-//    A = U * sqrt(S);
-//    X = [zeros(size(M)) A -A];
-//    X = sqrt(c)*X + repmat(M, 1, size(X, 2));
-
     JacobiSVD<MatrixXd> svd = state.covariance.jacobiSvd(ComputeFullU);
 
     MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
