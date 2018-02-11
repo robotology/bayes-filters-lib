@@ -1,3 +1,4 @@
+add_subdirectory(test_DirectionalStatisticsUtils)
 add_subdirectory(test_Gaussian)
 add_subdirectory(test_ParticleFilter)
 add_subdirectory(test_SigmaPointUtils)
