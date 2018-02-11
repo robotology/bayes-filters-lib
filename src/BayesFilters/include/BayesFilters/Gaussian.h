@@ -13,11 +13,19 @@ namespace bfl {
 class bfl::Gaussian
 {
 public:
-    Gaussian();
+    Gaussian() noexcept;
 
     Gaussian(const unsigned int dim);
 
+    Gaussian(const unsigned int dim_linear, const unsigned int dim_circular);
+
     virtual ~Gaussian() noexcept;
+
+    unsigned int dim;
+
+    unsigned int dim_linear;
+
+    unsigned int dim_circular;
 
     Eigen::Ref<Eigen::VectorXd> mean;
 
@@ -25,10 +33,11 @@ public:
 
     double& weight;
 
-    unsigned int dim;
-
 protected:
     Gaussian(Eigen::Ref<Eigen::VectorXd> mean, Eigen::Ref<Eigen::MatrixXd> covariance, double& weight);
+
+    Gaussian(Eigen::Ref<Eigen::VectorXd> mean, Eigen::Ref<Eigen::MatrixXd> covariance, double& weight,
+             const unsigned int dim_linear, const unsigned int dim_circular);
 
     friend class GaussianMixture;
 

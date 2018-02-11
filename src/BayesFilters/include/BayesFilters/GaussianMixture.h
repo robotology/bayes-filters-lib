@@ -15,20 +15,26 @@ class bfl::GaussianMixture
 public:
     GaussianMixture(const unsigned int components, const unsigned int dim);
 
+    GaussianMixture(const unsigned int components, const unsigned int dim_linear, const unsigned int dim_circular);
+
     virtual ~GaussianMixture() noexcept;
 
     Gaussian&       operator[](unsigned int i);
     const Gaussian& operator[](unsigned int i) const;
+
+    unsigned int components;
+
+    unsigned int dim;
+
+    unsigned int dim_linear;
+
+    unsigned int dim_circular;
 
     Eigen::MatrixXd means;
 
     Eigen::MatrixXd covariances;
 
     Eigen::VectorXd weights;
-
-    unsigned int components;
-
-    unsigned int dim;
 
 private:
     std::vector<Gaussian> gaussian_;
