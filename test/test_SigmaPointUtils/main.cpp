@@ -20,8 +20,8 @@ int main()
     VectorXd wight_covariance((2 * n) + 1);
     double   c;
 
-    UnscentedWeights(n, alpha, beta, kappa,
-                     wight_mean, wight_covariance, c);
+    unscented_weights(n, alpha, beta, kappa,
+                      wight_mean, wight_covariance, c);
 
     std::cout << "Weight mean:\n" << wight_mean << std::endl;
     std::cout << "Weight sum: " << wight_mean.sum() << std::endl << std::endl;

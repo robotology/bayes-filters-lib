@@ -7,7 +7,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-void bfl::UnscentedWeights(const unsigned int n, const double alpha, const double beta, const double kappa,
+void bfl::unscented_weights(const unsigned int n, const double alpha, const double beta, const double kappa,
                            Ref<VectorXd> weight_mean, Ref<VectorXd> weight_covariance, double& c)
 {
     double lambda = std::pow(alpha, 2.0) * (n + kappa) - n;
@@ -30,7 +30,7 @@ void bfl::UnscentedWeights(const unsigned int n, const double alpha, const doubl
 }
 
 
-GaussianMixture bfl::UnscentedTransform(const Gaussian& state, const double c)
+GaussianMixture bfl::unscented_transform(const Gaussian& state, const double c)
 {
     JacobiSVD<MatrixXd> svd = state.covariance.jacobiSvd(ComputeFullU);
 
