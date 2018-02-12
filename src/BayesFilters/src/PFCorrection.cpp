@@ -7,7 +7,11 @@ using namespace Eigen;
 PFCorrection::PFCorrection() noexcept { };
 
 
-PFCorrection::PFCorrection(PFCorrection&& pf_prediction) noexcept { }
+PFCorrection::PFCorrection(PFCorrection&& pf_prediction) noexcept :
+    skip_(pf_prediction.skip_)
+{
+    pf_prediction.skip_ = false;
+}
 
 
 void PFCorrection::correct(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
