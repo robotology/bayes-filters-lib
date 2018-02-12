@@ -115,7 +115,7 @@ int main()
         else
             std::cout << "Default initialization of Gaussian covariance (" << i + 1 << ") is all zero:\n" << gaussian_mixture[i].covariance << std::endl;
 
-        if (!(gaussian_mixture[i].weight ==  1.0 / gaussian_mixture.components))
+        if (!((gaussian_mixture[i].weight - 1.0 / gaussian_mixture.components) < 0.00001))
         {
             std::cerr << "Default initialization of Gaussian waight (" << i + 1 << ") is not 0.2, is\n" << gaussian_mixture[i].weight << std::endl;
             return EXIT_FAILURE;
