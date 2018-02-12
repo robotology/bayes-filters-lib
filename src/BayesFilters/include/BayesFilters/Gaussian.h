@@ -19,6 +19,14 @@ public:
 
     Gaussian(const unsigned int dim_linear, const unsigned int dim_circular);
 
+    Gaussian(const Gaussian& gaussian);
+
+    Gaussian(Gaussian&& gaussian);
+
+    Gaussian& operator=(const Gaussian& gaussian);
+
+    Gaussian& operator=(Gaussian&& gaussian);
+
     virtual ~Gaussian() noexcept;
 
     unsigned int dim;

@@ -28,6 +28,46 @@ Gaussian::Gaussian(const unsigned int dim_linear, const unsigned int dim_circula
 }
 
 
+Gaussian::Gaussian(const Gaussian& gaussian) :
+    dim(gaussian.dim),
+    dim_linear(gaussian.dim_linear),
+    dim_circular(gaussian.dim_circular),
+    mean(*(new VectorXd(dim))),
+    covariance(*(new MatrixXd(dim, dim))),
+    weight(*(new double{gaussian.weight})),
+    used_public_ctor_(true)
+{
+    mean << gaussian.mean;
+    covariance << gaussian.covariance;
+}
+
+
+Gaussian::Gaussian(Gaussian&& gaussian) :
+    dim(gaussian.dim),
+    dim_linear(gaussian.dim_linear),
+    dim_circular(gaussian.dim_circular),
+    mean(*(new VectorXd(dim))),
+    covariance(*(new MatrixXd(dim, dim))),
+    weight(*(new double{gaussian.weight})),
+    used_public_ctor_(true)
+{
+    mean << gaussian.mean;
+    covariance << gaussian.covariance;
+
+    gaussian.mean.Zero(gaussian.dim);
+
+    gaussian.covariance.Zero(gaussian.dim, gaussian.dim);
+
+    gaussian.weight = 1.0;
+
+    gaussian.dim = 0;
+
+    gaussian.dim_linear = 0;
+
+    gaussian.dim_circular = 0;
+}
+
+
 Gaussian::Gaussian(Ref<VectorXd> mean, Ref<MatrixXd> covariance, double& weight) :
     Gaussian(mean, covariance, weight, mean.rows(), 0) { }
 
@@ -47,6 +87,47 @@ Gaussian::Gaussian(Ref<VectorXd> mean, Ref<MatrixXd> covariance, double& weight,
 
     if (dim != mean.rows())
         throw std::runtime_error("ERROR::GAUSSIAN::CTOR\nERROR:\n\tDimension cannot be different from mean/covariance dimension.");
+}
+
+
+Gaussian& Gaussian::operator=(const Gaussian& gaussian)
+{
+    if (&gaussian != this)
+    {
+        Gaussian tmp(gaussian);
+        *this = std::move(tmp);
+    }
+    
+    return *this;
+}
+
+
+Gaussian& Gaussian::operator=(Gaussian&& gaussian)
+{
+    if (&gaussian != this)
+    {
+        mean = std::move(gaussian.mean);
+        gaussian.mean.Zero(gaussian.dim);
+
+        covariance = std::move(gaussian.covariance);
+        gaussian.covariance.Zero(gaussian.dim, gaussian.dim);
+        
+        weight = gaussian.weight;
+        gaussian.weight = 1.0;
+
+        dim = gaussian.dim;
+        gaussian.dim = 0;
+
+        dim_linear = gaussian.dim_linear;
+        gaussian.dim_linear = 0;
+
+        dim_circular = gaussian.dim_circular;
+        gaussian.dim_circular = 0;
+
+        used_public_ctor_ = gaussian.used_public_ctor_;
+    }
+
+    return *this;
 }
 
 
