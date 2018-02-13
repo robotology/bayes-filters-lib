@@ -32,6 +32,8 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
+        include/BayesFilters/UKFCorrection.h
+        include/BayesFilters/UKFPrediction.h
         include/BayesFilters/VisualObservationModel.h
         include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
@@ -81,6 +83,8 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/SPPrediction.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
+        src/UKFCorrection.cpp
+        src/UKFPrediction.cpp
         src/VisualParticleFilter.cpp
         src/WhiteNoiseAcceleration.cpp)
 
