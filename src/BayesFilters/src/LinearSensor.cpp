@@ -7,8 +7,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LinearSensor::LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept :
-    T_(T),
+LinearSensor::LinearSensor(float sigma_x, float sigma_y, unsigned int seed) noexcept :
     sigma_x_(sigma_x),
     sigma_y_(sigma_y),
     generator_(std::mt19937_64(seed)),
@@ -27,19 +26,18 @@ LinearSensor::LinearSensor(float T, float sigma_x, float sigma_y, unsigned int s
 }
 
 
-LinearSensor::LinearSensor(float T, float sigma_x, float sigma_y) noexcept :
-    LinearSensor(T, sigma_x, sigma_y, 1) { }
+LinearSensor::LinearSensor(float sigma_x, float sigma_y) noexcept :
+    LinearSensor(sigma_x, sigma_y, 1) { }
 
 
 LinearSensor::LinearSensor() noexcept :
-    LinearSensor(1.0, 10.0, 10.0, 1) { }
+    LinearSensor(10.0, 10.0, 1) { }
 
 
 LinearSensor::~LinearSensor() noexcept { }
 
 
 LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
-    T_(lin_sense.T_),
     sigma_x_(lin_sense.sigma_x_),
     sigma_y_(lin_sense.sigma_y_),
     H_(lin_sense.H_),
@@ -51,7 +49,6 @@ LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
 
 
 LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
-    T_(lin_sense.T_),
     sigma_x_(lin_sense.sigma_x_),
     sigma_y_(lin_sense.sigma_y_),
     H_(std::move(lin_sense.H_)),
@@ -61,7 +58,6 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
     distribution_(std::move(lin_sense.distribution_)),
     gauss_rnd_sample_(std::move(lin_sense.gauss_rnd_sample_))
 {
-    lin_sense.T_       = 0.0;
     lin_sense.sigma_x_ = 0.0;
     lin_sense.sigma_y_ = 0.0;
 }
@@ -78,7 +74,6 @@ LinearSensor& LinearSensor::operator=(const LinearSensor& lin_sense) noexcept
 
 LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 {
-    T_       = lin_sense.T_;
     sigma_x_ = lin_sense.sigma_x_;
     sigma_y_ = lin_sense.sigma_y_;
     H_       = std::move(lin_sense.H_);
@@ -89,7 +84,6 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
     distribution_     = std::move(lin_sense.distribution_);
     gauss_rnd_sample_ = std::move(lin_sense.gauss_rnd_sample_);
 
-    lin_sense.T_       = 0.0;
     lin_sense.sigma_x_ = 0.0;
     lin_sense.sigma_y_ = 0.0;
 

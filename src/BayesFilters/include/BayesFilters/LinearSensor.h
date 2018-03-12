@@ -14,9 +14,9 @@ namespace bfl {
 class bfl::LinearSensor : public ObservationModel
 {
 public:
-    LinearSensor(float T, float sigma_x, float sigma_y, unsigned int seed) noexcept;
+    LinearSensor(float sigma_x, float sigma_y, unsigned int seed) noexcept;
 
-    LinearSensor(float T, float sigma_x, float sigma_y) noexcept;
+    LinearSensor(float sigma_x, float sigma_y) noexcept;
 
     LinearSensor() noexcept;
 
@@ -41,7 +41,6 @@ public:
     bool setProperty(const std::string property) override { return false; };
 
 protected:
-    float                           T_;                /* Sampling interval */
     float                           sigma_x_;          /* x-axis measurement noise std deviation [length] */
     float                           sigma_y_;          /* y-axis measurement noise std deviation [length] */
     Eigen::MatrixXf                 H_;                /* Measurement matrix */
