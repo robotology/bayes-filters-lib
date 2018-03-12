@@ -9,7 +9,7 @@
 using namespace bfl;
 using namespace Eigen;
 
-    
+
 SIS::SIS() noexcept { }
 
 
