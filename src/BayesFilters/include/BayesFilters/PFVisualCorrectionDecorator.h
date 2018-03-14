@@ -17,10 +17,6 @@ public:
 
     double likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) override;
 
-    VisualObservationModel& getVisualObservationModel() override;
-
-    void setVisualObservationModel(std::unique_ptr<VisualObservationModel> visual_observation_model) override;
-    
 protected:
     PFVisualCorrectionDecorator(std::unique_ptr<PFVisualCorrection> visual_correction) noexcept;
 
