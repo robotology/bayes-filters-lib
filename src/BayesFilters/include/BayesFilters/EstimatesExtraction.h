@@ -50,17 +50,24 @@ public:
     std::vector<std::string> getInfo() const;
 
 protected:
+    ExtractionMethod extraction_method_ = ExtractionMethod::emode;
+
+    HistoryBuffer hist_buffer_;
+
+    Eigen::VectorXf sm_weights_;
+    Eigen::VectorXf wm_weights_;
+    Eigen::VectorXf em_weights_;
+
+
     enum class Statistics
     {
         mean,
         mode
     };
 
-
     Eigen::VectorXf mean(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights) const;
 
     Eigen::VectorXf mode(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights) const;
-
 
     Eigen::VectorXf simpleAverage(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights,
                                   const Statistics& base_est_ext);
@@ -70,16 +77,6 @@ protected:
 
     Eigen::VectorXf exponentialAverage(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights,
                                        const Statistics& base_est_ext);
-
-
-    ExtractionMethod extraction_method_ = ExtractionMethod::emode;
-
-    HistoryBuffer hist_buffer_;
-
-    Eigen::VectorXf sm_weights_;
-    Eigen::VectorXf wm_weights_;
-    Eigen::VectorXf em_weights_;
-
 };
 
 #endif /* ESTIMATESEXTRACTION_H */

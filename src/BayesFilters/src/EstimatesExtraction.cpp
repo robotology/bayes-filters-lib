@@ -220,10 +220,9 @@ VectorXf EstimatesExtraction::exponentialAverage(const Ref<const MatrixXf>& part
         em_weights_.resize(history.cols());
         for (unsigned int i = 0; i < history.cols(); ++i)
             em_weights_(i) = std::exp(-(static_cast<double>(i) / history.cols()));
-        
+
         em_weights_ /= em_weights_.sum();
     }
-    
-    
+
     return mean(history, em_weights_);
 }
