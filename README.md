@@ -1,8 +1,8 @@
-# 📚 BayesFilters Library [![Latest Release](	https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/)
+# 📚 BayesFilters Library
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
-[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-E0C57F.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html)
+[![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-E0C57F.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html) [![Latest Release](https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/) <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 
 # Overview
