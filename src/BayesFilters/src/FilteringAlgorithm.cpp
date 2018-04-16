@@ -76,9 +76,6 @@ bool FilteringAlgorithm::teardown()
 {
     teardown_ = true;
 
-    std::cout << "INFO::FILTERINGALGORITHM::TEARDOWN\n";
-    std::cout << "INFO::LOG:\n\tfiltering thread instructed to close." << std::endl;
-
     return true;
 }
 

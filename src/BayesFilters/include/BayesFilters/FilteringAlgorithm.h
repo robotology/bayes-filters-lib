@@ -50,19 +50,19 @@ protected:
 private:
     unsigned int filtering_step_ = 0;
 
-    std::thread  filtering_thread_;
+    std::thread filtering_thread_;
 
-    void         filteringRecursion();
+    void filteringRecursion();
 
 
-    std::mutex              mtx_run_;
+    std::mutex mtx_run_;
     std::condition_variable cv_run_;
 
-    bool                    run_      = false;
+    bool run_ = false;
 
-    bool                    reset_    = false;
+    bool reset_ = false;
 
-    bool                    teardown_ = false;
+    bool teardown_ = false;
 };
 
 #endif /* FILTERINGALGORITHM_H */
