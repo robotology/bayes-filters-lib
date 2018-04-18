@@ -32,7 +32,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
-        include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_FU_HDR
@@ -81,7 +80,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/UpdateParticles.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
-        src/VisualParticleFilter.cpp
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
