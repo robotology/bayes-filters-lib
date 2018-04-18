@@ -17,8 +17,8 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/ExogenousModel.h
         include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
-        include/BayesFilters/ObservationModel.h
-        include/BayesFilters/ObservationModelDecorator.h
+        include/BayesFilters/MeasurementModel.h
+        include/BayesFilters/MeasurementModelDecorator.h
         include/BayesFilters/PFCorrection.h
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
@@ -70,7 +70,8 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
         src/LinearSensor.cpp
-        src/ObservationModelDecorator.cpp
+        src/MeasurementModel.cpp
+        src/MeasurementModelDecorator.cpp
         src/PFCorrection.cpp
         src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
