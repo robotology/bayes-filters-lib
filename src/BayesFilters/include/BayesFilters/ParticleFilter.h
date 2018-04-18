@@ -37,9 +37,12 @@ protected:
     ParticleFilter& operator=(ParticleFilter&& pf) noexcept;
 
     std::unique_ptr<Initialization> initialization_;
-    std::unique_ptr<PFPrediction>   prediction_;
-    std::unique_ptr<PFCorrection>   correction_;
-    std::unique_ptr<Resampling>     resampling_;
+
+    std::unique_ptr<PFPrediction> prediction_;
+
+    std::unique_ptr<PFCorrection> correction_;
+
+    std::unique_ptr<Resampling> resampling_;
 };
 
 #endif /* PARTICLEFILTER_H */
