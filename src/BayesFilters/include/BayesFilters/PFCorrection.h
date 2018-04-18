@@ -1,7 +1,7 @@
 #ifndef PFCORRECTION_H
 #define PFCORRECTION_H
 
-#include "ObservationModel.h"
+#include <BayesFilters/MeasurementModel.h>
 
 #include <memory>
 
@@ -17,29 +17,26 @@ class bfl::PFCorrection
 public:
     virtual ~PFCorrection() noexcept { };
 
-
-    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
+    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                  Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);
 
-    virtual void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovations) = 0;
-
-    virtual double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation) = 0;
-
+    virtual Eigen::VectorXf getLikelihood() = 0;
 
     bool skip(const bool status);
 
+    /* FIXME
+       While setObservationModel() will be kept in future implementation, observation_model_ member is
+       currently set with public visibility for backward compatibility. It will be moved to private in future releases. */
+    void setObservationModel(std::unique_ptr<MeasurementModel> observation_model);
 
-    virtual ObservationModel& getObservationModel() = 0;
-
-    virtual void setObservationModel(std::unique_ptr<ObservationModel> observation_model) = 0;
+    std::unique_ptr<MeasurementModel> observation_model_;
 
 protected:
     PFCorrection() noexcept;
 
     PFCorrection(PFCorrection&& pf_correction) noexcept;
 
-
-    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
+    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                              Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
 
 private:
