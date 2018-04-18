@@ -34,7 +34,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
-        include/BayesFilters/VisualObservationModel.h
         include/BayesFilters/VisualParticleFilter.h
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
