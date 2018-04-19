@@ -4,6 +4,7 @@
 #include <BayesFilters/MeasurementModel.h>
 
 #include <memory>
+#include <utility>
 
 #include <Eigen/Dense>
 
@@ -20,7 +21,7 @@ public:
     void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                  Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);
 
-    virtual Eigen::VectorXf getLikelihood() = 0;
+    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
 
     bool skip(const bool status);
 

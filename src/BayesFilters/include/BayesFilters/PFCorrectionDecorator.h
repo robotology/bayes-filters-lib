@@ -13,10 +13,7 @@ namespace bfl {
 class bfl::PFCorrectionDecorator : public PFCorrection
 {
 public:
-    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                 Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
-
-    Eigen::VectorXf getLikelihood() override;
+    std::pair<bool, Eigen::VectorXf> getLikelihood() override;
 
 protected:
     PFCorrectionDecorator(std::unique_ptr<PFCorrection> correction) noexcept;

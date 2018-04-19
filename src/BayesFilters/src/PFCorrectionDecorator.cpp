@@ -17,7 +17,7 @@ PFCorrectionDecorator::PFCorrectionDecorator(PFCorrectionDecorator&& correction)
 PFCorrectionDecorator::~PFCorrectionDecorator() noexcept { }
 
 
-VectorXf PFCorrectionDecorator::getLikelihood()
+std::pair<bool, VectorXf> PFCorrectionDecorator::getLikelihood()
 {
     return correction_->getLikelihood();
 }
