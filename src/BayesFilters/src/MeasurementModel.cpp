@@ -1,10 +1,10 @@
-#include <BayesFilters/ObservationModel.h>
+#include <BayesFilters/MeasurementModel.h>
 
 using namespace bfl;
 using namespace Eigen;
 
 
-std::pair<bool, MatrixXf> MeasurementModel::virtualMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states)
+std::pair<bool, MatrixXf> MeasurementModel::predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states)
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
 }

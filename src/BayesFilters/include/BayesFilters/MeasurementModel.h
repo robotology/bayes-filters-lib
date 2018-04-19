@@ -1,5 +1,5 @@
-#ifndef OBSERVATIONMODEL_H
-#define OBSERVATIONMODEL_H
+#ifndef MEASUREMENTMODEL_H
+#define MEASUREMENTMODEL_H
 
 #include <string>
 #include <utility>
@@ -18,7 +18,11 @@ public:
 
     virtual std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> virtualMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states);
+    virtual std::pair<bool, Eigen::MatrixXf> getMeasurements() = 0;
+
+    virtual std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
+
+    virtual std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states);
 
     virtual std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num);
 
@@ -27,4 +31,4 @@ public:
     virtual bool setProperty(const std::string property);
 };
 
-#endif /* OBSERVATIONMODEL_H */
+#endif /* MEASUREMENTMODEL_H */

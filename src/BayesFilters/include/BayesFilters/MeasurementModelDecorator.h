@@ -15,7 +15,11 @@ class bfl::MeasurementModelDecorator : public MeasurementModel
 public:
     std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
 
-    std::pair<bool, Eigen::MatrixXf> virtualMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
+    std::pair<bool, Eigen::MatrixXf> getMeasurements() override;
+
+    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) override;
+
+    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
 
     std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) override;
 
