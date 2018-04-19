@@ -91,31 +91,43 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-void LinearSensor::observe(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> observations)
+std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_states)
 {
-    observations = H_ * cur_states;
+    MatrixXf predicted_measurements;
+    std::tie(std::ignore, predicted_measurements) = predictedMeasure(cur_states);
+
+    MatrixXf noise;
+    std::tie(std::ignore, noise) = getNoiseSample(predicted_measurements.cols());
+
+    predicted_measurements += noise;
+
+    return std::make_pair(true, predicted_measurements);
 }
 
 
-void LinearSensor::measure(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> measurements)
+std::pair<bool, Eigen::MatrixXf> LinearSensor::innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements)
 {
-    observe(cur_states, measurements);
-
-    measurements += getNoiseSample(measurements.cols());
+    return std::make_pair(true, predicted_measurements.colwise() - measurements.col(0));
 }
 
 
-MatrixXf LinearSensor::getNoiseSample(const int num)
+std::pair<bool, MatrixXf> LinearSensor::predictedMeasure(const Ref<const MatrixXf>& cur_states)
+{
+    return std::make_pair(true, H_ * cur_states);
+}
+
+
+std::pair<bool, MatrixXf> LinearSensor::getNoiseSample(const int num)
 {
     MatrixXf rand_vectors(2, num);
     for (int i = 0; i < rand_vectors.size(); i++)
         *(rand_vectors.data() + i) = gauss_rnd_sample_();
 
-    return sqrt_R_ * rand_vectors;
+    return std::make_pair(true, sqrt_R_ * rand_vectors);
 }
 
 
-MatrixXf LinearSensor::getNoiseCovarianceMatrix()
+std::pair<bool, MatrixXf> LinearSensor::getNoiseCovarianceMatrix()
 {
-    return R_;
+    return std::make_pair(true, R_);
 }
