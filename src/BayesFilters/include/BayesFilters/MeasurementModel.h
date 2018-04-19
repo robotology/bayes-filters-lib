@@ -18,9 +18,9 @@ public:
 
     virtual std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> getMeasurements() = 0;
-
     virtual std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
+
+    virtual std::pair<bool, Eigen::MatrixXf> getMeasurements();
 
     virtual std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states);
 

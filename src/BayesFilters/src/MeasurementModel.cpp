@@ -4,6 +4,12 @@ using namespace bfl;
 using namespace Eigen;
 
 
+std::pair<bool, MatrixXf> MeasurementModel::getMeasurements()
+{
+    return std::make_pair(false, MatrixXf::Zero(1, 1));
+}
+
+
 std::pair<bool, MatrixXf> MeasurementModel::predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states)
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
