@@ -21,8 +21,6 @@ public:
     void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                  Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);
 
-    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
-
     bool skip(const bool status);
 
     /* FIXME
@@ -32,13 +30,17 @@ public:
 
     std::unique_ptr<MeasurementModel> observation_model_;
 
+    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
+
 protected:
+    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
+                             Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
+
+    virtual std::pair<bool, Eigen::VectorXf> likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) = 0;
+
     PFCorrection() noexcept;
 
     PFCorrection(PFCorrection&& pf_correction) noexcept;
-
-    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                             Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
 
 private:
     bool skip_ = false;

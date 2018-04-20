@@ -29,3 +29,9 @@ void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, 
     correction_->correctStep(pred_states, pred_weights,
                              cor_states, cor_weights);
 }
+
+
+std::pair<bool, VectorXf> PFCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovations)
+{
+    return correction_->likelihood(innovations);
+}
