@@ -104,7 +104,6 @@ find_package(Eigen3 QUIET CONFIG)
 if(NOT EIGEN3_FOUND)
     find_package(Eigen3 REQUIRED)
 endif()
-find_package(OpenCV REQUIRED)
 
 add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
 
@@ -116,9 +115,9 @@ target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CM
 if(NOT TARGET Eigen3)
     target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC ${EIGEN3_INCLUDE_DIR})
 
-    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
 else()
-    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC ${OpenCV_LIBS} Eigen3::Eigen Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC Eigen3::Eigen Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 # Specify installation targets, typology and destination folders.
