@@ -31,18 +31,18 @@ public:
 };
 
 
-class DecoratedLinearSensor : public ObservationModelDecorator
+class DecoratedLinearSensor : public MeasurementModelDecorator
 {
 public:
-    DecoratedLinearSensor(std::unique_ptr<ObservationModel> observation_model) noexcept :
-        ObservationModelDecorator(std::move(observation_model)) { }
+    DecoratedLinearSensor(std::unique_ptr<MeasurementModel> observation_model) noexcept :
+        MeasurementModelDecorator(std::move(observation_model)) { }
 
 
     void measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> measurements) override
     {
         std::cout << "Decorator: DecoratedLinearSensor::measure()." << std::endl;
 
-        ObservationModelDecorator::measure(cur_states, measurements);
+        MeasurementModelDecorator::measure(cur_states, measurements);
     }
 };
 
