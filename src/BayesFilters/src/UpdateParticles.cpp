@@ -17,41 +17,37 @@ UpdateParticles::UpdateParticles(UpdateParticles&& pf_correction) noexcept :
 UpdateParticles::~UpdateParticles() noexcept { }
 
 
-void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
+std::pair<bool, VectorXf> UpdateParticles::getLikelihood()
+{
+    return std::make_pair(valid_likelihood_, likelihood_);
+}
+
+
+void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
                                   Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
 {
-    MatrixXf innovations(measurements.rows(), pred_states.cols());
-    innovation(pred_states, measurements, innovations);
+    bool valid_measurements;
+    MatrixXf measurements;
+    std::tie(valid_measurements, measurements) = observation_model_->getMeasurements();
 
-    for (unsigned int i = 0; i < innovations.cols(); ++i)
-        cor_weights(i) = likelihood(innovations.col(i));
+    bool valid_predicted_measurements;
+    MatrixXf predicted_measurements;
+    std::tie(valid_predicted_measurements, predicted_measurements) = observation_model_->predictedMeasure(pred_states);
+
+    bool valid_innovation;
+    MatrixXf innovations;
+    std::tie(valid_innovation, innovations) = observation_model_->innovation(predicted_measurements, measurements);
+
+    std::tie(valid_likelihood_, likelihood_) = likelihood(innovations);
+
 
     cor_states = pred_states;
+    (valid_measurements && valid_predicted_measurements && valid_innovation && valid_likelihood_) ?
+        cor_weights = likelihood_ : cor_weights = pred_weights;
 }
 
 
-void UpdateParticles::innovation(const Ref<const MatrixXf>& pred_states, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovations)
+std::pair<bool, Eigen::VectorXf> UpdateParticles::likelihood(const Ref<const MatrixXf>& innovations)
 {
-    MatrixXf virtual_measurements(measurements.rows(), pred_states.cols());
-    observation_model_->observe(pred_states, virtual_measurements);
-
-    innovations = virtual_measurements.colwise() - measurements.col(0);
-}
-
-
-double UpdateParticles::likelihood(const Ref<const VectorXf>& innovation)
-{
-    return (- 0.5 * static_cast<float>(innovation.rows()) * log(2.0*M_PI) - 0.5 * log(observation_model_->getNoiseCovarianceMatrix().determinant()) - 0.5 * (innovation.transpose() * observation_model_->getNoiseCovarianceMatrix().inverse() * innovation).array()).exp().cast<double>().coeff(0);
-}
-
-
-ObservationModel& UpdateParticles::getObservationModel()
-{
-    return *observation_model_;
-}
-
-
-void UpdateParticles::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
-{
-    observation_model_ = std::move(observation_model);
+    return std::make_pair(false, VectorXf::Zero(1));
 }
