@@ -16,6 +16,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
         include/BayesFilters/ExponentialLikelihood.h
+        include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/MeasurementModel.h
