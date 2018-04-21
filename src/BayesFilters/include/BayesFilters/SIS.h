@@ -18,7 +18,7 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS() noexcept;
+    SIS(unsigned int num_particle) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 
