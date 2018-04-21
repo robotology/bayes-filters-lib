@@ -1,4 +1,4 @@
-#include "BayesFilters/SPCorrection.h"
+#include <BayesFilters/SPCorrection.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -7,15 +7,18 @@ using namespace Eigen;
 SPCorrection::SPCorrection() noexcept { };
 
 
-SPCorrection::SPCorrection(SPCorrection&& pf_prediction) noexcept { }
-
-
-Gaussian SPCorrection::correct(const Gaussian& pred_state, const Ref<const MatrixXf>& measurements)
+Gaussian SPCorrection::correct(const Gaussian& pred_state)
 {
     if (!skip_)
-        return correctStep(pred_state, measurements);
+        return correctStep(pred_state);
     else
         return pred_state;
+}
+
+
+std::pair<bool, VectorXf> SPCorrection::getLikelihood()
+{
+    return std::make_pair(false, VectorXf::Zero(1));
 }
 
 
@@ -27,3 +30,7 @@ bool SPCorrection::skip(const bool status)
 }
 
 
+void SPCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
+{
+    measurement_model_ = std::move(measurement_model);
+}

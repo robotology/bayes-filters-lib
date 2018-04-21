@@ -1,11 +1,11 @@
 #ifndef SPCORRECTION_H
 #define SPCORRECTION_H
 
-#include "Gaussian.h"
-#include "ObservationModel.h"
+#include <BayesFilters/Gaussian.h>
+#include <BayesFilters/MeasurementModel.h>
 
 #include <memory>
-#include <vector>
+#include <utility>
 
 #include <Eigen/Dense>
 
@@ -19,28 +19,27 @@ class bfl::SPCorrection
 public:
     virtual ~SPCorrection() noexcept { };
 
-
-    Gaussian correct(const Gaussian& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements);
-
+    Gaussian correct(const Gaussian& pred_state);
 
     bool skip(const bool status);
 
+    /* FIXME
+       While setObservationModel() will be kept in future implementation, measurement_model_ member is
+       currently set with public visibility for backward compatibility. It will be moved to private in future releases. */
+    void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model);
 
-    virtual ObservationModel& getObservationModel() = 0;
+    std::unique_ptr<MeasurementModel> measurement_model_;
 
-    virtual void setObservationModel(std::unique_ptr<ObservationModel> observation_model) = 0;
+    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
 
 protected:
+    virtual Gaussian correctStep(const Gaussian& prev_state) = 0;
+
+    virtual std::pair<bool, Eigen::VectorXf> likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) = 0;
+
     SPCorrection() noexcept;
 
-    SPCorrection(SPCorrection&& pf_correction) noexcept;
-
-
-    virtual Gaussian correctStep(const Gaussian& prev_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
-
-    virtual Eigen::MatrixXf innovation(const Gaussian& pred_state, const Eigen::Ref<const Eigen::MatrixXf>& measurements) = 0;
-
-    virtual double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation, const Eigen::Ref<const Eigen::MatrixXf>& innovation_covariance) = 0;
+    SPCorrection(SPCorrection&& sp_correction) noexcept;
 
 private:
     bool skip_ = false;
