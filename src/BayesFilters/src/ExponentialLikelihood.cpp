@@ -12,7 +12,7 @@ std::pair<bool, VectorXf> ExponentialLikelihood::likelihood(const Ref<const Matr
 {
     bool valid_previous_likelihood;
     VectorXf previous_likelihood;
-    PFCorrectionDecorator::likelihood(innovations);
+    std::tie(valid_previous_likelihood, previous_likelihood) = PFCorrectionDecorator::likelihood(innovations);
 
     VectorXf likelihood(innovations.cols());
     bool valid_covariance_matrix;
