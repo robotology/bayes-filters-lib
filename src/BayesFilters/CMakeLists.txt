@@ -16,10 +16,10 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
         include/BayesFilters/ExponentialLikelihood.h
-        include/BayesFilters/Initialization.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/MeasurementModel.h
         include/BayesFilters/MeasurementModelDecorator.h
+        include/BayesFilters/ParticleSetInitialization.h
         include/BayesFilters/PFCorrection.h
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h

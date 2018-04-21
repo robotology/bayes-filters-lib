@@ -2,7 +2,7 @@
 #define PARTICLEFILTER_H
 
 #include "FilteringAlgorithm.h"
-#include "Initialization.h"
+#include "ParticleSetInitialization.h"
 #include "PFCorrection.h"
 #include "PFPrediction.h"
 #include "Resampling.h"
@@ -17,7 +17,7 @@ namespace bfl{
 class bfl::ParticleFilter : public FilteringAlgorithm
 {
 public:
-    void setInitialization(std::unique_ptr<Initialization> prediction);
+    void setInitialization(std::unique_ptr<ParticleSetInitialization> prediction);
 
     void setPrediction(std::unique_ptr<PFPrediction> prediction);
 
@@ -36,7 +36,7 @@ protected:
 
     ParticleFilter& operator=(ParticleFilter&& pf) noexcept;
 
-    std::unique_ptr<Initialization> initialization_;
+    std::unique_ptr<ParticleSetInitialization> initialization_;
 
     std::unique_ptr<PFPrediction> prediction_;
 

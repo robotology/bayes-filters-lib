@@ -8,19 +8,19 @@ using namespace bfl;
 using namespace Eigen;
 
 
-ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, const double prior_ratio, const unsigned int seed) noexcept :
+ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<bfl::ParticleSetInitialization> init_model, const double prior_ratio, const unsigned int seed) noexcept :
     Resampling(seed),
     init_model_(std::move(init_model)),
     prior_ratio_(prior_ratio) { }
 
 
-ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<Initialization> init_model, const double prior_ratio) noexcept :
+ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<ParticleSetInitialization> init_model, const double prior_ratio) noexcept :
     Resampling(1),
     init_model_(std::move(init_model)),
     prior_ratio_(prior_ratio)  { }
 
 
-ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<Initialization> init_model) noexcept :
+ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<ParticleSetInitialization> init_model) noexcept :
     Resampling(1),
     init_model_(std::move(init_model)) { }
 

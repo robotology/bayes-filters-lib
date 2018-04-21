@@ -27,7 +27,7 @@ ParticleFilter& ParticleFilter::operator=(ParticleFilter&& pf) noexcept
 }
 
 
-void ParticleFilter::setInitialization(std::unique_ptr<Initialization> initialization)
+void ParticleFilter::setInitialization(std::unique_ptr<ParticleSetInitialization> initialization)
 {
     initialization_ = std::move(initialization);
 }

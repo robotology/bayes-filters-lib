@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include <BayesFilters/Initialization.h>
+#include <BayesFilters/ParticleSetInitialization.h>
 #include <BayesFilters/Resampling.h>
 #include <Eigen/Dense>
 
@@ -16,11 +16,11 @@ namespace bfl {
 class bfl::ResamplingWithPrior : public Resampling
 {
 public:
-    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, const double prior_ratio, const unsigned int seed) noexcept;
+    ResamplingWithPrior(std::unique_ptr<bfl::ParticleSetInitialization> init_model, const double prior_ratio, const unsigned int seed) noexcept;
 
-    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model, const double prior_ratio) noexcept;
+    ResamplingWithPrior(std::unique_ptr<bfl::ParticleSetInitialization> init_model, const double prior_ratio) noexcept;
 
-    ResamplingWithPrior(std::unique_ptr<bfl::Initialization> init_model) noexcept;
+    ResamplingWithPrior(std::unique_ptr<bfl::ParticleSetInitialization> init_model) noexcept;
 
     ResamplingWithPrior(ResamplingWithPrior&& resampling) noexcept;
 
@@ -33,7 +33,7 @@ public:
                   Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents) override;
 
 protected:
-    std::unique_ptr<bfl::Initialization> init_model_;
+    std::unique_ptr<bfl::ParticleSetInitialization> init_model_;
 
     double prior_ratio_ = 0.5;
 
