@@ -1,4 +1,4 @@
-#include "BayesFilters/PFCorrection.h"
+#include <BayesFilters/PFCorrection.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -42,7 +42,7 @@ bool PFCorrection::skip(const bool status)
 }
 
 
-void PFCorrection::setObservationModel(std::unique_ptr<MeasurementModel> observation_model)
+void PFCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
 {
-    observation_model_ = std::move(observation_model);
+    measurement_model_ = std::move(measurement_model);
 }

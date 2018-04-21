@@ -17,7 +17,7 @@ std::pair<bool, VectorXf> ExponentialLikelihood::likelihood(const Ref<const Matr
     VectorXf likelihood(innovations.cols());
     bool valid_covariance_matrix;
     MatrixXf covariance_matrix;
-    std::tie(valid_covariance_matrix, covariance_matrix) = observation_model_->getNoiseCovarianceMatrix();
+    std::tie(valid_covariance_matrix, covariance_matrix) = measurement_model_->getNoiseCovarianceMatrix();
 
     if (valid_covariance_matrix)
     {

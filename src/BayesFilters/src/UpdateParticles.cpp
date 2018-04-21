@@ -28,15 +28,15 @@ void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const 
 {
     bool valid_measurements;
     MatrixXf measurements;
-    std::tie(valid_measurements, measurements) = observation_model_->getMeasurements();
+    std::tie(valid_measurements, measurements) = measurement_model_->getMeasurements();
 
     bool valid_predicted_measurements;
     MatrixXf predicted_measurements;
-    std::tie(valid_predicted_measurements, predicted_measurements) = observation_model_->predictedMeasure(pred_states);
+    std::tie(valid_predicted_measurements, predicted_measurements) = measurement_model_->predictedMeasure(pred_states);
 
     bool valid_innovation;
     MatrixXf innovations;
-    std::tie(valid_innovation, innovations) = observation_model_->innovation(predicted_measurements, measurements);
+    std::tie(valid_innovation, innovations) = measurement_model_->innovation(predicted_measurements, measurements);
 
     std::tie(valid_likelihood_, likelihood_) = likelihood(innovations);
 

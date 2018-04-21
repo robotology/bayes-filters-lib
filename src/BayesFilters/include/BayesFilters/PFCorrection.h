@@ -24,11 +24,11 @@ public:
     bool skip(const bool status);
 
     /* FIXME
-       While setObservationModel() will be kept in future implementation, observation_model_ member is
+       While setObservationModel() will be kept in future implementation, measurement_model_ member is
        currently set with public visibility for backward compatibility. It will be moved to private in future releases. */
-    void setObservationModel(std::unique_ptr<MeasurementModel> observation_model);
+    void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model);
 
-    std::unique_ptr<MeasurementModel> observation_model_;
+    std::unique_ptr<MeasurementModel> measurement_model_;
 
     virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
 
