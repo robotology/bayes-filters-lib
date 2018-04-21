@@ -32,6 +32,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/SPPrediction.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
+        include/BayesFilters/StateModelTargetMeasurement.h
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
@@ -82,6 +83,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/SPCorrection.cpp
         src/SPPrediction.cpp
         src/StateModelDecorator.cpp
+        src/StateModelTargetMeasurement.cpp
         src/UpdateParticles.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
