@@ -40,8 +40,6 @@ protected:
 
     PFCorrection() noexcept;
 
-    PFCorrection(PFCorrection&& pf_correction) noexcept;
-
 private:
     bool skip_ = false;
 

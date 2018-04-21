@@ -16,8 +16,6 @@ class bfl::UpdateParticles : public PFCorrection
 public:
     UpdateParticles() noexcept;
 
-    UpdateParticles(UpdateParticles&& pf_correction) noexcept;
-
     virtual ~UpdateParticles() noexcept;
 
     std::pair<bool, Eigen::VectorXf> getLikelihood() override;

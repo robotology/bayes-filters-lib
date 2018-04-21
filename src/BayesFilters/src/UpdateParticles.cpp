@@ -10,10 +10,6 @@ using namespace Eigen;
 UpdateParticles::UpdateParticles() noexcept { }
 
 
-UpdateParticles::UpdateParticles(UpdateParticles&& pf_correction) noexcept :
-    PFCorrection(std::move(pf_correction)) { };
-
-
 UpdateParticles::~UpdateParticles() noexcept { }
 
 
