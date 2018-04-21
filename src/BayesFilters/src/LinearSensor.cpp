@@ -7,11 +7,11 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LinearSensor::LinearSensor(float sigma_x, float sigma_y, unsigned int seed) noexcept :
-    sigma_x_(sigma_x),
-    sigma_y_(sigma_y),
+LinearSensor::LinearSensor(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept :
     generator_(std::mt19937_64(seed)),
     distribution_(std::normal_distribution<float>(0.0, 1.0)),
+    sigma_x_(sigma_x),
+    sigma_y_(sigma_y),
     gauss_rnd_sample_([&] { return (distribution_)(generator_); })
 {
     H_.resize(2, 4);
@@ -26,7 +26,7 @@ LinearSensor::LinearSensor(float sigma_x, float sigma_y, unsigned int seed) noex
 }
 
 
-LinearSensor::LinearSensor(float sigma_x, float sigma_y) noexcept :
+LinearSensor::LinearSensor(const float sigma_x, const float sigma_y) noexcept :
     LinearSensor(sigma_x, sigma_y, 1) { }
 
 
@@ -43,19 +43,17 @@ LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
     H_(lin_sense.H_),
     R_(lin_sense.R_),
     sqrt_R_(lin_sense.sqrt_R_),
-    generator_(lin_sense.generator_),
-    distribution_(lin_sense.distribution_),
     gauss_rnd_sample_(lin_sense.gauss_rnd_sample_) { };
 
 
 LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
+    generator_(std::move(lin_sense.generator_)),
+    distribution_(std::move(lin_sense.distribution_)),
     sigma_x_(lin_sense.sigma_x_),
     sigma_y_(lin_sense.sigma_y_),
     H_(std::move(lin_sense.H_)),
     R_(std::move(lin_sense.R_)),
     sqrt_R_(std::move(lin_sense.sqrt_R_)),
-    generator_(std::move(lin_sense.generator_)),
-    distribution_(std::move(lin_sense.distribution_)),
     gauss_rnd_sample_(std::move(lin_sense.gauss_rnd_sample_))
 {
     lin_sense.sigma_x_ = 0.0;

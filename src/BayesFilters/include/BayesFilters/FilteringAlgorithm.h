@@ -54,8 +54,8 @@ private:
 
     void filteringRecursion();
 
-
     std::mutex mtx_run_;
+
     std::condition_variable cv_run_;
 
     bool run_ = false;

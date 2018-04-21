@@ -132,14 +132,14 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
 
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
 
-if(${CMAKE_GENERATOR} MATCHES "Xcode")
-    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_HDR})
-    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_HDR})
-    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_HDR})
-    source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringUtility"   FILES ${${LIBRARY_TARGET_NAME}_FU_HDR})
-
-    source_group("src\\FilteringContext"                               FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
-    source_group("src\\FilteringAlgorithm"                             FILES ${${LIBRARY_TARGET_NAME}_FA_SRC})
-    source_group("src\\FilteringFunction"                              FILES ${${LIBRARY_TARGET_NAME}_FF_SRC})
-    source_group("src\\FilteringUtility"                               FILES ${${LIBRARY_TARGET_NAME}_FU_SRC})
-endif()
+# if(${CMAKE_GENERATOR} MATCHES "Xcode")
+#     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_HDR})
+#     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_HDR})
+#     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_HDR})
+#     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringUtility"   FILES ${${LIBRARY_TARGET_NAME}_FU_HDR})
+#
+#     source_group("src\\FilteringContext"                               FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
+#     source_group("src\\FilteringAlgorithm"                             FILES ${${LIBRARY_TARGET_NAME}_FA_SRC})
+#     source_group("src\\FilteringFunction"                              FILES ${${LIBRARY_TARGET_NAME}_FF_SRC})
+#     source_group("src\\FilteringUtility"                               FILES ${${LIBRARY_TARGET_NAME}_FU_SRC})
+# endif()

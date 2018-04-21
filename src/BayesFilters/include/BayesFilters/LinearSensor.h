@@ -14,9 +14,9 @@ namespace bfl {
 class bfl::LinearSensor : public MeasurementModel
 {
 public:
-    LinearSensor(float sigma_x, float sigma_y, unsigned int seed) noexcept;
+    LinearSensor(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept;
 
-    LinearSensor(float sigma_x, float sigma_y) noexcept;
+    LinearSensor(const float sigma_x, const float sigma_y) noexcept;
 
     LinearSensor() noexcept;
 
@@ -42,23 +42,47 @@ public:
 
     bool setProperty(const std::string property) override { return false; };
 
-protected:
-
-    float sigma_x_; /* x-axis measurement noise std deviation [length] */
-
-    float sigma_y_; /* y-axis measurement noise std deviation [length] */
-
-    Eigen::MatrixXf H_; /* Measurement matrix */
-
-    Eigen::Matrix2f R_; /* Measurement white noise convariance matrix */
-
-    Eigen::Matrix2f sqrt_R_; /* Square root matrix of the measurement white noise convariance matrix */
-
+private:
     std::mt19937_64 generator_;
 
     std::normal_distribution<float> distribution_;
 
-    std::function<float()> gauss_rnd_sample_; /* Random number generator from a Normal distribution */
+protected:
+    /**
+     * The Sampling interval in [seconds].
+     */
+    float T_;
+
+    /**
+     * x-axis measurement noise std deviation in [meters].
+     */
+    float sigma_x_;
+
+    /**
+     * y-axis measurement noise std deviation in [meters].
+     */
+    float sigma_y_;
+
+    /**
+     * Measurement matrix.
+     */
+    Eigen::MatrixXf H_;
+
+    /**
+     * Convariance matrix of the additive white noise of the measurements.
+     */
+    Eigen::Matrix2f R_;
+
+    /**
+     * Square root matrix of R_.
+     */
+    Eigen::Matrix2f sqrt_R_;
+
+    /**
+     * Random number generator function from a Normal distribution.
+     * A call to `gauss_rnd_sample_()` returns a floating point random number.
+     */
+    std::function<float()> gauss_rnd_sample_;
 };
 
 #endif /* LINEARSENSOR_H */

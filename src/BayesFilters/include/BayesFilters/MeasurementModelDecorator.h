@@ -28,16 +28,16 @@ public:
     bool setProperty(const std::string property) override;
 
 protected:
-    MeasurementModelDecorator(std::unique_ptr<MeasurementModel> observation_model) noexcept;
+    MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;
 
-    MeasurementModelDecorator(MeasurementModelDecorator&& observation_model) noexcept;
+    MeasurementModelDecorator(MeasurementModelDecorator&& measurement_model) noexcept;
 
     virtual ~MeasurementModelDecorator() noexcept;
 
-    MeasurementModelDecorator& operator=(MeasurementModelDecorator&& observation_model) noexcept;
+    MeasurementModelDecorator& operator=(MeasurementModelDecorator&& measurement_model) noexcept;
 
 private:
-    std::unique_ptr<MeasurementModel> observation_model_;
+    std::unique_ptr<MeasurementModel> measurement_model;
 };
 
 #endif /* OBSERVATIONMODELDECORATOR_H */

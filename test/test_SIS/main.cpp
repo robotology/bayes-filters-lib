@@ -26,7 +26,7 @@ int main()
 
     /* Pass ownership of the observation model (the sensor) to the prediction step */
     std::unique_ptr<UpdateParticles> pf_correction(new UpdateParticles());
-    pf_correction->setObservationModel(std::move(lin_sense));
+    pf_correction->setMeasurementModel(std::move(lin_sense));
 
     /* Initialize a resampling algorithm */
     std::unique_ptr<Resampling> resampling(new Resampling());
