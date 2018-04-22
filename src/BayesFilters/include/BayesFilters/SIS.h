@@ -33,13 +33,7 @@ public:
     void getResult() override;
 
 protected:
-    int simulation_time_;
-
-    int num_particle_;
-
-    int surv_x_;
-
-    int surv_y_;
+    unsigned int num_particle_;
 
     Eigen::MatrixXf object_;
 

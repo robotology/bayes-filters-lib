@@ -47,9 +47,7 @@ bool SIS::initialization()
 
 void SIS::filteringStep()
 {
-    unsigned int k = getFilteringStep();
-
-    if (k != 0)
+    if (getFilteringStep() != 0)
         prediction_->predict(cor_particle_, cor_weight_,
                              pred_particle_, pred_weight_);
 
@@ -61,11 +59,11 @@ void SIS::filteringStep()
 
     /* Here results should be saves. */
     /* Proper strategy is WIP. */
-    result_pred_particle_[k] = pred_particle_;
-    result_pred_weight_  [k] = pred_weight_;
+    result_pred_particle_.emplace_back(pred_particle_);
+    result_pred_weight_.emplace_back(pred_weight_);
 
-    result_cor_particle_[k]  = cor_particle_;
-    result_cor_weight_  [k]  = cor_weight_;
+    result_cor_particle_.emplace_back(cor_particle_);
+    result_cor_weight_.emplace_back(cor_weight_);
 
 
     if (resampling_->neff(cor_weight_) < static_cast<float>(num_particle_)/3.0)
@@ -101,7 +99,7 @@ void SIS::getResult()
 
     result_file_object       << object_;
     result_file_measurement  << measurement_;
-    for (unsigned int k = 0; k < getFilteringStep(); ++k)
+    for (unsigned int k = 0; k < result_pred_particle_.size(); ++k)
     {
         result_file_pred_particle << result_pred_particle_[k] << std::endl << std::endl;
         result_file_pred_weight   << result_pred_weight_[k]   << std::endl << std::endl;

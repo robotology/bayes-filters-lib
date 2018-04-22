@@ -1,10 +1,10 @@
 #ifndef WHITENOISEACCELERATION_H
 #define WHITENOISEACCELERATION_H
 
+#include <BayesFilters/StateModel.h>
+
 #include <functional>
 #include <random>
-
-#include "StateModel.h"
 
 namespace bfl {
     class WhiteNoiseAcceleration;
@@ -40,16 +40,42 @@ public:
 
     bool setProperty(const std::string& property) override { return false; };
 
-protected:
-    float                           T_;                /* Sampling interval */
-    Eigen::Matrix4f                 F_;                /* State transition matrix */
-    Eigen::Matrix4f                 Q_;                /* Process white noise convariance matrix */
-    float                           tilde_q_;          /* Power spectral density [length]^2/[time]^3 */
+private:
+    std::mt19937_64 generator_;
 
-    Eigen::Matrix4f                 sqrt_Q_;           /* Square root matrix of the process white noise convariance matrix */
-    std::mt19937_64                 generator_;
     std::normal_distribution<float> distribution_;
-    std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
+
+protected:
+    /**
+     * Sampling interval in [time].
+     */
+    float T_;
+
+    /**
+     * State transition matrix.
+     */
+    Eigen::Matrix4f F_;
+
+    /**
+     * Convariance matrix of the additive white noise of the state model.
+     */
+    Eigen::Matrix4f Q_;
+
+    /**
+     * Power spectral density [length]^2/[time]^3.
+     */
+    float tilde_q_;
+
+    /**
+     * Square root matrix of R_.
+     */
+    Eigen::Matrix4f sqrt_Q_;
+
+    /**
+     * Random number generator function from a Normal distribution.
+     * A call to `gauss_rnd_sample_()` returns a floating point random number.
+     */
+    std::function<float()> gauss_rnd_sample_;
 };
 
 #endif /* WHITENOISEACCELERATION_H */
