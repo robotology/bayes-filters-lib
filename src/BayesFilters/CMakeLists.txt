@@ -15,7 +15,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
-        include/BayesFilters/ExponentialLikelihood.h
+        include/BayesFilters/GaussianLikelihood.h
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
         include/BayesFilters/LinearSensor.h
@@ -69,7 +69,7 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
-        src/ExponentialLikelihood.cpp
+        src/GaussianLikelihood.cpp
         src/InitSurveillanceAreaGrid.cpp
         src/LinearSensor.cpp
         src/MeasurementModel.cpp
