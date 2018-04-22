@@ -33,21 +33,15 @@ SIS& SIS::operator=(SIS&& sir_pf) noexcept
 }
 
 
-void SIS::initialization()
+bool SIS::initialization()
 {
-    pred_particle_.resize(4, num_particle_);
-    pred_weight_.resize(num_particle_, 1);
+    pred_particle_ = MatrixXf(4, num_particle_);
+    pred_weight_ = MatrixXf(num_particle_, 1);
 
-    cor_particle_.resize(4, num_particle_);
-    cor_weight_.resize(num_particle_, 1);
+    cor_particle_ = MatrixXf(4, num_particle_);
+    cor_weight_ = MatrixXf(num_particle_, 1);
 
-    initialization_->initialize(pred_particle_, pred_weight_);
-
-    result_pred_particle_.resize(simulation_time_);
-    result_pred_weight_.resize(simulation_time_);
-
-    result_cor_particle_.resize(simulation_time_);
-    result_cor_weight_.resize(simulation_time_);
+    return initialization_->initialize(pred_particle_, pred_weight_);
 }
 
 

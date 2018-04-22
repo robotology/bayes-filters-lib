@@ -26,7 +26,7 @@ public:
 
     SIS& operator=(SIS&& sir_pf) noexcept;
 
-    void initialization() override;
+    bool initialization() override;
 
     void filteringStep() override;
 

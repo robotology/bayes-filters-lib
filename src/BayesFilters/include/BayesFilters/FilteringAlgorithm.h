@@ -39,7 +39,7 @@ public:
     virtual bool skip(const std::string& what_step, const bool status) = 0;
 
 protected:
-    virtual void initialization() = 0;
+    virtual bool initialization() = 0;
 
     virtual void filteringStep() = 0;
 

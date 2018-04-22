@@ -9,7 +9,7 @@ KalmanFilter::KalmanFilter() { }
 KalmanFilter::~KalmanFilter() noexcept { }
 
 
-void KalmanFilter::initialization() { }
+bool KalmanFilter::initialization() { }
 
 
 void KalmanFilter::filteringStep() { }

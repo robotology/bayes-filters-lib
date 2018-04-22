@@ -14,7 +14,7 @@ public:
 
     virtual ~KalmanFilter() noexcept;
 
-    void initialization() override;
+    bool initialization() override;
     
     void filteringStep() override;
 

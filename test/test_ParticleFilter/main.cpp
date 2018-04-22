@@ -9,7 +9,7 @@ using namespace bfl;
 
 class DummyParticleFilter : public ParticleFilter
 {
-    void initialization() { std::cout << "Invoked DummyParticleFilter::initialization()." << std::endl; };
+    bool initialization() { std::cout << "Invoked DummyParticleFilter::initialization()." << std::endl; return true; };
 
     void filteringStep() { std::cout << "Invoked DummyParticleFilter::filteringStep(): step " << getFilteringStep() << "." << std::endl; };
 
