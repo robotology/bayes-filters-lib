@@ -96,7 +96,7 @@ void FilteringAlgorithm::filteringRecursion()
 {
     do
     {
-        reset_          = false;
+        reset_ = false;
         filtering_step_ = 0;
 
         std::unique_lock<std::mutex> lk(mtx_run_);

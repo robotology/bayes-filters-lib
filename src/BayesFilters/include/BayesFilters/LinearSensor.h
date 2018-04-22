@@ -49,17 +49,17 @@ private:
 
 protected:
     /**
-     * The Sampling interval in [seconds].
+     * The Sampling interval in [time].
      */
     float T_;
 
     /**
-     * x-axis measurement noise std deviation in [meters].
+     * x-axis measurement noise std deviation in [length].
      */
     float sigma_x_;
 
     /**
-     * y-axis measurement noise std deviation in [meters].
+     * y-axis measurement noise std deviation in [length].
      */
     float sigma_y_;
 
