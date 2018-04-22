@@ -32,8 +32,6 @@ public:
 
     void getResult() override;
 
-    bool runCondition() override { return (getFilteringStep() < simulation_time_); };
-
 protected:
     int simulation_time_;
 

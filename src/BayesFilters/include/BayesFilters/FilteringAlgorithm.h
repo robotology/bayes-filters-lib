@@ -45,7 +45,7 @@ protected:
 
     virtual void getResult() = 0;
 
-    virtual bool runCondition() = 0;
+    virtual bool runCondition() { return true; };
 
 private:
     unsigned int filtering_step_ = 0;
