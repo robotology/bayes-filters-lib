@@ -38,8 +38,9 @@ void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const 
 
 
     cor_states = pred_states;
-    (valid_measurements && valid_predicted_measurements && valid_innovation && valid_likelihood_) ?
-        cor_weights = likelihood_ : cor_weights = pred_weights;
+    cor_weights = pred_weights;
+    if (valid_measurements && valid_predicted_measurements && valid_innovation && valid_likelihood_)
+        cor_weights.cwiseProduct(likelihood_);
 }
 
 
