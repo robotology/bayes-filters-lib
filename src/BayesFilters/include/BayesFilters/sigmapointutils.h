@@ -1,11 +1,11 @@
 #ifndef SIGMAPOINTUTILS_H
 #define SIGMAPOINTUTILS_H
 
+#include <BayesFilters/Gaussian.h>
+
 #include <cmath>
 
 #include <Eigen/Dense>
-
-#include <BayesFilters/Gaussian.h>
 
 
 namespace bfl

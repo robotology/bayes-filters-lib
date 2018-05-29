@@ -1,4 +1,4 @@
-#include "BayesFilters/SPPrediction.h"
+#include <BayesFilters/SPPrediction.h>
 
 #include <exception>
 #include <iostream>

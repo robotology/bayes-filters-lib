@@ -1,11 +1,12 @@
 #ifndef RESAMPLINGWITHPRIOR_H
 #define RESAMPLINGWITHPRIOR_H
 
+#include <BayesFilters/ParticleSetInitialization.h>
+#include <BayesFilters/Resampling.h>
+
 #include <memory>
 #include <vector>
 
-#include <BayesFilters/ParticleSetInitialization.h>
-#include <BayesFilters/Resampling.h>
 #include <Eigen/Dense>
 
 namespace bfl {

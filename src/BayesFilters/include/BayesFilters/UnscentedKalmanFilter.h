@@ -1,7 +1,7 @@
 #ifndef UNSCENTEDKALMANFILTER_H
 #define UNSCENTEDKALMANFILTER_H
 
-#include "FilteringAlgorithm.h"
+#include <BayesFilters/FilteringAlgorithm.h>
 
 namespace bfl {
     class UnscentedKalmanFilter;

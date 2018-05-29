@@ -1,4 +1,4 @@
-#include "BayesFilters/DrawParticles.h"
+#include <BayesFilters/DrawParticles.h>
 
 #include <utility>
 
@@ -20,7 +20,7 @@ void DrawParticles::predictStep(const Ref<const MatrixXf>& prev_states, const Re
                                 Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
 {
     state_model_->motion(prev_states, pred_states);
-    
+
     pred_weights = prev_weights;
 }
 

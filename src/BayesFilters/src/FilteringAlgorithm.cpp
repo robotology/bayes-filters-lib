@@ -1,4 +1,4 @@
-#include "BayesFilters/FilteringAlgorithm.h"
+#include <BayesFilters/FilteringAlgorithm.h>
 
 #include <iostream>
 

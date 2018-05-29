@@ -1,14 +1,15 @@
 #ifndef SPPREDICTION_H
 #define SPPREDICTION_H
 
-#include "ExogenousModel.h"
-#include "Gaussian.h"
-#include "StateModel.h"
+#include <BayesFilters/ExogenousModel.h>
+#include <BayesFilters/Gaussian.h>
+#include <BayesFilters/StateModel.h>
 
-#include <Eigen/Dense>
 #include <memory>
 #include <string>
 #include <vector>
+
+#include <Eigen/Dense>
 
 namespace bfl {
     class SPPrediction;

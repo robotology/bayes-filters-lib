@@ -1,4 +1,4 @@
-#include "BayesFilters/WhiteNoiseAcceleration.h"
+#include <BayesFilters/WhiteNoiseAcceleration.h>
 
 #include <cmath>
 #include <utility>

@@ -1,7 +1,7 @@
 #ifndef DRAWPARTICLES_H
 #define DRAWPARTICLES_H
 
-#include "PFPrediction.h"
+#include <BayesFilters/PFPrediction.h>
 
 #include <random>
 #include <memory>

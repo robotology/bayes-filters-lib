@@ -1,15 +1,18 @@
-#include "BayesFilters/KalmanFilter.h"
+#include <BayesFilters/KalmanFilter.h>
 
 using namespace bfl;
 
-    
+
 KalmanFilter::KalmanFilter() { }
 
 
 KalmanFilter::~KalmanFilter() noexcept { }
 
 
-bool KalmanFilter::initialization() { }
+bool KalmanFilter::initialization()
+{
+    return false;
+}
 
 
 void KalmanFilter::filteringStep() { }

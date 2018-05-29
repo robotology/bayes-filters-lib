@@ -1,11 +1,11 @@
-#include "BayesFilters/PFPredictionDecorator.h"
+#include <BayesFilters/PFPredictionDecorator.h>
 
 #include <utility>
 
 using namespace bfl;
 using namespace Eigen;
 
-    
+
 PFPredictionDecorator::PFPredictionDecorator(std::unique_ptr<PFPrediction> prediction) noexcept :
     prediction_(std::move(prediction)) { }
 

@@ -1,9 +1,9 @@
 #ifndef FILTERINGCONTEXT_H
 #define FILTERINGCONTEXT_H
 
-#include <memory>
+#include <BayesFilters/FilteringAlgorithm.h>
 
-#include "FilteringAlgorithm.h"
+#include <memory>
 
 namespace bfl {
     class FilteringContext;
@@ -16,7 +16,7 @@ public:
     FilteringContext(std::shared_ptr<FilteringAlgorithm> filter);
 
     virtual ~FilteringContext();
-    
+
     void run();
 
     void saveResult();

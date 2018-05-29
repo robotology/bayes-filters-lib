@@ -1,8 +1,8 @@
 #ifndef PFPREDICTION_H
 #define PFPREDICTION_H
 
-#include "ExogenousModel.h"
-#include "StateModel.h"
+#include <BayesFilters/ExogenousModel.h>
+#include <BayesFilters/StateModel.h>
 
 #include <Eigen/Dense>
 #include <memory>

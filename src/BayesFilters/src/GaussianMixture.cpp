@@ -1,4 +1,4 @@
-#include "BayesFilters/GaussianMixture.h"
+#include <BayesFilters/GaussianMixture.h>
 
 using namespace bfl;
 using namespace Eigen;

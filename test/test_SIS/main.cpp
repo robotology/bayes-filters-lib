@@ -48,7 +48,7 @@ int main()
     unsigned int num_particle = num_particle_x * num_particle_y;
     Vector4f initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 100;
-    
+
 
     /* Step 1 - Initialization */
     /* Initialize initialization class. */

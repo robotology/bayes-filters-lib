@@ -1,7 +1,7 @@
 #ifndef KALMANFILTER_H
 #define KALMANFILTER_H
 
-#include "FilteringAlgorithm.h"
+#include <BayesFilters/FilteringAlgorithm.h>
 
 namespace bfl {
     class KalmanFilter;
@@ -15,7 +15,7 @@ public:
     virtual ~KalmanFilter() noexcept;
 
     bool initialization() override;
-    
+
     void filteringStep() override;
 
     void getResult() override;

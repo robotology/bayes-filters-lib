@@ -1,7 +1,7 @@
 #ifndef GAUSSIANMIXTURE_H
 #define GAUSSIANMIXTURE_H
 
-#include "BayesFilters/Gaussian.h"
+#include <BayesFilters/Gaussian.h>
 
 #include <vector>
 

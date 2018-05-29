@@ -1,5 +1,5 @@
-#include "BayesFilters/sigmapointutils.h"
-#include "BayesFilters/directionalstatisticsutils.h"
+#include <BayesFilters/sigmapointutils.h>
+#include <BayesFilters/directionalstatisticsutils.h>
 
 #include <Eigen/SVD>
 
@@ -11,7 +11,7 @@ void bfl::unscented_weights(const unsigned int n, const double alpha, const doub
                             Ref<VectorXd> weight_mean, Ref<VectorXd> weight_covariance, double& c)
 {
     double lambda = std::pow(alpha, 2.0) * (n + kappa) - n;
-    
+
     for (int j = 0; j < ((2 * n) + 1); ++j)
     {
         if (j == 0)
@@ -25,7 +25,7 @@ void bfl::unscented_weights(const unsigned int n, const double alpha, const doub
             weight_covariance(j) = weight_mean(j);
         }
     }
-    
+
     c = n + lambda;
 }
 

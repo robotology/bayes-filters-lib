@@ -1,4 +1,4 @@
-#include "BayesFilters/UpdateParticles.h"
+#include <BayesFilters/UpdateParticles.h>
 
 #include <cmath>
 #include <utility>

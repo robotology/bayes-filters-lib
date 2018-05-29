@@ -1,4 +1,4 @@
-#include "BayesFilters/EstimatesExtraction.h"
+#include <BayesFilters/EstimatesExtraction.h>
 
 using namespace bfl;
 using namespace Eigen;

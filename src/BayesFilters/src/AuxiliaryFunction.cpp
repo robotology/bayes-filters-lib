@@ -1,1 +1,1 @@
-#include "BayesFilters/AuxiliaryFunction.h"
+#include <BayesFilters/AuxiliaryFunction.h>

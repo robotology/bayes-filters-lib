@@ -1,4 +1,4 @@
-#include "BayesFilters/HistoryBuffer.h"
+#include <BayesFilters/HistoryBuffer.h>
 
 using namespace bfl;
 using namespace Eigen;

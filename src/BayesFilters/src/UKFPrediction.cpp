@@ -1,4 +1,4 @@
-#include "BayesFilters/UKFPrediction.h"
+#include <BayesFilters/UKFPrediction.h>
 
 #include <utility>
 
@@ -18,6 +18,9 @@ UKFPrediction::~UKFPrediction() noexcept { }
 
 Gaussian UKFPrediction::predictStep(const Gaussian& prev_states)
 {
+    /* TODO
+       To implement. */
+    return prev_states;
 }
 
 StateModel& UKFPrediction::getStateModel()

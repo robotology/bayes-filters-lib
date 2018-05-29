@@ -1,7 +1,7 @@
 #ifndef PFPREDICTIONDECORATOR_H
 #define PFPREDICTIONDECORATOR_H
 
-#include "PFPrediction.h"
+#include <BayesFilters/PFPrediction.h>
 
 #include <memory>
 

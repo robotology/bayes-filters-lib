@@ -1,7 +1,7 @@
 #ifndef UPDATEPARTICLES_H
 #define UPDATEPARTICLES_H
 
-#include "PFCorrection.h"
+#include <BayesFilters/PFCorrection.h>
 
 #include <memory>
 #include <random>

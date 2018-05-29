@@ -1,10 +1,10 @@
 #ifndef SIS_H
 #define SIS_H
 
-#include "ParticleFilter.h"
-#include "PFCorrection.h"
-#include "PFPrediction.h"
-#include "Resampling.h"
+#include <BayesFilters/ParticleFilter.h>
+#include <BayesFilters/PFCorrection.h>
+#include <BayesFilters/PFPrediction.h>
+#include <BayesFilters/Resampling.h>
 
 #include <memory>
 

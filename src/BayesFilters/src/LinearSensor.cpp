@@ -1,4 +1,4 @@
-#include "BayesFilters/LinearSensor.h"
+#include <BayesFilters/LinearSensor.h>
 
 #include <cmath>
 #include <utility>

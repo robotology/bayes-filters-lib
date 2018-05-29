@@ -1,7 +1,7 @@
 #ifndef STATEMODELDECORATOR_H
 #define STATEMODELDECORATOR_H
 
-#include "StateModel.h"
+#include <BayesFilters/StateModel.h>
 
 #include <memory>
 

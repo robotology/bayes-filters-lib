@@ -1,4 +1,4 @@
-#include "BayesFilters/Resampling.h"
+#include <BayesFilters/Resampling.h>
 
 #include <utility>
 

@@ -1,4 +1,4 @@
-#include "BayesFilters/ParticleFilter.h"
+#include <BayesFilters/ParticleFilter.h>
 
 using namespace bfl;
 

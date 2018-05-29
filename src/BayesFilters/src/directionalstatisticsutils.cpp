@@ -1,4 +1,4 @@
-#include "BayesFilters/directionalstatisticsutils.h"
+#include <BayesFilters/directionalstatisticsutils.h>
 
 #include <cmath>
 

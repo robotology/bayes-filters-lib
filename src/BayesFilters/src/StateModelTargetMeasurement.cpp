@@ -41,11 +41,11 @@ StateModelTargetMeasurement::StateModelTargetMeasurement
 
 std::pair<bool, MatrixXf> StateModelTargetMeasurement::getMeasurements()
 {
-    /* FIXME
+    /* TODO
        Multi-sensor data are WIP.
        Need to properly think how to model them. */
 
-    return std::make_tuple(true, measurement_.col(measurement_time_++));
+    return std::make_pair(true, measurement_.col(measurement_time_++));
 }
 
 

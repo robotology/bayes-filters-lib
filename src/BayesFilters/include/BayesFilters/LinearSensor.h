@@ -1,10 +1,10 @@
 #ifndef LINEARSENSOR_H
 #define LINEARSENSOR_H
 
+#include <BayesFilters/MeasurementModel.h>
+
 #include <functional>
 #include <random>
-
-#include <BayesFilters/MeasurementModel.h>
 
 namespace bfl {
     class LinearSensor;

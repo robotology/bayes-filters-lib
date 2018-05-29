@@ -1,7 +1,7 @@
 #ifndef UKFPREDICTION_H
 #define UKFPREDICTION_H
 
-#include "SPPrediction.h"
+#include <BayesFilters/SPPrediction.h>
 
 #include <memory>
 

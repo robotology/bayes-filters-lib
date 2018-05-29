@@ -1,11 +1,11 @@
 #ifndef PARTICLEFILTER_H
 #define PARTICLEFILTER_H
 
-#include "FilteringAlgorithm.h"
-#include "ParticleSetInitialization.h"
-#include "PFCorrection.h"
-#include "PFPrediction.h"
-#include "Resampling.h"
+#include <BayesFilters/FilteringAlgorithm.h>
+#include <BayesFilters/ParticleSetInitialization.h>
+#include <BayesFilters/PFCorrection.h>
+#include <BayesFilters/PFPrediction.h>
+#include <BayesFilters/Resampling.h>
 
 #include <memory>
 

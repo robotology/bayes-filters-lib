@@ -1,4 +1,4 @@
-#include "BayesFilters/Gaussian.h"
+#include <BayesFilters/Gaussian.h>
 
 #include <exception>
 
@@ -97,7 +97,7 @@ Gaussian& Gaussian::operator=(const Gaussian& gaussian)
         Gaussian tmp(gaussian);
         *this = std::move(tmp);
     }
-    
+
     return *this;
 }
 
@@ -111,7 +111,7 @@ Gaussian& Gaussian::operator=(Gaussian&& gaussian)
 
         covariance = std::move(gaussian.covariance);
         gaussian.covariance.Zero(gaussian.dim, gaussian.dim);
-        
+
         weight = gaussian.weight;
         gaussian.weight = 1.0;
 

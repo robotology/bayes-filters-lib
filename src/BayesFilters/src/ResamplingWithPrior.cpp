@@ -1,4 +1,4 @@
-#include "BayesFilters/ResamplingWithPrior.h"
+#include <BayesFilters/ResamplingWithPrior.h>
 
 #include <algorithm>
 #include <numeric>
