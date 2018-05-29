@@ -24,7 +24,7 @@ void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const 
 {
     bool valid_measurements;
     MatrixXf measurements;
-    std::tie(valid_measurements, measurements) = measurement_model_->getMeasurements();
+    std::tie(valid_measurements, measurements) = measurement_model_->getProcessMeasurements();
 
     bool valid_predicted_measurements;
     MatrixXf predicted_measurements;

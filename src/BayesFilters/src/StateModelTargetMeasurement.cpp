@@ -39,7 +39,7 @@ StateModelTargetMeasurement::StateModelTargetMeasurement
 }
 
 
-std::pair<bool, MatrixXf> StateModelTargetMeasurement::getMeasurements()
+std::pair<bool, MatrixXf> StateModelTargetMeasurement::getProcessMeasurements()
 {
     /* TODO
        Multi-sensor data are WIP.

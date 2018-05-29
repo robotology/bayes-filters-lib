@@ -4,7 +4,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-std::pair<bool, MatrixXf> MeasurementModel::getMeasurements()
+std::pair<bool, MatrixXf> MeasurementModel::getProcessMeasurements()
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
 }

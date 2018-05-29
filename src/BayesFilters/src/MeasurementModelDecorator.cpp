@@ -29,9 +29,9 @@ std::pair<bool, MatrixXf> MeasurementModelDecorator::measure(const Ref<const Mat
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getMeasurements()
+std::pair<bool, MatrixXf> MeasurementModelDecorator::getProcessMeasurements()
 {
-    return measurement_model->getMeasurements();
+    return measurement_model->getProcessMeasurements();
 }
 
 

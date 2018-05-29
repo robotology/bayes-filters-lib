@@ -19,7 +19,7 @@ public:
 
     virtual ~StateModelTargetMeasurement() noexcept { };
 
-    std::pair<bool, Eigen::MatrixXf> getMeasurements() override;
+    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() override;
 
     bool setProperty(const std::string property) override;
 
