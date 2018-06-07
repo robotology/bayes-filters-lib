@@ -28,11 +28,6 @@ public:
 
     bool skip(const bool status);
 
-
-    virtual VisualObservationModel& getVisualObservationModel() = 0;
-
-    virtual void setVisualObservationModel(std::unique_ptr<VisualObservationModel> visual_observation_model) = 0;
-
 protected:
     PFVisualCorrection() noexcept;
 

@@ -9,6 +9,7 @@ using namespace Eigen;
 
 UpdateParticles::UpdateParticles() noexcept { }
 
+
 UpdateParticles::UpdateParticles(UpdateParticles&& pf_correction) noexcept :
     PFCorrection(std::move(pf_correction)) { };
 
@@ -19,13 +20,13 @@ UpdateParticles::~UpdateParticles() noexcept { }
 void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
                                   Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
 {
-    cor_states = pred_states;
-
     MatrixXf innovations(measurements.rows(), pred_states.cols());
     innovation(pred_states, measurements, innovations);
 
     for (unsigned int i = 0; i < innovations.cols(); ++i)
         cor_weights(i) = likelihood(innovations.col(i));
+
+    cor_states = pred_states;
 }
 
 

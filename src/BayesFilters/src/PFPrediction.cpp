@@ -10,7 +10,15 @@ using namespace Eigen;
 PFPrediction::PFPrediction() noexcept { };
 
 
-PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept { }
+PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept :
+    skip_prediction_(pf_prediction.skip_prediction_),
+    skip_state_(pf_prediction.skip_state_),
+    skip_exogenous_(pf_prediction.skip_exogenous_)
+{
+    pf_prediction.skip_prediction_ = false;
+    pf_prediction.skip_state_      = false;
+    pf_prediction.skip_exogenous_  = false;
+}
 
 
 void PFPrediction::predict(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
@@ -62,6 +70,6 @@ ExogenousModel& PFPrediction::getExogenousModel()
 
 void PFPrediction::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
 {
-    std::cerr << "ERROR::PFPREDICTION::SETEXOGENOUSMODEL" << std::endl;
-    std::cerr << "ERROR:\n\tCall to unimplemented base class method.";
+    std::cerr << "ERROR::PFPREDICTION::SETEXOGENOUSMODEL\n";
+    std::cerr << "ERROR:\n\tCall to unimplemented base class method." << std::endl;
 }

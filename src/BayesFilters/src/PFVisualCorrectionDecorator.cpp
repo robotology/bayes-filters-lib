@@ -28,18 +28,6 @@ double PFVisualCorrectionDecorator::likelihood(const Eigen::Ref<const Eigen::Mat
 }
 
 
-VisualObservationModel& PFVisualCorrectionDecorator::getVisualObservationModel()
-{
-    return visual_correction_->getVisualObservationModel();
-}
-
-
-void PFVisualCorrectionDecorator::setVisualObservationModel(std::unique_ptr<VisualObservationModel> visual_observation_model)
-{
-    visual_correction_->setVisualObservationModel(std::move(visual_observation_model));
-}
-
-
 void PFVisualCorrectionDecorator::correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, cv::InputArray measurements,
                                               Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights)
 {
