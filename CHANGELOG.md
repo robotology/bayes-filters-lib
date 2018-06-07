@@ -1,5 +1,17 @@
 # 📜 BayesFilters changelog
 
+## Version 0.7.0.0
+##### `Filtering classes`
+ - Remove PFVisualCorrection::getVisualObservationModel() and PFVisualCorrection::setVisualObservationModel().
+
+##### `Bugfix`
+ - Fix PF prediction and correction move constructor (minor fix).
+
+###### `CMake`
+  - Threads is now a dependency of the exported library. This will solve a CMake error during configuration in CMake projects linking BayesFilters.
+  - BayesFilters is now fully relocatable.
+
+
 ## Version 0.6.2.0
 
 ### Updates
