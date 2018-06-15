@@ -21,21 +21,9 @@ void PFCorrection::correct(const Ref<const MatrixXf>& pred_states, const Ref<con
 }
 
 
-std::pair<bool, VectorXf> PFCorrection::getLikelihood()
-{
-    return std::make_pair(false, VectorXf::Zero(1));
-}
-
-
 bool PFCorrection::skip(const bool status)
 {
     skip_ = status;
 
     return true;
-}
-
-
-void PFCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
-{
-    measurement_model_ = std::move(measurement_model);
 }

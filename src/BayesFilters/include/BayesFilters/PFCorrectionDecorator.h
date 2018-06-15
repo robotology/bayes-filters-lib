@@ -13,6 +13,10 @@ namespace bfl {
 class bfl::PFCorrectionDecorator : public PFCorrection
 {
 public:
+    void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model) override;
+
+    void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) override;
+
     std::pair<bool, Eigen::VectorXf> getLikelihood() override;
 
 protected:
@@ -22,10 +26,12 @@ protected:
 
     virtual ~PFCorrectionDecorator() noexcept;
 
+    MeasurementModel& getMeasurementModel() override;
+
+    LikelihoodModel& getLikelihoodModel() override;
+
     void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                      Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
-
-    std::pair<bool, Eigen::VectorXf> likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) override;
 
 private:
     std::unique_ptr<PFCorrection> correction_;

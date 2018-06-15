@@ -13,38 +13,46 @@ UpdateParticles::UpdateParticles() noexcept { }
 UpdateParticles::~UpdateParticles() noexcept { }
 
 
+void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
+                                  Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+{
+    bool valid_buffered_measurement = measurement_model_->bufferProcessMeasurements();
+
+    if (valid_buffered_measurement)
+        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_states);
+
+    cor_states = pred_states;
+    cor_weights = pred_weights;
+    if (valid_likelihood_)
+        cor_weights.cwiseProduct(likelihood_);
+}
+
+
 std::pair<bool, VectorXf> UpdateParticles::getLikelihood()
 {
     return std::make_pair(valid_likelihood_, likelihood_);
 }
 
 
-void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
-                                  Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+void UpdateParticles::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
 {
-    bool valid_measurements;
-    MatrixXf measurements;
-    std::tie(valid_measurements, measurements) = measurement_model_->getProcessMeasurements();
-
-    bool valid_predicted_measurements;
-    MatrixXf predicted_measurements;
-    std::tie(valid_predicted_measurements, predicted_measurements) = measurement_model_->predictedMeasure(pred_states);
-
-    bool valid_innovation;
-    MatrixXf innovations;
-    std::tie(valid_innovation, innovations) = measurement_model_->innovation(predicted_measurements, measurements);
-
-    std::tie(valid_likelihood_, likelihood_) = likelihood(innovations);
-
-
-    cor_states = pred_states;
-    cor_weights = pred_weights;
-    if (valid_measurements && valid_predicted_measurements && valid_innovation && valid_likelihood_)
-        cor_weights.cwiseProduct(likelihood_);
+    measurement_model_ = std::move(measurement_model);
 }
 
 
-std::pair<bool, Eigen::VectorXf> UpdateParticles::likelihood(const Ref<const MatrixXf>& innovations)
+MeasurementModel& UpdateParticles::getMeasurementModel()
 {
-    return std::make_pair(false, VectorXf::Zero(1));
+    return *measurement_model_;
+}
+
+
+void UpdateParticles::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)
+{
+    likelihood_model_ = std::move(likelihood_model);
+}
+
+
+LikelihoodModel& UpdateParticles::getLikelihoodModel()
+{
+    return *likelihood_model_;
 }

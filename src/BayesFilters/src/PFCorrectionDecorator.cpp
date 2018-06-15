@@ -17,9 +17,33 @@ PFCorrectionDecorator::PFCorrectionDecorator(PFCorrectionDecorator&& correction)
 PFCorrectionDecorator::~PFCorrectionDecorator() noexcept { }
 
 
+void PFCorrectionDecorator::setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model)
+{
+    correction_->setMeasurementModel(std::move(observation_model));
+}
+
+
+void PFCorrectionDecorator::setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model)
+{
+    correction_->setLikelihoodModel(std::move(observation_model));
+}
+
+
 std::pair<bool, VectorXf> PFCorrectionDecorator::getLikelihood()
 {
     return correction_->getLikelihood();
+}
+
+
+MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
+{
+    return correction_->getMeasurementModel();
+}
+
+
+LikelihoodModel& PFCorrectionDecorator::getLikelihoodModel()
+{
+    return correction_->getLikelihoodModel();
 }
 
 
@@ -28,10 +52,4 @@ void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, 
 {
     correction_->correctStep(pred_states, pred_weights,
                              cor_states, cor_weights);
-}
-
-
-std::pair<bool, VectorXf> PFCorrectionDecorator::likelihood(const Ref<const MatrixXf>& innovations)
-{
-    return correction_->likelihood(innovations);
 }

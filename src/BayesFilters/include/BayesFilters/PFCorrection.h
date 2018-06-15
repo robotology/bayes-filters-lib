@@ -2,6 +2,7 @@
 #define PFCORRECTION_H
 
 #include <BayesFilters/MeasurementModel.h>
+#include <BayesFilters/LikelihoodModel.h>
 
 #include <memory>
 #include <utility>
@@ -23,16 +24,21 @@ public:
 
     bool skip(const bool status);
 
-    /* FIXME
-       While setObservationModel() will be kept in future implementation, measurement_model_ member is
-       currently set with public visibility for backward compatibility. It will be moved to private in future releases. */
-    void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model);
+    /* This is needed to be able to use decorator on correction classes. */
+    virtual void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model) = 0;
 
-    std::unique_ptr<MeasurementModel> measurement_model_;
+    /* This is needed to be able to use decorator on correction classes. */
+    virtual void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) = 0;
 
     virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
 
 protected:
+    /* This is needed to be able to use decorator on correction classes. */
+    virtual MeasurementModel& getMeasurementModel() = 0;
+
+    /* This is needed to be able to use decorator on correction classes. */
+    virtual LikelihoodModel& getLikelihoodModel() = 0;
+
     virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                              Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
 
