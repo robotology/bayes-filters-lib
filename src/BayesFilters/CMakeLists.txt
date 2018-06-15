@@ -18,6 +18,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/GaussianLikelihood.h
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
+        include/BayesFilters/LikelihoodModel.h
         include/BayesFilters/LinearSensor.h
         include/BayesFilters/MeasurementModel.h
         include/BayesFilters/MeasurementModelDecorator.h
