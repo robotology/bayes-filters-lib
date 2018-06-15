@@ -30,15 +30,15 @@ public:
 
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
+    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) override;
+    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const override;
 
-    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
+    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) override;
+    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() override;
+    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string property) override { return false; };
 

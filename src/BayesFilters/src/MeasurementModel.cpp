@@ -4,25 +4,25 @@ using namespace bfl;
 using namespace Eigen;
 
 
-std::pair<bool, MatrixXf> MeasurementModel::getProcessMeasurements()
+bool MeasurementModel::bufferProcessMeasurements()
+{
+    return false;
+}
+
+
+std::pair<bool, MatrixXf> MeasurementModel::getProcessMeasurements() const
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModel::predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states)
+std::pair<bool, MatrixXf> MeasurementModel::getNoiseSample(const int num) const
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModel::getNoiseSample(const int num)
-{
-    return std::make_pair(false, MatrixXf::Zero(1, 1));
-}
-
-
-std::pair<bool, MatrixXf> MeasurementModel::getNoiseCovarianceMatrix()
+std::pair<bool, MatrixXf> MeasurementModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));
 }

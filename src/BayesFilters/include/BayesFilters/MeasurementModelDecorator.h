@@ -13,17 +13,19 @@ namespace bfl {
 class bfl::MeasurementModelDecorator : public MeasurementModel
 {
 public:
-    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
+    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() override;
+    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const override;
 
-    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) override;
+    virtual bool bufferProcessMeasurements() override;
 
-    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override;
+    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) override;
+    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() override;
+    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
+
+    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string property) override;
 

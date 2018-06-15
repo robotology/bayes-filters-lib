@@ -23,37 +23,43 @@ MeasurementModelDecorator& MeasurementModelDecorator::operator=(MeasurementModel
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states)
+std::pair<bool, MatrixXf> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states) const
 {
     return measurement_model->measure(cur_states);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getProcessMeasurements()
-{
-    return measurement_model->getProcessMeasurements();
-}
-
-
-std::pair<bool, MatrixXf> MeasurementModelDecorator::innovation(const Ref<const MatrixXf>& predicted_measurements, const Ref<const MatrixXf>& measurements)
+std::pair<bool, MatrixXf> MeasurementModelDecorator::innovation(const Ref<const MatrixXf>& predicted_measurements, const Ref<const MatrixXf>& measurements) const
 {
     return measurement_model->innovation(predicted_measurements, measurements);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states)
+bool MeasurementModelDecorator::bufferProcessMeasurements()
+{
+    return measurement_model->bufferProcessMeasurements();
+}
+
+
+std::pair<bool, MatrixXf> MeasurementModelDecorator::getProcessMeasurements() const
+{
+    return measurement_model->getProcessMeasurements();
+}
+
+
+std::pair<bool, MatrixXf> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
     return measurement_model->predictedMeasure(cur_states);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseSample(const int num)
+std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseSample(const int num) const
 {
     return measurement_model->getNoiseSample(num);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix()
+std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() const
 {
     return measurement_model->getNoiseCovarianceMatrix();
 }
