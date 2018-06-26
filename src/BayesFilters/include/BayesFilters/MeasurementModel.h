@@ -26,11 +26,17 @@ public:
 
     virtual std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const;
 
+    virtual bool setProperty(const std::string property);
+
+
     virtual bool bufferProcessMeasurements();
 
     virtual std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const;
 
-    virtual bool setProperty(const std::string property);
+
+    virtual void enableLog(const std::string& prefix_name);
+
+    virtual void disableLog();
 };
 
 #endif /* MEASUREMENTMODEL_H */
