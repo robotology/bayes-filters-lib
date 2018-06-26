@@ -5,6 +5,7 @@
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
 #include <BayesFilters/LinearSensor.h>
+#include <BayesFilters/LikelihoodModel.h>
 #include <BayesFilters/MeasurementModelDecorator.h>
 #include <BayesFilters/ParticleSetInitialization.h>
 #include <BayesFilters/PFCorrectionDecorator.h>
@@ -44,7 +45,7 @@ public:
         MeasurementModelDecorator(std::move(observation_model)) { }
 
 
-    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) override
+    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override
     {
         std::cout << "Decorator: DecoratedLinearSensor::measure()." << std::endl;
 
@@ -159,17 +160,18 @@ int main()
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
     std::unique_ptr<MeasurementModel> linear_target_measurement(new StateModelTargetMeasurement(std::move(decorated_linearsensor), std::move(target_model), initial_state, simulation_time));
 
+    /* Step 3.3 - Define the likelihood model */
+    /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
+    std::unique_ptr<LikelihoodModel> exp_likelihood(new GaussianLikelihood());
+
     /* Step 3.3 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<PFCorrection> pf_correction(new UpdateParticles());
     pf_correction->setMeasurementModel(std::move(linear_target_measurement));
-
-    /* Step 3.4 - Define the likelihood model */
-    /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
-    std::unique_ptr<PFCorrection> exp_likelihood(new GaussianLikelihood(std::move(pf_correction)));
+    pf_correction->setLikelihoodModel(std::move(exp_likelihood));
 
     /* Initialize a update particle decorator */
-    std::unique_ptr<PFCorrection> decorated_correction(new DecoratedUpdateParticles(std::move(exp_likelihood)));
+    std::unique_ptr<PFCorrection> decorated_correction(new DecoratedUpdateParticles(std::move(pf_correction)));
 
 
     /* Initialize a resampling algorithm */
