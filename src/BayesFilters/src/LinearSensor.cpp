@@ -1,6 +1,7 @@
 #include <BayesFilters/LinearSensor.h>
 
 #include <cmath>
+#include <iostream>
 #include <utility>
 
 using namespace bfl;
@@ -34,7 +35,11 @@ LinearSensor::LinearSensor() noexcept :
     LinearSensor(10.0, 10.0, 1) { }
 
 
-LinearSensor::~LinearSensor() noexcept { }
+LinearSensor::~LinearSensor() noexcept
+{
+    if (log_enabled_)
+        disableLog();
+}
 
 
 LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
@@ -43,7 +48,14 @@ LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
     H_(lin_sense.H_),
     R_(lin_sense.R_),
     sqrt_R_(lin_sense.sqrt_R_),
-    gauss_rnd_sample_(lin_sense.gauss_rnd_sample_) { };
+    gauss_rnd_sample_(lin_sense.gauss_rnd_sample_)
+{
+    if (lin_sense.log_enabled_)
+    {
+        std::cerr << "WARNING::LINEARSENSOR::OPERATOR=\n";
+        std::cerr << "\tWARNING: Source object has log enabled, but log file stream cannot be copied. Use target object enableLog(const std::string&) to enable logging." << std::endl;
+    }
+};
 
 
 LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
@@ -58,13 +70,35 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
 {
     lin_sense.sigma_x_ = 0.0;
     lin_sense.sigma_y_ = 0.0;
+
+    if (lin_sense.log_enabled_)
+    {
+        lin_sense.disableLog();
+        
+        enableLog(lin_sense.prefix_name_);
+
+        lin_sense.prefix_name_ = "";
+    }
 }
 
 
 LinearSensor& LinearSensor::operator=(const LinearSensor& lin_sense) noexcept
 {
-    LinearSensor tmp(lin_sense);
-    *this = std::move(tmp);
+    sigma_x_ = lin_sense.sigma_x_;
+    sigma_y_ = lin_sense.sigma_y_;
+    H_ = lin_sense.H_;
+    R_ = lin_sense.R_;
+    sqrt_R_ = lin_sense.sqrt_R_;
+
+    generator_ = lin_sense.generator_;
+    distribution_ = lin_sense.distribution_;
+    gauss_rnd_sample_ = lin_sense.gauss_rnd_sample_;
+
+    if (lin_sense.log_enabled_)
+    {
+        std::cerr << "WARNING::LINEARSENSOR::OPERATOR=\n";
+        std::cerr << "\tWARNING: Source object has log enabled, but log file stream cannot be copied. Use target object enableLog(const std::string&) to enable logging." << std::endl;
+    }
 
     return *this;
 }
@@ -85,6 +119,15 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
     lin_sense.sigma_x_ = 0.0;
     lin_sense.sigma_y_ = 0.0;
 
+    if (lin_sense.log_enabled_)
+    {
+        lin_sense.disableLog();
+
+        enableLog(lin_sense.prefix_name_);
+
+        lin_sense.prefix_name_ = "";
+    }
+
     return *this;
 }
 
@@ -98,6 +141,9 @@ std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_s
     std::tie(std::ignore, noise) = getNoiseSample(predicted_measurements.cols());
 
     predicted_measurements += noise;
+
+    if (log_enabled_)
+        log(predicted_measurements);
 
     return std::make_pair(true, predicted_measurements);
 }
@@ -128,4 +174,28 @@ std::pair<bool, MatrixXf> LinearSensor::getNoiseSample(const int num) const
 std::pair<bool, MatrixXf> LinearSensor::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
+}
+
+
+void LinearSensor::enableLog(const std::string& prefix_name)
+{
+    prefix_name_ = prefix_name;
+
+    log_file_measurements_.open("./" + prefix_name_ + "measurement.txt", std::ofstream::out | std::ofstream::app);
+
+    log_enabled_ = true;
+}
+
+
+void LinearSensor::disableLog()
+{
+    log_enabled_ = false;
+
+    log_file_measurements_.close();
+}
+
+
+void LinearSensor::log(const Ref<const MatrixXf>& data) const
+{
+    log_file_measurements_ << data << std::endl << std::endl;
 }

@@ -3,8 +3,10 @@
 
 #include <BayesFilters/MeasurementModel.h>
 
+#include <fstream>
 #include <functional>
 #include <random>
+#include <string>
 
 namespace bfl {
     class LinearSensor;
@@ -42,10 +44,22 @@ public:
 
     bool setProperty(const std::string property) override { return false; };
 
+    void enableLog(const std::string& prefix_name) override;
+
+    void disableLog() override;
+
 private:
     std::mt19937_64 generator_;
 
     std::normal_distribution<float> distribution_;
+
+    bool log_enabled_ = false;
+
+    std::string prefix_name_;
+
+    mutable std::ofstream log_file_measurements_;
+
+    void log(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
 
 protected:
     /**
