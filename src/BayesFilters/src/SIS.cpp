@@ -64,6 +64,7 @@ void SIS::filteringStep()
 
     result_cor_particle_.emplace_back(cor_particle_);
     result_cor_weight_.emplace_back(cor_weight_);
+    /*********************************/
 
 
     if (resampling_->neff(cor_weight_) < static_cast<float>(num_particle_)/3.0)
@@ -83,22 +84,16 @@ void SIS::filteringStep()
 
 void SIS::getResult()
 {
-    std::ofstream result_file_object;
-    std::ofstream result_file_measurement;
     std::ofstream result_file_pred_particle;
     std::ofstream result_file_pred_weight;
     std::ofstream result_file_cor_particle;
     std::ofstream result_file_cor_weight;
 
-    result_file_object.open       ("./result_object.txt");
-    result_file_measurement.open  ("./result_measurement.txt");
     result_file_pred_particle.open("./result_pred_particle.txt");
     result_file_pred_weight.open  ("./result_pred_weight.txt");
     result_file_cor_particle.open ("./result_cor_particle.txt");
     result_file_cor_weight.open   ("./result_cor_weight.txt");
 
-    result_file_object       << object_;
-    result_file_measurement  << measurement_;
     for (unsigned int k = 0; k < result_pred_particle_.size(); ++k)
     {
         result_file_pred_particle << result_pred_particle_[k] << std::endl << std::endl;
@@ -108,8 +103,6 @@ void SIS::getResult()
         result_file_cor_weight    << result_cor_weight_[k]    << std::endl << std::endl;
     }
 
-    result_file_object.close();
-    result_file_measurement.close();
     result_file_pred_particle.close();
     result_file_pred_weight.close();
     result_file_cor_particle.close();

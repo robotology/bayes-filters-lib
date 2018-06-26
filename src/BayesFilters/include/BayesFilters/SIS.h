@@ -35,10 +35,6 @@ public:
 protected:
     unsigned int num_particle_;
 
-    Eigen::MatrixXf object_;
-
-    Eigen::MatrixXf measurement_;
-
     Eigen::MatrixXf pred_particle_;
 
     Eigen::VectorXf pred_weight_;
