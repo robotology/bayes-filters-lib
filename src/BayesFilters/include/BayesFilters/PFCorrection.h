@@ -30,7 +30,7 @@ public:
     /* This is needed to be able to use decorator on correction classes. */
     virtual void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) = 0;
 
-    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
+    virtual std::pair<bool, Eigen::VectorXf> getLikelihood() = 0;
 
 protected:
     /* This is needed to be able to use decorator on correction classes. */
@@ -41,8 +41,6 @@ protected:
 
     virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                              Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
-
-    virtual std::pair<bool, Eigen::VectorXf> likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) = 0;
 
     PFCorrection() noexcept;
 
