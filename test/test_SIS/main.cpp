@@ -76,14 +76,15 @@ int main()
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
     std::unique_ptr<MeasurementModel> linear_target_measurement(new StateModelTargetMeasurement(std::move(lin_sense), std::move(target_model), initial_state, simulation_time));
 
-    /* Step 3.3 - Define the correction step */
+    /* Step 3.3 - Define the likelihood model */
+    /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
+    std::unique_ptr<LikelihoodModel> exp_likelihood(new GaussianLikelihood());
+
+    /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<PFCorrection> pf_correction(new UpdateParticles());
     pf_correction->setMeasurementModel(std::move(linear_target_measurement));
-
-    /* Step 3.4 - Define the likelihood model */
-    /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
-    std::unique_ptr<PFCorrection> exp_likelihood(new GaussianLikelihood(std::move(pf_correction)));
+    pf_correction->setLikelihoodModel(std::move(exp_likelihood));
 
 
     /* Step 4 - Resampling */
@@ -95,7 +96,7 @@ int main()
     SISSimulation sis_pf(num_particle, simulation_time);
     sis_pf.setInitialization(std::move(grid_initialization));
     sis_pf.setPrediction(std::move(pf_prediction));
-    sis_pf.setCorrection(std::move(exp_likelihood));
+    sis_pf.setCorrection(std::move(pf_correction));
     sis_pf.setResampling(std::move(resampling));
     std::cout << "done!" << std::endl;
 
