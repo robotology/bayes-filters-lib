@@ -68,7 +68,8 @@ void Resampling::resample(const Ref<const MatrixXf>& cor_particles, const Ref<co
     {
         float u_j = u_1 + static_cast<float>(j)/num_particles;
 
-        while (u_j > csw(idx_csw)) { idx_csw += 1; }
+        while (u_j > csw(idx_csw) && idx_csw < (num_particles - 1))
+            idx_csw += 1;
 
         res_particles.col(j) = cor_particles.col(idx_csw);
         res_weights(j)       = 1.0/num_particles;
