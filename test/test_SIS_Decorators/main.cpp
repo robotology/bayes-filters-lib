@@ -151,7 +151,6 @@ int main()
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> lin_sense(new LinearSensor());
-    lin_sense->enableLog("testSISDecorators_");
 
     /* Step 3.1.1 - Define a decoration for the measurement model */
     /* Initialize a white noise acceleration decorator */
@@ -161,7 +160,6 @@ int main()
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
     std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
-    simulated_process->enableLog("testSISDecorators_");
     decorated_linearsensor->setProcess(std::move(simulated_process));
 
     /* Step 3.3 - Define the likelihood model */
@@ -202,11 +200,6 @@ int main()
     if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
-
-
-    std::cout << "Saving filtering results..." << std::flush;
-    sis_pf.getResult();
-    std::cout << "done!" << std::endl;
 
 
     return EXIT_SUCCESS;

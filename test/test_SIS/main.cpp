@@ -25,7 +25,7 @@ public:
     { }
 
 protected:
-    bool runCondition()
+    bool runCondition() override
     {
         if (getFilteringStep() < simulation_steps_)
             return true;
@@ -40,6 +40,9 @@ private:
 
 int main()
 {
+    std::cout << "Running a SIS particle filter on a simulated target." << std::endl;
+    std::cout << "Data is logged in the test folder with prefix testSIS." << std::endl;
+
     /* A set of parameters needed to run a SIS particle filter in a simulated environment. */
     double surv_x = 1000.0;
     double surv_y = 1000.0;
@@ -74,13 +77,13 @@ int main()
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> lin_sense(new LinearSensor());
-    lin_sense->enableLog("testSIS_");
+    lin_sense->enableLog("testSIS");
 
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration(T, tilde_q, rd()));
     std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
-    simulated_process->enableLog("testSIS_");
+    simulated_process->enableLog("testSIS");
     lin_sense->setProcess(std::move(simulated_process));
 
     /* Step 3.3 - Define the likelihood model */
@@ -105,6 +108,7 @@ int main()
     sis_pf.setPrediction(std::move(pf_prediction));
     sis_pf.setCorrection(std::move(pf_correction));
     sis_pf.setResampling(std::move(resampling));
+    sis_pf.enableLog("testSIS");
     std::cout << "done!" << std::endl;
 
 
@@ -119,12 +123,7 @@ int main()
     if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
-
-
-    std::cout << "Saving filtering results..." << std::flush;
-    sis_pf.getResult();
-    std::cout << "done!" << std::endl;
-
+    
 
     return EXIT_SUCCESS;
 }

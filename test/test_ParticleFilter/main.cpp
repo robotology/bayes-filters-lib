@@ -9,13 +9,20 @@ using namespace bfl;
 
 class DummyParticleFilter : public ParticleFilter
 {
-    bool initialization() { std::cout << "Invoked DummyParticleFilter::initialization()." << std::endl; return true; };
+    bool initialization() override
+    {
+        std::cout << "Invoked DummyParticleFilter::initialization()." << std::endl; return true;
+    }
 
-    void filteringStep() { std::cout << "Invoked DummyParticleFilter::filteringStep(): step " << getFilteringStep() << "." << std::endl; };
+    void filteringStep() override
+    {
+        std::cout << "Invoked DummyParticleFilter::filteringStep(): step " << getFilteringStep() << "." << std::endl;
+    };
 
-    void getResult() { };
-
-    bool runCondition() { return true; };
+    bool runCondition() override
+    {
+        return true;
+    };
 };
 
 
