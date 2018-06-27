@@ -16,15 +16,16 @@ UpdateParticles::~UpdateParticles() noexcept { }
 void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
                                   Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
 {
-    bool valid_buffered_measurement = measurement_model_->bufferProcessMeasurements();
+    bool valid_buffered_measurement = measurement_model_->bufferProcessState();
 
     if (valid_buffered_measurement)
         std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_states);
 
     cor_states = pred_states;
     cor_weights = pred_weights;
+
     if (valid_likelihood_)
-        cor_weights.cwiseProduct(likelihood_);
+        cor_weights = cor_weights.cwiseProduct(likelihood_);
 }
 
 
