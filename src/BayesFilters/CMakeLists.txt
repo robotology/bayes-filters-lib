@@ -27,8 +27,10 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
         include/BayesFilters/PFPredictionDecorator.h
+        include/BayesFilters/Process.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
+        include/BayesFilters/SimulatedProcess.h
         include/BayesFilters/SPCorrection.h
         include/BayesFilters/SPPrediction.h
         include/BayesFilters/StateModel.h
@@ -79,8 +81,10 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
         src/PFPredictionDecorator.cpp
+        src/Process.cpp
         src/Resampling.cpp
         src/ResamplingWithPrior.cpp
+        src/SimulatedProcess.cpp
         src/SPCorrection.cpp
         src/SPPrediction.cpp
         src/StateModelDecorator.cpp
