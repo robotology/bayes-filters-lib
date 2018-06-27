@@ -36,6 +36,13 @@ SimulatedProcess::SimulatedProcess
 }
 
 
+SimulatedProcess::~SimulatedProcess()
+{
+    if (log_enabled_)
+        disableLog();
+}
+
+
 bool SimulatedProcess::bufferProcessState()
 {
     ++current_simulation_time_;

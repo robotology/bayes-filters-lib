@@ -126,3 +126,18 @@ void FilteringAlgorithm::filteringRecursion()
 
     run_ = false;
 }
+
+
+void FilteringAlgorithm::enableLog(const std::string& prefix_name)
+{
+    static_cast<void>(prefix_name);
+    std::cerr << "WARNING::FILTERINGALGORITHM::ENABLELOG\n";
+    std::cerr << "\tWARNING: Log facility is not implemented for this FilteringAlgorithm class. Nothing to enable." << std::endl;
+}
+
+
+void FilteringAlgorithm::disableLog()
+{
+    std::cerr << "WARNING::FILTERINGALGORITHM::DISABLELOG\n";
+    std::cerr << "\tWARNING: Log facility is not implemented for this FilteringAlgorithm class. Nothing to disable." << std::endl;
+}

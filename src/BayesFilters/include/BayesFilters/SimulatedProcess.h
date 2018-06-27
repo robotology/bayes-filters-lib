@@ -24,7 +24,7 @@ public:
                      const unsigned int simulation_time,
                      std::string process_name);
 
-    virtual ~SimulatedProcess() noexcept { };
+    virtual ~SimulatedProcess() noexcept;
 
     bool bufferProcessState() override;
 

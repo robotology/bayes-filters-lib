@@ -16,6 +16,3 @@ bool UnscentedKalmanFilter::initialization()
 
 
 void UnscentedKalmanFilter::filteringStep() { }
-
-
-void UnscentedKalmanFilter::getResult() { }

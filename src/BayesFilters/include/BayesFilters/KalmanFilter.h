@@ -17,8 +17,6 @@ public:
     bool initialization() override;
 
     void filteringStep() override;
-
-    void getResult() override;
 };
 
 #endif /* KALMANFILTER_H */

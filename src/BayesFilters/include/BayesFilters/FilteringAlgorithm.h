@@ -38,12 +38,14 @@ public:
 
     virtual bool skip(const std::string& what_step, const bool status) = 0;
 
+    virtual void enableLog(const std::string& prefix_name);
+
+    virtual void disableLog();
+
 protected:
     virtual bool initialization() = 0;
 
     virtual void filteringStep() = 0;
-
-    virtual void getResult() = 0;
 
     virtual bool runCondition() { return true; };
 

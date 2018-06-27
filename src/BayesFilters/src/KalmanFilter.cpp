@@ -16,6 +16,3 @@ bool KalmanFilter::initialization()
 
 
 void KalmanFilter::filteringStep() { }
-
-
-void KalmanFilter::getResult() { }

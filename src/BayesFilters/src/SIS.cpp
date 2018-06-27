@@ -15,7 +15,11 @@ SIS::SIS(unsigned int num_particle) noexcept :
 { }
 
 
-SIS::~SIS() noexcept { }
+SIS::~SIS() noexcept
+{
+    if (log_enabled_)
+        disableLog();
+}
 
 
 SIS::SIS(SIS&& sir_pf) noexcept :
@@ -57,14 +61,8 @@ void SIS::filteringStep()
     cor_weight_ /= cor_weight_.sum();
 
 
-    /* Here results should be saves. */
-    /* Proper strategy is WIP. */
-    result_pred_particle_.emplace_back(pred_particle_);
-    result_pred_weight_.emplace_back(pred_weight_);
-
-    result_cor_particle_.emplace_back(cor_particle_);
-    result_cor_weight_.emplace_back(cor_weight_);
-    /*********************************/
+    if (log_enabled_)
+        logger(pred_particle_, pred_weight_, cor_particle_, cor_weight_);
 
 
     if (resampling_->neff(cor_weight_) < static_cast<float>(num_particle_)/3.0)
@@ -82,29 +80,42 @@ void SIS::filteringStep()
 }
 
 
-void SIS::getResult()
+bool SIS::runCondition()
 {
-    std::ofstream result_file_pred_particle;
-    std::ofstream result_file_pred_weight;
-    std::ofstream result_file_cor_particle;
-    std::ofstream result_file_cor_weight;
+    return true;
+}
 
-    result_file_pred_particle.open("./result_pred_particle.txt");
-    result_file_pred_weight.open  ("./result_pred_weight.txt");
-    result_file_cor_particle.open ("./result_cor_particle.txt");
-    result_file_cor_weight.open   ("./result_cor_weight.txt");
 
-    for (unsigned int k = 0; k < result_pred_particle_.size(); ++k)
-    {
-        result_file_pred_particle << result_pred_particle_[k] << std::endl << std::endl;
-        result_file_pred_weight   << result_pred_weight_[k]   << std::endl << std::endl;
+void SIS::enableLog(const std::string& prefix_name)
+{
+    prefix_name_ = prefix_name;
 
-        result_file_cor_particle  << result_cor_particle_[k]  << std::endl << std::endl;
-        result_file_cor_weight    << result_cor_weight_[k]    << std::endl << std::endl;
-    }
+    log_file_pred_particle_.open("./" + prefix_name_ + "_pred_particle.txt", std::ofstream::out | std::ofstream::app);
+    log_file_pred_weight_.open  ("./" + prefix_name_ + "_pred_weight.txt",   std::ofstream::out | std::ofstream::app);
+    log_file_cor_particle_.open ("./" + prefix_name_ + "_cor_particle.txt",  std::ofstream::out | std::ofstream::app);
+    log_file_cor_weight_.open   ("./" + prefix_name_ + "_cor_weight.txt",    std::ofstream::out | std::ofstream::app);
 
-    result_file_pred_particle.close();
-    result_file_pred_weight.close();
-    result_file_cor_particle.close();
-    result_file_cor_weight.close();
+    log_enabled_ = true;
+}
+
+
+void SIS::disableLog()
+{
+    log_enabled_ = false;
+
+    log_file_pred_particle_.close();
+    log_file_pred_weight_.close();
+    log_file_cor_particle_.close();
+    log_file_cor_weight_.close();
+}
+
+
+void SIS::logger(const Ref<const MatrixXf>& pred_particle, const Ref<const VectorXf>& pred_weight,
+              const Ref<const MatrixXf>& cor_particle,  const Ref<const VectorXf>& cor_weight) const
+{
+    log_file_pred_particle_ << pred_particle.transpose() << std::endl;
+    log_file_pred_weight_ << pred_weight.transpose() << std::endl;
+
+    log_file_cor_particle_ << cor_particle.transpose() << std::endl;
+    log_file_cor_weight_ << cor_weight.transpose() << std::endl;
 }

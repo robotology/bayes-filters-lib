@@ -6,6 +6,7 @@
 #include <BayesFilters/PFPrediction.h>
 #include <BayesFilters/Resampling.h>
 
+#include <fstream>
 #include <memory>
 
 #include <Eigen/Dense>
@@ -30,7 +31,9 @@ public:
 
     void filteringStep() override;
 
-    void getResult() override;
+    void enableLog(const std::string& prefix_name) override;
+
+    void disableLog() override;
 
 protected:
     unsigned int num_particle_;
@@ -43,13 +46,21 @@ protected:
 
     Eigen::VectorXf cor_weight_;
 
-    std::vector<Eigen::MatrixXf> result_pred_particle_;
+private:
+    bool log_enabled_ = false;
 
-    std::vector<Eigen::VectorXf> result_pred_weight_;
+    std::string prefix_name_;
 
-    std::vector<Eigen::MatrixXf> result_cor_particle_;
+    mutable std::ofstream log_file_pred_particle_;
 
-    std::vector<Eigen::VectorXf> result_cor_weight_;
+    mutable std::ofstream log_file_pred_weight_;
+
+    mutable std::ofstream log_file_cor_particle_;
+
+    mutable std::ofstream log_file_cor_weight_;
+
+    void logger(const Eigen::Ref<const Eigen::MatrixXf>& pred_particle, const Eigen::Ref<const Eigen::VectorXf>& pred_weight,
+                const Eigen::Ref<const Eigen::MatrixXf>& cor_particle,  const Eigen::Ref<const Eigen::VectorXf>& cor_weight) const;
 };
 
 #endif /* SIS_H */
