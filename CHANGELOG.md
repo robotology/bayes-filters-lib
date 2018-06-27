@@ -1,8 +1,13 @@
 # 📜 BayesFilters changelog
 
-## Version 0.7.100.0
+## Version 0.7.101.0
 ###### `CMake`
  - Devel branch will now have +100 on the patch number to differentiate from master branch.
+
+
+## Version 0.7.1.0
+##### `Bugfix`
+ - Fix WhiteNoiseAcceleration implementation.
 
 
 ## Version 0.7.0.0
