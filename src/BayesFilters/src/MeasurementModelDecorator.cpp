@@ -35,18 +35,6 @@ std::pair<bool, MatrixXf> MeasurementModelDecorator::innovation(const Ref<const 
 }
 
 
-bool MeasurementModelDecorator::bufferProcessMeasurements()
-{
-    return measurement_model->bufferProcessMeasurements();
-}
-
-
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getProcessMeasurements() const
-{
-    return measurement_model->getProcessMeasurements();
-}
-
-
 std::pair<bool, MatrixXf> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
     return measurement_model->predictedMeasure(cur_states);
@@ -68,4 +56,16 @@ std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() 
 bool MeasurementModelDecorator::setProperty(const std::string property)
 {
     return measurement_model->setProperty(property);
+}
+
+
+void MeasurementModelDecorator::enableLog(const std::string& prefix_name)
+{
+    return measurement_model->enableLog(prefix_name);
+}
+
+
+void MeasurementModelDecorator::disableLog()
+{
+    return measurement_model->disableLog();
 }

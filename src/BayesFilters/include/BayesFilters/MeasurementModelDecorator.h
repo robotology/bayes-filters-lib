@@ -17,10 +17,6 @@ public:
 
     std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const override;
 
-    virtual bool bufferProcessMeasurements() override;
-
-    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
-
     std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
     std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
@@ -28,6 +24,11 @@ public:
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string property) override;
+
+
+    void enableLog(const std::string& prefix_name) override;
+
+    void disableLog() override;
 
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;
