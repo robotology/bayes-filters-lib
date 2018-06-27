@@ -78,7 +78,7 @@ void SimulatedProcess::enableLog(const std::string& prefix_name)
 {
     prefix_name_ = prefix_name;
 
-    log_file_state_.open("./" + prefix_name_ + "process_state.txt", std::ofstream::out | std::ofstream::app);
+    log_file_state_.open("./" + prefix_name_ + "_process_state.txt", std::ofstream::out | std::ofstream::app);
 
     log_enabled_ = true;
 }

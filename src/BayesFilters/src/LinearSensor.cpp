@@ -181,7 +181,7 @@ void LinearSensor::enableLog(const std::string& prefix_name)
 {
     prefix_name_ = prefix_name;
 
-    log_file_measurements_.open("./" + prefix_name_ + "measurement.txt", std::ofstream::out | std::ofstream::app);
+    log_file_measurements_.open("./" + prefix_name_ + "_measurement.txt", std::ofstream::out | std::ofstream::app);
 
     log_enabled_ = true;
 }
