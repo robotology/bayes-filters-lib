@@ -5,9 +5,9 @@
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
 #include <BayesFilters/LinearSensor.h>
+#include <BayesFilters/SimulatedProcess.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SIS.h>
-#include <BayesFilters/StateModelTargetMeasurement.h>
 #include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 #include <Eigen/Dense>
@@ -58,7 +58,11 @@ int main()
     /* Step 2 - Prediction */
     /* Step 2.1 - Define the state model */
     /* Initialize a white noise acceleration state model. */
-    std::unique_ptr<StateModel> wna(new WhiteNoiseAcceleration());
+    float T = 1.0f;
+    float tilde_q = 10.0f;
+    std::random_device rd;
+    
+    std::unique_ptr<StateModel> wna(new WhiteNoiseAcceleration(T, tilde_q, rd()));
 
     /* Step 2.2 - Define the prediction step */
     /* Initialize the particle filter prediction step and pass the ownership of the state model. */
@@ -70,11 +74,14 @@ int main()
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> lin_sense(new LinearSensor());
+    lin_sense->enableLog("testSIS_");
 
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
-    std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
-    std::unique_ptr<MeasurementModel> linear_target_measurement(new StateModelTargetMeasurement(std::move(lin_sense), std::move(target_model), initial_state, simulation_time));
+    std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration(T, tilde_q, rd()));
+    std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
+    simulated_process->enableLog("testSIS_");
+    lin_sense->setProcess(std::move(simulated_process));
 
     /* Step 3.3 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
@@ -83,7 +90,7 @@ int main()
     /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<PFCorrection> pf_correction(new UpdateParticles());
-    pf_correction->setMeasurementModel(std::move(linear_target_measurement));
+    pf_correction->setMeasurementModel(std::move(lin_sense));
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
 
 
