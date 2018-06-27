@@ -197,5 +197,5 @@ void LinearSensor::disableLog()
 
 void LinearSensor::log(const Ref<const MatrixXf>& data) const
 {
-    log_file_measurements_ << data << std::endl << std::endl;
+    log_file_measurements_ << data.transpose() << std::endl;
 }
