@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <random>
 
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
@@ -10,9 +11,9 @@
 #include <BayesFilters/ParticleSetInitialization.h>
 #include <BayesFilters/PFCorrectionDecorator.h>
 #include <BayesFilters/PFPredictionDecorator.h>
+#include <BayesFilters/SimulatedProcess.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/StateModelDecorator.h>
-#include <BayesFilters/StateModelTargetMeasurement.h>
 #include <BayesFilters/SIS.h>
 #include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
@@ -119,7 +120,7 @@ int main()
     unsigned int num_particle_y = 100;
     unsigned int num_particle = num_particle_x * num_particle_y;
     Vector4f initial_state(10.0f, 0.0f, 10.0f, 0.0f);
-    unsigned int simulation_time = 100;
+    unsigned int simulation_time = 10;
 
 
     /* Step 1 - Initialization */
@@ -150,6 +151,7 @@ int main()
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> lin_sense(new LinearSensor());
+    lin_sense->enableLog("testSISDecorators_");
 
     /* Step 3.1.1 - Define a decoration for the measurement model */
     /* Initialize a white noise acceleration decorator */
@@ -158,7 +160,9 @@ int main()
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
-    std::unique_ptr<MeasurementModel> linear_target_measurement(new StateModelTargetMeasurement(std::move(decorated_linearsensor), std::move(target_model), initial_state, simulation_time));
+    std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
+    simulated_process->enableLog("testSISDecorators_");
+    decorated_linearsensor->setProcess(std::move(simulated_process));
 
     /* Step 3.3 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
@@ -167,7 +171,7 @@ int main()
     /* Step 3.3 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<PFCorrection> pf_correction(new UpdateParticles());
-    pf_correction->setMeasurementModel(std::move(linear_target_measurement));
+    pf_correction->setMeasurementModel(std::move(decorated_linearsensor));
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
 
     /* Initialize a update particle decorator */
@@ -194,7 +198,7 @@ int main()
 
     std::cout << "Running SIS particle filter..." << std::flush;
     sis_pf.run();
-    std::cout << "waiting..." << std::flush;
+    std::cout << "waiting..." << std::endl;
     if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
