@@ -36,7 +36,7 @@ SimulatedProcess::SimulatedProcess
 }
 
 
-SimulatedProcess::~SimulatedProcess()
+SimulatedProcess::~SimulatedProcess() noexcept
 {
     if (log_enabled_)
         disableLog();
