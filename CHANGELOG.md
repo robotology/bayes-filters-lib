@@ -1,5 +1,10 @@
 # 📜 BayesFilters changelog
 
+## Version 0.7.1.0
+##### `Bugfix`
+ - Fix WhiteNoiseAcceleration implementation.
+
+
 ## Version 0.7.0.0
 ##### `Filtering classes`
  - Remove PFVisualCorrection::getVisualObservationModel() and PFVisualCorrection::setVisualObservationModel().
