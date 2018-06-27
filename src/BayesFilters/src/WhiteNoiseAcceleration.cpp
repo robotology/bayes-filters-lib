@@ -20,7 +20,6 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned 
           0.0, 1.0, 0.0, 0.0,
           0.0, 0.0, 1.0,  T_,
           0.0, 0.0, 0.0, 1.0;
-    F_ *= tilde_q;
 
     float q11 = 1.0/3.0 * std::pow(T_, 3.0);
     float q2  = 1.0/2.0 * std::pow(T_, 2.0);
@@ -28,6 +27,7 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned 
            q2,  T_, 0.0, 0.0,
           0.0, 0.0, q11,  q2,
           0.0, 0.0,  q2,  T_;
+    Q_ *= tilde_q;
 
     LDLT<Matrix4f> chol_ldlt(Q_);
     sqrt_Q_ = (chol_ldlt.transpositionsP() * Matrix4f::Identity()).transpose() * chol_ldlt.matrixL() * chol_ldlt.vectorD().real().cwiseSqrt().asDiagonal();
