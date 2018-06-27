@@ -47,7 +47,7 @@ protected:
 
     virtual void filteringStep() = 0;
 
-    virtual bool runCondition() { return true; };
+    virtual bool runCondition() = 0;
 
 private:
     unsigned int filtering_step_ = 0;

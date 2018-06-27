@@ -31,6 +31,8 @@ public:
 
     void filteringStep() override;
 
+    bool runCondition() override;
+
     void enableLog(const std::string& prefix_name) override;
 
     void disableLog() override;
