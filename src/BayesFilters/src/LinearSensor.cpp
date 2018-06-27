@@ -143,7 +143,7 @@ std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_s
     predicted_measurements += noise;
 
     if (log_enabled_)
-        log(predicted_measurements);
+        logger(predicted_measurements);
 
     return std::make_pair(true, predicted_measurements);
 }
@@ -195,7 +195,7 @@ void LinearSensor::disableLog()
 }
 
 
-void LinearSensor::log(const Ref<const MatrixXf>& data) const
+void LinearSensor::logger(const Ref<const MatrixXf>& data) const
 {
     log_file_measurements_ << data.transpose() << std::endl;
 }

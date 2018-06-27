@@ -54,7 +54,7 @@ bool SimulatedProcess::bufferProcessState()
 std::pair<bool, MatrixXf> SimulatedProcess::getProcessState() const
 {
     if (log_enabled_)
-        log(target_.col(current_simulation_time_ - 1));
+        logger(target_.col(current_simulation_time_ - 1));
 
     return std::make_pair(true, target_.col(current_simulation_time_ - 1));
 }
@@ -92,7 +92,7 @@ void SimulatedProcess::disableLog()
 }
 
 
-void SimulatedProcess::log(const Ref<const MatrixXf>& data) const
+void SimulatedProcess::logger(const Ref<const MatrixXf>& data) const
 {
     log_file_state_ << data.transpose() << std::endl;
 }

@@ -57,7 +57,7 @@ private:
 
     mutable std::ofstream log_file_state_;
 
-    void log(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
+    void logger(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
 };
 
 #endif /* SIMULATEDPROCESS_H */

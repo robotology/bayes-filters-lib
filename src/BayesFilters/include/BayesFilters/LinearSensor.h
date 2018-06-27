@@ -59,7 +59,7 @@ private:
 
     mutable std::ofstream log_file_measurements_;
 
-    void log(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
+    void logger(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
 
 protected:
     /**
