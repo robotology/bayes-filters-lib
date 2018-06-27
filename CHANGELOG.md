@@ -1,8 +1,9 @@
 # 📜 BayesFilters changelog
 
-## Version 0.7.101.0
+## Version 0.7.101
 ###### `CMake`
  - Devel branch will now have +100 on the patch number to differentiate from master branch.
+ - Fourth number of the project version has been removed to be compliant with SemVer system.
 
 
 ## Version 0.7.1.0
