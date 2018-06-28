@@ -24,19 +24,15 @@ public:
 
     bool skip(const bool status);
 
-    /* This is needed to be able to use decorator on correction classes. */
     virtual void setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model) = 0;
 
-    /* This is needed to be able to use decorator on correction classes. */
     virtual void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) = 0;
 
     virtual std::pair<bool, Eigen::VectorXf> getLikelihood() = 0;
 
 protected:
-    /* This is needed to be able to use decorator on correction classes. */
     virtual MeasurementModel& getMeasurementModel() = 0;
 
-    /* This is needed to be able to use decorator on correction classes. */
     virtual LikelihoodModel& getLikelihoodModel() = 0;
 
     virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,

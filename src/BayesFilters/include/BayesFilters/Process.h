@@ -1,7 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include<string>
+#include <string>
 
 #include <Eigen/Dense>
 
