@@ -1,6 +1,9 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+#include <BayesFilters/GenericData.h>
+
+#include <memory>
 #include <string>
 
 #include <Eigen/Dense>
@@ -15,9 +18,9 @@ class bfl::Process
 public:
     virtual ~Process() noexcept { };
 
-    virtual bool bufferProcessState() = 0;
+    virtual bool bufferProcessData() = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> getProcessState() const = 0;
+    virtual std::shared_ptr<GenericData> getProcessData() = 0;
 
     virtual bool setProperty(const std::string property) = 0;
 

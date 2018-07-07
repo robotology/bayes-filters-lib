@@ -11,7 +11,7 @@
 #include <BayesFilters/ParticleSetInitialization.h>
 #include <BayesFilters/PFCorrectionDecorator.h>
 #include <BayesFilters/PFPredictionDecorator.h>
-#include <BayesFilters/SimulatedProcess.h>
+#include <BayesFilters/SimulatedStateModel.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/StateModelDecorator.h>
 #include <BayesFilters/SIS.h>
@@ -159,8 +159,8 @@ int main()
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
     std::unique_ptr<StateModel> target_model(new WhiteNoiseAcceleration());
-    std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
     decorated_linearsensor->setProcess(std::move(simulated_process));
+    std::unique_ptr<SimulatedStateModel> simulated_state_model(new SimulatedStateModel(std::move(target_model), initial_state, simulation_time));
 
     /* Step 3.3 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */

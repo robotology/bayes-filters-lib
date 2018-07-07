@@ -1,6 +1,7 @@
 #ifndef SIMULATEDPROCESS_H
 #define SIMULATEDPROCESS_H
 
+#include <BayesFilters/EigenMatrixData.h>
 #include <BayesFilters/Process.h>
 #include <BayesFilters/StateModel.h>
 
@@ -8,30 +9,29 @@
 #include <fstream>
 
 namespace bfl {
-    class SimulatedProcess;
+    class SimulatedStateModel;
 }
 
 
-class bfl::SimulatedProcess : public Process
+class bfl::SimulatedStateModel : public Process
 {
 public:
-    SimulatedProcess(std::unique_ptr<StateModel> state_model,
-                     const Eigen::Ref<const Eigen::Vector4f>& initial_state,
-                     const unsigned int simulation_time);
+    SimulatedStateModel(std::unique_ptr<StateModel> state_model,
+                        const Eigen::Ref<const Eigen::Vector4f>& initial_state,
+                        const unsigned int simulation_time);
 
-    SimulatedProcess(std::unique_ptr<StateModel> state_model,
-                     const Eigen::Ref<const Eigen::Vector4f>& initial_state,
-                     const unsigned int simulation_time,
-                     std::string process_name);
+    SimulatedStateModel(std::unique_ptr<StateModel> state_model,
+                        const Eigen::Ref<const Eigen::Vector4f>& initial_state,
+                        const unsigned int simulation_time,
+                        std::string process_name);
 
-    virtual ~SimulatedProcess() noexcept;
+    virtual ~SimulatedStateModel() noexcept;
 
-    bool bufferProcessState() override;
+    bool bufferProcessData() override;
 
-    std::pair<bool, Eigen::MatrixXf> getProcessState() const override;
+    std::shared_ptr<GenericData> getProcessData() override;
 
     bool setProperty(const std::string property) override;
-
 
     void enableLog(const std::string& prefix_name) override;
 
@@ -44,10 +44,10 @@ public:
 
     Eigen::MatrixXf target_;
 
-    Eigen::MatrixXf measurement_;
-
 private:
     std::unique_ptr<StateModel> state_model_;
+
+    std::shared_ptr<EigenVectorXfData> simulated_state_model_data_;
 
     unsigned int current_simulation_time_ = 0;
 

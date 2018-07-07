@@ -1,4 +1,4 @@
-#include <BayesFilters/SimulatedProcess.h>
+#include <BayesFilters/SimulatedStateModel.h>
 
 #include <iostream>
 
@@ -6,14 +6,15 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SimulatedProcess::SimulatedProcess
+SimulatedStateModel::SimulatedStateModel
 (
     std::unique_ptr<StateModel> state_model,
     const Ref<const Vector4f>& initial_state,
     const unsigned int simulation_time
 ) :
     simulation_time_(simulation_time),
-    state_model_(std::move(state_model))
+    state_model_(std::move(state_model)),
+    simulated_state_model_data_(std::make_shared<EigenVectorXfData>(VectorXf(4)))
 {
     target_ = MatrixXf(4, simulation_time_);
     target_.col(0) = initial_state;
@@ -23,44 +24,46 @@ SimulatedProcess::SimulatedProcess
 }
 
 
-SimulatedProcess::SimulatedProcess
+SimulatedStateModel::SimulatedStateModel
 (
     std::unique_ptr<StateModel> state_model,
     const Ref<const Vector4f>& initial_state,
     const unsigned int simulation_time,
     std::string process_name
 ) :
-    SimulatedProcess(std::move(state_model), initial_state, simulation_time)
+    SimulatedStateModel(std::move(state_model), initial_state, simulation_time)
 {
     process_name_ = process_name_;
 }
 
 
-SimulatedProcess::~SimulatedProcess() noexcept
+SimulatedStateModel::~SimulatedStateModel() noexcept
 {
     if (log_enabled_)
         disableLog();
 }
 
 
-bool SimulatedProcess::bufferProcessState()
+bool SimulatedStateModel::bufferProcessData()
 {
     ++current_simulation_time_;
+
+    if (log_enabled_)
+        logger(target_.col(current_simulation_time_ - 1));
+
+    (*simulated_state_model_data_) = target_.col(current_simulation_time_ - 1);
 
     return true;
 }
 
 
-std::pair<bool, MatrixXf> SimulatedProcess::getProcessState() const
+std::shared_ptr<GenericData> SimulatedStateModel::getProcessData()
 {
-    if (log_enabled_)
-        logger(target_.col(current_simulation_time_ - 1));
-
-    return std::make_pair(true, target_.col(current_simulation_time_ - 1));
+    return simulated_state_model_data_;
 }
 
 
-bool SimulatedProcess::setProperty(const std::string property)
+bool SimulatedStateModel::setProperty(const std::string property)
 {
     if (property == "reset")
     {
@@ -74,7 +77,7 @@ bool SimulatedProcess::setProperty(const std::string property)
 }
 
 
-void SimulatedProcess::enableLog(const std::string& prefix_name)
+void SimulatedStateModel::enableLog(const std::string& prefix_name)
 {
     prefix_name_ = prefix_name;
 
@@ -84,7 +87,7 @@ void SimulatedProcess::enableLog(const std::string& prefix_name)
 }
 
 
-void SimulatedProcess::disableLog()
+void SimulatedStateModel::disableLog()
 {
     log_enabled_ = false;
 
@@ -92,7 +95,7 @@ void SimulatedProcess::disableLog()
 }
 
 
-void SimulatedProcess::logger(const Ref<const MatrixXf>& data) const
+void SimulatedStateModel::logger(const Ref<const MatrixXf>& data) const
 {
     log_file_state_ << data.transpose() << std::endl;
 }

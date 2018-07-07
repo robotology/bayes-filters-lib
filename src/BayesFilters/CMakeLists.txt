@@ -30,7 +30,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/Process.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
-        include/BayesFilters/SimulatedProcess.h
+        include/BayesFilters/SimulatedStateModel.h
         include/BayesFilters/SPCorrection.h
         include/BayesFilters/SPPrediction.h
         include/BayesFilters/StateModel.h
@@ -83,7 +83,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Process.cpp
         src/Resampling.cpp
         src/ResamplingWithPrior.cpp
-        src/SimulatedProcess.cpp
+        src/SimulatedStateModel.cpp
         src/SPCorrection.cpp
         src/SPPrediction.cpp
         src/StateModelDecorator.cpp

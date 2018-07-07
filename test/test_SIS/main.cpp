@@ -5,7 +5,7 @@
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
 #include <BayesFilters/LinearSensor.h>
-#include <BayesFilters/SimulatedProcess.h>
+#include <BayesFilters/SimulatedStateModel.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SIS.h>
 #include <BayesFilters/UpdateParticles.h>
@@ -85,6 +85,8 @@ int main()
     std::unique_ptr<SimulatedProcess> simulated_process(new SimulatedProcess(std::move(target_model), initial_state, simulation_time));
     simulated_process->enableLog("testSIS");
     lin_sense->setProcess(std::move(simulated_process));
+    std::unique_ptr<SimulatedStateModel> simulated_state_model(new SimulatedStateModel(std::move(target_model), initial_state, simulation_time));
+    simulated_state_model->enableLog("testSIS");
 
     /* Step 3.3 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
