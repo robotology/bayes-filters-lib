@@ -59,6 +59,18 @@ bool MeasurementModelDecorator::setProperty(const std::string property)
 }
 
 
+bool MeasurementModelDecorator::registerProcessData(std::shared_ptr<GenericData> process_data)
+{
+    return measurement_model->registerProcessData(process_data);
+}
+
+
+std::pair<bool, Eigen::MatrixXf> MeasurementModelDecorator::getProcessMeasurements() const
+{
+    return measurement_model->getProcessMeasurements();
+}
+
+
 void MeasurementModelDecorator::enableLog(const std::string& prefix_name)
 {
     return measurement_model->enableLog(prefix_name);

@@ -1,7 +1,7 @@
 #ifndef MEASUREMENTMODEL_H
 #define MEASUREMENTMODEL_H
 
-#include <BayesFilters/Process.h>
+#include <BayesFilters/GenericData.h>
 
 #include <memory>
 #include <string>
@@ -31,20 +31,13 @@ public:
 
     virtual bool setProperty(const std::string property);
 
+    virtual bool registerProcessData(std::shared_ptr<GenericData> process_data) = 0;
 
-    void setProcess(std::unique_ptr<Process> process);
-
-    bool bufferProcessState();
-
-    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const;
-
+    virtual std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const = 0;
 
     virtual void enableLog(const std::string& prefix_name);
 
     virtual void disableLog();
-
-protected:
-    std::unique_ptr<Process> process_;
 };
 
 #endif /* MEASUREMENTMODEL_H */

@@ -55,7 +55,7 @@ LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
         std::cerr << "WARNING::LINEARSENSOR::OPERATOR=\n";
         std::cerr << "\tWARNING: Source object has log enabled, but log file stream cannot be copied. Use target object enableLog(const std::string&) to enable logging." << std::endl;
     }
-};
+}
 
 
 LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
@@ -134,18 +134,18 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 
 std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_states) const
 {
-    MatrixXf predicted_measurements;
-    std::tie(std::ignore, predicted_measurements) = predictedMeasure(cur_states);
+    MatrixXf measurements;
+    std::tie(std::ignore, measurements) = predictedMeasure(cur_states);
 
     MatrixXf noise;
-    std::tie(std::ignore, noise) = getNoiseSample(predicted_measurements.cols());
+    std::tie(std::ignore, noise) = getNoiseSample(measurements.cols());
 
-    predicted_measurements += noise;
+    measurements += noise;
 
     if (log_enabled_)
-        logger(predicted_measurements);
+        logger(measurements);
 
-    return std::make_pair(true, predicted_measurements);
+    return std::make_pair(true, measurements);
 }
 
 
@@ -174,6 +174,20 @@ std::pair<bool, MatrixXf> LinearSensor::getNoiseSample(const int num) const
 std::pair<bool, MatrixXf> LinearSensor::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
+}
+
+
+bool LinearSensor::registerProcessData(std::shared_ptr<GenericData> process_data)
+{
+    process_data_ = std::dynamic_pointer_cast<VectorXf>(process_data);
+
+    return process_data_ ? true : false;
+}
+
+
+std::pair<bool, Eigen::MatrixXf> LinearSensor::getProcessMeasurements() const
+{
+    return measure(*process_data_);
 }
 
 

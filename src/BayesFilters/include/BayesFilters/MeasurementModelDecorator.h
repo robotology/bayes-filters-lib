@@ -25,6 +25,9 @@ public:
 
     bool setProperty(const std::string property) override;
 
+    bool registerProcessData(std::shared_ptr<GenericData> process_data) override;
+
+    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
 
     void enableLog(const std::string& prefix_name) override;
 
