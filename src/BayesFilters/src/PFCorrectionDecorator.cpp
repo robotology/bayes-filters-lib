@@ -17,15 +17,27 @@ PFCorrectionDecorator::PFCorrectionDecorator(PFCorrectionDecorator&& correction)
 PFCorrectionDecorator::~PFCorrectionDecorator() noexcept { }
 
 
+void PFCorrectionDecorator::setLikelihoodModel(std::unique_ptr<LikelihoodModel> measurement_model)
+{
+    correction_->setLikelihoodModel(std::move(measurement_model));
+}
+
+
 void PFCorrectionDecorator::setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model)
 {
     correction_->setMeasurementModel(std::move(observation_model));
 }
 
 
-void PFCorrectionDecorator::setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model)
+void PFCorrectionDecorator::setProcess(std::unique_ptr<Process> process)
 {
-    correction_->setLikelihoodModel(std::move(observation_model));
+    correction_->setProcess(std::move(process));
+}
+
+
+MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
+{
+    return correction_->getMeasurementModel();
 }
 
 
@@ -35,9 +47,9 @@ std::pair<bool, VectorXf> PFCorrectionDecorator::getLikelihood()
 }
 
 
-MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
+Process& PFCorrectionDecorator::getProcess()
 {
-    return correction_->getMeasurementModel();
+    return correction_->getProcess();
 }
 
 
