@@ -21,16 +21,13 @@ class bfl::SPPrediction
 public:
     virtual ~SPPrediction() noexcept { };
 
-
     Gaussian predict(const Gaussian& prev_state);
-
 
     bool skip(const std::string& what_step, const bool status);
 
     bool getSkipState();
 
     bool getSkipExogenous();
-
 
     virtual StateModel& getStateModel() = 0;
 
@@ -44,7 +41,6 @@ protected:
     SPPrediction() noexcept;
 
     SPPrediction(SPPrediction&& sp_prediction) noexcept;
-
 
     virtual Gaussian predictStep(const Gaussian& prev_state) = 0;
 

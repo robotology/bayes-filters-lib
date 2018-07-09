@@ -64,7 +64,7 @@ int main()
     float T = 1.0f;
     float tilde_q = 10.0f;
     std::random_device rd;
-    
+
     std::unique_ptr<StateModel> wna(new WhiteNoiseAcceleration(T, tilde_q, rd()));
 
     /* Step 2.2 - Define the prediction step */
@@ -126,7 +126,7 @@ int main()
     if (!sis_pf.wait())
         return EXIT_FAILURE;
     std::cout << "completed!" << std::endl;
-    
+
 
     return EXIT_SUCCESS;
 }

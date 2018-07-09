@@ -74,7 +74,7 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
     if (lin_sense.log_enabled_)
     {
         lin_sense.disableLog();
-        
+
         enableLog(lin_sense.prefix_name_);
 
         lin_sense.prefix_name_ = "";
