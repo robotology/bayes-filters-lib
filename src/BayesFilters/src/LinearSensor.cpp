@@ -151,7 +151,7 @@ std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_s
 
 std::pair<bool, Eigen::MatrixXf> LinearSensor::innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const
 {
-    return std::make_pair(true, predicted_measurements.colwise() - measurements.col(0));
+    return std::make_pair(true, -(predicted_measurements.colwise() - measurements.col(0)));
 }
 
 
