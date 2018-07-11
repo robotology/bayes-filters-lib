@@ -31,7 +31,7 @@ public:
 
     std::shared_ptr<GenericData> getProcessData() override;
 
-    bool setProperty(const std::string property) override;
+    bool setProperty(const std::string& property) override;
 
     void enableLog(const std::string& prefix_name) override;
 

@@ -63,7 +63,7 @@ std::shared_ptr<GenericData> SimulatedStateModel::getProcessData()
 }
 
 
-bool SimulatedStateModel::setProperty(const std::string property)
+bool SimulatedStateModel::setProperty(const std::string& property)
 {
     if (property == "reset")
     {
