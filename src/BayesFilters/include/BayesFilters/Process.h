@@ -22,7 +22,7 @@ public:
 
     virtual std::shared_ptr<GenericData> getProcessData() = 0;
 
-    virtual bool setProperty(const std::string property) = 0;
+    virtual bool setProperty(const std::string& property);
 
     virtual void enableLog(const std::string& prefix_name);
 

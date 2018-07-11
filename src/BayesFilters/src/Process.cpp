@@ -5,6 +5,13 @@
 using namespace bfl;
 
 
+bool Process::setProperty(const std::string& property)
+{
+    static_cast<void>(property);
+    return false;
+}
+
+
 void Process::enableLog(const std::string& prefix_name)
 {
     static_cast<void>(prefix_name);
