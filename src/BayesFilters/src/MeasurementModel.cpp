@@ -18,8 +18,9 @@ std::pair<bool, MatrixXf> MeasurementModel::getNoiseCovarianceMatrix() const
 }
 
 
-bool MeasurementModel::setProperty(const std::string property)
+bool MeasurementModel::setProperty(const std::string& property)
 {
+    static_cast<void>(property);
     return false;
 }
 

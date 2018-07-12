@@ -29,7 +29,7 @@ public:
 
     virtual std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const;
 
-    virtual bool setProperty(const std::string property);
+    virtual bool setProperty(const std::string& property);
 
     virtual bool registerProcessData(std::shared_ptr<GenericData> process_data) = 0;
 

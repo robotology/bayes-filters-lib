@@ -23,7 +23,7 @@ public:
 
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
-    bool setProperty(const std::string property) override;
+    bool setProperty(const std::string& property) override;
 
     bool registerProcessData(std::shared_ptr<GenericData> process_data) override;
 

@@ -53,7 +53,7 @@ std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() 
 }
 
 
-bool MeasurementModelDecorator::setProperty(const std::string property)
+bool MeasurementModelDecorator::setProperty(const std::string& property)
 {
     return measurement_model->setProperty(property);
 }
