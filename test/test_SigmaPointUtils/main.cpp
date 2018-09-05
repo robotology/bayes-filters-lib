@@ -2,9 +2,10 @@
 #include <iostream>
 #include <thread>
 
-#include <BayesFilters/sigmapointutils.h>
+#include <BayesFilters/sigma_point.h>
 
 using namespace bfl;
+using namespace bfl::sigma_point;
 using namespace Eigen;
 
 

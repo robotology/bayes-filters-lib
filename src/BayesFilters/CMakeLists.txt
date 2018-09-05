@@ -50,7 +50,7 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/HistoryBuffer.h
         include/BayesFilters/Particle.h
         include/BayesFilters/ParticleSet.h
-        include/BayesFilters/sigmapointutils.h)
+        include/BayesFilters/sigma_point.h)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
@@ -103,7 +103,7 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/HistoryBuffer.cpp
         src/Particle.cpp
         src/ParticleSet.cpp
-        src/sigmapointutils.cpp)
+        src/sigma_point.cpp)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}

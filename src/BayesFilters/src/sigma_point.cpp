@@ -1,15 +1,16 @@
-#include <BayesFilters/sigmapointutils.h>
+#include <BayesFilters/sigma_point.h>
 #include <BayesFilters/directional_statistics.h>
 
 #include <Eigen/SVD>
 
 using namespace bfl;
 using namespace bfl::directional_statistics;
+using namespace bfl::sigma_point;
 using namespace Eigen;
 
 
-void bfl::unscented_weights(const unsigned int n, const double alpha, const double beta, const double kappa,
-                            Ref<VectorXd> weight_mean, Ref<VectorXd> weight_covariance, double& c)
+void bfl::sigma_point::unscented_weights(const unsigned int n, const double alpha, const double beta, const double kappa,
+                                         Ref<VectorXd> weight_mean, Ref<VectorXd> weight_covariance, double& c)
 {
     double lambda = std::pow(alpha, 2.0) * (n + kappa) - n;
 
@@ -31,7 +32,7 @@ void bfl::unscented_weights(const unsigned int n, const double alpha, const doub
 }
 
 
-MatrixXd bfl::unscented_transform(const Gaussian& state, const double c)
+MatrixXd bfl::sigma_point::unscented_transform(const Gaussian& state, const double c)
 {
     JacobiSVD<MatrixXd> svd = state.covariance.jacobiSvd(ComputeThinU);
 

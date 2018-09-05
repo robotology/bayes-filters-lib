@@ -1,5 +1,5 @@
-#ifndef SIGMAPOINTUTILS_H
-#define SIGMAPOINTUTILS_H
+#ifndef SIGMAPOINT_H
+#define SIGMAPOINT_H
 
 #include <BayesFilters/Gaussian.h>
 
@@ -10,10 +10,15 @@
 
 namespace bfl
 {
+namespace sigma_point
+{
+
     void unscented_weights(const unsigned int n, const double alpha, const double beta, const double kappa,
                            Eigen::Ref<Eigen::VectorXd> weight_mean, Eigen::Ref<Eigen::VectorXd> weight_covariance, double& c);
 
     Eigen::MatrixXd unscented_transform(const Gaussian& state, const double c);
+
+}
 }
 
-#endif /* SIGMAPOINTUTILS_H */
+#endif /* SIGMAPOINT_H */
