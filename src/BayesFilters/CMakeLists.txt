@@ -44,6 +44,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
 set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/any.h
         include/BayesFilters/directional_statistics.h
+        include/BayesFilters/Data.h
         include/BayesFilters/EstimatesExtraction.h
         include/BayesFilters/Gaussian.h
         include/BayesFilters/GaussianMixture.h
@@ -98,6 +99,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/directional_statistics.cpp
+        src/Data.cpp
         src/EstimatesExtraction.cpp
         src/Gaussian.cpp
         src/GaussianMixture.cpp
