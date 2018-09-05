@@ -100,7 +100,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/directional_statistics.cpp
-        src/Data.cpp
         src/EstimatesExtraction.cpp
         src/Gaussian.cpp
         src/GaussianMixture.cpp
