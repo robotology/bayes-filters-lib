@@ -1,6 +1,8 @@
 #ifndef GENERICDATA_H
 #define GENERICDATA_H
 
+#include <BayesFilters/Logger.h>
+
 #include <string>
 
 namespace bfl {
@@ -8,16 +10,12 @@ namespace bfl {
 }
 
 
-class bfl::GenericData
+class bfl::GenericData : public bfl::Logger
 {
 public:
     virtual ~GenericData() noexcept { };
 
     virtual bool setProperty(const std::string& property);
-
-    virtual void enableLog(const std::string& prefix_name);
-
-    virtual void disableLog();
 };
 
 #endif /* PROCESS_H */
