@@ -1,9 +1,10 @@
 #include <iostream>
 #include <thread>
 
-#include <BayesFilters/directionalstatisticsutils.h>
+#include <BayesFilters/directional_statistics.h>
 
 using namespace bfl;
+using namespace bfl::directional_statistics;
 using namespace Eigen;
 
 

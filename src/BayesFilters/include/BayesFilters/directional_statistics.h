@@ -1,16 +1,21 @@
-#ifndef DIRECTIONALSTATISTICSUTILS_H
-#define DIRECTIONALSTATISTICSUTILS_H
+#ifndef DIRECTIONALSTATISTICS_H
+#define DIRECTIONALSTATISTICS_H
 
 #include <Eigen/Dense>
 
 
 namespace bfl
 {
+namespace directional_statistics
+{
+
     Eigen::MatrixXd directional_add(const Eigen::Ref<const Eigen::MatrixXd>& a, const Eigen::Ref<const Eigen::VectorXd>& b);
 
     Eigen::MatrixXd directional_sub(const Eigen::Ref<const Eigen::MatrixXd>& a, const Eigen::Ref<const Eigen::VectorXd>& b);
 
     double directional_mean(const Eigen::Ref<const Eigen::VectorXd>& a, const Eigen::Ref<const Eigen::VectorXd>& w);
+
+}
 }
 
-#endif /* DIRECTIONALSTATISTICSUTILS_H */
+#endif /* DIRECTIONALSTATISTICS_H */

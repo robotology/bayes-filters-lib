@@ -1,9 +1,10 @@
 #include <BayesFilters/sigmapointutils.h>
-#include <BayesFilters/directionalstatisticsutils.h>
+#include <BayesFilters/directional_statistics.h>
 
 #include <Eigen/SVD>
 
 using namespace bfl;
+using namespace bfl::directional_statistics;
 using namespace Eigen;
 
 

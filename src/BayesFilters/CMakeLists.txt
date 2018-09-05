@@ -43,7 +43,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/WhiteNoiseAcceleration.h)
 
 set(${LIBRARY_TARGET_NAME}_FU_HDR
-        include/BayesFilters/directionalstatisticsutils.h
+        include/BayesFilters/directional_statistics.h
         include/BayesFilters/EstimatesExtraction.h
         include/BayesFilters/Gaussian.h
         include/BayesFilters/GaussianMixture.h
@@ -96,7 +96,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/WhiteNoiseAcceleration.cpp)
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
-        src/directionalstatisticsutils.cpp
+        src/directional_statistics.cpp
         src/EstimatesExtraction.cpp
         src/Gaussian.cpp
         src/GaussianMixture.cpp

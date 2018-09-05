@@ -1,12 +1,13 @@
-#include <BayesFilters/directionalstatisticsutils.h>
+#include <BayesFilters/directional_statistics.h>
 
 #include <cmath>
 
 using namespace bfl;
+using namespace bfl::directional_statistics;
 using namespace Eigen;
 
 
-MatrixXd bfl::directional_add(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& b)
+MatrixXd bfl::directional_statistics::directional_add(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& b)
 {
     MatrixXd result = a.colwise() + b;
 
@@ -23,13 +24,13 @@ MatrixXd bfl::directional_add(const Ref<const MatrixXd>& a, const Ref<const Vect
 }
 
 
-MatrixXd bfl::directional_sub(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& b)
+MatrixXd bfl::directional_statistics::directional_sub(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& b)
 {
     return directional_add(a, -b);
 }
 
 
-double bfl::directional_mean(const Ref<const VectorXd>& a, const Ref<const VectorXd>& w)
+double bfl::directional_statistics::directional_mean(const Ref<const VectorXd>& a, const Ref<const VectorXd>& w)
 {
     MatrixXcd complex_a(a.rows(), a.cols());
 
