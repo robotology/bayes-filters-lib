@@ -58,7 +58,9 @@
 #include <type_traits>
 
 
-namespace libanyboost
+namespace bfl
+{
+namespace any
 {
 
 /**
@@ -394,6 +396,7 @@ inline ValueType any_cast(any&& operand)
     return any_cast<ValueType>(operand);
 }
 
+}
 }
 
 #endif /* ANY_H */
