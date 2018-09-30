@@ -19,7 +19,7 @@ void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const 
     bool valid_buffered_measurement = process_->bufferProcessData();
 
     if (valid_buffered_measurement)
-        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_states);
+        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*process_, *measurement_model_, pred_states);
 
     cor_states = pred_states;
     cor_weights = pred_weights;

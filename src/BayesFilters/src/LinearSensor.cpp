@@ -132,10 +132,12 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> LinearSensor::measure(const Ref<const MatrixXf>& cur_states) const
 {
-    MatrixXf measurements;
-    std::tie(std::ignore, measurements) = predictedMeasure(cur_states);
+    Data data_measurements;
+    std::tie(std::ignore, data_measurements) = predictedMeasure(cur_states);
+
+    MatrixXf measurements = any::any_cast<MatrixXf&&>(std::move(data_measurements));
 
     MatrixXf noise;
     std::tie(std::ignore, noise) = getNoiseSample(measurements.cols());
@@ -149,15 +151,19 @@ std::pair<bool, MatrixXf> LinearSensor::measure(const Ref<const MatrixXf>& cur_s
 }
 
 
-std::pair<bool, Eigen::MatrixXf> LinearSensor::innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const
+std::pair<bool, Data> LinearSensor::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
-    return std::make_pair(true, -(predicted_measurements.colwise() - measurements.col(0)));
+    MatrixXf predicted_measure = H_ * cur_states;
+
+    return std::make_pair(true, std::move(predicted_measure));
 }
 
 
-std::pair<bool, MatrixXf> LinearSensor::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> LinearSensor::innovation(const Data& predicted_measurements, const Data& measurements) const
 {
-    return std::make_pair(true, H_ * cur_states);
+    MatrixXf innovation = -(any::any_cast<MatrixXf>(predicted_measurements).colwise() - any::any_cast<MatrixXf>(measurements).col(0));
+
+    return std::make_pair(true, std::move(innovation));
 }
 
 
@@ -177,11 +183,11 @@ std::pair<bool, MatrixXf> LinearSensor::getNoiseCovarianceMatrix() const
 }
 
 
-bool LinearSensor::registerProcessData(std::shared_ptr<GenericData> process_data)
+std::pair<bool, Data> LinearSensor::getProcessMeasurements(const Data& process_data) const
 {
-    process_data_ = std::dynamic_pointer_cast<VectorXf>(process_data);
+    MatrixXf process_information = any::any_cast<MatrixXf>(process_data);
 
-    return process_data_ ? true : false;
+    return measure(process_information);
 }
 
 

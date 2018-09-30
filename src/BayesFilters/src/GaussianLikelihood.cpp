@@ -12,29 +12,43 @@ GaussianLikelihood::GaussianLikelihood(const double scale_factor) noexcept :
     scale_factor_(scale_factor) { }
 
 
-std::pair<bool, VectorXf> GaussianLikelihood::likelihood(const MeasurementModel& measurement_model, const Ref<const MatrixXf>& pred_states)
+std::pair<bool, VectorXf> GaussianLikelihood::likelihood
+(
+    const Process& process,
+    const MeasurementModel& measurement_model,
+    const Ref<const MatrixXf>& pred_states
+)
 {
     bool valid_measurements;
-    MatrixXf measurements;
-    std::tie(valid_measurements, measurements) = measurement_model.getProcessMeasurements();
+    Data data_measurements;
+    std::tie(valid_measurements, data_measurements) = measurement_model.getProcessMeasurements(process.getProcessData());
 
-    if (!valid_measurements)
+    MatrixXf measurements;
+    if (valid_measurements)
+        measurements = any::any_cast<MatrixXf&&>(std::move(data_measurements));
+    else
         return std::make_pair(false, VectorXf::Zero(1));
 
 
     bool valid_predicted_measurements;
-    MatrixXf predicted_measurements;
-    std::tie(valid_predicted_measurements, predicted_measurements) = measurement_model.predictedMeasure(pred_states);
+    Data data_predicted_measurements;
+    std::tie(valid_predicted_measurements, data_predicted_measurements) = measurement_model.predictedMeasure(pred_states);
 
-    if (!valid_predicted_measurements)
+    MatrixXf predicted_measurements;
+    if (valid_predicted_measurements)
+        predicted_measurements = any::any_cast<MatrixXf&&>(std::move(data_predicted_measurements));
+    else
         return std::make_pair(false, VectorXf::Zero(1));
 
 
     bool valid_innovation;
-    MatrixXf innovations;
-    std::tie(valid_innovation, innovations) = measurement_model.innovation(predicted_measurements, measurements);
+    Data data_innovations;
+    std::tie(valid_innovation, data_innovations) = measurement_model.innovation(predicted_measurements, measurements);
 
-    if (!valid_innovation)
+    MatrixXf innovations;
+    if (valid_innovation)
+        innovations = any::any_cast<MatrixXf&&>(std::move(data_innovations));
+    else
         return std::make_pair(false, VectorXf::Zero(1));
 
 

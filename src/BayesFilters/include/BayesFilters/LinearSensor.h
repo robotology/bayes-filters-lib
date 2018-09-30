@@ -32,17 +32,17 @@ public:
 
     LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
 
-    std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
+    std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const override;
+    std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
-    std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
+    std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const override;
 
     std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
 
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
-    bool registerProcessData(std::shared_ptr<GenericData> process_data) override;
+    std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const override;
 
     std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
 

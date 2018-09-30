@@ -1,7 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include <BayesFilters/GenericData.h>
+#include <BayesFilters/Data.h>
 
 #include <memory>
 #include <string>
@@ -20,7 +20,7 @@ public:
 
     virtual bool bufferProcessData() = 0;
 
-    virtual std::shared_ptr<GenericData> getProcessData() = 0;
+    virtual Data getProcessData() const = 0;
 
     virtual bool setProperty(const std::string& property);
 

@@ -13,8 +13,7 @@ SimulatedStateModel::SimulatedStateModel
     const unsigned int simulation_time
 ) :
     simulation_time_(simulation_time),
-    state_model_(std::move(state_model)),
-    simulated_state_model_data_(std::make_shared<EigenVectorXfData>(VectorXf(4)))
+    state_model_(std::move(state_model))
 {
     target_ = MatrixXf(4, simulation_time_);
     target_.col(0) = initial_state;
@@ -51,15 +50,17 @@ bool SimulatedStateModel::bufferProcessData()
     if (log_enabled_)
         logger(target_.col(current_simulation_time_ - 1));
 
-    (*simulated_state_model_data_) = target_.col(current_simulation_time_ - 1);
+    MatrixXf process_information = target_.col(current_simulation_time_ - 1);
+
+    data_simulated_state_model_ = std::move(process_information);
 
     return true;
 }
 
 
-std::shared_ptr<GenericData> SimulatedStateModel::getProcessData()
+Data SimulatedStateModel::getProcessData() const
 {
-    return simulated_state_model_data_;
+    return data_simulated_state_model_;
 }
 
 

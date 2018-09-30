@@ -1,7 +1,6 @@
 #ifndef SIMULATEDPROCESS_H
 #define SIMULATEDPROCESS_H
 
-#include <BayesFilters/EigenMatrixData.h>
 #include <BayesFilters/Process.h>
 #include <BayesFilters/StateModel.h>
 
@@ -29,25 +28,23 @@ public:
 
     bool bufferProcessData() override;
 
-    std::shared_ptr<GenericData> getProcessData() override;
+    Data getProcessData() const override;
 
     bool setProperty(const std::string& property) override;
 
     void enableLog(const std::string& prefix_name) override;
-
-    void disableLog() override;
-
-public:
+private:
     unsigned int simulation_time_;
 
-    std::string process_name_ = "SimulatedProcess";
-
+    void disableLog() override;
     Eigen::MatrixXf target_;
 
-private:
+protected:
+    std::string process_name_ = "SimulatedProcess";
+
     std::unique_ptr<StateModel> state_model_;
 
-    std::shared_ptr<EigenVectorXfData> simulated_state_model_data_;
+    Data data_simulated_state_model_;
 
     unsigned int current_simulation_time_ = 0;
 

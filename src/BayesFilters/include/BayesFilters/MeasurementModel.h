@@ -1,7 +1,7 @@
 #ifndef MEASUREMENTMODEL_H
 #define MEASUREMENTMODEL_H
 
-#include <BayesFilters/GenericData.h>
+#include <BayesFilters/Data.h>
 
 #include <memory>
 #include <string>
@@ -19,11 +19,11 @@ class bfl::MeasurementModel
 public:
     virtual ~MeasurementModel() noexcept { };
 
-    virtual std::pair<bool, Eigen::MatrixXf> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
+    virtual std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
+    virtual std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> innovation(const Eigen::Ref<const Eigen::MatrixXf>& predicted_measurements, const Eigen::Ref<const Eigen::MatrixXf>& measurements) const = 0;
+    virtual std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const = 0;
 
     virtual std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const;
 
@@ -31,7 +31,7 @@ public:
 
     virtual bool setProperty(const std::string& property);
 
-    virtual bool registerProcessData(std::shared_ptr<GenericData> process_data) = 0;
+    virtual std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const = 0;
 
     virtual std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const = 0;
 

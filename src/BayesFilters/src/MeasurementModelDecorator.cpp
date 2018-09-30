@@ -23,21 +23,21 @@ MeasurementModelDecorator& MeasurementModelDecorator::operator=(MeasurementModel
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states) const
 {
     return measurement_model->measure(cur_states);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::innovation(const Ref<const MatrixXf>& predicted_measurements, const Ref<const MatrixXf>& measurements) const
+std::pair<bool, Data> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
-    return measurement_model->innovation(predicted_measurements, measurements);
+    return measurement_model->predictedMeasure(cur_states);
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> MeasurementModelDecorator::innovation(const Data& predicted_measurements, const Data& measurements) const
 {
-    return measurement_model->predictedMeasure(cur_states);
+    return measurement_model->innovation(predicted_measurements, measurements);
 }
 
 
@@ -59,9 +59,9 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 }
 
 
-bool MeasurementModelDecorator::registerProcessData(std::shared_ptr<GenericData> process_data)
+std::pair<bool, Data> MeasurementModelDecorator::getProcessMeasurements(const Data& process_data) const
 {
-    return measurement_model->registerProcessData(process_data);
+    return measurement_model->getProcessMeasurements(process_data);
 }
 
 
