@@ -52,6 +52,7 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/Particle.h
         include/BayesFilters/ParticleSet.h
         include/BayesFilters/sigma_point.h)
+        include/BayesFilters/utils.h
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
