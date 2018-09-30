@@ -2,14 +2,16 @@ set(LIBRARY_TARGET_NAME BayesFilters)
 
 # List of library header files
 set(${LIBRARY_TARGET_NAME}_FC_HDR
-        include/BayesFilters/FilteringContext.h)
+        include/BayesFilters/FilteringContext.h
+)
 
 set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/FilteringAlgorithm.h
         include/BayesFilters/KalmanFilter.h
         include/BayesFilters/ParticleFilter.h
         include/BayesFilters/SIS.h
-        include/BayesFilters/UnscentedKalmanFilter.h)
+        include/BayesFilters/UnscentedKalmanFilter.h
+)
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
@@ -38,7 +40,8 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/UpdateParticles.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
-        include/BayesFilters/WhiteNoiseAcceleration.h)
+        include/BayesFilters/WhiteNoiseAcceleration.h
+)
 
 set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/any.h
@@ -51,8 +54,9 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/Logger.h
         include/BayesFilters/Particle.h
         include/BayesFilters/ParticleSet.h
-        include/BayesFilters/sigma_point.h)
+        include/BayesFilters/sigma_point.h
         include/BayesFilters/utils.h
+)
 
 set(${LIBRARY_TARGET_NAME}_HDR
         ${${LIBRARY_TARGET_NAME}_FC_HDR}
@@ -63,14 +67,16 @@ set(${LIBRARY_TARGET_NAME}_HDR
 
 # List of library source files
 set(${LIBRARY_TARGET_NAME}_FC_SRC
-        src/FilteringContext.cpp)
+        src/FilteringContext.cpp
+)
 
 set(${LIBRARY_TARGET_NAME}_FA_SRC
         src/FilteringAlgorithm.cpp
         src/KalmanFilter.cpp
         src/ParticleFilter.cpp
         src/SIS.cpp
-        src/UnscentedKalmanFilter.cpp)
+        src/UnscentedKalmanFilter.cpp
+)
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
@@ -94,7 +100,8 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/UpdateParticles.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
-        src/WhiteNoiseAcceleration.cpp)
+        src/WhiteNoiseAcceleration.cpp
+)
 
 set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/directional_statistics.cpp
@@ -105,7 +112,8 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/Logger.cpp
         src/Particle.cpp
         src/ParticleSet.cpp
-        src/sigma_point.cpp)
+        src/sigma_point.cpp
+)
 
 set(${LIBRARY_TARGET_NAME}_SRC
         ${${LIBRARY_TARGET_NAME}_FC_SRC}
@@ -141,7 +149,8 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
         LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
         ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
         RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
-        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev)
+        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${LIBRARY_TARGET_NAME}" COMPONENT dev
+)
 
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
 
