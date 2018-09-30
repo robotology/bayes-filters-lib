@@ -72,7 +72,7 @@ namespace any
  * empty and if the contained objects are equivalent.
  * The non-member any_cast functions provide type-safe access to the contained object.
  */
-class any final
+class any
 {
 public:
     /**
