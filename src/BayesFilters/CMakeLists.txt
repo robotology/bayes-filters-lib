@@ -20,7 +20,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/InitSurveillanceAreaGrid.h
         include/BayesFilters/LikelihoodModel.h
         include/BayesFilters/LinearSensor.h
-        include/BayesFilters/EigenMatrixData.h
         include/BayesFilters/MeasurementModel.h
         include/BayesFilters/MeasurementModelDecorator.h
         include/BayesFilters/ParticleSetInitialization.h
@@ -48,7 +47,6 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/EstimatesExtraction.h
         include/BayesFilters/Gaussian.h
         include/BayesFilters/GaussianMixture.h
-        include/BayesFilters/GenericData.h
         include/BayesFilters/HistoryBuffer.h
         include/BayesFilters/Logger.h
         include/BayesFilters/Particle.h
@@ -77,7 +75,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
         src/GaussianLikelihood.cpp
-        src/GenericData.cpp
         src/InitSurveillanceAreaGrid.cpp
         src/LinearSensor.cpp
         src/MeasurementModel.cpp
