@@ -6,12 +6,9 @@
 
 namespace bfl
 {
-namespace any
-{
 
-typedef any Data;
+typedef any::any Data;
 
-}
 }
 
 #endif /* DATA_H */
