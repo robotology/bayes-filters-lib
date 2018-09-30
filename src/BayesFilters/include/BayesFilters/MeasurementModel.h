@@ -18,7 +18,7 @@ namespace bfl {
 class bfl::MeasurementModel : public Logger
 {
 public:
-    virtual ~MeasurementModel() noexcept { };
+    virtual ~MeasurementModel() noexcept;
 
     virtual std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
 

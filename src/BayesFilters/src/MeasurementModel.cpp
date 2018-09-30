@@ -6,6 +6,10 @@ using namespace bfl;
 using namespace Eigen;
 
 
+MeasurementModel::~MeasurementModel() noexcept
+{ }
+
+
 std::pair<bool, MatrixXf> MeasurementModel::getNoiseSample(const int num) const
 {
     return std::make_pair(false, MatrixXf::Zero(1, 1));

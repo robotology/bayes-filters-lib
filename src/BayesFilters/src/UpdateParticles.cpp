@@ -13,8 +13,12 @@ UpdateParticles::UpdateParticles() noexcept { }
 UpdateParticles::~UpdateParticles() noexcept { }
 
 
-void UpdateParticles::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
-                                  Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+void UpdateParticles::correctStep
+(
+    const Ref<const MatrixXf>& pred_states,
+    const Ref<const VectorXf>& pred_weights,
+    Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights
+)
 {
     bool valid_buffered_measurement = process_->bufferProcessData();
 
