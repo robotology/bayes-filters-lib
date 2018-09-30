@@ -36,10 +36,7 @@ LinearSensor::LinearSensor() noexcept :
 
 
 LinearSensor::~LinearSensor() noexcept
-{
-    if (log_enabled_)
-        disableLog();
-}
+{ }
 
 
 LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
@@ -73,11 +70,9 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
 
     if (lin_sense.log_enabled_)
     {
-        lin_sense.disableLog();
+        lin_sense.disable_log();
 
-        enableLog(lin_sense.prefix_name_);
-
-        lin_sense.prefix_name_ = "";
+        enable_log(lin_sense.get_prefix_path(), lin_sense.get_prefix_name());
     }
 }
 
@@ -121,11 +116,9 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 
     if (lin_sense.log_enabled_)
     {
-        lin_sense.disableLog();
+        lin_sense.disable_log();
 
-        enableLog(lin_sense.prefix_name_);
-
-        lin_sense.prefix_name_ = "";
+        enable_log(lin_sense.get_prefix_path(), lin_sense.get_prefix_name());
     }
 
     return *this;
@@ -144,8 +137,7 @@ std::pair<bool, Data> LinearSensor::measure(const Ref<const MatrixXf>& cur_state
 
     measurements += noise;
 
-    if (log_enabled_)
-        logger(measurements);
+    logger(measurements.transpose());
 
     return std::make_pair(true, measurements);
 }
@@ -188,34 +180,4 @@ std::pair<bool, Data> LinearSensor::getProcessMeasurements(const Data& process_d
     MatrixXf process_information = any::any_cast<MatrixXf>(process_data);
 
     return measure(process_information);
-}
-
-
-std::pair<bool, Eigen::MatrixXf> LinearSensor::getProcessMeasurements() const
-{
-    return measure(*process_data_);
-}
-
-
-void LinearSensor::enableLog(const std::string& prefix_name)
-{
-    prefix_name_ = prefix_name;
-
-    log_file_measurements_.open("./" + prefix_name_ + "_measurement.txt", std::ofstream::out | std::ofstream::app);
-
-    log_enabled_ = true;
-}
-
-
-void LinearSensor::disableLog()
-{
-    log_enabled_ = false;
-
-    log_file_measurements_.close();
-}
-
-
-void LinearSensor::logger(const Ref<const MatrixXf>& data) const
-{
-    log_file_measurements_ << data.transpose() << std::endl;
 }

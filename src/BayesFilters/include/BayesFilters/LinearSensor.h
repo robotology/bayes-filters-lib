@@ -44,12 +44,6 @@ public:
 
     std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
-
-    void enableLog(const std::string& prefix_name) override;
-
-    void disableLog() override;
-
 private:
     std::mt19937_64 generator_;
 
@@ -57,13 +51,7 @@ private:
 
     bool log_enabled_ = false;
 
-    std::string prefix_name_;
-
-    std::shared_ptr<Eigen::VectorXf> process_data_;
-
     mutable std::ofstream log_file_measurements_;
-
-    void logger(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
 
 protected:
     /**
@@ -101,6 +89,11 @@ protected:
      * A call to `gauss_rnd_sample_()` returns a floating point random number.
      */
     std::function<float()> gauss_rnd_sample_;
+
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        return {prefix_path + "/" + prefix_name + "_measurements"};
+    }
 };
 
 #endif /* LINEARSENSOR_H */

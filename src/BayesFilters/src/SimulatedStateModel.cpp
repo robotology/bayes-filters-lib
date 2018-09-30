@@ -37,18 +37,14 @@ SimulatedStateModel::SimulatedStateModel
 
 
 SimulatedStateModel::~SimulatedStateModel() noexcept
-{
-    if (log_enabled_)
-        disableLog();
-}
+{ }
 
 
 bool SimulatedStateModel::bufferProcessData()
 {
     ++current_simulation_time_;
 
-    if (log_enabled_)
-        logger(target_.col(current_simulation_time_ - 1));
+    logger(target_.col(current_simulation_time_ - 1).transpose());
 
     MatrixXf process_information = target_.col(current_simulation_time_ - 1);
 
@@ -75,28 +71,4 @@ bool SimulatedStateModel::setProperty(const std::string& property)
     }
 
     return false;
-}
-
-
-void SimulatedStateModel::enableLog(const std::string& prefix_name)
-{
-    prefix_name_ = prefix_name;
-
-    log_file_state_.open("./" + prefix_name_ + "_process_state.txt", std::ofstream::out | std::ofstream::app);
-
-    log_enabled_ = true;
-}
-
-
-void SimulatedStateModel::disableLog()
-{
-    log_enabled_ = false;
-
-    log_file_state_.close();
-}
-
-
-void SimulatedStateModel::logger(const Ref<const MatrixXf>& data) const
-{
-    log_file_state_ << data.transpose() << std::endl;
 }

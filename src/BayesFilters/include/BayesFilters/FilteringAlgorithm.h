@@ -1,6 +1,8 @@
 #ifndef FILTERINGALGORITHM_H
 #define FILTERINGALGORITHM_H
 
+#include <BayesFilters/Logger.h>
+
 #include <condition_variable>
 #include <mutex>
 #include <string>
@@ -15,7 +17,7 @@ namespace bfl {
 }
 
 
-class bfl::FilteringAlgorithm
+class bfl::FilteringAlgorithm : public Logger
 {
 public:
     virtual ~FilteringAlgorithm() noexcept { };
@@ -37,10 +39,6 @@ public:
     bool isRunning();
 
     virtual bool skip(const std::string& what_step, const bool status) = 0;
-
-    virtual void enableLog(const std::string& prefix_name);
-
-    virtual void disableLog();
 
 protected:
     virtual bool initialization() = 0;

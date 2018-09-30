@@ -33,10 +33,6 @@ public:
 
     bool runCondition() override;
 
-    void enableLog(const std::string& prefix_name) override;
-
-    void disableLog() override;
-
 protected:
     unsigned int num_particle_;
 
@@ -48,21 +44,13 @@ protected:
 
     Eigen::VectorXf cor_weight_;
 
-private:
-    bool log_enabled_ = false;
-
-    std::string prefix_name_;
-
-    mutable std::ofstream log_file_pred_particle_;
-
-    mutable std::ofstream log_file_pred_weight_;
-
-    mutable std::ofstream log_file_cor_particle_;
-
-    mutable std::ofstream log_file_cor_weight_;
-
-    void logger(const Eigen::Ref<const Eigen::MatrixXf>& pred_particle, const Eigen::Ref<const Eigen::VectorXf>& pred_weight,
-                const Eigen::Ref<const Eigen::MatrixXf>& cor_particle,  const Eigen::Ref<const Eigen::VectorXf>& cor_weight) const;
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        return {prefix_path + "/" + prefix_name + "_pred_particles",
+                prefix_path + "/" + prefix_name + "_pred_weights",
+                prefix_path + "/" + prefix_name + "_cor_particles",
+                prefix_path + "/" + prefix_name + "_cor_weights"};
+    }
 };
 
 #endif /* SIS_H */

@@ -2,6 +2,7 @@
 #define MEASUREMENTMODEL_H
 
 #include <BayesFilters/Data.h>
+#include <BayesFilters/Logger.h>
 
 #include <memory>
 #include <string>
@@ -14,7 +15,7 @@ namespace bfl {
 }
 
 
-class bfl::MeasurementModel
+class bfl::MeasurementModel : public Logger
 {
 public:
     virtual ~MeasurementModel() noexcept { };
@@ -32,12 +33,6 @@ public:
     virtual bool setProperty(const std::string& property);
 
     virtual std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const = 0;
-
-    virtual std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const = 0;
-
-    virtual void enableLog(const std::string& prefix_name);
-
-    virtual void disableLog();
 };
 
 #endif /* MEASUREMENTMODEL_H */

@@ -27,12 +27,6 @@ public:
 
     std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getProcessMeasurements() const override;
-
-    void enableLog(const std::string& prefix_name) override;
-
-    void disableLog() override;
-
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;
 

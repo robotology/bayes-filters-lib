@@ -1,6 +1,7 @@
 #ifndef SIMULATEDPROCESS_H
 #define SIMULATEDPROCESS_H
 
+#include <BayesFilters/Logger.h>
 #include <BayesFilters/Process.h>
 #include <BayesFilters/StateModel.h>
 
@@ -12,7 +13,7 @@ namespace bfl {
 }
 
 
-class bfl::SimulatedStateModel : public Process
+class bfl::SimulatedStateModel : public Process, public Logger
 {
 public:
     SimulatedStateModel(std::unique_ptr<StateModel> state_model,
@@ -32,11 +33,9 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-    void enableLog(const std::string& prefix_name) override;
 private:
     unsigned int simulation_time_;
 
-    void disableLog() override;
     Eigen::MatrixXf target_;
 
 protected:
@@ -54,7 +53,10 @@ protected:
 
     mutable std::ofstream log_file_state_;
 
-    void logger(const Eigen::Ref<const Eigen::MatrixXf>& data) const;
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        return {prefix_path + "/" + prefix_name + "_target"};
+    }
 };
 
 #endif /* SIMULATEDPROCESS_H */

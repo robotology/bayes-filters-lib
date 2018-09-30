@@ -63,21 +63,3 @@ std::pair<bool, Data> MeasurementModelDecorator::getProcessMeasurements(const Da
 {
     return measurement_model->getProcessMeasurements(process_data);
 }
-
-
-std::pair<bool, Eigen::MatrixXf> MeasurementModelDecorator::getProcessMeasurements() const
-{
-    return measurement_model->getProcessMeasurements();
-}
-
-
-void MeasurementModelDecorator::enableLog(const std::string& prefix_name)
-{
-    return measurement_model->enableLog(prefix_name);
-}
-
-
-void MeasurementModelDecorator::disableLog()
-{
-    return measurement_model->disableLog();
-}
