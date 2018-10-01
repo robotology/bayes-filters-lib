@@ -23,19 +23,6 @@ SimulatedStateModel::SimulatedStateModel
 }
 
 
-SimulatedStateModel::SimulatedStateModel
-(
-    std::unique_ptr<StateModel> state_model,
-    const Ref<const Vector4f>& initial_state,
-    const unsigned int simulation_time,
-    std::string process_name
-) :
-    SimulatedStateModel(std::move(state_model), initial_state, simulation_time)
-{
-    process_name_ = process_name_;
-}
-
-
 SimulatedStateModel::~SimulatedStateModel() noexcept
 { }
 
@@ -65,7 +52,7 @@ bool SimulatedStateModel::setProperty(const std::string& property)
     if (property == "reset")
     {
         current_simulation_time_ = 0;
-        std::cout << "Successfully reset " + process_name_ + "." << std::endl;
+        std::cout << "Successfully reset state model." << std::endl;
 
         return true;
     }

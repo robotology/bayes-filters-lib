@@ -20,11 +20,6 @@ public:
                         const Eigen::Ref<const Eigen::Vector4f>& initial_state,
                         const unsigned int simulation_time);
 
-    SimulatedStateModel(std::unique_ptr<StateModel> state_model,
-                        const Eigen::Ref<const Eigen::Vector4f>& initial_state,
-                        const unsigned int simulation_time,
-                        std::string process_name);
-
     virtual ~SimulatedStateModel() noexcept;
 
     bool bufferProcessData() override;
@@ -39,8 +34,6 @@ private:
     Eigen::MatrixXf target_;
 
 protected:
-    std::string process_name_ = "SimulatedProcess";
-
     std::unique_ptr<StateModel> state_model_;
 
     Data data_simulated_state_model_;
