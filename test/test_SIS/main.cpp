@@ -56,7 +56,7 @@ int main()
 
     /* Step 1 - Initialization */
     /* Initialize initialization class. */
-    std::unique_ptr<ParticleSetInitialization> grid_initialization = make_unique<InitSurveillanceAreaGrid>(surv_x, surv_y, num_particle_x, num_particle_y);
+    std::unique_ptr<ParticleSetInitialization> grid_initialization = utils::make_unique<InitSurveillanceAreaGrid>(surv_x, surv_y, num_particle_x, num_particle_y);
 
 
     /* Step 2 - Prediction */
@@ -66,33 +66,33 @@ int main()
     float tilde_q = 10.0f;
     std::random_device rd;
 
-    std::unique_ptr<StateModel> wna = make_unique<WhiteNoiseAcceleration>(T, tilde_q, rd());
+    std::unique_ptr<StateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q, rd());
 
     /* Step 2.2 - Define the prediction step */
     /* Initialize the particle filter prediction step and pass the ownership of the state model. */
-    std::unique_ptr<PFPrediction> pf_prediction = make_unique<DrawParticles>();
+    std::unique_ptr<PFPrediction> pf_prediction = utils::make_unique<DrawParticles>();
     pf_prediction->setStateModel(std::move(wna));
 
 
     /* Step 3 - Correction */
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<MeasurementModel> lin_sense = make_unique<LinearSensor>();
+    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearSensor>();
     lin_sense->enable_log(".", "testSIS");
 
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model with a white noise acceleration. */
-    std::unique_ptr<StateModel> target_model = make_unique<WhiteNoiseAcceleration>(T, tilde_q, rd());
-    std::unique_ptr<SimulatedStateModel> simulated_state_model = make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
+    std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q, rd());
+    std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
     simulated_state_model->enable_log(".", "testSIS");
 
     /* Step 3.3 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
-    std::unique_ptr<LikelihoodModel> exp_likelihood = make_unique<GaussianLikelihood>();
+    std::unique_ptr<LikelihoodModel> exp_likelihood = utils::make_unique<GaussianLikelihood>();
 
     /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<PFCorrection> pf_correction = make_unique<UpdateParticles>();
+    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<UpdateParticles>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(lin_sense));
     pf_correction->setProcess(std::move(simulated_state_model));
@@ -100,7 +100,7 @@ int main()
 
     /* Step 4 - Resampling */
     /* Initialize a resampling algorithm */
-    std::unique_ptr<Resampling> resampling = make_unique<Resampling>();
+    std::unique_ptr<Resampling> resampling = utils::make_unique<Resampling>();
 
 
     std::cout << "Constructing SIS particle filter..." << std::flush;

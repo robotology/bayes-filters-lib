@@ -16,6 +16,8 @@
 
 namespace bfl
 {
+namespace utils
+{
 
 /**
  * Constructs an object of type T and wraps it in a std::unique_ptr.
@@ -43,6 +45,7 @@ std::unique_ptr<T> make_unique(Args&& ...args)
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
+}
 }
 
 
