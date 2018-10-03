@@ -1,4 +1,4 @@
-#include <BayesFilters/LinearSensor.h>
+#include <BayesFilters/LinearModel.h>
 
 #include <cmath>
 #include <iostream>
@@ -8,7 +8,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LinearSensor::LinearSensor
+LinearModel::LinearModel
 (
     const float sigma_x,
     const float sigma_y,
@@ -32,19 +32,19 @@ LinearSensor::LinearSensor
 }
 
 
-LinearSensor::LinearSensor(const float sigma_x, const float sigma_y) noexcept :
-    LinearSensor(sigma_x, sigma_y, 1) { }
+LinearModel::LinearModel(const float sigma_x, const float sigma_y) noexcept :
+    LinearModel(sigma_x, sigma_y, 1) { }
 
 
-LinearSensor::LinearSensor() noexcept :
-    LinearSensor(10.0, 10.0, 1) { }
+LinearModel::LinearModel() noexcept :
+    LinearModel(10.0, 10.0, 1) { }
 
 
-LinearSensor::~LinearSensor() noexcept
+LinearModel::~LinearModel() noexcept
 { }
 
 
-LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
+LinearModel::LinearModel(const LinearModel& lin_sense) :
     sigma_x_(lin_sense.sigma_x_),
     sigma_y_(lin_sense.sigma_y_),
     H_(lin_sense.H_),
@@ -60,7 +60,7 @@ LinearSensor::LinearSensor(const LinearSensor& lin_sense) :
 }
 
 
-LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
+LinearModel::LinearModel(LinearModel&& lin_sense) noexcept :
     generator_(std::move(lin_sense.generator_)),
     distribution_(std::move(lin_sense.distribution_)),
     sigma_x_(lin_sense.sigma_x_),
@@ -82,7 +82,7 @@ LinearSensor::LinearSensor(LinearSensor&& lin_sense) noexcept :
 }
 
 
-LinearSensor& LinearSensor::operator=(const LinearSensor& lin_sense) noexcept
+LinearModel& LinearModel::operator=(const LinearModel& lin_sense) noexcept
 {
     sigma_x_ = lin_sense.sigma_x_;
     sigma_y_ = lin_sense.sigma_y_;
@@ -104,7 +104,7 @@ LinearSensor& LinearSensor::operator=(const LinearSensor& lin_sense) noexcept
 }
 
 
-LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
+LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
 {
     sigma_x_ = lin_sense.sigma_x_;
     sigma_y_ = lin_sense.sigma_y_;
@@ -130,7 +130,7 @@ LinearSensor& LinearSensor::operator=(LinearSensor&& lin_sense) noexcept
 }
 
 
-std::pair<bool, Data> LinearSensor::measure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> LinearModel::measure(const Ref<const MatrixXf>& cur_states) const
 {
     Data data_measurements;
     std::tie(std::ignore, data_measurements) = predictedMeasure(cur_states);
@@ -148,7 +148,7 @@ std::pair<bool, Data> LinearSensor::measure(const Ref<const MatrixXf>& cur_state
 }
 
 
-std::pair<bool, Data> LinearSensor::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> LinearModel::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
     MatrixXf predicted_measure = H_ * cur_states;
 
@@ -156,7 +156,7 @@ std::pair<bool, Data> LinearSensor::predictedMeasure(const Ref<const MatrixXf>& 
 }
 
 
-std::pair<bool, Data> LinearSensor::innovation(const Data& predicted_measurements, const Data& measurements) const
+std::pair<bool, Data> LinearModel::innovation(const Data& predicted_measurements, const Data& measurements) const
 {
     MatrixXf innovation = -(any::any_cast<MatrixXf>(predicted_measurements).colwise() - any::any_cast<MatrixXf>(measurements).col(0));
 
@@ -164,7 +164,7 @@ std::pair<bool, Data> LinearSensor::innovation(const Data& predicted_measurement
 }
 
 
-std::pair<bool, MatrixXf> LinearSensor::getNoiseSample(const int num) const
+std::pair<bool, MatrixXf> LinearModel::getNoiseSample(const int num) const
 {
     MatrixXf rand_vectors(2, num);
     for (int i = 0; i < rand_vectors.size(); i++)
@@ -176,13 +176,13 @@ std::pair<bool, MatrixXf> LinearSensor::getNoiseSample(const int num) const
 }
 
 
-std::pair<bool, MatrixXf> LinearSensor::getNoiseCovarianceMatrix() const
+std::pair<bool, MatrixXf> LinearModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
 }
 
 
-std::pair<bool, Data> LinearSensor::getProcessMeasurements(const Data& process_data) const
+std::pair<bool, Data> LinearModel::getProcessMeasurements(const Data& process_data) const
 {
     MatrixXf process_information = any::any_cast<MatrixXf>(process_data);
 

@@ -1,5 +1,5 @@
-#ifndef LINEARSENSOR_H
-#define LINEARSENSOR_H
+#ifndef LINEARMODEL_H
+#define LINEARMODEL_H
 
 #include <BayesFilters/MeasurementModel.h>
 
@@ -9,28 +9,28 @@
 #include <string>
 
 namespace bfl {
-    class LinearSensor;
+    class LinearModel;
 }
 
 
-class bfl::LinearSensor : public MeasurementModel
+class bfl::LinearModel : public MeasurementModel
 {
 public:
-    LinearSensor(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept;
+    LinearModel(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept;
 
-    LinearSensor(const float sigma_x, const float sigma_y) noexcept;
+    LinearModel(const float sigma_x, const float sigma_y) noexcept;
 
-    LinearSensor() noexcept;
+    LinearModel() noexcept;
 
-    LinearSensor(const LinearSensor& lin_sense);
+    LinearModel(const LinearModel& lin_sense);
 
-    LinearSensor(LinearSensor&& lin_sense) noexcept;
+    LinearModel(LinearModel&& lin_sense) noexcept;
 
-    virtual ~LinearSensor() noexcept;
+    virtual ~LinearModel() noexcept;
 
-    LinearSensor& operator=(const LinearSensor& lin_sense) noexcept;
+    LinearModel& operator=(const LinearModel& lin_sense) noexcept;
 
-    LinearSensor& operator=(LinearSensor&& lin_sense) noexcept;
+    LinearModel& operator=(LinearModel&& lin_sense) noexcept;
 
     std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
@@ -96,4 +96,4 @@ protected:
     }
 };
 
-#endif /* LINEARSENSOR_H */
+#endif /* LINEARMODEL_H */

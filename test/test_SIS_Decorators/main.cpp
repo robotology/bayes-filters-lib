@@ -5,7 +5,7 @@
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
-#include <BayesFilters/LinearSensor.h>
+#include <BayesFilters/LinearModel.h>
 #include <BayesFilters/LikelihoodModel.h>
 #include <BayesFilters/MeasurementModelDecorator.h>
 #include <BayesFilters/ParticleSetInitialization.h>
@@ -151,7 +151,7 @@ int main()
     /* Step 3 - Correction */
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearSensor>();
+    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearModel>();
 
     /* Step 3.1.1 - Define a decoration for the measurement model */
     /* Initialize a white noise acceleration decorator */

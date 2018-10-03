@@ -4,7 +4,7 @@
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
-#include <BayesFilters/LinearSensor.h>
+#include <BayesFilters/LinearModel.h>
 #include <BayesFilters/SimulatedStateModel.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SIS.h>
@@ -77,7 +77,7 @@ int main()
     /* Step 3 - Correction */
     /* Step 3.1 - Define the measurement model */
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearSensor>();
+    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearModel>();
     lin_sense->enable_log(".", "testSIS");
 
     /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
