@@ -390,7 +390,7 @@ inline ValueType any_cast(const any& operand)
 template<typename ValueType>
 inline ValueType any_cast(any&& operand)
 {
-    static_assert(std::is_rvalue_reference<ValueType&&>::value || std::is_const< typename std::remove_reference<ValueType>::type >::value,
+    static_assert(std::is_rvalue_reference<ValueType&&>::value || std::is_const<typename std::remove_reference<ValueType>::type>::value,
         "any_cast shall not be used for getting nonconst references to temporary objects");
 
     return any_cast<ValueType>(operand);
