@@ -5,7 +5,7 @@
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
-#include <BayesFilters/LinearModel.h>
+#include <BayesFilters/SimulatedLinearSensor.h>
 #include <BayesFilters/LikelihoodModel.h>
 #include <BayesFilters/MeasurementModelDecorator.h>
 #include <BayesFilters/ParticleSetInitialization.h>
@@ -28,7 +28,8 @@ class DecoratedWNA : public StateModelDecorator
 {
 public:
     DecoratedWNA(std::unique_ptr<StateModel> state_model) noexcept :
-        StateModelDecorator(std::move(state_model)) { };
+        StateModelDecorator(std::move(state_model))
+    { };
 
 
     void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override
@@ -44,7 +45,8 @@ class DecoratedLinearSensor : public MeasurementModelDecorator
 {
 public:
     DecoratedLinearSensor(std::unique_ptr<MeasurementModel> observation_model) noexcept :
-        MeasurementModelDecorator(std::move(observation_model)) { }
+        MeasurementModelDecorator(std::move(observation_model))
+    { }
 
 
     std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override
@@ -60,7 +62,8 @@ class DecoratedDrawParticles : public PFPredictionDecorator
 {
 public:
     DecoratedDrawParticles(std::unique_ptr<PFPrediction> prediction) noexcept :
-        PFPredictionDecorator(std::move(prediction)) { }
+        PFPredictionDecorator(std::move(prediction))
+    { }
 
 protected:
     void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
@@ -77,7 +80,8 @@ class DecoratedUpdateParticles : public PFCorrectionDecorator
 {
 public:
     DecoratedUpdateParticles(std::unique_ptr<PFCorrection> correction) noexcept :
-        PFCorrectionDecorator(std::move(correction)) { }
+        PFCorrectionDecorator(std::move(correction))
+    { }
 
 protected:
     void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
@@ -94,8 +98,8 @@ class SISSimulation : public SIS
 {
 public:
     SISSimulation(unsigned int num_particle, unsigned int simulation_steps) noexcept :
-    SIS(num_particle),
-    simulation_steps_(simulation_steps)
+        SIS(num_particle),
+        simulation_steps_(simulation_steps)
     { }
 
 protected:
@@ -149,38 +153,38 @@ int main()
 
 
     /* Step 3 - Correction */
-    /* Step 3.1 - Define the measurement model */
-    /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<MeasurementModel> lin_sense = utils::make_unique<LinearModel>();
-
-    /* Step 3.1.1 - Define a decoration for the measurement model */
-    /* Initialize a white noise acceleration decorator */
-    std::unique_ptr<MeasurementModel> decorated_linearsensor = utils::make_unique<DecoratedLinearSensor>(std::move(lin_sense));
-
-    /* Step 3.2 - Define where the measurement are originated from (either simulated or from a real process) */
+    /* Step 3.1 - Define where the measurement are originated from (either simulated or from a real process) */
     /* Initialize simulaterd target model, a white noise acceleration, and measurements, a MeasurementModel decoration for the linear sensor. */
     std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>();
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
 
-    /* Step 3.3 - Define the likelihood model */
+    /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
+    std::unique_ptr<MeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
+
+    /* Step 3.1.1 - Define a decoration for the measurement model */
+    /* Initialize a white noise acceleration decorator */
+    std::unique_ptr<MeasurementModel> decorated_linearsensor = utils::make_unique<DecoratedLinearSensor>(std::move(simulated_linear_sensor));
+
+    /* Step 3.2 - Define the likelihood model */
     /* Initialize the the exponential likelihood, a PFCorrection decoration of the particle filter correction step. */
     std::unique_ptr<LikelihoodModel> exp_likelihood = utils::make_unique<GaussianLikelihood>();
 
-    /* Step 3.4 - Define the correction step */
+    /* Step 3.3 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<UpdateParticles>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(decorated_linearsensor));
-    pf_correction->setProcess(std::move(simulated_state_model));
 
     /* Initialize a update particle decorator */
     std::unique_ptr<PFCorrection> decorated_correction = utils::make_unique<DecoratedUpdateParticles>(std::move(pf_correction));
 
 
+    /* Step 4 - Resampling */
     /* Initialize a resampling algorithm */
     std::unique_ptr<Resampling> resampling = utils::make_unique<Resampling>();
 
 
+    /* Step 5 - Assemble the particle filter */
     std::cout << "Constructing SIS particle filter..." << std::flush;
     SISSimulation sis_pf(num_particle, simulation_time);
     sis_pf.setInitialization(std::move(grid_initialization));
@@ -190,11 +194,14 @@ int main()
     std::cout << "done!" << std::endl;
 
 
+    /* Step 6 - Prepare the filter to be run */
     std::cout << "Booting SIS particle filter..." << std::flush;
     sis_pf.boot();
     std::cout << "completed!" << std::endl;
 
 
+    /* Step 7 - Run the filter and wait until it is closed */
+    /* Note that since this is a simulation, the filter will end upon simulation termination */
     std::cout << "Running SIS particle filter..." << std::flush;
     sis_pf.run();
     std::cout << "waiting..." << std::endl;
