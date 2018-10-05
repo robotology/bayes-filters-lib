@@ -27,7 +27,7 @@ SimulatedStateModel::~SimulatedStateModel() noexcept
 { }
 
 
-bool SimulatedStateModel::bufferProcessData()
+bool SimulatedStateModel::bufferData()
 {
     ++current_simulation_time_;
 
@@ -41,7 +41,7 @@ bool SimulatedStateModel::bufferProcessData()
 }
 
 
-Data SimulatedStateModel::getProcessData() const
+Data SimulatedStateModel::getData() const
 {
     return data_simulated_state_model_;
 }

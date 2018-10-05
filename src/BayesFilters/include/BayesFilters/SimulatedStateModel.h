@@ -1,8 +1,8 @@
 #ifndef SIMULATEDPROCESS_H
 #define SIMULATEDPROCESS_H
 
+#include <BayesFilters/Agent.h>
 #include <BayesFilters/Logger.h>
-#include <BayesFilters/Process.h>
 #include <BayesFilters/StateModel.h>
 
 #include <memory>
@@ -13,7 +13,7 @@ namespace bfl {
 }
 
 
-class bfl::SimulatedStateModel : public Process, public Logger
+class bfl::SimulatedStateModel : public Agent, public Logger
 {
 public:
     SimulatedStateModel(std::unique_ptr<StateModel> state_model,
@@ -22,9 +22,9 @@ public:
 
     virtual ~SimulatedStateModel() noexcept;
 
-    bool bufferProcessData() override;
+    bool bufferData() override;
 
-    Data getProcessData() const override;
+    Data getData() const override;
 
     bool setProperty(const std::string& property) override;
 

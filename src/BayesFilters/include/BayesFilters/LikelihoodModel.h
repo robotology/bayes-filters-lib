@@ -2,7 +2,6 @@
 #define LIKELIHOODMODEL_H
 
 #include <BayesFilters/MeasurementModel.h>
-#include <BayesFilters/Process.h>
 
 #include <Eigen/Core>
 
@@ -16,7 +15,7 @@ class bfl::LikelihoodModel
 public:
     virtual ~LikelihoodModel() noexcept { };
 
-    virtual std::pair<bool, Eigen::VectorXf> likelihood(const Process& process, const MeasurementModel& measurement_model, const Eigen::Ref<const Eigen::MatrixXf>& pred_states) = 0;
+    virtual std::pair<bool, Eigen::VectorXf> likelihood(const MeasurementModel& measurement_model, const Eigen::Ref<const Eigen::MatrixXf>& pred_states) = 0;
 };
 
 #endif /* LIKELIHOODMODEL_H */

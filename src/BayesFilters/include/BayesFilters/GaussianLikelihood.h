@@ -18,7 +18,7 @@ public:
     virtual ~GaussianLikelihood() noexcept { };
 
 protected:
-    std::pair<bool, Eigen::VectorXf> likelihood(const Process& process, const MeasurementModel& measurement_model, const Eigen::Ref<const Eigen::MatrixXf>& pred_states) override;
+    std::pair<bool, Eigen::VectorXf> likelihood(const MeasurementModel& measurement_model, const Eigen::Ref<const Eigen::MatrixXf>& pred_states) override;
 
     double scale_factor_;
 };

@@ -14,14 +14,13 @@ GaussianLikelihood::GaussianLikelihood(const double scale_factor) noexcept :
 
 std::pair<bool, VectorXf> GaussianLikelihood::likelihood
 (
-    const Process& process,
     const MeasurementModel& measurement_model,
     const Ref<const MatrixXf>& pred_states
 )
 {
     bool valid_measurements;
     Data data_measurements;
-    std::tie(valid_measurements, data_measurements) = measurement_model.getProcessMeasurements(process.getProcessData());
+    std::tie(valid_measurements, data_measurements) = measurement_model.getAgentMeasurements();
 
     MatrixXf measurements;
     if (valid_measurements)
