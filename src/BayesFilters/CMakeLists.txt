@@ -14,6 +14,7 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
+        include/BayesFilters/Agent.h
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
@@ -29,7 +30,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
         include/BayesFilters/PFPredictionDecorator.h
-        include/BayesFilters/Process.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedStateModel.h
@@ -79,6 +79,7 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
+        src/Agent.cpp
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
         src/GaussianLikelihood.cpp
@@ -90,7 +91,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
         src/PFPredictionDecorator.cpp
-        src/Process.cpp
         src/Resampling.cpp
         src/ResamplingWithPrior.cpp
         src/SimulatedStateModel.cpp
