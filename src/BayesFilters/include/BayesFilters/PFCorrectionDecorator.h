@@ -17,8 +17,6 @@ public:
 
     void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
 
-    void setProcess(std::unique_ptr<Process> process) override;
-
     std::pair<bool, Eigen::VectorXf> getLikelihood() override;
 
 protected:
@@ -31,8 +29,6 @@ protected:
     LikelihoodModel& getLikelihoodModel() override;
 
     MeasurementModel& getMeasurementModel() override;
-
-    Process& getProcess() override;
 
     void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
                      Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;

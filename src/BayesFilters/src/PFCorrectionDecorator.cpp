@@ -29,12 +29,6 @@ void PFCorrectionDecorator::setMeasurementModel(std::unique_ptr<MeasurementModel
 }
 
 
-void PFCorrectionDecorator::setProcess(std::unique_ptr<Process> process)
-{
-    correction_->setProcess(std::move(process));
-}
-
-
 MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
 {
     return correction_->getMeasurementModel();
@@ -44,12 +38,6 @@ MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
 std::pair<bool, VectorXf> PFCorrectionDecorator::getLikelihood()
 {
     return correction_->getLikelihood();
-}
-
-
-Process& PFCorrectionDecorator::getProcess()
-{
-    return correction_->getProcess();
 }
 
 

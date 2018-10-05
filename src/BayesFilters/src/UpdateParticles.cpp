@@ -20,10 +20,10 @@ void UpdateParticles::correctStep
     Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights
 )
 {
-    bool valid_buffered_measurement = process_->bufferProcessData();
+    bool valid_buffered_agent_data = measurement_model_->bufferAgentData();
 
-    if (valid_buffered_measurement)
-        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*process_, *measurement_model_, pred_states);
+    if (valid_buffered_agent_data)
+        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_states);
 
     cor_states = pred_states;
     cor_weights = pred_weights;
@@ -51,12 +51,6 @@ void UpdateParticles::setMeasurementModel(std::unique_ptr<MeasurementModel> meas
 }
 
 
-void UpdateParticles::setProcess(std::unique_ptr<Process> process)
-{
-    process_ = std::move(process);
-}
-
-
 LikelihoodModel& UpdateParticles::getLikelihoodModel()
 {
     return *likelihood_model_;
@@ -66,10 +60,4 @@ LikelihoodModel& UpdateParticles::getLikelihoodModel()
 MeasurementModel& UpdateParticles::getMeasurementModel()
 {
     return *measurement_model_;
-}
-
-
-Process& UpdateParticles::getProcess()
-{
-    return *process_;
 }
