@@ -180,11 +180,3 @@ std::pair<bool, MatrixXf> LinearModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
 }
-
-
-std::pair<bool, Data> LinearModel::getProcessMeasurements(const Data& process_data) const
-{
-    MatrixXf process_information = any::any_cast<MatrixXf>(process_data);
-
-    return measure(process_information);
-}

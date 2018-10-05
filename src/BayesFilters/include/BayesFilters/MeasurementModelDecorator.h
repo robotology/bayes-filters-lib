@@ -25,7 +25,9 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-    std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const override;
+    bool bufferAgentData() const override;
+
+    std::pair<bool, bfl::Data> getAgentMeasurements() const override;
 
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;

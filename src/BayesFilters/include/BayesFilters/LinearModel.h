@@ -42,8 +42,6 @@ public:
 
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
-    std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const override;
-
 private:
     std::mt19937_64 generator_;
 

@@ -32,7 +32,9 @@ public:
 
     virtual bool setProperty(const std::string& property);
 
-    virtual std::pair<bool, bfl::Data> getProcessMeasurements(const bfl::Data& process_data) const = 0;
+    virtual bool bufferAgentData() const = 0;
+
+    virtual std::pair<bool, bfl::Data> getAgentMeasurements() const = 0;
 };
 
 #endif /* MEASUREMENTMODEL_H */

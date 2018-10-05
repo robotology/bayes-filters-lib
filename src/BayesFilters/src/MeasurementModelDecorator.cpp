@@ -59,7 +59,13 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 }
 
 
-std::pair<bool, Data> MeasurementModelDecorator::getProcessMeasurements(const Data& process_data) const
+bool MeasurementModelDecorator::bufferAgentData() const
 {
-    return measurement_model->getProcessMeasurements(process_data);
+    return measurement_model->bufferAgentData();
+}
+
+
+std::pair<bool, Data> MeasurementModelDecorator::getAgentMeasurements() const
+{
+    return measurement_model->getAgentMeasurements();
 }
