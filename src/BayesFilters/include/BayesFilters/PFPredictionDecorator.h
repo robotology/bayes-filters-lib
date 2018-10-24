@@ -21,7 +21,6 @@ protected:
 
     PFPredictionDecorator& operator=(PFPredictionDecorator&& prediction) noexcept;
 
-
     StateModel& getStateModel() override;
 
     void setStateModel(std::unique_ptr<StateModel> state_model) override;
