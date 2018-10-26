@@ -1,5 +1,5 @@
-#ifndef SPPREDICTION_H
-#define SPPREDICTION_H
+#ifndef GAUSSIANPREDICTION_H
+#define GAUSSIANPREDICTION_H
 
 #include <BayesFilters/ExogenousModel.h>
 #include <BayesFilters/Gaussian.h>
@@ -12,14 +12,14 @@
 #include <Eigen/Dense>
 
 namespace bfl {
-    class SPPrediction;
+    class GaussianPrediction;
 }
 
 
-class bfl::SPPrediction
+class bfl::GaussianPrediction
 {
 public:
-    virtual ~SPPrediction() noexcept { };
+    virtual ~GaussianPrediction() noexcept { };
 
     Gaussian predict(const Gaussian& prev_state);
 
@@ -38,9 +38,9 @@ public:
     virtual void setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model);
 
 protected:
-    SPPrediction() noexcept;
+    GaussianPrediction() noexcept;
 
-    SPPrediction(SPPrediction&& sp_prediction) noexcept;
+    GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
 
     virtual Gaussian predictStep(const Gaussian& prev_state) = 0;
 
@@ -51,7 +51,7 @@ private:
 
     bool skip_exogenous_  = false;
 
-    friend class SPPredictionDecorator;
+    friend class GaussianPredictionDecorator;
 };
 
-#endif /* SPPREDICTION_H */
+#endif /* GAUSSIANPREDICTION_H */

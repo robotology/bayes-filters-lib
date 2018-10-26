@@ -1,4 +1,4 @@
-#include <BayesFilters/SPPrediction.h>
+#include <BayesFilters/GaussianPrediction.h>
 
 #include <exception>
 #include <iostream>
@@ -7,13 +7,13 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SPPrediction::SPPrediction() noexcept { };
+GaussianPrediction::GaussianPrediction() noexcept { };
 
 
-SPPrediction::SPPrediction(SPPrediction&& sp_prediction) noexcept { }
+GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept { }
 
 
-Gaussian SPPrediction::predict(const Gaussian& prev_state)
+Gaussian GaussianPrediction::predict(const Gaussian& prev_state)
 {
     if (!skip_prediction_)
         return predictStep(prev_state);
@@ -22,7 +22,7 @@ Gaussian SPPrediction::predict(const Gaussian& prev_state)
 }
 
 
-bool SPPrediction::skip(const std::string& what_step, const bool status)
+bool GaussianPrediction::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
         skip_prediction_ = status;
@@ -37,25 +37,25 @@ bool SPPrediction::skip(const std::string& what_step, const bool status)
 }
 
 
-bool SPPrediction::getSkipState()
+bool GaussianPrediction::getSkipState()
 {
     return skip_state_;
 }
 
 
-bool SPPrediction::getSkipExogenous()
+bool GaussianPrediction::getSkipExogenous()
 {
     return skip_exogenous_;
 }
 
 
-ExogenousModel& SPPrediction::getExogenousModel()
+ExogenousModel& GaussianPrediction::getExogenousModel()
 {
     throw std::runtime_error("ERROR::PFPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tCall to unimplemented base class method.");
 }
 
 
-void SPPrediction::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
+void GaussianPrediction::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
 {
     std::cerr << "ERROR::SPPREDICTION::SETEXOGENOUSMODEL\n";
     std::cerr << "ERROR:\n\tCall to unimplemented base class method." << std::endl;
