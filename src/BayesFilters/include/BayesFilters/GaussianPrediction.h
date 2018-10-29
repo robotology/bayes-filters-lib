@@ -29,14 +29,6 @@ public:
 
     bool getSkipExogenous();
 
-    virtual StateModel& getStateModel() = 0;
-
-    virtual void setStateModel(std::unique_ptr<StateModel> state_model) = 0;
-
-    virtual ExogenousModel& getExogenousModel();
-
-    virtual void setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model);
-
 protected:
     GaussianPrediction() noexcept;
 

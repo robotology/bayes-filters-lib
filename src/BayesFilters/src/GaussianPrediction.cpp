@@ -48,15 +48,3 @@ bool GaussianPrediction::getSkipExogenous()
     return skip_exogenous_;
 }
 
-
-ExogenousModel& GaussianPrediction::getExogenousModel()
-{
-    throw std::runtime_error("ERROR::PFPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tCall to unimplemented base class method.");
-}
-
-
-void GaussianPrediction::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
-{
-    std::cerr << "ERROR::SPPREDICTION::SETEXOGENOUSMODEL\n";
-    std::cerr << "ERROR:\n\tCall to unimplemented base class method." << std::endl;
-}
