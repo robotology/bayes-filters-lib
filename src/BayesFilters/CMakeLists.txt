@@ -97,6 +97,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/SimulatedStateModel.cpp
         src/SPCorrection.cpp
         src/SPPrediction.cpp
+        src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
         src/UKFCorrection.cpp
