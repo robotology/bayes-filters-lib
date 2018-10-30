@@ -26,6 +26,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/LinearMeasurementModel.h
         include/BayesFilters/LinearModel.h
         include/BayesFilters/LinearStateModel.h
+        include/BayesFilters/LTIMeasurementModel.h
         include/BayesFilters/LTIStateModel.h
         include/BayesFilters/MeasurementModel.h
         include/BayesFilters/MeasurementModelDecorator.h
@@ -92,6 +93,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/LinearMeasurementModel.cpp
         src/LinearModel.cpp
         src/LinearStateModel.cpp
+        src/LTIMeasurementModel.cpp
         src/LTIStateModel.cpp
         src/MeasurementModel.cpp
         src/MeasurementModelDecorator.cpp
