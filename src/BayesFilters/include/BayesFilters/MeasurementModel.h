@@ -20,7 +20,7 @@ class bfl::MeasurementModel : public Logger
 public:
     virtual ~MeasurementModel() noexcept;
 
-    virtual std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
+    virtual std::pair<bool, bfl::Data> measure() const = 0;
 
     virtual std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
 
@@ -31,8 +31,6 @@ public:
     virtual bool setProperty(const std::string& property);
 
     virtual bool bufferAgentData() const = 0;
-
-    virtual std::pair<bool, bfl::Data> getAgentMeasurements() const = 0;
 };
 
 #endif /* MEASUREMENTMODEL_H */
