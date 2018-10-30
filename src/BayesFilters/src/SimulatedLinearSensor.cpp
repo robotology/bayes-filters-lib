@@ -43,9 +43,16 @@ bool SimulatedLinearSensor::bufferAgentData() const
 }
 
 
-std::pair<bool, Data> SimulatedLinearSensor::getAgentMeasurements() const
+std::pair<bool, Data> SimulatedLinearSensor::measure() const
 {
-    MatrixXf simulated_state = any::any_cast<MatrixXf>(simulated_state_model_->getData());
+    MatrixXf measurements = H_ * any::any_cast<MatrixXf>(simulated_state_model_->getData());
 
-    return measure(simulated_state);
+    MatrixXf noise;
+    std::tie(std::ignore, noise) = getNoiseSample(measurements.cols());
+
+    measurements += noise;
+
+    logger(measurements.transpose());
+
+    return std::make_pair(true, measurements);
 }

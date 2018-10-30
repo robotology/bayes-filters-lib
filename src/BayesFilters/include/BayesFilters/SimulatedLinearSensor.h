@@ -24,7 +24,7 @@ public:
 
     bool bufferAgentData() const override;
 
-    std::pair<bool, bfl::Data> getAgentMeasurements() const override;
+    std::pair<bool, bfl::Data> measure() const override;
 
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
