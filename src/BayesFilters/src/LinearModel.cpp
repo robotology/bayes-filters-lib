@@ -130,24 +130,6 @@ LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
 }
 
 
-std::pair<bool, Data> LinearModel::measure(const Ref<const MatrixXf>& cur_states) const
-{
-    Data data_measurements;
-    std::tie(std::ignore, data_measurements) = predictedMeasure(cur_states);
-
-    MatrixXf measurements = any::any_cast<MatrixXf&&>(std::move(data_measurements));
-
-    MatrixXf noise;
-    std::tie(std::ignore, noise) = getNoiseSample(measurements.cols());
-
-    measurements += noise;
-
-    logger(measurements.transpose());
-
-    return std::make_pair(true, measurements);
-}
-
-
 std::pair<bool, Data> LinearModel::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
 {
     MatrixXf predicted_measure = H_ * cur_states;
