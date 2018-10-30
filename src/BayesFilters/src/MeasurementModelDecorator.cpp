@@ -41,12 +41,6 @@ std::pair<bool, Data> MeasurementModelDecorator::innovation(const Data& predicte
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseSample(const int num) const
-{
-    return measurement_model->getNoiseSample(num);
-}
-
-
 std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() const
 {
     return measurement_model->getNoiseCovarianceMatrix();

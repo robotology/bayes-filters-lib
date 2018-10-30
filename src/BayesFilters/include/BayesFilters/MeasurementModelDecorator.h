@@ -19,8 +19,6 @@ public:
 
     std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
-
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string& property) override;
