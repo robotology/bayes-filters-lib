@@ -13,7 +13,7 @@ namespace bfl {
 class bfl::MeasurementModelDecorator : public MeasurementModel
 {
 public:
-    std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
+    std::pair<bool, bfl::Data> measure() const override;
 
     std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
@@ -24,8 +24,6 @@ public:
     bool setProperty(const std::string& property) override;
 
     bool bufferAgentData() const override;
-
-    std::pair<bool, bfl::Data> getAgentMeasurements() const override;
 
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;

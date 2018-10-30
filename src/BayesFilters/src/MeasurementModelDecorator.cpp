@@ -23,9 +23,9 @@ MeasurementModelDecorator& MeasurementModelDecorator::operator=(MeasurementModel
 }
 
 
-std::pair<bool, Data> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> MeasurementModelDecorator::measure() const
 {
-    return measurement_model->measure(cur_states);
+    return measurement_model->measure();
 }
 
 
@@ -56,10 +56,4 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 bool MeasurementModelDecorator::bufferAgentData() const
 {
     return measurement_model->bufferAgentData();
-}
-
-
-std::pair<bool, Data> MeasurementModelDecorator::getAgentMeasurements() const
-{
-    return measurement_model->getAgentMeasurements();
 }
