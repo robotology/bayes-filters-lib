@@ -28,9 +28,3 @@ bool GaussianCorrection::skip(const bool status)
 
     return true;
 }
-
-
-void GaussianCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
-{
-    measurement_model_ = std::move(measurement_model);
-}
