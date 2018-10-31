@@ -1,13 +1,13 @@
-#include <BayesFilters/SPCorrection.h>
+#include <BayesFilters/GaussianCorrection.h>
 
 using namespace bfl;
 using namespace Eigen;
 
 
-SPCorrection::SPCorrection() noexcept { };
+GaussianCorrection::GaussianCorrection() noexcept { };
 
 
-Gaussian SPCorrection::correct(const Gaussian& pred_state)
+Gaussian GaussianCorrection::correct(const Gaussian& pred_state)
 {
     if (!skip_)
         return correctStep(pred_state);
@@ -16,13 +16,13 @@ Gaussian SPCorrection::correct(const Gaussian& pred_state)
 }
 
 
-std::pair<bool, VectorXd> SPCorrection::getLikelihood()
+std::pair<bool, VectorXd> GaussianCorrection::getLikelihood()
 {
     return std::make_pair(false, VectorXd::Zero(1));
 }
 
 
-bool SPCorrection::skip(const bool status)
+bool GaussianCorrection::skip(const bool status)
 {
     skip_ = status;
 
@@ -30,7 +30,7 @@ bool SPCorrection::skip(const bool status)
 }
 
 
-void SPCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
+void GaussianCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
 {
     measurement_model_ = std::move(measurement_model);
 }

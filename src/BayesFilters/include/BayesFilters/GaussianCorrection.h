@@ -1,5 +1,5 @@
-#ifndef SPCORRECTION_H
-#define SPCORRECTION_H
+#ifndef GAUSSIANCORRECTION_H
+#define GAUSSIANCORRECTION_H
 
 #include <BayesFilters/Gaussian.h>
 #include <BayesFilters/MeasurementModel.h>
@@ -10,14 +10,14 @@
 #include <Eigen/Dense>
 
 namespace bfl {
-    class SPCorrection;
+    class GaussianCorrection;
 }
 
 
-class bfl::SPCorrection
+class bfl::GaussianCorrection
 {
 public:
-    virtual ~SPCorrection() noexcept { };
+    virtual ~GaussianCorrection() noexcept { };
 
     Gaussian correct(const Gaussian& pred_state);
 
@@ -37,14 +37,14 @@ protected:
 
     virtual std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) = 0;
 
-    SPCorrection() noexcept;
+    GaussianCorrection() noexcept;
 
-    SPCorrection(SPCorrection&& sp_correction) noexcept;
+    GaussianCorrection(GaussianCorrection&& gaussian_correction) noexcept;
 
 private:
     bool skip_ = false;
 
-    friend class SPCorrectionDecorator;
+    friend class GaussianCorrectionDecorator;
 };
 
-#endif /* SPCORRECTION_H */
+#endif /* GAUSSIANCORRECTION_H */
