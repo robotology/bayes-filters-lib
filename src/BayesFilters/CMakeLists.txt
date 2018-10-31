@@ -20,6 +20,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
+        include/BayesFilters/GaussianCorrection.h
         include/BayesFilters/GaussianLikelihood.h
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/GaussianPrediction.h
@@ -41,7 +42,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedLinearSensor.h
         include/BayesFilters/SimulatedStateModel.h
-        include/BayesFilters/SPCorrection.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
@@ -90,6 +90,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Agent.cpp
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
+        src/GaussianCorrection.cpp
         src/GaussianLikelihood.cpp
         src/GaussianPrediction.cpp
         src/InitSurveillanceAreaGrid.cpp
@@ -108,7 +109,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/ResamplingWithPrior.cpp
         src/SimulatedLinearSensor.cpp
         src/SimulatedStateModel.cpp
-        src/SPCorrection.cpp
         src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
