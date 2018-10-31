@@ -2,10 +2,6 @@
 #define GAUSSIANCORRECTION_H
 
 #include <BayesFilters/Gaussian.h>
-#include <BayesFilters/MeasurementModel.h>
-
-#include <memory>
-#include <utility>
 
 #include <Eigen/Dense>
 
