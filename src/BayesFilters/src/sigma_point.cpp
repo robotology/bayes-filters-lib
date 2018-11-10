@@ -32,7 +32,7 @@ void bfl::sigma_point::unscented_weights(const unsigned int n, const double alph
 }
 
 
-MatrixXd bfl::sigma_point::unscented_transform(const Gaussian& state, const double c)
+MatrixXd bfl::sigma_point::sigma_point(const Gaussian& state, const double c)
 {
     JacobiSVD<MatrixXd> svd = state.covariance().jacobiSvd(ComputeThinU);
 
