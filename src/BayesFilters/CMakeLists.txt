@@ -14,6 +14,7 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
+        include/BayesFilters/AdditiveStateModel.h
         include/BayesFilters/Agent.h
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
@@ -79,6 +80,7 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
+        src/AdditiveStateModel.cpp
         src/Agent.cpp
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
