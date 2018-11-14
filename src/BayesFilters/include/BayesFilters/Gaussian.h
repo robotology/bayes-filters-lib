@@ -13,11 +13,16 @@ namespace bfl {
 class bfl::Gaussian
 {
 public:
-    Gaussian() noexcept;
+    Gaussian();
 
-    Gaussian(const unsigned int dim);
+    Gaussian(const std::size_t dim);
 
-    Gaussian(const unsigned int dim_linear, const unsigned int dim_circular);
+    Gaussian(const std::size_t dim_linear, const std::size_t dim_circular);
+
+    Gaussian(const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& covariance, const double weight);
+
+    Gaussian(const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& covariance, const double weight,
+             const std::size_t dim_linear, const std::size_t dim_circular);
 
     Gaussian(const Gaussian& gaussian);
 
@@ -29,29 +34,17 @@ public:
 
     virtual ~Gaussian() noexcept;
 
-    unsigned int dim;
+    std::size_t dim;
 
-    unsigned int dim_linear;
+    std::size_t dim_linear;
 
-    unsigned int dim_circular;
+    std::size_t dim_circular;
 
-    Eigen::Ref<Eigen::VectorXd> mean;
+    Eigen::VectorXd mean;
 
-    Eigen::Ref<Eigen::MatrixXd> covariance;
+    Eigen::MatrixXd covariance;
 
-    double& weight;
-
-protected:
-    Gaussian(Eigen::Ref<Eigen::VectorXd> mean, Eigen::Ref<Eigen::MatrixXd> covariance, double& weight);
-
-    Gaussian(Eigen::Ref<Eigen::VectorXd> mean, Eigen::Ref<Eigen::MatrixXd> covariance, double& weight,
-             const unsigned int dim_linear, const unsigned int dim_circular);
-
-    friend class GaussianMixture;
-
-private:
-    bool used_public_ctor_;
-
+    double weight;
 };
 
 #endif /* GAUSSIAN_H */
