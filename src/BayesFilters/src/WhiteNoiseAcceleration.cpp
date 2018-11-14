@@ -9,7 +9,12 @@ using namespace bfl;
 using namespace Eigen;
 
 
-WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept :
+WhiteNoiseAcceleration::WhiteNoiseAcceleration
+(
+    float T,
+    float tilde_q,
+    unsigned int seed
+) noexcept :
     generator_(std::mt19937_64(seed)),
     distribution_(std::normal_distribution<float>(0.0, 1.0)),
     T_(T),
@@ -35,14 +40,17 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q, unsigned 
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q) noexcept :
-    WhiteNoiseAcceleration(T, tilde_q, 1) { }
+    WhiteNoiseAcceleration(T, tilde_q, 1)
+{ }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration() noexcept :
-    WhiteNoiseAcceleration(1.0, 1.0, 1) { }
+    WhiteNoiseAcceleration(1.0, 1.0, 1)
+{ }
 
 
-WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept { }
+WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept
+{ }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
@@ -53,7 +61,8 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna
     Q_(wna.Q_),
     tilde_q_(wna.tilde_q_),
     sqrt_Q_(wna.sqrt_Q_),
-    gauss_rnd_sample_(wna.gauss_rnd_sample_) { }
+    gauss_rnd_sample_(wna.gauss_rnd_sample_)
+{ }
 
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept :
