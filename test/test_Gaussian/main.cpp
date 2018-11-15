@@ -96,6 +96,80 @@ int main()
             std::cout << "Default initialization of Gaussian covariance is 1.0: " << gaussian_3d.weight << std::endl;
 
         std::cout << "done!\n" << std::endl;
+
+
+        std::cout << "Assign values to the Gaussian with 3D components..." << std::endl;
+
+        gaussian_3d.mean << 1, 2, 3;
+
+        gaussian_3d.covariance << 11, 12, 13,
+                                  21, 22, 23,
+                                  31, 32, 33;
+
+        gaussian_3d.weight = 0.5;
+
+        if (!((gaussian_3d.mean(0) == 1) &&
+              (gaussian_3d.mean(1) == 2) &&
+              (gaussian_3d.mean(2) == 3)))
+        {
+            std::cerr << "Assignment of Gaussian mean failed, is\n" << gaussian_3d.mean << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian mean successful:\n" << gaussian_3d.mean << std::endl;
+
+        if (!((gaussian_3d.covariance(0, 0) == 11) && (gaussian_3d.covariance(0, 1) == 12) && (gaussian_3d.covariance(0, 2) == 13) &&
+              (gaussian_3d.covariance(1, 0) == 21) && (gaussian_3d.covariance(1, 1) == 22) && (gaussian_3d.covariance(1, 2) == 23) &&
+              (gaussian_3d.covariance(2, 0) == 31) && (gaussian_3d.covariance(2, 1) == 32) && (gaussian_3d.covariance(2, 2) == 33)))
+        {
+            std::cerr << "Assignment of Gaussian covariance failed, is\n" << gaussian_3d.covariance << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian covariance successful:\n" << gaussian_3d.covariance << std::endl;
+
+        if (!((gaussian_3d.weight - 0.5) < 0.00001))
+        {
+            std::cerr << "Assignment of Gaussian weight failed, is\n" << gaussian_3d.weight << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian weight successful:\n" << gaussian_3d.weight << std::endl;
+
+
+        std::cout << "Initializing Gaussian using copy and move constructor..." << std::endl;
+
+        Gaussian gaussian_3d_copy(gaussian_3d);
+
+        Gaussian gaussian_3d_move(std::move(gaussian_3d_copy));
+
+        if (!((gaussian_3d_move.mean(0) == 1) &&
+              (gaussian_3d_move.mean(1) == 2) &&
+              (gaussian_3d_move.mean(2) == 3)))
+        {
+            std::cerr << "Assignment of Gaussian mean failed, is\n" << gaussian_3d_move.mean << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian mean successful:\n" << gaussian_3d_move.mean << std::endl;
+
+        if (!((gaussian_3d_move.covariance(0, 0) == 11) && (gaussian_3d_move.covariance(0, 1) == 12) && (gaussian_3d_move.covariance(0, 2) == 13) &&
+              (gaussian_3d_move.covariance(1, 0) == 21) && (gaussian_3d_move.covariance(1, 1) == 22) && (gaussian_3d_move.covariance(1, 2) == 23) &&
+              (gaussian_3d_move.covariance(2, 0) == 31) && (gaussian_3d_move.covariance(2, 1) == 32) && (gaussian_3d_move.covariance(2, 2) == 33)))
+        {
+            std::cerr << "Assignment of Gaussian covariance failed, is\n" << gaussian_3d_move.covariance << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian covariance successful:\n" << gaussian_3d_move.covariance << std::endl;
+
+        if (!((gaussian_3d_move.weight - 0.5) < 0.00001))
+        {
+            std::cerr << "Assignment of Gaussian weight failed, is\n" << gaussian_3d_move.weight << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Assignment of Gaussian weight successful:\n" << gaussian_3d_move.weight << std::endl;
     }
 
 
@@ -133,7 +207,6 @@ int main()
         }
 
         std::cout << "done!\n" << std::endl;
-
 
 
         std::cout << "Assign values to the Gaussian mixture with 5 3D components..." << std::endl;
