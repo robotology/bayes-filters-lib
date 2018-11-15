@@ -42,7 +42,7 @@ Gaussian::Gaussian(Gaussian&& gaussian) :
     dim_linear(gaussian.dim_linear),
     dim_circular(gaussian.dim_circular),
     mean(std::move(gaussian.mean)),
-    covariance(std::move(gaussian.mean)),
+    covariance(std::move(gaussian.covariance)),
     weight{gaussian.weight}
 {
     gaussian.mean.Zero(gaussian.dim);
