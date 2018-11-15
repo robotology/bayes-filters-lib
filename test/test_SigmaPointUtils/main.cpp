@@ -2,6 +2,7 @@
 #include <iostream>
 #include <thread>
 
+#include <BayesFilters/Gaussian.h>
 #include <BayesFilters/sigma_point.h>
 
 using namespace bfl;
@@ -18,25 +19,20 @@ int main()
     double       beta  = 2.0;
     double       kappa = 0;
 
-    VectorXd wight_mean((2 * n) + 1);
-    VectorXd wight_covariance((2 * n) + 1);
-    double   c;
+    UTWeight weight(n, alpha, beta, kappa);
 
-    unscented_weights(n, alpha, beta, kappa,
-                      wight_mean, wight_covariance, c);
+    std::cout << "Weight mean:\n" << weight.mean << std::endl;
+    std::cout << "Weight sum: " << weight.mean.sum() << std::endl << std::endl;
 
-    std::cout << "Weight mean:\n" << wight_mean << std::endl;
-    std::cout << "Weight sum: " << wight_mean.sum() << std::endl << std::endl;
+    std::cout << "Covariance mean:\n" << weight.cov << std::endl;
+    std::cout << "Covariance sum: " << weight.cov.sum() << std::endl << std::endl;
 
-    std::cout << "Covariance mean:\n" << wight_covariance << std::endl;
-    std::cout << "Covariance sum: " << wight_covariance.sum() << std::endl << std::endl;
+    std::cout << "c: " << weight.c << std::endl << std::endl;
 
-    std::cout << "c: " << c << std::endl << std::endl;
+    VectorXd weight_mean_test((2 * n) + 1);
+    weight_mean_test << 0, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125;
 
-    VectorXd wight_mean_test((2 * n) + 1);
-    wight_mean_test << 0, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125;
-
-    if ((wight_mean - wight_mean_test).cwiseAbs().sum() > 0.0001)
+    if ((weight.mean - weight_mean_test).cwiseAbs().sum() > 0.0001)
     {
         std::cerr << "Wrong unscented weights of the mean." << std::endl;
         return EXIT_FAILURE;
@@ -44,10 +40,10 @@ int main()
     else
         std::cout << "Correct unscented weights of the mean." << std::endl;
 
-    VectorXd wight_covariance_test((2 * n) + 1);
-    wight_covariance_test << 2, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125;
+    VectorXd weight_covariance_test((2 * n) + 1);
+    weight_covariance_test << 2, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125;
 
-    if ((wight_covariance_test - wight_covariance_test).cwiseAbs().sum() > 0.0001)
+    if ((weight.cov - weight_covariance_test).cwiseAbs().sum() > 0.0001)
     {
         std::cerr << "Wrong unscented weights of the covariance." << std::endl;
         return EXIT_FAILURE;
@@ -64,9 +60,9 @@ int main()
                              0,   0,   0,   0,     0.157, 0,
                              0,   0,   0,   0,     0,     0.157;
 
-    MatrixXd sigma_points = unscented_transform(gaussian, c);
+    MatrixXd sigma_points = sigma_point::sigma_point(gaussian, weight.c);
 
-    std::cout << "Gaussian mean:\n" << gaussian.mean() << "\nGaussian covariance:\n" << gaussian.covariance() << "\nc: " << c << std::endl;
+    std::cout << "Gaussian mean:\n" << gaussian.mean() << "\nGaussian covariance:\n" << gaussian.covariance() << "\nc: " << weight.c << std::endl;
 
     std::cout << "Sigma points:\n" << sigma_points << std::endl;
 
