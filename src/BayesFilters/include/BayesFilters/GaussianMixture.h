@@ -1,7 +1,7 @@
 #ifndef GAUSSIANMIXTURE_H
 #define GAUSSIANMIXTURE_H
 
-#include <BayesFilters/Gaussian.h>
+#include <BayesFilters/GaussianRef.h>
 
 #include <vector>
 
@@ -13,31 +13,29 @@ namespace bfl {
 class bfl::GaussianMixture
 {
 public:
-    GaussianMixture(const unsigned int components, const unsigned int dim);
+    GaussianMixture(const std::size_t components, const std::size_t dim);
 
-    GaussianMixture(const unsigned int components, const unsigned int dim_linear, const unsigned int dim_circular);
+    GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular);
 
     virtual ~GaussianMixture() noexcept;
 
-    Gaussian&       operator[](unsigned int i);
-    const Gaussian& operator[](unsigned int i) const;
+    GaussianRef operator[](const std::size_t i);
 
-    unsigned int components;
+    const GaussianConstRef operator[](const std::size_t i) const;
 
-    unsigned int dim;
+    std::size_t components;
 
-    unsigned int dim_linear;
+    std::size_t dim;
 
-    unsigned int dim_circular;
+    std::size_t dim_linear;
 
-    Eigen::MatrixXd means;
+    std::size_t dim_circular;
 
-    Eigen::MatrixXd covariances;
+    Eigen::MatrixXd mean;
 
-    Eigen::VectorXd weights;
+    Eigen::MatrixXd covariance;
 
-private:
-    std::vector<Gaussian> gaussian_;
+    Eigen::VectorXd weight;
 };
 
 #endif /* GAUSSIANMIXTURE_H */

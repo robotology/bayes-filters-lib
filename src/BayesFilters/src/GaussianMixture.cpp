@@ -4,51 +4,40 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GaussianMixture::GaussianMixture(const unsigned int components, const unsigned int dim) :
-    components(components),
-    dim(dim),
-    dim_linear(dim),
-    dim_circular(0),
-    means(dim, components),
-    covariances(dim, dim * components),
-    weights(components)
-{
-    for (int i = 0; i < this->components; ++i)
-    {
-        weights(i) = 1.0 / this->components;
-        gaussian_.emplace_back(Gaussian(means.col(i), covariances.middleCols(this->dim * i, this->dim), weights(i)));
-    }
-}
+GaussianMixture::GaussianMixture(const std::size_t components, const std::size_t dim) :
+    GaussianMixture(components, dim, 0)
+{ }
 
 
-GaussianMixture::GaussianMixture(const unsigned int components, const unsigned int dim_linear, const unsigned int dim_circular) :
+GaussianMixture::GaussianMixture
+(
+    const std::size_t components,
+    const std::size_t dim_linear,
+    const std::size_t dim_circular
+) :
     components(components),
     dim(dim_linear + dim_circular),
     dim_linear(dim_linear),
     dim_circular(dim_circular),
-    means(dim, components),
-    covariances(dim, dim * components),
-    weights(components)
+    mean(dim, components),
+    covariance(dim, dim * components),
+    weight(components)
 {
     for (int i = 0; i < this->components; ++i)
-    {
-        weights(i) = 1.0 / this->components;
-        gaussian_.emplace_back(Gaussian(means.col(i), covariances.middleCols(this->dim * i, this->dim), weights(i),
-                                        this->dim_linear, this->dim_circular));
-    }
+        weight(i) = 1.0 / this->components;
 }
 
 
 GaussianMixture::~GaussianMixture() noexcept { }
 
 
-Gaussian& GaussianMixture::operator[](unsigned int i)
+GaussianRef GaussianMixture::operator[](const std::size_t i)
 {
-    return gaussian_[i];
+    return GaussianRef(mean.col(i), covariance.middleCols(this->dim * i, this->dim), weight(i));
 }
 
 
-const Gaussian& GaussianMixture::operator[](unsigned int i) const
+const GaussianConstRef GaussianMixture::operator[](const std::size_t i) const
 {
-    return gaussian_[i];
+    return GaussianConstRef(mean.col(i), covariance.middleCols(this->dim * i, this->dim), weight(i));
 }
