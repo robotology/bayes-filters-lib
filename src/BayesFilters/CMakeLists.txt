@@ -50,6 +50,7 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
         include/BayesFilters/Data.h
         include/BayesFilters/EstimatesExtraction.h
         include/BayesFilters/Gaussian.h
+        include/BayesFilters/GaussianRef.h
         include/BayesFilters/GaussianMixture.h
         include/BayesFilters/HistoryBuffer.h
         include/BayesFilters/Logger.h
@@ -109,6 +110,7 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/directional_statistics.cpp
         src/EstimatesExtraction.cpp
         src/Gaussian.cpp
+        src/GaussianRef.cpp
         src/GaussianMixture.cpp
         src/HistoryBuffer.cpp
         src/Logger.cpp
