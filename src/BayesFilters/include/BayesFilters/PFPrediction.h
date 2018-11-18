@@ -2,6 +2,7 @@
 #define PFPREDICTION_H
 
 #include <BayesFilters/ExogenousModel.h>
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/StateModel.h>
 
 #include <Eigen/Dense>
@@ -18,8 +19,7 @@ class bfl::PFPrediction
 public:
     virtual ~PFPrediction() noexcept { };
 
-    void predict(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
-                 Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights);
+    void predict(const bfl::ParticleSet& prev_particles, bfl::ParticleSet& pred_particles);
 
     bool skip(const std::string& what_step, const bool status);
 
@@ -44,8 +44,7 @@ protected:
 
     PFPrediction(PFPrediction&& pf_prediction) noexcept;
 
-    virtual void predictStep(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, const Eigen::Ref<const Eigen::VectorXf>& prev_weights,
-                             Eigen::Ref<Eigen::MatrixXf> pred_states, Eigen::Ref<Eigen::VectorXf> pred_weights) = 0;
+    virtual void predictStep(const bfl::ParticleSet& prev_particles, bfl::ParticleSet& pred_particles) = 0;
 
 private:
     bool skip_prediction_ = false;
