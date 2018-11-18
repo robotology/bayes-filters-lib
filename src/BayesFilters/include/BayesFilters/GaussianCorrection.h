@@ -2,6 +2,7 @@
 #define GAUSSIANCORRECTION_H
 
 #include <BayesFilters/Gaussian.h>
+#include <BayesFilters/MeasurementModel.h>
 
 #include <Eigen/Dense>
 
@@ -25,6 +26,8 @@ protected:
     virtual Gaussian correctStep(const Gaussian& prev_state) = 0;
 
     virtual std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) = 0;
+
+    virtual MeasurementModel& getMeasurementModel() = 0;
 
     GaussianCorrection() noexcept;
 
