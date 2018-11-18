@@ -3,6 +3,7 @@
 
 #include <BayesFilters/LikelihoodModel.h>
 #include <BayesFilters/MeasurementModel.h>
+#include <BayesFilters/ParticleSet.h>
 
 #include <memory>
 #include <utility>
@@ -19,8 +20,7 @@ class bfl::PFCorrection
 public:
     virtual ~PFCorrection() noexcept { };
 
-    void correct(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                 Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights);
+    void correct(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles);
 
     bool skip(const bool status);
 
@@ -41,8 +41,7 @@ protected:
      Possibly removed in future versions. */
     virtual MeasurementModel& getMeasurementModel() = 0;
 
-    virtual void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                             Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) = 0;
+    virtual void correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles) = 0;
 
     PFCorrection() noexcept;
 
