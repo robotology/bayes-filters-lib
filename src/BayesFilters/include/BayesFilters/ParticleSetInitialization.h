@@ -1,6 +1,8 @@
 #ifndef PARTICLESETINITIALIZATION_H
 #define PARTICLESETINITIALIZATION_H
 
+#include <BayesFilters/ParticleSet.h>
+
 #include <Eigen/Dense>
 
 namespace bfl {
@@ -13,7 +15,7 @@ class bfl::ParticleSetInitialization
 public:
     virtual ~ParticleSetInitialization() noexcept { };
 
-    virtual bool initialize(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::VectorXf> weights) = 0;
+    virtual bool initialize(ParticleSet& particles) = 0;
 };
 
 #endif /* PARTICLESETINITIALIZATION_H */
