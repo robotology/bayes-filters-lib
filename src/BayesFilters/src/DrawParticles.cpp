@@ -16,12 +16,15 @@ DrawParticles::DrawParticles(DrawParticles&& draw_particles) noexcept :
 DrawParticles::~DrawParticles() noexcept { }
 
 
-void DrawParticles::predictStep(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
-                                Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
+void DrawParticles::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
-    state_model_->motion(prev_states, pred_states);
+    /* Temporary variable required until discrepancy between
+       MatrixXf and MatrixXd is solved. */
+    MatrixXf tmp(pred_particles.dim, pred_particles.components);
+    state_model_->motion(prev_particles.state().cast<float>(), tmp);
+    pred_particles.state() = std::move(tmp.cast<double>());
 
-    pred_weights = prev_weights;
+    pred_particles.weight() = prev_particles.weight();
 }
 
 StateModel& DrawParticles::getStateModel()
