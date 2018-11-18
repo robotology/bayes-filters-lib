@@ -13,23 +13,17 @@ UpdateParticles::UpdateParticles() noexcept { }
 UpdateParticles::~UpdateParticles() noexcept { }
 
 
-void UpdateParticles::correctStep
-(
-    const Ref<const MatrixXf>& pred_states,
-    const Ref<const VectorXf>& pred_weights,
-    Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights
-)
+void UpdateParticles::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
     bool valid_buffered_agent_data = measurement_model_->bufferAgentData();
 
     if (valid_buffered_agent_data)
-        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_states);
-
-    cor_states = pred_states;
-    cor_weights = pred_weights;
+        std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_,
+                                                                                 pred_particles.state().cast<float>());
+    cor_particles = pred_particles;
 
     if (valid_likelihood_)
-        cor_weights = cor_weights.cwiseProduct(likelihood_);
+        cor_particles.weight() = cor_particles.weight().cwiseProduct(likelihood_.cast<double>());
 }
 
 
