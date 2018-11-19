@@ -2,6 +2,7 @@
 #define SIS_H
 
 #include <BayesFilters/ParticleFilter.h>
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFCorrection.h>
 #include <BayesFilters/PFPrediction.h>
 #include <BayesFilters/Resampling.h>
@@ -19,7 +20,7 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS(unsigned int num_particle) noexcept;
+    SIS(unsigned int num_particle, std::size_t state_size) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 
@@ -36,13 +37,11 @@ public:
 protected:
     unsigned int num_particle_;
 
-    Eigen::MatrixXf pred_particle_;
+    std::size_t state_size_;
 
-    Eigen::VectorXf pred_weight_;
+    ParticleSet pred_particle_;
 
-    Eigen::MatrixXf cor_particle_;
-
-    Eigen::VectorXf cor_weight_;
+    ParticleSet cor_particle_;
 
     std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
     {

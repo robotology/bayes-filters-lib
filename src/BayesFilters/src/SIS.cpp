@@ -10,8 +10,11 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SIS::SIS(unsigned int num_particle) noexcept :
-    num_particle_(num_particle)
+SIS::SIS(unsigned int num_particle, std::size_t state_size) noexcept :
+    num_particle_(num_particle),
+    state_size_(state_size),
+    pred_particle_(num_particle_, state_size_),
+    cor_particle_(num_particle_, state_size_)
 { }
 
 
@@ -20,15 +23,24 @@ SIS::~SIS() noexcept
 
 
 SIS::SIS(SIS&& sir_pf) noexcept :
-    ParticleFilter(std::move(sir_pf))
-{
-    num_particle_ = sir_pf.num_particle_;
-}
+    ParticleFilter(std::move(sir_pf)),
+    pred_particle_(std::move(sir_pf.pred_particle_)),
+    cor_particle_(std::move(sir_pf.cor_particle_)),
+    num_particle_(sir_pf.num_particle_),
+    state_size_(sir_pf.state_size_) { }
 
 
 SIS& SIS::operator=(SIS&& sir_pf) noexcept
 {
     ParticleFilter::operator=(std::move(sir_pf));
+
+    num_particle_ = sir_pf.num_particle_;
+
+    state_size_ = sir_pf.state_size_;
+
+    pred_particle_ = std::move(sir_pf.pred_particle_);
+
+    cor_particle_ = std::move(sir_pf.cor_particle_);
 
     return *this;
 }
@@ -36,42 +48,32 @@ SIS& SIS::operator=(SIS&& sir_pf) noexcept
 
 bool SIS::initialization()
 {
-    pred_particle_ = MatrixXf(4, num_particle_);
-    pred_weight_ = MatrixXf(num_particle_, 1);
-
-    cor_particle_ = MatrixXf(4, num_particle_);
-    cor_weight_ = MatrixXf(num_particle_, 1);
-
-    return initialization_->initialize(pred_particle_, pred_weight_);
+    return initialization_->initialize(pred_particle_);
 }
 
 
 void SIS::filteringStep()
 {
     if (getFilteringStep() != 0)
-        prediction_->predict(cor_particle_, cor_weight_,
-                             pred_particle_, pred_weight_);
+        prediction_->predict(cor_particle_, pred_particle_);
 
-    correction_->correct(pred_particle_, pred_weight_,
-                         cor_particle_, cor_weight_);
+    correction_->correct(pred_particle_, cor_particle_);
 
-    cor_weight_ /= cor_weight_.sum();
+    cor_particle_.weight() /= cor_particle_.weight().sum();
 
 
-    logger(pred_particle_.transpose(), pred_weight_.transpose(), cor_particle_.transpose(), cor_weight_.transpose());
+    logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
+           cor_particle_.state().transpose(), cor_particle_.weight().transpose());
 
 
-    if (resampling_->neff(cor_weight_) < static_cast<float>(num_particle_)/3.0)
+    if (resampling_->neff(cor_particle_.weight().cast<float>()) < static_cast<float>(num_particle_)/3.0)
     {
-        MatrixXf res_particle(4, num_particle_);
-        VectorXf res_weight(num_particle_, 1);
+        ParticleSet res_particle(num_particle_, state_size_);
         VectorXf res_parent(num_particle_, 1);
 
-        resampling_->resample(cor_particle_, cor_weight_,
-                              res_particle, res_weight, res_parent);
+        resampling_->resample(cor_particle_, res_particle, res_parent);
 
         cor_particle_ = res_particle;
-        cor_weight_   = res_weight;
     }
 }
 
