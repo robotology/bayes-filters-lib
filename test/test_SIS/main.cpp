@@ -20,8 +20,8 @@ using namespace Eigen;
 class SISSimulation : public SIS
 {
 public:
-    SISSimulation(unsigned int num_particle, unsigned int simulation_steps) noexcept :
-        SIS(num_particle),
+    SISSimulation(unsigned int num_particle, std::size_t state_size, unsigned int simulation_steps) noexcept :
+        SIS(num_particle, state_size),
         simulation_steps_(simulation_steps)
     { }
 
@@ -52,7 +52,7 @@ int main()
     unsigned int num_particle = num_particle_x * num_particle_y;
     Vector4f initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 100;
-
+    std::size_t state_size = 4;
 
     /* Step 1 - Initialization */
     /* Initialize initialization class. */
@@ -103,7 +103,7 @@ int main()
 
     /* Step 5 - Assemble the particle filter */
     std::cout << "Constructing SIS particle filter..." << std::flush;
-    SISSimulation sis_pf(num_particle, simulation_time);
+    SISSimulation sis_pf(num_particle, state_size, simulation_time);
     sis_pf.setInitialization(std::move(grid_initialization));
     sis_pf.setPrediction(std::move(pf_prediction));
     sis_pf.setCorrection(std::move(pf_correction));
