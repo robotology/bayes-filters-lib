@@ -1,7 +1,7 @@
 #ifndef GAUSSIANCORRECTION_H
 #define GAUSSIANCORRECTION_H
 
-#include <BayesFilters/Gaussian.h>
+#include <BayesFilters/GaussianMixture.h>
 #include <BayesFilters/MeasurementModel.h>
 
 #include <Eigen/Dense>
@@ -16,14 +16,14 @@ class bfl::GaussianCorrection
 public:
     virtual ~GaussianCorrection() noexcept { };
 
-    Gaussian correct(const Gaussian& pred_state);
+    void correct(const GaussianMixture& pred_state, GaussianMixture& corr_state);
 
     bool skip(const bool status);
 
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood();
 
 protected:
-    virtual Gaussian correctStep(const Gaussian& prev_state) = 0;
+    virtual void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) = 0;
 
     virtual std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) = 0;
 

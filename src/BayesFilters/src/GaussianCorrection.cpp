@@ -7,13 +7,13 @@ using namespace Eigen;
 GaussianCorrection::GaussianCorrection() noexcept { };
 
 
-Gaussian GaussianCorrection::correct(const Gaussian& pred_state)
+void GaussianCorrection::correct(const GaussianMixture& pred_state, GaussianMixture& corr_state)
 {
     /* Perform correction if required and if measurements can be frozen. */    
     if((!skip_) && getMeasurementModel().freezeMeasurements())
-        return correctStep(pred_state);
+        correctStep(pred_state, corr_state);
     else
-        return pred_state;
+        corr_state = pred_state;
 }
 
 
