@@ -1,6 +1,8 @@
 #ifndef GAUSSIAN_H
 #define GAUSSIAN_H
 
+#include <BayesFilters/GaussianMixture.h>
+
 #include <memory>
 
 #include <Eigen/Core>
@@ -10,41 +12,29 @@ namespace bfl {
 }
 
 
-class bfl::Gaussian
+class bfl::Gaussian : public bfl::GaussianMixture
 {
 public:
     Gaussian();
 
-    Gaussian(const std::size_t dim);
+    Gaussian(const std::size_t dim_linear);
 
     Gaussian(const std::size_t dim_linear, const std::size_t dim_circular);
 
-    Gaussian(const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& covariance, const double weight);
+    /* Non-virtual methods of GaussianMixture are overriden here
+       since a Gaussian is a 1-component GaussianMixture.
+       Hence it is better to return a Ref<VectorXd> as the mean,
+       rather than a Ref<MatrixXd>, and a double& as the weight,
+       rather than a Ref<VectorXd>&. */
+    Eigen::Ref<Eigen::VectorXd> mean();
 
-    Gaussian(const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& covariance, const double weight,
-             const std::size_t dim_linear, const std::size_t dim_circular);
+    const Eigen::Ref<const Eigen::VectorXd> mean() const;
 
-    Gaussian(const Gaussian& gaussian);
+    double& weight();
 
-    Gaussian(Gaussian&& gaussian);
+    const double& weight() const;
 
-    Gaussian& operator=(const Gaussian& gaussian);
-
-    Gaussian& operator=(Gaussian&& gaussian);
-
-    virtual ~Gaussian() noexcept;
-
-    std::size_t dim;
-
-    std::size_t dim_linear;
-
-    std::size_t dim_circular;
-
-    Eigen::VectorXd mean;
-
-    Eigen::MatrixXd covariance;
-
-    double weight;
+    virtual ~Gaussian() noexcept { };
 };
 
 #endif /* GAUSSIAN_H */
