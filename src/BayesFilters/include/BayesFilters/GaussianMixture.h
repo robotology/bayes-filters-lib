@@ -1,9 +1,9 @@
 #ifndef GAUSSIANMIXTURE_H
 #define GAUSSIANMIXTURE_H
 
-#include <BayesFilters/GaussianRef.h>
-
 #include <vector>
+
+#include <Eigen/Dense>
 
 namespace bfl {
     class GaussianMixture;
@@ -13,15 +13,37 @@ namespace bfl {
 class bfl::GaussianMixture
 {
 public:
+    GaussianMixture();
+
     GaussianMixture(const std::size_t components, const std::size_t dim);
 
     GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular);
 
     virtual ~GaussianMixture() noexcept;
 
-    GaussianRef operator[](const std::size_t i);
+    Eigen::Ref<Eigen::MatrixXd> mean();
 
-    const GaussianConstRef operator[](const std::size_t i) const;
+    Eigen::Ref<Eigen::VectorXd> mean(const std::size_t i);
+
+    const Eigen::Ref<const Eigen::MatrixXd> mean() const;
+
+    const Eigen::Ref<const Eigen::VectorXd> mean(const std::size_t i) const;
+
+    Eigen::Ref<Eigen::MatrixXd> covariance();
+
+    Eigen::Ref<Eigen::MatrixXd> covariance(const std::size_t i);
+
+    const Eigen::Ref<const Eigen::MatrixXd> covariance() const;
+
+    const Eigen::Ref<const Eigen::MatrixXd> covariance(const std::size_t i) const;
+
+    Eigen::Ref<Eigen::VectorXd> weight();
+
+    double& weight(const std::size_t i);
+
+    const Eigen::Ref<const Eigen::VectorXd> weight() const;
+
+    const double& weight(const std::size_t i) const;
 
     std::size_t components;
 
@@ -31,11 +53,12 @@ public:
 
     std::size_t dim_circular;
 
-    Eigen::MatrixXd mean;
+protected:
+    Eigen::MatrixXd mean_;
 
-    Eigen::MatrixXd covariance;
+    Eigen::MatrixXd covariance_;
 
-    Eigen::VectorXd weight;
+    Eigen::VectorXd weight_;
 };
 
 #endif /* GAUSSIANMIXTURE_H */
