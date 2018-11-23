@@ -13,12 +13,12 @@ GaussianPrediction::GaussianPrediction() noexcept { };
 GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept { }
 
 
-Gaussian GaussianPrediction::predict(const Gaussian& prev_state)
+void GaussianPrediction::predict(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {
     if (!skip_prediction_)
-        return predictStep(prev_state);
+        predictStep(prev_state, pred_state);
     else
-        return prev_state;
+        pred_state = prev_state;
 }
 
 

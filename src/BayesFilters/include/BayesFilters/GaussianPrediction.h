@@ -1,13 +1,7 @@
 #ifndef GAUSSIANPREDICTION_H
 #define GAUSSIANPREDICTION_H
 
-#include <BayesFilters/ExogenousModel.h>
-#include <BayesFilters/Gaussian.h>
-#include <BayesFilters/StateModel.h>
-
-#include <memory>
-#include <string>
-#include <vector>
+#include <BayesFilters/GaussianMixture.h>
 
 #include <Eigen/Dense>
 
@@ -21,7 +15,7 @@ class bfl::GaussianPrediction
 public:
     virtual ~GaussianPrediction() noexcept { };
 
-    Gaussian predict(const Gaussian& prev_state);
+    void predict(const GaussianMixture& prev_state, GaussianMixture& pred_state);
 
     bool skip(const std::string& what_step, const bool status);
 
@@ -34,7 +28,7 @@ protected:
 
     GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
 
-    virtual Gaussian predictStep(const Gaussian& prev_state) = 0;
+    virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
 
 private:
     bool skip_prediction_ = false;
