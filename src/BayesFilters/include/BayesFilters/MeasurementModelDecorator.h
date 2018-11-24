@@ -23,7 +23,7 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-    bool bufferAgentData() const override;
+    bool freezeMeasurements() override;
 
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;

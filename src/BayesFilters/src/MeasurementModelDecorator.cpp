@@ -53,7 +53,7 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 }
 
 
-bool MeasurementModelDecorator::bufferAgentData() const
+bool MeasurementModelDecorator::freezeMeasurements()
 {
-    return measurement_model->bufferAgentData();
+    return measurement_model->freezeMeasurements();
 }
