@@ -30,7 +30,7 @@ public:
 
     virtual bool setProperty(const std::string& property);
 
-    virtual bool bufferAgentData() const = 0;
+    virtual bool freezeMeasurements() = 0;
 };
 
 #endif /* MEASUREMENTMODEL_H */
