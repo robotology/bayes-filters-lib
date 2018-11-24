@@ -37,7 +37,7 @@ SimulatedLinearSensor::~SimulatedLinearSensor() noexcept
 { }
 
 
-bool SimulatedLinearSensor::bufferAgentData() const
+bool SimulatedLinearSensor::freezeMeasurements()
 {
     return simulated_state_model_->bufferData();
 }

@@ -22,7 +22,7 @@ public:
 
     virtual ~SimulatedLinearSensor() noexcept;
 
-    bool bufferAgentData() const override;
+    bool freezeMeasurements() override;
 
     std::pair<bool, bfl::Data> measure() const override;
 
