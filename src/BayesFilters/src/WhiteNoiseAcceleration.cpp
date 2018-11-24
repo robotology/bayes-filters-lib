@@ -108,12 +108,6 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-void WhiteNoiseAcceleration::propagate(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
-{
-    prop_states = F_ * cur_states;
-}
-
-
 void WhiteNoiseAcceleration::motion(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
 {
     propagate(cur_states, prop_states);
@@ -135,4 +129,10 @@ MatrixXf WhiteNoiseAcceleration::getNoiseSample(const int num)
 MatrixXf WhiteNoiseAcceleration::getNoiseCovarianceMatrix()
 {
     return Q_;
+}
+
+
+MatrixXf WhiteNoiseAcceleration::getStateTransitionMatrix()
+{
+    return F_;
 }
