@@ -15,9 +15,9 @@ UpdateParticles::~UpdateParticles() noexcept { }
 
 void UpdateParticles::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    bool valid_buffered_agent_data = measurement_model_->bufferAgentData();
+    bool valid_freeze = measurement_model_->freezeMeasurements();
 
-    if (valid_buffered_agent_data)
+    if (valid_freeze)
         std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_,
                                                                                  pred_particles.state().cast<float>());
     cor_particles = pred_particles;
