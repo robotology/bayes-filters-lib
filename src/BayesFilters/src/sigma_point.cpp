@@ -34,7 +34,7 @@ void bfl::sigma_point::unscented_weights(const unsigned int n, const double alph
 
 MatrixXd bfl::sigma_point::unscented_transform(const Gaussian& state, const double c)
 {
-    JacobiSVD<MatrixXd> svd = state.covariance.jacobiSvd(ComputeThinU);
+    JacobiSVD<MatrixXd> svd = state.covariance().jacobiSvd(ComputeThinU);
 
     MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
 
@@ -43,10 +43,10 @@ MatrixXd bfl::sigma_point::unscented_transform(const Gaussian& state, const doub
     sigma_points << VectorXd::Zero(state.dim), std::sqrt(c) * A, -std::sqrt(c) * A;
 
     if (state.dim_linear > 0)
-        sigma_points.topRows(state.dim_linear).colwise() += state.mean.topRows(state.dim_linear);
+        sigma_points.topRows(state.dim_linear).colwise() += state.mean().topRows(state.dim_linear);
 
     if (state.dim_circular > 0)
-        sigma_points.bottomRows(state.dim_circular) = directional_add(sigma_points.bottomRows(state.dim_circular), state.mean.bottomRows(state.dim_circular));
+        sigma_points.bottomRows(state.dim_circular) = directional_add(sigma_points.bottomRows(state.dim_circular), state.mean().bottomRows(state.dim_circular));
 
     return sigma_points;
 }
