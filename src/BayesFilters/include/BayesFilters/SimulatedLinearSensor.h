@@ -28,6 +28,8 @@ public:
 
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
+
+    Eigen::MatrixXf measurement_;
 };
 
 #endif /* SIMULATEDLINEARSENSOR_H */
