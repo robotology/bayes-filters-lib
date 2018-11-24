@@ -17,8 +17,6 @@ public:
 
     void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override;
 
-    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
-
     bool setProperty(const std::string& property) override;
 
 protected:
