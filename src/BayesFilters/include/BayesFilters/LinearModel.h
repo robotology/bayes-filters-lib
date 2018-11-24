@@ -1,7 +1,7 @@
 #ifndef LINEARMODEL_H
 #define LINEARMODEL_H
 
-#include <BayesFilters/MeasurementModel.h>
+#include <BayesFilters/LinearMeasurementModel.h>
 
 #include <fstream>
 #include <functional>
@@ -13,7 +13,7 @@ namespace bfl {
 }
 
 
-class bfl::LinearModel : public MeasurementModel
+class bfl::LinearModel : public LinearMeasurementModel
 {
 public:
     LinearModel(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept;
@@ -32,13 +32,11 @@ public:
 
     LinearModel& operator=(LinearModel&& lin_sense) noexcept;
 
-    std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
-
-    std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const override;
-
     std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const;
 
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
+
+    Eigen::MatrixXf getMeasurementMatrix() const override;
 
 private:
     std::mt19937_64 generator_;

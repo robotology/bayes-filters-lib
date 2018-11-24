@@ -130,22 +130,6 @@ LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
 }
 
 
-std::pair<bool, Data> LinearModel::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
-{
-    MatrixXf predicted_measure = H_ * cur_states;
-
-    return std::make_pair(true, std::move(predicted_measure));
-}
-
-
-std::pair<bool, Data> LinearModel::innovation(const Data& predicted_measurements, const Data& measurements) const
-{
-    MatrixXf innovation = -(any::any_cast<MatrixXf>(predicted_measurements).colwise() - any::any_cast<MatrixXf>(measurements).col(0));
-
-    return std::make_pair(true, std::move(innovation));
-}
-
-
 std::pair<bool, MatrixXf> LinearModel::getNoiseSample(const int num) const
 {
     MatrixXf rand_vectors(2, num);
@@ -161,4 +145,10 @@ std::pair<bool, MatrixXf> LinearModel::getNoiseSample(const int num) const
 std::pair<bool, MatrixXf> LinearModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
+}
+
+
+Eigen::MatrixXf LinearModel::getMeasurementMatrix() const
+{
+    return H_;
 }
