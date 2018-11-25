@@ -26,10 +26,16 @@ public:
 
     std::pair<bool, bfl::Data> measure() const override;
 
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
 
     Eigen::MatrixXd measurement_;
+
+    std::size_t dim_linear_;
+
+    std::size_t dim_circular_;
 };
 
 #endif /* SIMULATEDLINEARSENSOR_H */
