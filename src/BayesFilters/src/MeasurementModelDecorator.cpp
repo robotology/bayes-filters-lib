@@ -57,3 +57,9 @@ bool MeasurementModelDecorator::freezeMeasurements()
 {
     return measurement_model->freezeMeasurements();
 }
+
+
+std::pair<std::size_t, std::size_t> MeasurementModelDecorator::getOutputSize() const
+{
+    return measurement_model->getOutputSize();
+}
