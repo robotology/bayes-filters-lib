@@ -51,3 +51,9 @@ MatrixXd StateModelDecorator::getNoiseSample(const std::size_t num)
 {
     return state_model_->getNoiseSample(num);
 }
+
+
+std::pair<std::size_t, std::size_t> StateModelDecorator::getOutputSize() const
+{
+    return state_model_->getOutputSize();
+}
