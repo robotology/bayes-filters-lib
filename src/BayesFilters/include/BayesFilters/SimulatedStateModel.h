@@ -26,6 +26,8 @@ public:
 
     bool setProperty(const std::string& property) override;
 
+    StateModel& getStateModel();
+
 private:
     unsigned int simulation_time_;
 
