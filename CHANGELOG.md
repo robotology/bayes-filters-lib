@@ -1,5 +1,28 @@
 # 📜 BayesFilters changelog
 
+## Version 0.8.101
+##### `CMake`
+ - Third number of SemVer increases since API compatibility is broken
+
+##### `Filtering Utilities`
+ - Removed GaussianRef class.
+ - Added methods to get the i-th mean, covariance and weight of a GaussianMixture.
+ - Re-implemented Gaussian class as inheriting from GaussianMixture class.
+ - Implemented ParticleSet class as inheriring from GaussianMixture class.
+
+##### `Filtering Classes`
+ - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).
+
+##### `Filtering Features`
+ - Used ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
+ - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
+
+##### `Test`
+ - Updated test_Gaussian (since use Gaussian class).
+ - Updated test_SigmaPointUtils (since use Gaussian class).
+ - Updated test_SIS (since use SIS class).
+ - Updated test_SIS_Decorators (since use classes PFPredictionDecorator, PFCorrectionDecorator and SIS)
+
 ## Version 0.7.101
 ##### `Dependencies`
  - Removed OpenCV dependency.
