@@ -25,9 +25,13 @@ public:
 
     Eigen::Ref<Eigen::MatrixXd> state(const std::size_t i);
 
+    double& state(const std::size_t i, const std::size_t j);
+
     const Eigen::Ref<const Eigen::MatrixXd> state() const;
 
     const Eigen::Ref<const Eigen::MatrixXd> state(const std::size_t i) const;
+
+    const double& state(const std::size_t i, const std::size_t j) const;
 
 protected:
     Eigen::MatrixXd state_;

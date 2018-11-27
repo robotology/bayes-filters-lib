@@ -62,6 +62,12 @@ Ref<MatrixXd> ParticleSet::state(const std::size_t i)
 }
 
 
+double& ParticleSet::state(const std::size_t i, const std::size_t j)
+{
+    return state_(j, i);
+}
+
+
 const Ref<const MatrixXd> ParticleSet::state() const
 {
     return state_;
@@ -71,4 +77,10 @@ const Ref<const MatrixXd> ParticleSet::state() const
 const Ref<const MatrixXd> ParticleSet::state(const std::size_t i) const
 {
     return state_.col(i);
+}
+
+
+const double& ParticleSet::state(const std::size_t i, const std::size_t j) const
+{
+    return state_(j, i);
 }
