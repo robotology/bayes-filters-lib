@@ -7,18 +7,24 @@
 ##### `Filtering Utilities`
  - Removed GaussianRef class.
  - Added methods to get the i-th mean, covariance and weight of a GaussianMixture.
+ - Added accessors to single elements of the mean/covariance in GaussianMixture class.
  - Re-implemented Gaussian class as inheriting from GaussianMixture class.
+ - Added accessors to single elements of the mean/covariance in Gaussian class.
+ - Removed Particle class.
  - Implemented ParticleSet class as inheriring from GaussianMixture class.
 
 ##### `Filtering Classes`
  - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).
+ - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
 
 ##### `Filtering Features`
  - Used ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
  - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
+ - Methods Resampling::resample and ResamplingWithPrior::resample use VectorXi instead of VectorXf to represent particle parents.
 
 ##### `Test`
  - Updated test_Gaussian (since use Gaussian class).
+ - Fix typo in test_Gaussian (since returning in case of failure outside the catch block).
  - Updated test_SigmaPointUtils (since use Gaussian class).
  - Updated test_SIS (since use SIS class).
  - Updated test_SIS_Decorators (since use classes PFPredictionDecorator, PFCorrectionDecorator and SIS)
