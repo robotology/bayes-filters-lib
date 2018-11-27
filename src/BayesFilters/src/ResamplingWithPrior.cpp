@@ -63,7 +63,7 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
     /* Copy particles to be resampled in a temporary. */
     ParticleSet tmp_particles(num_resample_particles, cor_particles.dim_linear, cor_particles.dim_circular);
     int j = 0;
-    for (std::size_t i :sort_indices(cor_particles.weight().cast<float>()))
+    for (std::size_t i : sort_indices(cor_particles.weight().cast<float>()))
     {
         if (j >= num_prior_particles)
         {
