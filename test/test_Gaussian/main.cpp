@@ -22,10 +22,9 @@ int main()
         {
             catch_exception = true;
             std::cout << "Caught error.\n" << e.what() << std::endl;
-        }
 
-        if (catch_exception)
             return EXIT_FAILURE;
+        }
 
         std::cout << "...done!\n" << std::endl;
     }
