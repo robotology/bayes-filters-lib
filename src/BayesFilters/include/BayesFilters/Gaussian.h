@@ -21,11 +21,13 @@ public:
 
     Gaussian(const std::size_t dim_linear, const std::size_t dim_circular);
 
-    /* Non-virtual methods of GaussianMixture are overriden here
-       since a Gaussian is a 1-component GaussianMixture.
-       Hence it is better to return a Ref<VectorXd> as the mean,
-       rather than a Ref<MatrixXd>, and a double& as the weight,
-       rather than a Ref<VectorXd>&. */
+    /**
+     * Non-virtual methods of GaussianMixture are overriden here
+     * since a Gaussian is a 1-component GaussianMixture.
+     * Hence it is better to return a Ref<VectorXd> as the mean,
+     * rather than a Ref<MatrixXd>, and a double& as the weight,
+     * rather than a Ref<VectorXd>&.
+     */
     Eigen::Ref<Eigen::VectorXd> mean();
 
     const Eigen::Ref<const Eigen::VectorXd> mean() const;
