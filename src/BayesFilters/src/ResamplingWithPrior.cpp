@@ -50,7 +50,7 @@ ResamplingWithPrior& ResamplingWithPrior::operator=(ResamplingWithPrior&& resamp
 }
 
 
-void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Ref<VectorXf> res_parents)
+void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Ref<VectorXi> res_parents)
 {
     int num_prior_particles    = static_cast<int>(std::floor(cor_particles.state().cols() * prior_ratio_));
     int num_resample_particles = cor_particles.state().cols() - num_prior_particles;
@@ -58,7 +58,7 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
     /* Consider two subsets of particles. */
     ParticleSet res_particles_left(num_prior_particles, cor_particles.dim_linear, cor_particles.dim_circular);
     ParticleSet res_particles_right(num_resample_particles, cor_particles.dim_linear, cor_particles.dim_circular);
-    Ref<VectorXf> res_parents_right(res_parents.tail(num_resample_particles));
+    Ref<VectorXi> res_parents_right(res_parents.tail(num_resample_particles));
 
     /* Copy particles to be resampled in a temporary. */
     ParticleSet tmp_particles(num_resample_particles, cor_particles.dim_linear, cor_particles.dim_circular);

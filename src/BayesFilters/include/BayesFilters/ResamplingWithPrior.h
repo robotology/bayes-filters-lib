@@ -31,7 +31,7 @@ public:
     ResamplingWithPrior& operator=(ResamplingWithPrior&& resampling) noexcept;
 
 
-    void resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Eigen::Ref<Eigen::VectorXf> res_parents) override;
+    void resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Eigen::Ref<Eigen::VectorXi> res_parents) override;
 
 protected:
     std::unique_ptr<bfl::ParticleSetInitialization> init_model_;
