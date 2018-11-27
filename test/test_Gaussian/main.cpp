@@ -220,9 +220,9 @@ int main()
 
             gaussian_mixture.weight(i) *= 2;
 
-            if (!((gaussian_mixture.mean(i)(0) == 1) &&
-                  (gaussian_mixture.mean(i)(1) == 2) &&
-                  (gaussian_mixture.mean(i)(2) == 3)))
+            if (!((gaussian_mixture.mean(i, 0) == 1) &&
+                  (gaussian_mixture.mean(i, 1) == 2) &&
+                  (gaussian_mixture.mean(i, 2) == 3)))
             {
                 std::cerr << "Assignment of Gaussian mean (" << i + 1 << ") failed, is\n" << gaussian_mixture.mean(i) << std::endl;
                 return EXIT_FAILURE;
@@ -230,9 +230,9 @@ int main()
             else
                 std::cout << "Assignment of Gaussian mean (" << i + 1 << ") successful:\n" << gaussian_mixture.mean(i) << std::endl;
 
-            if (!((gaussian_mixture.covariance(i)(0, 0) == 11) && (gaussian_mixture.covariance(i)(0, 1) == 12) && (gaussian_mixture.covariance(i)(0, 2) == 13) &&
-                  (gaussian_mixture.covariance(i)(1, 0) == 21) && (gaussian_mixture.covariance(i)(1, 1) == 22) && (gaussian_mixture.covariance(i)(1, 2) == 23) &&
-                  (gaussian_mixture.covariance(i)(2, 0) == 31) && (gaussian_mixture.covariance(i)(2, 1) == 32) && (gaussian_mixture.covariance(i)(2, 2) == 33)))
+            if (!((gaussian_mixture.covariance(i, 0, 0) == 11) && (gaussian_mixture.covariance(i, 0, 1) == 12) && (gaussian_mixture.covariance(i, 0, 2) == 13) &&
+                  (gaussian_mixture.covariance(i, 1, 0) == 21) && (gaussian_mixture.covariance(i, 1, 1) == 22) && (gaussian_mixture.covariance(i, 1, 2) == 23) &&
+                  (gaussian_mixture.covariance(i, 2, 0) == 31) && (gaussian_mixture.covariance(i, 2, 1) == 32) && (gaussian_mixture.covariance(i, 2, 2) == 33)))
             {
                 std::cerr << "Assignment of Gaussian covariance (" << i + 1 << ") failed, is\n" << gaussian_mixture.covariance(i) << std::endl;
                 return EXIT_FAILURE;
