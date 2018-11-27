@@ -51,7 +51,7 @@ Resampling& Resampling::operator=(const Resampling&& resampling) noexcept
 
 
 void Resampling::resample(const ParticleSet& cor_particles, ParticleSet& res_particles,
-                          Ref<VectorXf> res_parents)
+                          Ref<VectorXi> res_parents)
 {
     int num_particles = static_cast<int>(cor_particles.weight().rows());
     VectorXf csw(num_particles);

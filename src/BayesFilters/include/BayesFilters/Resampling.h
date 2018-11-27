@@ -32,7 +32,7 @@ public:
     Resampling& operator=(const Resampling&& resampling) noexcept;
 
     virtual void resample(const bfl::ParticleSet& cor_particles, bfl::ParticleSet& res_particles,
-                          Eigen::Ref<Eigen::VectorXf> res_parents);
+                          Eigen::Ref<Eigen::VectorXi> res_parents);
 
     virtual float neff(const Eigen::Ref<const Eigen::VectorXf>& cor_weights);
 
