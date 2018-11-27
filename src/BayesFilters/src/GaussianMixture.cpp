@@ -48,6 +48,12 @@ Ref<VectorXd> GaussianMixture::mean(const std::size_t i)
 }
 
 
+double& GaussianMixture::mean(const std::size_t i, const std::size_t j)
+{
+    return mean_(j, i);
+}
+
+
 const Ref<const MatrixXd> GaussianMixture::mean() const
 {
     return mean_;
@@ -57,6 +63,12 @@ const Ref<const MatrixXd> GaussianMixture::mean() const
 const Ref<const VectorXd> GaussianMixture::mean(const std::size_t i) const
 {
     return mean_.col(i);
+}
+
+
+const double& GaussianMixture::mean(const std::size_t i, const std::size_t j) const
+{
+    return mean_(j, i);
 }
 
 
@@ -72,6 +84,12 @@ Ref<MatrixXd> GaussianMixture::covariance(const std::size_t i)
 }
 
 
+double& GaussianMixture::covariance(const std::size_t i, const std::size_t j, const std::size_t k)
+{
+    return covariance_(j, (this->dim * i) + k);
+}
+
+
 const Ref<const MatrixXd> GaussianMixture::covariance() const
 {
     return covariance_;
@@ -81,6 +99,12 @@ const Ref<const MatrixXd> GaussianMixture::covariance() const
 const Ref<const MatrixXd> GaussianMixture::covariance(const std::size_t i) const
 {
     return covariance_.middleCols(this->dim * i, this->dim);
+}
+
+
+const double& GaussianMixture::covariance(const std::size_t i, const std::size_t j, const std::size_t k) const
+{
+    return covariance_(j, (this->dim * i) + k);
 }
 
 
