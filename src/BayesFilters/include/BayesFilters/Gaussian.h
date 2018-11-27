@@ -32,6 +32,18 @@ public:
 
     const Eigen::Ref<const Eigen::VectorXd> mean() const;
 
+    double& mean(const std::size_t i);
+
+    const double& mean(const std::size_t i) const;
+
+    Eigen::Ref<Eigen::MatrixXd> covariance();
+
+    const Eigen::Ref<const Eigen::MatrixXd> covariance() const;
+
+    double& covariance(const std::size_t i, const std::size_t j);
+
+    const double& covariance(const std::size_t i, const std::size_t j) const;
+
     double& weight();
 
     const double& weight() const;

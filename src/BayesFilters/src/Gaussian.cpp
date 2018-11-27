@@ -28,6 +28,43 @@ const Ref<const VectorXd> Gaussian::mean() const
 }
 
 
+double& Gaussian::mean(const std::size_t i)
+{
+    return mean_(i, 0);
+}
+
+
+const double& Gaussian::mean(const std::size_t i) const
+{
+    return mean_(i, 0);
+}
+
+
+Ref<MatrixXd> Gaussian::covariance()
+{
+    return covariance_;
+}
+
+
+const Ref<const MatrixXd> Gaussian::covariance() const
+{
+    return covariance_;
+}
+
+
+double& Gaussian::covariance(const std::size_t i, const std::size_t j)
+{
+
+    return covariance_(i, j);
+}
+
+
+const double& Gaussian::covariance(const std::size_t i, const std::size_t j) const
+{
+    return covariance_(i, j);
+}
+
+
 double& Gaussian::weight()
 {
     return weight_(0);
