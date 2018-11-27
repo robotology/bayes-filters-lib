@@ -19,7 +19,7 @@ public:
 
     virtual ~ParticleSet() noexcept;
 
-    ParticleSet operator+(const ParticleSet& rhs);
+    ParticleSet& operator+=(const ParticleSet& rhs);
 
     Eigen::Ref<Eigen::MatrixXd> state();
 
@@ -32,5 +32,7 @@ public:
 protected:
     Eigen::MatrixXd state_;
 };
+
+bfl::ParticleSet operator+(bfl::ParticleSet lhs, const bfl::ParticleSet& rhs);
 
 #endif /* PARTICLESET_H */

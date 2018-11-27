@@ -21,18 +21,32 @@ ParticleSet::ParticleSet
 ParticleSet::~ParticleSet() noexcept { }
 
 
-ParticleSet ParticleSet::operator+(const ParticleSet& rhs)
+ParticleSet& ParticleSet::operator+=(const ParticleSet& rhs)
 {
     /* Should check whether (this->dim_linear == rhs.dim_linear) &&
        (this->dim_circular == rhs.dim_circular). */
-    ParticleSet sum(components + rhs.components, dim_linear, dim_circular);
+    std::size_t new_components = components + rhs.components;
 
-    sum.mean_ << mean_, rhs.mean_;
-    sum.covariance_ << covariance_, rhs.covariance_;
-    sum.weight_ << weight_, rhs.weight_;
-    sum.state_ << state_, rhs.state_;
+    state_.conservativeResize(NoChange,  new_components);
+    state_.rightCols(rhs.components) = rhs.state_;
 
-    return sum;
+    mean_.conservativeResize(NoChange,  new_components);
+    mean_.rightCols(rhs.components) = rhs.mean_;
+
+    covariance_.conservativeResize(NoChange, dim * new_components);
+    covariance_.rightCols(dim * rhs.components) = rhs.covariance_;
+
+    weight_.conservativeResize(new_components);
+    weight_.tail(rhs.components) = rhs.weight_;
+
+    return *this;
+}
+
+
+ParticleSet operator+(ParticleSet lhs, const ParticleSet& rhs)
+{
+    lhs += rhs;
+    return lhs;
 }
 
 
