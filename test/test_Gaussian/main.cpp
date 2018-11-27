@@ -107,9 +107,9 @@ int main()
 
         gaussian_3d.weight() = 0.5;
 
-        if (!((gaussian_3d.mean()(0) == 1) &&
-              (gaussian_3d.mean()(1) == 2) &&
-              (gaussian_3d.mean()(2) == 3)))
+        if (!((gaussian_3d.mean(0) == 1) &&
+              (gaussian_3d.mean(1) == 2) &&
+              (gaussian_3d.mean(2) == 3)))
         {
             std::cerr << "Assignment of Gaussian mean failed, is\n" << gaussian_3d.mean() << std::endl;
             return EXIT_FAILURE;
@@ -117,9 +117,9 @@ int main()
         else
             std::cout << "Assignment of Gaussian mean successful:\n" << gaussian_3d.mean() << std::endl;
 
-        if (!((gaussian_3d.covariance()(0, 0) == 11) && (gaussian_3d.covariance()(0, 1) == 12) && (gaussian_3d.covariance()(0, 2) == 13) &&
-              (gaussian_3d.covariance()(1, 0) == 21) && (gaussian_3d.covariance()(1, 1) == 22) && (gaussian_3d.covariance()(1, 2) == 23) &&
-              (gaussian_3d.covariance()(2, 0) == 31) && (gaussian_3d.covariance()(2, 1) == 32) && (gaussian_3d.covariance()(2, 2) == 33)))
+        if (!((gaussian_3d.covariance(0, 0) == 11) && (gaussian_3d.covariance(0, 1) == 12) && (gaussian_3d.covariance(0, 2) == 13) &&
+              (gaussian_3d.covariance(1, 0) == 21) && (gaussian_3d.covariance(1, 1) == 22) && (gaussian_3d.covariance(1, 2) == 23) &&
+              (gaussian_3d.covariance(2, 0) == 31) && (gaussian_3d.covariance(2, 1) == 32) && (gaussian_3d.covariance(2, 2) == 33)))
         {
             std::cerr << "Assignment of Gaussian covariance failed, is\n" << gaussian_3d.covariance() << std::endl;
             return EXIT_FAILURE;
@@ -142,9 +142,9 @@ int main()
 
         Gaussian gaussian_3d_move(std::move(gaussian_3d_copy));
 
-        if (!((gaussian_3d_move.mean()(0) == 1) &&
-              (gaussian_3d_move.mean()(1) == 2) &&
-              (gaussian_3d_move.mean()(2) == 3)))
+        if (!((gaussian_3d_move.mean(0) == 1) &&
+              (gaussian_3d_move.mean(1) == 2) &&
+              (gaussian_3d_move.mean(2) == 3)))
         {
             std::cerr << "Assignment of Gaussian mean failed, is\n" << gaussian_3d_move.mean() << std::endl;
             return EXIT_FAILURE;
@@ -152,9 +152,9 @@ int main()
         else
             std::cout << "Assignment of Gaussian mean successful:\n" << gaussian_3d_move.mean() << std::endl;
 
-        if (!((gaussian_3d_move.covariance()(0, 0) == 11) && (gaussian_3d_move.covariance()(0, 1) == 12) && (gaussian_3d_move.covariance()(0, 2) == 13) &&
-              (gaussian_3d_move.covariance()(1, 0) == 21) && (gaussian_3d_move.covariance()(1, 1) == 22) && (gaussian_3d_move.covariance()(1, 2) == 23) &&
-              (gaussian_3d_move.covariance()(2, 0) == 31) && (gaussian_3d_move.covariance()(2, 1) == 32) && (gaussian_3d_move.covariance()(2, 2) == 33)))
+        if (!((gaussian_3d_move.covariance(0, 0) == 11) && (gaussian_3d_move.covariance(0, 1) == 12) && (gaussian_3d_move.covariance(0, 2) == 13) &&
+              (gaussian_3d_move.covariance(1, 0) == 21) && (gaussian_3d_move.covariance(1, 1) == 22) && (gaussian_3d_move.covariance(1, 2) == 23) &&
+              (gaussian_3d_move.covariance(2, 0) == 31) && (gaussian_3d_move.covariance(2, 1) == 32) && (gaussian_3d_move.covariance(2, 2) == 33)))
         {
             std::cerr << "Assignment of Gaussian covariance failed, is\n" << gaussian_3d_move.covariance() << std::endl;
             return EXIT_FAILURE;
