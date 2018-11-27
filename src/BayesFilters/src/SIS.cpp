@@ -69,7 +69,7 @@ void SIS::filteringStep()
     if (resampling_->neff(cor_particle_.weight().cast<float>()) < static_cast<float>(num_particle_)/3.0)
     {
         ParticleSet res_particle(num_particle_, state_size_);
-        VectorXf res_parent(num_particle_, 1);
+        VectorXi res_parent(num_particle_, 1);
 
         resampling_->resample(cor_particle_, res_particle, res_parent);
 
