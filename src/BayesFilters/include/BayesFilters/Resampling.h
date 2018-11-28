@@ -3,6 +3,8 @@
 
 #include <random>
 
+#include <BayesFilters/ParticleSet.h>
+
 #include <Eigen/Dense>
 
 namespace bfl {
@@ -29,8 +31,8 @@ public:
 
     Resampling& operator=(const Resampling&& resampling) noexcept;
 
-    virtual void resample(const Eigen::Ref<const Eigen::MatrixXf>& cor_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
-                          Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents);
+    virtual void resample(const bfl::ParticleSet& cor_particles, bfl::ParticleSet& res_particles,
+                          Eigen::Ref<Eigen::VectorXi> res_parents);
 
     virtual float neff(const Eigen::Ref<const Eigen::VectorXf>& cor_weights);
 

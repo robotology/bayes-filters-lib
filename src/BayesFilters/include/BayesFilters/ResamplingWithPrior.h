@@ -1,6 +1,7 @@
 #ifndef RESAMPLINGWITHPRIOR_H
 #define RESAMPLINGWITHPRIOR_H
 
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/ParticleSetInitialization.h>
 #include <BayesFilters/Resampling.h>
 
@@ -30,8 +31,7 @@ public:
     ResamplingWithPrior& operator=(ResamplingWithPrior&& resampling) noexcept;
 
 
-    void resample(const Eigen::Ref<const Eigen::MatrixXf>& pred_particles, const Eigen::Ref<const Eigen::VectorXf>& cor_weights,
-                  Eigen::Ref<Eigen::MatrixXf> res_particles, Eigen::Ref<Eigen::VectorXf> res_weights, Eigen::Ref<Eigen::VectorXf> res_parents) override;
+    void resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Eigen::Ref<Eigen::VectorXi> res_parents) override;
 
 protected:
     std::unique_ptr<bfl::ParticleSetInitialization> init_model_;

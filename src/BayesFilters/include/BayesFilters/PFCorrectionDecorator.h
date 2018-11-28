@@ -1,6 +1,7 @@
 #ifndef PFCORRECTIONDECORATOR_H
 #define PFCORRECTIONDECORATOR_H
 
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFCorrection.h>
 
 #include <memory>
@@ -30,8 +31,7 @@ protected:
 
     MeasurementModel& getMeasurementModel() override;
 
-    void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                     Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
+    void correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles) override;
 
 private:
     std::unique_ptr<PFCorrection> correction_;

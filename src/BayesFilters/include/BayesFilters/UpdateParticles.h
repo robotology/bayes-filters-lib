@@ -1,6 +1,7 @@
 #ifndef UPDATEPARTICLES_H
 #define UPDATEPARTICLES_H
 
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFCorrection.h>
 
 #include <memory>
@@ -33,8 +34,7 @@ protected:
 
     MeasurementModel& getMeasurementModel() override;
 
-    void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights,
-                     Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
+    void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) override;
 
     bool valid_likelihood_ = false;
     Eigen::VectorXf likelihood_;

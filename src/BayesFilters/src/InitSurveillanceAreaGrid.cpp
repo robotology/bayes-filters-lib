@@ -22,9 +22,9 @@ InitSurveillanceAreaGrid::InitSurveillanceAreaGrid(const double surv_x, const do
 { }
 
 
-bool InitSurveillanceAreaGrid::initialize(Ref<MatrixXf> states, Ref<VectorXf> weights)
+bool InitSurveillanceAreaGrid::initialize(ParticleSet& particles)
 {
-    int num_particle = states.cols();
+    int num_particle = particles.state().cols();
     if (num_particle != num_particle_x_ * num_particle_y_)
         return false;
 
@@ -33,12 +33,12 @@ bool InitSurveillanceAreaGrid::initialize(Ref<MatrixXf> states, Ref<VectorXf> we
 
     for (int i = 0; i < num_particle_x_; ++i)
         for (int j = 0; j < num_particle_y_; ++j)
-            states.col(i*num_particle_y_ + j) << static_cast<float>((delta_surv_x / (num_particle_x_ - 1)) * i + surv_x_inf_),
-                                                                                                                            0,
-                                                 static_cast<float>((delta_surv_y / (num_particle_y_ - 1)) * j + surv_y_inf_),
-                                                                                                                            0;
+            particles.state().col(i*num_particle_y_ + j) << static_cast<double>((delta_surv_x / (num_particle_x_ - 1)) * i + surv_x_inf_),
+                                                                                                                                        0,
+                                                            static_cast<double>((delta_surv_y / (num_particle_y_ - 1)) * j + surv_y_inf_),
+                                                                                                                                        0;
 
-    weights.setConstant(1.0f/num_particle);
+    particles.weight().setConstant(1.0f/num_particle);
 
     return true;
 }

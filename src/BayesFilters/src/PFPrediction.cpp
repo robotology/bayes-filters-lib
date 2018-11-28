@@ -21,17 +21,12 @@ PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept :
 }
 
 
-void PFPrediction::predict(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
-                           Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
+void PFPrediction::predict(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
     if (!skip_prediction_)
-        predictStep(prev_states, prev_weights,
-                    pred_states, pred_weights);
+        predictStep(prev_particles, pred_particles);
     else
-    {
-        pred_states  = prev_states;
-        pred_weights = prev_states;
-    }
+        pred_particles = prev_particles;
 }
 
 

@@ -47,9 +47,7 @@ LikelihoodModel& PFCorrectionDecorator::getLikelihoodModel()
 }
 
 
-void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights,
-                                        Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+void PFCorrectionDecorator::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    correction_->correctStep(pred_states, pred_weights,
-                             cor_states, cor_weights);
+    correction_->correctStep(pred_particles, cor_particles);
 }

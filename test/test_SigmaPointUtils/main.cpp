@@ -56,17 +56,17 @@ int main()
 
 
     Gaussian gaussian(3, 3);
-    gaussian.mean << 1.0, 1.0, 1.0, M_PI, M_PI_2, M_PI_4;
-    gaussian.covariance << 1.0, 0,   0,   0,     0,     0,
-                           0,   2.0, 0,   0,     0,     0,
-                           0,   0,   4.0, 0,     0,     0,
-                           0,   0,   0,   0.157, 0,     0,
-                           0,   0,   0,   0,     0.157, 0,
-                           0,   0,   0,   0,     0,     0.157;
+    gaussian.mean() << 1.0, 1.0, 1.0, M_PI, M_PI_2, M_PI_4;
+    gaussian.covariance() << 1.0, 0,   0,   0,     0,     0,
+                             0,   2.0, 0,   0,     0,     0,
+                             0,   0,   4.0, 0,     0,     0,
+                             0,   0,   0,   0.157, 0,     0,
+                             0,   0,   0,   0,     0.157, 0,
+                             0,   0,   0,   0,     0,     0.157;
 
     MatrixXd sigma_points = unscented_transform(gaussian, c);
 
-    std::cout << "Gaussian mean:\n" << gaussian.mean << "\nGaussian covariance:\n" << gaussian.covariance << "\nc: " << c << std::endl;
+    std::cout << "Gaussian mean:\n" << gaussian.mean() << "\nGaussian covariance:\n" << gaussian.covariance() << "\nc: " << c << std::endl;
 
     std::cout << "Sigma points:\n" << sigma_points << std::endl;
 

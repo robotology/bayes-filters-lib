@@ -1,6 +1,7 @@
 #ifndef INITSURVEILLANCEAREAGRID_H
 #define INITSURVEILLANCEAREAGRID_H
 
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/ParticleSetInitialization.h>
 
 namespace bfl {
@@ -18,7 +19,7 @@ public:
 
     virtual ~InitSurveillanceAreaGrid() noexcept { };
 
-    bool initialize(Eigen::Ref<Eigen::MatrixXf> states, Eigen::Ref<Eigen::VectorXf> weights) override;
+    bool initialize(bfl::ParticleSet& particles) override;
 
 protected:
     double surv_x_inf_;
