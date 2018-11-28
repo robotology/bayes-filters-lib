@@ -8,3 +8,9 @@ Eigen::MatrixXf StateModel::getJacobian()
 {
     throw std::runtime_error("ERROR::STATEMODEL::GETJACOBIAN\nERROR:\n\tMethod not implemented.");
 }
+
+
+Eigen::VectorXf StateModel::transitionProbability(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> cur_states)
+{
+    throw std::runtime_error("ERROR::STATEMODEL::TRANSITIONPROBABILITY\nERROR:\n\tMethod not implemented.");
+}

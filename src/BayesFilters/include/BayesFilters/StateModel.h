@@ -19,6 +19,8 @@ public:
 
     virtual Eigen::MatrixXf getJacobian();
 
+    virtual Eigen::VectorXf transitionProbability(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> cur_states);
+
     virtual bool setProperty(const std::string& property) = 0;
 };
 
