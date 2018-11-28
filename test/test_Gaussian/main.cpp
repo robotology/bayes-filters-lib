@@ -13,14 +13,12 @@ int main()
     {
         std::cout << "Constructing an empty Gaussian..." << std::endl;
 
-        bool catch_exception = false;
         try
         {
             Gaussian(0);
         }
         catch (const std::runtime_error& e)
         {
-            catch_exception = true;
             std::cout << "Caught error.\n" << e.what() << std::endl;
 
             return EXIT_FAILURE;
