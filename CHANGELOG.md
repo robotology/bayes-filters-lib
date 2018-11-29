@@ -1,5 +1,46 @@
 # 📜 BayesFilters changelog
 
+## Version 0.9.101
+##### `CMake`
+ - Third number of SemVer increases since API compatibility is broken.
+
+##### `Filtering Features`
+
+###### State models
+ - Removed method StateModel::getNoiseCovarianceMatrix.
+ - Removed method StateModel::getNoiseSample.
+ - Removed method StateModelDecorator::getNoiseCovarianceMatrix.
+ - Removed method StateModelDecorator::getNoiseSample.
+ - Added non-pure virtual method StateModel::transitionProbability.
+ - Added non-pure virtual method StateModel::getJacobian.
+ - Implemented AdditiveStateModel class inheriting from StateModel.
+ - Implemented LinearStateModel class inheriting from AdditiveStateModel.
+ - Implemented LTIStateModel class inheriting from LinearStateModel.
+ - Method WhiteNoiseAcceleration::getNoiseSample do not override.
+ - WhiteNoiseAcceleration class now inherits from LinearStateModel.
+ - SimulatedStateModel class now supports state vector of any size.
+
+###### Measurement models
+ - Removed method MeasurementModel::getNoiseSample.
+ - Removed method MeasurementModelDecorator::getNoiseSample.
+ - Added class LinearMeasurementModel.
+ - Added class LTIMeasurementModel.
+ - LinearModel class now inherits from LinearMeasurementModel.
+ - Method MeasurementModel::measure replaces method MeasurementModel::getAgentMeasurements and does not take the state as input.
+ - Method MeasurementModelDecorator::measure replaces method MeasurementModelDecorator::getAgentMesurements.
+ - Method SimulatedLinearSensor::measure replaces method SimulatedLinearSensor::getAgentMeasurements.
+ - LinearModel class now does not implement MeasurementModel::measure.
+ - SimulatedLinearModel class inheriting from LinearModel implements method MeasurementModel::measure.
+ - Method GaussianLilkelihood::likelihood uses method MeasurementModel::measure.
+ - Method MeasurementModel::freezeMeasurements replaces method MeasurementModel::bufferAgentData const.
+ - Method MeasurementModelDecorator::freezeMeasurements replaces method MeasurementModelDecorator::bufferAgentData const.
+ - Method SimulatedLinearSensor::freezeMeasurements replaces method SimulatedLinearSensors::bufferAgentData const.
+ - Moved actual evaluation of measurements from SimulatedLinearSensor::measure to SimulatedLinearSensors::freezeMeasurements.
+ - Method UpdateParticles::correctStep uses MeasurementModel::freezeMeasurements.
+
+##### `Test`
+ - Updated test_SIS_Decorators (since use MeasurementModelDecorator).
+
 ## Version 0.8.101
 ##### `CMake`
  - Third number of SemVer increases since API compatibility is broken
