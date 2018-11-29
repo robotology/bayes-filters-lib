@@ -2,7 +2,7 @@ language: cpp
 
 dist: xenial
 sudo: required
-osx_image: xcode8.3
+osx_image: xcode9.2
 cache: ccache
 
 os:
@@ -21,13 +21,14 @@ addons:
   apt:
     packages:
       - libeigen3-dev
+  homebrew:
+    packages:
+      - ccache
+      - eigen
 
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export PATH="/usr/lib/ccache/bin/:$PATH"; fi
-
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ccache; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
 
   - echo "-------------------- BEGIN SYSTEM INFORMATION --------------------"
@@ -48,7 +49,6 @@ before_install:
 
 install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then /usr/bin/yes | pip2 uninstall numpy || true; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install eigen; fi
 
 before_script:
   - mkdir build
