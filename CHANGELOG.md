@@ -24,6 +24,8 @@
  - Used new ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
  - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
  - Methods Resampling::resample and ResamplingWithPrior::resample use VectorXi instead of VectorXf to represent particle parents.
+ - PFCorrection now performs measurements freeze before calling PFCorrection::correctStep and does not call it if measurements freeze fails.
+ - UpdateParticles::correctStep now does not freeze measurements anymore.
 
 ###### State models
  - Added SimulatedStateModel class to simulate kinematic or dynamic models using StateModel classes.
