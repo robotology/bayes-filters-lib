@@ -9,13 +9,13 @@ using namespace Eigen;
 SimulatedStateModel::SimulatedStateModel
 (
     std::unique_ptr<StateModel> state_model,
-    const Ref<const Vector4f>& initial_state,
+    const Ref<const VectorXf>& initial_state,
     const unsigned int simulation_time
 ) :
     simulation_time_(simulation_time),
     state_model_(std::move(state_model))
 {
-    target_ = MatrixXf(4, simulation_time_);
+    target_ = MatrixXf(initial_state.rows(), simulation_time_);
     target_.col(0) = initial_state;
 
     for (int k = 1; k < simulation_time_; ++k)

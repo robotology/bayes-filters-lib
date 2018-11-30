@@ -23,9 +23,9 @@ MeasurementModelDecorator& MeasurementModelDecorator::operator=(MeasurementModel
 }
 
 
-std::pair<bool, Data> MeasurementModelDecorator::measure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> MeasurementModelDecorator::measure() const
 {
-    return measurement_model->measure(cur_states);
+    return measurement_model->measure();
 }
 
 
@@ -41,12 +41,6 @@ std::pair<bool, Data> MeasurementModelDecorator::innovation(const Data& predicte
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseSample(const int num) const
-{
-    return measurement_model->getNoiseSample(num);
-}
-
-
 std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() const
 {
     return measurement_model->getNoiseCovarianceMatrix();
@@ -59,13 +53,7 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 }
 
 
-bool MeasurementModelDecorator::bufferAgentData() const
+bool MeasurementModelDecorator::freezeMeasurements()
 {
-    return measurement_model->bufferAgentData();
-}
-
-
-std::pair<bool, Data> MeasurementModelDecorator::getAgentMeasurements() const
-{
-    return measurement_model->getAgentMeasurements();
+    return measurement_model->freezeMeasurements();
 }

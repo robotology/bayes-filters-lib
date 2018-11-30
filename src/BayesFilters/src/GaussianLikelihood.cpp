@@ -20,7 +20,7 @@ std::pair<bool, VectorXf> GaussianLikelihood::likelihood
 {
     bool valid_measurements;
     Data data_measurements;
-    std::tie(valid_measurements, data_measurements) = measurement_model.getAgentMeasurements();
+    std::tie(valid_measurements, data_measurements) = measurement_model.measure();
 
     MatrixXf measurements;
     if (valid_measurements)

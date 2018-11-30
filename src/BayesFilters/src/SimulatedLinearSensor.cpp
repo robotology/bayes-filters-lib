@@ -37,15 +37,25 @@ SimulatedLinearSensor::~SimulatedLinearSensor() noexcept
 { }
 
 
-bool SimulatedLinearSensor::bufferAgentData() const
+bool SimulatedLinearSensor::freezeMeasurements()
 {
-    return simulated_state_model_->bufferData();
+    if (!simulated_state_model_->bufferData())
+        return false;
+
+    measurement_ = H_ * any::any_cast<MatrixXf>(simulated_state_model_->getData());
+
+    MatrixXf noise;
+    std::tie(std::ignore, noise) = getNoiseSample(measurement_.cols());
+
+    measurement_ += noise;
+
+    logger(measurement_.transpose());
+
+    return true;
 }
 
 
-std::pair<bool, Data> SimulatedLinearSensor::getAgentMeasurements() const
+std::pair<bool, Data> SimulatedLinearSensor::measure() const
 {
-    MatrixXf simulated_state = any::any_cast<MatrixXf>(simulated_state_model_->getData());
-
-    return measure(simulated_state);
+    return std::make_pair(true, measurement_);
 }

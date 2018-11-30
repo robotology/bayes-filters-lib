@@ -35,18 +35,6 @@ void StateModelDecorator::motion(const Ref<const MatrixXf>& cur_states, Ref<Matr
 }
 
 
-MatrixXf StateModelDecorator::getNoiseSample(const int num)
-{
-    return state_model_->getNoiseSample(num);
-}
-
-
-MatrixXf StateModelDecorator::getNoiseCovarianceMatrix()
-{
-    return state_model_->getNoiseCovarianceMatrix();
-}
-
-
 bool StateModelDecorator::setProperty(const std::string& property)
 {
     return state_model_->setProperty(property);

@@ -22,12 +22,14 @@ public:
 
     virtual ~SimulatedLinearSensor() noexcept;
 
-    bool bufferAgentData() const override;
+    bool freezeMeasurements() override;
 
-    std::pair<bool, bfl::Data> getAgentMeasurements() const override;
+    std::pair<bool, bfl::Data> measure() const override;
 
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
+
+    Eigen::MatrixXf measurement_;
 };
 
 #endif /* SIMULATEDLINEARSENSOR_H */

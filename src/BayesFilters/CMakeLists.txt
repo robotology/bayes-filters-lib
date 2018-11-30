@@ -14,6 +14,7 @@ set(${LIBRARY_TARGET_NAME}_FA_HDR
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
+        include/BayesFilters/AdditiveStateModel.h
         include/BayesFilters/Agent.h
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
@@ -22,7 +23,11 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
         include/BayesFilters/LikelihoodModel.h
+        include/BayesFilters/LinearMeasurementModel.h
         include/BayesFilters/LinearModel.h
+        include/BayesFilters/LinearStateModel.h
+        include/BayesFilters/LTIMeasurementModel.h
+        include/BayesFilters/LTIStateModel.h
         include/BayesFilters/MeasurementModel.h
         include/BayesFilters/MeasurementModelDecorator.h
         include/BayesFilters/ParticleSetInitialization.h
@@ -79,12 +84,17 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
+        src/AdditiveStateModel.cpp
         src/Agent.cpp
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
         src/GaussianLikelihood.cpp
         src/InitSurveillanceAreaGrid.cpp
+        src/LinearMeasurementModel.cpp
         src/LinearModel.cpp
+        src/LinearStateModel.cpp
+        src/LTIMeasurementModel.cpp
+        src/LTIStateModel.cpp
         src/MeasurementModel.cpp
         src/MeasurementModelDecorator.cpp
         src/PFCorrection.cpp
@@ -97,6 +107,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/SimulatedStateModel.cpp
         src/SPCorrection.cpp
         src/SPPrediction.cpp
+        src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp
         src/UKFCorrection.cpp

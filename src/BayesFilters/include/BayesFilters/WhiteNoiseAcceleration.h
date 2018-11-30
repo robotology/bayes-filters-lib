@@ -1,7 +1,7 @@
 #ifndef WHITENOISEACCELERATION_H
 #define WHITENOISEACCELERATION_H
 
-#include <BayesFilters/StateModel.h>
+#include <BayesFilters/LinearStateModel.h>
 
 #include <functional>
 #include <random>
@@ -11,7 +11,7 @@ namespace bfl {
 }
 
 
-class bfl::WhiteNoiseAcceleration : public StateModel
+class bfl::WhiteNoiseAcceleration : public LinearStateModel
 {
 public:
     WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;
@@ -30,13 +30,11 @@ public:
 
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
-    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
-
-    void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
-
-    Eigen::MatrixXf getNoiseSample(const int num) override;
+    Eigen::MatrixXf getNoiseSample(const std::size_t num) override;
 
     Eigen::MatrixXf getNoiseCovarianceMatrix() override;
+
+    Eigen::MatrixXf getStateTransitionMatrix() override;
 
     bool setProperty(const std::string& property) override { return false; };
 

@@ -50,11 +50,11 @@ public:
     { }
 
 
-    std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override
+    std::pair<bool, bfl::Data> measure() const override
     {
         std::cout << "Decorator: DecoratedLinearSensor::measure()." << std::endl;
 
-        return MeasurementModelDecorator::measure(cur_states);
+        return MeasurementModelDecorator::measure();
     }
 };
 

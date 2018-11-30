@@ -17,9 +17,9 @@ public:
 
     virtual void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) = 0;
 
-    virtual Eigen::MatrixXf getNoiseSample(const int num) = 0;
+    virtual Eigen::MatrixXf getJacobian();
 
-    virtual Eigen::MatrixXf getNoiseCovarianceMatrix() = 0;
+    virtual Eigen::VectorXf getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> cur_states);
 
     virtual bool setProperty(const std::string& property) = 0;
 };

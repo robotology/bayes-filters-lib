@@ -13,21 +13,17 @@ namespace bfl {
 class bfl::MeasurementModelDecorator : public MeasurementModel
 {
 public:
-    std::pair<bool, bfl::Data> measure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
+    std::pair<bool, bfl::Data> measure() const override;
 
     std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
 
     std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const override;
-
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string& property) override;
 
-    bool bufferAgentData() const override;
-
-    std::pair<bool, bfl::Data> getAgentMeasurements() const override;
+    bool freezeMeasurements() override;
 
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;
