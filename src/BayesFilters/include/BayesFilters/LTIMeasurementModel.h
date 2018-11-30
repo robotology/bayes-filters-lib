@@ -13,7 +13,7 @@ namespace bfl {
 class bfl::LTIMeasurementModel : public bfl::LinearMeasurementModel
 {
 public:
-    LTIMeasurementModel(const Eigen::MatrixXf& measurement_matrix, const Eigen::MatrixXf& noise_covariance_matrix);
+    LTIMeasurementModel(const Eigen::Ref<const Eigen::MatrixXf>& measurement_matrix, const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
 
     virtual ~LTIMeasurementModel() noexcept { };
 

@@ -8,8 +8,8 @@ using namespace Eigen;
 
 LTIMeasurementModel::LTIMeasurementModel
 (
-    const Eigen::MatrixXf& measurement_matrix,
-    const Eigen::MatrixXf& noise_covariance_matrix
+    const Ref<const MatrixXf>& measurement_matrix,
+    const Ref<const MatrixXf>& noise_covariance_matrix
 ) : H_(measurement_matrix), R_(noise_covariance_matrix)
 {
     if ((H_.rows() == 0) || (H_.cols() == 0))
