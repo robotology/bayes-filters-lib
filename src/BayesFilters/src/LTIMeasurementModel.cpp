@@ -6,11 +6,8 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LTIMeasurementModel::LTIMeasurementModel
-(
-    const Ref<const MatrixXf>& measurement_matrix,
-    const Ref<const MatrixXf>& noise_covariance_matrix
-) : H_(measurement_matrix), R_(noise_covariance_matrix)
+LTIMeasurementModel::LTIMeasurementModel(const Ref<const MatrixXf>& measurement_matrix, const Ref<const MatrixXf>& noise_covariance_matrix)
+    : H_(measurement_matrix), R_(noise_covariance_matrix)
 {
     if ((H_.rows() == 0) || (H_.cols() == 0))
         throw std::runtime_error("ERROR::LTIMEASUREMENTMODEL::CTOR\nERROR:\n\tMeasurement matrix dimensions cannot be 0.");

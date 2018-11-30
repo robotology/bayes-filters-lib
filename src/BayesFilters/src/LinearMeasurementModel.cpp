@@ -13,11 +13,7 @@ std::pair<bool, bfl::Data> LinearMeasurementModel::predictedMeasure(const Eigen:
 }
 
 
-std::pair<bool, bfl::Data> LinearMeasurementModel::innovation
-(
-    const bfl::Data& predicted_measurements,
-    const bfl::Data& measurements
-) const
+std::pair<bool, bfl::Data> LinearMeasurementModel::innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const
 {
     MatrixXf innovation = -(any::any_cast<MatrixXf>(predicted_measurements).colwise() - any::any_cast<MatrixXf>(measurements).col(0));
 

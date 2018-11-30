@@ -13,13 +13,11 @@ namespace bfl {
 class bfl::LTIStateModel : public bfl::LinearStateModel
 {
 public:
-    LTIStateModel(const Eigen::Ref<const Eigen::MatrixXf>& transition_matrix,
-                  const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
+    LTIStateModel(const Eigen::Ref<const Eigen::MatrixXf>& transition_matrix, const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
 
     virtual ~LTIStateModel() noexcept { };
 
-    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states,
-                   Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
 
     Eigen::MatrixXf getNoiseCovarianceMatrix() override;
 

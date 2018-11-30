@@ -15,8 +15,7 @@ class bfl::AdditiveStateModel : public bfl::StateModel
 public:
     virtual ~AdditiveStateModel() noexcept { };
 
-    virtual void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states,
-                        Eigen::Ref<Eigen::MatrixXf> mot_states) override;
+    virtual void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override;
 
     virtual Eigen::MatrixXf getNoiseCovarianceMatrix() = 0;
 
