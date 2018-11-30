@@ -108,14 +108,6 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-void WhiteNoiseAcceleration::motion(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
-{
-    propagate(cur_states, prop_states);
-
-    prop_states += getNoiseSample(prop_states.cols());
-}
-
-
 MatrixXf WhiteNoiseAcceleration::getNoiseSample(const int num)
 {
     MatrixXf rand_vectors(4, num);
