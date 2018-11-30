@@ -19,7 +19,7 @@ public:
     virtual ~LTIStateModel() noexcept { };
 
     void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states,
-                           Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+                   Eigen::Ref<Eigen::MatrixXf> prop_states) override;
 
     Eigen::MatrixXf getNoiseCovarianceMatrix() override;
 
