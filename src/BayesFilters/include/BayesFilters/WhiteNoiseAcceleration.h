@@ -30,7 +30,7 @@ public:
 
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
-    Eigen::MatrixXf getNoiseSample(const int num);
+    Eigen::MatrixXf getNoiseSample(const int num) override;
 
     Eigen::MatrixXf getNoiseCovarianceMatrix() override;
 
