@@ -108,7 +108,7 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-MatrixXf WhiteNoiseAcceleration::getNoiseSample(const int num)
+MatrixXf WhiteNoiseAcceleration::getNoiseSample(const std::size_t num)
 {
     MatrixXf rand_vectors(4, num);
     for (int i = 0; i < rand_vectors.size(); i++)
