@@ -11,7 +11,6 @@ void AdditiveStateModel::motion
     Eigen::Ref<Eigen::MatrixXf> mot_states
 )
 {
-    /* FIXME
-       Add additive noise generation. */
-    propagate(cur_states, mot_states); // + add noise
+    propagate(cur_states, mot_states);
+    mot_states += getNoiseSample(mot_states.cols());
 }
