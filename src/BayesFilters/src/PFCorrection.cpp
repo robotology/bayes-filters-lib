@@ -9,7 +9,8 @@ PFCorrection::PFCorrection() noexcept { };
 
 void PFCorrection::correct(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    if (!skip_)
+    /* Perform correction if required and if measurements can be frozen. */
+    if ((!skip_) && getMeasurementModel().freezeMeasurements())
         correctStep(pred_particles, cor_particles);
     else
         cor_particles = pred_particles;
