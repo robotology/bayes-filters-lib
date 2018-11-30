@@ -13,8 +13,8 @@ namespace bfl {
 class bfl::LTIStateModel : public bfl::LinearStateModel
 {
 public:
-    LTIStateModel(Eigen::MatrixXf& transition_matrix,
-                  Eigen::MatrixXf& noise_covariance_matrix);
+    LTIStateModel(const Eigen::Ref<const Eigen::MatrixXf>& transition_matrix,
+                  const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
 
     virtual ~LTIStateModel() noexcept { };
 
