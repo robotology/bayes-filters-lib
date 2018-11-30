@@ -19,6 +19,8 @@ public:
                         Eigen::Ref<Eigen::MatrixXf> mot_states) override;
 
     virtual Eigen::MatrixXf getNoiseCovarianceMatrix() = 0;
+
+    virtual Eigen::MatrixXf getNoiseSample(const std::size_t num) = 0;
 };
 
 #endif /* ADDITIVESTATEMODEL_H */
