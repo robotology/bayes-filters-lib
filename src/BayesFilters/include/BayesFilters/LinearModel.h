@@ -32,8 +32,6 @@ public:
 
     LinearModel& operator=(LinearModel&& lin_sense) noexcept;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const;
-
     std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
 
     Eigen::MatrixXf getMeasurementMatrix() const override;
@@ -48,6 +46,8 @@ private:
     mutable std::ofstream log_file_measurements_;
 
 protected:
+    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const;
+    
     /**
      * The Sampling interval in [time].
      */
