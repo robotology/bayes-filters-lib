@@ -41,7 +41,6 @@ The aim of this library is to provide _interfaces_ and _implementations_ for new
 # 🎛 Dependencies
 BayesFilters library depends on
  - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3`
- - [OpenCV](https://github.com/opencv/opencv) - `version >= 3.0`
 
 
 # 🔨 Build and link the library
