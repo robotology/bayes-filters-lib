@@ -1,6 +1,7 @@
 # 📜 BayesFilters changelog
 
 ## Version 0.8.100
+
 ##### `Dependencies`
  - Removed OpenCV dependency.
 
@@ -10,18 +11,17 @@
  - Third number of SemVer increases since API compatibility is broken.
 
 ##### `Filtering Algorithms`
+ - Added logging capabilities to FilteringAlgorithm.
  - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).
  - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
 
 ##### `Filtering Functions`
  - Removed VisualParticleFilter class.
  - Removed PFVisualCorrection and derived classes.
- - Added getter and setter methods to PFCorrection and derived classes for Process class.
- - Added Process interface class to model a generic processes.
- - Added LikelihoodModel interface class to model generic likelihood models.
- - Added GaussianLikelihood class to model a likelihood for a linear process model with Gaussian distrubances.
+ - Added LikelihoodModel interface class.
+ - Added GaussianLikelihood class.
  - PFCorrection::getLikelihood() method is now pure virtual.
- - Used ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
+ - Used new ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
  - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
  - Methods Resampling::resample and ResamplingWithPrior::resample use VectorXi instead of VectorXf to represent particle parents.
 
@@ -37,55 +37,33 @@
  - Implemented LinearStateModel class inheriting from AdditiveStateModel.
  - Implemented LTIStateModel class inheriting from LinearStateModel.
  - WhiteNoiseAcceleration class now inherits from LinearStateModel.
- - SimulatedStateModel class now supports state vector of any size.
 
 ###### Measurement models
- - MeasurementModel and direved classes now have registerProcessData() to register a GenericData coming from a process.
- - MeasurementModel and direved classes now have getProcessMeasurements() to provide meaurements of the registered GenericData of a process.
+ - Added SimulatedLinearSensor class.
+ - Added MeasurementModelDecorator class.
+ - Added logging capabilities to MeasurementModel.
  - Removed method MeasurementModel::getNoiseSample.
- - Removed method MeasurementModelDecorator::getNoiseSample.
+ - Method MeasurementModel::measure replaces method MeasurementModel::getAgentMeasurements and does not take the state as input.
+ - Method MeasurementModel::freezeMeasurements replaces method MeasurementModel::bufferAgentData const.
+ - Method UpdateParticles::correctStep uses MeasurementModel::freezeMeasurements.
  - Added class LinearMeasurementModel.
  - Added class LTIMeasurementModel.
+ - Renamed LinearSensor to LinearModel.
  - LinearModel class now inherits from LinearMeasurementModel.
- - Method MeasurementModel::measure replaces method MeasurementModel::getAgentMeasurements and does not take the state as input.
- - Method MeasurementModelDecorator::measure replaces method MeasurementModelDecorator::getAgentMesurements.
- - Method SimulatedLinearSensor::measure replaces method SimulatedLinearSensor::getAgentMeasurements.
  - LinearModel class now does not implement MeasurementModel::measure.
- - SimulatedLinearModel class inheriting from LinearModel implements method MeasurementModel::measure.
- - Method GaussianLilkelihood::likelihood uses method MeasurementModel::measure.
- - Method MeasurementModel::freezeMeasurements replaces method MeasurementModel::bufferAgentData const.
- - Method MeasurementModelDecorator::freezeMeasurements replaces method MeasurementModelDecorator::bufferAgentData const.
- - Method SimulatedLinearSensor::freezeMeasurements replaces method SimulatedLinearSensors::bufferAgentData const.
- - Moved actual evaluation of measurements from SimulatedLinearSensor::measure to SimulatedLinearSensors::freezeMeasurements.
- - Method UpdateParticles::correctStep uses MeasurementModel::freezeMeasurements.
 
 ##### `Filtering Utilities`
- - Added Particle and ParticleSet classes.
- - Added GenericData class in order to have a type for encapsulating data coming from any process.
- - Added EigenMatrixData class that inherits from Generic data and Eigen::Matrix class.
- - Added EigenVectorXfData, EigenMatrixXfData, EigenMatrixXcfData, EigenVectorXdData, EigenMatrixXdData, EigenMatrixXcdData typedefs of EigenMatrixData.
- - Added Gaussian and GaussianMixture classes.
- - Added directional_add(), directional_sub() and directional_mean() functions in directionalstatisticsutils.h/cpp.
- - Added unscented_weights() and unscented_transform() functions in sigmapointutils.h/cpp.
- - Added logging capabilities to FilteringAlgorithm, GenericData, MeasurementModel and Process interfaces.
- - Removed GaussianRef class.
- - Added methods to get the i-th mean, covariance and weight of a GaussianMixture.
- - Added accessors to single elements of the mean/covariance in GaussianMixture class.
- - Re-implemented Gaussian class as inheriting from GaussianMixture class.
- - Added accessors to single elements of the mean/covariance in Gaussian class.
- - Removed Particle class.
- - Implemented ParticleSet class as inheriring from GaussianMixture class.
+ - Added Data class in order to have a type for encapsulating data coming from any process.
+ - Added GaussianMixture, Gaussian and ParticleSet classes.
+ - Added directional_add(), directional_sub() and directional_mean() functions in directional_statistics.h/cpp.
+ - Added unscented_weights() and unscented_transform() functions in sigma_point.h/cpp.
 
 ##### `Test`
- - Added a test for directionalstatisticsutils.h/cpp.
- - Added a test for sigmapointutils.h/cpp.
- - Added a test for Gaussian and GaussianMixture classes.
- - Updated test_SIS_Decorators (since use MeasurementModelDecorator).
- - Updated test_Gaussian (since use Gaussian class).
- - Fix typo in test_Gaussian (since returning in case of failure outside the catch block).
- - Updated test_SigmaPointUtils (since use Gaussian class).
- - Updated test_SIS (since use SIS class).
- - Updated test_SIS_Decorators (since use classes PFPredictionDecorator, PFCorrectionDecorator and SIS)
+ - Added test_DirectionalStatisticsUtils for directional_statistics.h/cpp.
+ - Added test_SigmaPointUtils for sigma_point.h/cpp.
+ - Added test_Gaussian for Gaussian and GaussianMixture classes.
+ - Updated test_SIS.
+ - Updated test_SIS_Decorators.
 
 
 ## Version 0.7.1.0
