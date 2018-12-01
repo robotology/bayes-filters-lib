@@ -30,7 +30,6 @@ init:
 install:
     - ps: vcpkg update
     - ps: vcpkg install eigen3
-    - ps: vcpkg install opencv
 
 build:
 
