@@ -24,8 +24,8 @@ int main()
     std::cout << "Weight mean:\n" << weight.mean << std::endl;
     std::cout << "Weight sum: " << weight.mean.sum() << std::endl << std::endl;
 
-    std::cout << "Covariance mean:\n" << weight.cov << std::endl;
-    std::cout << "Covariance sum: " << weight.cov.sum() << std::endl << std::endl;
+    std::cout << "Covariance mean:\n" << weight.covariance << std::endl;
+    std::cout << "Covariance sum: " << weight.covariance.sum() << std::endl << std::endl;
 
     std::cout << "c: " << weight.c << std::endl << std::endl;
 
@@ -43,7 +43,7 @@ int main()
     VectorXd weight_covariance_test((2 * n) + 1);
     weight_covariance_test << 2, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125;
 
-    if ((weight.cov - weight_covariance_test).cwiseAbs().sum() > 0.0001)
+    if ((weight.covariance - weight_covariance_test).cwiseAbs().sum() > 0.0001)
     {
         std::cerr << "Wrong unscented weights of the covariance." << std::endl;
         return EXIT_FAILURE;
