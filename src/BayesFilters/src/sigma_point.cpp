@@ -16,7 +16,8 @@ bfl::sigma_point::UTWeight::UTWeight
     const double beta,
     const double kappa
 ) :
-    mean((2 * n) + 1), covariance((2 * n) + 1)
+    mean((2 * n) + 1),
+    covariance((2 * n) + 1)
 {
     unscented_weights(n, alpha, beta, kappa, mean, covariance, c);
 }
