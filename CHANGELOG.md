@@ -58,7 +58,9 @@
  - Added Data class in order to have a type for encapsulating data coming from any process.
  - Added GaussianMixture, Gaussian and ParticleSet classes.
  - Added directional_add(), directional_sub() and directional_mean() functions in directional_statistics.h/cpp.
- - Added unscented_weights() and unscented_transform() functions in sigma_point.h/cpp.
+ - Added sigma_point(), unscented_weights() and unscented_transform() functions in sigma_point.h/cpp.
+ - Added UTWeight struct to store unscented transform weights in sigma_point.h/cpp.
+ - Added alias FunctionEvaluation in sigma_point.h/cpp.
 
 ##### `Test`
  - Added test_DirectionalStatisticsUtils for directional_statistics.h/cpp.
