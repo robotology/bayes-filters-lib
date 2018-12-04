@@ -23,7 +23,7 @@ namespace sigma_point
     struct UTWeight
     {
         Eigen::VectorXd mean;
-        Eigen::VectorXd cov;
+        Eigen::VectorXd covariance;
         /**
          * c = sqrt(n + lambda) with lambda a ut parameter.
          */
@@ -40,13 +40,13 @@ namespace sigma_point
 
     std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, StateModel& state_model);
 
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, StateModel& state_model, ExogenousModel& exog_model);
+    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, StateModel& state_model, ExogenousModel& exogenous_model);
 
     std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveStateModel& state_model);
 
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveStateModel& state_model, ExogenousModel& exog_model);
+    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveStateModel& state_model, ExogenousModel& exogenous_model);
 
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, ExogenousModel& exog_model);
+    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, ExogenousModel& exogenous_model);
 
     std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, MeasurementModel& meas_model);
 
