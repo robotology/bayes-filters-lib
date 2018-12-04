@@ -11,7 +11,7 @@ using namespace Eigen;
 
 bfl::sigma_point::UTWeight::UTWeight
 (
-    size_t n,
+    std::size_t n,
     const double alpha,
     const double beta,
     const double kappa
@@ -24,7 +24,7 @@ bfl::sigma_point::UTWeight::UTWeight
 
 void bfl::sigma_point::unscented_weights
 (
-    const size_t n,
+    const std::size_t n,
     const double alpha,
     const double beta,
     const double kappa,

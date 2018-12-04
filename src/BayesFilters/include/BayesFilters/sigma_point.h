@@ -29,10 +29,10 @@ namespace sigma_point
          */
         double c; 
 
-        UTWeight(size_t n, const double alpha, const double beta, const double kappa);
+        UTWeight(std::size_t n, const double alpha, const double beta, const double kappa);
     };
 
-    void unscented_weights(const size_t n, const double alpha, const double beta, const double kappa, Eigen::Ref<Eigen::VectorXd> weight_mean, Eigen::Ref<Eigen::VectorXd> weight_covariance, double& c);
+    void unscented_weights(const std::size_t n, const double alpha, const double beta, const double kappa, Eigen::Ref<Eigen::VectorXd> weight_mean, Eigen::Ref<Eigen::VectorXd> weight_covariance, double& c);
 
     Eigen::MatrixXd sigma_point(const GaussianMixture& state, const double c);
 
