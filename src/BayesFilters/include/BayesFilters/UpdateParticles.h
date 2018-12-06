@@ -23,7 +23,7 @@ public:
 
     void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
 
-    std::pair<bool, Eigen::VectorXf> getLikelihood() override;
+    std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
 protected:
     std::unique_ptr<LikelihoodModel> likelihood_model_;
@@ -37,7 +37,7 @@ protected:
     void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) override;
 
     bool valid_likelihood_ = false;
-    Eigen::VectorXf likelihood_;
+    Eigen::VectorXd likelihood_;
 };
 
 #endif /* UPDATEPARTICLES_H */

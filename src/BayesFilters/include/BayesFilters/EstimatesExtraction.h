@@ -42,7 +42,7 @@ public:
 
     bool setMobileAverageWindowSize(const int window);
 
-    Eigen::VectorXf extract(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights);
+    Eigen::VectorXd extract(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights);
 
     bool clear();
 
@@ -54,9 +54,9 @@ protected:
 
     HistoryBuffer hist_buffer_;
 
-    Eigen::VectorXf sm_weights_;
-    Eigen::VectorXf wm_weights_;
-    Eigen::VectorXf em_weights_;
+    Eigen::VectorXd sm_weights_;
+    Eigen::VectorXd wm_weights_;
+    Eigen::VectorXd em_weights_;
 
 
     enum class Statistics
@@ -65,17 +65,17 @@ protected:
         mode
     };
 
-    Eigen::VectorXf mean(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights) const;
+    Eigen::VectorXd mean(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights) const;
 
-    Eigen::VectorXf mode(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights) const;
+    Eigen::VectorXd mode(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights) const;
 
-    Eigen::VectorXf simpleAverage(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights,
+    Eigen::VectorXd simpleAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
                                   const Statistics& base_est_ext);
 
-    Eigen::VectorXf weightedAverage(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights,
+    Eigen::VectorXd weightedAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
                                     const Statistics& base_est_ext);
 
-    Eigen::VectorXf exponentialAverage(const Eigen::Ref<const Eigen::MatrixXf>& particles, const Eigen::Ref<const Eigen::VectorXf>& weights,
+    Eigen::VectorXd exponentialAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
                                        const Statistics& base_est_ext);
 };
 

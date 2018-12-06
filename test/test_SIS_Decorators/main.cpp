@@ -33,7 +33,7 @@ public:
     { };
 
 
-    void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override
+    void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override
     {
         std::cout << "Decorator: DecoratedWNA::motion()." << std::endl;
 
@@ -123,7 +123,7 @@ int main()
     unsigned int num_particle_x = 100;
     unsigned int num_particle_y = 100;
     unsigned int num_particle = num_particle_x * num_particle_y;
-    Vector4f initial_state(10.0f, 0.0f, 10.0f, 0.0f);
+    Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 10;
     std::size_t state_size = 4;
 

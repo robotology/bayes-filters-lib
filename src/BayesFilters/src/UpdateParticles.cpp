@@ -15,16 +15,16 @@ UpdateParticles::~UpdateParticles() noexcept { }
 
 void UpdateParticles::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_particles.state().cast<float>());
+    std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_particles.state());
     
     cor_particles = pred_particles;
 
     if (valid_likelihood_)
-        cor_particles.weight() = cor_particles.weight().cwiseProduct(likelihood_.cast<double>());
+        cor_particles.weight() = cor_particles.weight().cwiseProduct(likelihood_);
 }
 
 
-std::pair<bool, VectorXf> UpdateParticles::getLikelihood()
+std::pair<bool, VectorXd> UpdateParticles::getLikelihood()
 {
     return std::make_pair(valid_likelihood_, likelihood_);
 }

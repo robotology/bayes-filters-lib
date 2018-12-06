@@ -50,9 +50,9 @@ bool EstimatesExtraction::setMobileAverageWindowSize(const int window)
 }
 
 
-VectorXf EstimatesExtraction::extract(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights)
+VectorXd EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights)
 {
-    VectorXf out_particle(7);
+    VectorXd out_particle(7);
     switch (extraction_method_)
     {
         case ExtractionMethod::mean :
@@ -117,11 +117,11 @@ std::vector<std::string> EstimatesExtraction::getInfo() const
 }
 
 
-VectorXf EstimatesExtraction::mean(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights) const
+VectorXd EstimatesExtraction::mean(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights) const
 {
-    VectorXf out_particle = VectorXf::Zero(7);
-    float    s_ang        = 0;
-    float    c_ang        = 0;
+    VectorXd out_particle = VectorXd::Zero(7);
+    double    s_ang        = 0;
+    double    c_ang        = 0;
 
     for (int i = 0; i < particles.cols(); ++i)
     {
@@ -132,7 +132,7 @@ VectorXf EstimatesExtraction::mean(const Ref<const MatrixXf>& particles, const R
         c_ang += weights(i) * std::cos(particles(6, i));
     }
 
-    float versor_norm = out_particle.middleRows<3>(3).norm();
+    double versor_norm = out_particle.middleRows<3>(3).norm();
     if (versor_norm >= 0.99)
         out_particle.middleRows<3>(3) /= versor_norm;
     else
@@ -144,20 +144,20 @@ VectorXf EstimatesExtraction::mean(const Ref<const MatrixXf>& particles, const R
 }
 
 
-VectorXf EstimatesExtraction::mode(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights) const
+VectorXd EstimatesExtraction::mode(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights) const
 {
-    MatrixXf::Index maxRow;
-    MatrixXf::Index maxCol;
+    MatrixXd::Index maxRow;
+    MatrixXd::Index maxCol;
     weights.maxCoeff(&maxRow, &maxCol);
 
     return particles.col(maxRow);
 }
 
 
-VectorXf EstimatesExtraction::simpleAverage(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights,
+VectorXd EstimatesExtraction::simpleAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
                                             const Statistics& base_est_ext)
 {
-    VectorXf cur_estimates;
+    VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
@@ -166,19 +166,19 @@ VectorXf EstimatesExtraction::simpleAverage(const Ref<const MatrixXf>& particles
 
     hist_buffer_.addElement(cur_estimates);
 
-    MatrixXf history = hist_buffer_.getHistoryBuffer();
+    MatrixXd history = hist_buffer_.getHistoryBuffer();
     if (sm_weights_.size() != history.cols())
-        sm_weights_ = VectorXf::Ones(history.cols()) / history.cols();
+        sm_weights_ = VectorXd::Ones(history.cols()) / history.cols();
 
 
     return mean(history, sm_weights_);
 }
 
 
-VectorXf EstimatesExtraction::weightedAverage(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights,
+VectorXd EstimatesExtraction::weightedAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
                                               const Statistics& base_est_ext)
 {
-    VectorXf cur_estimates;
+    VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
@@ -187,7 +187,7 @@ VectorXf EstimatesExtraction::weightedAverage(const Ref<const MatrixXf>& particl
 
     hist_buffer_.addElement(cur_estimates);
 
-    MatrixXf history = hist_buffer_.getHistoryBuffer();
+    MatrixXd history = hist_buffer_.getHistoryBuffer();
     if (wm_weights_.size() != history.cols())
     {
         wm_weights_.resize(history.cols());
@@ -202,10 +202,10 @@ VectorXf EstimatesExtraction::weightedAverage(const Ref<const MatrixXf>& particl
 }
 
 
-VectorXf EstimatesExtraction::exponentialAverage(const Ref<const MatrixXf>& particles, const Ref<const VectorXf>& weights,
+VectorXd EstimatesExtraction::exponentialAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
                                                  const Statistics& base_est_ext)
 {
-    VectorXf cur_estimates;
+    VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
@@ -214,7 +214,7 @@ VectorXf EstimatesExtraction::exponentialAverage(const Ref<const MatrixXf>& part
 
     hist_buffer_.addElement(cur_estimates);
 
-    MatrixXf history = hist_buffer_.getHistoryBuffer();
+    MatrixXd history = hist_buffer_.getHistoryBuffer();
     if (em_weights_.size() != history.cols())
     {
         em_weights_.resize(history.cols());

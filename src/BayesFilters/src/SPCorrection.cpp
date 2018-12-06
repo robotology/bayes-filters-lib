@@ -16,9 +16,9 @@ Gaussian SPCorrection::correct(const Gaussian& pred_state)
 }
 
 
-std::pair<bool, VectorXf> SPCorrection::getLikelihood()
+std::pair<bool, VectorXd> SPCorrection::getLikelihood()
 {
-    return std::make_pair(false, VectorXf::Zero(1));
+    return std::make_pair(false, VectorXd::Zero(1));
 }
 
 

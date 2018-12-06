@@ -16,9 +16,9 @@ namespace bfl {
 class bfl::LinearModel : public LinearMeasurementModel
 {
 public:
-    LinearModel(const float sigma_x, const float sigma_y, const unsigned int seed) noexcept;
+    LinearModel(const double sigma_x, const double sigma_y, const unsigned int seed) noexcept;
 
-    LinearModel(const float sigma_x, const float sigma_y) noexcept;
+    LinearModel(const double sigma_x, const double sigma_y) noexcept;
 
     LinearModel() noexcept;
 
@@ -32,57 +32,57 @@ public:
 
     LinearModel& operator=(LinearModel&& lin_sense) noexcept;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
+    std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const override;
 
-    Eigen::MatrixXf getMeasurementMatrix() const override;
+    Eigen::MatrixXd getMeasurementMatrix() const override;
 
 private:
     std::mt19937_64 generator_;
 
-    std::normal_distribution<float> distribution_;
+    std::normal_distribution<double> distribution_;
 
     bool log_enabled_ = false;
 
     mutable std::ofstream log_file_measurements_;
 
 protected:
-    std::pair<bool, Eigen::MatrixXf> getNoiseSample(const int num) const;
+    std::pair<bool, Eigen::MatrixXd> getNoiseSample(const int num) const;
     
     /**
      * The Sampling interval in [time].
      */
-    float T_;
+    double T_;
 
     /**
      * x-axis measurement noise std deviation in [length].
      */
-    float sigma_x_;
+    double sigma_x_;
 
     /**
      * y-axis measurement noise std deviation in [length].
      */
-    float sigma_y_;
+    double sigma_y_;
 
     /**
      * Measurement matrix.
      */
-    Eigen::MatrixXf H_;
+    Eigen::MatrixXd H_;
 
     /**
      * Convariance matrix of the additive white noise of the measurements.
      */
-    Eigen::Matrix2f R_;
+    Eigen::Matrix2d R_;
 
     /**
      * Square root matrix of R_.
      */
-    Eigen::Matrix2f sqrt_R_;
+    Eigen::Matrix2d sqrt_R_;
 
     /**
      * Random number generator function from a Normal distribution.
-     * A call to `gauss_rnd_sample_()` returns a floating point random number.
+     * A call to `gauss_rnd_sample_()` returns a doubleing point random number.
      */
-    std::function<float()> gauss_rnd_sample_;
+    std::function<double()> gauss_rnd_sample_;
 
     std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
     {

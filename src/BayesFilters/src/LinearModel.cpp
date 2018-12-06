@@ -10,12 +10,12 @@ using namespace Eigen;
 
 LinearModel::LinearModel
 (
-    const float sigma_x,
-    const float sigma_y,
+    const double sigma_x,
+    const double sigma_y,
     const unsigned int seed
 ) noexcept :
     generator_(std::mt19937_64(seed)),
-    distribution_(std::normal_distribution<float>(0.0, 1.0)),
+    distribution_(std::normal_distribution<double>(0.0, 1.0)),
     sigma_x_(sigma_x),
     sigma_y_(sigma_y),
     gauss_rnd_sample_([&] { return (distribution_)(generator_); })
@@ -32,7 +32,7 @@ LinearModel::LinearModel
 }
 
 
-LinearModel::LinearModel(const float sigma_x, const float sigma_y) noexcept :
+LinearModel::LinearModel(const double sigma_x, const double sigma_y) noexcept :
     LinearModel(sigma_x, sigma_y, 1) { }
 
 
@@ -130,25 +130,25 @@ LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
 }
 
 
-std::pair<bool, MatrixXf> LinearModel::getNoiseSample(const int num) const
+std::pair<bool, MatrixXd> LinearModel::getNoiseSample(const int num) const
 {
-    MatrixXf rand_vectors(2, num);
+    MatrixXd rand_vectors(2, num);
     for (int i = 0; i < rand_vectors.size(); i++)
         *(rand_vectors.data() + i) = gauss_rnd_sample_();
 
-    MatrixXf noise_sample = sqrt_R_ * rand_vectors;
+    MatrixXd noise_sample = sqrt_R_ * rand_vectors;
 
     return std::make_pair(true, std::move(noise_sample));
 }
 
 
-std::pair<bool, MatrixXf> LinearModel::getNoiseCovarianceMatrix() const
+std::pair<bool, MatrixXd> LinearModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
 }
 
 
-Eigen::MatrixXf LinearModel::getMeasurementMatrix() const
+Eigen::MatrixXd LinearModel::getMeasurementMatrix() const
 {
     return H_;
 }

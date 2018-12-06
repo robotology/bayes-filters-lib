@@ -35,7 +35,7 @@ MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
 }
 
 
-std::pair<bool, VectorXf> PFCorrectionDecorator::getLikelihood()
+std::pair<bool, VectorXd> PFCorrectionDecorator::getLikelihood()
 {
     return correction_->getLikelihood();
 }

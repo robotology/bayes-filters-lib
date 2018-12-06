@@ -39,7 +39,7 @@ protected:
     double prior_ratio_ = 0.5;
 
 private:
-    std::vector<unsigned int> sort_indices(const Eigen::Ref<const Eigen::VectorXf>& vector);
+    std::vector<unsigned int> sort_indices(const Eigen::Ref<const Eigen::VectorXd>& vector);
 };
 
 #endif /* RESAMPLINGWITHPRIOR_H */

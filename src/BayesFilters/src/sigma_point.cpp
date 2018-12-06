@@ -92,14 +92,14 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     /* Propagate sigma points */
     Data fun_data;
     bool valid_fun_data;
-    std::tie(valid_fun_data, fun_data) = function(input_sigma_points.cast<float>());
+    std::tie(valid_fun_data, fun_data) = function(input_sigma_points);
 
     /* Stop here if function evaluation failed. */
     if (!valid_fun_data)
         return std::make_tuple(false, GaussianMixture(), MatrixXd(0, 0));
 
     /* For now casting Data to MatrixXd. */
-    MatrixXd prop_sigma_points = (bfl::any::any_cast<MatrixXf&&>(std::move(fun_data))).cast<double>();
+    MatrixXd prop_sigma_points = bfl::any::any_cast<MatrixXd&&>(std::move(fun_data));
 
     /* Initialize transformed gaussian. */
     GaussianMixture output(input.components, prop_sigma_points.rows());
@@ -138,9 +138,9 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     StateModel& state_model
 )
 {
-    FunctionEvaluation f = [&state_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&state_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXf tmp(state.rows(), state.cols());
+                               MatrixXd tmp(state.rows(), state.cols());
                                
                                state_model.motion(state, tmp);
                                
@@ -162,12 +162,12 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     ExogenousModel& exogenous_model
 )
 {
-    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXf tmp_state(state.rows(), state.cols());
+                               MatrixXd tmp_state(state.rows(), state.cols());
                                state_model.motion(state, tmp_state);
 
-                               MatrixXf tmp_exog(tmp_state.rows(), tmp_state.cols());
+                               MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
                                exogenous_model.propagate(tmp_state, tmp_exog);
                                
                                return std::make_pair(true, std::move(tmp_exog));
@@ -187,9 +187,9 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     AdditiveStateModel& state_model
 )
 {
-    FunctionEvaluation f = [&state_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&state_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXf tmp(state.rows(), state.cols());
+                               MatrixXd tmp(state.rows(), state.cols());
                                
                                state_model.propagate(state, tmp);
                                
@@ -203,7 +203,7 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     /* In the additive case the covariance matrix is augmented with the noise
        covariance matrix. */
     for(std::size_t i = 0; i < state.components; i++)
-        output.covariance(i) += state_model.getNoiseCovarianceMatrix().cast<double>();
+        output.covariance(i) += state_model.getNoiseCovarianceMatrix();
 
     return std::make_pair(output, cross_covariance);
 }
@@ -217,12 +217,12 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     ExogenousModel& exogenous_model
 )
 {
-    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXf tmp_state(state.rows(), state.cols());
+                               MatrixXd tmp_state(state.rows(), state.cols());
                                state_model.propagate(state, tmp_state);
 
-                               MatrixXf tmp_exog(tmp_state.rows(), tmp_state.cols());
+                               MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
                                exogenous_model.propagate(tmp_state, tmp_exog);
 
                                return std::make_pair(true, std::move(tmp_exog));
@@ -236,7 +236,7 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     /* In the additive case the covariance matrix is augmented with the noise
        covariance matrix. */
     for (std::size_t i = 0; i < state.components; i++)
-        output.covariance(i) += state_model.getNoiseCovarianceMatrix().cast<double>();
+        output.covariance(i) += state_model.getNoiseCovarianceMatrix();
 
     return std::make_pair(output, cross_covariance);
 }
@@ -249,9 +249,9 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     ExogenousModel& exogenous_model
 )
 {
-    FunctionEvaluation f = [&exogenous_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&exogenous_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXf tmp(state.rows(), state.cols());
+                               MatrixXd tmp(state.rows(), state.cols());
                                
                                exogenous_model.propagate(state, tmp);
                                
@@ -274,7 +274,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     MeasurementModel& meas_model
 )
 {
-    FunctionEvaluation f = [&meas_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&meas_model](const Ref<const MatrixXd>& state)
                            {
                                return meas_model.predictedMeasure(state);
                            };
@@ -295,7 +295,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     LinearMeasurementModel& meas_model
 )
 {
-    FunctionEvaluation f = [&meas_model](const Ref<const MatrixXf>& state)
+    FunctionEvaluation f = [&meas_model](const Ref<const MatrixXd>& state)
                            {
                                return meas_model.predictedMeasure(state);
                            };
@@ -307,10 +307,10 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 
     /* In the additive case the covariance matrix is augmented with the noise
        covariance matrix. */
-    MatrixXf noise_cov;
+    MatrixXd noise_cov;
     std::tie(std::ignore, noise_cov) = meas_model.getNoiseCovarianceMatrix();
     for (std::size_t i = 0; i < state.components; i++)
-        output.covariance(i) += noise_cov.cast<double>();
+        output.covariance(i) += noise_cov;
 
     return std::make_tuple(valid, output, cross_covariance);
 }

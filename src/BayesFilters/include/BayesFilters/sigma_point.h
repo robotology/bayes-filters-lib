@@ -18,7 +18,7 @@ namespace bfl
 {
 namespace sigma_point
 {
-    using FunctionEvaluation = std::function<std::pair<bool, bfl::Data>(const Eigen::Ref<const Eigen::MatrixXf>&)>;
+    using FunctionEvaluation = std::function<std::pair<bool, bfl::Data>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
     
     struct UTWeight
     {

@@ -28,7 +28,7 @@ public:
 
     virtual void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) = 0;
 
-    virtual std::pair<bool, Eigen::VectorXf> getLikelihood() = 0;
+    virtual std::pair<bool, Eigen::VectorXd> getLikelihood() = 0;
 
 protected:
     /* FIXME
