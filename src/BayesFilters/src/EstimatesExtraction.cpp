@@ -120,8 +120,8 @@ std::vector<std::string> EstimatesExtraction::getInfo() const
 VectorXd EstimatesExtraction::mean(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights) const
 {
     VectorXd out_particle = VectorXd::Zero(7);
-    double    s_ang        = 0;
-    double    c_ang        = 0;
+    double   s_ang        = 0;
+    double   c_ang        = 0;
 
     for (int i = 0; i < particles.cols(); ++i)
     {
