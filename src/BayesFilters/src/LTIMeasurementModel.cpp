@@ -6,7 +6,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LTIMeasurementModel::LTIMeasurementModel(const Ref<const MatrixXf>& measurement_matrix, const Ref<const MatrixXf>& noise_covariance_matrix)
+LTIMeasurementModel::LTIMeasurementModel(const Ref<const MatrixXd>& measurement_matrix, const Ref<const MatrixXd>& noise_covariance_matrix)
     : H_(measurement_matrix), R_(noise_covariance_matrix)
 {
     if ((H_.rows() == 0) || (H_.cols() == 0))
@@ -20,13 +20,13 @@ LTIMeasurementModel::LTIMeasurementModel(const Ref<const MatrixXf>& measurement_
 }
 
 
-std::pair<bool, Eigen::MatrixXf> LTIMeasurementModel::getNoiseCovarianceMatrix() const
+std::pair<bool, Eigen::MatrixXd> LTIMeasurementModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(true, R_);
 }
 
 
-Eigen::MatrixXf LTIMeasurementModel::getMeasurementMatrix() const
+Eigen::MatrixXd LTIMeasurementModel::getMeasurementMatrix() const
 {
     return H_;
 }

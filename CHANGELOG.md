@@ -10,6 +10,9 @@
  - Fourth number of the project version has been removed to be compliant with SemVer system.
  - Third number of SemVer increases since API compatibility is broken.
 
+#### `Data types`
+ - Using only double data type within the whole library.
+
 ##### `Filtering Algorithms`
  - Added logging capabilities to FilteringAlgorithm.
  - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).

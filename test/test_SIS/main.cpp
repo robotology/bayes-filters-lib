@@ -50,7 +50,7 @@ int main()
     unsigned int num_particle_x = 100;
     unsigned int num_particle_y = 100;
     unsigned int num_particle = num_particle_x * num_particle_y;
-    Vector4f initial_state(10.0f, 0.0f, 10.0f, 0.0f);
+    Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 100;
     std::size_t state_size = 4;
 
@@ -62,8 +62,8 @@ int main()
     /* Step 2 - Prediction */
     /* Step 2.1 - Define the state model */
     /* Initialize a white noise acceleration state model. */
-    float T = 1.0f;
-    float tilde_q = 10.0f;
+    double T = 1.0f;
+    double tilde_q = 10.0f;
 
     std::unique_ptr<StateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
 

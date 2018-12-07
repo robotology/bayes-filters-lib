@@ -23,13 +23,13 @@ StateModelDecorator& StateModelDecorator::operator=(StateModelDecorator&& state_
 }
 
 
-void StateModelDecorator::propagate(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
+void StateModelDecorator::propagate(const Ref<const MatrixXd>& cur_states, Ref<MatrixXd> prop_states)
 {
     state_model_->propagate(cur_states, prop_states);
 }
 
 
-void StateModelDecorator::motion(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> mot_states)
+void StateModelDecorator::motion(const Ref<const MatrixXd>& cur_states, Ref<MatrixXd> mot_states)
 {
     state_model_->motion(cur_states, mot_states);
 }

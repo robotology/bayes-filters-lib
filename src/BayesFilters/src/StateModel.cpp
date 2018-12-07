@@ -4,13 +4,13 @@ using namespace bfl;
 using namespace Eigen;
 
 
-Eigen::MatrixXf StateModel::getJacobian()
+Eigen::MatrixXd StateModel::getJacobian()
 {
     throw std::runtime_error("ERROR::STATEMODEL::GETJACOBIAN\nERROR:\n\tMethod not implemented.");
 }
 
 
-Eigen::VectorXf StateModel::getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> cur_states)
+Eigen::VectorXd StateModel::getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states)
 {
     throw std::runtime_error("ERROR::STATEMODEL::TRANSITIONPROBABILITY\nERROR:\n\tMethod not implemented.");
 }

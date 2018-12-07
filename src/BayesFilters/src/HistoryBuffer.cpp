@@ -26,7 +26,7 @@ HistoryBuffer& HistoryBuffer::operator=(HistoryBuffer&& history_buffer) noexcept
 }
 
 
-void HistoryBuffer::addElement(const Ref<const VectorXf>& element)
+void HistoryBuffer::addElement(const Ref<const VectorXd>& element)
 {
     history_buffer_.push_front(element);
 
@@ -35,12 +35,12 @@ void HistoryBuffer::addElement(const Ref<const VectorXf>& element)
 }
 
 
-MatrixXf HistoryBuffer::getHistoryBuffer() const
+MatrixXd HistoryBuffer::getHistoryBuffer() const
 {
-    MatrixXf hist_out(7, history_buffer_.size());
+    MatrixXd hist_out(7, history_buffer_.size());
 
     unsigned int i = 0;
-    for (const Ref<const VectorXf>& element : history_buffer_)
+    for (const Ref<const VectorXd>& element : history_buffer_)
         hist_out.col(i++) = element;
 
     return hist_out;

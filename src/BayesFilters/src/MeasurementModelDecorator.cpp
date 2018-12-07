@@ -29,7 +29,7 @@ std::pair<bool, Data> MeasurementModelDecorator::measure() const
 }
 
 
-std::pair<bool, Data> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXf>& cur_states) const
+std::pair<bool, Data> MeasurementModelDecorator::predictedMeasure(const Ref<const MatrixXd>& cur_states) const
 {
     return measurement_model->predictedMeasure(cur_states);
 }
@@ -41,7 +41,7 @@ std::pair<bool, Data> MeasurementModelDecorator::innovation(const Data& predicte
 }
 
 
-std::pair<bool, MatrixXf> MeasurementModelDecorator::getNoiseCovarianceMatrix() const
+std::pair<bool, MatrixXd> MeasurementModelDecorator::getNoiseCovarianceMatrix() const
 {
     return measurement_model->getNoiseCovarianceMatrix();
 }

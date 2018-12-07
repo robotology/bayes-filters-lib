@@ -10,9 +10,9 @@ MeasurementModel::~MeasurementModel() noexcept
 { }
 
 
-std::pair<bool, MatrixXf> MeasurementModel::getNoiseCovarianceMatrix() const
+std::pair<bool, MatrixXd> MeasurementModel::getNoiseCovarianceMatrix() const
 {
-    return std::make_pair(false, MatrixXf::Zero(1, 1));
+    return std::make_pair(false, MatrixXd::Zero(1, 1));
 }
 
 

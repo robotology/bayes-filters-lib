@@ -6,7 +6,7 @@ using namespace bfl;
 using namespace Eigen;
 
 
-LTIStateModel::LTIStateModel(const Ref<const MatrixXf>& transition_matrix, const Ref<const MatrixXf>& noise_covariance_matrix) :
+LTIStateModel::LTIStateModel(const Ref<const MatrixXd>& transition_matrix, const Ref<const MatrixXd>& noise_covariance_matrix) :
     F_(transition_matrix), Q_(noise_covariance_matrix)
 {
     if ((F_.rows() == 0) || (F_.cols() == 0))
@@ -22,19 +22,19 @@ LTIStateModel::LTIStateModel(const Ref<const MatrixXf>& transition_matrix, const
 }
 
 
-void LTIStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states)
+void LTIStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states)
 {
     prop_states = F_ * cur_states;
 }
 
 
-Eigen::MatrixXf LTIStateModel::getNoiseCovarianceMatrix()
+Eigen::MatrixXd LTIStateModel::getNoiseCovarianceMatrix()
 {
     return Q_;
 }
 
 
-Eigen::MatrixXf LTIStateModel::getStateTransitionMatrix()
+Eigen::MatrixXd LTIStateModel::getStateTransitionMatrix()
 {
     return F_;
 }
@@ -46,7 +46,7 @@ bool LTIStateModel::setProperty(const std::string& property)
 }
 
 
-Eigen::MatrixXf LTIStateModel::getJacobian()
+Eigen::MatrixXd LTIStateModel::getJacobian()
 {
     return F_;
 }

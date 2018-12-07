@@ -14,9 +14,9 @@ namespace bfl {
 class bfl::WhiteNoiseAcceleration : public LinearStateModel
 {
 public:
-    WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;
+    WhiteNoiseAcceleration(double T, double tilde_q, unsigned int seed) noexcept;
 
-    WhiteNoiseAcceleration(float T, float tilde_q) noexcept;
+    WhiteNoiseAcceleration(double T, double tilde_q) noexcept;
 
     WhiteNoiseAcceleration() noexcept;
 
@@ -30,50 +30,50 @@ public:
 
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
-    Eigen::MatrixXf getNoiseSample(const std::size_t num) override;
+    Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
 
-    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
 
-    Eigen::MatrixXf getStateTransitionMatrix() override;
+    Eigen::MatrixXd getStateTransitionMatrix() override;
 
     bool setProperty(const std::string& property) override { return false; };
 
 private:
     std::mt19937_64 generator_;
 
-    std::normal_distribution<float> distribution_;
+    std::normal_distribution<double> distribution_;
 
 protected:
     /**
      * Sampling interval in [time].
      */
-    float T_;
+    double T_;
 
     /**
      * State transition matrix.
      */
-    Eigen::Matrix4f F_;
+    Eigen::Matrix4d F_;
 
     /**
      * Convariance matrix of the additive white noise of the state model.
      */
-    Eigen::Matrix4f Q_;
+    Eigen::Matrix4d Q_;
 
     /**
      * Power spectral density [length]^2/[time]^3.
      */
-    float tilde_q_;
+    double tilde_q_;
 
     /**
      * Square root matrix of R_.
      */
-    Eigen::Matrix4f sqrt_Q_;
+    Eigen::Matrix4d sqrt_Q_;
 
     /**
      * Random number generator function from a Normal distribution.
-     * A call to `gauss_rnd_sample_()` returns a floating point random number.
+     * A call to `gauss_rnd_sample_()` returns a double-precision floating point random number.
      */
-    std::function<float()> gauss_rnd_sample_;
+    std::function<double()> gauss_rnd_sample_;
 };
 
 #endif /* WHITENOISEACCELERATION_H */

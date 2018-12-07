@@ -15,11 +15,11 @@ class bfl::MeasurementModelDecorator : public MeasurementModel
 public:
     std::pair<bool, bfl::Data> measure() const override;
 
-    std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const override;
+    std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXd>& cur_states) const override;
 
     std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const override;
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
+    std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const override;
 
     bool setProperty(const std::string& property) override;
 

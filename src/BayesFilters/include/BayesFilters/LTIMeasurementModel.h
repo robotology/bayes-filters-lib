@@ -13,20 +13,20 @@ namespace bfl {
 class bfl::LTIMeasurementModel : public bfl::LinearMeasurementModel
 {
 public:
-    LTIMeasurementModel(const Eigen::Ref<const Eigen::MatrixXf>& measurement_matrix, const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
+    LTIMeasurementModel(const Eigen::Ref<const Eigen::MatrixXd>& measurement_matrix, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
 
     virtual ~LTIMeasurementModel() noexcept { };
 
-    std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const override;
+    std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const override;
 
-    Eigen::MatrixXf getMeasurementMatrix() const override;
+    Eigen::MatrixXd getMeasurementMatrix() const override;
 
 protected:
     /* Measurement matrix. */
-    Eigen::MatrixXf H_;
+    Eigen::MatrixXd H_;
 
     /* Matrix covariance of the zero mean additive white measurement noise. */
-    Eigen::MatrixXf R_;
+    Eigen::MatrixXd R_;
 };
 
 #endif /* LTIMEMEASUREMENTMODEL_H */

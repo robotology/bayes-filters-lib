@@ -14,9 +14,9 @@ namespace bfl {
 class bfl::SimulatedLinearSensor : public LinearModel
 {
 public:
-    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const float sigma_x, const float sigma_y, const unsigned int seed);
+    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const double sigma_x, const double sigma_y, const unsigned int seed);
 
-    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const float sigma_x, const float sigma_y);
+    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const double sigma_x, const double sigma_y);
 
     SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model);
 
@@ -29,7 +29,7 @@ public:
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
 
-    Eigen::MatrixXf measurement_;
+    Eigen::MatrixXd measurement_;
 };
 
 #endif /* SIMULATEDLINEARSENSOR_H */

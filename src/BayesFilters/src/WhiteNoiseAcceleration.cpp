@@ -11,12 +11,12 @@ using namespace Eigen;
 
 WhiteNoiseAcceleration::WhiteNoiseAcceleration
 (
-    float T,
-    float tilde_q,
+    double T,
+    double tilde_q,
     unsigned int seed
 ) noexcept :
     generator_(std::mt19937_64(seed)),
-    distribution_(std::normal_distribution<float>(0.0, 1.0)),
+    distribution_(std::normal_distribution<double>(0.0, 1.0)),
     T_(T),
     tilde_q_(tilde_q),
     gauss_rnd_sample_([&] { return (distribution_)(generator_); })
@@ -26,20 +26,20 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration
           0.0, 0.0, 1.0,  T_,
           0.0, 0.0, 0.0, 1.0;
 
-    float q11 = 1.0/3.0 * std::pow(T_, 3.0);
-    float q2  = 1.0/2.0 * std::pow(T_, 2.0);
+    double q11 = 1.0/3.0 * std::pow(T_, 3.0);
+    double q2  = 1.0/2.0 * std::pow(T_, 2.0);
     Q_ << q11,  q2, 0.0, 0.0,
            q2,  T_, 0.0, 0.0,
           0.0, 0.0, q11,  q2,
           0.0, 0.0,  q2,  T_;
     Q_ *= tilde_q;
 
-    LDLT<Matrix4f> chol_ldlt(Q_);
-    sqrt_Q_ = (chol_ldlt.transpositionsP() * Matrix4f::Identity()).transpose() * chol_ldlt.matrixL() * chol_ldlt.vectorD().real().cwiseSqrt().asDiagonal();
+    LDLT<Matrix4d> chol_ldlt(Q_);
+    sqrt_Q_ = (chol_ldlt.transpositionsP() * Matrix4d::Identity()).transpose() * chol_ldlt.matrixL() * chol_ldlt.vectorD().real().cwiseSqrt().asDiagonal();
 }
 
 
-WhiteNoiseAcceleration::WhiteNoiseAcceleration(float T, float tilde_q) noexcept :
+WhiteNoiseAcceleration::WhiteNoiseAcceleration(double T, double tilde_q) noexcept :
     WhiteNoiseAcceleration(T, tilde_q, 1)
 { }
 
@@ -108,9 +108,9 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration
 }
 
 
-MatrixXf WhiteNoiseAcceleration::getNoiseSample(const std::size_t num)
+MatrixXd WhiteNoiseAcceleration::getNoiseSample(const std::size_t num)
 {
-    MatrixXf rand_vectors(4, num);
+    MatrixXd rand_vectors(4, num);
     for (int i = 0; i < rand_vectors.size(); i++)
         *(rand_vectors.data() + i) = gauss_rnd_sample_();
 
@@ -118,13 +118,13 @@ MatrixXf WhiteNoiseAcceleration::getNoiseSample(const std::size_t num)
 }
 
 
-MatrixXf WhiteNoiseAcceleration::getNoiseCovarianceMatrix()
+MatrixXd WhiteNoiseAcceleration::getNoiseCovarianceMatrix()
 {
     return Q_;
 }
 
 
-MatrixXf WhiteNoiseAcceleration::getStateTransitionMatrix()
+MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 {
     return F_;
 }

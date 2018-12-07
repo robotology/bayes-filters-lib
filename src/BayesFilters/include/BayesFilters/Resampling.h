@@ -34,7 +34,7 @@ public:
     virtual void resample(const bfl::ParticleSet& cor_particles, bfl::ParticleSet& res_particles,
                           Eigen::Ref<Eigen::VectorXi> res_parents);
 
-    virtual float neff(const Eigen::Ref<const Eigen::VectorXf>& cor_weights);
+    virtual double neff(const Eigen::Ref<const Eigen::VectorXd>& cor_weights);
 
 private:
     std::mt19937_64 generator_;

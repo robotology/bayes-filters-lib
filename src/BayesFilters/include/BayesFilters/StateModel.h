@@ -13,13 +13,13 @@ class bfl::StateModel
 public:
     virtual ~StateModel() noexcept { };
 
-    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) = 0;
+    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
 
-    virtual void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) = 0;
+    virtual void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) = 0;
 
-    virtual Eigen::MatrixXf getJacobian();
+    virtual Eigen::MatrixXd getJacobian();
 
-    virtual Eigen::VectorXf getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXf>& prev_states, Eigen::Ref<Eigen::MatrixXf> cur_states);
+    virtual Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states);
 
     virtual bool setProperty(const std::string& property) = 0;
 };

@@ -22,11 +22,11 @@ public:
 
     virtual std::pair<bool, bfl::Data> measure() const = 0;
 
-    virtual std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXf>& cur_states) const = 0;
+    virtual std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXd>& cur_states) const = 0;
 
     virtual std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const = 0;
 
-    virtual std::pair<bool, Eigen::MatrixXf> getNoiseCovarianceMatrix() const;
+    virtual std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const;
 
     virtual bool setProperty(const std::string& property);
 

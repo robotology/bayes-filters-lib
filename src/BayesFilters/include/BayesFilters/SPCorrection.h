@@ -30,12 +30,12 @@ public:
 
     std::unique_ptr<MeasurementModel> measurement_model_;
 
-    virtual std::pair<bool, Eigen::VectorXf> getLikelihood();
+    virtual std::pair<bool, Eigen::VectorXd> getLikelihood();
 
 protected:
     virtual Gaussian correctStep(const Gaussian& prev_state) = 0;
 
-    virtual std::pair<bool, Eigen::VectorXf> likelihood(const Eigen::Ref<const Eigen::MatrixXf>& innovations) = 0;
+    virtual std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) = 0;
 
     SPCorrection() noexcept;
 

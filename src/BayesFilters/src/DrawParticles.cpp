@@ -18,11 +18,7 @@ DrawParticles::~DrawParticles() noexcept { }
 
 void DrawParticles::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
-    /* Temporary variable required until discrepancy between
-       MatrixXf and MatrixXd is solved. */
-    MatrixXf tmp(pred_particles.dim, pred_particles.components);
-    state_model_->motion(prev_particles.state().cast<float>(), tmp);
-    pred_particles.state() = std::move(tmp.cast<double>());
+    state_model_->motion(prev_particles.state(), pred_particles.state());
 
     pred_particles.weight() = prev_particles.weight();
 }

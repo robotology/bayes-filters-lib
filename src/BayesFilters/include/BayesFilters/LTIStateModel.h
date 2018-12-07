@@ -13,30 +13,30 @@ namespace bfl {
 class bfl::LTIStateModel : public bfl::LinearStateModel
 {
 public:
-    LTIStateModel(const Eigen::Ref<const Eigen::MatrixXf>& transition_matrix, const Eigen::Ref<const Eigen::MatrixXf>& noise_covariance_matrix);
+    LTIStateModel(const Eigen::Ref<const Eigen::MatrixXd>& transition_matrix, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
 
     virtual ~LTIStateModel() noexcept { };
 
-    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+    void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) override;
 
-    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
 
-    Eigen::MatrixXf getStateTransitionMatrix() override;
+    Eigen::MatrixXd getStateTransitionMatrix() override;
 
     bool setProperty(const std::string& property) override;
 
-    Eigen::MatrixXf getJacobian() override;
+    Eigen::MatrixXd getJacobian() override;
 
 protected:
     /*
      * State transition matrix.
      */
-    Eigen::MatrixXf F_;
+    Eigen::MatrixXd F_;
 
     /*
      * Noise covariance matrix of zero mean additive white noise.
      */
-    Eigen::MatrixXf Q_;
+    Eigen::MatrixXd Q_;
 };
 
 #endif /* LTISTATEMODEL_H */

@@ -16,7 +16,7 @@ namespace bfl {
 class bfl::SimulatedStateModel : public Agent, public Logger
 {
 public:
-    SimulatedStateModel(std::unique_ptr<StateModel> state_model, const Eigen::Ref<const Eigen::VectorXf>& initial_state, const unsigned int simulation_time);
+    SimulatedStateModel(std::unique_ptr<StateModel> state_model, const Eigen::Ref<const Eigen::VectorXd>& initial_state, const unsigned int simulation_time);
 
     virtual ~SimulatedStateModel() noexcept;
 
@@ -29,7 +29,7 @@ public:
 private:
     unsigned int simulation_time_;
 
-    Eigen::MatrixXf target_;
+    Eigen::MatrixXd target_;
 
 protected:
     std::unique_ptr<StateModel> state_model_;
