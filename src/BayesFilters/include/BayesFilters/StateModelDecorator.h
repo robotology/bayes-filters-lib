@@ -19,6 +19,8 @@ public:
 
     bool setProperty(const std::string& property) override;
 
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
+
 protected:
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 

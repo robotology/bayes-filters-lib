@@ -39,3 +39,9 @@ bool StateModelDecorator::setProperty(const std::string& property)
 {
     return state_model_->setProperty(property);
 }
+
+
+MatrixXd StateModelDecorator::getNoiseCovarianceMatrix()
+{
+    return state_model_->getNoiseCovarianceMatrix();
+}
