@@ -24,6 +24,7 @@ GaussianMixture::GaussianMixture
     dim(dim_linear + dim_circular),
     dim_linear(dim_linear),
     dim_circular(dim_circular),
+    dim_noise(0),
     mean_(dim, components),
     covariance_(dim, dim * components),
     weight_(components)
