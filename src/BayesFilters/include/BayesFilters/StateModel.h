@@ -21,6 +21,8 @@ public:
 
     virtual Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states);
 
+    virtual Eigen::MatrixXd getNoiseCovarianceMatrix();
+
     virtual bool setProperty(const std::string& property) = 0;
 };
 
