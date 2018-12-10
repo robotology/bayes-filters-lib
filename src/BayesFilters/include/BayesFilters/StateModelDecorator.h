@@ -21,6 +21,8 @@ public:
 
     Eigen::MatrixXd getNoiseCovarianceMatrix() override;
 
+    Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
+
 protected:
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 

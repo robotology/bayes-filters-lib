@@ -45,3 +45,9 @@ MatrixXd StateModelDecorator::getNoiseCovarianceMatrix()
 {
     return state_model_->getNoiseCovarianceMatrix();
 }
+
+
+MatrixXd StateModelDecorator::getNoiseSample(const std::size_t num)
+{
+    return state_model_->getNoiseSample(num);
+}
