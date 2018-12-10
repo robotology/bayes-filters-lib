@@ -25,6 +25,8 @@ public:
 
     bool freezeMeasurements() override;
 
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+
 protected:
     MeasurementModelDecorator(std::unique_ptr<MeasurementModel> measurement_model) noexcept;
 

@@ -14,3 +14,15 @@ Eigen::VectorXd StateModel::getTransitionProbability(const Eigen::Ref<const Eige
 {
     throw std::runtime_error("ERROR::STATEMODEL::TRANSITIONPROBABILITY\nERROR:\n\tMethod not implemented.");
 }
+
+
+Eigen::MatrixXd StateModel::getNoiseCovarianceMatrix()
+{
+    throw std::runtime_error("ERROR::STATEMODEL::GETNOISECOVARIANCEMATRIX\nERROR:\n\tMethod not implemented.");
+}
+
+
+Eigen::MatrixXd StateModel::getNoiseSample(const std::size_t num)
+{
+    throw std::runtime_error("ERROR::STATEMODEL::GETNOISESAMPLE\nERROR:\n\tMethod not implemented.");
+}

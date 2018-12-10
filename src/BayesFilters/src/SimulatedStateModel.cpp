@@ -59,3 +59,9 @@ bool SimulatedStateModel::setProperty(const std::string& property)
 
     return false;
 }
+
+
+StateModel& SimulatedStateModel::getStateModel()
+{
+    return *state_model_;
+}

@@ -32,25 +32,27 @@
 
 ###### State models
  - Added SimulatedStateModel class to simulate kinematic or dynamic models using StateModel classes.
- - Removed method StateModel::getNoiseCovarianceMatrix.
- - Removed method StateModel::getNoiseSample.
- - Removed method StateModelDecorator::getNoiseCovarianceMatrix.
- - Removed method StateModelDecorator::getNoiseSample.
  - Added non-pure virtual method StateModel::getTransitionProbability.
  - Added non-pure virtual method StateModel::getJacobian.
+ - Added pure virtual method StateModel::getOutputSize
+ - Added pure virtual method ExogenousModel::getOutputSize
+ - Implemented method StateModelDecorator::getOutputSize
  - Implemented AdditiveStateModel class inheriting from StateModel.
  - Implemented LinearStateModel class inheriting from AdditiveStateModel.
  - Implemented LTIStateModel class inheriting from LinearStateModel.
  - WhiteNoiseAcceleration class now inherits from LinearStateModel.
+ - Implemented method WhiteNoiseAcceleration::getOutputSize
 
 ###### Measurement models
  - Added SimulatedLinearSensor class.
  - Added MeasurementModelDecorator class.
  - Added logging capabilities to MeasurementModel.
  - Removed method MeasurementModel::getNoiseSample.
+ - Added pure virtual method MeasurementModel::getOutputSize
  - Method MeasurementModel::measure replaces method MeasurementModel::getAgentMeasurements and does not take the state as input.
  - Method MeasurementModel::freezeMeasurements replaces method MeasurementModel::bufferAgentData const.
  - Method UpdateParticles::correctStep uses MeasurementModel::freezeMeasurements.
+ - Added class AdditiveMeasurementModel.
  - Added class LinearMeasurementModel.
  - Added class LTIMeasurementModel.
  - Renamed LinearSensor to LinearModel.

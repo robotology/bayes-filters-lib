@@ -19,6 +19,12 @@ public:
 
     bool setProperty(const std::string& property) override;
 
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
+
+    Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
+
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+
 protected:
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;
 

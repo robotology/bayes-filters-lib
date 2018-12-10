@@ -128,3 +128,9 @@ MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 {
     return F_;
 }
+
+
+std::pair<std::size_t, std::size_t> WhiteNoiseAcceleration::getOutputSize() const
+{
+    return std::make_pair(4, 0);
+}

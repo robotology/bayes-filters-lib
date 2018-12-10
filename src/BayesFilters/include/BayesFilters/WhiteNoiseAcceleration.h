@@ -38,6 +38,8 @@ public:
 
     bool setProperty(const std::string& property) override { return false; };
 
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+
 private:
     std::mt19937_64 generator_;
 
