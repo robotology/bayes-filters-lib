@@ -131,3 +131,59 @@ const double& GaussianMixture::weight(const std::size_t i) const
 {
     return weight_(i);
 }
+
+
+bool GaussianMixture::augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix)
+{
+    /* Augment each state with a noise component having zero mean
+       and given covariance matrix. */
+
+    /* Check that covariance matrix is square. */
+    if (noise_covariance_matrix.rows() != noise_covariance_matrix.cols())
+        return false;
+
+    dim_noise = noise_covariance_matrix.rows();
+    dim += dim_noise;
+
+    /* Add zero mean noise to each mean. */
+    mean_.conservativeResize(dim, NoChange);
+    mean_.bottomRows(dim_noise) = MatrixXd::Zero(dim_noise, components);
+
+    /* Resize covariance matrix. */
+    covariance_.conservativeResizeLike(MatrixXd::Zero(dim, dim * components));
+
+    /* Move old covariance matrices from right to left to avoid aliasing.
+
+     Note that the covariance matrix of the 0-th coomponent, 
+     i.e. in the top-left corner of the matrix covariance_,
+     is already in the correct place.
+    */
+    std::size_t dim_old = dim_linear + dim_circular;
+    for (std::size_t i = 0; i < (components - 1); i++)
+    {
+        std::size_t i_index = components - 1 - i;
+
+        Ref<MatrixXd> new_block = covariance_.block(0, i_index * dim,     dim_old, dim_old);
+        Ref<MatrixXd> old_block = covariance_.block(0, i_index * dim_old, dim_old, dim_old);
+
+        /* Swap columns from to right to left to avoid aliasing. */
+        for (std::size_t j = 0; j < dim_old; j++)
+        {
+            std::size_t j_index = dim_old - 1 - j;
+
+            new_block.col(j_index).swap(old_block.col(j_index));
+        }
+    }
+
+    for (std::size_t i = 0; i < components; i++)
+    {
+        /* Copy the noise covariance matrix in the bottom-right block of
+           each covariance matrix. */
+        covariance_.block(dim_old, i * dim + dim_old, dim_noise, dim_noise) = noise_covariance_matrix;
+
+        /* Clean part of the matrix that should be zero. */
+        covariance_.block(0, i * dim + dim_old, dim_old, dim_noise) = MatrixXd::Zero(dim_old, dim_noise);
+    }
+
+    return true;
+}

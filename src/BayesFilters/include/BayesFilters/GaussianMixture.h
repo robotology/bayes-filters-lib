@@ -53,6 +53,8 @@ public:
 
     const double& weight(const std::size_t i) const;
 
+    bool augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
+
     std::size_t components;
 
     std::size_t dim;
