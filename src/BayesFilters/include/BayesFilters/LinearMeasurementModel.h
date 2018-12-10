@@ -1,7 +1,7 @@
 #ifndef LINEARMEMEASUREMENTMODEL_H
 #define LINEARMEMEASUREMENTMODEL_H
 
-#include <BayesFilters/MeasurementModel.h>
+#include <BayesFilters/AdditiveMeasurementModel.h>
 
 #include <Eigen/Dense>
 
@@ -10,7 +10,7 @@ namespace bfl {
 }
 
 
-class bfl::LinearMeasurementModel : public MeasurementModel
+class bfl::LinearMeasurementModel : public bfl::AdditiveMeasurementModel
 {
 public:
     virtual ~LinearMeasurementModel() noexcept { };
