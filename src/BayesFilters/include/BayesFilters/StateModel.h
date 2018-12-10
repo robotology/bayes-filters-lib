@@ -23,6 +23,8 @@ public:
 
     virtual Eigen::MatrixXd getNoiseCovarianceMatrix();
 
+    virtual Eigen::MatrixXd getNoiseSample(const std::size_t num);
+
     virtual bool setProperty(const std::string& property) = 0;
 };
 
