@@ -5,7 +5,7 @@
 #include <BayesFilters/Data.h>
 #include <BayesFilters/ExogenousModel.h>
 #include <BayesFilters/GaussianMixture.h>
-#include <BayesFilters/LinearMeasurementModel.h>
+#include <BayesFilters/AdditiveMeasurementModel.h>
 #include <BayesFilters/MeasurementModel.h>
 #include <BayesFilters/StateModel.h>
 
@@ -18,7 +18,14 @@ namespace bfl
 {
 namespace sigma_point
 {
-    using FunctionEvaluation = std::function<std::pair<bool, bfl::Data>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
+    /**
+     * A FunctionEvaluation return
+     * - a boolean indicating if the evaluation was successful
+     * - the output data in the form of bfl::Data
+     * - the output size as a pair of std::size_t indicating linear and circular size
+     */
+    using OutputSize = std::pair<std::size_t, std::size_t>;
+    using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, OutputSize>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
     
     struct UTWeight
     {
@@ -50,7 +57,7 @@ namespace sigma_point
 
     std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, MeasurementModel& meas_model);
 
-    std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, LinearMeasurementModel& meas_model);
+    std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveMeasurementModel& meas_model);
 }
 }
 
