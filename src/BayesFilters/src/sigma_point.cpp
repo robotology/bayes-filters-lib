@@ -119,16 +119,20 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
         Ref<MatrixXd> prop_sigma_points_i = prop_sigma_points.middleCols(base * i, base);
 
         /* Evaluate the mean. */
-        output.mean(i).noalias() = prop_sigma_points_i * weight.mean;
+        output.mean(i).topRows(output_size.first).noalias() = prop_sigma_points_i.topRows(output_size.first) * weight.mean;
+        output.mean(i).bottomRows(output_size.second) =  directional_mean(prop_sigma_points_i.bottomRows(output_size.second), weight.mean);
 
         /* Evaluate the covariance. */
-        prop_sigma_points_i.colwise() -= output.mean(i);
+        prop_sigma_points_i.topRows(output_size.first).colwise() -= output.mean(i).topRows(output_size.first);
+        prop_sigma_points_i.bottomRows(output_size.second) = directional_sub(prop_sigma_points_i.bottomRows(output_size.second), output.mean(i).bottomRows(output_size.second));
         output.covariance(i).noalias() = prop_sigma_points_i * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
 
-        /* Evaluate the input-output cross covariance matrix. */
+        /* Evaluate the input-output cross covariance matrix
+           (noise components in the input are not considered). */
         Ref<MatrixXd> cross_covariance_i = cross_covariance.middleCols(output.dim * i, output.dim);
-        input_sigma_points_i.colwise() -= input.mean(i);
-        cross_covariance_i.noalias() = input_sigma_points_i * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
+        input_sigma_points_i.topRows(input.dim_linear).colwise() -= input.mean(i).topRows(input.dim_linear);
+        input_sigma_points_i.middleRows(input.dim_linear, input.dim_circular) = directional_sub(input_sigma_points_i.middleRows(input.dim_linear, input.dim_circular), input.mean(i).middleRows(input.dim_linear, input.dim_circular));
+        cross_covariance_i.noalias() = input_sigma_points_i.topRows(input.dim_linear + input.dim_circular) * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
     }
 
     return std::make_tuple(true, output, cross_covariance);
