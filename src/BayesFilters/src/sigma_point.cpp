@@ -72,7 +72,10 @@ MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const doubl
             sp.topRows(state.dim_linear).colwise() += state.mean(i).topRows(state.dim_linear);
 
         if (state.dim_circular > 0)
-            sp.bottomRows(state.dim_circular) = directional_add(sigma_points.bottomRows(state.dim_circular), state.mean(i).bottomRows(state.dim_circular));
+            sp.middleRows(state.dim_linear, state.dim_circular) = directional_add(sp.middleRows(state.dim_linear, state.dim_circular), state.mean(i).middleRows(state.dim_linear, state.dim_circular));
+
+        if (state.dim_noise > 0)
+            sp.bottomRows(state.dim_noise).colwise() += state.mean(i).bottomRows(state.dim_noise);
     }
 
     return sigma_points;
