@@ -95,7 +95,8 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     /* Propagate sigma points */
     Data fun_data;
     bool valid_fun_data;
-    std::tie(valid_fun_data, fun_data) = function(input_sigma_points);
+    bfl::sigma_point::OutputSize output_size;
+    std::tie(valid_fun_data, fun_data, output_size) = function(input_sigma_points);
 
     /* Stop here if function evaluation failed. */
     if (!valid_fun_data)
@@ -144,10 +145,10 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     FunctionEvaluation f = [&state_model](const Ref<const MatrixXd>& state)
                            {
                                MatrixXd tmp(state.rows(), state.cols());
-                               
+
                                state_model.motion(state, tmp);
-                               
-                               return std::make_pair(true, std::move(tmp));
+
+                               return std::make_tuple(true, std::move(tmp), state_model.getOutputSize());
                            };
     MatrixXd cross_covariance;
     GaussianMixture output;
@@ -172,8 +173,10 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
 
                                MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
                                exogenous_model.propagate(tmp_state, tmp_exog);
-                               
-                               return std::make_pair(true, std::move(tmp_exog));
+
+                               /* Making the assumption that
+                                  state_model.getOutputSize() == exogenous_model.getOutputSize(). */
+                               return std::make_tuple(true, std::move(tmp_exog), state_model.getOutputSize());
                            };
     MatrixXd cross_covariance;
     GaussianMixture output;
@@ -193,10 +196,10 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     FunctionEvaluation f = [&state_model](const Ref<const MatrixXd>& state)
                            {
                                MatrixXd tmp(state.rows(), state.cols());
-                               
+
                                state_model.propagate(state, tmp);
-                               
-                               return std::make_pair(true, std::move(tmp));
+
+                               return std::make_tuple(true, std::move(tmp), state_model.getOutputSize());
                            };
 
     MatrixXd cross_covariance;
@@ -228,7 +231,9 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
                                MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
                                exogenous_model.propagate(tmp_state, tmp_exog);
 
-                               return std::make_pair(true, std::move(tmp_exog));
+                               /* Making the assumption that
+                                  state_model.getOutputSize() == exogenous_model.getOutputSize(). */
+                               return std::make_tuple(true, std::move(tmp_exog), state_model.getOutputSize());
                            };
 
     bool valid;
@@ -255,10 +260,10 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
     FunctionEvaluation f = [&exogenous_model](const Ref<const MatrixXd>& state)
                            {
                                MatrixXd tmp(state.rows(), state.cols());
-                               
+
                                exogenous_model.propagate(state, tmp);
-                               
-                               return std::make_pair(true, std::move(tmp));
+
+                               return std::make_tuple(true, std::move(tmp), exogenous_model.getOutputSize());
                            };
 
     bool valid;
@@ -279,7 +284,12 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 {
     FunctionEvaluation f = [&meas_model](const Ref<const MatrixXd>& state)
                            {
-                               return meas_model.predictedMeasure(state);
+                               bool valid_prediction;
+                               bfl::Data prediction;
+
+                               std::tie(valid_prediction, prediction) = meas_model.predictedMeasure(state);
+
+                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getOutputSize());
                            };
 
     bool valid;
@@ -300,7 +310,12 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 {
     FunctionEvaluation f = [&meas_model](const Ref<const MatrixXd>& state)
                            {
-                               return meas_model.predictedMeasure(state);
+                               bool valid_prediction;
+                               bfl::Data prediction;
+
+                               std::tie(valid_prediction, prediction) = meas_model.predictedMeasure(state);
+
+                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getOutputSize());
                            };
 
     bool valid;
