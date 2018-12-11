@@ -170,7 +170,55 @@ int main()
     }
 
 
-    std::cout << "[Test 4] Gaussian Mixture" << std::endl;
+    std::cout << "[Test 4] Gaussian with noise augmentation" << std::endl;
+    {
+        std::cout << "Constructing a Gaussian..." << std::endl;
+
+        Gaussian gaussian(3);
+
+        std::cout << "Assign values to the Gaussian..." << std::endl;
+
+        gaussian.mean() << 1, 2, 3;
+
+        gaussian.covariance() << 11, 12, 13,
+                                 21, 22, 23,
+                                 31, 32, 33;
+
+        std::cout << "Augment gaussian with noise..." << std::endl;
+
+        Eigen:: MatrixXd noise_covariance_matrix(2, 2);
+        noise_covariance_matrix << 41, 42,
+                                   51, 52;
+
+        gaussian.augmentWithNoise(noise_covariance_matrix);
+
+        if (!((gaussian.mean(0) == 1) &&
+              (gaussian.mean(1) == 2) &&
+              (gaussian.mean(2) == 3) &&
+              (gaussian.mean(3) == 0) &&
+              (gaussian.mean(4) == 0)))
+        {
+            std::cerr << "Mean of augmented gaussian is wrong, it is\n" << gaussian.mean() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Mean of augmented gaussian evaluated succesfully:\n" << gaussian.mean() << std::endl;
+
+        if (!((gaussian.covariance(0, 0) == 11) && (gaussian.covariance(0, 1) == 12) && (gaussian.covariance(0, 2) == 13) && (gaussian.covariance(0, 3) == 0 ) && (gaussian.covariance(0, 4) == 0 ) &&
+              (gaussian.covariance(1, 0) == 21) && (gaussian.covariance(1, 1) == 22) && (gaussian.covariance(1, 2) == 23) && (gaussian.covariance(1, 3) == 0 ) && (gaussian.covariance(1, 4) == 0 ) &&
+              (gaussian.covariance(2, 0) == 31) && (gaussian.covariance(2, 1) == 32) && (gaussian.covariance(2, 2) == 33) && (gaussian.covariance(2, 3) == 0 ) && (gaussian.covariance(2, 4) == 0 ) &&
+              (gaussian.covariance(3, 0) == 0 ) && (gaussian.covariance(3, 1) == 0 ) && (gaussian.covariance(3, 2) == 0 ) && (gaussian.covariance(3, 3) == 41) && (gaussian.covariance(3, 4) == 42) &&
+              (gaussian.covariance(4, 0) == 0 ) && (gaussian.covariance(4, 1) == 0 ) && (gaussian.covariance(4, 2) == 0 ) && (gaussian.covariance(4, 3) == 51) && (gaussian.covariance(4, 4) == 52)))
+        {
+            std::cerr << "Covariance of augmented gaussian is wrong, it is\n" << gaussian.covariance() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Covariance of augmented gaussian evaluated successful:\n" << gaussian.covariance() << std::endl;
+    }
+
+
+    std::cout << "[Test 5] Gaussian Mixture" << std::endl;
     {
         std::cout << "Constructing a Gaussian mixture with 5 3D components..." << std::endl;
 
@@ -256,6 +304,72 @@ int main()
         std::cout << "Covariances:\n" << gaussian_mixture.covariance() << std::endl;
         std::cout << "Weights:\n" << gaussian_mixture.weight() << std::endl;
 
+        std::cout << "done!\n" << std::endl;
+    }
+
+
+    std::cout << "[Test 6] Gaussian Mixture with noise augmentation" << std::endl;
+    {
+        std::cout << "Constructing a Gaussian mixture..." << std::endl;
+
+        GaussianMixture mixture(2, 1, 1);
+
+        std::cout << "Assign values to the Gaussian mixture..." << std::endl;
+
+        mixture.mean(0) << 1, 2;
+
+        mixture.covariance(0) << 11, 12,
+                                 21, 22;
+
+        mixture.mean(1) << 3, 4;
+        mixture.covariance(1) << 31, 32,
+                                 41, 42;
+
+        std::cout << "Augment gaussian with noise..." << std::endl;
+
+        Eigen:: MatrixXd noise_covariance_matrix(2, 2);
+        noise_covariance_matrix << 51, 52,
+                                   61, 62;
+
+        mixture.augmentWithNoise(noise_covariance_matrix);
+
+        if (!(
+              /* Mean of first component. */
+              (mixture.mean(0, 0) == 1) &&
+              (mixture.mean(0, 1) == 2) &&
+              (mixture.mean(0, 2) == 0) &&
+              (mixture.mean(0, 3) == 0) &&
+
+              /* Mean of second component. */
+              (mixture.mean(1, 0) == 3) &&
+              (mixture.mean(1, 1) == 4) &&
+              (mixture.mean(1, 2) == 0) &&
+              (mixture.mean(1, 3) == 0)))
+        {
+            std::cerr << "Mean of augmented gaussian mixture is wrong, it is\n" << mixture.mean() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Mean of augmented gaussian mixture evaluated succesfully:\n" << mixture.mean() << std::endl;
+
+        if (!(
+              /* Covariance of first component. */
+              (mixture.covariance(0, 0, 0) == 11) && (mixture.covariance(0, 0, 1) == 12) && (mixture.covariance(0, 0, 2) == 0 ) && (mixture.covariance(0, 0, 3) == 0 ) &&
+              (mixture.covariance(0, 1, 0) == 21) && (mixture.covariance(0, 1, 1) == 22) && (mixture.covariance(0, 1, 2) == 0 ) && (mixture.covariance(0, 1, 3) == 0 ) &&
+              (mixture.covariance(0, 2, 0) == 0 ) && (mixture.covariance(0, 2, 1) == 0 ) && (mixture.covariance(0, 2, 2) == 51) && (mixture.covariance(0, 2, 3) == 52) &&
+              (mixture.covariance(0, 3, 0) == 0 ) && (mixture.covariance(0, 3, 1) == 0 ) && (mixture.covariance(0, 3, 2) == 61) && (mixture.covariance(0, 3, 3) == 62) &&
+
+              /* Covariance of second component. */
+              (mixture.covariance(1, 0, 0) == 31) && (mixture.covariance(1, 0, 1) == 32) && (mixture.covariance(1, 0, 2) == 0 ) && (mixture.covariance(1, 0, 3) == 0 ) &&
+              (mixture.covariance(1, 1, 0) == 41) && (mixture.covariance(1, 1, 1) == 42) && (mixture.covariance(1, 1, 2) == 0 ) && (mixture.covariance(1, 1, 3) == 0 ) &&
+              (mixture.covariance(1, 2, 0) == 0 ) && (mixture.covariance(1, 2, 1) == 0 ) && (mixture.covariance(1, 2, 2) == 51) && (mixture.covariance(1, 2, 3) == 52) &&
+              (mixture.covariance(1, 3, 0) == 0 ) && (mixture.covariance(1, 3, 1) == 0 ) && (mixture.covariance(1, 3, 2) == 61) && (mixture.covariance(1, 3, 3) == 62)))
+        {
+            std::cerr << "Covariance of augmented gaussian is wrong, it is\n" << mixture.covariance() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Covariance of augmented gaussian evaluated successful:\n" << mixture.covariance() << std::endl;
         std::cout << "done!\n" << std::endl;
     }
 
