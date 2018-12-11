@@ -9,18 +9,10 @@ using namespace Eigen;
 
 MatrixXd bfl::directional_statistics::directional_add(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& b)
 {
-    MatrixXd result = a.colwise() + b;
-
-    for (unsigned int i = 0; i < result.rows(); ++i)
-    {
-        for (unsigned int j = 0; j < result.cols(); ++j)
-        {
-            if      (result(i, j) >   M_PI) result(i, j) -= 2.0 * M_PI;
-            else if (result(i, j) <= -M_PI) result(i, j) += 2.0 * M_PI;
-        }
-    }
-
-    return result;
+    /* Let M = a.colwise() + b.
+       Then Mij = arg(exp(j * Mij)) where j is the imaginary unit
+       and arg(x) is the phase angle of the complex number x. */
+    return (std::complex<double>(0.0, 1.0) * (a.colwise() + b)).array().exp().arg();
 }
 
 
@@ -30,13 +22,14 @@ MatrixXd bfl::directional_statistics::directional_sub(const Ref<const MatrixXd>&
 }
 
 
-double bfl::directional_statistics::directional_mean(const Ref<const VectorXd>& a, const Ref<const VectorXd>& w)
+VectorXd bfl::directional_statistics::directional_mean(const Ref<const MatrixXd>& a, const Ref<const VectorXd>& w)
 {
-    MatrixXcd complex_a(a.rows(), a.cols());
-
-    complex_a.imag() = a;
-
-    std::complex<double> phasor = (w.array() * complex_a.array().exp()).sum();
-
-    return std::atan2(phasor.imag(), phasor.real());
+    /* If one column only is provided, it is returned as is. */
+    if (a.cols() == 1)
+        return a.col(0);
+    
+    /* For each row i of the matrix a,
+       the method computes the sum of exponentials sum(w_{k} * e^(j*a_{ik})) where j is the imaginary unit
+       and then extract the phase angle using the method arg(x). */
+   return ((std::complex<double>(0.0, 1.0) * a).array().exp().matrix() * w).array().arg();
 }

@@ -13,7 +13,7 @@ namespace directional_statistics
 
     Eigen::MatrixXd directional_sub(const Eigen::Ref<const Eigen::MatrixXd>& a, const Eigen::Ref<const Eigen::VectorXd>& b);
 
-    double directional_mean(const Eigen::Ref<const Eigen::VectorXd>& a, const Eigen::Ref<const Eigen::VectorXd>& w);
+    Eigen::VectorXd directional_mean(const Eigen::Ref<const Eigen::MatrixXd>& a, const Eigen::Ref<const Eigen::VectorXd>& w);
 
 }
 }
