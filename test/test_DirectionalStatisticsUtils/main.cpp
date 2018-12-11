@@ -67,24 +67,46 @@ int main()
     std::cout << "Running directional mean...\n" << std::endl;
 
 
-    std::cout << "With Vector2d:\n" << std::endl;
-
-    Vector2d angle_d_mean(3.14, -3.14);
-    Vector2d angle_d_weights(1, 1);
-
-    double d_mean = directional_mean(angle_d_mean, angle_d_weights);
-
-    std::cout << "Vector a:\n" << angle_d_mean << "\nVector w:\n" << angle_d_weights << "\nResult: " << d_mean << "\n" << std::endl;
-
-    if (!((d_mean -  3.14) < 0.01))
+    std::cout << "With 1 column:\n" << std::endl;
     {
-        std::cerr << "Directional mean produced wrong results, should be +/-3.14." << std::endl;
-        return EXIT_FAILURE;
+        MatrixXd angle_d_mean(2, 1);
+        angle_d_mean << 3.14,
+                        1.57;
+        VectorXd angle_d_weights(1);
+        angle_d_weights << 0.0;
+
+        Vector2d d_mean = directional_mean(angle_d_mean, angle_d_weights);
+
+        std::cout << "Matrix a:\n" << angle_d_mean << "\nVector w:\n" << angle_d_weights << "\nResult:\n" << d_mean << "\n" << std::endl;
+
+        if (!(((d_mean(0) -  3.14) < 0.01) && ((d_mean(1) -  1.57) < 0.01)))
+        {
+            std::cerr << "Directional mean produced wrong results." << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Directional mean produced correct results.\n" << std::endl;
     }
-    else
-        std::cout << "Directional mean produced correct results.\n" << std::endl;
 
+    std::cout << "With 2 columns:\n" << std::endl;
+    {
+        Matrix2d angle_d_mean;
+        angle_d_mean << 3.14, -3.14,
+                        1.57, -1.57;
+        Vector2d angle_d_weights(0.5, 0.5);
 
+        Vector2d d_mean = directional_mean(angle_d_mean, angle_d_weights);
+
+        std::cout << "Matrix a:\n" << angle_d_mean << "\nVector w:\n" << angle_d_weights << "\nResult:\n" << d_mean << "\n" << std::endl;
+
+        if (!(((d_mean(0) -  3.14) < 0.01) && ((d_mean(1) -  0.0) < 0.01)))
+        {
+            std::cerr << "Directional mean produced wrong results." << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Directional mean produced correct results.\n" << std::endl;
+    }
     std::cout << "...done!\n" << std::endl;
 
 
