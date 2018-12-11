@@ -5,7 +5,7 @@
 #include <BayesFilters/Data.h>
 #include <BayesFilters/ExogenousModel.h>
 #include <BayesFilters/GaussianMixture.h>
-#include <BayesFilters/LinearMeasurementModel.h>
+#include <BayesFilters/AdditiveMeasurementModel.h>
 #include <BayesFilters/MeasurementModel.h>
 #include <BayesFilters/StateModel.h>
 
@@ -57,7 +57,7 @@ namespace sigma_point
 
     std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, MeasurementModel& meas_model);
 
-    std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, LinearMeasurementModel& meas_model);
+    std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveMeasurementModel& meas_model);
 }
 }
 

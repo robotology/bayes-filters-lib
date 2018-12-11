@@ -309,7 +309,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 (
     const GaussianMixture& state,
     const UTWeight& weight,
-    LinearMeasurementModel& meas_model
+    AdditiveMeasurementModel& meas_model
 )
 {
     FunctionEvaluation f = [&meas_model](const Ref<const MatrixXd>& state)
