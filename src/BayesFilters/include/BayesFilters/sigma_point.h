@@ -18,7 +18,14 @@ namespace bfl
 {
 namespace sigma_point
 {
-    using FunctionEvaluation = std::function<std::pair<bool, bfl::Data>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
+    /**
+     * A FunctionEvaluation return
+     * - a boolean indicating if the evaluation was successful
+     * - the output data in the form of bfl::Data
+     * - the output size as a pair of std::size_t indicating linear and circular size
+     */
+    using OutputSize = std::pair<std::size_t, std::size_t>;
+    using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, OutputSize>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
     
     struct UTWeight
     {
