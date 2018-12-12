@@ -37,6 +37,8 @@ private:
     bool skip_ = false;
 
     friend class GaussianCorrectionDecorator;
+
+    friend class GPFCorrection;
 };
 
 #endif /* GAUSSIANCORRECTION_H */
