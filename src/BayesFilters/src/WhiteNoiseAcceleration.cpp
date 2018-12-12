@@ -130,6 +130,21 @@ MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 }
 
 
+VectorXd WhiteNoiseAcceleration::getTransitionProbability(const Ref<const MatrixXd>& prev_states, Ref<MatrixXd> cur_states)
+{
+    VectorXd probabilities(prev_states.cols());
+    MatrixXd differences = cur_states - prev_states;
+
+    std::size_t size = differences.rows();
+    for (std::size_t i = 0; i < prev_states.cols(); i++)
+    {
+        probabilities(i) = (-0.5 * static_cast<double>(size) * log(2.0 * M_PI) + -0.5 * log(Q_.determinant()) -0.5 * (differences.col(i).transpose() * Q_.inverse() * differences.col(i)).array()).exp().coeff(0);
+    }
+
+    return probabilities;
+}
+
+
 std::pair<std::size_t, std::size_t> WhiteNoiseAcceleration::getOutputSize() const
 {
     return std::make_pair(4, 0);
