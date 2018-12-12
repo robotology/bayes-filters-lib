@@ -9,7 +9,8 @@ GaussianCorrection::GaussianCorrection() noexcept { };
 
 Gaussian GaussianCorrection::correct(const Gaussian& pred_state)
 {
-    if (!skip_)
+    /* Perform correction if required and if measurements can be frozen. */    
+    if((!skip_) && getMeasurementModel().freezeMeasurements())
         return correctStep(pred_state);
     else
         return pred_state;
