@@ -25,6 +25,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/GaussianPrediction.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
+        include/BayesFilters/KFPrediction.h
         include/BayesFilters/LikelihoodModel.h
         include/BayesFilters/LinearMeasurementModel.h
         include/BayesFilters/LinearModel.h
@@ -94,6 +95,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/GaussianLikelihood.cpp
         src/GaussianPrediction.cpp
         src/InitSurveillanceAreaGrid.cpp
+        src/KFPrediction.cpp
         src/LinearMeasurementModel.cpp
         src/LinearModel.cpp
         src/LinearStateModel.cpp
