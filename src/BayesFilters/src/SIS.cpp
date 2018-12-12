@@ -10,11 +10,21 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SIS::SIS(unsigned int num_particle, std::size_t state_size) noexcept :
+SIS::SIS
+(
+    unsigned int num_particle,
+    std::size_t state_size_linear,
+    std::size_t state_size_circular
+) noexcept :
     num_particle_(num_particle),
-    state_size_(state_size),
-    pred_particle_(num_particle_, state_size_),
-    cor_particle_(num_particle_, state_size_)
+    state_size_(state_size_linear + state_size_circular),
+    pred_particle_(num_particle_, state_size_linear, state_size_circular),
+    cor_particle_(num_particle_, state_size_linear, state_size_circular)
+{ }
+
+
+SIS::SIS(unsigned int num_particle, std::size_t state_size_linear) noexcept :
+    SIS(num_particle, state_size_linear, 0)
 { }
 
 
