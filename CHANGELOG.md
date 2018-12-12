@@ -17,12 +17,20 @@
  - Added logging capabilities to FilteringAlgorithm.
  - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).
  - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
+ - Re-implemented class KalmanFilter, a general Gaussian filtering algorithm using a GaussianPrediction and a GaussianCorrection.
+ - Renamed class KalmanFilter to GaussianFilter.
 
 ##### `Filtering Functions`
  - Removed VisualParticleFilter class.
  - Removed PFVisualCorrection and derived classes.
  - Added LikelihoodModel interface class.
  - Added GaussianLikelihood class.
+ - Added class GaussianPrediction, a generic Gaussian prediction step.
+ - Added class GaussianCorrection, a generic Gaussian correction step.
+ - Added class KFPrediction, a (Gaussian) Kalman prediction step for LinearStateModel models.
+ - Added class KFCorrection, a (Gaussian) Kalman correction step for LinearMeasurementModel models.
+ - Added class UKFPrediction, a (Gaussian) unscented Kalman prediction step for StateModel and AdditiveStateModel models.
+ - Added class UKFCorrection, a (Gaussian) unscented Kalman correction step for MeasurementModel and AdditiveMeasurementModel models.
  - PFCorrection::getLikelihood() method is now pure virtual.
  - Used new ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
  - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
@@ -71,9 +79,12 @@
  - Added test_DirectionalStatisticsUtils for directional_statistics.h/cpp.
  - Added test_SigmaPointUtils for sigma_point.h/cpp.
  - Added test_Gaussian for Gaussian and GaussianMixture classes.
+ - Added test_KF testing Gaussian filtering with KFPrediction and KFCorrection.
+ - Added test_UKF testing Gaussian filtering with UKFPrediction and UKFCorrection.
+ - Added test_mixed_KF_UKF testing Gaussian filtering with KFPrediction and UKFCorrection.
+ - Added test_mixed_UKF_KF testing Gaussian filtering with UKFPrediction and KFCorrection.
  - Updated test_SIS.
  - Updated test_SIS_Decorators.
-
 
 ## Version 0.7.1.0
 ##### `Bugfix`
