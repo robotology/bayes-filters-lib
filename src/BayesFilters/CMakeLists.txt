@@ -7,7 +7,7 @@ set(${LIBRARY_TARGET_NAME}_FC_HDR
 
 set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/FilteringAlgorithm.h
-        include/BayesFilters/KalmanFilter.h
+        include/BayesFilters/GaussianFilter.h
         include/BayesFilters/ParticleFilter.h
         include/BayesFilters/SIS.h
         include/BayesFilters/UnscentedKalmanFilter.h
@@ -20,9 +20,13 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
+        include/BayesFilters/GaussianCorrection.h
         include/BayesFilters/GaussianLikelihood.h
         include/BayesFilters/GaussianInitialization.h
+        include/BayesFilters/GaussianPrediction.h
         include/BayesFilters/InitSurveillanceAreaGrid.h
+        include/BayesFilters/KFCorrection.h
+        include/BayesFilters/KFPrediction.h
         include/BayesFilters/LikelihoodModel.h
         include/BayesFilters/LinearMeasurementModel.h
         include/BayesFilters/LinearModel.h
@@ -40,8 +44,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedLinearSensor.h
         include/BayesFilters/SimulatedStateModel.h
-        include/BayesFilters/SPCorrection.h
-        include/BayesFilters/SPPrediction.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/UpdateParticles.h
@@ -78,7 +80,7 @@ set(${LIBRARY_TARGET_NAME}_FC_SRC
 
 set(${LIBRARY_TARGET_NAME}_FA_SRC
         src/FilteringAlgorithm.cpp
-        src/KalmanFilter.cpp
+        src/GaussianFilter.cpp
         src/ParticleFilter.cpp
         src/SIS.cpp
         src/UnscentedKalmanFilter.cpp
@@ -90,8 +92,12 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Agent.cpp
         src/AuxiliaryFunction.cpp
         src/DrawParticles.cpp
+        src/GaussianCorrection.cpp
         src/GaussianLikelihood.cpp
+        src/GaussianPrediction.cpp
         src/InitSurveillanceAreaGrid.cpp
+        src/KFCorrection.cpp
+        src/KFPrediction.cpp
         src/LinearMeasurementModel.cpp
         src/LinearModel.cpp
         src/LinearStateModel.cpp
@@ -107,8 +113,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/ResamplingWithPrior.cpp
         src/SimulatedLinearSensor.cpp
         src/SimulatedStateModel.cpp
-        src/SPCorrection.cpp
-        src/SPPrediction.cpp
         src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/UpdateParticles.cpp

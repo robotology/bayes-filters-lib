@@ -1,7 +1,12 @@
 #ifndef UKFPREDICTION_H
 #define UKFPREDICTION_H
 
-#include <BayesFilters/SPPrediction.h>
+#include <BayesFilters/AdditiveStateModel.h>
+#include <BayesFilters/ExogenousModel.h>
+#include <BayesFilters/GaussianMixture.h>
+#include <BayesFilters/GaussianPrediction.h>
+#include <BayesFilters/sigma_point.h>
+#include <BayesFilters/StateModel.h>
 
 #include <memory>
 
@@ -10,23 +15,40 @@ namespace bfl {
 }
 
 
-class bfl::UKFPrediction: public SPPrediction
+class bfl::UKFPrediction : public bfl::GaussianPrediction
 {
 public:
-    UKFPrediction() noexcept;
+    UKFPrediction(std::unique_ptr<bfl::StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+
+    UKFPrediction(std::unique_ptr<bfl::AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
 
     UKFPrediction(UKFPrediction&& ukf_prediction) noexcept;
 
     virtual ~UKFPrediction() noexcept;
 
-    virtual StateModel& getStateModel() override;
-
-    virtual void setStateModel(std::unique_ptr<StateModel> state_model) override;
+    void setExogenousModel(std::unique_ptr<bfl::ExogenousModel> exog_model);
 
 protected:
-    Gaussian predictStep(const Gaussian& prev_states) override;
+    void predictStep(const bfl::GaussianMixture& prev_state, bfl::GaussianMixture& pred_state) override;
 
-    std::unique_ptr<StateModel> state_model_;
+    std::unique_ptr<bfl::StateModel> state_model_;
+
+    std::unique_ptr<bfl::AdditiveStateModel> add_state_model_;
+
+    std::unique_ptr<bfl::ExogenousModel> exog_model_;
+
+    enum class UKFPredictionType { Generic, Additive };
+
+    /**
+     * Distinguish between a UKFPrediction using a generic StateModel
+     * and a UKFPrediction using an AdditiveStateModel.
+     */
+    UKFPredictionType type_;
+
+    /**
+     * Unscented transform weight.
+     */
+    bfl::sigma_point::UTWeight ut_weight_;
 };
 
 #endif /* UKFPREDICTION_H */
