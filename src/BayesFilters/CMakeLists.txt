@@ -7,7 +7,7 @@ set(${LIBRARY_TARGET_NAME}_FC_HDR
 
 set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/FilteringAlgorithm.h
-        include/BayesFilters/KalmanFilter.h
+        include/BayesFilters/GaussianFilter.h
         include/BayesFilters/ParticleFilter.h
         include/BayesFilters/SIS.h
         include/BayesFilters/UnscentedKalmanFilter.h
@@ -80,7 +80,7 @@ set(${LIBRARY_TARGET_NAME}_FC_SRC
 
 set(${LIBRARY_TARGET_NAME}_FA_SRC
         src/FilteringAlgorithm.cpp
-        src/KalmanFilter.cpp
+        src/GaussianFilter.cpp
         src/ParticleFilter.cpp
         src/SIS.cpp
         src/UnscentedKalmanFilter.cpp
