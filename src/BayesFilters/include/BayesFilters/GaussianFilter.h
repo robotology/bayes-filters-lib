@@ -1,5 +1,5 @@
-#ifndef KALMANFILTER_H
-#define KALMANFILTER_H
+#ifndef GAUSSIANFILTER_H
+#define GAUSSIANFILTER_H
 
 #include <BayesFilters/FilteringAlgorithm.h>
 #include <BayesFilters/Gaussian.h>
@@ -7,20 +7,20 @@
 #include <BayesFilters/GaussianCorrection.h>
 
 namespace bfl {
-    class KalmanFilter;
+    class GaussianFilter;
 }
 
 
-class bfl::KalmanFilter: public bfl::FilteringAlgorithm
+class bfl::GaussianFilter: public bfl::FilteringAlgorithm
 {
 public:
-    KalmanFilter(Gaussian& initial_state, std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
+    GaussianFilter(Gaussian& initial_state, std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
 
-    KalmanFilter(KalmanFilter&& kf) noexcept;
+    GaussianFilter(GaussianFilter&& kf) noexcept;
 
-    KalmanFilter& operator=(KalmanFilter&& pf) noexcept;
+    GaussianFilter& operator=(GaussianFilter&& gf) noexcept;
 
-    virtual ~KalmanFilter() noexcept;
+    virtual ~GaussianFilter() noexcept;
 
     bool initialization() override;
 
@@ -40,4 +40,4 @@ protected:
     std::unique_ptr<GaussianCorrection> correction_;
 };
 
-#endif /* KALMANFILTER_H */
+#endif /* GAUSSIANFILTER_H */

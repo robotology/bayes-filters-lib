@@ -1,9 +1,9 @@
-#include <BayesFilters/KalmanFilter.h>
+#include <BayesFilters/GaussianFilter.h>
 
 using namespace bfl;
 
 
-KalmanFilter::KalmanFilter
+GaussianFilter::GaussianFilter
 (
     Gaussian& initial_state,
     std::unique_ptr<GaussianPrediction> prediction,
@@ -16,38 +16,38 @@ KalmanFilter::KalmanFilter
 { }
 
 
-KalmanFilter::KalmanFilter(KalmanFilter&& kf) noexcept :
-    prediction_(std::move(kf.prediction_)),
-    correction_(std::move(kf.correction_)),
-    predicted_state_(std::move(kf.predicted_state_)),
-    corrected_state_(std::move(kf.corrected_state_))
+GaussianFilter::GaussianFilter(GaussianFilter&& gf) noexcept :
+    prediction_(std::move(gf.prediction_)),
+    correction_(std::move(gf.correction_)),
+    predicted_state_(std::move(gf.predicted_state_)),
+    corrected_state_(std::move(gf.corrected_state_))
 { }
 
 
-KalmanFilter::~KalmanFilter() noexcept
+GaussianFilter::~GaussianFilter() noexcept
 { }
 
 
-bool KalmanFilter::initialization()
+bool GaussianFilter::initialization()
 {
     return true;
 }
 
 
-void KalmanFilter::filteringStep()
+void GaussianFilter::filteringStep()
 {
     prediction_->predict(corrected_state_, predicted_state_);
     correction_->correct(predicted_state_, corrected_state_);
 }
 
 
-bool KalmanFilter::runCondition()
+bool GaussianFilter::runCondition()
 {
     return true;
 }
 
 
-bool KalmanFilter::skip(const std::string& what_step, const bool status)
+bool GaussianFilter::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction" ||
         what_step == "state"      ||
