@@ -94,3 +94,7 @@ std::vector<std::string> Logger::log_filenames(const std::string& prefix_path, c
 
     return {};
 }
+
+
+void Logger::log()
+{ }

@@ -81,31 +81,13 @@ protected:
         return true;
     }
 
-    void filteringStep() override
+    void log() override
     {
-        if (getFilteringStep() != 0)
-            prediction_->predict(cor_particle_, pred_particle_);
-
-        correction_->correct(pred_particle_, cor_particle_);
-
-        /* Normalize weights using LogSumExp. */
-        cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
-
         VectorXd mean = mean_extraction(cor_particle_);
 
         logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
                cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
                mean.transpose());
-
-        if (resampling_->neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
-        {
-            ParticleSet res_particle(num_particle_, state_size_);
-            VectorXi res_parent(num_particle_, 1);
-
-            resampling_->resample(cor_particle_, res_particle, res_parent);
-
-            cor_particle_ = res_particle;
-        }
     }
 
 private:

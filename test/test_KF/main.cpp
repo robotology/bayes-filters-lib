@@ -44,10 +44,8 @@ protected:
     }
 
 
-    void filteringStep() override
+    void log() override
     {
-        GaussianFilter::filteringStep();
-
         logger(predicted_state_.mean().transpose(), corrected_state_.mean().transpose());
     }
 

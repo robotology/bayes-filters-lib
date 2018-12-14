@@ -52,6 +52,8 @@ protected:
                 prefix_path + "/" + prefix_name + "_cor_particles",
                 prefix_path + "/" + prefix_name + "_cor_weights"};
     }
+
+    void log() override;
 };
 
 #endif /* SIS_H */

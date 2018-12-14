@@ -36,6 +36,8 @@ protected:
     std::size_t dim_linear_;
 
     std::size_t dim_circular_;
+
+    void log() override;
 };
 
 #endif /* SIMULATEDLINEARSENSOR_H */

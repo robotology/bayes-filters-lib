@@ -55,6 +55,8 @@ public:
 protected:
     virtual std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name);
 
+    virtual void log();
+
 private:
     std::string prefix_path_;
 
