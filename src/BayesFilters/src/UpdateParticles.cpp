@@ -20,7 +20,7 @@ void UpdateParticles::correctStep(const ParticleSet& pred_particles, ParticleSet
     cor_particles = pred_particles;
 
     if (valid_likelihood_)
-        cor_particles.weight() = cor_particles.weight().cwiseProduct(likelihood_);
+        cor_particles.weight() += (likelihood_.array() + std::numeric_limits<double>::min()).log().matrix();
 }
 
 
