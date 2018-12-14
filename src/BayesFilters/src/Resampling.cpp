@@ -82,5 +82,5 @@ void Resampling::resample(const ParticleSet& cor_particles, ParticleSet& res_par
 
 double Resampling::neff(const Ref<const VectorXd>& cor_weights)
 {
-    return 1.0/cor_weights.array().square().sum();
+    return 1.0/cor_weights.array().exp().square().sum();
 }
