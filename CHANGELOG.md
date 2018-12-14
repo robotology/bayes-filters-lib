@@ -18,8 +18,10 @@
  - Constructor SIS::SIS takes the state size, linear and circular, as argument (required to initialize ParticleSet).
  - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
  - Method SIS::filteringStep uses particle weights in log space instead of linear space.
+ - Moved default logging facilities of class SIS from method SIS::filteringStep to overriden method Logger::log.
  - Re-implemented class KalmanFilter, a general Gaussian filtering algorithm using a GaussianPrediction and a GaussianCorrection.
  - Renamed class KalmanFilter to GaussianFilter.
+ - Added call to virtual method Logger::log in method GaussianFilter::filteringStep.
 
 ##### `Filtering Functions`
  - Removed VisualParticleFilter class.
