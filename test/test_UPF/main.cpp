@@ -1,0 +1,234 @@
+#include <iostream>
+#include <memory>
+
+#include <BayesFilters/AdditiveStateModel.h>
+#include <BayesFilters/GaussianLikelihood.h>
+#include <BayesFilters/GPFPrediction.h>
+#include <BayesFilters/GPFCorrection.h>
+#include <BayesFilters/InitSurveillanceAreaGrid.h>
+#include <BayesFilters/Resampling.h>
+#include <BayesFilters/SimulatedLinearSensor.h>
+#include <BayesFilters/SimulatedStateModel.h>
+#include <BayesFilters/SIS.h>
+#include <BayesFilters/UKFPrediction.h>
+#include <BayesFilters/UKFCorrection.h>
+#include <BayesFilters/utils.h>
+#include <BayesFilters/WhiteNoiseAcceleration.h>
+
+#include <Eigen/Dense>
+
+using namespace bfl;
+using namespace Eigen;
+
+
+class UPFSimulation : public SIS
+{
+public:
+    UPFSimulation
+    (
+        std::size_t num_particle,
+        std::size_t state_size,
+        std::size_t simulation_steps,
+        /* Initial covariance of the Gaussian belief associated to each particle. */
+        Ref<MatrixXd> initial_covariance
+    ) noexcept :
+        SIS(num_particle, state_size),
+        simulation_steps_(simulation_steps),
+        initial_covariance_(initial_covariance)
+    { }
+
+protected:
+    bool runCondition() override
+    {
+        if (getFilteringStep() < simulation_steps_)
+            return true;
+        else
+            return false;
+    }
+
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        std::vector<std::string> sis_filenames = SIS::log_filenames(prefix_path, prefix_name);
+
+        /* Add file names for logging of the conditional expected value. */
+        sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
+
+        return  sis_filenames;
+    }
+
+    VectorXd mean_extraction(const ParticleSet& particles) const
+    {
+        /* Extract the conditional expected value of the filtered state
+           given all the measurements up to the current time step. */
+        return particles.state() * particles.weight().array().exp().matrix();
+    }
+
+    bool initialization() override
+    {
+        if (!SIS::initialization())
+            return false;
+
+        /* Initialize initial mean and covariance for each particle. */
+        for (std::size_t i = 0; i < pred_particle_.components; i++)
+        {
+            /* Set mean equal to the particle position. */
+            pred_particle_.mean(i) = pred_particle_.state(i);
+
+            /* Set the covariance obtained within the ctor. */
+            pred_particle_.covariance(i) = initial_covariance_;
+        }
+
+        return true;
+    }
+
+    void filteringStep() override
+    {
+        if (getFilteringStep() != 0)
+            prediction_->predict(cor_particle_, pred_particle_);
+
+        correction_->correct(pred_particle_, cor_particle_);
+
+        /* Normalize weights using LogSumExp. */
+        cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
+
+        VectorXd mean = mean_extraction(cor_particle_);
+
+        logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
+               cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
+               mean.transpose());
+
+        if (resampling_->neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
+        {
+            ParticleSet res_particle(num_particle_, state_size_);
+            VectorXi res_parent(num_particle_, 1);
+
+            resampling_->resample(cor_particle_, res_particle, res_parent);
+
+            cor_particle_ = res_particle;
+        }
+    }
+
+private:
+    std::size_t simulation_steps_;
+
+    Eigen::MatrixXd initial_covariance_;
+};
+
+
+int main()
+{
+    std::cout << "Running an unscented particle filter on a simulated target." << std::endl;
+    std::cout << "Data is logged in the test folder with prefix testUPF." << std::endl;
+
+    /* A set of parameters needed to run an unscented particle filter in a simulated environment. */
+    double surv_x = 1000.0;
+    double surv_y = 1000.0;
+    std::size_t num_particle_x = 100;
+    std::size_t num_particle_y = 100;
+    std::size_t num_particle = num_particle_x * num_particle_y;
+    Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
+    std::size_t simulation_time = 100;
+    std::size_t state_size = 4;
+
+    /* Unscented transform parameters.*/
+    double alpha = 1.0;
+    double beta = 2.0;
+    double kappa = 0.0;
+
+    /* Step 1 - Initialization */
+
+    Matrix4d initial_covariance;
+    initial_covariance << pow(0.05, 2), 0,            0,            0,
+                          0,            pow(0.05, 2), 0,            0,
+                          0,            0,            pow(0.01, 2), 0,
+                          0,            0,            0,            pow(0.01, 2);
+
+    /* Initialize particle initialization class. */
+    std::unique_ptr<ParticleSetInitialization> grid_initialization = utils::make_unique<InitSurveillanceAreaGrid>(surv_x, surv_y, num_particle_x, num_particle_y);
+
+
+    /* Step 2 - Prediction */
+
+    /* Step 2.1 - Define the state model. */
+
+    /* Initialize a white noise acceleration state model. */
+    double T = 1.0f;
+    double tilde_q = 10.0f;
+
+    std::unique_ptr<AdditiveStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+
+    /* Step 2.2 - Define the prediction step */
+
+    /* Initialize the kalman particle filter prediction step that wraps a Gaussian prediction step,
+       in this case an unscented kalman filter prediction step. */
+    std::unique_ptr<GaussianPrediction> upf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
+    std::unique_ptr<PFPrediction> gpf_prediction = utils::make_unique<GPFPrediction>(std::move(upf_prediction));
+
+
+    /* Step 3 - Correction */
+
+    /* Step 3.1 - Define where the measurement are originated from (simulated in this case). */
+
+    /* Initialize simulated target model with a white noise acceleration. */
+    std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+    std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
+    simulated_state_model->enable_log(".", "testUPF");
+
+    /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
+    std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
+    simulated_linear_sensor->enable_log(".", "testUPF");
+
+
+    /* Step 3.2 - Define the likelihood model. */
+
+    /* Initialize an exponential likelihood as measurement likelihood. */
+    std::unique_ptr<LikelihoodModel> exp_likelihood = utils::make_unique<GaussianLikelihood>();
+
+    /* Step 3.3 - Define the correction step. */
+
+    /* An additional state model is required to make the transitionProbability of the state model available
+       to the particle filter correction step. */
+    std::unique_ptr<StateModel> transition_probability_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+
+    /* Initialize the particle filter correction step that wraps a Guassian correction step,
+       in this case an unscented kalman filter correction step. */
+    std::unique_ptr<GaussianCorrection> upf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
+    std::unique_ptr<PFCorrection> gpf_correction = utils::make_unique<GPFCorrection>(std::move(upf_correction), std::move(exp_likelihood), std::move(transition_probability_model));
+
+
+    /* Step 4 - Resampling */
+
+    /* Initialize a resampling algorithm. */
+    std::unique_ptr<Resampling> resampling = utils::make_unique<Resampling>();
+
+
+    /* Step 5 - Assemble the particle filter. */
+    std::cout << "Constructing unscented particle filter..." << std::flush;
+    UPFSimulation upf(num_particle, state_size, simulation_time, initial_covariance);
+    upf.setInitialization(std::move(grid_initialization));
+    upf.setPrediction(std::move(gpf_prediction));
+    upf.setCorrection(std::move(gpf_correction));
+    upf.setResampling(std::move(resampling));
+    upf.enable_log(".", "testUPF");
+    std::cout << "done!" << std::endl;
+
+
+    /* Step 6 - Prepare the filter to be run */
+    std::cout << "Booting unscented particle filter..." << std::flush;
+    upf.boot();
+    std::cout << "completed!" << std::endl;
+
+
+    /* Step 7 - Run the filter and wait until it is closed */
+    /* Note that since this is a simulation, the filter will end upon simulation termination */
+    std::cout << "Running unscented particle filter..." << std::flush;
+    upf.run();
+    std::cout << "waiting..." << std::flush;
+
+    if (!upf.wait())
+        return EXIT_FAILURE;
+
+    std::cout << "completed!" << std::endl;
+
+    return EXIT_SUCCESS;
+}

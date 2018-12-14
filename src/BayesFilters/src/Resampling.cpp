@@ -56,9 +56,9 @@ void Resampling::resample(const ParticleSet& cor_particles, ParticleSet& res_par
     int num_particles = static_cast<int>(cor_particles.weight().rows());
     VectorXd csw(num_particles);
 
-    csw(0) = cor_particles.weight(0);
+    csw(0) = exp(cor_particles.weight(0));
     for (int i = 1; i < num_particles; ++i)
-        csw(i) = csw(i-1) + cor_particles.weight(i);
+        csw(i) = csw(i-1) + exp(cor_particles.weight(i));
 
     std::uniform_real_distribution<double> distribution_res(0.0, 1.0/num_particles);
     double u_1 = distribution_res(generator_);
@@ -74,7 +74,7 @@ void Resampling::resample(const ParticleSet& cor_particles, ParticleSet& res_par
         res_particles.state(j) = cor_particles.state(idx_csw);
         res_particles.mean(j) = cor_particles.mean(idx_csw);
         res_particles.covariance(j) = cor_particles.covariance(idx_csw);
-        res_particles.weight(j) = 1.0 / num_particles;
+        res_particles.weight(j) = -log(num_particles);
         res_parents(j) = idx_csw;
     }
 }
@@ -82,5 +82,5 @@ void Resampling::resample(const ParticleSet& cor_particles, ParticleSet& res_par
 
 double Resampling::neff(const Ref<const VectorXd>& cor_weights)
 {
-    return 1.0/cor_weights.array().square().sum();
+    return 1.0/cor_weights.array().exp().square().sum();
 }

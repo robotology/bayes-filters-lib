@@ -1,4 +1,5 @@
 #include <BayesFilters/ResamplingWithPrior.h>
+#include <BayesFilters/utils.h>
 
 #include <algorithm>
 #include <numeric>
@@ -63,7 +64,7 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
     /* Copy particles to be resampled in a temporary. */
     ParticleSet tmp_particles(num_resample_particles, cor_particles.dim_linear, cor_particles.dim_circular);
     int j = 0;
-    for (std::size_t i : sort_indices(cor_particles.weight()))
+    for (std::size_t i : sort_indices(cor_particles.weight().array().exp()))
     {
         if (j >= num_prior_particles)
         {
@@ -75,8 +76,8 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
         j++;
     }
 
-    /* Normalize weights before resampling. */
-    tmp_particles.weight() /= tmp_particles.weight().sum();
+    /* Normalize weights using LogSumExp. */
+    tmp_particles.weight().array() -= utils::log_sum_exp(tmp_particles.weight());
 
     /* Resample from tmp_particles. */
     Resampling::resample(tmp_particles, res_particles_right, res_parents_right);
@@ -89,7 +90,7 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
     res_particles = std::move(res_particles_left + res_particles_right);
 
     /* Reset weights.*/
-    res_particles.weight().setConstant(1.0 / cor_particles.state().cols());
+    res_particles.weight().setConstant(-log(cor_particles.state().cols()));
 
     /* Since num_prior_particles were created from scratch,
        they do not have a parent. */

@@ -1,4 +1,5 @@
 #include <BayesFilters/SIS.h>
+#include <BayesFilters/utils.h>
 
 #include <fstream>
 #include <iostream>
@@ -10,11 +11,21 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SIS::SIS(unsigned int num_particle, std::size_t state_size) noexcept :
+SIS::SIS
+(
+    unsigned int num_particle,
+    std::size_t state_size_linear,
+    std::size_t state_size_circular
+) noexcept :
     num_particle_(num_particle),
-    state_size_(state_size),
-    pred_particle_(num_particle_, state_size_),
-    cor_particle_(num_particle_, state_size_)
+    state_size_(state_size_linear + state_size_circular),
+    pred_particle_(num_particle_, state_size_linear, state_size_circular),
+    cor_particle_(num_particle_, state_size_linear, state_size_circular)
+{ }
+
+
+SIS::SIS(unsigned int num_particle, std::size_t state_size_linear) noexcept :
+    SIS(num_particle, state_size_linear, 0)
 { }
 
 
@@ -59,8 +70,8 @@ void SIS::filteringStep()
 
     correction_->correct(pred_particle_, cor_particle_);
 
-    cor_particle_.weight() /= cor_particle_.weight().sum();
-
+    /* Normalize weights using LogSumExp. */
+    cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
 
     logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
            cor_particle_.state().transpose(), cor_particle_.weight().transpose());

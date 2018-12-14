@@ -13,6 +13,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <Eigen/Dense>
+
+#include <memory>
 
 namespace bfl
 {
@@ -44,6 +47,12 @@ std::unique_ptr<T> make_unique(Args&& ...args)
 {
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
+
+
+/**
+ * Return the logarithm of the sum of exponentials.
+ */
+double log_sum_exp(const Eigen::Ref<const Eigen::VectorXd>& arguments);
 
 }
 }

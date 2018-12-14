@@ -20,7 +20,9 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS(unsigned int num_particle, std::size_t state_size) noexcept;
+    SIS(unsigned int num_particle, std::size_t state_size_linear) noexcept;
+
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::size_t state_size_circular) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 

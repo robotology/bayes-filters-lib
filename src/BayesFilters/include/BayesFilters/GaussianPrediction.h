@@ -38,6 +38,8 @@ private:
     bool skip_exogenous_  = false;
 
     friend class GaussianPredictionDecorator;
+
+    friend class GPFPrediction;
 };
 
 #endif /* GAUSSIANPREDICTION_H */
