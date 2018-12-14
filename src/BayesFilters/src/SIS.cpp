@@ -73,9 +73,7 @@ void SIS::filteringStep()
     /* Normalize weights using LogSumExp. */
     cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
 
-    logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
-           cor_particle_.state().transpose(), cor_particle_.weight().transpose());
-
+    log();
 
     if (resampling_->neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
     {
@@ -92,4 +90,11 @@ void SIS::filteringStep()
 bool SIS::runCondition()
 {
     return true;
+}
+
+
+void SIS::log()
+{
+    logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
+           cor_particle_.state().transpose(), cor_particle_.weight().transpose());
 }
