@@ -15,6 +15,7 @@
 
 #include <Eigen/Dense>
 
+#include <memory>
 
 namespace bfl
 {
