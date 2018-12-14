@@ -1,4 +1,5 @@
 #include <BayesFilters/SIS.h>
+#include <BayesFilters/utils.h>
 
 #include <fstream>
 #include <iostream>
@@ -69,8 +70,8 @@ void SIS::filteringStep()
 
     correction_->correct(pred_particle_, cor_particle_);
 
-    cor_particle_.weight() /= cor_particle_.weight().sum();
-
+    /* Normalize weights using LogSumExp. */
+    cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
 
     logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
            cor_particle_.state().transpose(), cor_particle_.weight().transpose());
