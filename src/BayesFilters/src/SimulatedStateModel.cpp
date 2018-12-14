@@ -31,7 +31,7 @@ bool SimulatedStateModel::bufferData()
 {
     ++current_simulation_time_;
 
-    logger(target_.col(current_simulation_time_ - 1).transpose());
+    log();
 
     MatrixXd process_information = target_.col(current_simulation_time_ - 1);
 
@@ -64,4 +64,10 @@ bool SimulatedStateModel::setProperty(const std::string& property)
 StateModel& SimulatedStateModel::getStateModel()
 {
     return *state_model_;
+}
+
+
+void SimulatedStateModel::log()
+{
+    logger(target_.col(current_simulation_time_ - 1).transpose());
 }

@@ -50,6 +50,8 @@ protected:
     {
         return {prefix_path + "/" + prefix_name + "_target"};
     }
+
+    void log() override;
 };
 
 #endif /* SIMULATEDPROCESS_H */
