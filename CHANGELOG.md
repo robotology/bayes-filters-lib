@@ -15,8 +15,9 @@
 
 ##### `Filtering Algorithms`
  - Added logging capabilities to FilteringAlgorithm.
- - Constructor SIS::SIS takes the state size as argument (required to initialize ParticleSet).
+ - Constructor SIS::SIS takes the state size, linear and circular, as argument (required to initialize ParticleSet).
  - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
+ - Method SIS::filteringStep uses particle weights in log space instead of linear space.
  - Re-implemented class KalmanFilter, a general Gaussian filtering algorithm using a GaussianPrediction and a GaussianCorrection.
  - Renamed class KalmanFilter to GaussianFilter.
 
@@ -31,12 +32,18 @@
  - Added class KFCorrection, a (Gaussian) Kalman correction step for LinearMeasurementModel models.
  - Added class UKFPrediction, a (Gaussian) unscented Kalman prediction step for StateModel and AdditiveStateModel models.
  - Added class UKFCorrection, a (Gaussian) unscented Kalman correction step for MeasurementModel and AdditiveMeasurementModel models.
+ - Added class GPFPrediction, a particle filter prediction step that propagates the Gaussian belief associated to particles.
+ - Added class GPFCorrection, a particle filter correction step that propagates the Gaussian belief associated to particles and weights them according to a Gaussian proposal distribution.
  - PFCorrection::getLikelihood() method is now pure virtual.
  - Used new ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, UpdateParticles, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
  - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
  - Methods Resampling::resample and ResamplingWithPrior::resample use VectorXi instead of VectorXf to represent particle parents.
+ - Methods Resampling::resample and Resampling::neff uses particle weights in log space instead of linear space.
+ - Methods ResamplingWithPrior::resample uses particle weights in log space instead of linear space.
  - PFCorrection now performs measurements freeze before calling PFCorrection::correctStep and does not call it if measurements freeze fails.
  - UpdateParticles::correctStep now does not freeze measurements anymore.
+ - UpdateParticles::correctStep uses particle weights in log space instead of linear space.
+ - InitSurveillanceAreaGrid::initialize uses particle weights in log space instead of linear space.
 
 ###### State models
  - Added SimulatedStateModel class to simulate kinematic or dynamic models using StateModel classes.
@@ -50,6 +57,7 @@
  - Implemented LTIStateModel class inheriting from LinearStateModel.
  - WhiteNoiseAcceleration class now inherits from LinearStateModel.
  - Implemented method WhiteNoiseAcceleration::getOutputSize
+ - Implemented method WhiteNoiseAcceleration::getTransitionProbability.
 
 ###### Measurement models
  - Added SimulatedLinearSensor class.
@@ -74,6 +82,7 @@
  - Added sigma_point(), unscented_weights() and unscented_transform() functions in sigma_point.h/cpp.
  - Added UTWeight struct to store unscented transform weights in sigma_point.h/cpp.
  - Added alias FunctionEvaluation in sigma_point.h/cpp.
+ - Added method utils::log_sum_exp to evaluate the logarithm of a sum of exponentials.
 
 ##### `Test`
  - Added test_DirectionalStatisticsUtils for directional_statistics.h/cpp.
@@ -83,6 +92,7 @@
  - Added test_UKF testing Gaussian filtering with UKFPrediction and UKFCorrection.
  - Added test_mixed_KF_UKF testing Gaussian filtering with KFPrediction and UKFCorrection.
  - Added test_mixed_UKF_KF testing Gaussian filtering with UKFPrediction and KFCorrection.
+ - Added test_UPF testing particle filtering with UKFPrediction and UKFCorrection.
  - Updated test_SIS.
  - Updated test_SIS_Decorators.
 
