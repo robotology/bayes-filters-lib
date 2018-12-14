@@ -68,7 +68,7 @@ bool SimulatedLinearSensor::freezeMeasurements()
 
     measurement_ += noise;
 
-    logger(measurement_.transpose());
+    log();
 
     return true;
 }
@@ -83,4 +83,10 @@ std::pair<bool, Data> SimulatedLinearSensor::measure() const
 std::pair<std::size_t, std::size_t> SimulatedLinearSensor::getOutputSize() const
 {
     return std::make_pair(dim_linear_, dim_circular_);
+}
+
+
+void SimulatedLinearSensor::log()
+{
+    logger(measurement_.transpose());
 }
