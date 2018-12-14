@@ -32,6 +32,7 @@
  - Added class KFCorrection, a (Gaussian) Kalman correction step for LinearMeasurementModel models.
  - Added class UKFPrediction, a (Gaussian) unscented Kalman prediction step for StateModel and AdditiveStateModel models.
  - Added class UKFCorrection, a (Gaussian) unscented Kalman correction step for MeasurementModel and AdditiveMeasurementModel models.
+ - Added class SUKFCorrection, a (Gaussian) unscented Kalman correction step for AdditiveMeasurementModel models.
  - Added class GPFPrediction, a particle filter prediction step that propagates the Gaussian belief associated to particles.
  - Added class GPFCorrection, a particle filter correction step that propagates the Gaussian belief associated to particles and weights them according to a Gaussian proposal distribution.
  - PFCorrection::getLikelihood() method is now pure virtual.
@@ -92,6 +93,7 @@
  - Added test_UKF testing Gaussian filtering with UKFPrediction and UKFCorrection.
  - Added test_mixed_KF_UKF testing Gaussian filtering with KFPrediction and UKFCorrection.
  - Added test_mixed_UKF_KF testing Gaussian filtering with UKFPrediction and KFCorrection.
+ - Added test_mixed_KF_SUKF testing Gaussian filtering with KFPrediction and SUKFCorrection.
  - Added test_UPF testing particle filtering with UKFPrediction and UKFCorrection.
  - Updated test_SIS.
  - Updated test_SIS_Decorators.

@@ -1,10 +1,10 @@
 #include <BayesFilters/Gaussian.h>
 #include <BayesFilters/GaussianFilter.h>
+#include <BayesFilters/KFPrediction.h>
 #include <BayesFilters/sigma_point.h>
 #include <BayesFilters/SimulatedLinearSensor.h>
 #include <BayesFilters/SimulatedStateModel.h>
-#include <BayesFilters/UKFCorrection.h>
-#include <BayesFilters/UKFPrediction.h>
+#include <BayesFilters/SUKFCorrection.h>
 #include <BayesFilters/utils.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 
@@ -14,10 +14,10 @@ using namespace bfl;
 using namespace Eigen;
 
 
-class UKFSimulation : public GaussianFilter
+class MixedKFSUKFSimulation : public GaussianFilter
 {
 public:
-    UKFSimulation
+    MixedKFSUKFSimulation
     (
         Gaussian& initial_state,
         std::unique_ptr<GaussianPrediction> prediction,
@@ -41,7 +41,7 @@ protected:
     std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
     {
         return  {prefix_path + "/" + prefix_name + "_pred_mean",
-                 prefix_path + "/" + prefix_name + "_cor_mean"};
+                prefix_path + "/" + prefix_name + "_cor_mean"};
     }
 
 
@@ -59,10 +59,10 @@ private:
 
 int main()
 {
-    std::cout << "Running a UKF filter on a simulated target." << std::endl;
-    std::cout << "Data is logged in the test folder with prefix testUKF." << std::endl;
+    std::cout << "Running a SUKF filter with KF prediction and SUKF correction on a simulated target." << std::endl;
+    std::cout << "Data is logged in the test folder with prefix testKF_SUKF." << std::endl;
 
-    /* A set of parameters needed to run an unscented Kalman filter in a simulated environment. */
+    /* A set of parameters needed to run a Kalman filter in a simulated environment. */
     Vector4d initial_simulated_state(10.0f, 0.0f, 10.0f, 0.0f);
     std::size_t simulation_time = 100;
     /* Initialize unscented transform parameters. */
@@ -70,18 +70,16 @@ int main()
     double beta = 2.0;
     double kappa = 0.0;
 
-
     /* Step 1 - Initialization */
-
     std::size_t state_size = 4;
     Gaussian initial_state(state_size);
-    Vector4d initial_mean(4.0f, 0.04f, 15.0f, 0.4f);
+    Vector4d initial_mean(4.0, 0.04, 15.0, 0.4);
     Matrix4d initial_covariance;
     initial_covariance << pow(0.05, 2), 0,            0,            0,
                           0,            pow(0.05, 2), 0,            0,
                           0,            0,            pow(0.01, 2), 0,
                           0,            0,            0,            pow(0.01, 2);
-    initial_state.mean() = initial_mean;
+    initial_state.mean() =  initial_mean;
     initial_state.covariance() = initial_covariance;
 
 
@@ -90,15 +88,15 @@ int main()
     /* Step 2.1 - Define the state model. */
 
     /* Initialize a white noise acceleration state model. */
-    double T = 1.0f;
-    double tilde_q = 10.0f;
+    float T = 1.0f;
+    float tilde_q = 10.0f;
 
-    std::unique_ptr<AdditiveStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+    std::unique_ptr<LinearStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
 
-    /* Step 2.2 - Define the prediction step. */
+    /* Step 2.2 - Define the prediction step */
 
-    /* Initialize the particle filter prediction step and pass the ownership of the state model. */    
-    std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
+    /* Initialize the Kalman filter prediction step and pass the ownership of the state model. */
+    std::unique_ptr<GaussianPrediction> kf_prediction = utils::make_unique<KFPrediction>(std::move(wna));
 
 
     /* Step 3 - Correction */
@@ -106,38 +104,38 @@ int main()
     /* Step 3.1 - Define where the measurement are originated from (simulated in this case). */
 
     /* Initialize simulated target model with a white noise acceleration. */
-    std::unique_ptr<AdditiveStateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+    std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_simulated_state, simulation_time);
-    simulated_state_model->enable_log(".", "testUKF");
+    simulated_state_model->enable_log(".", "testKF_SUKF");
 
     /* Step 3.2 - Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
-    simulated_linear_sensor->enable_log(".", "testUKF");
+    std::unique_ptr<LinearMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
+    simulated_linear_sensor->enable_log(".", "testKF_SUKF");
 
-    /* Step 3.3 - Initialize the unscented Kalman filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
+    /* Step 3.3 - Initialize the serial unscented Kalman filter correction step and pass the ownership of the measurement model. */
+    std::unique_ptr<GaussianCorrection> sukf_correction = utils::make_unique<SUKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa, 2);
 
 
-    /* Step 4 - Assemble the unscented Kalman filter. */
-    std::cout << "Constructing unscented Kalman filter..." << std::flush;
-    UKFSimulation ukf(initial_state, std::move(ukf_prediction), std::move(ukf_correction), simulation_time);
-    ukf.enable_log(".", "testUKF");
+    /* Step 4 - Assemble the serial unscented Kalman filter */
+    std::cout << "Constructing mixed KF/SUKF Kalman filter..." << std::flush;
+    MixedKFSUKFSimulation kf_sukf(initial_state, std::move(kf_prediction), std::move(sukf_correction), simulation_time);
+    kf_sukf.enable_log(".", "testKF_SUKF");
     std::cout << "done!" << std::endl;
 
 
-    /* Step 5 - Boot the filter. */
-    std::cout << "Booting unscented Kalman filter..." << std::flush;
-    ukf.boot();
+    /* Step 5 - Boot the filter */
+    std::cout << "Booting mixed KF/SUKF Kalman filter..." << std::flush;
+    kf_sukf.boot();
     std::cout << "completed!" << std::endl;
 
 
-    /* Step 6 - Run the filter and wait until it is closed. */
-    /* Note that since this is a simulation, the filter will end upon simulation termination. */
-    std::cout << "Running unscented Kalman filter..." << std::flush;
-    ukf.run();
+    /* Step 6 - Run the filter and wait until it is closed */
+    /* Note that since this is a simulation, the filter will end upon simulation termination */
+    std::cout << "Running mixed KF/SUKF Kalman filter..." << std::flush;
+    kf_sukf.run();
     std::cout << "waiting..." << std::flush;
 
-    if (!ukf.wait())
+    if (!kf_sukf.wait())
         return EXIT_FAILURE;
 
     std::cout << "completed!" << std::endl;
