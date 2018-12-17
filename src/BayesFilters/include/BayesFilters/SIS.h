@@ -20,9 +20,9 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS(unsigned int num_particle, std::size_t state_size_linear) noexcept;
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    SIS(unsigned int num_particle, std::size_t state_size_linear, std::size_t state_size_circular) noexcept;
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::size_t state_size_circular, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 
@@ -31,8 +31,6 @@ public:
     SIS& operator=(SIS&& sir_pf) noexcept;
 
     bool initialization() override;
-
-    void filteringStep() override;
 
     bool runCondition() override;
 
@@ -44,6 +42,8 @@ protected:
     ParticleSet pred_particle_;
 
     ParticleSet cor_particle_;
+
+    void filteringStep() override;
 
     std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
     {
