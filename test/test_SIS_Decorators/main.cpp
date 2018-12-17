@@ -96,8 +96,17 @@ protected:
 class SISSimulation : public SIS
 {
 public:
-    SISSimulation(unsigned int num_particle, std::size_t state_size, unsigned int simulation_steps) noexcept :
-        SIS(num_particle, state_size),
+    SISSimulation
+    (
+        unsigned int num_particle,
+        std::size_t state_size,
+        unsigned int simulation_steps,
+        std::unique_ptr<ParticleSetInitialization> initialization,
+        std::unique_ptr<PFPrediction> prediction,
+        std::unique_ptr<PFCorrection> correction,
+        std::unique_ptr<Resampling> resampling
+    ) noexcept :
+        SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
         simulation_steps_(simulation_steps)
     { }
 
@@ -185,11 +194,7 @@ int main()
 
     /* Step 5 - Assemble the particle filter */
     std::cout << "Constructing SIS particle filter..." << std::flush;
-    SISSimulation sis_pf(num_particle, state_size, simulation_time);
-    sis_pf.setInitialization(std::move(grid_initialization));
-    sis_pf.setPrediction(std::move(decorated_prediction));
-    sis_pf.setCorrection(std::move(decorated_correction));
-    sis_pf.setResampling(std::move(resampling));
+    SISSimulation sis_pf(num_particle, state_size, simulation_time, std::move(grid_initialization), std::move(decorated_prediction), std::move(decorated_correction), std::move(resampling));
     std::cout << "done!" << std::endl;
 
 
