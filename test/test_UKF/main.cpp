@@ -40,8 +40,8 @@ protected:
 
     std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
     {
-        return  {prefix_path + "/" + prefix_name + "_pred_mean",
-                 prefix_path + "/" + prefix_name + "_cor_mean"};
+        return {prefix_path + "/" + prefix_name + "_pred_mean",
+                prefix_path + "/" + prefix_name + "_cor_mean"};
     }
 
 
@@ -95,7 +95,7 @@ int main()
 
     /* Step 2.2 - Define the prediction step. */
 
-    /* Initialize the particle filter prediction step and pass the ownership of the state model. */    
+    /* Initialize the unscented Kalman filter prediction step and pass the ownership of the state model */
     std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
 
 

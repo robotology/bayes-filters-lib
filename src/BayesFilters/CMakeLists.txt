@@ -18,6 +18,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AdditiveStateModel.h
         include/BayesFilters/Agent.h
         include/BayesFilters/AuxiliaryFunction.h
+        include/BayesFilters/BootstrapCorrection.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
         include/BayesFilters/GaussianCorrection.h
@@ -49,7 +50,6 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/SUKFCorrection.h
-        include/BayesFilters/UpdateParticles.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
         include/BayesFilters/WhiteNoiseAcceleration.h
@@ -94,6 +94,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AdditiveStateModel.cpp
         src/Agent.cpp
         src/AuxiliaryFunction.cpp
+        src/BootstrapCorrection.cpp
         src/DrawParticles.cpp
         src/GaussianCorrection.cpp
         src/GaussianLikelihood.cpp
@@ -121,7 +122,6 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/SUKFCorrection.cpp
-        src/UpdateParticles.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
         src/WhiteNoiseAcceleration.cpp

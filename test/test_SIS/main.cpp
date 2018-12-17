@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 
+#include <BayesFilters/BootstrapCorrection.h>
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
@@ -8,7 +9,6 @@
 #include <BayesFilters/SimulatedStateModel.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SIS.h>
-#include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 #include <BayesFilters/utils.h>
 #include <Eigen/Dense>
@@ -20,8 +20,17 @@ using namespace Eigen;
 class SISSimulation : public SIS
 {
 public:
-    SISSimulation(unsigned int num_particle, std::size_t state_size, unsigned int simulation_steps) noexcept :
-        SIS(num_particle, state_size),
+    SISSimulation
+    (
+        unsigned int num_particle,
+        std::size_t state_size,
+        unsigned int simulation_steps,
+        std::unique_ptr<ParticleSetInitialization> initialization,
+        std::unique_ptr<PFPrediction> prediction,
+        std::unique_ptr<PFCorrection> correction,
+        std::unique_ptr<Resampling> resampling
+    ) noexcept :
+        SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
         simulation_steps_(simulation_steps)
     { }
 
@@ -91,7 +100,7 @@ int main()
 
     /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<UpdateParticles>();
+    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<BoostrapCorrection>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(simulated_linear_sensor));
 
@@ -103,11 +112,7 @@ int main()
 
     /* Step 5 - Assemble the particle filter */
     std::cout << "Constructing SIS particle filter..." << std::flush;
-    SISSimulation sis_pf(num_particle, state_size, simulation_time);
-    sis_pf.setInitialization(std::move(grid_initialization));
-    sis_pf.setPrediction(std::move(pf_prediction));
-    sis_pf.setCorrection(std::move(pf_correction));
-    sis_pf.setResampling(std::move(resampling));
+    SISSimulation sis_pf(num_particle, state_size, simulation_time, std::move(grid_initialization), std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
     sis_pf.enable_log(".", "testSIS");
     std::cout << "done!" << std::endl;
 

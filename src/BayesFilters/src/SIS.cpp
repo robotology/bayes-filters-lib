@@ -15,8 +15,13 @@ SIS::SIS
 (
     unsigned int num_particle,
     std::size_t state_size_linear,
-    std::size_t state_size_circular
+    std::size_t state_size_circular,
+    std::unique_ptr<ParticleSetInitialization> initialization,
+    std::unique_ptr<PFPrediction> prediction,
+    std::unique_ptr<PFCorrection> correction,
+    std::unique_ptr<Resampling> resampling
 ) noexcept :
+    ParticleFilter(std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
     num_particle_(num_particle),
     state_size_(state_size_linear + state_size_circular),
     pred_particle_(num_particle_, state_size_linear, state_size_circular),
@@ -24,8 +29,16 @@ SIS::SIS
 { }
 
 
-SIS::SIS(unsigned int num_particle, std::size_t state_size_linear) noexcept :
-    SIS(num_particle, state_size_linear, 0)
+SIS::SIS
+(
+    unsigned int num_particle,
+    std::size_t state_size_linear,
+    std::unique_ptr<ParticleSetInitialization> initialization,
+    std::unique_ptr<PFPrediction> prediction,
+    std::unique_ptr<PFCorrection> correction,
+    std::unique_ptr<Resampling> resampling
+) noexcept :
+    SIS(num_particle, state_size_linear, 0, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling))
 { }
 
 
@@ -38,7 +51,8 @@ SIS::SIS(SIS&& sir_pf) noexcept :
     pred_particle_(std::move(sir_pf.pred_particle_)),
     cor_particle_(std::move(sir_pf.cor_particle_)),
     num_particle_(sir_pf.num_particle_),
-    state_size_(sir_pf.state_size_) { }
+    state_size_(sir_pf.state_size_)
+{ }
 
 
 SIS& SIS::operator=(SIS&& sir_pf) noexcept

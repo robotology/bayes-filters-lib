@@ -30,9 +30,13 @@ public:
         std::size_t state_size,
         std::size_t simulation_steps,
         /* Initial covariance of the Gaussian belief associated to each particle. */
-        Ref<MatrixXd> initial_covariance
+        Ref<MatrixXd> initial_covariance,
+        std::unique_ptr<ParticleSetInitialization> initialization,
+        std::unique_ptr<PFPrediction> prediction,
+        std::unique_ptr<PFCorrection> correction,
+        std::unique_ptr<Resampling> resampling
     ) noexcept :
-        SIS(num_particle, state_size),
+        SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
         simulation_steps_(simulation_steps),
         initial_covariance_(initial_covariance)
     { }
@@ -186,11 +190,7 @@ int main()
 
     /* Step 5 - Assemble the particle filter. */
     std::cout << "Constructing unscented particle filter..." << std::flush;
-    UPFSimulation upf(num_particle, state_size, simulation_time, initial_covariance);
-    upf.setInitialization(std::move(grid_initialization));
-    upf.setPrediction(std::move(gpf_prediction));
-    upf.setCorrection(std::move(gpf_correction));
-    upf.setResampling(std::move(resampling));
+    UPFSimulation upf(num_particle, state_size, simulation_time, initial_covariance, std::move(grid_initialization), std::move(gpf_prediction), std::move(gpf_correction), std::move(resampling));
     upf.enable_log(".", "testUPF");
     std::cout << "done!" << std::endl;
 
