@@ -8,16 +8,16 @@
 #include <random>
 
 namespace bfl {
-    class UpdateParticles;
+    class BoostrapCorrection;
 }
 
 
-class bfl::UpdateParticles : public PFCorrection
+class bfl::BoostrapCorrection : public PFCorrection
 {
 public:
-    UpdateParticles() noexcept;
+    BoostrapCorrection() noexcept;
 
-    virtual ~UpdateParticles() noexcept;
+    virtual ~BoostrapCorrection() noexcept;
 
     void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
 

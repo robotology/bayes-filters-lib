@@ -2,6 +2,7 @@
 #include <memory>
 #include <random>
 
+#include <BayesFilters/BootstrapCorrection.h>
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
@@ -16,7 +17,6 @@
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/StateModelDecorator.h>
 #include <BayesFilters/SIS.h>
-#include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 #include <BayesFilters/utils.h>
 #include <Eigen/Dense>
@@ -76,17 +76,17 @@ protected:
 };
 
 
-class DecoratedUpdateParticles : public PFCorrectionDecorator
+class DecoratedBootstrapCorrection : public PFCorrectionDecorator
 {
 public:
-    DecoratedUpdateParticles(std::unique_ptr<PFCorrection> correction) noexcept :
+    DecoratedBootstrapCorrection(std::unique_ptr<PFCorrection> correction) noexcept :
         PFCorrectionDecorator(std::move(correction))
     { }
 
 protected:
     void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) override
     {
-        std::cout << "Decorator: DecoratedUpdateParticles::correctStep()." << std::endl;
+        std::cout << "Decorator: DecoratedBootstrapCorrection::correctStep()." << std::endl;
 
         PFCorrectionDecorator::correctStep(pred_particles, cor_particles);
     }
@@ -179,12 +179,12 @@ int main()
 
     /* Step 3.3 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<UpdateParticles>();
+    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<BoostrapCorrection>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(decorated_linearsensor));
 
     /* Initialize a update particle decorator */
-    std::unique_ptr<PFCorrection> decorated_correction = utils::make_unique<DecoratedUpdateParticles>(std::move(pf_correction));
+    std::unique_ptr<PFCorrection> decorated_correction = utils::make_unique<DecoratedBootstrapCorrection>(std::move(pf_correction));
 
 
     /* Step 4 - Resampling */

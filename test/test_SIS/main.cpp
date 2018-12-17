@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 
+#include <BayesFilters/BootstrapCorrection.h>
 #include <BayesFilters/DrawParticles.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
@@ -8,7 +9,6 @@
 #include <BayesFilters/SimulatedStateModel.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SIS.h>
-#include <BayesFilters/UpdateParticles.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 #include <BayesFilters/utils.h>
 #include <Eigen/Dense>
@@ -100,7 +100,7 @@ int main()
 
     /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<UpdateParticles>();
+    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<BoostrapCorrection>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(simulated_linear_sensor));
 
