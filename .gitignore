@@ -56,3 +56,5 @@ build*/
 xcodeenvvar.txt
 .vs/
 CMakeSettings.json
+html/
+latex/

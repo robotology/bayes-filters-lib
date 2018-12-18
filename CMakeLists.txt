@@ -1,8 +1,4 @@
-if(WIN32)
-    cmake_minimum_required(VERSION 3.4)
-else()
-    cmake_minimum_required(VERSION 3.0)
-endif()
+cmake_minimum_required(VERSION 3.5)
 
 project(BayesFilters
         LANGUAGES CXX
@@ -79,3 +75,6 @@ include(AddUninstallTarget)
 if(BUILD_TESTING)
     add_subdirectory(test)
 endif()
+
+# Add targets related to doxygen documention generation
+add_subdirectory(doc)
