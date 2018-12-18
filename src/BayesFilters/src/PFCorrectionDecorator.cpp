@@ -1,4 +1,4 @@
-#include "BayesFilters/PFCorrectionDecorator.h"
+#include <BayesFilters/PFCorrectionDecorator.h>
 
 #include <utility>
 
@@ -17,33 +17,37 @@ PFCorrectionDecorator::PFCorrectionDecorator(PFCorrectionDecorator&& correction)
 PFCorrectionDecorator::~PFCorrectionDecorator() noexcept { }
 
 
-void PFCorrectionDecorator::innovation(const Ref<const MatrixXf>& pred_states, const Ref<const MatrixXf>& measurements, Ref<MatrixXf> innovations)
+void PFCorrectionDecorator::setLikelihoodModel(std::unique_ptr<LikelihoodModel> measurement_model)
 {
-    correction_->innovation(pred_states, measurements, innovations);
+    correction_->setLikelihoodModel(std::move(measurement_model));
 }
 
 
-double PFCorrectionDecorator::likelihood(const Ref<const VectorXf>& innovation)
+void PFCorrectionDecorator::setMeasurementModel(std::unique_ptr<MeasurementModel> observation_model)
 {
-    return correction_->likelihood(innovation);
+    correction_->setMeasurementModel(std::move(observation_model));
 }
 
 
-ObservationModel& PFCorrectionDecorator::getObservationModel()
+MeasurementModel& PFCorrectionDecorator::getMeasurementModel()
 {
-    return correction_->getObservationModel();
+    return correction_->getMeasurementModel();
 }
 
 
-void PFCorrectionDecorator::setObservationModel(std::unique_ptr<ObservationModel> observation_model)
+std::pair<bool, VectorXd> PFCorrectionDecorator::getLikelihood()
 {
-    correction_->setObservationModel(std::move(observation_model));
+    return correction_->getLikelihood();
 }
 
 
-void PFCorrectionDecorator::correctStep(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
-                                        Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
+LikelihoodModel& PFCorrectionDecorator::getLikelihoodModel()
 {
-    correction_->correctStep(pred_states, pred_weights, measurements,
-                             cor_states, cor_weights);
+    return correction_->getLikelihoodModel();
+}
+
+
+void PFCorrectionDecorator::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
+{
+    correction_->correctStep(pred_particles, cor_particles);
 }

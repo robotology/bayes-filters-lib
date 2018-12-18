@@ -1,7 +1,7 @@
 #ifndef UNSCENTEDKALMANFILTER_H
 #define UNSCENTEDKALMANFILTER_H
 
-#include "FilteringAlgorithm.h"
+#include <BayesFilters/FilteringAlgorithm.h>
 
 namespace bfl {
     class UnscentedKalmanFilter;
@@ -15,11 +15,9 @@ public:
 
     virtual ~UnscentedKalmanFilter() noexcept;
 
-    void initialization() override;
+    bool initialization() override;
 
     void filteringStep() override;
-
-    void getResult() override;
 };
 
 #endif /* UNSCENTEDKALMANFILTER_H */

@@ -13,11 +13,13 @@ class bfl::ExogenousModel
 public:
     virtual ~ExogenousModel() noexcept { };
 
-    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) = 0;
+    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
 
-    virtual Eigen::MatrixXf getExogenousMatrix() = 0;
+    virtual Eigen::MatrixXd getExogenousMatrix() = 0;
 
     virtual bool setProperty(const std::string& property) = 0;
+
+    virtual std::pair<std::size_t, std::size_t> getOutputSize() const = 0;
 };
 
 #endif /* EXOGENOUSMODEL_H */

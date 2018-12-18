@@ -1,11 +1,13 @@
 #ifndef SIS_H
 #define SIS_H
 
-#include "ParticleFilter.h"
-#include "PFCorrection.h"
-#include "PFPrediction.h"
-#include "Resampling.h"
+#include <BayesFilters/ParticleFilter.h>
+#include <BayesFilters/ParticleSet.h>
+#include <BayesFilters/PFCorrection.h>
+#include <BayesFilters/PFPrediction.h>
+#include <BayesFilters/Resampling.h>
 
+#include <fstream>
 #include <memory>
 
 #include <Eigen/Dense>
@@ -18,7 +20,9 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS() noexcept;
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
+
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::size_t state_size_circular, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 
@@ -26,34 +30,30 @@ public:
 
     SIS& operator=(SIS&& sir_pf) noexcept;
 
-    void initialization() override;
+    bool initialization() override;
+
+    bool runCondition() override;
+
+protected:
+    unsigned int num_particle_;
+
+    std::size_t state_size_;
+
+    ParticleSet pred_particle_;
+
+    ParticleSet cor_particle_;
 
     void filteringStep() override;
 
-    void getResult() override;
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        return {prefix_path + "/" + prefix_name + "_pred_particles",
+                prefix_path + "/" + prefix_name + "_pred_weights",
+                prefix_path + "/" + prefix_name + "_cor_particles",
+                prefix_path + "/" + prefix_name + "_cor_weights"};
+    }
 
-    bool runCondition() override { return (getFilteringStep() < simulation_time_); };
-
-protected:
-    int                          simulation_time_;
-    int                          num_particle_;
-    int                          surv_x_;
-    int                          surv_y_;
-
-    Eigen::MatrixXf              object_;
-    Eigen::MatrixXf              measurement_;
-
-    Eigen::MatrixXf              pred_particle_;
-    Eigen::VectorXf              pred_weight_;
-
-    Eigen::MatrixXf              cor_particle_;
-    Eigen::VectorXf              cor_weight_;
-
-    std::vector<Eigen::MatrixXf> result_pred_particle_;
-    std::vector<Eigen::VectorXf> result_pred_weight_;
-
-    std::vector<Eigen::MatrixXf> result_cor_particle_;
-    std::vector<Eigen::VectorXf> result_cor_weight_;
+    void log() override;
 };
 
 #endif /* SIS_H */

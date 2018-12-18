@@ -1,22 +1,22 @@
 #ifndef WHITENOISEACCELERATION_H
 #define WHITENOISEACCELERATION_H
 
+#include <BayesFilters/LinearStateModel.h>
+
 #include <functional>
 #include <random>
-
-#include "StateModel.h"
 
 namespace bfl {
     class WhiteNoiseAcceleration;
 }
 
 
-class bfl::WhiteNoiseAcceleration : public StateModel
+class bfl::WhiteNoiseAcceleration : public LinearStateModel
 {
 public:
-    WhiteNoiseAcceleration(float T, float tilde_q, unsigned int seed) noexcept;
+    WhiteNoiseAcceleration(double T, double tilde_q, unsigned int seed) noexcept;
 
-    WhiteNoiseAcceleration(float T, float tilde_q) noexcept;
+    WhiteNoiseAcceleration(double T, double tilde_q) noexcept;
 
     WhiteNoiseAcceleration() noexcept;
 
@@ -30,26 +30,54 @@ public:
 
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& wna) noexcept;
 
-    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+    Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
 
-    void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
 
-    Eigen::MatrixXf getNoiseSample(const int num) override;
+    Eigen::MatrixXd getStateTransitionMatrix() override;
 
-    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
+    Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states);
 
     bool setProperty(const std::string& property) override { return false; };
 
-protected:
-    float                           T_;                /* Sampling interval */
-    Eigen::Matrix4f                 F_;                /* State transition matrix */
-    Eigen::Matrix4f                 Q_;                /* Process white noise convariance matrix */
-    float                           tilde_q_;          /* Power spectral density [length]^2/[time]^3 */
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
 
-    Eigen::Matrix4f                 sqrt_Q_;           /* Square root matrix of the process white noise convariance matrix */
-    std::mt19937_64                 generator_;
-    std::normal_distribution<float> distribution_;
-    std::function<float()>          gauss_rnd_sample_; /* Random number generator from a Normal distribution */
+private:
+    std::mt19937_64 generator_;
+
+    std::normal_distribution<double> distribution_;
+
+protected:
+    /**
+     * Sampling interval in [time].
+     */
+    double T_;
+
+    /**
+     * State transition matrix.
+     */
+    Eigen::Matrix4d F_;
+
+    /**
+     * Convariance matrix of the additive white noise of the state model.
+     */
+    Eigen::Matrix4d Q_;
+
+    /**
+     * Power spectral density [length]^2/[time]^3.
+     */
+    double tilde_q_;
+
+    /**
+     * Square root matrix of R_.
+     */
+    Eigen::Matrix4d sqrt_Q_;
+
+    /**
+     * Random number generator function from a Normal distribution.
+     * A call to `gauss_rnd_sample_()` returns a double-precision floating point random number.
+     */
+    std::function<double()> gauss_rnd_sample_;
 };
 
 #endif /* WHITENOISEACCELERATION_H */

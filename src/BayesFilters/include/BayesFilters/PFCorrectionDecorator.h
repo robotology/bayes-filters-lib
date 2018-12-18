@@ -1,7 +1,8 @@
 #ifndef PFCORRECTIONDECORATOR_H
 #define PFCORRECTIONDECORATOR_H
 
-#include "PFCorrection.h"
+#include <BayesFilters/ParticleSet.h>
+#include <BayesFilters/PFCorrection.h>
 
 #include <memory>
 
@@ -13,13 +14,11 @@ namespace bfl {
 class bfl::PFCorrectionDecorator : public PFCorrection
 {
 public:
-    void innovation(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::MatrixXf>& measurements, Eigen::Ref<Eigen::MatrixXf> innovations) override;
+    void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) override;
 
-    double likelihood(const Eigen::Ref<const Eigen::VectorXf>& innovation) override;
+    void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
 
-    virtual ObservationModel& getObservationModel() override;
-
-    virtual void setObservationModel(std::unique_ptr<ObservationModel> observation_model) override;
+    std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
 protected:
     PFCorrectionDecorator(std::unique_ptr<PFCorrection> correction) noexcept;
@@ -28,8 +27,11 @@ protected:
 
     virtual ~PFCorrectionDecorator() noexcept;
 
-    void correctStep(const Eigen::Ref<const Eigen::MatrixXf>& pred_states, const Eigen::Ref<const Eigen::VectorXf>& pred_weights, const Eigen::Ref<const Eigen::MatrixXf>& measurements,
-                     Eigen::Ref<Eigen::MatrixXf> cor_states, Eigen::Ref<Eigen::VectorXf> cor_weights) override;
+    LikelihoodModel& getLikelihoodModel() override;
+
+    MeasurementModel& getMeasurementModel() override;
+
+    void correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles) override;
 
 private:
     std::unique_ptr<PFCorrection> correction_;

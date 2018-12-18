@@ -1,4 +1,4 @@
-#include "BayesFilters/PFCorrection.h"
+#include <BayesFilters/PFCorrection.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -7,24 +7,13 @@ using namespace Eigen;
 PFCorrection::PFCorrection() noexcept { };
 
 
-PFCorrection::PFCorrection(PFCorrection&& pf_prediction) noexcept :
-    skip_(pf_prediction.skip_)
+void PFCorrection::correct(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    pf_prediction.skip_ = false;
-}
-
-
-void PFCorrection::correct(const Ref<const MatrixXf>& pred_states, const Ref<const VectorXf>& pred_weights, const Ref<const MatrixXf>& measurements,
-                           Ref<MatrixXf> cor_states, Ref<VectorXf> cor_weights)
-{
-    if (!skip_)
-        correctStep(pred_states, pred_weights, measurements,
-                    cor_states, cor_weights);
+    /* Perform correction if required and if measurements can be frozen. */
+    if ((!skip_) && getMeasurementModel().freezeMeasurements())
+        correctStep(pred_particles, cor_particles);
     else
-    {
-        cor_states  = pred_states;
-        cor_weights = pred_weights;
-    }
+        cor_particles = pred_particles;
 }
 
 

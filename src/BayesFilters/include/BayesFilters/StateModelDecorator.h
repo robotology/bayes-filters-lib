@@ -1,7 +1,7 @@
 #ifndef STATEMODELDECORATOR_H
 #define STATEMODELDECORATOR_H
 
-#include "StateModel.h"
+#include <BayesFilters/StateModel.h>
 
 #include <memory>
 
@@ -13,15 +13,17 @@ namespace bfl {
 class bfl::StateModelDecorator : public StateModel
 {
 public:
-    void propagate(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> prop_states) override;
+    void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) override;
 
-    void motion(const Eigen::Ref<const Eigen::MatrixXf>& cur_states, Eigen::Ref<Eigen::MatrixXf> mot_states) override;
-
-    Eigen::MatrixXf getNoiseSample(const int num) override;
-
-    Eigen::MatrixXf getNoiseCovarianceMatrix() override;
+    void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override;
 
     bool setProperty(const std::string& property) override;
+
+    Eigen::MatrixXd getNoiseCovarianceMatrix() override;
+
+    Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
+
+    std::pair<std::size_t, std::size_t> getOutputSize() const override;
 
 protected:
     StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept;

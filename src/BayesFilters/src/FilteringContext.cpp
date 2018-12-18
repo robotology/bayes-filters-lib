@@ -1,4 +1,4 @@
-#include "BayesFilters/FilteringContext.h"
+#include <BayesFilters/FilteringContext.h>
 
 using namespace bfl;
 

@@ -1,11 +1,11 @@
 #ifndef PARTICLEFILTER_H
 #define PARTICLEFILTER_H
 
-#include "FilteringAlgorithm.h"
-#include "Initialization.h"
-#include "PFCorrection.h"
-#include "PFPrediction.h"
-#include "Resampling.h"
+#include <BayesFilters/FilteringAlgorithm.h>
+#include <BayesFilters/ParticleSetInitialization.h>
+#include <BayesFilters/PFCorrection.h>
+#include <BayesFilters/PFPrediction.h>
+#include <BayesFilters/Resampling.h>
 
 #include <memory>
 
@@ -17,18 +17,10 @@ namespace bfl{
 class bfl::ParticleFilter : public FilteringAlgorithm
 {
 public:
-    void setInitialization(std::unique_ptr<Initialization> prediction);
-
-    void setPrediction(std::unique_ptr<PFPrediction> prediction);
-
-    void setCorrection(std::unique_ptr<PFCorrection> correction);
-
-    void setResampling(std::unique_ptr<Resampling> resampling);
-
     virtual bool skip(const std::string& what_step, const bool status) override;
 
 protected:
-    ParticleFilter() noexcept;
+    ParticleFilter(std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     virtual ~ParticleFilter() noexcept;
 
@@ -36,10 +28,13 @@ protected:
 
     ParticleFilter& operator=(ParticleFilter&& pf) noexcept;
 
-    std::unique_ptr<Initialization> initialization_;
-    std::unique_ptr<PFPrediction>   prediction_;
-    std::unique_ptr<PFCorrection>   correction_;
-    std::unique_ptr<Resampling>     resampling_;
+    std::unique_ptr<ParticleSetInitialization> initialization_;
+
+    std::unique_ptr<PFPrediction> prediction_;
+
+    std::unique_ptr<PFCorrection> correction_;
+
+    std::unique_ptr<Resampling> resampling_;
 };
 
 #endif /* PARTICLEFILTER_H */

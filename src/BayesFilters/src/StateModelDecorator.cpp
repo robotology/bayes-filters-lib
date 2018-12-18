@@ -1,4 +1,4 @@
-#include "BayesFilters/StateModelDecorator.h"
+#include <BayesFilters/StateModelDecorator.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -23,31 +23,37 @@ StateModelDecorator& StateModelDecorator::operator=(StateModelDecorator&& state_
 }
 
 
-void StateModelDecorator::propagate(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> prop_states)
+void StateModelDecorator::propagate(const Ref<const MatrixXd>& cur_states, Ref<MatrixXd> prop_states)
 {
     state_model_->propagate(cur_states, prop_states);
 }
 
 
-void StateModelDecorator::motion(const Ref<const MatrixXf>& cur_states, Ref<MatrixXf> mot_states)
+void StateModelDecorator::motion(const Ref<const MatrixXd>& cur_states, Ref<MatrixXd> mot_states)
 {
     state_model_->motion(cur_states, mot_states);
-}
-
-
-MatrixXf StateModelDecorator::getNoiseSample(const int num)
-{
-    return state_model_->getNoiseSample(num);
-}
-
-
-MatrixXf StateModelDecorator::getNoiseCovarianceMatrix()
-{
-    return state_model_->getNoiseCovarianceMatrix();
 }
 
 
 bool StateModelDecorator::setProperty(const std::string& property)
 {
     return state_model_->setProperty(property);
+}
+
+
+MatrixXd StateModelDecorator::getNoiseCovarianceMatrix()
+{
+    return state_model_->getNoiseCovarianceMatrix();
+}
+
+
+MatrixXd StateModelDecorator::getNoiseSample(const std::size_t num)
+{
+    return state_model_->getNoiseSample(num);
+}
+
+
+std::pair<std::size_t, std::size_t> StateModelDecorator::getOutputSize() const
+{
+    return state_model_->getOutputSize();
 }

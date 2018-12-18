@@ -1,4 +1,5 @@
-#include "BayesFilters/SIS.h"
+#include <BayesFilters/SIS.h>
+#include <BayesFilters/utils.h>
 
 #include <fstream>
 #include <iostream>
@@ -10,135 +11,104 @@ using namespace bfl;
 using namespace Eigen;
 
 
-SIS::SIS() noexcept { }
+SIS::SIS
+(
+    unsigned int num_particle,
+    std::size_t state_size_linear,
+    std::size_t state_size_circular,
+    std::unique_ptr<ParticleSetInitialization> initialization,
+    std::unique_ptr<PFPrediction> prediction,
+    std::unique_ptr<PFCorrection> correction,
+    std::unique_ptr<Resampling> resampling
+) noexcept :
+    ParticleFilter(std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
+    num_particle_(num_particle),
+    state_size_(state_size_linear + state_size_circular),
+    pred_particle_(num_particle_, state_size_linear, state_size_circular),
+    cor_particle_(num_particle_, state_size_linear, state_size_circular)
+{ }
 
 
-SIS::~SIS() noexcept { }
+SIS::SIS
+(
+    unsigned int num_particle,
+    std::size_t state_size_linear,
+    std::unique_ptr<ParticleSetInitialization> initialization,
+    std::unique_ptr<PFPrediction> prediction,
+    std::unique_ptr<PFCorrection> correction,
+    std::unique_ptr<Resampling> resampling
+) noexcept :
+    SIS(num_particle, state_size_linear, 0, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling))
+{ }
+
+
+SIS::~SIS() noexcept
+{ }
 
 
 SIS::SIS(SIS&& sir_pf) noexcept :
-    ParticleFilter(std::move(sir_pf)) { }
+    ParticleFilter(std::move(sir_pf)),
+    pred_particle_(std::move(sir_pf.pred_particle_)),
+    cor_particle_(std::move(sir_pf.cor_particle_)),
+    num_particle_(sir_pf.num_particle_),
+    state_size_(sir_pf.state_size_)
+{ }
 
 
 SIS& SIS::operator=(SIS&& sir_pf) noexcept
 {
     ParticleFilter::operator=(std::move(sir_pf));
 
+    num_particle_ = sir_pf.num_particle_;
+
+    state_size_ = sir_pf.state_size_;
+
+    pred_particle_ = std::move(sir_pf.pred_particle_);
+
+    cor_particle_ = std::move(sir_pf.cor_particle_);
+
     return *this;
 }
 
 
-void SIS::initialization()
+bool SIS::initialization()
 {
-    /* INITIALIZATION */
-    simulation_time_ = 100;
-    num_particle_    = 900;
-    surv_x_          = 1000;
-    surv_y_          = 1000;
-
-    /* GENERATE MEASUREMENTS */
-    measurement_.resize(2, simulation_time_);
-    object_.resize(4, simulation_time_);
-
-    object_.col(0) << 0, 10, 0, 10;
-    correction_->getObservationModel().measure(object_.col(0), measurement_.col(0));
-    for (int k = 1; k < simulation_time_; ++k)
-    {
-        prediction_->getStateModel().motion(object_.col(k-1), object_.col(k));
-        correction_->getObservationModel().measure(object_.col(k), measurement_.col(k));
-    }
-
-    /* INITIALIZE FILTER */
-    pred_particle_.resize(4, num_particle_);
-    pred_weight_.resize(num_particle_, 1);
-
-    cor_particle_.resize(4, num_particle_);
-    cor_weight_.resize(num_particle_, 1);
-
-    pred_weight_.setConstant(1.0/num_particle_);
-
-    int particle_spread = std::sqrt(num_particle_);
-    for (int i = 0; i < particle_spread; ++i)
-        for (int j = 0; j < particle_spread; ++j)
-            pred_particle_.col(i*particle_spread + j) << (surv_x_ / particle_spread) * i, 0, (surv_y_ / particle_spread) * j, 0;
-
-    result_pred_particle_.resize(simulation_time_);
-    result_pred_weight_.resize(simulation_time_);
-
-    result_cor_particle_.resize(simulation_time_);
-    result_cor_weight_.resize(simulation_time_);
+    return initialization_->initialize(pred_particle_);
 }
 
 
 void SIS::filteringStep()
 {
-    unsigned int k = getFilteringStep();
+    if (getFilteringStep() != 0)
+        prediction_->predict(cor_particle_, pred_particle_);
 
-    if (k != 0)
-        prediction_->predict(cor_particle_, cor_weight_,
-                             pred_particle_, pred_weight_);
+    correction_->correct(pred_particle_, cor_particle_);
 
-    correction_->correct(pred_particle_, pred_weight_, measurement_.col(k),
-                         cor_particle_, cor_weight_);
+    /* Normalize weights using LogSumExp. */
+    cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
 
-    cor_weight_ /= cor_weight_.sum();
+    log();
 
-
-    /* Here results should be save. */
-    /* Proper stragy is WIP. */
-    result_pred_particle_[k] = pred_particle_;
-    result_pred_weight_  [k] = pred_weight_;
-
-    result_cor_particle_[k]  = cor_particle_;
-    result_cor_weight_  [k]  = cor_weight_;
-
-
-    if (resampling_->neff(cor_weight_) < static_cast<float>(num_particle_)/3.0)
+    if (resampling_->neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
     {
-        MatrixXf res_particle(4, num_particle_);
-        VectorXf res_weight(num_particle_, 1);
-        VectorXf res_parent(num_particle_, 1);
+        ParticleSet res_particle(num_particle_, state_size_);
+        VectorXi res_parent(num_particle_, 1);
 
-        resampling_->resample(cor_particle_, cor_weight_,
-                              res_particle, res_weight, res_parent);
+        resampling_->resample(cor_particle_, res_particle, res_parent);
 
         cor_particle_ = res_particle;
-        cor_weight_   = res_weight;
     }
 }
 
 
-void SIS::getResult()
+bool SIS::runCondition()
 {
-    std::ofstream result_file_object;
-    std::ofstream result_file_measurement;
-    std::ofstream result_file_pred_particle;
-    std::ofstream result_file_pred_weight;
-    std::ofstream result_file_cor_particle;
-    std::ofstream result_file_cor_weight;
+    return true;
+}
 
-    result_file_object.open       ("./result_object.txt");
-    result_file_measurement.open  ("./result_measurement.txt");
-    result_file_pred_particle.open("./result_pred_particle.txt");
-    result_file_pred_weight.open  ("./result_pred_weight.txt");
-    result_file_cor_particle.open ("./result_cor_particle.txt");
-    result_file_cor_weight.open   ("./result_cor_weight.txt");
 
-    result_file_object       << object_;
-    result_file_measurement  << measurement_;
-    for (unsigned int k = 0; k < getFilteringStep(); ++k)
-    {
-        result_file_pred_particle << result_pred_particle_[k] << std::endl << std::endl;
-        result_file_pred_weight   << result_pred_weight_[k]   << std::endl << std::endl;
-
-        result_file_cor_particle  << result_cor_particle_[k]  << std::endl << std::endl;
-        result_file_cor_weight    << result_cor_weight_[k]    << std::endl << std::endl;
-    }
-
-    result_file_object.close();
-    result_file_measurement.close();
-    result_file_pred_particle.close();
-    result_file_pred_weight.close();
-    result_file_cor_particle.close();
-    result_file_cor_weight.close();
+void SIS::log()
+{
+    logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
+           cor_particle_.state().transpose(), cor_particle_.weight().transpose());
 }

@@ -1,11 +1,11 @@
-#include "BayesFilters/PFPredictionDecorator.h"
+#include <BayesFilters/PFPredictionDecorator.h>
 
 #include <utility>
 
 using namespace bfl;
 using namespace Eigen;
 
-    
+
 PFPredictionDecorator::PFPredictionDecorator(std::unique_ptr<PFPrediction> prediction) noexcept :
     prediction_(std::move(prediction)) { }
 
@@ -25,11 +25,9 @@ PFPredictionDecorator& PFPredictionDecorator::operator=(PFPredictionDecorator&& 
 }
 
 
-void PFPredictionDecorator::predictStep(const Ref<const MatrixXf>& prev_states, const Ref<const VectorXf>& prev_weights,
-                                        Ref<MatrixXf> pred_states, Ref<VectorXf> pred_weights)
+void PFPredictionDecorator::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
-    prediction_->predictStep(prev_states, prev_weights,
-                             pred_states, pred_weights);
+    prediction_->predictStep(prev_particles, pred_particles);
 }
 
 

@@ -21,9 +21,9 @@ public:
 
     ~HistoryBuffer() noexcept { };
 
-    void            addElement(const Eigen::Ref<const Eigen::VectorXf>& element);
+    void            addElement(const Eigen::Ref<const Eigen::VectorXd>& element);
 
-    Eigen::MatrixXf getHistoryBuffer() const;
+    Eigen::MatrixXd getHistoryBuffer() const;
 
     bool            setHistorySize(const unsigned int window);
 
@@ -40,7 +40,7 @@ private:
 
     const unsigned int          max_window_ = 30;
 
-    std::deque<Eigen::VectorXf> history_buffer_;
+    std::deque<Eigen::VectorXd> history_buffer_;
 };
 
 #endif /* HISTORYBUFFER_H */

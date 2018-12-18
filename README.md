@@ -1,4 +1,4 @@
-# 📚 BayesFilters Library
+# 📚 Bayes Filters Library
 
 A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 
@@ -22,7 +22,8 @@ To be able to understand API compatibility during development, the project will 
 In particular, the library will have **zero major version**, i.e. **0.MINOR.PATCH**, as specified by [SemVer spec. 4](http://semver.org/#spec-item-4) and the project will comply with the following rules:
  1. **MINOR** version increases when API compatibility is broken;
  2. **PATCH** version increases when functionality are added in a backwards-compatible manner;
- 3. Additional labels for pre-release and build metadata are available as extensions to the 0.MINOR.PATCH format.
+ 3. Devel branch version adds 100 to **PATCH** version number, i.e. **0.MINOR.(PATCH+100)**.
+ 4. Additional labels for pre-release and build metadata are available as extensions to the 0.MINOR.PATCH format.
 
 
 # 📖 Background
@@ -38,9 +39,8 @@ The aim of this library is to provide _interfaces_ and _implementations_ for new
 
 
 # 🎛 Dependencies
-BayesFilters library depends on
- - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3`
- - [OpenCV](https://github.com/opencv/opencv) - `version >= 3.0`
+Bayes Filters Library depends on
+ - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3 (no beta)`
 
 
 # 🔨 Build and link the library
@@ -57,18 +57,21 @@ $ make
 $ [sudo] make install
 ```
 
-With IDE build tool facilities:
+With `ninja` generator:
 ```bash
 $ git clone https://github.com/robotology/bayes-filters-lib
 $ cd bayes-filters-lib
 $ mkdir build && cd build
-$ cmake ..
-$ cmake --build . --target ALL_BUILD --config Release
-$ cmake --build . --target INSTALL --config Release
+$ cmake -GNinja ..
+$ ninja
+$ [sudo] ninja install
 ```
 
+You can also generate IDE project (e.g. Visual Studio and Xcode) to use their
+build tool facilities.
+
 ### Link
-Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your poject `CMakeLists.txt`:
+Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your project `CMakeLists.txt`:
 ```cmake
 ...
 find_package(BayesFilters 0.MINOR.PATCH EXACT REQUIRED)
