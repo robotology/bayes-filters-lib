@@ -1,5 +1,8 @@
 # 📜 BayesFilters changelog
 
+## 🔖 Version 0.8.101
+
+
 ## 🔖 Version 0.8.0
 
 ##### `Dependencies`
@@ -102,6 +105,7 @@
  - Added test_UPF testing particle filtering with UKFPrediction and UKFCorrection.
  - Updated test_SIS.
  - Updated test_SIS_Decorators.
+
 
 ## 🔖 Version 0.7.1.0
 ##### `Bugfix`
