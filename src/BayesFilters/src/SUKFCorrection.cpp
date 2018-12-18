@@ -1,6 +1,8 @@
 #include <BayesFilters/SUKFCorrection.h>
+#include <BayesFilters/directional_statistics.h>
 
 using namespace bfl;
+using namespace bfl::directional_statistics;
 using namespace bfl::sigma_point;
 using namespace Eigen;
 
@@ -147,7 +149,8 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
         /* Process input sigma points.
            IV.C.3 */
         Ref<MatrixXd> X = input_sigma_points.middleCols(size_sigmas * i, size_sigmas);
-        X.colwise() -= pred_state.mean(i);
+        X.topRows(pred_state.dim_linear).colwise() -= pred_state.mean(i).topRows(pred_state.dim_linear);
+        X.bottomRows(pred_state.dim_circular) = directional_sub(X.bottomRows(pred_state.dim_circular), pred_state.mean(i).bottomRows(pred_state.dim_circular));
         X *= sqrt_ut_weight;
 
         C_inv = C_inv.inverse();
