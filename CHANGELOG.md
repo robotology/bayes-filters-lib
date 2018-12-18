@@ -1,6 +1,12 @@
 # 📜 BayesFilters changelog
 
 ## 🔖 Version 0.8.101
+##### `Bugfix`
+ - Add initial value to bool variable in UKFCorrection::correctStep.
+
+##### `General fixes`
+ - Added missing `override` keyword.
+ - Reordered data member initialization list of SIS class.
 
 
 ## 🔖 Version 0.8.0
