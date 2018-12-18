@@ -1,6 +1,6 @@
 # 📜 BayesFilters changelog
 
-## 🔖 Version 0.8.100
+## 🔖 Version 0.8.0
 
 ##### `Dependencies`
  - Removed OpenCV dependency.
