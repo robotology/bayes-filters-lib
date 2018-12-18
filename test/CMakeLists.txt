@@ -1,3 +1,5 @@
+option(TEST_LOG_TO_FILE "Write test logs to file" OFF)
+
 add_subdirectory(test_DirectionalStatisticsUtils)
 add_subdirectory(test_Gaussian)
 add_subdirectory(test_SigmaPointUtils)

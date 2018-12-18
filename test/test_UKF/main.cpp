@@ -8,6 +8,8 @@
 #include <BayesFilters/utils.h>
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 
+#include <string>
+
 #include <Eigen/Dense>
 
 using namespace bfl;
@@ -55,10 +57,14 @@ private:
 };
 
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "Running a UKF filter on a simulated target." << std::endl;
-    std::cout << "Data is logged in the test folder with prefix testUKF." << std::endl;
+
+    const bool write_to_file = (argc > 1 ? std::string(argv[1]) == "ON" : false);
+    if (write_to_file)
+        std::cout << "Data is logged in the test folder with prefix testUKF." << std::endl;
+
 
     /* A set of parameters needed to run an unscented Kalman filter in a simulated environment. */
     Vector4d initial_simulated_state(10.0f, 0.0f, 10.0f, 0.0f);
@@ -106,11 +112,15 @@ int main()
     /* Initialize simulated target model with a white noise acceleration. */
     std::unique_ptr<AdditiveStateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_simulated_state, simulation_time);
-    simulated_state_model->enable_log(".", "testUKF");
+
+    if (write_to_file)
+        simulated_state_model->enable_log(".", "testUKF");
 
     /* Step 3.2 - Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
-    simulated_linear_sensor->enable_log(".", "testUKF");
+
+    if (write_to_file)
+        simulated_linear_sensor->enable_log(".", "testUKF");
 
     /* Step 3.3 - Initialize the unscented Kalman filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
@@ -118,21 +128,29 @@ int main()
 
     /* Step 4 - Assemble the unscented Kalman filter. */
     std::cout << "Constructing unscented Kalman filter..." << std::flush;
+
     UKFSimulation ukf(initial_state, std::move(ukf_prediction), std::move(ukf_correction), simulation_time);
-    ukf.enable_log(".", "testUKF");
+
+    if (write_to_file)
+        ukf.enable_log(".", "testUKF");
+
     std::cout << "done!" << std::endl;
 
 
     /* Step 5 - Boot the filter. */
     std::cout << "Booting unscented Kalman filter..." << std::flush;
+
     ukf.boot();
+
     std::cout << "completed!" << std::endl;
 
 
     /* Step 6 - Run the filter and wait until it is closed. */
     /* Note that since this is a simulation, the filter will end upon simulation termination. */
     std::cout << "Running unscented Kalman filter..." << std::flush;
+
     ukf.run();
+
     std::cout << "waiting..." << std::flush;
 
     if (!ukf.wait())

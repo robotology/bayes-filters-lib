@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <string>
 
 #include <BayesFilters/BootstrapCorrection.h>
 #include <BayesFilters/DrawParticles.h>
@@ -48,16 +49,20 @@ private:
 };
 
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "Running a SIS particle filter on a simulated target." << std::endl;
-    std::cout << "Data is logged in the test folder with prefix testSIS." << std::endl;
 
+    const bool write_to_file = (argc > 1 ? std::string(argv[1]) == "ON" : false);
+    if (write_to_file)
+        std::cout << "Data is logged in the test folder with prefix testSIS." << std::endl;
+
+    
     /* A set of parameters needed to run a SIS particle filter in a simulated environment. */
     double surv_x = 1000.0;
     double surv_y = 1000.0;
-    unsigned int num_particle_x = 100;
-    unsigned int num_particle_y = 100;
+    unsigned int num_particle_x = 30;
+    unsigned int num_particle_y = 30;
     unsigned int num_particle = num_particle_x * num_particle_y;
     Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 100;
@@ -87,11 +92,15 @@ int main()
     /* Initialize simulaterd target model with a white noise acceleration. */
     std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
-    simulated_state_model->enable_log(".", "testSIS");
+
+    if (write_to_file)
+        simulated_state_model->enable_log(".", "testSIS");
 
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
-    simulated_linear_sensor->enable_log(".", "testSIS");
+
+    if (write_to_file)
+        simulated_linear_sensor->enable_log(".", "testSIS");
 
 
     /* Step 3.3 - Define the likelihood model */
@@ -113,7 +122,10 @@ int main()
     /* Step 5 - Assemble the particle filter */
     std::cout << "Constructing SIS particle filter..." << std::flush;
     SISSimulation sis_pf(num_particle, state_size, simulation_time, std::move(grid_initialization), std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
-    sis_pf.enable_log(".", "testSIS");
+
+    if (write_to_file)
+        sis_pf.enable_log(".", "testSIS");
+    
     std::cout << "done!" << std::endl;
 
 
