@@ -97,8 +97,10 @@ Tests are also a nice **starting points** to learn how to use the library and ho
 
 ---
 The best way to learn the basic principles about the library is by examples:
- - [The basic structure of a recursing filter](@ref basic-structure-recursive-filter)
- - [The first particle filter: the Sequential Importance Sampling PF](@ref sis-pf)
+ - [The first Kalman filter](@ref kf)
+ - [Another Kalman-like filter: the Unscented Kalman Filter](@ref ukf)
+ - [The first particle filter: the Sequential Importance Sampling PF](@ref sis)
+ - [The best from particle and Kalman filtering: the Unscented Particle Filter](@ref upf)
  - [How to decorate classes to add functionalities](@ref decorate-classes)
 
 
