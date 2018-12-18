@@ -4,6 +4,9 @@
 ##### `Bugfix`
  - Add initial value to bool variable in UKFCorrection::correctStep.
 
+##### `CMake`
+ - Add CMake variable TEST_LOG_TO_FILE to disable file logs in tests.
+
 ##### `General fixes`
  - Added missing `override` keyword.
  - Reordered data member initialization list of SIS class.
