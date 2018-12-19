@@ -126,11 +126,13 @@ private:
 
 int main()
 {
+    std::cout << "Running a Decorated SIS particle filter on a simulated target." << std::endl;
+    
     /* A set of parameters needed to run a SIS particle filter in a simulated environment. */
     double surv_x = 1000.0;
     double surv_y = 1000.0;
-    unsigned int num_particle_x = 100;
-    unsigned int num_particle_y = 100;
+    unsigned int num_particle_x = 30;
+    unsigned int num_particle_y = 30;
     unsigned int num_particle = num_particle_x * num_particle_y;
     Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     unsigned int simulation_time = 10;

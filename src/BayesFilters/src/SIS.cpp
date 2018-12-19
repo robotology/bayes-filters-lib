@@ -48,10 +48,10 @@ SIS::~SIS() noexcept
 
 SIS::SIS(SIS&& sir_pf) noexcept :
     ParticleFilter(std::move(sir_pf)),
-    pred_particle_(std::move(sir_pf.pred_particle_)),
-    cor_particle_(std::move(sir_pf.cor_particle_)),
     num_particle_(sir_pf.num_particle_),
-    state_size_(sir_pf.state_size_)
+    state_size_(sir_pf.state_size_),
+    pred_particle_(std::move(sir_pf.pred_particle_)),
+    cor_particle_(std::move(sir_pf.cor_particle_))
 { }
 
 

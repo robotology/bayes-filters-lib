@@ -9,18 +9,18 @@ GaussianFilter::GaussianFilter
     std::unique_ptr<GaussianPrediction> prediction,
     std::unique_ptr<GaussianCorrection> correction
 ) noexcept :
-    prediction_(std::move(prediction)),
-    correction_(std::move(correction)),
     predicted_state_(initial_state.dim_linear, initial_state.dim_circular),
-    corrected_state_(initial_state)
+    corrected_state_(initial_state),
+    prediction_(std::move(prediction)),
+    correction_(std::move(correction))
 { }
 
 
 GaussianFilter::GaussianFilter(GaussianFilter&& gf) noexcept :
-    prediction_(std::move(gf.prediction_)),
-    correction_(std::move(gf.correction_)),
     predicted_state_(std::move(gf.predicted_state_)),
-    corrected_state_(std::move(gf.corrected_state_))
+    corrected_state_(std::move(gf.corrected_state_)),
+    prediction_(std::move(gf.prediction_)),
+    correction_(std::move(gf.correction_))
 { }
 
 

@@ -7,6 +7,8 @@
 #include <BayesFilters/WhiteNoiseAcceleration.h>
 #include <BayesFilters/utils.h>
 
+#include <string>
+
 #include <Eigen/Dense>
 
 using namespace bfl;
@@ -54,10 +56,14 @@ private:
 };
 
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "Running a KF filter on a simulated target." << std::endl;
-    std::cout << "Data is logged in the test folder with prefix testKF." << std::endl;
+
+    const bool write_to_file = (argc > 1 ? std::string(argv[1]) == "ON" : false);
+    if (write_to_file)
+        std::cout << "Data is logged in the test folder with prefix testKF." << std::endl;
+
 
     /* A set of parameters needed to run a Kalman filter in a simulated environment. */
     Vector4d initial_simulated_state(10.0f, 0.0f, 10.0f, 0.0f);
@@ -88,7 +94,7 @@ int main()
     std::unique_ptr<LinearStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
 
     /* Step 2.2 - Define the prediction step. */
-    
+
     /* Initialize the Kalman filter prediction step and pass the ownership of the state model. */
     std::unique_ptr<KFPrediction> kf_prediction = utils::make_unique<KFPrediction>(std::move(wna));
 
@@ -100,11 +106,15 @@ int main()
     /* Initialize simulated target model with a white noise acceleration. */
     std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_simulated_state, simulation_time);
-    simulated_state_model->enable_log(".", "testKF");
+
+    if (write_to_file)
+        simulated_state_model->enable_log(".", "testKF");
 
     /* Step 3.2 - Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<LinearMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
-    simulated_linear_sensor->enable_log(".", "testKF");
+
+    if (write_to_file)
+        simulated_linear_sensor->enable_log(".", "testKF");
 
     /* Step 3.3 - Initialize the Kalman filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<KFCorrection> kf_correction = utils::make_unique<KFCorrection>(std::move(simulated_linear_sensor));
@@ -112,21 +122,29 @@ int main()
 
     /* Step 4 - Assemble the Kalman filter. */
     std::cout << "Constructing Kalman filter..." << std::flush;
+
     KFSimulation kf(initial_state, std::move(kf_prediction), std::move(kf_correction), simulation_time);
-    kf.enable_log(".", "testKF");
+
+    if (write_to_file)
+        kf.enable_log(".", "testKF");
+
     std::cout << "done!" << std::endl;
 
 
     /* Step 5 - Boot the filter. */
     std::cout << "Booting Kalman filter..." << std::flush;
+
     kf.boot();
+
     std::cout << "completed!" << std::endl;
 
 
     /* Step 6 - Run the filter and wait until it is closed. */
     /* Note that since this is a simulation, the filter will end upon simulation termination. */
     std::cout << "Running Kalman filter..." << std::flush;
+
     kf.run();
+
     std::cout << "waiting..." << std::flush;
 
     if (!kf.wait())

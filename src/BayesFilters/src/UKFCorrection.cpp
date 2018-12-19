@@ -76,7 +76,7 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
     GaussianMixture pred_meas(pred_state.components, meas_size);
 
     /* Evaluate the joint state-measurement statistics, if possible. */
-    bool valid;
+    bool valid = false;
     MatrixXd Pxy;
     if (type_ == UKFCorrectionType::Generic)
     {

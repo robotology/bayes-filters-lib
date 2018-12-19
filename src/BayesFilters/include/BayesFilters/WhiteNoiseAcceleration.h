@@ -36,7 +36,7 @@ public:
 
     Eigen::MatrixXd getStateTransitionMatrix() override;
 
-    Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states);
+    Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states) override;
 
     bool setProperty(const std::string& property) override { return false; };
 
