@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
 
     /* Step 3.4 - Define the correction step */
     /* Initialize the particle filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<BoostrapCorrection>();
+    std::unique_ptr<PFCorrection> pf_correction = utils::make_unique<BootstrapCorrection>();
     pf_correction->setLikelihoodModel(std::move(exp_likelihood));
     pf_correction->setMeasurementModel(std::move(simulated_linear_sensor));
 

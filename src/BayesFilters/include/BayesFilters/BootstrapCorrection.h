@@ -1,5 +1,5 @@
-#ifndef UPDATEPARTICLES_H
-#define UPDATEPARTICLES_H
+#ifndef BOOTSTRAPCORRECTION_H
+#define BOOTSTRAPCORRECTION_H
 
 #include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFCorrection.h>
@@ -8,16 +8,16 @@
 #include <random>
 
 namespace bfl {
-    class BoostrapCorrection;
+    class BootstrapCorrection;
 }
 
 
-class bfl::BoostrapCorrection : public PFCorrection
+class bfl::BootstrapCorrection : public PFCorrection
 {
 public:
-    BoostrapCorrection() noexcept;
+    BootstrapCorrection() noexcept;
 
-    virtual ~BoostrapCorrection() noexcept;
+    virtual ~BootstrapCorrection() noexcept;
 
     void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
 
@@ -40,4 +40,4 @@ protected:
     Eigen::VectorXd likelihood_;
 };
 
-#endif /* UPDATEPARTICLES_H */
+#endif /* BOOTSTRAPCORRECTION_H */

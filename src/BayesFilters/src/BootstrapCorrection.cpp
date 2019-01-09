@@ -7,13 +7,13 @@ using namespace bfl;
 using namespace Eigen;
 
 
-BoostrapCorrection::BoostrapCorrection() noexcept { }
+BootstrapCorrection::BootstrapCorrection() noexcept { }
 
 
-BoostrapCorrection::~BoostrapCorrection() noexcept { }
+BootstrapCorrection::~BootstrapCorrection() noexcept { }
 
 
-void BoostrapCorrection::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
+void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
     std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_particles.state());
 
@@ -24,31 +24,31 @@ void BoostrapCorrection::correctStep(const ParticleSet& pred_particles, Particle
 }
 
 
-std::pair<bool, VectorXd> BoostrapCorrection::getLikelihood()
+std::pair<bool, VectorXd> BootstrapCorrection::getLikelihood()
 {
     return std::make_pair(valid_likelihood_, likelihood_);
 }
 
 
-void BoostrapCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)
+void BootstrapCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)
 {
     likelihood_model_ = std::move(likelihood_model);
 }
 
 
-void BoostrapCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
+void BootstrapCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
 {
     measurement_model_ = std::move(measurement_model);
 }
 
 
-LikelihoodModel& BoostrapCorrection::getLikelihoodModel()
+LikelihoodModel& BootstrapCorrection::getLikelihoodModel()
 {
     return *likelihood_model_;
 }
 
 
-MeasurementModel& BoostrapCorrection::getMeasurementModel()
+MeasurementModel& BootstrapCorrection::getMeasurementModel()
 {
     return *measurement_model_;
 }
