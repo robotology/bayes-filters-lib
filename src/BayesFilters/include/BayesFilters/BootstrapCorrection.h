@@ -1,5 +1,5 @@
-#ifndef UPDATEPARTICLES_H
-#define UPDATEPARTICLES_H
+#ifndef BOOTSTRAPCORRECTION_H
+#define BOOTSTRAPCORRECTION_H
 
 #include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFCorrection.h>
@@ -40,4 +40,4 @@ protected:
     Eigen::VectorXd likelihood_;
 };
 
-#endif /* UPDATEPARTICLES_H */
+#endif /* BOOTSTRAPCORRECTION_H */
