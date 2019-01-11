@@ -16,7 +16,9 @@ namespace bfl {
 class bfl::EstimatesExtraction
 {
 public:
-    EstimatesExtraction() noexcept { };
+    EstimatesExtraction(const std::size_t linear_size) noexcept;
+
+    EstimatesExtraction(const std::size_t linear_size, const std::size_t circular_size) noexcept;
 
     EstimatesExtraction(EstimatesExtraction&& estimate_extraction) noexcept;
 
@@ -77,6 +79,12 @@ protected:
 
     Eigen::VectorXd exponentialAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
                                        const Statistics& base_est_ext);
+
+    std::size_t linear_size_;
+
+    std::size_t circular_size_;
+
+    std::size_t state_size_;
 };
 
 #endif /* ESTIMATESEXTRACTION_H */

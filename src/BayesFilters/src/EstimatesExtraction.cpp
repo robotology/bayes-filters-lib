@@ -1,7 +1,20 @@
 #include <BayesFilters/EstimatesExtraction.h>
+#include <BayesFilters/directional_statistics.h>
 
 using namespace bfl;
 using namespace Eigen;
+
+
+EstimatesExtraction::EstimatesExtraction(const std::size_t linear_size) noexcept :
+    EstimatesExtraction(linear_size, 0)
+{ }
+
+
+EstimatesExtraction::EstimatesExtraction(const std::size_t linear_size, const std::size_t circular_size) noexcept :
+    linear_size_(linear_size),
+    circular_size_(circular_size),
+    state_size_(linear_size + circular_size)
+{ }
 
 
 EstimatesExtraction::EstimatesExtraction(EstimatesExtraction&& estimate_extraction) noexcept :
@@ -9,7 +22,10 @@ EstimatesExtraction::EstimatesExtraction(EstimatesExtraction&& estimate_extracti
     hist_buffer_(std::move(estimate_extraction.hist_buffer_)),
     sm_weights_(std::move(estimate_extraction.sm_weights_)),
     wm_weights_(std::move(estimate_extraction.wm_weights_)),
-    em_weights_(std::move(estimate_extraction.em_weights_))
+    em_weights_(std::move(estimate_extraction.em_weights_)),
+    linear_size_(estimate_extraction.linear_size_),
+    circular_size_(estimate_extraction.circular_size_),
+    state_size_(estimate_extraction.state_size_)
 {
     estimate_extraction.extraction_method_ = ExtractionMethod::emode;
 }
@@ -27,6 +43,10 @@ EstimatesExtraction& EstimatesExtraction::operator=(EstimatesExtraction&& estima
         sm_weights_ = std::move(estimate_extraction.sm_weights_);
         wm_weights_ = std::move(estimate_extraction.wm_weights_);
         em_weights_ = std::move(estimate_extraction.em_weights_);
+
+        linear_size_ = estimate_extraction.linear_size_;
+        circular_size_ = estimate_extraction.circular_size_;
+        state_size_ = estimate_extraction.state_size_;
     }
 
     return *this;
@@ -52,7 +72,7 @@ bool EstimatesExtraction::setMobileAverageWindowSize(const int window)
 
 VectorXd EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights)
 {
-    VectorXd out_particle(7);
+    VectorXd out_particle(state_size_);
     switch (extraction_method_)
     {
         case ExtractionMethod::mean :
@@ -119,26 +139,13 @@ std::vector<std::string> EstimatesExtraction::getInfo() const
 
 VectorXd EstimatesExtraction::mean(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights) const
 {
-    VectorXd out_particle = VectorXd::Zero(7);
-    double   s_ang        = 0;
-    double   c_ang        = 0;
+    VectorXd out_particle(state_size_);
 
-    for (int i = 0; i < particles.cols(); ++i)
-    {
-        out_particle.head<3>()        += weights(i) * particles.col(i).head<3>();
-        out_particle.middleRows<3>(3) += weights(i) * particles.col(i).middleRows<3>(3);
+    if (linear_size_ > 0)
+        out_particle.head(linear_size_) = particles.topRows(linear_size_) * weights;
 
-        s_ang += weights(i) * std::sin(particles(6, i));
-        c_ang += weights(i) * std::cos(particles(6, i));
-    }
-
-    double versor_norm = out_particle.middleRows<3>(3).norm();
-    if (versor_norm >= 0.99)
-        out_particle.middleRows<3>(3) /= versor_norm;
-    else
-        out_particle.middleRows<3>(3) = mode(particles, weights).middleRows<3>(3);
-
-    out_particle(6) = std::atan2(s_ang, c_ang);
+    if (circular_size_ > 0)
+        out_particle.tail(circular_size_) = directional_statistics::directional_mean(particles.bottomRows(circular_size_), weights);
 
     return out_particle;
 }
