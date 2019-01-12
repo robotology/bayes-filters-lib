@@ -4,11 +4,18 @@ using namespace bfl;
 using namespace Eigen;
 
 
+HistoryBuffer::HistoryBuffer(const std::size_t state_size) noexcept :
+    state_size_(state_size)
+{ }
+
+
 HistoryBuffer::HistoryBuffer(HistoryBuffer&& history_buffer) noexcept :
     window_(history_buffer.window_),
-    history_buffer_(std::move(history_buffer.history_buffer_))
+    history_buffer_(std::move(history_buffer.history_buffer_)),
+    state_size_(history_buffer.state_size_)
 {
     history_buffer.window_ = 0;
+    history_buffer.state_size_ = 0;
 }
 
 
@@ -18,6 +25,9 @@ HistoryBuffer& HistoryBuffer::operator=(HistoryBuffer&& history_buffer) noexcept
     {
         window_ = history_buffer.window_;
         history_buffer.window_ = 0;
+
+        state_size_ = history_buffer.state_size_;
+        history_buffer.state_size_ = 0;
 
         history_buffer_ = std::move(history_buffer.history_buffer_);
     }
@@ -37,7 +47,7 @@ void HistoryBuffer::addElement(const Ref<const VectorXd>& element)
 
 MatrixXd HistoryBuffer::getHistoryBuffer() const
 {
-    MatrixXd hist_out(7, history_buffer_.size());
+    MatrixXd hist_out(state_size_, history_buffer_.size());
 
     unsigned int i = 0;
     for (const Ref<const VectorXd>& element : history_buffer_)

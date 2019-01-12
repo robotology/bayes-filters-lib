@@ -13,7 +13,7 @@ namespace bfl {
 class bfl::HistoryBuffer
 {
 public:
-    HistoryBuffer() noexcept { };
+    HistoryBuffer(const std::size_t state_size) noexcept;
 
     HistoryBuffer(HistoryBuffer&& history_buffer) noexcept;
 
@@ -41,6 +41,8 @@ private:
     const unsigned int          max_window_ = 30;
 
     std::deque<Eigen::VectorXd> history_buffer_;
+
+    std::size_t state_size_;
 };
 
 #endif /* HISTORYBUFFER_H */
