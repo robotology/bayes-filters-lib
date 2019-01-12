@@ -162,6 +162,28 @@ VectorXd EstimatesExtraction::mode(const Ref<const MatrixXd>& particles, const R
 }
 
 
+VectorXd EstimatesExtraction::map
+(
+    const Ref<const MatrixXd>& particles,
+    const Ref<const VectorXd>& previous_weights,
+    const Ref<const VectorXd>& likelihoods,
+    const Ref<const MatrixXd>& transition_probabilities
+) const
+{
+    /* Using equation (10) from paper:
+     * Saha, S., Boers, Y., Driessen, H., Mandal, P. K., Bagchi, A. (2009),
+     * 'Particle Based MAP State Estimation: A Comparison.',
+     * 12th International Conference on Information Fusion,
+     * Seattle, WA, USA, July 6-9, 2009. */
+
+    ArrayXd::Index map_index;
+
+    ((transition_probabilities * previous_weights).array() * likelihoods.array()).maxCoeff(&map_index);
+
+    return particles.col(map_index);
+}
+
+
 VectorXd EstimatesExtraction::simpleAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
                                             const Statistics& base_est_ext)
 {
