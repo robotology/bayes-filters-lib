@@ -13,7 +13,8 @@ EstimatesExtraction::EstimatesExtraction(const std::size_t linear_size) noexcept
 EstimatesExtraction::EstimatesExtraction(const std::size_t linear_size, const std::size_t circular_size) noexcept :
     linear_size_(linear_size),
     circular_size_(circular_size),
-    state_size_(linear_size + circular_size)
+    state_size_(linear_size + circular_size),
+    hist_buffer_(linear_size + circular_size)
 { }
 
 
