@@ -36,7 +36,11 @@ public:
         mode,
         smode,
         wmode,
-        emode
+        emode,
+        map,
+        smap,
+        wmap,
+        emap
     };
 
 
@@ -44,7 +48,9 @@ public:
 
     bool setMobileAverageWindowSize(const int window);
 
-    Eigen::VectorXd extract(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights);
+    std::pair<bool, Eigen::VectorXd> extract(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights);
+
+    std::pair<bool, Eigen::VectorXd> extract(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights, const Eigen::Ref<const Eigen::VectorXd>& previous_weights, const Eigen::Ref<const Eigen::VectorXd>& likelihoods, const Eigen::Ref<const Eigen::MatrixXd>& transition_probabilities);
 
     bool clear();
 
@@ -64,7 +70,8 @@ protected:
     enum class Statistics
     {
         mean,
-        mode
+        mode,
+        map
     };
 
     Eigen::VectorXd mean(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights) const;
@@ -88,14 +95,11 @@ protected:
      */
     Eigen::VectorXd map(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& previous_weights, const Eigen::Ref<const Eigen::VectorXd>& likelihoods, const Eigen::Ref<const Eigen::MatrixXd>& transition_probabilities) const;
 
-    Eigen::VectorXd simpleAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
-                                  const Statistics& base_est_ext);
+    Eigen::VectorXd simpleAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights, const Eigen::Ref<const Eigen::VectorXd>& previous_weights, const Eigen::Ref<const Eigen::VectorXd>& likelihoods, const Eigen::Ref<const Eigen::MatrixXd>& transition_probabilities, const Statistics& base_est_ext);
 
-    Eigen::VectorXd weightedAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
-                                    const Statistics& base_est_ext);
+    Eigen::VectorXd weightedAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights, const Eigen::Ref<const Eigen::VectorXd>& previous_weights, const Eigen::Ref<const Eigen::VectorXd>& likelihoods, const Eigen::Ref<const Eigen::MatrixXd>& transition_probabilities, const Statistics& base_est_ext);
 
-    Eigen::VectorXd exponentialAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights,
-                                       const Statistics& base_est_ext);
+    Eigen::VectorXd exponentialAverage(const Eigen::Ref<const Eigen::MatrixXd>& particles, const Eigen::Ref<const Eigen::VectorXd>& weights, const Eigen::Ref<const Eigen::VectorXd>& previous_weights, const Eigen::Ref<const Eigen::VectorXd>& likelihoods, const Eigen::Ref<const Eigen::MatrixXd>& transition_probabilities, const Statistics& base_est_ext);
 
     std::size_t linear_size_;
 

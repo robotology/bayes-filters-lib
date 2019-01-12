@@ -71,9 +71,12 @@ bool EstimatesExtraction::setMobileAverageWindowSize(const int window)
 }
 
 
-VectorXd EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights)
+std::pair<bool, VectorXd> EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights)
 {
     VectorXd out_particle(state_size_);
+
+    bool estimate_available = true;
+
     switch (extraction_method_)
     {
         case ExtractionMethod::mean :
@@ -81,15 +84,15 @@ VectorXd EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, cons
             break;
 
         case ExtractionMethod::smean :
-            out_particle = simpleAverage(particles, weights, Statistics::mean);
+            out_particle = simpleAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mean);
             break;
 
         case ExtractionMethod::wmean :
-            out_particle = weightedAverage(particles, weights, Statistics::mean);
+            out_particle = weightedAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mean);
             break;
 
         case ExtractionMethod::emean :
-            out_particle = exponentialAverage(particles, weights, Statistics::mean);
+            out_particle = exponentialAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mean);
             break;
 
         case ExtractionMethod::mode :
@@ -97,19 +100,73 @@ VectorXd EstimatesExtraction::extract(const Ref<const MatrixXd>& particles, cons
             break;
 
         case ExtractionMethod::smode :
-            out_particle = simpleAverage(particles, weights, Statistics::mode);
+            out_particle = simpleAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mode);
             break;
 
         case ExtractionMethod::wmode :
-            out_particle = weightedAverage(particles, weights, Statistics::mode);
+            out_particle = weightedAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mode);
             break;
 
         case ExtractionMethod::emode :
-            out_particle = exponentialAverage(particles, weights, Statistics::mode);
+            out_particle = exponentialAverage(particles, weights, VectorXd(0), VectorXd(0), MatrixXd(0, 0), Statistics::mode);
+            break;
+
+        case ExtractionMethod::map :
+        case ExtractionMethod::smap :
+        case ExtractionMethod::wmap :
+        case ExtractionMethod::emap :
+            /*
+             * These methods cannot be used if only particles and weights are provided by the user.
+             */
+            estimate_available = false;
             break;
     }
 
-    return out_particle;
+    return std::make_pair(estimate_available, out_particle);
+}
+
+
+std::pair<bool, VectorXd> EstimatesExtraction::extract
+(
+    const Ref<const MatrixXd>& particles,
+    const Ref<const VectorXd>& weights,
+    const Ref<const VectorXd>& previous_weights,
+    const Ref<const VectorXd>& likelihoods,
+    const Ref<const MatrixXd>& transition_probabilities
+)
+{
+    VectorXd out_particle(state_size_);
+
+    switch (extraction_method_)
+    {
+        case ExtractionMethod::mean :
+        case ExtractionMethod::smean :
+        case ExtractionMethod::wmean :
+        case ExtractionMethod::emean :
+        case ExtractionMethod::mode :
+        case ExtractionMethod::smode :
+        case ExtractionMethod::wmode :
+        case ExtractionMethod::emode :
+            return extract(particles, weights);
+
+        case ExtractionMethod::map :
+            out_particle = map(particles, previous_weights, likelihoods, transition_probabilities);
+            break;
+
+        case ExtractionMethod::smap :
+            out_particle = simpleAverage(particles, weights, previous_weights, likelihoods, transition_probabilities, Statistics::map);
+            break;
+
+        case ExtractionMethod::wmap :
+            out_particle = weightedAverage(particles, weights, previous_weights, likelihoods, transition_probabilities, Statistics::map);
+            break;
+
+        case ExtractionMethod::emap :
+            out_particle = exponentialAverage(particles, weights, previous_weights, likelihoods, transition_probabilities, Statistics::map);
+            break;
+    }
+
+    return std::make_pair(true, out_particle);
 }
 
 
@@ -132,7 +189,11 @@ std::vector<std::string> EstimatesExtraction::getInfo() const
                    std::string(extraction_method_ == ExtractionMethod::mode  ? "5) mode <-- In use; "  : "5) mode; " ) +
                    std::string(extraction_method_ == ExtractionMethod::smode ? "6) smode <-- In use; " : "6) smode; ") +
                    std::string(extraction_method_ == ExtractionMethod::wmode ? "7) wmode <-- In use; " : "7) wmode; ") +
-                   std::string(extraction_method_ == ExtractionMethod::emode ? "8) emode <-- In use; " : "8) emode"  ) + " |>");
+                   std::string(extraction_method_ == ExtractionMethod::emode ? "8) emode <-- In use; " : "8) emode"  ) +
+                   std::string(extraction_method_ == ExtractionMethod::map   ? "9) map <-- In use; "   : "9) map; ") +
+                   std::string(extraction_method_ == ExtractionMethod::smap  ? "10) smap <-- In use; " : "10) smap; ") +
+                   std::string(extraction_method_ == ExtractionMethod::wmap  ? "11) wmap <-- In use; " : "11) wmap; ") +
+                   std::string(extraction_method_ == ExtractionMethod::emap  ? "12) emap <-- In use; " : "12) emap; ") + " |>");
 
     return info;
 }
@@ -184,14 +245,23 @@ VectorXd EstimatesExtraction::map
 }
 
 
-VectorXd EstimatesExtraction::simpleAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
-                                            const Statistics& base_est_ext)
+VectorXd EstimatesExtraction::simpleAverage
+(
+    const Ref<const MatrixXd>& particles,
+    const Ref<const VectorXd>& weights,
+    const Ref<const VectorXd>& previous_weights,
+    const Ref<const VectorXd>& likelihoods,
+    const Ref<const MatrixXd>& transition_probabilities,
+    const Statistics& base_est_ext
+)
 {
     VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
         cur_estimates = mode(particles, weights);
+    else if (base_est_ext == Statistics::map)
+        cur_estimates = map(particles, previous_weights, likelihoods, transition_probabilities);
 
 
     hist_buffer_.addElement(cur_estimates);
@@ -205,14 +275,23 @@ VectorXd EstimatesExtraction::simpleAverage(const Ref<const MatrixXd>& particles
 }
 
 
-VectorXd EstimatesExtraction::weightedAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
-                                              const Statistics& base_est_ext)
+VectorXd EstimatesExtraction::weightedAverage
+(
+    const Ref<const MatrixXd>& particles,
+    const Ref<const VectorXd>& weights,
+    const Ref<const VectorXd>& previous_weights,
+    const Ref<const VectorXd>& likelihoods,
+    const Ref<const MatrixXd>& transition_probabilities,
+    const Statistics& base_est_ext
+)
 {
     VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
         cur_estimates = mode(particles, weights);
+    else if (base_est_ext == Statistics::map)
+        cur_estimates = map(particles, previous_weights, likelihoods, transition_probabilities);
 
 
     hist_buffer_.addElement(cur_estimates);
@@ -232,14 +311,23 @@ VectorXd EstimatesExtraction::weightedAverage(const Ref<const MatrixXd>& particl
 }
 
 
-VectorXd EstimatesExtraction::exponentialAverage(const Ref<const MatrixXd>& particles, const Ref<const VectorXd>& weights,
-                                                 const Statistics& base_est_ext)
+VectorXd EstimatesExtraction::exponentialAverage
+(
+    const Ref<const MatrixXd>& particles,
+    const Ref<const VectorXd>& weights,
+    const Ref<const VectorXd>& previous_weights,
+    const Ref<const VectorXd>& likelihoods,
+    const Ref<const MatrixXd>& transition_probabilities,
+    const Statistics& base_est_ext
+)
 {
     VectorXd cur_estimates;
     if (base_est_ext == Statistics::mean)
         cur_estimates = mean(particles, weights);
     else if (base_est_ext == Statistics::mode)
         cur_estimates = mode(particles, weights);
+    else if (base_est_ext == Statistics::map)
+        cur_estimates = map(particles, previous_weights, likelihoods, transition_probabilities);
 
 
     hist_buffer_.addElement(cur_estimates);
