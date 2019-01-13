@@ -1,4 +1,5 @@
 #include <BayesFilters/AdditiveStateModel.h>
+#include <BayesFilters/EstimatesExtraction.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/GPFPrediction.h>
 #include <BayesFilters/GPFCorrection.h>
@@ -39,7 +40,8 @@ public:
     ) noexcept :
         SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
         simulation_steps_(simulation_steps),
-        initial_covariance_(initial_covariance)
+        initial_covariance_(initial_covariance),
+        estimates_extraction_(state_size)
     { }
 
 protected:
@@ -61,15 +63,10 @@ protected:
         return  sis_filenames;
     }
 
-    VectorXd mean_extraction(const ParticleSet& particles) const
-    {
-        /* Extract the conditional expected value of the filtered state
-           given all the measurements up to the current time step. */
-        return particles.state() * particles.weight().array().exp().matrix();
-    }
-
     bool initialization() override
     {
+        estimates_extraction_.setMethod(EstimatesExtraction::ExtractionMethod::mean);
+
         if (!SIS::initialization())
             return false;
 
@@ -88,7 +85,8 @@ protected:
 
     void log() override
     {
-        VectorXd mean = mean_extraction(cor_particle_);
+        VectorXd mean;
+        std::tie(std::ignore, mean) = estimates_extraction_.extract(cor_particle_.state(), cor_particle_.weight().array().exp());
 
         logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
                cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
@@ -99,6 +97,8 @@ private:
     std::size_t simulation_steps_;
 
     Eigen::MatrixXd initial_covariance_;
+
+    EstimatesExtraction estimates_extraction_;
 };
 
 
