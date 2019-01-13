@@ -31,6 +31,8 @@ public:
 protected:
     void predictStep(const bfl::GaussianMixture& prev_state, bfl::GaussianMixture& pred_state) override;
 
+    bfl::StateModel& getStateModel() override;
+
     std::unique_ptr<bfl::StateModel> state_model_;
 
     std::unique_ptr<bfl::AdditiveStateModel> add_state_model_;
