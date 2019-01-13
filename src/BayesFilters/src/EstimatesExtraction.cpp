@@ -1,5 +1,6 @@
 #include <BayesFilters/EstimatesExtraction.h>
 #include <BayesFilters/directional_statistics.h>
+#include <BayesFilters/utils.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -204,10 +205,10 @@ VectorXd EstimatesExtraction::mean(const Ref<const MatrixXd>& particles, const R
     VectorXd out_particle(state_size_);
 
     if (linear_size_ > 0)
-        out_particle.head(linear_size_) = particles.topRows(linear_size_) * weights;
+        out_particle.head(linear_size_) = particles.topRows(linear_size_) * weights.array().exp().matrix();
 
     if (circular_size_ > 0)
-        out_particle.tail(circular_size_) = directional_statistics::directional_mean(particles.bottomRows(circular_size_), weights);
+        out_particle.tail(circular_size_) = directional_statistics::directional_mean(particles.bottomRows(circular_size_), weights.array().exp().matrix());
 
     return out_particle;
 }
@@ -235,11 +236,20 @@ VectorXd EstimatesExtraction::map
      * Saha, S., Boers, Y., Driessen, H., Mandal, P. K., Bagchi, A. (2009),
      * 'Particle Based MAP State Estimation: A Comparison.',
      * 12th International Conference on Information Fusion,
-     * Seattle, WA, USA, July 6-9, 2009. */
+     * Seattle, WA, USA, July 6-9, 2009. 
+     *
+     * The equation is rewritten in order to work in the log space.
+     */
 
     ArrayXd::Index map_index;
 
-    ((transition_probabilities * previous_weights).array() * likelihoods.array()).maxCoeff(&map_index);
+    VectorXd values(particles.cols());
+
+    double eps = std::numeric_limits<double>::min();
+    for (std::size_t i = 0; i < values.size(); i++)
+        values(i) = log(likelihoods(i) + eps) + utils::log_sum_exp((transition_probabilities.row(i).transpose().array() + eps).log() + previous_weights.array());
+
+    values.maxCoeff(&map_index);
 
     return particles.col(map_index);
 }
@@ -268,7 +278,7 @@ VectorXd EstimatesExtraction::simpleAverage
 
     MatrixXd history = hist_buffer_.getHistoryBuffer();
     if (sm_weights_.size() != history.cols())
-        sm_weights_ = VectorXd::Ones(history.cols()) / history.cols();
+        sm_weights_ = VectorXd::Constant(history.cols(), -log(history.cols()));
 
 
     return mean(history, sm_weights_);
@@ -301,9 +311,9 @@ VectorXd EstimatesExtraction::weightedAverage
     {
         wm_weights_.resize(history.cols());
         for (unsigned int i = 0; i < history.cols(); ++i)
-            wm_weights_(i) = history.cols() - i;
+            wm_weights_(i) = log(history.cols() - i);
 
-        wm_weights_ /= wm_weights_.sum();
+        wm_weights_.array() -= utils::log_sum_exp(wm_weights_);
     }
 
 
@@ -337,9 +347,9 @@ VectorXd EstimatesExtraction::exponentialAverage
     {
         em_weights_.resize(history.cols());
         for (unsigned int i = 0; i < history.cols(); ++i)
-            em_weights_(i) = std::exp(-(static_cast<double>(i) / history.cols()));
+            em_weights_(i) = -(static_cast<double>(i) / history.cols());
 
-        em_weights_ /= em_weights_.sum();
+        em_weights_.array() -= utils::log_sum_exp(em_weights_);
     }
 
     return mean(history, em_weights_);
