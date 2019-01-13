@@ -1,5 +1,34 @@
 # 📜 BayesFilters changelog
 
+## 🔖 Version 0.9.100
+##### `CMake`
+- Minor version increases since API compatibility is broken.
+
+##### `Filtering utilities`
+- Constructor EstimatesExtraction::EstimatesExtraction takes the state size, both linear and circular.
+- Class EstimatesExtraction does not assume that the state is a 7-vector containing cartesian position and axis/angle representation of orientation anymore.
+- Implemented MAP (maximum a posteriori) estimate extraction within method EstimatesExtraction::map.
+- Implemented overloaded version of EstimatesExtraction::extract taking extra arguments (particle weights at the previous time step, likelihoods at the current step and matrix of Markov transition probabilities between previous and current states) required to expose MAP extraction utiliy to the user.
+- Methods EstimatesExtraction::extract return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
+- Methods EstimatesExtraction::extract assume that particle weights are in the log space.
+- Constructor HistoryBuffer::HistoryBuffer takes the state size.
+
+##### `Filtering functions`
+- Added pure virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).
+- Implemented method KFPrediction::getStateModel.
+- Implemented method UKFPrediction::getStateModel.
+- Changed implementation of GPFPrediction::getStateModel.
+- Changed implementation of GPFCorrection::getLikelihood.
+- Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability.
+- Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability.
+
+##### `Test`
+- Mean extraction is performed using EstimatesExtraction utilities in test_UPF.
+- Add mean extraction and logging in test_SIS to simplify inspection of the algorithm outcome.
+- Reduce number of particles in test_SIS to reduce testing computation time in Debug.
+- Add testUPF_MAP testing MAP (maximum a posteriori) estimate extraction within a UPF particle filter.
+
+
 ## 🔖 Version 0.8.101
 ##### `Bugfix`
  - Add initial value to bool variable in UKFCorrection::correctStep.
