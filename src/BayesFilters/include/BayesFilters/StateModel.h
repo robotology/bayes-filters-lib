@@ -19,7 +19,7 @@ public:
 
     virtual Eigen::MatrixXd getJacobian();
 
-    virtual Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states);
+    virtual Eigen::VectorXd getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, const Eigen::Ref<const Eigen::MatrixXd>& cur_states);
 
     virtual Eigen::MatrixXd getNoiseCovarianceMatrix();
 
