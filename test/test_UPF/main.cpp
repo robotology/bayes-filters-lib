@@ -86,7 +86,7 @@ protected:
     void log() override
     {
         VectorXd mean;
-        std::tie(std::ignore, mean) = estimates_extraction_.extract(cor_particle_.state(), cor_particle_.weight().array().exp());
+        std::tie(std::ignore, mean) = estimates_extraction_.extract(cor_particle_.state(), cor_particle_.weight());
 
         logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
                cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
