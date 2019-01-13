@@ -64,6 +64,10 @@ protected:
      * A call to `gaussian_random_sample_()` returns a double-precision floating-point random number.
      */
     std::function<double()> gaussian_random_sample_;
+
+    bool valid_likelihood_;
+
+    Eigen::VectorXd likelihood_;
 };
 
 #endif /* GPFCORRECTION_H */
