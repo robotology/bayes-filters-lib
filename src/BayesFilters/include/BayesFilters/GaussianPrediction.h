@@ -1,6 +1,7 @@
 #ifndef GAUSSIANPREDICTION_H
 #define GAUSSIANPREDICTION_H
 
+#include <BayesFilters/StateModel.h>
 #include <BayesFilters/GaussianMixture.h>
 
 #include <Eigen/Dense>
@@ -29,6 +30,8 @@ protected:
     GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
 
     virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
+
+    virtual bfl::StateModel& getStateModel() = 0;
 
 private:
     bool skip_prediction_ = false;
