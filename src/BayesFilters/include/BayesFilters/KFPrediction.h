@@ -27,6 +27,8 @@ public:
 protected:
     void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
 
+    bfl::StateModel& getStateModel() override;
+
     std::unique_ptr<LinearStateModel> state_model_;
 
     std::unique_ptr<ExogenousModel> exogenous_model_;

@@ -73,3 +73,8 @@ void KFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixtur
         }
     }
 }
+
+bfl::StateModel& KFPrediction::getStateModel()
+{
+    return *state_model_;
+}
