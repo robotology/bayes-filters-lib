@@ -4,6 +4,7 @@
 #include <BayesFilters/GPFPrediction.h>
 #include <BayesFilters/GPFCorrection.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
+#include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/Resampling.h>
 #include <BayesFilters/SimulatedLinearSensor.h>
 #include <BayesFilters/SimulatedStateModel.h>
@@ -41,7 +42,8 @@ public:
         SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
         simulation_steps_(simulation_steps),
         initial_covariance_(initial_covariance),
-        estimates_extraction_(state_size)
+        estimates_extraction_(state_size),
+        previous_corr_particle_(num_particle, state_size)
     { }
 
 protected:
@@ -57,15 +59,15 @@ protected:
     {
         std::vector<std::string> sis_filenames = SIS::log_filenames(prefix_path, prefix_name);
 
-        /* Add file names for logging of the conditional expected value. */
+        /* Add file names for logging of the map estimate. */
         sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
 
-        return  sis_filenames;
+        return sis_filenames;
     }
 
     bool initialization() override
     {
-        estimates_extraction_.setMethod(EstimatesExtraction::ExtractionMethod::mean);
+        estimates_extraction_.setMethod(EstimatesExtraction::ExtractionMethod::map);
 
         if (!SIS::initialization())
             return false;
@@ -80,17 +82,52 @@ protected:
             pred_particle_.covariance(i) = initial_covariance_;
         }
 
+        /* Initialize the previous corrected particle corresponding to step k = -1. */
+        previous_corr_particle_ = pred_particle_;
+
         return true;
+    }
+
+    void filteringStep() override
+    {
+        SIS::filteringStep();
+
+        /* Update previous corrected particles. */
+        previous_corr_particle_ = cor_particle_;
+    }
+
+    MatrixXd getTransitionProbabilityMatrix(const Ref<const MatrixXd>& corr_particle, const Ref<const MatrixXd>& previous_corr_particle)
+    {
+        MatrixXd probabilities(corr_particle.cols(), corr_particle.cols());
+
+        for (std::size_t i = 0; i < probabilities.rows(); i++)
+            for (std::size_t j = 0; j < probabilities.rows(); j++)
+                probabilities(i, j) = prediction_->getStateModel().getTransitionProbability(previous_corr_particle.col(j), corr_particle.col(i)).coeff(0);
+
+        return probabilities;
     }
 
     void log() override
     {
-        VectorXd mean;
-        std::tie(std::ignore, mean) = estimates_extraction_.extract(cor_particle_.state(), cor_particle_.weight());
+        VectorXd map;
+
+        /* Get likelihoods. */
+        VectorXd likelihoods;
+        std::tie(std::ignore, likelihoods) = correction_->getLikelihood();
+
+        /* Get transition probability matrix. */
+        MatrixXd probabilities = getTransitionProbabilityMatrix(cor_particle_.state(), previous_corr_particle_.state());
+
+        /* Extract map estimate. */
+        std::tie(std::ignore, map) = estimates_extraction_.extract(cor_particle_.state(),
+                                                                   cor_particle_.weight(),
+                                                                   previous_corr_particle_.weight(),
+                                                                   likelihoods,
+                                                                   probabilities);
 
         logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
                cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
-               mean.transpose());
+               map.transpose());
     }
 
 private:
@@ -99,6 +136,8 @@ private:
     Eigen::MatrixXd initial_covariance_;
 
     EstimatesExtraction estimates_extraction_;
+
+    ParticleSet previous_corr_particle_;
 };
 
 
@@ -108,7 +147,7 @@ int main(int argc, char* argv[])
 
     const bool write_to_file = (argc > 1 ? std::string(argv[1]) == "ON" : false);
     if (write_to_file)
-        std::cout << "Data is logged in the test folder with prefix testUPF." << std::endl;
+        std::cout << "Data is logged in the test folder with prefix testUPF_MAP." << std::endl;
 
 
     /* A set of parameters needed to run an unscented particle filter in a simulated environment. */
@@ -165,13 +204,13 @@ int main(int argc, char* argv[])
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
 
     if (write_to_file)
-        simulated_state_model->enable_log(".", "testUPF");
+        simulated_state_model->enable_log(".", "testUPF_MAP");
 
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
 
     if (write_to_file)
-        simulated_linear_sensor->enable_log(".", "testUPF");
+        simulated_linear_sensor->enable_log(".", "testUPF_MAP");
 
 
     /* Step 3.2 - Define the likelihood model. */
@@ -203,7 +242,7 @@ int main(int argc, char* argv[])
     UPFSimulation upf(num_particle, state_size, simulation_time, initial_covariance, std::move(grid_initialization), std::move(gpf_prediction), std::move(gpf_correction), std::move(resampling));
 
     if (write_to_file)
-        upf.enable_log(".", "testUPF");
+        upf.enable_log(".", "testUPF_MAP");
 
     std::cout << "done!" << std::endl;
 

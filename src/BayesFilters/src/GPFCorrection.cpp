@@ -70,7 +70,7 @@ LikelihoodModel& GPFCorrection::getLikelihoodModel()
 
 std::pair<bool, Eigen::VectorXd> GPFCorrection::getLikelihood()
 {
-    throw std::runtime_error("ERROR::GPFCORRECTION::GETLIKELIHOOD\nERROR:\n\tCall to unimplemented base class method.");
+    return std::make_pair(valid_likelihood_, likelihood_);
 }
 
 
@@ -86,11 +86,9 @@ void GPFCorrection::correctStep(const bfl::ParticleSet& pred_particles, bfl::Par
     }
 
     /* Evaluate the likelihood. */
-    bool valid_likelihood;
-    VectorXd likelihood;
-    std::tie(valid_likelihood, likelihood) = likelihood_model_->likelihood(getMeasurementModel(), corr_particles.state());
+    std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(getMeasurementModel(), corr_particles.state());
 
-    if (!valid_likelihood)
+    if (!valid_likelihood_)
     {
         corr_particles = pred_particles;
 
@@ -105,7 +103,7 @@ void GPFCorrection::correctStep(const bfl::ParticleSet& pred_particles, bfl::Par
     double eps = std::numeric_limits<double>::min();
     for (std::size_t i = 0; i < pred_particles.components; i++)
     {
-        corr_particles.weight(i) = pred_particles.weight(i) + log(likelihood(i) + eps) + log(transition_probability(i) + eps) - log(evaluateProposal(corr_particles.state(i), corr_particles.mean(i), corr_particles.covariance(i)) + eps);
+        corr_particles.weight(i) = pred_particles.weight(i) + log(likelihood_(i) + eps) + log(transition_probability(i) + eps) - log(evaluateProposal(corr_particles.state(i), corr_particles.mean(i), corr_particles.covariance(i)) + eps);
     }
 }
 

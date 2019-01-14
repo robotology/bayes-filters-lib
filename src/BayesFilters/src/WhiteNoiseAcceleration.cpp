@@ -130,7 +130,7 @@ MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 }
 
 
-VectorXd WhiteNoiseAcceleration::getTransitionProbability(const Ref<const MatrixXd>& prev_states, Ref<MatrixXd> cur_states)
+VectorXd WhiteNoiseAcceleration::getTransitionProbability(const Ref<const MatrixXd>& prev_states, const Ref<const MatrixXd>& cur_states)
 {
     VectorXd probabilities(prev_states.cols());
     MatrixXd differences = cur_states - prev_states;

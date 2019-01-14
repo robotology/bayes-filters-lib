@@ -17,7 +17,7 @@ GPFPrediction::GPFPrediction(GPFPrediction&& gpf_prediction) noexcept :
 
 StateModel& GPFPrediction::getStateModel()
 {
-    throw std::runtime_error("ERROR::GPFPREDICTION::GETSTATEMODEL\nERROR:\n\tCall to unimplemented base class method.");
+    return gaussian_prediction_->getStateModel();
 }
 
 

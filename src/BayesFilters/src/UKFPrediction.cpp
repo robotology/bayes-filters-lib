@@ -96,3 +96,12 @@ void UKFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixtu
     else if (!skip_exogenous)
         std::tie(pred_state, std::ignore) = unscented_transform(prev_state, ut_weight_, *exog_model_);
 }
+
+
+bfl::StateModel& UKFPrediction::getStateModel()
+{
+    if (type_ == UKFPredictionType::Additive)
+        return *add_state_model_;
+
+    return *state_model_;
+}

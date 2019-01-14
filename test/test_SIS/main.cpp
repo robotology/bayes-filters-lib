@@ -4,6 +4,7 @@
 
 #include <BayesFilters/BootstrapCorrection.h>
 #include <BayesFilters/DrawParticles.h>
+#include <BayesFilters/EstimatesExtraction.h>
 #include <BayesFilters/GaussianLikelihood.h>
 #include <BayesFilters/InitSurveillanceAreaGrid.h>
 #include <BayesFilters/SimulatedLinearSensor.h>
@@ -32,7 +33,8 @@ public:
         std::unique_ptr<Resampling> resampling
     ) noexcept :
         SIS(num_particle, state_size, std::move(initialization), std::move(prediction), std::move(correction), std::move(resampling)),
-        simulation_steps_(simulation_steps)
+        simulation_steps_(simulation_steps),
+        estimates_extraction_(state_size)
     { }
 
 protected:
@@ -44,8 +46,40 @@ protected:
             return false;
     }
 
+    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    {
+        std::vector<std::string> sis_filenames = SIS::log_filenames(prefix_path, prefix_name);
+
+        /* Add file names for logging of the conditional expected value. */
+        sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
+
+        return  sis_filenames;
+    }
+
+    bool initialization() override
+    {
+        estimates_extraction_.setMethod(EstimatesExtraction::ExtractionMethod::mean);
+
+        if (!SIS::initialization())
+            return false;
+
+        return true;
+    }
+
+    void log() override
+    {
+        VectorXd mean;
+        std::tie(std::ignore, mean) = estimates_extraction_.extract(cor_particle_.state(), cor_particle_.weight());
+
+        logger(pred_particle_.state().transpose(), pred_particle_.weight().transpose(),
+               cor_particle_.state().transpose(), cor_particle_.weight().transpose(),
+               mean.transpose());
+    }
+
 private:
     unsigned int simulation_steps_;
+
+    EstimatesExtraction estimates_extraction_;
 };
 
 

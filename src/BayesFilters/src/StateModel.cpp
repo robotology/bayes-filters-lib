@@ -10,7 +10,7 @@ Eigen::MatrixXd StateModel::getJacobian()
 }
 
 
-Eigen::VectorXd StateModel::getTransitionProbability(const Eigen::Ref<const Eigen::MatrixXd>& prev_states, Eigen::Ref<Eigen::MatrixXd> cur_states)
+Eigen::VectorXd StateModel::getTransitionProbability(const Ref<const MatrixXd>& prev_states, const Ref<const MatrixXd>& cur_states)
 {
     throw std::runtime_error("ERROR::STATEMODEL::TRANSITIONPROBABILITY\nERROR:\n\tMethod not implemented.");
 }
