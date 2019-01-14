@@ -114,8 +114,8 @@ int main(int argc, char* argv[])
     /* A set of parameters needed to run an unscented particle filter in a simulated environment. */
     double surv_x = 1000.0;
     double surv_y = 1000.0;
-    std::size_t num_particle_x = 30;
-    std::size_t num_particle_y = 30;
+    std::size_t num_particle_x = 7;
+    std::size_t num_particle_y = 7;
     std::size_t num_particle = num_particle_x * num_particle_y;
     Vector4d initial_state(10.0f, 0.0f, 10.0f, 0.0f);
     std::size_t simulation_time = 100;
