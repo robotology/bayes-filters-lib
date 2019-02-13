@@ -5,14 +5,17 @@ using namespace Eigen;
 
 
 StateModelDecorator::StateModelDecorator(std::unique_ptr<StateModel> state_model) noexcept :
-    state_model_(std::move(state_model)) { }
+    state_model_(std::move(state_model))
+{ }
 
 
 StateModelDecorator::StateModelDecorator(StateModelDecorator&& state_model) noexcept :
-    state_model_(std::move(state_model.state_model_)) { }
+    state_model_(std::move(state_model.state_model_))
+{ }
 
 
-StateModelDecorator::~StateModelDecorator() noexcept { }
+StateModelDecorator::~StateModelDecorator() noexcept
+{ }
 
 
 StateModelDecorator& StateModelDecorator::operator=(StateModelDecorator&& state_model) noexcept
@@ -35,9 +38,15 @@ void StateModelDecorator::motion(const Ref<const MatrixXd>& cur_states, Ref<Matr
 }
 
 
-bool StateModelDecorator::setProperty(const std::string& property)
+MatrixXd StateModelDecorator::getJacobian()
 {
-    return state_model_->setProperty(property);
+    return state_model_->getJacobian();
+}
+
+
+VectorXd StateModelDecorator::getTransitionProbability(const Ref<const MatrixXd>& prev_states, const Ref<const MatrixXd>& cur_states)
+{
+    return state_model_->getTransitionProbability(prev_states, cur_states);
 }
 
 
@@ -50,6 +59,12 @@ MatrixXd StateModelDecorator::getNoiseCovarianceMatrix()
 MatrixXd StateModelDecorator::getNoiseSample(const std::size_t num)
 {
     return state_model_->getNoiseSample(num);
+}
+
+
+bool StateModelDecorator::setProperty(const std::string& property)
+{
+    return state_model_->setProperty(property);
 }
 
 
