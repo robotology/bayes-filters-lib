@@ -1,3 +1,6 @@
+# Provide a local project and cmake_minimum_required calls
+# to permit to generate the documentation without configuring
+# the complete project
 cmake_minimum_required(VERSION 3.5)
 
 # This variable should contain the argument of the project call in the main CMakeLists.txt
