@@ -5,26 +5,26 @@
 - Minor version increases since API compatibility is broken.
 
 ##### `Filtering utilities`
-- Constructor EstimatesExtraction::EstimatesExtraction takes the state size, both linear and circular.
+- Constructor EstimatesExtraction::EstimatesExtraction() takes the state size, both linear and circular.
 - Class EstimatesExtraction does not assume that the state is a 7-vector containing cartesian position and axis/angle representation of orientation anymore.
-- Implemented MAP (maximum a posteriori) estimate extraction within method EstimatesExtraction::map.
-- Implemented overloaded version of EstimatesExtraction::extract taking extra arguments (particle weights at the previous time step, likelihoods at the current step and matrix of Markov transition probabilities between previous and current states) required to expose MAP extraction utiliy to the user.
-- Methods EstimatesExtraction::extract return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
-- Methods EstimatesExtraction::extract assume that particle weights are in the log space.
-- Constructor HistoryBuffer::HistoryBuffer takes the state size.
-- Renamed Logger::log_filenames in Logger::log_file_names.
-- Renamed Logger::get_prefix_path in Logger::get_folder_path.
-- Renamed Logger::get_prefix_name in Logger::get_file_name_prefix.
-- Logger::enable_log now requires absolute or relative paths as input.
+- Implemented MAP (maximum a posteriori) estimate extraction within method EstimatesExtraction::map().
+- Implemented overloaded version of EstimatesExtraction::extract() taking extra arguments (particle weights at the previous time step, likelihoods at the current step and matrix of Markov transition probabilities between previous and current states) required to expose MAP extraction utiliy to the user.
+- Methods EstimatesExtraction::extract() return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
+- Methods EstimatesExtraction::extract() assume that particle weights are in the log space.
+- Constructor HistoryBuffer::HistoryBuffer() takes the state size.
+- Renamed Logger::log_filenames() in Logger::log_file_names().
+- Renamed Logger::get_prefix_path() in Logger::get_folder_path().
+- Renamed Logger::get_prefix_name() in Logger::get_file_name_prefix().
+- Logger::enable_log() now requires absolute or relative paths as input.
 
 ##### `Filtering functions`
-- Added pure public virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).
-- Implemented method KFPrediction::getStateModel.
-- Implemented method UKFPrediction::getStateModel.
-- Changed implementation of GPFPrediction::getStateModel.
-- Changed implementation of GPFCorrection::getLikelihood.
-- Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability.
-- Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability.
+- Added pure public virtual method GaussianPrediction::getStateModel() (required to properly implement GPFPrediction::getStateModel()).
+- Implemented method KFPrediction::getStateModel().
+- Implemented method UKFPrediction::getStateModel().
+- Changed implementation of GPFPrediction::getStateModel().
+- Changed implementation of GPFCorrection::getLikelihood().
+- Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability().
+- Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability().
 - SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.
 
 ##### `Test`
@@ -36,7 +36,7 @@
 
 ## 🔖 Version 0.8.101
 ##### `Bugfix`
- - Add initial value to bool variable in UKFCorrection::correctStep.
+ - Add initial value to bool variable in UKFCorrection::correctStep().
 
 ##### `CMake`
  - Add CMake variable TEST_LOG_TO_FILE to disable file logs in tests.
@@ -61,14 +61,14 @@
 
 ##### `Filtering algorithms`
  - Added logging capabilities to FilteringAlgorithm.
- - Removed SIS::setInitialization(), SIS::setPrediction(), SIS::setCorrection and SIS:setResampling methods. The associated unique_ptr classes are now mandatory arguments of ParticleFilter constructor.
- - Constructor SIS::SIS takes the state size, both linear and circular, and the filtering step classes as arguments to initialize, respectively, the ParticleSet and the ParticleFilter classes.
- - Method SIS::filteringStep uses VectorXi instead of VectorXf to represent particle parents.
- - Method SIS::filteringStep uses particle weights in log space instead of linear space.
- - Moved default logging facilities of class SIS from method SIS::filteringStep to overridden method Logger::log.
+ - Removed SIS::setInitialization(), SIS::setPrediction(), SIS::setCorrection() and SIS:setResampling() methods. The associated unique_ptr classes are now mandatory arguments of ParticleFilter constructor.
+ - Constructor SIS::SIS() takes the state size, both linear and circular, and the filtering step classes as arguments to initialize, respectively, the ParticleSet and the ParticleFilter classes.
+ - Method SIS::filteringStep() uses VectorXi instead of VectorXf to represent particle parents.
+ - Method SIS::filteringStep() uses particle weights in log space instead of linear space.
+ - Moved default logging facilities of class SIS from method SIS::filteringStep() to overridden method Logger::log().
  - Re-implemented class KalmanFilter, a general Gaussian filtering algorithm using a GaussianPrediction and a GaussianCorrection.
  - Renamed class KalmanFilter to GaussianFilter.
- - Added call to virtual method Logger::log in method GaussianFilter::filteringStep.
+ - Added call to virtual method Logger::log() in method GaussianFilter::filteringStep().
 
 ##### `Filtering functions`
  - Renamed UpdateParticles in BootstrapCorrection.
@@ -87,44 +87,44 @@
  - Added class GPFCorrection, a particle filter correction step that propagates the Gaussian belief associated to particles and weights them according to a Gaussian proposal distribution.
  - PFCorrection::getLikelihood() method is now pure virtual.
  - Used new ParticleSet class within classes PFPrediction, PFPredictionDecorator, PFCorrection, PFCorrectionDecorator, DrawParticles, BootstrapCorrection, Resampling, ResamplingWithPrior, ParticleSetInitialization, InitSurveillanceAreaGrid and SIS.
- - Method ResamplingWithPrior::resample heavily changed (due to use of ParticleSet).
- - Methods Resampling::resample and ResamplingWithPrior::resample use VectorXi instead of VectorXf to represent particle parents.
- - Methods Resampling::resample and Resampling::neff uses particle weights in log space instead of linear space.
- - Methods ResamplingWithPrior::resample uses particle weights in log space instead of linear space.
- - PFCorrection now performs measurements freeze before calling PFCorrection::correctStep and does not call it if measurements freeze fails.
- - BootstrapCorrection::correctStep now does not freeze measurements anymore.
- - BootstrapCorrection::correctStep uses particle weights in log space instead of linear space.
- - InitSurveillanceAreaGrid::initialize uses particle weights in log space instead of linear space.
+ - Method ResamplingWithPrior::resample() heavily changed (due to use of ParticleSet).
+ - Methods Resampling::resample() and ResamplingWithPrior::resample() use VectorXi instead of VectorXf to represent particle parents.
+ - Methods Resampling::resample() and Resampling::neff() uses particle weights in log space instead of linear space.
+ - Methods ResamplingWithPrior::resample() uses particle weights in log space instead of linear space.
+ - PFCorrection now performs measurements freeze before calling PFCorrection::correctStep() and does not call it if measurements freeze fails.
+ - BootstrapCorrection::correctStep() now does not freeze measurements anymore.
+ - BootstrapCorrection::correctStep() uses particle weights in log space instead of linear space.
+ - InitSurveillanceAreaGrid::initialize() uses particle weights in log space instead of linear space.
 
 ##### `State models`
  - Added SimulatedStateModel class to simulate kinematic or dynamic models using StateModel classes.
- - Added non-pure virtual method StateModel::getTransitionProbability.
- - Added non-pure virtual method StateModel::getJacobian.
- - Added pure virtual method StateModel::getOutputSize
- - Added pure virtual method ExogenousModel::getOutputSize
- - Implemented method StateModelDecorator::getOutputSize
+ - Added non-pure virtual method StateModel::getTransitionProbability().
+ - Added non-pure virtual method StateModel::getJacobian().
+ - Added pure virtual method StateModel::getOutputSize().
+ - Added pure virtual method ExogenousModel::getOutputSize().
+ - Implemented method StateModelDecorator::getOutputSize().
  - Implemented AdditiveStateModel class inheriting from StateModel.
  - Implemented LinearStateModel class inheriting from AdditiveStateModel.
  - Implemented LTIStateModel class inheriting from LinearStateModel.
  - WhiteNoiseAcceleration class now inherits from LinearStateModel.
- - Implemented method WhiteNoiseAcceleration::getOutputSize
+ - Implemented method WhiteNoiseAcceleration::getOutputSize().
  - Implemented method WhiteNoiseAcceleration::getTransitionProbability.
 
 ##### `Measurement models`
  - Added SimulatedLinearSensor class.
  - Added MeasurementModelDecorator class.
  - Added logging capabilities to MeasurementModel.
- - Removed method MeasurementModel::getNoiseSample.
- - Added pure virtual method MeasurementModel::getOutputSize
- - Method MeasurementModel::measure replaces method MeasurementModel::getAgentMeasurements and does not take the state as input.
- - Method MeasurementModel::freezeMeasurements replaces method MeasurementModel::bufferAgentData const.
- - Method BootstrapCorrection::correctStep uses MeasurementModel::freezeMeasurements.
+ - Removed method MeasurementModel::getNoiseSample().
+ - Added pure virtual method MeasurementModel::getOutputSize().
+ - Method MeasurementModel::measure() replaces method MeasurementModel::getAgentMeasurements() and does not take the state as input.
+ - Method MeasurementModel::freezeMeasurements() replaces method MeasurementModel::bufferAgentData() const.
+ - Method BootstrapCorrection::correctStep() uses MeasurementModel::freezeMeasurements().
  - Added class AdditiveMeasurementModel.
  - Added class LinearMeasurementModel.
  - Added class LTIMeasurementModel.
  - Renamed LinearSensor to LinearModel.
  - LinearModel class now inherits from LinearMeasurementModel.
- - LinearModel class now does not implement MeasurementModel::measure.
+ - LinearModel class now does not implement MeasurementModel::measure().
 
 ##### `Filtering utilities`
  - Added Data class in order to have a type for encapsulating data coming from any process.
@@ -133,7 +133,7 @@
  - Added sigma_point(), unscented_weights() and unscented_transform() functions in sigma_point.h/cpp.
  - Added UTWeight struct to store unscented transform weights in sigma_point.h/cpp.
  - Added alias FunctionEvaluation in sigma_point.h/cpp.
- - Added method utils::log_sum_exp to evaluate the logarithm of a sum of exponentials.
+ - Added method utils::log_sum_exp() to evaluate the logarithm of a sum of exponentials.
 
 ##### `Test`
  - Removed test_ParticleFilter.
@@ -195,7 +195,7 @@
 
 ## 🔖 Version 0.6.0.1
 ##### `Filtering classes`
- - `FilteringAlgorithm::filteringRecursion`: fix the invocation position of initialization.
+ - Fixed FilteringAlgorithm::filteringRecursion() the invocation position of initialization.
 
 ## 🔖 Version 0.6.0.0
  - This is the first public release of the BayesFilters library 🎉.
