@@ -47,7 +47,7 @@ private:
 
 protected:
     std::pair<bool, Eigen::MatrixXd> getNoiseSample(const int num) const;
-    
+
     /**
      * The Sampling interval in [time].
      */
