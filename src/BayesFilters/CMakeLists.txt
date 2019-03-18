@@ -50,6 +50,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/SUKFCorrection.h
+        include/BayesFilters/TimeDecreasingDynamics.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
         include/BayesFilters/WhiteNoiseAcceleration.h
@@ -122,6 +123,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/StateModel.cpp
         src/StateModelDecorator.cpp
         src/SUKFCorrection.cpp
+        src/TimeDecreasingDynamics.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
         src/WhiteNoiseAcceleration.cpp

@@ -15,6 +15,7 @@
 
 #include <Eigen/Dense>
 
+#include <chrono>
 #include <memory>
 
 namespace bfl
@@ -53,6 +54,101 @@ std::unique_ptr<T> make_unique(Args&& ...args)
  * Return the logarithm of the sum of exponentials.
  */
 double log_sum_exp(const Eigen::Ref<const Eigen::VectorXd>& arguments);
+
+
+/**
+ * This template class provides methods to keep track of time. The default time unit is milliseconds,
+ * but can be changed during object creation using a different std::chrono::duration type.
+ * See https://en.cppreference.com/w/cpp/chrono/duration for reference.
+ * The timer starts and stops using, respectively, start() and stop() method.
+ * The get the time elapsed between a start() and stop() call, use the elapsed() method.
+ * The elapsed() method can be used to get the elapsed time from the start() call, before calling stop().
+ * To get the absolute time from epoch use the now() method.
+ */
+template<typename timetype = std::chrono::milliseconds>
+class CpuTimer
+{
+public:
+    /**
+     * Start the timer.
+     */
+    void start()
+    {
+        start_time_ = std::chrono::steady_clock::now();
+
+        running_ = true;
+    }
+
+
+    /**
+     * Stop the timer.
+     */
+    void stop()
+    {
+        stop_time_ = std::chrono::steady_clock::now();
+
+        running_ = false;
+    }
+
+
+    /**
+     * Get the time passed between a start() and stop() call.
+     * If used between a start() and stop() call, returns the time elapsed from the start() call.
+     *
+     * @return The elapsed time.
+     */
+    double elapsed()
+    {
+        std::chrono::steady_clock::duration time_span;
+
+        if (!running_)
+            time_span = stop_time_ - start_time_;
+        else
+            time_span = std::chrono::steady_clock::now() - start_time_;
+
+        return static_cast<double>(time_span.count()) * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den * timetype::period::den;
+    }
+
+
+    /**
+     * Get the absolute time from epoch.
+     *
+     * @return The elapsed time from epoch.
+     */
+    double now()
+    {
+        return static_cast<double>(std::chrono::steady_clock::now().time_since_epoch().count()) * std::chrono::steady_clock::period::num / std::chrono::steady_clock::period::den * timetype::period::den;
+    }
+
+
+    /**
+     * Check if the timer is running or not.
+     *
+     * @return True/false if the timer is running/not running.
+     */
+    bool is_running()
+    {
+        return running_;
+    }
+
+private:
+    /**
+     * The start time.
+     */
+    std::chrono::steady_clock::time_point start_time_ = std::chrono::steady_clock::now();
+
+
+    /**
+     * The stop time.
+     */
+    std::chrono::steady_clock::time_point stop_time_ = start_time_;
+
+
+    /**
+     * Running status flag.
+     */
+    bool running_ = false;
+};
 
 }
 }
