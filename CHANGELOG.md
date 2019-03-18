@@ -12,6 +12,7 @@
 - Methods EstimatesExtraction::extract return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
 - Methods EstimatesExtraction::extract assume that particle weights are in the log space.
 - Constructor HistoryBuffer::HistoryBuffer takes the state size.
+- Renamed Logger::log_filenames in Logger::log_file_names.
 
 ##### `Filtering functions`
 - Added pure virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).

@@ -16,7 +16,7 @@ bool Logger::enable_log(const std::string& prefix_path, const std::string& prefi
 {
     if (!log_enabled_)
     {
-        const std::vector<std::string>& file_names = log_filenames(prefix_path, prefix_name);
+        const std::vector<std::string>& file_names = log_file_names(prefix_path, prefix_name);
 
         if (file_names.size() == 0)
         {
@@ -84,13 +84,13 @@ std::string Logger::get_prefix_name() const
 }
 
 
-std::vector<std::string> Logger::log_filenames(const std::string& prefix_path, const std::string& prefix_name)
+std::vector<std::string> Logger::log_file_names(const std::string& prefix_path, const std::string& prefix_name)
 {
     static_cast<void>(prefix_path);
     static_cast<void>(prefix_name);
 
     std::cerr << "WARNING::LOGGER::LOG_FILENAMES\n";
-    std::cerr << "\tWARNING: Log file names where not provided. Did you override `log_filenames()`?" << std::endl;
+    std::cerr << "\tWARNING: Log file names where not provided. Did you override `log_file_names()`?" << std::endl;
 
     return {};
 }

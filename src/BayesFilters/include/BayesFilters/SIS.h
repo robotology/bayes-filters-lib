@@ -45,7 +45,7 @@ protected:
 
     void filteringStep() override;
 
-    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
     {
         return {prefix_path + "/" + prefix_name + "_pred_particles",
                 prefix_path + "/" + prefix_name + "_pred_weights",

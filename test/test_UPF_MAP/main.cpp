@@ -55,9 +55,9 @@ protected:
             return false;
     }
 
-    std::vector<std::string> log_filenames(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
     {
-        std::vector<std::string> sis_filenames = SIS::log_filenames(prefix_path, prefix_name);
+        std::vector<std::string> sis_filenames = SIS::log_file_names(prefix_path, prefix_name);
 
         /* Add file names for logging of the map estimate. */
         sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
