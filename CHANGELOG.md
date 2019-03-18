@@ -25,6 +25,7 @@
 - Changed implementation of GPFCorrection::getLikelihood.
 - Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability.
 - Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability.
+- SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.
