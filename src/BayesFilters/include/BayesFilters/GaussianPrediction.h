@@ -24,14 +24,14 @@ public:
 
     bool getSkipExogenous();
 
+    virtual StateModel& getStateModel() = 0;
+
 protected:
     GaussianPrediction() noexcept;
 
     GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
 
     virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
-
-    virtual bfl::StateModel& getStateModel() = 0;
 
 private:
     bool skip_prediction_ = false;

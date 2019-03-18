@@ -18,7 +18,7 @@
 - Logger::enable_log now requires absolute or relative paths as input.
 
 ##### `Filtering functions`
-- Added pure virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).
+- Added pure public virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).
 - Implemented method KFPrediction::getStateModel.
 - Implemented method UKFPrediction::getStateModel.
 - Changed implementation of GPFPrediction::getStateModel.
