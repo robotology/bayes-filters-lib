@@ -54,7 +54,7 @@ TimeDecreasingDynamics::TimeDecreasingDynamics(std::unique_ptr<StateModel> state
 
     rImpl.modality_ = ImplData::Modality::Time;
 
-    rImpl.iterations_ = std::numeric_limits<double>::infinity();
+    rImpl.iterations_ = std::numeric_limits<unsigned int>::max();
 
     rImpl.seconds_ = std::abs(seconds);
 
