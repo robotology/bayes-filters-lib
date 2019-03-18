@@ -53,12 +53,12 @@ protected:
             return false;
     }
 
-    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {
-        std::vector<std::string> sis_filenames = SIS::log_file_names(prefix_path, prefix_name);
+        std::vector<std::string> sis_filenames = SIS::log_file_names(folder_path, file_name_prefix);
 
         /* Add file names for logging of the conditional expected value. */
-        sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
+        sis_filenames.push_back(folder_path + "/" + file_name_prefix + "_mean");
 
         return  sis_filenames;
     }
@@ -165,13 +165,13 @@ int main(int argc, char* argv[])
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
 
     if (write_to_file)
-        simulated_state_model->enable_log(".", "testUPF");
+        simulated_state_model->enable_log("./", "testUPF");
 
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
 
     if (write_to_file)
-        simulated_linear_sensor->enable_log(".", "testUPF");
+        simulated_linear_sensor->enable_log("./", "testUPF");
 
 
     /* Step 3.2 - Define the likelihood model. */
@@ -203,7 +203,7 @@ int main(int argc, char* argv[])
     UPFSimulation upf(num_particle, state_size, simulation_time, initial_covariance, std::move(grid_initialization), std::move(gpf_prediction), std::move(gpf_correction), std::move(resampling));
 
     if (write_to_file)
-        upf.enable_log(".", "testUPF");
+        upf.enable_log("./", "testUPF");
 
     std::cout << "done!" << std::endl;
 

@@ -13,6 +13,9 @@
 - Methods EstimatesExtraction::extract assume that particle weights are in the log space.
 - Constructor HistoryBuffer::HistoryBuffer takes the state size.
 - Renamed Logger::log_filenames in Logger::log_file_names.
+- Renamed Logger::get_prefix_path in Logger::get_folder_path.
+- Renamed Logger::get_prefix_name in Logger::get_file_name_prefix.
+- Logger::enable_log now requires absolute or relative paths as input.
 
 ##### `Filtering functions`
 - Added pure virtual method GaussianPrediction::getStateModel (required to properly implement GPFPrediction::getStateModel).

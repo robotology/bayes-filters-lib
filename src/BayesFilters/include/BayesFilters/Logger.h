@@ -16,13 +16,13 @@ class bfl::Logger
 public:
     virtual ~Logger() noexcept;
 
-    bool enable_log(const std::string& prefix_path, const std::string& prefix_name);
+    bool enable_log(const std::string& folder_path, const std::string& file_name_prefix);
 
     bool disable_log();
 
-    std::string get_prefix_path() const;
+    std::string get_folder_path() const;
 
-    std::string get_prefix_name() const;
+    std::string get_file_name_prefix() const;
 
     template<typename DatumType>
     void logger(DatumType datum)
@@ -53,14 +53,14 @@ public:
     }
 
 protected:
-    virtual std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name);
+    virtual std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix);
 
     virtual void log();
 
 private:
-    std::string prefix_path_;
+    std::string folder_path_;
 
-    std::string prefix_name_;
+    std::string file_name_prefix_;
 
     std::vector<std::string> file_names_;
 

@@ -77,7 +77,7 @@ LinearModel::LinearModel(LinearModel&& lin_sense) noexcept :
     {
         lin_sense.disable_log();
 
-        enable_log(lin_sense.get_prefix_path(), lin_sense.get_prefix_name());
+        enable_log(lin_sense.get_folder_path(), lin_sense.get_file_name_prefix());
     }
 }
 
@@ -123,7 +123,7 @@ LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
     {
         lin_sense.disable_log();
 
-        enable_log(lin_sense.get_prefix_path(), lin_sense.get_prefix_name());
+        enable_log(lin_sense.get_folder_path(), lin_sense.get_file_name_prefix());
     }
 
     return *this;

@@ -40,10 +40,10 @@ protected:
     }
 
 
-    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {
-        return  {prefix_path + "/" + prefix_name + "_pred_mean",
-                 prefix_path + "/" + prefix_name + "_cor_mean"};
+        return  {folder_path + "/" + file_name_prefix + "_pred_mean",
+                 folder_path + "/" + file_name_prefix + "_cor_mean"};
     }
 
 
@@ -115,13 +115,13 @@ int main(int argc, char* argv[])
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_simulated_state, simulation_time);
 
     if (write_to_file)
-        simulated_state_model->enable_log(".", "testUKF_KF");
+        simulated_state_model->enable_log("./", "testUKF_KF");
 
     /* Step 3.2 - Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<LinearMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
 
     if (write_to_file)
-        simulated_linear_sensor->enable_log(".", "testUKF_KF");
+        simulated_linear_sensor->enable_log("./", "testUKF_KF");
 
     /* Step 3.3 - Initialize the Kalman filter correction step and pass the ownership of the measurement model. */
     std::unique_ptr<KFCorrection> kf_correction = utils::make_unique<KFCorrection>(std::move(simulated_linear_sensor));
@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
     MixedUKFKFSimulation ukf_kf(initial_state, std::move(ukf_prediction), std::move(kf_correction), simulation_time);
 
     if (write_to_file)
-        ukf_kf.enable_log(".", "testUKF_KF");
+        ukf_kf.enable_log("./", "testUKF_KF");
 
     std::cout << "done!" << std::endl;
 

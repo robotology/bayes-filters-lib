@@ -45,12 +45,12 @@ protected:
 
     void filteringStep() override;
 
-    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {
-        return {prefix_path + "/" + prefix_name + "_pred_particles",
-                prefix_path + "/" + prefix_name + "_pred_weights",
-                prefix_path + "/" + prefix_name + "_cor_particles",
-                prefix_path + "/" + prefix_name + "_cor_weights"};
+        return {folder_path + "/" + file_name_prefix + "_pred_particles",
+                folder_path + "/" + file_name_prefix + "_pred_weights",
+                folder_path + "/" + file_name_prefix + "_cor_particles",
+                folder_path + "/" + file_name_prefix + "_cor_weights"};
     }
 
     void log() override;

@@ -46,12 +46,12 @@ protected:
             return false;
     }
 
-    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {
-        std::vector<std::string> sis_filenames = SIS::log_file_names(prefix_path, prefix_name);
+        std::vector<std::string> sis_filenames = SIS::log_file_names(folder_path, file_name_prefix);
 
         /* Add file names for logging of the conditional expected value. */
-        sis_filenames.push_back(prefix_path + "/" + prefix_name + "_mean");
+        sis_filenames.push_back(folder_path + "/" + file_name_prefix + "_mean");
 
         return  sis_filenames;
     }
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
     if (write_to_file)
         std::cout << "Data is logged in the test folder with prefix testSIS." << std::endl;
 
-    
+
     /* A set of parameters needed to run a SIS particle filter in a simulated environment. */
     double surv_x = 1000.0;
     double surv_y = 1000.0;
@@ -128,13 +128,13 @@ int main(int argc, char* argv[])
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_state, simulation_time);
 
     if (write_to_file)
-        simulated_state_model->enable_log(".", "testSIS");
+        simulated_state_model->enable_log("./", "testSIS");
 
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
     std::unique_ptr<MeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
 
     if (write_to_file)
-        simulated_linear_sensor->enable_log(".", "testSIS");
+        simulated_linear_sensor->enable_log("./", "testSIS");
 
 
     /* Step 3.3 - Define the likelihood model */
@@ -158,8 +158,8 @@ int main(int argc, char* argv[])
     SISSimulation sis_pf(num_particle, state_size, simulation_time, std::move(grid_initialization), std::move(pf_prediction), std::move(pf_correction), std::move(resampling));
 
     if (write_to_file)
-        sis_pf.enable_log(".", "testSIS");
-    
+        sis_pf.enable_log("./", "testSIS");
+
     std::cout << "done!" << std::endl;
 
 

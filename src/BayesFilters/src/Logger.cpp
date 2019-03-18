@@ -12,11 +12,11 @@ Logger::~Logger() noexcept
 }
 
 
-bool Logger::enable_log(const std::string& prefix_path, const std::string& prefix_name)
+bool Logger::enable_log(const std::string& folder_path, const std::string& file_name_prefix)
 {
     if (!log_enabled_)
     {
-        const std::vector<std::string>& file_names = log_file_names(prefix_path, prefix_name);
+        const std::vector<std::string>& file_names = log_file_names(folder_path, file_name_prefix);
 
         if (file_names.size() == 0)
         {
@@ -26,10 +26,13 @@ bool Logger::enable_log(const std::string& prefix_path, const std::string& prefi
             return false;
         }
 
+        folder_path_ = folder_path;
+        file_name_prefix_ = file_name_prefix;
+
         auto file_name = file_names.begin();
         for (size_t i = 0; i < file_names.size(); ++i, ++file_name)
         {
-            log_files_.emplace_back(std::ofstream("./" + *file_name + ".txt", std::ofstream::out | std::ofstream::app));
+            log_files_.emplace_back(std::ofstream(*file_name + ".txt", std::ofstream::out | std::ofstream::app));
 
             if (!log_files_[i].is_open())
             {
@@ -72,22 +75,22 @@ bool Logger::disable_log()
 }
 
 
-std::string Logger::get_prefix_path() const
+std::string Logger::get_folder_path() const
 {
-    return prefix_path_;
+    return folder_path_;
 }
 
 
-std::string Logger::get_prefix_name() const
+std::string Logger::get_file_name_prefix() const
 {
-    return prefix_name_;
+    return file_name_prefix_;
 }
 
 
-std::vector<std::string> Logger::log_file_names(const std::string& prefix_path, const std::string& prefix_name)
+std::vector<std::string> Logger::log_file_names(const std::string& folder_path, const std::string& file_name_prefix)
 {
-    static_cast<void>(prefix_path);
-    static_cast<void>(prefix_name);
+    static_cast<void>(folder_path);
+    static_cast<void>(file_name_prefix);
 
     std::cerr << "WARNING::LOGGER::LOG_FILENAMES\n";
     std::cerr << "\tWARNING: Log file names where not provided. Did you override `log_file_names()`?" << std::endl;

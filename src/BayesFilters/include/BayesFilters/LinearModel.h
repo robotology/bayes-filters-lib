@@ -84,9 +84,9 @@ protected:
      */
     std::function<double()> gauss_rnd_sample_;
 
-    std::vector<std::string> log_file_names(const std::string& prefix_path, const std::string& prefix_name) override
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {
-        return {prefix_path + "/" + prefix_name + "_measurements"};
+        return {folder_path + "/" + file_name_prefix + "_measurements"};
     }
 };
 
