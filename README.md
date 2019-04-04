@@ -92,7 +92,7 @@ Tests are also a nice **starting points** to learn how to use the library and ho
 
 
 # 📝 API documentaion and example code
-Doxygen-generated documentation is available [here](https://robotology.github.io/bayes-filters-lib/doxygen/doc/html/index.html).
+Doxygen-generated documentation is available [here](https://robotology.github.io/bayes-filters-lib/doc/html/index.html).
 
 
 # 📑 Reference

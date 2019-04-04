@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 #include <BayesFilters/directional_statistics.h>
 
 #include <cmath>
@@ -27,7 +34,7 @@ VectorXd bfl::directional_statistics::directional_mean(const Ref<const MatrixXd>
     /* If one column only is provided, it is returned as is. */
     if (a.cols() == 1)
         return a.col(0);
-    
+
     /* For each row i of the matrix a,
        the method computes the sum of exponentials sum(w_{k} * e^(j*a_{ik})) where j is the imaginary unit
        and then extract the phase angle using the method arg(x). */
