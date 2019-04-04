@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 #include <BayesFilters/UKFCorrection.h>
 
 using namespace bfl;
@@ -104,7 +111,7 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
     bool valid_innovation;
     Data innovation;
     /* This temporary is required since some MeasurementModel::innovation methods may try to cast from
-       const Ref<const MatrixXd> to MatrixXd resulting in a bfl::any::bad_any_cast. 
+       const Ref<const MatrixXd> to MatrixXd resulting in a bfl::any::bad_any_cast.
 
        Hopefully, using std::move, it is possible to steal the memory from pred_meas.mean(). */
     MatrixXd y_p = std::move(pred_meas.mean());

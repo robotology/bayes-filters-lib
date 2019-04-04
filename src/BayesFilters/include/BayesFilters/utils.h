@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 /**
  * Header-only utility library implementing missing features.
  *
@@ -7,9 +14,7 @@
  * Doc:  See https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.
  *       See also: https://herbsutter.com/gotw/_102/.
  *
- * Copyright Claudio Fantacci, 2018. All rights reserved.
  */
-
 #ifndef UTILS_H
 #define UTILS_H
 

@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 #ifndef SIGMAPOINT_H
 #define SIGMAPOINT_H
 
@@ -26,7 +33,7 @@ namespace sigma_point
      */
     using OutputSize = std::pair<std::size_t, std::size_t>;
     using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, OutputSize>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
-    
+
     struct UTWeight
     {
         Eigen::VectorXd mean;
@@ -34,7 +41,7 @@ namespace sigma_point
         /**
          * c = sqrt(n + lambda) with lambda a ut parameter.
          */
-        double c; 
+        double c;
 
         UTWeight(std::size_t n, const double alpha, const double beta, const double kappa);
     };

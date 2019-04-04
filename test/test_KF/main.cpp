@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 #include <BayesFilters/Gaussian.h>
 #include <BayesFilters/GaussianFilter.h>
 #include <BayesFilters/KFCorrection.h>
@@ -88,7 +95,7 @@ int main()
     std::unique_ptr<LinearStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
 
     /* Step 2.2 - Define the prediction step. */
-    
+
     /* Initialize the Kalman filter prediction step and pass the ownership of the state model. */
     std::unique_ptr<KFPrediction> kf_prediction = utils::make_unique<KFPrediction>(std::move(wna));
 

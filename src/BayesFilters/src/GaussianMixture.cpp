@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016-2019 Istituto Italiano di Tecnologia (IIT)
+ *
+ * This software may be modified and distributed under the terms of the
+ * BSD 3-Clause license. See the accompanying LICENSE file for details.
+ */
+
 #include <BayesFilters/GaussianMixture.h>
 
 using namespace bfl;
@@ -154,7 +161,7 @@ bool GaussianMixture::augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& 
 
     /* Move old covariance matrices from right to left to avoid aliasing.
 
-     Note that the covariance matrix of the 0-th coomponent, 
+     Note that the covariance matrix of the 0-th coomponent,
      i.e. in the top-left corner of the matrix covariance_,
      is already in the correct place.
     */
