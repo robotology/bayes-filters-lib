@@ -26,7 +26,7 @@ class bfl::PFPrediction
 public:
     virtual ~PFPrediction() noexcept { };
 
-    void predict(const bfl::ParticleSet& prev_particles, bfl::ParticleSet& pred_particles);
+    void predict(const ParticleSet& prev_particles, ParticleSet& pred_particles);
 
     bool skip(const std::string& what_step, const bool status);
 
@@ -38,12 +38,8 @@ public:
 
     virtual void setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model);
 
-    /* FIXME
-     * This function calls may be deleted in future releases. */
     virtual StateModel& getStateModel() = 0;
 
-    /* FIXME
-     * This function calls may be deleted in future releases. */
     virtual ExogenousModel& getExogenousModel();
 
 protected:
@@ -51,14 +47,14 @@ protected:
 
     PFPrediction(PFPrediction&& pf_prediction) noexcept;
 
-    virtual void predictStep(const bfl::ParticleSet& prev_particles, bfl::ParticleSet& pred_particles) = 0;
+    virtual void predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles) = 0;
 
 private:
     bool skip_prediction_ = false;
 
-    bool skip_state_      = false;
+    bool skip_state_ = false;
 
-    bool skip_exogenous_  = false;
+    bool skip_exogenous_ = false;
 
     friend class PFPredictionDecorator;
 };

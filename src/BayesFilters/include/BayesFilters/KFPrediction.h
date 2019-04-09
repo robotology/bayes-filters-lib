@@ -31,10 +31,12 @@ public:
 
     virtual ~KFPrediction() noexcept;
 
+    StateModel& getStateModel() noexcept override;
+
+    ExogenousModel& getExogenousModel() override;
+
 protected:
     void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
-
-    bfl::StateModel& getStateModel() override;
 
     std::unique_ptr<LinearStateModel> state_model_;
 

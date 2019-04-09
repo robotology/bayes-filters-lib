@@ -27,7 +27,7 @@ class bfl::PFCorrection
 public:
     virtual ~PFCorrection() noexcept { };
 
-    void correct(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles);
+    void correct(const ParticleSet& pred_particles, ParticleSet& cor_particles);
 
     bool skip(const bool status);
 
@@ -35,20 +35,14 @@ public:
 
     virtual void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) = 0;
 
+    virtual LikelihoodModel& getLikelihoodModel() = 0;
+
+    virtual MeasurementModel& getMeasurementModel() = 0;
+
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood() = 0;
 
 protected:
-    /* FIXME
-       There may no need for the folloiwng method to exist.
-       Possibly removed in future versions. */
-    virtual LikelihoodModel& getLikelihoodModel() = 0;
-
-    /* FIXME
-     There may no need for the folloiwng method to exist.
-     Possibly removed in future versions. */
-    virtual MeasurementModel& getMeasurementModel() = 0;
-
-    virtual void correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& cor_particles) = 0;
+    virtual void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) = 0;
 
     PFCorrection() noexcept;
 
