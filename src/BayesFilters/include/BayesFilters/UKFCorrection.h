@@ -37,11 +37,9 @@ public:
 protected:
     void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
-    std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) override;
+    std::unique_ptr<MeasurementModel> measurement_model_;
 
-    std::unique_ptr<bfl::MeasurementModel> measurement_model_;
-
-    std::unique_ptr<bfl::AdditiveMeasurementModel> additive_measurement_model_;
+    std::unique_ptr<AdditiveMeasurementModel> additive_measurement_model_;
 
     enum class UKFCorrectionType { Generic, Additive };
 

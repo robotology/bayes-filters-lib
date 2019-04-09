@@ -33,8 +33,6 @@ public:
 protected:
     void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
-    std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) override;
-
 private:
     std::unique_ptr<LinearMeasurementModel> measurement_model_;
 };
