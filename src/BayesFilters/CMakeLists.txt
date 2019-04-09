@@ -10,23 +10,17 @@
 set(LIBRARY_TARGET_NAME BayesFilters)
 
 # List of library header files
-set(${LIBRARY_TARGET_NAME}_FC_HDR
-        include/BayesFilters/FilteringContext.h
-)
-
 set(${LIBRARY_TARGET_NAME}_FA_HDR
         include/BayesFilters/FilteringAlgorithm.h
         include/BayesFilters/GaussianFilter.h
         include/BayesFilters/ParticleFilter.h
         include/BayesFilters/SIS.h
-        include/BayesFilters/UnscentedKalmanFilter.h
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/AdditiveMeasurementModel.h
         include/BayesFilters/AdditiveStateModel.h
         include/BayesFilters/Agent.h
-        include/BayesFilters/AuxiliaryFunction.h
         include/BayesFilters/BootstrapCorrection.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
@@ -80,30 +74,23 @@ set(${LIBRARY_TARGET_NAME}_FU_HDR
 )
 
 set(${LIBRARY_TARGET_NAME}_HDR
-        ${${LIBRARY_TARGET_NAME}_FC_HDR}
         ${${LIBRARY_TARGET_NAME}_FA_HDR}
         ${${LIBRARY_TARGET_NAME}_FF_HDR}
         ${${LIBRARY_TARGET_NAME}_FU_HDR}
 )
 
 # List of library source files
-set(${LIBRARY_TARGET_NAME}_FC_SRC
-        src/FilteringContext.cpp
-)
-
 set(${LIBRARY_TARGET_NAME}_FA_SRC
         src/FilteringAlgorithm.cpp
         src/GaussianFilter.cpp
         src/ParticleFilter.cpp
         src/SIS.cpp
-        src/UnscentedKalmanFilter.cpp
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/AdditiveMeasurementModel.cpp
         src/AdditiveStateModel.cpp
         src/Agent.cpp
-        src/AuxiliaryFunction.cpp
         src/BootstrapCorrection.cpp
         src/DrawParticles.cpp
         src/GaussianCorrection.cpp
@@ -151,7 +138,6 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
 )
 
 set(${LIBRARY_TARGET_NAME}_SRC
-        ${${LIBRARY_TARGET_NAME}_FC_SRC}
         ${${LIBRARY_TARGET_NAME}_FA_SRC}
         ${${LIBRARY_TARGET_NAME}_FF_SRC}
         ${${LIBRARY_TARGET_NAME}_FU_SRC}
@@ -190,12 +176,10 @@ install(TARGETS ${LIBRARY_TARGET_NAME}
 set_property(GLOBAL APPEND PROPERTY ${PROJECT_NAME}_TARGETS ${LIBRARY_TARGET_NAME})
 
 # if(${CMAKE_GENERATOR} MATCHES "Xcode")
-#     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringContext"   FILES ${${LIBRARY_TARGET_NAME}_FC_HDR})
 #     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringAlgorithm" FILES ${${LIBRARY_TARGET_NAME}_FA_HDR})
 #     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringFunction"  FILES ${${LIBRARY_TARGET_NAME}_FF_HDR})
 #     source_group("include\\${LIBRARY_TARGET_NAME}\\FilteringUtility"   FILES ${${LIBRARY_TARGET_NAME}_FU_HDR})
 #
-#     source_group("src\\FilteringContext"                               FILES ${${LIBRARY_TARGET_NAME}_FC_SRC})
 #     source_group("src\\FilteringAlgorithm"                             FILES ${${LIBRARY_TARGET_NAME}_FA_SRC})
 #     source_group("src\\FilteringFunction"                              FILES ${${LIBRARY_TARGET_NAME}_FF_SRC})
 #     source_group("src\\FilteringUtility"                               FILES ${${LIBRARY_TARGET_NAME}_FU_SRC})
