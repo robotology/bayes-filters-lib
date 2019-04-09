@@ -79,7 +79,7 @@ public:
      * Constructs an empty object.
      */
     any() noexcept :
-      content(0)
+        content(0)
     { }
 
 
@@ -89,7 +89,7 @@ public:
      * or empty if other is empty.
      */
     any(const any& other) :
-      content(other.content ? other.content->clone() : 0)
+        content(other.content ? other.content->clone() : 0)
     { }
 
 
@@ -99,7 +99,7 @@ public:
      * or empty if other is empty.
      */
     any(any&& other) noexcept :
-      content(other.content)
+        content(other.content)
     {
         other.content = 0;
     }
@@ -112,7 +112,7 @@ public:
      */
     template<typename ValueType>
     any(const ValueType& value) :
-    content(new holder<typename std::remove_cv<typename std::decay<const ValueType>::type>::type>(value))
+        content(new holder<typename std::remove_cv<typename std::decay<const ValueType>::type>::type>(value))
     { }
 
 
@@ -291,7 +291,7 @@ inline void swap(any& lhs, any& rhs) noexcept
 
 
 /**
- * Defines a type of object to be thrown by the value-returning forms of libanyboost::any_cast on failure.
+ * Defines a type of object to be thrown by the value-returning forms of blf::any::any_cast on failure.
  */
 class bad_any_cast : public std::bad_cast
 {
@@ -313,7 +313,7 @@ public:
 /**
  * Performs type-safe access to the contained object.
  *
- * Throws libanyboost::bad_any_cast if the typeid of the requested
+ * Throws blf::any::bad_any_cast if the typeid of the requested
  * ValueType does not match that of the contents of operand.
  *
  * @param operand target any object
@@ -328,7 +328,7 @@ ValueType* any_cast(any* operand) noexcept
 /**
  * Performs type-safe access to the contained object.
  *
- * Throws libanyboost::bad_any_cast if the typeid of the requested
+ * Throws blf::any::bad_any_cast if the typeid of the requested
  * ValueType does not match that of the contents of operand.
  *
  * @param operand target any object
@@ -343,7 +343,7 @@ inline const ValueType* any_cast(const any* operand) noexcept
 /**
  * Performs type-safe access to the contained object.
  *
- * Throws libanyboost::bad_any_cast if the typeid of the requested
+ * Throws blf::any::bad_any_cast if the typeid of the requested
  * ValueType does not match that of the contents of operand.
  *
  * @param operand target any object
@@ -366,7 +366,7 @@ ValueType any_cast(any& operand)
 /**
  * Performs type-safe access to the contained object.
  *
- * Throws libanyboost::bad_any_cast if the typeid of the requested
+ * Throws blf::any::bad_any_cast if the typeid of the requested
  * ValueType does not match that of the contents of operand.
  *
  * @param operand target any object
@@ -382,7 +382,7 @@ inline ValueType any_cast(const any& operand)
 /**
  * Performs type-safe access to the contained object.
  *
- * Throws libanyboost::bad_any_cast if the typeid of the requested
+ * Throws blf::any::bad_any_cast if the typeid of the requested
  * ValueType does not match that of the contents of operand.
  *
  * @param operand target any object
