@@ -28,24 +28,24 @@ public:
 
     ~HistoryBuffer() noexcept { };
 
-    void            addElement(const Eigen::Ref<const Eigen::VectorXd>& element);
+    void addElement(const Eigen::Ref<const Eigen::VectorXd>& element);
 
     Eigen::MatrixXd getHistoryBuffer() const;
 
-    bool            setHistorySize(const unsigned int window);
+    bool setHistorySize(const unsigned int window);
 
-    unsigned int    getHistorySize() const { return window_; };
+    inline unsigned int getHistorySize() const { return window_; };
 
-    bool            decreaseHistorySize();
+    bool decreaseHistorySize();
 
-    bool            increaseHistorySize();
+    bool increaseHistorySize();
 
-    bool            clear();
+    bool clear();
 
 private:
-    unsigned int                window_     = 5;
+    unsigned int window_ = 5;
 
-    const unsigned int          max_window_ = 30;
+    const unsigned int max_window_ = 30;
 
     std::deque<Eigen::VectorXd> history_buffer_;
 

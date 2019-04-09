@@ -21,19 +21,6 @@ SUKFCorrection::SUKFCorrection
     const double alpha,
     const double beta,
     const double kappa,
-    const size_t measurement_sub_size
-) noexcept :
-    SUKFCorrection(std::move(measurement_model), n, alpha, beta, kappa, measurement_sub_size, false)
-{ }
-
-
-SUKFCorrection::SUKFCorrection
-(
-    std::unique_ptr<AdditiveMeasurementModel> measurement_model,
-    const size_t n,
-    const double alpha,
-    const double beta,
-    const double kappa,
     const size_t measurement_sub_size,
     const bool use_reduced_noise_covariance_matrix
 ) noexcept :
@@ -183,10 +170,4 @@ MatrixXd SUKFCorrection::getNoiseCovarianceMatrix(const std::size_t index)
         return R;
     else
         return R.block(measurement_sub_size_ * index, measurement_sub_size_ * index, measurement_sub_size_, measurement_sub_size_);
-}
-
-
-std::pair<bool, Eigen::VectorXd> SUKFCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations)
-{
-    throw std::runtime_error("ERROR::SUKFCORRECTION::LIKELIHOOD\nERROR:\n\tMethod not implemented.");
 }

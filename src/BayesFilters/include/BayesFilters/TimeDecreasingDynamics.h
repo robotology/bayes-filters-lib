@@ -28,7 +28,6 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-
 protected:
     struct ImplData;
 

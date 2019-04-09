@@ -21,12 +21,12 @@ namespace bfl {
 }
 
 
-class bfl::UKFCorrection : public bfl::GaussianCorrection
+class bfl::UKFCorrection : public GaussianCorrection
 {
 public:
-    UKFCorrection(std::unique_ptr<bfl::MeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFCorrection(std::unique_ptr<MeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
 
-    UKFCorrection(std::unique_ptr<bfl::AdditiveMeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFCorrection(std::unique_ptr<AdditiveMeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
 
     UKFCorrection(UKFCorrection&& ukf_prediction) noexcept;
 
@@ -35,7 +35,7 @@ public:
     MeasurementModel& getMeasurementModel() override;
 
 protected:
-    void correctStep(const bfl::GaussianMixture& pred_state, bfl::GaussianMixture& corr_state) override;
+    void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
     std::pair<bool, Eigen::VectorXd> likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations) override;
 
@@ -54,7 +54,7 @@ protected:
     /**
      * Unscented transform weight.
      */
-    bfl::sigma_point::UTWeight ut_weight_;
+    sigma_point::UTWeight ut_weight_;
 };
 
 #endif /* UKFCORRECTION_H */

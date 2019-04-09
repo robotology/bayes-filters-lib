@@ -101,9 +101,3 @@ void KFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtur
         corr_state.covariance(i).noalias() = pred_state.covariance(i) - K * Py * K.transpose();
     }
 }
-
-
-std::pair<bool, Eigen::VectorXd> KFCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations)
-{
-    throw std::runtime_error("ERROR::KFCORRECION::LIKELIHOOD\nERROR:\n\tMethod not implemented.");
-}

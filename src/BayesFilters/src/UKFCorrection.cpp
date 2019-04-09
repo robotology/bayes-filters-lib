@@ -142,8 +142,3 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
         corr_state.covariance(i) = pred_state.covariance(i) - K * pred_meas.covariance(i) * K.transpose();
     }
 }
-
-std::pair<bool, Eigen::VectorXd> UKFCorrection::likelihood(const Eigen::Ref<const Eigen::MatrixXd>& innovations)
-{
-    throw std::runtime_error("ERROR::UKFCORRECION::LIKELIHOOD\nERROR:\n\tMethod not implemented.");
-}

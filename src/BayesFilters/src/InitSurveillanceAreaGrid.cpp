@@ -11,8 +11,15 @@ using namespace bfl;
 using namespace Eigen;
 
 
-InitSurveillanceAreaGrid::InitSurveillanceAreaGrid(const double surv_x_inf, const double surv_x_sup, const double surv_y_inf, const double surv_y_sup,
-                                                   const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept :
+InitSurveillanceAreaGrid::InitSurveillanceAreaGrid
+(
+    const double surv_x_inf,
+    const double surv_x_sup,
+    const double surv_y_inf,
+    const double surv_y_sup,
+    const unsigned int num_particle_x,
+    const unsigned int num_particle_y
+) noexcept :
     surv_x_inf_(surv_x_inf),
     surv_x_sup_(surv_x_sup),
     surv_y_inf_(surv_y_inf),
@@ -22,8 +29,13 @@ InitSurveillanceAreaGrid::InitSurveillanceAreaGrid(const double surv_x_inf, cons
 { }
 
 
-InitSurveillanceAreaGrid::InitSurveillanceAreaGrid(const double surv_x, const double surv_y,
-                                                   const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept :
+InitSurveillanceAreaGrid::InitSurveillanceAreaGrid
+(
+    const double surv_x,
+    const double surv_y,
+    const unsigned int num_particle_x,
+    const unsigned int num_particle_y
+) noexcept :
     InitSurveillanceAreaGrid(0, surv_x, 0, surv_y,
                              num_particle_x, num_particle_y)
 { }

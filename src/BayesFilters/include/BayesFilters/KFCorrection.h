@@ -19,7 +19,7 @@ namespace bfl {
 }
 
 
-class bfl::KFCorrection : public bfl::GaussianCorrection
+class bfl::KFCorrection : public GaussianCorrection
 {
 public:
     KFCorrection(std::unique_ptr<LinearMeasurementModel> measurement_model) noexcept;

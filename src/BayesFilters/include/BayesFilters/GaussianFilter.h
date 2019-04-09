@@ -21,26 +21,16 @@ namespace bfl {
 class bfl::GaussianFilter: public bfl::FilteringAlgorithm
 {
 public:
-    GaussianFilter(Gaussian& initial_state, std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
-
-    GaussianFilter(GaussianFilter&& kf) noexcept;
-
-    GaussianFilter& operator=(GaussianFilter&& gf) noexcept;
-
     virtual ~GaussianFilter() noexcept;
-
-    bool initialization() override;
-
-    void filteringStep() override;
-
-    bool runCondition() override;
 
     bool skip(const std::string& what_step, const bool status) override;
 
 protected:
-    Gaussian predicted_state_;
+    GaussianFilter(std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
 
-    Gaussian corrected_state_;
+    GaussianFilter(GaussianFilter&& kf) noexcept;
+
+    GaussianFilter& operator=(GaussianFilter&& gf) noexcept;
 
     std::unique_ptr<GaussianPrediction> prediction_;
 

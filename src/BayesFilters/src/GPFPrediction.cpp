@@ -14,12 +14,14 @@ using namespace Eigen;
 
 
 GPFPrediction::GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_pred) noexcept :
-    gaussian_prediction_(std::move(gauss_pred)) { };
+    gaussian_prediction_(std::move(gauss_pred))
+{ }
 
 
 GPFPrediction::GPFPrediction(GPFPrediction&& gpf_prediction) noexcept :
     PFPrediction(std::move(gpf_prediction)),
-    gaussian_prediction_(std::move(gpf_prediction.gaussian_prediction_)) { }
+    gaussian_prediction_(std::move(gpf_prediction.gaussian_prediction_))
+{ }
 
 
 StateModel& GPFPrediction::getStateModel()
@@ -28,7 +30,7 @@ StateModel& GPFPrediction::getStateModel()
 }
 
 
-void GPFPrediction::setStateModel(std::unique_ptr<StateModel> exogenous_model)
+void GPFPrediction::setStateModel(std::unique_ptr<StateModel> state_model)
 {
     throw std::runtime_error("ERROR::GPFPREDICTION::GETSTATEMODEL\nERROR:\n\tCall to unimplemented base class method.");
 }

@@ -24,43 +24,43 @@ namespace bfl {
 }
 
 
-class bfl::GPFCorrection : public bfl::PFCorrection
+class bfl::GPFCorrection : public PFCorrection
 {
 public:
-    GPFCorrection(std::unique_ptr<bfl::GaussianCorrection> gaussian_correction, std::unique_ptr<bfl::LikelihoodModel> likihood_model, std::unique_ptr<bfl::StateModel> state_model) noexcept;
+    GPFCorrection(std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<StateModel> state_model) noexcept;
 
-    GPFCorrection(std::unique_ptr<bfl::GaussianCorrection> gaussian_correction, std::unique_ptr<bfl::LikelihoodModel> likelihood_model, std::unique_ptr<bfl::StateModel> state_model, unsigned int seed) noexcept;
+    GPFCorrection(std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<StateModel> state_model, unsigned int seed) noexcept;
 
     GPFCorrection(GPFCorrection&& gpf_correction) noexcept;
 
     virtual ~GPFCorrection() noexcept { };
 
-    void setLikelihoodModel(std::unique_ptr<bfl::LikelihoodModel> likelihood_model) override;
+    void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
 
-    void setMeasurementModel(std::unique_ptr<bfl::MeasurementModel> measurement_model) override;
+    void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
 
-    bfl::MeasurementModel& getMeasurementModel() override;
+    MeasurementModel& getMeasurementModel() override;
 
-    bfl::LikelihoodModel& getLikelihoodModel() override;
+    LikelihoodModel& getLikelihoodModel() override;
 
     std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
 protected:
-    void correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& corr_particles) override;
+    void correctStep(const ParticleSet& pred_particles, ParticleSet& corr_particles) override;
 
     Eigen::VectorXd sampleFromProposal(const Eigen::VectorXd& mean, const Eigen::MatrixXd& covariance);
 
     double evaluateProposal(const Eigen::VectorXd& state, const Eigen::VectorXd& mean, const Eigen::MatrixXd& covariance);
 
-    std::unique_ptr<bfl::GaussianCorrection> gaussian_correction_;
+    std::unique_ptr<GaussianCorrection> gaussian_correction_;
 
-    std::unique_ptr<bfl::LikelihoodModel> likelihood_model_;
+    std::unique_ptr<LikelihoodModel> likelihood_model_;
 
     /**
      * The state model is required to evaluate the Markov transition probability
      * that is used in the update of the particles weight.
      */
-    std::unique_ptr<bfl::StateModel> state_model_;
+    std::unique_ptr<StateModel> state_model_;
 
     std::mt19937_64 generator_;
 

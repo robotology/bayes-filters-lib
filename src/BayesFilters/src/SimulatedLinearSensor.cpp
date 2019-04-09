@@ -46,9 +46,9 @@ SimulatedLinearSensor::SimulatedLinearSensor
 
 SimulatedLinearSensor::SimulatedLinearSensor
 (
-     std::unique_ptr<SimulatedStateModel> simulated_state_model,
-     const double sigma_x,
-     const double sigma_y
+    std::unique_ptr<SimulatedStateModel> simulated_state_model,
+    const double sigma_x,
+    const double sigma_y
 ) :
     SimulatedLinearSensor(std::move(simulated_state_model), sigma_x, sigma_y, 1)
 { }

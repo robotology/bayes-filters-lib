@@ -8,8 +8,9 @@
 #ifndef GAUSSIANPREDICTION_H
 #define GAUSSIANPREDICTION_H
 
-#include <BayesFilters/StateModel.h>
+#include <BayesFilters/ExogenousModel.h>
 #include <BayesFilters/GaussianMixture.h>
+#include <BayesFilters/StateModel.h>
 
 #include <Eigen/Dense>
 
@@ -21,7 +22,7 @@ namespace bfl {
 class bfl::GaussianPrediction
 {
 public:
-    virtual ~GaussianPrediction() noexcept { };
+    virtual ~GaussianPrediction() noexcept;
 
     void predict(const GaussianMixture& prev_state, GaussianMixture& pred_state);
 
@@ -31,7 +32,9 @@ public:
 
     bool getSkipExogenous();
 
-    virtual StateModel& getStateModel() = 0;
+    virtual StateModel& getStateModel() noexcept = 0;
+
+    virtual ExogenousModel& getExogenousModel();
 
 protected:
     GaussianPrediction() noexcept;
@@ -43,9 +46,9 @@ protected:
 private:
     bool skip_prediction_ = false;
 
-    bool skip_state_      = false;
+    bool skip_state_ = false;
 
-    bool skip_exogenous_  = false;
+    bool skip_exogenous_ = false;
 
     friend class GaussianPredictionDecorator;
 

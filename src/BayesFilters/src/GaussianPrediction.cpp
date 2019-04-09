@@ -14,10 +14,16 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GaussianPrediction::GaussianPrediction() noexcept { };
+GaussianPrediction::GaussianPrediction() noexcept
+{ }
 
 
-GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept { }
+GaussianPrediction::~GaussianPrediction() noexcept
+{ }
+
+
+GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept
+{ }
 
 
 void GaussianPrediction::predict(const GaussianMixture& prev_state, GaussianMixture& pred_state)
@@ -53,4 +59,9 @@ bool GaussianPrediction::getSkipState()
 bool GaussianPrediction::getSkipExogenous()
 {
     return skip_exogenous_;
+}
+
+ExogenousModel& GaussianPrediction::getExogenousModel()
+{
+    throw std::runtime_error("ERROR::GAUSSIANPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tCall to unimplemented base class method.");
 }

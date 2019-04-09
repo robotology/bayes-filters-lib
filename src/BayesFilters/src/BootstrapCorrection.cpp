@@ -14,10 +14,12 @@ using namespace bfl;
 using namespace Eigen;
 
 
-BootstrapCorrection::BootstrapCorrection() noexcept { }
+BootstrapCorrection::BootstrapCorrection() noexcept
+{ }
 
 
-BootstrapCorrection::~BootstrapCorrection() noexcept { }
+BootstrapCorrection::~BootstrapCorrection() noexcept
+{ }
 
 
 void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
@@ -28,6 +30,18 @@ void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, Particl
 
     if (valid_likelihood_)
         cor_particles.weight() += (likelihood_.array() + std::numeric_limits<double>::min()).log().matrix();
+}
+
+
+LikelihoodModel& BootstrapCorrection::getLikelihoodModel()
+{
+    return *likelihood_model_;
+}
+
+
+MeasurementModel& BootstrapCorrection::getMeasurementModel()
+{
+    return *measurement_model_;
 }
 
 
@@ -46,16 +60,4 @@ void BootstrapCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> li
 void BootstrapCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
 {
     measurement_model_ = std::move(measurement_model);
-}
-
-
-LikelihoodModel& BootstrapCorrection::getLikelihoodModel()
-{
-    return *likelihood_model_;
-}
-
-
-MeasurementModel& BootstrapCorrection::getMeasurementModel()
-{
-    return *measurement_model_;
 }

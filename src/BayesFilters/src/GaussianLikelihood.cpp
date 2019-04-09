@@ -12,11 +12,13 @@ using namespace Eigen;
 
 
 GaussianLikelihood::GaussianLikelihood() noexcept :
-    GaussianLikelihood(1.0) { }
+    GaussianLikelihood(1.0)
+{ }
 
 
 GaussianLikelihood::GaussianLikelihood(const double scale_factor) noexcept :
-    scale_factor_(scale_factor) { }
+    scale_factor_(scale_factor)
+{ }
 
 
 std::pair<bool, VectorXd> GaussianLikelihood::likelihood

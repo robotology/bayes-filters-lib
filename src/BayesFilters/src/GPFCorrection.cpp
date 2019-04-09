@@ -18,22 +18,22 @@ using namespace Eigen;
 GPFCorrection::GPFCorrection
 (
     std::unique_ptr<GaussianCorrection> gauss_corr,
-    std::unique_ptr<LikelihoodModel> lik_model,
+    std::unique_ptr<LikelihoodModel> likelihood_model,
     std::unique_ptr<StateModel> state_model
 ) noexcept :
-    GPFCorrection(std::move(gauss_corr), std::move(lik_model), std::move(state_model), 1)
+    GPFCorrection(std::move(gauss_corr), std::move(likelihood_model), std::move(state_model), 1)
 { }
 
 
 GPFCorrection::GPFCorrection
 (
     std::unique_ptr<GaussianCorrection> gauss_corr,
-    std::unique_ptr<LikelihoodModel> lik_model,
+    std::unique_ptr<LikelihoodModel> likelihood_model,
     std::unique_ptr<StateModel> state_model,
     unsigned int seed
 ) noexcept :
     gaussian_correction_(std::move(gauss_corr)),
-    likelihood_model_(std::move(lik_model)),
+    likelihood_model_(std::move(likelihood_model)),
     state_model_(std::move(state_model)),
     generator_(std::mt19937_64(seed)),
     distribution_(std::normal_distribution<double>(0.0, 1.0)),
@@ -48,7 +48,8 @@ GPFCorrection::GPFCorrection(GPFCorrection&& gpf_correction) noexcept :
     state_model_(std::move(gpf_correction.state_model_)),
     generator_(std::move(gpf_correction.generator_)),
     distribution_(std::move(gpf_correction.distribution_)),
-    gaussian_random_sample_(std::move(gpf_correction.gaussian_random_sample_)) { }
+    gaussian_random_sample_(std::move(gpf_correction.gaussian_random_sample_))
+{ }
 
 
 void GPFCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)

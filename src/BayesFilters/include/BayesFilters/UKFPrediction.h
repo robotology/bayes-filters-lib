@@ -22,31 +22,39 @@ namespace bfl {
 }
 
 
-class bfl::UKFPrediction : public bfl::GaussianPrediction
+class bfl::UKFPrediction : public GaussianPrediction
 {
 public:
-    UKFPrediction(std::unique_ptr<bfl::StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFPrediction(std::unique_ptr<StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
 
-    UKFPrediction(std::unique_ptr<bfl::AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFPrediction(std::unique_ptr<StateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+
+    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+
+    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
 
     UKFPrediction(UKFPrediction&& ukf_prediction) noexcept;
 
     virtual ~UKFPrediction() noexcept;
 
-    void setExogenousModel(std::unique_ptr<bfl::ExogenousModel> exog_model);
+    StateModel& getStateModel() noexcept override;
+
+    ExogenousModel& getExogenousModel() override;
 
 protected:
-    void predictStep(const bfl::GaussianMixture& prev_state, bfl::GaussianMixture& pred_state) override;
+    void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
 
-    bfl::StateModel& getStateModel() override;
+    std::unique_ptr<StateModel> state_model_;
 
-    std::unique_ptr<bfl::StateModel> state_model_;
+    std::unique_ptr<AdditiveStateModel> add_state_model_;
 
-    std::unique_ptr<bfl::AdditiveStateModel> add_state_model_;
+    std::unique_ptr<ExogenousModel> exogenous_model_;
 
-    std::unique_ptr<bfl::ExogenousModel> exog_model_;
-
-    enum class UKFPredictionType { Generic, Additive };
+    enum class UKFPredictionType
+    {
+        Generic,
+        Additive
+    };
 
     /**
      * Distinguish between a UKFPrediction using a generic StateModel
@@ -57,7 +65,7 @@ protected:
     /**
      * Unscented transform weight.
      */
-    bfl::sigma_point::UTWeight ut_weight_;
+    sigma_point::UTWeight ut_weight_;
 };
 
 #endif /* UKFPREDICTION_H */

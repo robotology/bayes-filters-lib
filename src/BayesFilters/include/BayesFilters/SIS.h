@@ -27,19 +27,15 @@ namespace bfl {
 class bfl::SIS : public ParticleFilter
 {
 public:
-    SIS(unsigned int num_particle, std::size_t state_size_linear, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
-
     SIS(unsigned int num_particle, std::size_t state_size_linear, std::size_t state_size_circular, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
+
+    SIS(unsigned int num_particle, std::size_t state_size_linear, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
     SIS(SIS&& sir_pf) noexcept;
 
     virtual ~SIS() noexcept;
 
     SIS& operator=(SIS&& sir_pf) noexcept;
-
-    bool initialization() override;
-
-    bool runCondition() override;
 
 protected:
     unsigned int num_particle_;
@@ -50,7 +46,11 @@ protected:
 
     ParticleSet cor_particle_;
 
+    bool initialization() override;
+
     void filteringStep() override;
+
+    bool runCondition() override;
 
     std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
     {

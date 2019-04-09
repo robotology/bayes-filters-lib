@@ -32,17 +32,31 @@ KFPrediction::~KFPrediction() noexcept
 { }
 
 
+bfl::StateModel& KFPrediction::getStateModel() noexcept
+{
+    return *state_model_;
+}
+
+
+bfl::ExogenousModel& KFPrediction::getExogenousModel()
+{
+    if (exogenous_model_ == nullptr)
+        throw std::runtime_error("ERROR::KFPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tExogenous model does not exist. Did you pass it to KFPrediction ctor?");
+
+    return *exogenous_model_;
+}
+
+
 void KFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {
     bool skip_exogenous = getSkipExogenous() || (exogenous_model_ == nullptr);
+
     if (getSkipState() && skip_exogenous)
     {
         /* Skip prediction step entirely. */
         pred_state = prev_state;
         return;
     }
-
-    /* From now on, either (!getSkipState) == true or (!skip_exogenous) == true. */
 
     if (!getSkipState())
     {
@@ -55,20 +69,8 @@ void KFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixtur
            P_{k+1} = F_{k} * P_{k} * F_{k}' + Q */
         for (size_t i=0; i < prev_state.components; i++)
             pred_state.covariance(i).noalias() = F * prev_state.covariance(i) * F.transpose() + state_model_->getNoiseCovarianceMatrix();
-    }
-    else
-    {
-        /* Assuming that also the uncertainty due to the noise is neglected if (getSkipState == true). */
-        pred_state.covariance() = prev_state.covariance();
-    }
 
-    if (!skip_exogenous)
-    {
-        if (getSkipState())
-        {
-            exogenous_model_->propagate(prev_state.mean(), pred_state.mean());
-        }
-        else
+        if (!skip_exogenous)
         {
             /* Since it is not clear whether ExogenousModel::propagate takes
                into account aliasing or not, then a temporary is used here. */
@@ -79,9 +81,14 @@ void KFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixtur
             pred_state.mean() = std::move(tmp);
         }
     }
-}
+    else
+    {
+        /* Assuming that also the uncertainty due to the noise is neglected if (getSkipState == true). */
+        pred_state.covariance() = prev_state.covariance();
 
-bfl::StateModel& KFPrediction::getStateModel()
-{
-    return *state_model_;
+        if (!skip_exogenous)
+        {
+            exogenous_model_->propagate(prev_state.mean(), pred_state.mean());
+        }
+    }
 }

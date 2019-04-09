@@ -31,7 +31,7 @@ public:
 
     virtual std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXd>& cur_states) const = 0;
 
-    virtual std::pair<bool, bfl::Data> innovation(const bfl::Data& predicted_measurements, const bfl::Data& measurements) const = 0;
+    virtual std::pair<bool, Data> innovation(const Data& predicted_measurements, const Data& measurements) const = 0;
 
     virtual std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const;
 

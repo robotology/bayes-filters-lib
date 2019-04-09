@@ -40,11 +40,13 @@ LinearModel::LinearModel
 
 
 LinearModel::LinearModel(const double sigma_x, const double sigma_y) noexcept :
-    LinearModel(sigma_x, sigma_y, 1) { }
+    LinearModel(sigma_x, sigma_y, 1)
+{ }
 
 
 LinearModel::LinearModel() noexcept :
-    LinearModel(10.0, 10.0, 1) { }
+    LinearModel(10.0, 10.0, 1)
+{ }
 
 
 LinearModel::~LinearModel() noexcept

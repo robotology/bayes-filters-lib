@@ -21,23 +21,23 @@ namespace bfl {
 }
 
 
-class bfl::GPFPrediction : public bfl::PFPrediction
+class bfl::GPFPrediction : public PFPrediction
 {
 public:
-    GPFPrediction(std::unique_ptr<bfl::GaussianPrediction> gauss_pred) noexcept;
+    GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_pred) noexcept;
 
     GPFPrediction(GPFPrediction&& gpf_prediction) noexcept;
 
     virtual ~GPFPrediction() noexcept { };
 
-    void setStateModel(std::unique_ptr<bfl::StateModel> state_model) override;
+    void setStateModel(std::unique_ptr<StateModel> state_model) override;
 
-    bfl::StateModel& getStateModel() override;
+    StateModel& getStateModel() override;
 
 protected:
-    void predictStep(const bfl::ParticleSet& previous_particles, bfl::ParticleSet& predicted_particles) override;
+    void predictStep(const ParticleSet& previous_particles, ParticleSet& predicted_particles) override;
 
-    std::unique_ptr<bfl::GaussianPrediction> gaussian_prediction_;
+    std::unique_ptr<GaussianPrediction> gaussian_prediction_;
 };
 
 #endif /* GPFPREDICTION_H */

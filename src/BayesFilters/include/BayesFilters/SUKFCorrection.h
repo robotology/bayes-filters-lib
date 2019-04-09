@@ -19,6 +19,7 @@ namespace bfl {
     class SUKFCorrection;
 }
 
+
 /**
  * This class implements the algorithm:
  * Barfoot, T., McManus, C. (2011),
@@ -27,15 +28,10 @@ namespace bfl {
  * MIT Press
  */
 
-class bfl::SUKFCorrection : public bfl::GaussianCorrection
+
+class bfl::SUKFCorrection : public GaussianCorrection
 {
 public:
-    /**
-     * The input argument meas_sub_size is the sub-size, J, of the
-     * measurement vector y in R^M such that M = k * J for some positive integer k.
-     */
-    SUKFCorrection(std::unique_ptr<AdditiveMeasurementModel> measurement_model, const std::size_t state_size, const double alpha, const double beta, const double kappa, const std::size_t measurement_sub_size) noexcept;
-
     /**
      * If input argument use_reduced_noise_covariance_matrix is set to true,
      * when the algorithm calls measurement_model_.getNoiseCovarianceMatrix()
@@ -44,6 +40,8 @@ public:
      * If set to false, the algorithms expects to receive the complete noise covariance matrix
      * consisting in (M / meas_sub_size) diagonal blocks of size measurement_sub_size_ x measurement_sub_size_
      * where M is the size of the current measurement.
+     * The input argument meas_sub_size is the sub-size, J, of the
+     * measurement vector y in R^M such that M = k * J for some positive integer k.
      */
     SUKFCorrection(std::unique_ptr<AdditiveMeasurementModel> measurement_model, const std::size_t state_size, const double alpha, const double beta, const double kappa, const std::size_t measurement_sub_size, const bool use_reduced_noise_covariance_matrix) noexcept;
 
@@ -66,7 +64,7 @@ private:
     /**
      * Unscented transform weight.
      */
-    bfl::sigma_point::UTWeight ut_weight_;
+    sigma_point::UTWeight ut_weight_;
 
     std::size_t measurement_sub_size_;
 
