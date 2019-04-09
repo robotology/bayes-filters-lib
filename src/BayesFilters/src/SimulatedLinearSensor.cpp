@@ -63,7 +63,7 @@ SimulatedLinearSensor::~SimulatedLinearSensor() noexcept
 { }
 
 
-bool SimulatedLinearSensor::freezeMeasurements()
+bool SimulatedLinearSensor::freeze()
 {
     if (!simulated_state_model_->bufferData())
         return false;
@@ -81,7 +81,7 @@ bool SimulatedLinearSensor::freezeMeasurements()
 }
 
 
-std::pair<bool, Data> SimulatedLinearSensor::measure() const
+std::pair<bool, Data> SimulatedLinearSensor::measure(const Data& data) const
 {
     return std::make_pair(true, measurement_);
 }

@@ -60,9 +60,9 @@ bool MeasurementModelDecorator::setProperty(const std::string& property)
 }
 
 
-bool MeasurementModelDecorator::freezeMeasurements()
+bool MeasurementModelDecorator::freeze()
 {
-    return measurement_model->freezeMeasurements();
+    return measurement_model->freeze();
 }
 
 
