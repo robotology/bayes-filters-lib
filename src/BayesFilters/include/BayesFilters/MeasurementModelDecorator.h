@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::MeasurementModelDecorator : public MeasurementModel
 {
 public:
-    std::pair<bool, bfl::Data> measure() const override;
+    std::pair<bool, bfl::Data> measure(const Data& data = Data()) const override;
 
     std::pair<bool, bfl::Data> predictedMeasure(const Eigen::Ref<const Eigen::MatrixXd>& cur_states) const override;
 
