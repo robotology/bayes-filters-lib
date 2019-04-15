@@ -30,7 +30,7 @@ MeasurementModelDecorator& MeasurementModelDecorator::operator=(MeasurementModel
 }
 
 
-std::pair<bool, Data> MeasurementModelDecorator::measure() const
+std::pair<bool, Data> MeasurementModelDecorator::measure(const Data& data) const
 {
     return measurement_model->measure();
 }
