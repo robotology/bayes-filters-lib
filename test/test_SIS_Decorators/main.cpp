@@ -57,7 +57,7 @@ public:
     { }
 
 
-    std::pair<bool, bfl::Data> measure() const override
+    std::pair<bool, Data> measure(const Data& data = Data()) const override
     {
         std::cout << "Decorator: DecoratedLinearSensor::measure()." << std::endl;
 

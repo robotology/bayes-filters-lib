@@ -33,7 +33,9 @@ public:
         std::unique_ptr<GaussianCorrection> correction,
         std::size_t simulation_steps
     ) noexcept :
-        GaussianFilter(initial_state, std::move(prediction), std::move(correction)),
+        GaussianFilter(std::move(prediction), std::move(correction)),
+        predicted_state_(initial_state.dim_linear, initial_state.dim_circular),
+        corrected_state_(initial_state),
         simulation_steps_(simulation_steps)
     { }
 
@@ -44,6 +46,21 @@ protected:
             return true;
         else
             return false;
+    }
+
+
+    bool initialization() override
+    {
+        return true;
+    }
+
+
+    void filteringStep() override
+    {
+        prediction_->predict(corrected_state_, predicted_state_);
+        correction_->correct(predicted_state_, corrected_state_);
+
+        log();
     }
 
 
@@ -60,6 +77,10 @@ protected:
     }
 
 private:
+    Gaussian predicted_state_;
+
+    Gaussian corrected_state_;
+
     std::size_t simulation_steps_;
 };
 
@@ -128,7 +149,7 @@ int main(int argc, char* argv[])
         simulated_linear_sensor->enable_log("./", "testKF_SUKF");
 
     /* Step 3.3 - Initialize the serial unscented Kalman filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<GaussianCorrection> sukf_correction = utils::make_unique<SUKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa, 2);
+    std::unique_ptr<GaussianCorrection> sukf_correction = utils::make_unique<SUKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa, 2, true);
 
 
     /* Step 4 - Assemble the serial unscented Kalman filter */
