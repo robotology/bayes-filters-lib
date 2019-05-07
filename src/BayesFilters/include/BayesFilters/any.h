@@ -79,7 +79,7 @@ public:
      * Constructs an empty object.
      */
     any() noexcept :
-        content(0)
+        content(nullptr)
     { }
 
 
@@ -89,7 +89,7 @@ public:
      * or empty if other is empty.
      */
     any(const any& other) :
-        content(other.content ? other.content->clone() : 0)
+        content(other.content ? other.content->clone() : nullptr)
     { }
 
 
@@ -101,7 +101,7 @@ public:
     any(any&& other) noexcept :
         content(other.content)
     {
-        other.content = 0;
+        other.content = nullptr;
     }
 
 
@@ -122,7 +122,7 @@ public:
      * std::is_copy_constructible<std::decay_t<ValueType>>::value is false, the program is ill-formed.
      */
     template<typename ValueType>
-    any(ValueType&& value, typename std::enable_if<!std::is_same<any&, ValueType>::value>::type* = 0, typename std::enable_if<!std::is_const<ValueType>::value>::type* = 0) :
+    any(ValueType&& value, typename std::enable_if<!std::is_same<any&, ValueType>::value>::type* = nullptr, typename std::enable_if<!std::is_const<ValueType>::value>::type* = nullptr) :
         content(new holder<typename std::decay<ValueType>::type>(static_cast<ValueType&&>(value)))
     { }
 
@@ -321,7 +321,7 @@ public:
 template<typename ValueType>
 ValueType* any_cast(any* operand) noexcept
 {
-    return operand && operand->type() == typeid(ValueType) ? std::addressof(static_cast<any::holder<typename std::remove_cv<ValueType>::type>*>(operand->content)->held) : 0;
+    return operand && operand->type() == typeid(ValueType) ? std::addressof(static_cast<any::holder<typename std::remove_cv<ValueType>::type>*>(operand->content)->held) : nullptr;
 }
 
 

@@ -4,6 +4,9 @@
 ##### `CMake`
 - Minor version increases since API compatibility is broken.
 
+##### `General improvements`
+- Changed any::any default pointer value to nullptr.
+
 ##### `Filtering utilities`
 - Constructor EstimatesExtraction::EstimatesExtraction() takes the state size, both linear and circular.
 - Class EstimatesExtraction does not assume that the state is a 7-vector containing cartesian position and axis/angle representation of orientation anymore.
@@ -76,7 +79,7 @@
 ##### `CMake`
  - Add CMake variable TEST_LOG_TO_FILE to disable file logs in tests.
 
-##### `General fixes`
+##### `General improvements`
  - Added missing `override` keyword.
  - Reordered data member initialization list of SIS class.
 
