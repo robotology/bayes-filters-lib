@@ -57,7 +57,7 @@ bool InitSurveillanceAreaGrid::initialize(ParticleSet& particles)
                                                             static_cast<double>((delta_surv_y / (num_particle_y_ - 1)) * j + surv_y_inf_),
                                                                                                                                         0;
 
-    particles.weight().setConstant(-log(num_particle));
+    particles.weight().setConstant(-std::log(num_particle));
 
     return true;
 }

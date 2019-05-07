@@ -243,7 +243,7 @@ VectorXd EstimatesExtraction::map
      * Saha, S., Boers, Y., Driessen, H., Mandal, P. K., Bagchi, A. (2009),
      * 'Particle Based MAP State Estimation: A Comparison.',
      * 12th International Conference on Information Fusion,
-     * Seattle, WA, USA, July 6-9, 2009. 
+     * Seattle, WA, USA, July 6-9, 2009.
      *
      * The equation is rewritten in order to work in the log space.
      */
@@ -254,7 +254,7 @@ VectorXd EstimatesExtraction::map
 
     double eps = std::numeric_limits<double>::min();
     for (std::size_t i = 0; i < values.size(); i++)
-        values(i) = log(likelihoods(i) + eps) + utils::log_sum_exp((transition_probabilities.row(i).transpose().array() + eps).log() + previous_weights.array());
+        values(i) = std::log(likelihoods(i) + eps) + utils::log_sum_exp(((transition_probabilities.row(i).transpose().array() + eps).log() + previous_weights.array()).matrix());
 
     values.maxCoeff(&map_index);
 
@@ -285,7 +285,7 @@ VectorXd EstimatesExtraction::simpleAverage
 
     MatrixXd history = hist_buffer_.getHistoryBuffer();
     if (sm_weights_.size() != history.cols())
-        sm_weights_ = VectorXd::Constant(history.cols(), -log(history.cols()));
+        sm_weights_ = VectorXd::Constant(history.cols(), -std::log(history.cols()));
 
 
     return mean(history, sm_weights_);
@@ -318,7 +318,7 @@ VectorXd EstimatesExtraction::weightedAverage
     {
         wm_weights_.resize(history.cols());
         for (unsigned int i = 0; i < history.cols(); ++i)
-            wm_weights_(i) = log(history.cols() - i);
+            wm_weights_(i) = std::log(history.cols() - i);
 
         wm_weights_.array() -= utils::log_sum_exp(wm_weights_);
     }

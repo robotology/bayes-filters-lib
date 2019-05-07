@@ -19,18 +19,21 @@ using namespace Eigen;
 ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<bfl::ParticleSetInitialization> init_model, const double prior_ratio, const unsigned int seed) noexcept :
     Resampling(seed),
     init_model_(std::move(init_model)),
-    prior_ratio_(prior_ratio) { }
+    prior_ratio_(prior_ratio)
+{ }
 
 
 ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<ParticleSetInitialization> init_model, const double prior_ratio) noexcept :
     Resampling(1),
     init_model_(std::move(init_model)),
-    prior_ratio_(prior_ratio)  { }
+    prior_ratio_(prior_ratio)
+{ }
 
 
 ResamplingWithPrior::ResamplingWithPrior(std::unique_ptr<ParticleSetInitialization> init_model) noexcept :
     Resampling(1),
-    init_model_(std::move(init_model)) { }
+    init_model_(std::move(init_model))
+{ }
 
 
 ResamplingWithPrior::ResamplingWithPrior(ResamplingWithPrior&& resampling) noexcept :
@@ -42,7 +45,8 @@ ResamplingWithPrior::ResamplingWithPrior(ResamplingWithPrior&& resampling) noexc
 }
 
 
-ResamplingWithPrior::~ResamplingWithPrior() noexcept { }
+ResamplingWithPrior::~ResamplingWithPrior() noexcept
+{ }
 
 
 ResamplingWithPrior& ResamplingWithPrior::operator=(ResamplingWithPrior&& resampling) noexcept
@@ -97,7 +101,7 @@ void ResamplingWithPrior::resample(const ParticleSet& cor_particles, ParticleSet
     res_particles = std::move(res_particles_left + res_particles_right);
 
     /* Reset weights.*/
-    res_particles.weight().setConstant(-log(cor_particles.state().cols()));
+    res_particles.weight().setConstant(-std::log(cor_particles.state().cols()));
 
     /* Since num_prior_particles were created from scratch,
        they do not have a parent. */
