@@ -53,6 +53,7 @@
 - `GPFPrediction::correctStep()` calls `correct()` instead of `correctStep()` on the underlying `GaussianCorrection`.
 - `GaussianPrediction` is not a friend of `GPFPrediction` anymore.
 - `GaussianCorrection` is not a friend of `GPFCorrection` anymore.
+- Removed decorator classes. Using decorator was an easy way of extending functionalities, but at the cost of writing erroneous behavior in the filters.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.

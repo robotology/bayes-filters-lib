@@ -101,7 +101,6 @@ The best way to learn the basic principles about the library is by examples:
  - [Another Kalman-like filter: the Unscented Kalman Filter](@ref ukf)
  - [The first particle filter: the Sequential Importance Sampling PF](@ref sis)
  - [The best from particle and Kalman filtering: the Unscented Particle Filter](@ref upf)
- - [How to decorate classes to add functionalities](@ref decorate-classes)
 
 
 # 📑 Reference {#reference}
