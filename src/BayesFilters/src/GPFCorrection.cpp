@@ -6,6 +6,7 @@
  */
 
 #include <BayesFilters/GPFCorrection.h>
+#include <BayesFilters/utils.h>
 
 #include <Eigen/Cholesky>
 
@@ -144,7 +145,5 @@ double GPFCorrection::evaluateProposal
 {
     /* Evaluate the proposal distribution, a Gaussian centered in 'mean' and having
        covariance 'covariance', in the state 'state'. */
-    VectorXd difference = state - mean;
-
-    return (-0.5 * static_cast<double>(difference.size()) * log(2.0 * M_PI) -0.5 * log(covariance.determinant()) -0.5 * (difference.transpose() * covariance.inverse() * difference).array()).exp().coeff(0);
+    return utils::multivariate_gaussian_density(state, mean, covariance).coeff(0);
 }
