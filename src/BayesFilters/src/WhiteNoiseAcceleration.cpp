@@ -6,6 +6,7 @@
  */
 
 #include <BayesFilters/WhiteNoiseAcceleration.h>
+#include <BayesFilters/utils.h>
 
 #include <cmath>
 #include <utility>
@@ -139,16 +140,7 @@ MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 
 VectorXd WhiteNoiseAcceleration::getTransitionProbability(const Ref<const MatrixXd>& prev_states, const Ref<const MatrixXd>& cur_states)
 {
-    VectorXd probabilities(prev_states.cols());
-    MatrixXd differences = cur_states - prev_states;
-
-    std::size_t size = differences.rows();
-    for (std::size_t i = 0; i < prev_states.cols(); i++)
-    {
-        probabilities(i) = (-0.5 * static_cast<double>(size) * log(2.0 * M_PI) + -0.5 * log(Q_.determinant()) -0.5 * (differences.col(i).transpose() * Q_.inverse() * differences.col(i)).array()).exp().coeff(0);
-    }
-
-    return probabilities;
+    return utils::multivariate_gaussian_density(prev_states, prev_states.col(0), Q_);
 }
 
 
