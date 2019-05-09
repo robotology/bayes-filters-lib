@@ -22,11 +22,13 @@ namespace bfl {
 class bfl::Gaussian : public bfl::GaussianMixture
 {
 public:
-    Gaussian();
+    Gaussian() noexcept;
 
-    Gaussian(const std::size_t dim_linear);
+    Gaussian(const std::size_t dim_linear) noexcept;
 
-    Gaussian(const std::size_t dim_linear, const std::size_t dim_circular);
+    Gaussian(const std::size_t dim_linear, const std::size_t dim_circular) noexcept;
+
+    virtual ~Gaussian() noexcept;
 
     /**
      * Non-virtual methods of GaussianMixture are overriden here
@@ -54,8 +56,6 @@ public:
     double& weight();
 
     const double& weight() const;
-
-    virtual ~Gaussian() noexcept { };
 };
 
 #endif /* GAUSSIAN_H */
