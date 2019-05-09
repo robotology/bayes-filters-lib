@@ -31,6 +31,12 @@ Gaussian::~Gaussian() noexcept
 { }
 
 
+void Gaussian::resize(const std::size_t dim_linear, const std::size_t dim_circular)
+{
+    GaussianMixture::resize(1, dim_linear, dim_circular);
+}
+
+
 Ref<VectorXd> Gaussian::mean()
 {
     return mean_.col(0);
