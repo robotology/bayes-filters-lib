@@ -11,12 +11,12 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GaussianMixture::GaussianMixture() :
+GaussianMixture::GaussianMixture() noexcept:
     GaussianMixture(1, 1, 0)
 { }
 
 
-GaussianMixture::GaussianMixture(const std::size_t components, const std::size_t dim) :
+GaussianMixture::GaussianMixture(const std::size_t components, const std::size_t dim) noexcept :
     GaussianMixture(components, dim, 0)
 { }
 
@@ -26,7 +26,7 @@ GaussianMixture::GaussianMixture
     const std::size_t components,
     const std::size_t dim_linear,
     const std::size_t dim_circular
-) :
+) noexcept :
     components(components),
     dim(dim_linear + dim_circular),
     dim_linear(dim_linear),
@@ -41,7 +41,8 @@ GaussianMixture::GaussianMixture
 }
 
 
-GaussianMixture::~GaussianMixture() noexcept { }
+GaussianMixture::~GaussianMixture() noexcept
+{ }
 
 
 Ref<MatrixXd> GaussianMixture::mean()
