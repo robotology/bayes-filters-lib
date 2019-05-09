@@ -28,6 +28,8 @@ public:
 
     virtual ~ParticleSet() noexcept;
 
+    void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0) override;
+
     ParticleSet& operator+=(const ParticleSet& rhs);
 
     Eigen::Ref<Eigen::MatrixXd> state();
