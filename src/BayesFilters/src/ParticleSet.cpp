@@ -10,9 +10,14 @@
 using namespace bfl;
 using namespace Eigen;
 
+ParticleSet::ParticleSet() noexcept :
+    ParticleSet(1, 1, 0)
+{ }
+
 
 ParticleSet::ParticleSet(const std::size_t components, const std::size_t dim) noexcept:
-    ParticleSet(components, dim, 0) { }
+    ParticleSet(components, dim, 0)
+{ }
 
 
 ParticleSet::ParticleSet
@@ -22,7 +27,12 @@ ParticleSet::ParticleSet
     const std::size_t dim_circular
 ) noexcept :
     GaussianMixture(components, dim_linear, dim_circular),
-    state_(dim, components) { }
+    state_(dim, components)
+{ }
+
+
+ParticleSet::~ParticleSet() noexcept
+{ }
 
 
 ParticleSet::~ParticleSet() noexcept { }
