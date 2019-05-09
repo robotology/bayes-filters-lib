@@ -84,6 +84,22 @@ Eigen::VectorXd multivariate_gaussian_log_density(const Eigen::MatrixBase<Derive
 
 
 /**
+ * Evaluate a multivariate Gaussian probability density function.
+ *
+ * @param input Input representing the argument of the function as a vector or matrix.
+ * @param mean The mean of the associated Gaussian distribution as a vector.
+ * @param covariance The covariance matrix of the associated Gaussian distribution as a matrix.
+ *
+ * @return The value of the density function evaluated on the input data as a vector.
+ */
+template<typename Derived>
+Eigen::VectorXd multivariate_gaussian_density(const Eigen::MatrixBase<Derived>& input, const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& covariance)
+{
+    return multivariate_gaussian_log_density(input, mean, covariance).array().exp();
+}
+
+
+/**
  * This template class provides methods to keep track of time. The default time unit is milliseconds,
  * but can be changed during object creation using a different std::chrono::duration type.
  * See https://en.cppreference.com/w/cpp/chrono/duration for reference.
