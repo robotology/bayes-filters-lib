@@ -45,6 +45,34 @@ GaussianMixture::~GaussianMixture() noexcept
 { }
 
 
+void GaussianMixture::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
+{
+    std::size_t new_dim = dim_linear + dim_circular;
+
+    if ((this->dim_linear == dim_linear) && (this->dim_circular == dim_circular) && (this->components == components))
+        return;
+    else if ((this->dim == new_dim) && (this->components != components))
+    {
+        mean_.conservativeResize(NoChange, components);
+        covariance_.conservativeResize(NoChange, dim * components);
+        weight_.conservativeResize(components);
+    }
+    else
+    {
+        // In any other case, it does not make sense to do conservative resize
+        // since either old data is truncated or new data is incomplete
+        mean_.resize(new_dim, components);
+        covariance_.resize(new_dim, new_dim * components);
+        weight_.resize(components);
+    }
+
+    this->components = components;
+    this->dim = new_dim;
+    this->dim_linear = dim_linear;
+    this->dim_circular = dim_circular;
+}
+
+
 Ref<MatrixXd> GaussianMixture::mean()
 {
     return mean_;

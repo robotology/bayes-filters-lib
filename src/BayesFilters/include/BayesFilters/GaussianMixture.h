@@ -28,6 +28,8 @@ public:
 
     virtual ~GaussianMixture() noexcept;
 
+    virtual void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0);
+
     Eigen::Ref<Eigen::MatrixXd> mean();
 
     Eigen::Ref<Eigen::VectorXd> mean(const std::size_t i);
