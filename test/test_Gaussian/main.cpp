@@ -65,7 +65,105 @@ int main()
         else
             std::cout << "Default initialization of Gaussian covariance is 1.0: " << gaussian_1d.weight() << std::endl;
 
-        std::cout << "done!\n" << std::endl;
+
+        std::cout << "Increase size of Gaussian by one:" << std::endl;
+        gaussian_1d.resize(1 + 1);
+        if (gaussian_1d.components != 1)
+        {
+            std::cout << "Resize of Gaussian failed, number of components is " << gaussian_1d.components << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_linear != 2)
+        {
+            std::cout << "Resize of Gaussian failed, linear dimension is " << gaussian_1d.dim_linear << ", should be 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_circular != 0)
+        {
+            std::cout << "Resize of Gaussian failed, circular dimension is " << gaussian_1d.dim_circular << ", should be 0" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_1d.mean().rows() == 2) && (gaussian_1d.mean().cols() == 1)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 2 x 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_1d.covariance().rows() == 2) && (gaussian_1d.covariance().cols() == 2)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 2 x 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        std::cout << "ok." << std::endl;
+
+
+        std::cout << "Change sizes without changing total size, i.e. (linear, circular) = (0, 2):" << std::endl;
+        gaussian_1d.resize(0, 2);
+        if (gaussian_1d.components != 1)
+        {
+            std::cout << "Resize of Gaussian failed, number of components is " << gaussian_1d.components << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_linear != 0)
+        {
+            std::cout << "Resize of Gaussian failed, linear dimension is " << gaussian_1d.dim_linear << ", should be 0" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_circular != 2)
+        {
+            std::cout << "Resize of Gaussian failed, circular dimension is " << gaussian_1d.dim_circular << ", should be 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_1d.mean().rows() == 2) && (gaussian_1d.mean().cols() == 1)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 2 x 1" << std::endl;
+        }
+        if (!((gaussian_1d.covariance().rows() == 2) && (gaussian_1d.covariance().cols() == 2)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 2 x 2" << std::endl;
+        }
+        std::cout << "ok." << std::endl;
+
+
+        std::cout << "Change size to (linear, circular) = (2, 2):" << std::endl;
+        gaussian_1d.resize(2, 2);
+        if (gaussian_1d.components != 1)
+        {
+            std::cout << "Resize of Gaussian failed, number of components is " << gaussian_1d.components << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_linear != 2)
+        {
+            std::cout << "Resize of Gaussian failed, linear dimension is " << gaussian_1d.dim_linear << ", should be 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_1d.dim_circular != 2)
+        {
+            std::cout << "Resize of Gaussian failed, circular dimension is " << gaussian_1d.dim_circular << ", should be 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_1d.mean().rows() == 4) && (gaussian_1d.mean().cols() == 1)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 4 x 1" << std::endl;
+        }
+        if (!((gaussian_1d.covariance().rows() == 4) && (gaussian_1d.covariance().cols() == 4)))
+        {
+            std::cout << "Resize of Gaussian failed, mean size is "
+                      << gaussian_1d.mean().rows() << " x " << gaussian_1d.mean().cols()
+                      << ", should be 4 x 4" << std::endl;
+        }
+        std::cout << "ok." << std::endl;
+
+        std::cout << "...done!\n" << std::endl;
     }
 
 
@@ -174,6 +272,8 @@ int main()
         }
         else
             std::cout << "Assignment of Gaussian weight successful:\n" << gaussian_3d_move.weight() << std::endl;
+
+        std::cout << "...done!\n" << std::endl;
     }
 
 
@@ -222,6 +322,8 @@ int main()
         }
         else
             std::cout << "Covariance of augmented gaussian evaluated successful:\n" << gaussian.covariance() << std::endl;
+
+        std::cout << "...done!\n" << std::endl;
     }
 
 
@@ -304,7 +406,6 @@ int main()
 
         std::cout << "done!\n" << std::endl;
 
-
         std::cout << "Reading values altogether to the Gaussian mixture with 5 3D components..." << std::endl;
 
         std::cout << "Means:\n" << gaussian_mixture.mean() << std::endl;
@@ -312,6 +413,184 @@ int main()
         std::cout << "Weights:\n" << gaussian_mixture.weight() << std::endl;
 
         std::cout << "done!\n" << std::endl;
+
+        std::cout << "Add one component to the Gaussian mixture with 5 3D components..." << std::endl;
+        GaussianMixture gaussian_mixture_copy = gaussian_mixture;
+
+        gaussian_mixture.resize(5 + 1, 3);
+        if (gaussian_mixture.components != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, number of components is "
+                      << gaussian_mixture.components
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_linear != 3)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, linear dimension is "
+                      << gaussian_mixture.dim_linear
+                      << ", should be 3" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_circular != 0)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, circular dimension is "
+                      << gaussian_mixture.dim_circular
+                      << ", should be 0" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.mean().rows() == 3) && (gaussian_mixture.mean().cols() == 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, mean size is "
+                      << gaussian_mixture.mean().rows() << " x " << gaussian_mixture.mean().cols()
+                      << ", should be 3 x 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.covariance().rows() == 3) && (gaussian_mixture.covariance().cols() == 3 * 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, covariance size is "
+                      << gaussian_mixture.covariance().rows() << " x " << gaussian_mixture.covariance().cols()
+                      << ", should be 3 x 18" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.weight().size() != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, weight size is "
+                      << gaussian_mixture.weight().size()
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        /* When increasing the number of components and not changing the dimensions, the old content should be preserved */
+        if (!gaussian_mixture.mean().leftCols<5>().isApprox(gaussian_mixture_copy.mean()))
+        {
+            std::cerr << "Resize of Gaussian Mixture while maintaing dimensions failed, old mean content is" << std::endl
+                      << gaussian_mixture.mean().leftCols<5>() << std::endl
+                      << "should be" << std::endl
+                      << gaussian_mixture_copy.mean() << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!gaussian_mixture.covariance().leftCols<15>().isApprox(gaussian_mixture_copy.covariance()))
+        {
+            std::cerr << "Resize of Gaussian Mixture while maintaing dimensions failed, old covariance content is" << std::endl
+                      << gaussian_mixture.covariance().leftCols<15>() << std::endl
+                      << "should be" << std::endl
+                      << gaussian_mixture_copy.covariance() << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!gaussian_mixture.weight().head<5>().isApprox(gaussian_mixture_copy.weight()))
+        {
+            std::cerr << "Resize of Gaussian Mixture while maintaing dimensions failed, old weight content is" << std::endl
+                      << gaussian_mixture.weight().head<5>() << std::endl
+                      << "should be" << std::endl
+                      << gaussian_mixture_copy.weight() << std::endl;
+            return EXIT_FAILURE;
+        }
+        std::cout << "ok." << std::endl;
+
+        std::cout << "Showing comparison between original and augmented Gaussian Mixture..." << std::endl;
+
+        std::cout << "Means (original):\n" << gaussian_mixture_copy.mean() << std::endl;
+        std::cout << "Means (augmented):\n" << gaussian_mixture.mean() << std::endl;
+        std::cout << "Covariances (original):\n" << gaussian_mixture_copy.covariance() << std::endl;
+        std::cout << "Covariances (augmented):\n" << gaussian_mixture.covariance() << std::endl;
+        std::cout << "Weights (original):\n" << gaussian_mixture_copy.weight() << std::endl;
+        std::cout << "Weights (augmented):\n" << gaussian_mixture.weight() << std::endl;
+
+        std::cout << "Change sizes without changing total size, i.e. (linear, circular) = (0, 3):" << std::endl;
+        gaussian_mixture.resize(6, 0, 3);
+        if (gaussian_mixture.components != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, number of components is "
+                      << gaussian_mixture.components
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_linear != 0)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, linear dimension is "
+                      << gaussian_mixture.dim_linear
+                      << ", should be 0" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_circular != 3)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, circular dimension is "
+                      << gaussian_mixture.dim_circular
+                      << ", should be 3" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.mean().rows() == 3) && (gaussian_mixture.mean().cols() == 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, mean size is "
+                      << gaussian_mixture.mean().rows() << " x " << gaussian_mixture.mean().cols()
+                      << ", should be 3 x 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.covariance().rows() == 3) && (gaussian_mixture.covariance().cols() == 3 * 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, covariance size is "
+                      << gaussian_mixture.covariance().rows() << " x " << gaussian_mixture.covariance().cols()
+                      << ", should be 3 x 18" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.weight().size() != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, weight size is "
+                      << gaussian_mixture.weight().size()
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        std::cout << "ok." << std::endl;
+
+
+        std::cout << "Change size to (linear, circular) = (3, 3):" << std::endl;
+        gaussian_mixture.resize(6, 3, 3);
+        if (gaussian_mixture.components != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, number of components is "
+                      << gaussian_mixture.components
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_linear != 3)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, linear dimension is "
+                      << gaussian_mixture.dim_linear
+                      << ", should be 3" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.dim_circular != 3)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, circular dimension is "
+                      << gaussian_mixture.dim_circular
+                      << ", should be 3" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.mean().rows() == 6) && (gaussian_mixture.mean().cols() == 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, mean size is "
+                      << gaussian_mixture.mean().rows() << " x " << gaussian_mixture.mean().cols()
+                      << ", should be 6 x 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!((gaussian_mixture.covariance().rows() == 6) && (gaussian_mixture.covariance().cols() == 6 * 6)))
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, covariance size is "
+                      << gaussian_mixture.covariance().rows() << " x " << gaussian_mixture.covariance().cols()
+                      << ", should be 6 x 36" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (gaussian_mixture.weight().size() != 6)
+        {
+            std::cerr << "Resize of Gaussian Mixture failed, weight size is "
+                      << gaussian_mixture.weight().size()
+                      << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        std::cout << "ok." << std::endl;
+
+        std::cout << "...done!\n" << std::endl;
     }
 
 
