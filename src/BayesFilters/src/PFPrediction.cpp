@@ -40,12 +40,24 @@ void PFPrediction::predict(const ParticleSet& prev_particles, ParticleSet& pred_
 bool PFPrediction::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
+    {
         skip_prediction_ = status;
-    else if (what_step == "state")
+
         skip_state_ = status;
-    else if (what_step == "exogenous")
         skip_exogenous_ = status;
-    else
+    }
+    else if (what_step == "state")
+    {
+        skip_state_ = status;
+
+        skip_prediction_ = skip_state_ & skip_exogenous_;
+    }
+    else if (what_step == "exogenous")
+    {
+        skip_exogenous_ = status;
+
+        skip_prediction_ = skip_state_ & skip_exogenous_;
+    }
         return false;
 
     return true;

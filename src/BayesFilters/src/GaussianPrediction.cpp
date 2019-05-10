@@ -38,11 +38,24 @@ void GaussianPrediction::predict(const GaussianMixture& prev_state, GaussianMixt
 bool GaussianPrediction::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
+    {
         skip_prediction_ = status;
-    else if (what_step == "state")
+
         skip_state_ = status;
-    else if (what_step == "exogenous")
         skip_exogenous_ = status;
+    }
+    else if (what_step == "state")
+    {
+        skip_state_ = status;
+
+        skip_prediction_ = skip_state_ & skip_exogenous_;
+    }
+    else if (what_step == "exogenous")
+    {
+        skip_exogenous_ = status;
+
+        skip_prediction_ = skip_state_ & skip_exogenous_;
+    }
     else
         return false;
 
