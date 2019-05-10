@@ -36,12 +36,10 @@ public:
 
     virtual ExogenousModel& getExogenousModel();
 
+
 protected:
-    GaussianPrediction() noexcept;
-
-    GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
-
     virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
+
 
 private:
     bool skip_prediction_ = false;

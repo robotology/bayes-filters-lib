@@ -46,7 +46,6 @@ public:
 protected:
     virtual void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) = 0;
 
-    PFCorrection() noexcept;
 
 private:
     bool skip_ = false;

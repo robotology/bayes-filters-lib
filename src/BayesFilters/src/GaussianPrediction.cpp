@@ -14,14 +14,6 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GaussianPrediction::GaussianPrediction() noexcept
-{ }
-
-
-
-GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept
-{ }
-
 
 void GaussianPrediction::predict(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {

@@ -33,12 +33,10 @@ public:
 
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood();
 
+
 protected:
-    GaussianCorrection() noexcept;
-
-    GaussianCorrection(GaussianCorrection&& gaussian_correction) noexcept;
-
     virtual void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) = 0;
+
 
 private:
     bool skip_ = false;
