@@ -20,13 +20,15 @@ namespace bfl {
 class bfl::GaussianMixture
 {
 public:
-    GaussianMixture();
+    GaussianMixture() noexcept;
 
-    GaussianMixture(const std::size_t components, const std::size_t dim);
+    GaussianMixture(const std::size_t components, const std::size_t dim) noexcept;
 
-    GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular);
+    GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular) noexcept;
 
     virtual ~GaussianMixture() noexcept;
+
+    virtual void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0);
 
     Eigen::Ref<Eigen::MatrixXd> mean();
 

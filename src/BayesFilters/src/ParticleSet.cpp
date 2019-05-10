@@ -10,9 +10,14 @@
 using namespace bfl;
 using namespace Eigen;
 
+ParticleSet::ParticleSet() noexcept :
+    ParticleSet(1, 1, 0)
+{ }
+
 
 ParticleSet::ParticleSet(const std::size_t components, const std::size_t dim) noexcept:
-    ParticleSet(components, dim, 0) { }
+    ParticleSet(components, dim, 0)
+{ }
 
 
 ParticleSet::ParticleSet
@@ -22,10 +27,31 @@ ParticleSet::ParticleSet
     const std::size_t dim_circular
 ) noexcept :
     GaussianMixture(components, dim_linear, dim_circular),
-    state_(dim, components) { }
+    state_(dim, components)
+{ }
 
 
-ParticleSet::~ParticleSet() noexcept { }
+ParticleSet::~ParticleSet() noexcept
+{ }
+
+
+void ParticleSet::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
+{
+    std::size_t new_dim = dim_linear + dim_circular;
+
+    if ((this->dim_linear == dim_linear) && (this->dim_circular = dim_circular) && (this->components == components))
+        return;
+    else if ((this->dim == new_dim) && (this->components != components))
+        state_.conservativeResize(NoChange, components);
+    else
+    {
+        // In any other case, it does not make sense to do conservative resize
+        // since either old data is truncated or new data is incomplete
+        state_.resize(new_dim, components);
+    }
+
+    GaussianMixture::resize(components, dim_linear, dim_circular);
+}
 
 
 ParticleSet& ParticleSet::operator+=(const ParticleSet& rhs)

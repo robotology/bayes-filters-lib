@@ -9,6 +9,9 @@
 - Class EstimatesExtraction does not assume that the state is a 7-vector containing cartesian position and axis/angle representation of orientation anymore.
 - Implemented MAP (maximum a posteriori) estimate extraction within method EstimatesExtraction::map().
 - Implemented overloaded version of EstimatesExtraction::extract() taking extra arguments (particle weights at the previous time step, likelihoods at the current step and matrix of Markov transition probabilities between previous and current states) required to expose MAP extraction utiliy to the user.
+- Implemented method GaussianMixture::resize().
+- Implemented method Gaussian::resize().
+- Implemented method ParticleSet::resize().
 - Methods EstimatesExtraction::extract() return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
 - Methods EstimatesExtraction::extract() assume that particle weights are in the log space.
 - Constructor HistoryBuffer::HistoryBuffer() takes the state size.
@@ -32,7 +35,7 @@
 - Add mean extraction and logging in test_SIS to simplify inspection of the algorithm outcome.
 - Reduce number of particles in test_SIS to reduce testing computation time in Debug.
 - Add testUPF_MAP testing MAP (maximum a posteriori) estimate extraction within a UPF particle filter.
-
+- Change test_Gaussian in order to test resizing.
 
 ## 🔖 Version 0.8.101
 ##### `Bugfix`
