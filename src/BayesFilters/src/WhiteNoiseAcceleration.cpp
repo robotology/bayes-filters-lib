@@ -99,6 +99,9 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(const WhiteNoiseAccele
 
 WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration&& wna) noexcept
 {
+    if (this == &wna)
+        return *this;
+
     T_       = wna.T_;
     F_       = std::move(wna.F_);
     Q_       = std::move(wna.Q_);

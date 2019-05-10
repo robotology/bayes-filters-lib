@@ -115,6 +115,9 @@ LinearModel& LinearModel::operator=(const LinearModel& lin_sense) noexcept
 
 LinearModel& LinearModel::operator=(LinearModel&& lin_sense) noexcept
 {
+    if (this == &lin_sense)
+        return *this;
+
     sigma_x_ = lin_sense.sigma_x_;
     sigma_y_ = lin_sense.sigma_y_;
     H_       = std::move(lin_sense.H_);

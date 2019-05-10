@@ -39,6 +39,9 @@ ParticleFilter::ParticleFilter(ParticleFilter&& pf) noexcept :
 
 ParticleFilter& ParticleFilter::operator=(ParticleFilter&& pf) noexcept
 {
+    if (this == &pf)
+        return *this;
+
     initialization_ = std::move(pf.initialization_);
     prediction_     = std::move(pf.prediction_);
     correction_     = std::move(pf.correction_);

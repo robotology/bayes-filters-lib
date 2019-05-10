@@ -167,8 +167,12 @@ public:
      */
     any& operator=(any&& rhs) noexcept
     {
+        if (this == &rhs)
+            return *this;
+
         rhs.swap(*this);
         any().swap(rhs);
+
         return *this;
     }
 

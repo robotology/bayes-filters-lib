@@ -26,6 +26,18 @@ GaussianFilter::GaussianFilter(GaussianFilter&& gf) noexcept :
 { }
 
 
+GaussianFilter& GaussianFilter::operator=(GaussianFilter&& gf) noexcept
+{
+    if (this == &gf)
+        return *this;
+
+    prediction_ = std::move(gf.prediction_);
+    correction_ = std::move(gf.correction_);
+
+    return *this;
+}
+
+
 GaussianFilter::~GaussianFilter() noexcept
 { }
 

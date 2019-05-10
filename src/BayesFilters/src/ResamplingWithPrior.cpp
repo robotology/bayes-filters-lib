@@ -51,12 +51,12 @@ ResamplingWithPrior::~ResamplingWithPrior() noexcept
 
 ResamplingWithPrior& ResamplingWithPrior::operator=(ResamplingWithPrior&& resampling) noexcept
 {
-    if (this != &resampling)
-    {
-        Resampling::operator=(std::move(resampling));
+    if (this == &resampling)
+        return *this;
 
-        init_model_ = std::move(resampling.init_model_);
-    }
+    Resampling::operator=(std::move(resampling));
+
+    init_model_ = std::move(resampling.init_model_);
 
     return *this;
 }
