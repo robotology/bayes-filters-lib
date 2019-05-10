@@ -12,6 +12,8 @@
 - Implemented method GaussianMixture::resize().
 - Implemented method Gaussian::resize().
 - Implemented method ParticleSet::resize().
+- Implemented evaluation of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_density.
+- Implemented evaluation of the logarithm of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_log_density.
 - Methods EstimatesExtraction::extract() return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
 - Methods EstimatesExtraction::extract() assume that particle weights are in the log space.
 - Constructor HistoryBuffer::HistoryBuffer() takes the state size.
@@ -23,9 +25,14 @@
 ##### `Filtering functions`
 - Added pure public virtual method GaussianPrediction::getStateModel() (required to properly implement GPFPrediction::getStateModel()).
 - Implemented method KFPrediction::getStateModel().
+- Implemented method KFCorrection::getLikelihood().
 - Implemented method UKFPrediction::getStateModel().
+- Implemented method UKFCorrection::getLikelihood().
+- Changed implementation of GaussianLikelihood::likelihood().
 - Changed implementation of GPFPrediction::getStateModel().
 - Changed implementation of GPFCorrection::getLikelihood().
+- Changed implementation of GPFCorrection::evaluateProposal().
+- Changed implementation of WhiteNoiseAcceleration::getTransitionProbability().
 - Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability().
 - Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability().
 - SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.

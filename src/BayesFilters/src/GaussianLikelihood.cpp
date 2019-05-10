@@ -6,6 +6,7 @@
  */
 
 #include <BayesFilters/GaussianLikelihood.h>
+#include <BayesFilters/utils.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -68,9 +69,7 @@ std::pair<bool, VectorXd> GaussianLikelihood::likelihood
     if (!valid_covariance_matrix)
         return std::make_pair(false, VectorXd::Zero(1));
 
-
-    for (unsigned int i = 0; i < innovations.cols(); ++i)
-        likelihood(i) = scale_factor_ * (-0.5 * static_cast<double>(innovations.rows()) * log(2.0*M_PI) - 0.5 * log(covariance_matrix.determinant()) - 0.5 * (innovations.col(i).transpose() * covariance_matrix.inverse() * innovations.col(i)).array()).exp().coeff(0);
+    likelihood = scale_factor_ * utils::multivariate_gaussian_density(innovations, VectorXd::Zero(innovations.rows()), covariance_matrix);
 
     return std::make_pair(true, likelihood);
 }

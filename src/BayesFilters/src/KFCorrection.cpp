@@ -6,6 +6,7 @@
  */
 
 #include <BayesFilters/KFCorrection.h>
+#include <BayesFilters/utils.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -28,6 +29,21 @@ KFCorrection::~KFCorrection() noexcept
 MeasurementModel& KFCorrection::getMeasurementModel()
 {
     return *measurement_model_;
+}
+
+
+std::pair<bool, VectorXd> KFCorrection::getLikelihood()
+{
+    if ((innovations_.rows() == 0) || (innovations_.cols() == 0))
+        return std::make_pair(false, VectorXd());
+
+    VectorXd likelihood(innovations_.cols());
+    for (std::size_t i = 0; i < likelihood.size(); i++)
+    {
+        likelihood(i) = utils::multivariate_gaussian_density(innovations_.col(i), VectorXd::Zero(innovations_.rows()), meas_covariances_.covariance(i)).coeff(0);
+    }
+
+    return std::make_pair(true, likelihood);
 }
 
 
@@ -79,25 +95,29 @@ void KFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtur
     MatrixXd H = measurement_model_->getMeasurementMatrix();
 
     /* Cast innovations once for all. */
-    MatrixXd innovations = any::any_cast<MatrixXd&&>(std::move(innovation));
+    innovations_ = any::any_cast<MatrixXd&&>(std::move(innovation));
+
+    /* Initialize measurement covariances.
+       GaussianMixture will effectively resize only if it needs to. */
+    meas_covariances_.resize(pred_state.components, H.rows());
 
     /* Process all the components in the mixture. */
-    for (size_t i=0; i < pred_state.components; i++)
+    for (size_t i = 0; i < pred_state.components; i++)
     {
         /* Evaluate the measurement covariance matrix
            Py = H * Px * H' + R */
-        MatrixXd Py = H * pred_state.covariance(i) * H.transpose() + R;
+        meas_covariances_.covariance(i) = H * pred_state.covariance(i) * H.transpose() + R;
 
         /* Evaluate the Kalman Gain
            K = Px * H' * (Py)^{-1} */
-        MatrixXd K = pred_state.covariance(i) * H.transpose() * Py.inverse();
+        MatrixXd K = pred_state.covariance(i) * H.transpose() * meas_covariances_.covariance(i).inverse();
 
         /* Evaluate the filtered mean
            x_{k}+ = x{k}- + K * (y - y_predicted) */
-        corr_state.mean(i) = pred_state.mean(i) + K * innovations.col(i);
+        corr_state.mean(i) = pred_state.mean(i) + K * innovations_.col(i);
 
         /* Evaluate the filtered covariance
            P_{k}+ = P_{k}- - K * Py * K' */
-        corr_state.covariance(i).noalias() = pred_state.covariance(i) - K * Py * K.transpose();
+        corr_state.covariance(i).noalias() = pred_state.covariance(i) - K * meas_covariances_.covariance(i) * K.transpose();
     }
 }

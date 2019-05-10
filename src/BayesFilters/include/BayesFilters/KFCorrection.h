@@ -30,11 +30,16 @@ public:
 
     MeasurementModel& getMeasurementModel() override;
 
+    std::pair<bool, Eigen::VectorXd> getLikelihood() override;
+
 protected:
     void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
-private:
     std::unique_ptr<LinearMeasurementModel> measurement_model_;
+
+    Eigen::MatrixXd innovations_;
+
+    GaussianMixture meas_covariances_;
 };
 
 #endif /* KFCORRECTION_H */

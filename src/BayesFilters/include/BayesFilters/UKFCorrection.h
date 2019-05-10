@@ -34,6 +34,8 @@ public:
 
     MeasurementModel& getMeasurementModel() override;
 
+    std::pair<bool, Eigen::VectorXd> getLikelihood() override;
+
 protected:
     void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
@@ -53,6 +55,10 @@ protected:
      * Unscented transform weight.
      */
     sigma_point::UTWeight ut_weight_;
+
+    Eigen::MatrixXd innovations_;
+
+    GaussianMixture predicted_meas_;
 };
 
 #endif /* UKFCORRECTION_H */
