@@ -43,6 +43,7 @@ public:
 
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood() = 0;
 
+
 protected:
     virtual void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) = 0;
 

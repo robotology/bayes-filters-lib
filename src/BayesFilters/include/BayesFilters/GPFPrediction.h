@@ -34,6 +34,7 @@ public:
 
     StateModel& getStateModel() override;
 
+
 protected:
     void predictStep(const ParticleSet& previous_particles, ParticleSet& predicted_particles) override;
 

@@ -35,6 +35,7 @@ public:
 
     std::pair<std::size_t, std::size_t> getOutputSize() const override;
 
+
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
 

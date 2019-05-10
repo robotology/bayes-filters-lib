@@ -41,6 +41,7 @@ public:
 
     ExogenousModel& getExogenousModel() override;
 
+
 protected:
     void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
 

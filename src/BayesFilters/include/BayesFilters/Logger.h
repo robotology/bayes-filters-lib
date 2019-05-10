@@ -59,10 +59,12 @@ public:
             logger_helper(0, data...);
     }
 
+
 protected:
     virtual std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix);
 
     virtual void log();
+
 
 private:
     std::string folder_path_;

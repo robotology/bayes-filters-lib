@@ -35,10 +35,6 @@ public:
 
     StateModel& getStateModel();
 
-private:
-    unsigned int simulation_time_;
-
-    Eigen::MatrixXd target_;
 
 protected:
     std::unique_ptr<StateModel> state_model_;
@@ -57,6 +53,12 @@ protected:
     }
 
     void log() override;
+
+
+private:
+    unsigned int simulation_time_;
+
+    Eigen::MatrixXd target_;
 };
 
 #endif /* SIMULATEDPROCESS_H */

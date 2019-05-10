@@ -37,6 +37,7 @@ public:
 
     SIS& operator=(SIS&& sir_pf) noexcept;
 
+
 protected:
     unsigned int num_particle_;
 

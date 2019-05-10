@@ -34,6 +34,7 @@ public:
 
     std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
+
 protected:
     std::unique_ptr<LikelihoodModel> likelihood_model_;
 

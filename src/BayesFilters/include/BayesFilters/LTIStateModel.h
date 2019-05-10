@@ -34,6 +34,7 @@ public:
 
     Eigen::MatrixXd getJacobian() override;
 
+
 protected:
     /*
      * State transition matrix.

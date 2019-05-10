@@ -42,6 +42,7 @@ public:
 
     bool clear();
 
+
 private:
     unsigned int window_ = 5;
 

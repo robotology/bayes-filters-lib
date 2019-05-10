@@ -13,7 +13,8 @@ using namespace bfl;
 using namespace Eigen;
 
 
-DrawParticles::DrawParticles() noexcept { }
+DrawParticles::DrawParticles() noexcept
+{ }
 
 
 DrawParticles::DrawParticles(DrawParticles&& draw_particles) noexcept :

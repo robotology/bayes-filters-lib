@@ -33,23 +33,12 @@ public:
 
     ~EstimatesExtraction() noexcept =default;
 
-
     enum class ExtractionMethod
     {
-        mean,
-        smean,
-        wmean,
-        emean,
-        mode,
-        smode,
-        wmode,
-        emode,
-        map,
-        smap,
-        wmap,
-        emap
+        mean, smean, wmean, emean,
+        mode, smode, wmode, emode,
+        map, smap, wmap, emap
     };
-
 
     bool setMethod(const ExtractionMethod& extraction_method);
 
@@ -61,8 +50,8 @@ public:
 
     bool clear();
 
-
     std::vector<std::string> getInfo() const;
+
 
 protected:
     ExtractionMethod extraction_method_ = ExtractionMethod::emode;
@@ -70,9 +59,10 @@ protected:
     HistoryBuffer hist_buffer_;
 
     Eigen::VectorXd sm_weights_;
-    Eigen::VectorXd wm_weights_;
-    Eigen::VectorXd em_weights_;
 
+    Eigen::VectorXd wm_weights_;
+
+    Eigen::VectorXd em_weights_;
 
     enum class Statistics
     {

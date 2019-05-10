@@ -19,7 +19,9 @@
 
 namespace bfl {
     class FilteringAlgorithm;
-    typedef typename std::unordered_map<std::string, double>      FilteringParamtersD;
+
+    typedef typename std::unordered_map<std::string, double> FilteringParamtersD;
+
     typedef typename std::unordered_map<std::string, std::string> FilteringParamtersS;
 }
 
@@ -47,12 +49,14 @@ public:
 
     virtual bool skip(const std::string& what_step, const bool status) = 0;
 
+
 protected:
     virtual bool initialization() = 0;
 
     virtual void filteringStep() = 0;
 
     virtual bool runCondition() = 0;
+
 
 private:
     unsigned int filtering_step_ = 0;

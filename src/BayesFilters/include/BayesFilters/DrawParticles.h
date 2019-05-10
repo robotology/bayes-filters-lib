@@ -19,7 +19,7 @@ namespace bfl {
 }
 
 
-class bfl::DrawParticles: public PFPrediction
+class bfl::DrawParticles : public PFPrediction
 {
 public:
     DrawParticles() noexcept;
@@ -31,6 +31,7 @@ public:
     virtual StateModel& getStateModel() override;
 
     virtual void setStateModel(std::unique_ptr<StateModel> state_model) override;
+
 
 protected:
     void predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles) override;

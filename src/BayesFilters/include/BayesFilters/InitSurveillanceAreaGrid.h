@@ -18,15 +18,14 @@ namespace bfl {
 class bfl::InitSurveillanceAreaGrid : public ParticleSetInitialization
 {
 public:
-    InitSurveillanceAreaGrid(const double surv_x_inf, const double surv_x_sup, const double surv_y_inf, const double surv_y_sup,
-                             const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept;
+    InitSurveillanceAreaGrid(const double surv_x_inf, const double surv_x_sup, const double surv_y_inf, const double surv_y_sup, const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept;
 
-    InitSurveillanceAreaGrid(const double surv_x, const double surv_y,
-                             const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept;
+    InitSurveillanceAreaGrid(const double surv_x, const double surv_y, const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept;
 
     virtual ~InitSurveillanceAreaGrid() noexcept = default;
 
     bool initialize(bfl::ParticleSet& particles) override;
+
 
 protected:
     double surv_x_inf_;

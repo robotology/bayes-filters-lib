@@ -37,13 +37,14 @@ public:
 
     ResamplingWithPrior& operator=(ResamplingWithPrior&& resampling) noexcept;
 
-
     void resample(const ParticleSet& cor_particles, ParticleSet& res_particles, Eigen::Ref<Eigen::VectorXi> res_parents) override;
+
 
 protected:
     std::unique_ptr<bfl::ParticleSetInitialization> init_model_;
 
     double prior_ratio_ = 0.5;
+
 
 private:
     std::vector<unsigned int> sort_indices(const Eigen::Ref<const Eigen::VectorXd>& vector);

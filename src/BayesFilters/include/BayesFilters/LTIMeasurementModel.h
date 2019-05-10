@@ -28,6 +28,7 @@ public:
 
     Eigen::MatrixXd getMeasurementMatrix() const override;
 
+
 protected:
     /* Measurement matrix. */
     Eigen::MatrixXd H_;

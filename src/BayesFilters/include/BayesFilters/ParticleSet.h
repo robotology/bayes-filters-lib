@@ -44,9 +44,11 @@ public:
 
     const double& state(const std::size_t i, const std::size_t j) const;
 
+
 protected:
     Eigen::MatrixXd state_;
 };
+
 
 bfl::ParticleSet operator+(bfl::ParticleSet lhs, const bfl::ParticleSet& rhs);
 

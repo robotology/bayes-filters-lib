@@ -42,12 +42,14 @@ public:
 
     virtual ExogenousModel& getExogenousModel();
 
+
 protected:
     PFPrediction() noexcept;
 
     PFPrediction(PFPrediction&& pf_prediction) noexcept;
 
     virtual void predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles) = 0;
+
 
 private:
     bool skip_prediction_ = false;

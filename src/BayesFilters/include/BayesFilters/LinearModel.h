@@ -43,14 +43,6 @@ public:
 
     Eigen::MatrixXd getMeasurementMatrix() const override;
 
-private:
-    std::mt19937_64 generator_;
-
-    std::normal_distribution<double> distribution_;
-
-    bool log_enabled_ = false;
-
-    mutable std::ofstream log_file_measurements_;
 
 protected:
     std::pair<bool, Eigen::MatrixXd> getNoiseSample(const int num) const;
@@ -95,6 +87,16 @@ protected:
     {
         return {folder_path + "/" + file_name_prefix + "_measurements"};
     }
+
+
+private:
+    std::mt19937_64 generator_;
+
+    std::normal_distribution<double> distribution_;
+
+    bool log_enabled_ = false;
+
+    mutable std::ofstream log_file_measurements_;
 };
 
 #endif /* LINEARMODEL_H */

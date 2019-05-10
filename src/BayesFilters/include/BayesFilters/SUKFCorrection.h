@@ -53,10 +53,12 @@ public:
 
     std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
+
 protected:
     void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) override;
 
     virtual Eigen::MatrixXd getNoiseCovarianceMatrix(const std::size_t index);
+
 
 private:
     std::unique_ptr<MeasurementModel> measurement_model_;
