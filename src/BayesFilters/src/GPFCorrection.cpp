@@ -18,23 +18,23 @@ using namespace Eigen;
 
 GPFCorrection::GPFCorrection
 (
-    std::unique_ptr<GaussianCorrection> gauss_corr,
     std::unique_ptr<LikelihoodModel> likelihood_model,
+    std::unique_ptr<GaussianCorrection> gaussian_correction,
     std::unique_ptr<StateModel> state_model
 ) noexcept :
-    GPFCorrection(std::move(gauss_corr), std::move(likelihood_model), std::move(state_model), 1)
+    GPFCorrection(std::move(likelihood_model), std::move(gaussian_correction), std::move(state_model), 1)
 { }
 
 
 GPFCorrection::GPFCorrection
 (
-    std::unique_ptr<GaussianCorrection> gauss_corr,
     std::unique_ptr<LikelihoodModel> likelihood_model,
+    std::unique_ptr<GaussianCorrection> gaussian_correction,
     std::unique_ptr<StateModel> state_model,
     unsigned int seed
 ) noexcept :
-    gaussian_correction_(std::move(gauss_corr)),
     likelihood_model_(std::move(likelihood_model)),
+    gaussian_correction_(std::move(gaussian_correction)),
     state_model_(std::move(state_model)),
     generator_(std::mt19937_64(seed)),
     distribution_(std::normal_distribution<double>(0.0, 1.0)),
@@ -42,36 +42,48 @@ GPFCorrection::GPFCorrection
 { }
 
 
-GPFCorrection::GPFCorrection(GPFCorrection&& gpf_correction) noexcept :
-    PFCorrection(std::move(gpf_correction)),
-    gaussian_correction_(std::move(gpf_correction.gaussian_correction_)),
-    likelihood_model_(std::move(gpf_correction.likelihood_model_)),
-    state_model_(std::move(gpf_correction.state_model_)),
-    generator_(std::move(gpf_correction.generator_)),
-    distribution_(std::move(gpf_correction.distribution_)),
-    gaussian_random_sample_(std::move(gpf_correction.gaussian_random_sample_))
+GPFCorrection::GPFCorrection(GPFCorrection&& correction) noexcept :
+    PFCorrection(std::move(correction)),
+    likelihood_model_(std::move(correction.likelihood_model_)),
+    gaussian_correction_(std::move(correction.gaussian_correction_)),
+    state_model_(std::move(correction.state_model_)),
+    generator_(std::move(correction.generator_)),
+    distribution_(std::move(correction.distribution_)),
+    gaussian_random_sample_(std::move(correction.gaussian_random_sample_)),
+    valid_likelihood_(correction.valid_likelihood_),
+    likelihood_(std::move(correction.likelihood_))
 { }
 
 
-void GPFCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)
+GPFCorrection& GPFCorrection::operator=(GPFCorrection&& correction) noexcept
 {
-    throw std::runtime_error("ERROR::GPFCORRECTION::SETLIKELIHOODMODEL\nERROR:\n\tCall to unimplemented base class method.");
+    PFCorrection::operator=(std::move(correction));
+
+    gaussian_correction_ = std::move(correction.gaussian_correction_);
+
+    state_model_ = std::move(correction.state_model_);
+
+    generator_ = std::move(correction.generator_);
+
+    distribution_ = std::move(correction.distribution_);
+
+    gaussian_random_sample_ = std::move(correction.gaussian_random_sample_);
+
+    valid_likelihood_ = correction.valid_likelihood_;
+
+    likelihood_ = std::move(correction.likelihood_);
+
+    return *this;
 }
 
 
-void GPFCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
-{
-    throw std::runtime_error("ERROR::GPFCORRECTION::SETMEASUREMENTMODEL\nERROR:\n\tCall to unimplemented base class method.");
-}
-
-
-MeasurementModel& GPFCorrection::getMeasurementModel()
+MeasurementModel& GPFCorrection::getMeasurementModel() noexcept
 {
     return gaussian_correction_->getMeasurementModel();
 }
 
 
-LikelihoodModel& GPFCorrection::getLikelihoodModel()
+LikelihoodModel& GPFCorrection::getLikelihoodModel() noexcept
 {
     return *likelihood_model_;
 }
@@ -95,7 +107,7 @@ void GPFCorrection::correctStep(const bfl::ParticleSet& pred_particles, bfl::Par
     }
 
     /* Evaluate the likelihood. */
-    std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(getMeasurementModel(), corr_particles.state());
+    std::tie(valid_likelihood_, likelihood_) = getLikelihoodModel().likelihood(getMeasurementModel(), corr_particles.state());
 
     if (!valid_likelihood_)
     {

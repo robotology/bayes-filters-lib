@@ -21,7 +21,7 @@ void PFCorrection::correct(const ParticleSet& pred_particles, ParticleSet& cor_p
 }
 
 
-bool PFCorrection::skip(const bool status)
+bool PFCorrection::skip(const bool status) noexcept
 {
     skip_ = status;
 

@@ -27,21 +27,23 @@ namespace bfl {
 class bfl::GPFCorrection : public PFCorrection
 {
 public:
-    GPFCorrection(std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<StateModel> state_model) noexcept;
+    GPFCorrection(std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<StateModel> state_model) noexcept;
 
-    GPFCorrection(std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<StateModel> state_model, unsigned int seed) noexcept;
+    GPFCorrection(std::unique_ptr<LikelihoodModel> likelihood_model, std::unique_ptr<GaussianCorrection> gaussian_correction, std::unique_ptr<StateModel> state_model, unsigned int seed) noexcept;
 
-    GPFCorrection(GPFCorrection&& gpf_correction) noexcept;
+    GPFCorrection(const GPFCorrection& correction) noexcept = delete;
+
+    GPFCorrection& operator=(const GPFCorrection& correction) noexcept = delete;
+
+    GPFCorrection(GPFCorrection&& correction) noexcept;
+
+    GPFCorrection& operator=(GPFCorrection&& correction) noexcept;
 
     virtual ~GPFCorrection() noexcept = default;
 
-    void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
+    MeasurementModel& getMeasurementModel() noexcept override;
 
-    void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
-
-    MeasurementModel& getMeasurementModel() override;
-
-    LikelihoodModel& getLikelihoodModel() override;
+    LikelihoodModel& getLikelihoodModel() noexcept override;
 
     std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
@@ -53,9 +55,16 @@ protected:
 
     double evaluateProposal(const Eigen::VectorXd& state, const Eigen::VectorXd& mean, const Eigen::MatrixXd& covariance);
 
-    std::unique_ptr<GaussianCorrection> gaussian_correction_;
+    /**
+     * Random number generator function from a Normal distribution.
+     * A call to `gaussian_random_sample_()` returns a double-precision floating-point random number.
+     */
+    std::function<double()> gaussian_random_sample_;
 
+private:
     std::unique_ptr<LikelihoodModel> likelihood_model_;
+
+    std::unique_ptr<GaussianCorrection> gaussian_correction_;
 
     /**
      * The state model is required to evaluate the Markov transition probability
@@ -66,12 +75,6 @@ protected:
     std::mt19937_64 generator_;
 
     std::normal_distribution<double> distribution_;
-
-    /**
-     * Random number generator function from a Normal distribution.
-     * A call to `gaussian_random_sample_()` returns a double-precision floating-point random number.
-     */
-    std::function<double()> gaussian_random_sample_;
 
     bool valid_likelihood_;
 

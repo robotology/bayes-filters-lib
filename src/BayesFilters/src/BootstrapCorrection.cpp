@@ -14,9 +14,42 @@ using namespace bfl;
 using namespace Eigen;
 
 
+BootstrapCorrection::BootstrapCorrection(std::unique_ptr<MeasurementModel> measurement_model, std::unique_ptr<LikelihoodModel> likelihood_model) noexcept :
+    measurement_model_(std::move(measurement_model)),
+    likelihood_model_(std::move(likelihood_model))
+{ }
+
+
+BootstrapCorrection::BootstrapCorrection(BootstrapCorrection&& correction) noexcept :
+    PFCorrection(std::move(correction)),
+    measurement_model_(std::move(correction.measurement_model_)),
+    likelihood_model_(std::move(correction.likelihood_model_))
+{ }
+
+
+BootstrapCorrection& BootstrapCorrection::operator=(BootstrapCorrection&& correction) noexcept
+{
+    PFCorrection::operator=(std::move(correction));
+
+    return *this;
+}
+
+
+MeasurementModel& BootstrapCorrection::getMeasurementModel() noexcept
+{
+    return *measurement_model_;
+}
+
+
+LikelihoodModel& BootstrapCorrection::getLikelihoodModel() noexcept
+{
+    return *likelihood_model_;
+}
+
+
 void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
-    std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_particles.state());
+    std::tie(valid_likelihood_, likelihood_) = getLikelihoodModel().likelihood(getMeasurementModel(), pred_particles.state());
 
     cor_particles = pred_particles;
 
@@ -25,31 +58,7 @@ void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, Particl
 }
 
 
-LikelihoodModel& BootstrapCorrection::getLikelihoodModel()
-{
-    return *likelihood_model_;
-}
-
-
-MeasurementModel& BootstrapCorrection::getMeasurementModel()
-{
-    return *measurement_model_;
-}
-
-
 std::pair<bool, VectorXd> BootstrapCorrection::getLikelihood()
 {
     return std::make_pair(valid_likelihood_, likelihood_);
-}
-
-
-void BootstrapCorrection::setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model)
-{
-    likelihood_model_ = std::move(likelihood_model);
-}
-
-
-void BootstrapCorrection::setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model)
-{
-    measurement_model_ = std::move(measurement_model);
 }
