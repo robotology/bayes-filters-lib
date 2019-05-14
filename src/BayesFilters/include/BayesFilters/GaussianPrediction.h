@@ -38,6 +38,16 @@ public:
 
 
 protected:
+    GaussianPrediction() noexcept = default;
+
+    GaussianPrediction(const GaussianPrediction& prediction) noexcept = delete;
+
+    GaussianPrediction& operator=(const GaussianPrediction& prediction) noexcept = delete;
+
+    GaussianPrediction(GaussianPrediction&& prediction) noexcept = default;
+
+    GaussianPrediction& operator=(GaussianPrediction&& prediction) noexcept = default;
+
     virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
 
 

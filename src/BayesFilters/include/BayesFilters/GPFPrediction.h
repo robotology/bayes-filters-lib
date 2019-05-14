@@ -24,15 +24,19 @@ namespace bfl {
 class bfl::GPFPrediction : public PFPrediction
 {
 public:
-    GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_pred) noexcept;
+    GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_prediction) noexcept;
 
-    GPFPrediction(GPFPrediction&& gpf_prediction) noexcept;
+    GPFPrediction(const GPFPrediction& prediction) noexcept = delete;
+
+    GPFPrediction& operator=(const GPFPrediction& prediction) noexcept = delete;
+
+    GPFPrediction(GPFPrediction&& prediction) noexcept;
+
+    GPFPrediction& operator=(GPFPrediction&& prediction) noexcept;
 
     virtual ~GPFPrediction() noexcept = default;
 
-    void setStateModel(std::unique_ptr<StateModel> state_model) override;
-
-    StateModel& getStateModel() override;
+    StateModel& getStateModel() noexcept override;
 
 
 protected:

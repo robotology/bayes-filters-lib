@@ -14,20 +14,6 @@ using namespace bfl;
 using namespace Eigen;
 
 
-PFPrediction::PFPrediction() noexcept { };
-
-
-PFPrediction::PFPrediction(PFPrediction&& pf_prediction) noexcept :
-    skip_prediction_(pf_prediction.skip_prediction_),
-    skip_state_(pf_prediction.skip_state_),
-    skip_exogenous_(pf_prediction.skip_exogenous_)
-{
-    pf_prediction.skip_prediction_ = false;
-    pf_prediction.skip_state_      = false;
-    pf_prediction.skip_exogenous_  = false;
-}
-
-
 void PFPrediction::predict(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
     if (!skip_prediction_)
@@ -78,12 +64,5 @@ bool PFPrediction::getSkipExogenous()
 
 ExogenousModel& PFPrediction::getExogenousModel()
 {
-    throw std::runtime_error("ERROR::PFPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tCall to unimplemented base class method.");
-}
-
-
-void PFPrediction::setExogenousModel(std::unique_ptr<ExogenousModel> exogenous_model)
-{
-    std::cerr << "ERROR::PFPREDICTION::SETEXOGENOUSMODEL\n";
-    std::cerr << "ERROR:\n\tCall to unimplemented base class method." << std::endl;
+    throw std::runtime_error("ERROR::PFPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tObject class has no valid ExogenousModel object.");
 }
