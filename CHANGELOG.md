@@ -66,6 +66,7 @@
 - Made `skip`-related variable value in `*Prediction` classes coherent with assigned values.
 - Removed setters from `*Prediction` and derived classes. All the required data to create an object are passed to the constructor.
 - Removed setters from `*Correction` and derived classes. All the required data to create an object are passed to the constructor.
+- Add `Skippable` interface class to model a functionality that can be skipped on command.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
