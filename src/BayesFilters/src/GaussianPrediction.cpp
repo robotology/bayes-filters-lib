@@ -17,7 +17,7 @@ using namespace Eigen;
 
 void GaussianPrediction::predict(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {
-    if (!skip_prediction_)
+    if (!skip_)
         predictStep(prev_state, pred_state);
     else
         pred_state = prev_state;
@@ -28,22 +28,23 @@ bool GaussianPrediction::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction")
     {
-        skip_prediction_ = status;
+        skip_ = status;
 
-        skip_state_ = status;
-        skip_exogenous_ = status;
+        getStateModel().skip("state", status);
+
+        getStateModel().skip("exogenous", status);
     }
     else if (what_step == "state")
     {
-        skip_state_ = status;
+        getStateModel().skip("state", status);
 
-        skip_prediction_ = skip_state_ & skip_exogenous_;
+        skip_ = getStateModel().getSkipState() & getStateModel().exogenous_model().getSkipState();
     }
     else if (what_step == "exogenous")
     {
-        skip_exogenous_ = status;
+        getStateModel().skip("exogenous", status);
 
-        skip_prediction_ = skip_state_ & skip_exogenous_;
+        skip_ = getStateModel().getSkipState() & getStateModel().exogenous_model().getSkipState();
     }
     else
         return false;
@@ -54,17 +55,5 @@ bool GaussianPrediction::skip(const std::string& what_step, const bool status)
 
 bool GaussianPrediction::getSkipState()
 {
-    return skip_state_;
-}
-
-
-bool GaussianPrediction::getSkipExogenous()
-{
-    return skip_exogenous_;
-}
-
-
-ExogenousModel& GaussianPrediction::getExogenousModel()
-{
-    throw std::runtime_error("ERROR::GAUSSIANPREDICTION::GETEXOGENOUSMODEL\nERROR:\n\tCall to unimplemented base class method.");
+    return skip_;
 }

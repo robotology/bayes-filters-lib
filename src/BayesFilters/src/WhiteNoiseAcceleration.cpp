@@ -17,6 +17,16 @@ using namespace bfl;
 using namespace Eigen;
 
 
+WhiteNoiseAcceleration::WhiteNoiseAcceleration() noexcept :
+    WhiteNoiseAcceleration(1.0, 1.0, 1)
+{ }
+
+
+WhiteNoiseAcceleration::WhiteNoiseAcceleration(double T, double tilde_q) noexcept :
+    WhiteNoiseAcceleration(T, tilde_q, 1)
+{ }
+
+
 WhiteNoiseAcceleration::WhiteNoiseAcceleration
 (
     double T,
@@ -47,71 +57,59 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration
 }
 
 
-WhiteNoiseAcceleration::WhiteNoiseAcceleration(double T, double tilde_q) noexcept :
-    WhiteNoiseAcceleration(T, tilde_q, 1)
-{ }
-
-
-WhiteNoiseAcceleration::WhiteNoiseAcceleration() noexcept :
-    WhiteNoiseAcceleration(1.0, 1.0, 1)
-{ }
-
-
-WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
-    generator_(wna.generator_),
-    distribution_(wna.distribution_),
-    T_(wna.T_),
-    F_(wna.F_),
-    Q_(wna.Q_),
-    tilde_q_(wna.tilde_q_),
-    sqrt_Q_(wna.sqrt_Q_),
-    gauss_rnd_sample_(wna.gauss_rnd_sample_)
-{ }
-
-
-WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept :
-    generator_(std::move(wna.generator_)),
-    distribution_(std::move(wna.distribution_)),
-    T_(wna.T_),
-    F_(std::move(wna.F_)),
-    Q_(std::move(wna.Q_)),
-    tilde_q_(wna.tilde_q_),
-    sqrt_Q_(std::move(wna.sqrt_Q_)),
-    gauss_rnd_sample_(std::move(wna.gauss_rnd_sample_))
+WhiteNoiseAcceleration::WhiteNoiseAcceleration(WhiteNoiseAcceleration&& state_model) noexcept :
+    generator_(std::move(state_model.generator_)),
+    distribution_(std::move(state_model.distribution_)),
+    T_(state_model.T_),
+    F_(std::move(state_model.F_)),
+    Q_(std::move(state_model.Q_)),
+    tilde_q_(state_model.tilde_q_),
+    sqrt_Q_(std::move(state_model.sqrt_Q_)),
+    gauss_rnd_sample_(std::move(state_model.gauss_rnd_sample_))
 {
-    wna.T_       = 0.0;
-    wna.tilde_q_ = 0.0;
+    state_model.T_       = 0.0;
+    state_model.tilde_q_ = 0.0;
 }
 
 
-WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(const WhiteNoiseAcceleration& wna)
+WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration&& state_model) noexcept
 {
-    WhiteNoiseAcceleration tmp(wna);
-    *this = std::move(tmp);
-
-    return *this;
-}
-
-
-WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration&& wna) noexcept
-{
-    if (this == &wna)
+    if (this == &state_model)
         return *this;
 
-    T_       = wna.T_;
-    F_       = std::move(wna.F_);
-    Q_       = std::move(wna.Q_);
-    tilde_q_ = wna.tilde_q_;
+    T_ = state_model.T_;
 
-    sqrt_Q_           = std::move(wna.sqrt_Q_);
-    generator_        = std::move(wna.generator_);
-    distribution_     = std::move(wna.distribution_);
-    gauss_rnd_sample_ = std::move(wna.gauss_rnd_sample_);
+    F_ = std::move(state_model.F_);
 
-    wna.T_       = 0.0;
-    wna.tilde_q_ = 0.0;
+    Q_ = std::move(state_model.Q_);
+
+    tilde_q_ = state_model.tilde_q_;
+
+    sqrt_Q_ = std::move(state_model.sqrt_Q_);
+
+    generator_ = std::move(state_model.generator_);
+
+    distribution_ = std::move(state_model.distribution_);
+
+    gauss_rnd_sample_ = std::move(state_model.gauss_rnd_sample_);
+
+    state_model.T_ = 0.0;
+
+    state_model.tilde_q_ = 0.0;
 
     return *this;
+}
+
+
+bool WhiteNoiseAcceleration::setProperty(const std::string& property)
+{
+    return false;
+}
+
+
+std::pair<std::size_t, std::size_t> WhiteNoiseAcceleration::getOutputSize() const
+{
+    return std::make_pair(4, 0);
 }
 
 
@@ -140,10 +138,4 @@ MatrixXd WhiteNoiseAcceleration::getStateTransitionMatrix()
 VectorXd WhiteNoiseAcceleration::getTransitionProbability(const Ref<const MatrixXd>& prev_states, const Ref<const MatrixXd>& cur_states)
 {
     return utils::multivariate_gaussian_density(prev_states, prev_states.col(0), Q_);
-}
-
-
-std::pair<std::size_t, std::size_t> WhiteNoiseAcceleration::getOutputSize() const
-{
-    return std::make_pair(4, 0);
 }

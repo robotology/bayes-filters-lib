@@ -25,23 +25,25 @@ class bfl::KFPrediction : public bfl::GaussianPrediction
 public:
     KFPrediction(std::unique_ptr<LinearStateModel> state_model) noexcept;
 
-    KFPrediction(std::unique_ptr<LinearStateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model) noexcept;
+    KFPrediction(const KFPrediction& prediction) noexcept = delete;
 
-    KFPrediction(KFPrediction&& kf_prediction) noexcept;
+    KFPrediction& operator=(const KFPrediction& prediction) noexcept = delete;
+
+    KFPrediction(KFPrediction&& prediction) noexcept;
+
+    KFPrediction& operator=(KFPrediction&& prediction) noexcept;
 
     virtual ~KFPrediction() noexcept = default;
 
     StateModel& getStateModel() noexcept override;
 
-    ExogenousModel& getExogenousModel() override;
-
 
 protected:
     void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
 
-    std::unique_ptr<LinearStateModel> state_model_;
 
-    std::unique_ptr<ExogenousModel> exogenous_model_;
+private:
+    std::unique_ptr<LinearStateModel> state_model_;
 };
 
 #endif /* KFPREDICTION_H */

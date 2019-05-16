@@ -8,8 +8,6 @@
 #ifndef LINEARSTATEMODEL_H
 #define LINEARSTATEMODEL_H
 
-#include <Eigen/Dense>
-
 #include <BayesFilters/AdditiveStateModel.h>
 
 namespace bfl {
@@ -22,9 +20,21 @@ class bfl::LinearStateModel : public bfl::AdditiveStateModel
 public:
     virtual ~LinearStateModel() noexcept = default;
 
-    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override;
+    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) override;
 
     virtual Eigen::MatrixXd getStateTransitionMatrix() = 0;
+
+
+protected:
+    LinearStateModel() noexcept = default;
+
+    LinearStateModel(const LinearStateModel& state_model) noexcept = delete;
+
+    LinearStateModel& operator=(const LinearStateModel& state_model) noexcept = delete;
+
+    LinearStateModel(LinearStateModel&& state_model) noexcept = default;
+
+    LinearStateModel& operator=(LinearStateModel&& state_model) noexcept = default;
 };
 
 #endif /* LINEARSTATEMODEL_H */

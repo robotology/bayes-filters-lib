@@ -26,6 +26,9 @@ GPFPrediction::GPFPrediction(GPFPrediction&& prediction) noexcept :
 
 GPFPrediction& GPFPrediction::operator=(GPFPrediction&& prediction) noexcept
 {
+    if (this == &prediction)
+        return *this;
+
     PFPrediction::operator=(std::move(prediction));
 
     gaussian_prediction_ = std::move(prediction.gaussian_prediction_);
@@ -42,10 +45,6 @@ StateModel& GPFPrediction::getStateModel() noexcept
 
 void GPFPrediction::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
-    /* Set skip flags within the Gaussian prediction. */
-    gaussian_prediction_->skip("state", getSkipState());
-    gaussian_prediction_->skip("exogenous", getSkipExogenous());
-
     /* Propagate Gaussian belief associated to each particle. */
     gaussian_prediction_->predict(prev_particles, pred_particles);
 

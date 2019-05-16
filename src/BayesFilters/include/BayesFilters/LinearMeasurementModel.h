@@ -10,8 +10,6 @@
 
 #include <BayesFilters/AdditiveMeasurementModel.h>
 
-#include <Eigen/Dense>
-
 namespace bfl {
     class LinearMeasurementModel;
 }

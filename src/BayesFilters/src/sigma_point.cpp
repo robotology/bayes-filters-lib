@@ -127,7 +127,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 
         /* Evaluate the mean. */
         output.mean(i).topRows(output_size.first).noalias() = prop_sigma_points_i.topRows(output_size.first) * weight.mean;
-        output.mean(i).bottomRows(output_size.second) =  directional_mean(prop_sigma_points_i.bottomRows(output_size.second), weight.mean);
+        output.mean(i).bottomRows(output_size.second) = directional_mean(prop_sigma_points_i.bottomRows(output_size.second), weight.mean);
 
         /* Evaluate the covariance. */
         prop_sigma_points_i.topRows(output_size.first).colwise() -= output.mean(i).topRows(output_size.first);
@@ -173,34 +173,6 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
 (
     const GaussianMixture& state,
     const UTWeight& weight,
-    StateModel& state_model,
-    ExogenousModel& exogenous_model
-)
-{
-    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXd>& state)
-                           {
-                               MatrixXd tmp_state(state.rows(), state.cols());
-                               state_model.motion(state, tmp_state);
-
-                               MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
-                               exogenous_model.propagate(tmp_state, tmp_exog);
-
-                               /* Making the assumption that
-                                  state_model.getOutputSize() == exogenous_model.getOutputSize(). */
-                               return std::make_tuple(true, std::move(tmp_exog), state_model.getOutputSize());
-                           };
-    MatrixXd cross_covariance;
-    GaussianMixture output;
-    std::tie(std::ignore, output, cross_covariance) = unscented_transform(state, weight, f);
-
-    return std::make_pair(output, cross_covariance);
-}
-
-
-std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
-(
-    const GaussianMixture& state,
-    const UTWeight& weight,
     AdditiveStateModel& state_model
 )
 {
@@ -221,66 +193,6 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
        covariance matrix. */
     for(std::size_t i = 0; i < state.components; i++)
         output.covariance(i) += state_model.getNoiseCovarianceMatrix();
-
-    return std::make_pair(output, cross_covariance);
-}
-
-
-std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
-(
-    const GaussianMixture& state,
-    const UTWeight& weight,
-    AdditiveStateModel& state_model,
-    ExogenousModel& exogenous_model
-)
-{
-    FunctionEvaluation f = [&state_model, &exogenous_model](const Ref<const MatrixXd>& state)
-                           {
-                               MatrixXd tmp_state(state.rows(), state.cols());
-                               state_model.propagate(state, tmp_state);
-
-                               MatrixXd tmp_exog(tmp_state.rows(), tmp_state.cols());
-                               exogenous_model.propagate(tmp_state, tmp_exog);
-
-                               /* Making the assumption that
-                                  state_model.getOutputSize() == exogenous_model.getOutputSize(). */
-                               return std::make_tuple(true, std::move(tmp_exog), state_model.getOutputSize());
-                           };
-
-    bool valid;
-    MatrixXd cross_covariance;
-    GaussianMixture output;
-    std::tie(valid, output, cross_covariance) = unscented_transform(state, weight, f);
-
-    /* In the additive case the covariance matrix is augmented with the noise
-       covariance matrix. */
-    for (std::size_t i = 0; i < state.components; i++)
-        output.covariance(i) += state_model.getNoiseCovarianceMatrix();
-
-    return std::make_pair(output, cross_covariance);
-}
-
-
-std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
-(
-    const GaussianMixture& state,
-    const UTWeight& weight,
-    ExogenousModel& exogenous_model
-)
-{
-    FunctionEvaluation f = [&exogenous_model](const Ref<const MatrixXd>& state)
-                           {
-                               MatrixXd tmp(state.rows(), state.cols());
-
-                               exogenous_model.propagate(state, tmp);
-
-                               return std::make_tuple(true, std::move(tmp), exogenous_model.getOutputSize());
-                           };
-
-    bool valid;
-    MatrixXd cross_covariance;
-    GaussianMixture output;
-    std::tie(valid, output, cross_covariance) = unscented_transform(state, weight, f);
 
     return std::make_pair(output, cross_covariance);
 }

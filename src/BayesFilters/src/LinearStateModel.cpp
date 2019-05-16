@@ -13,7 +13,26 @@ using namespace bfl;
 using namespace Eigen;
 
 
-void LinearStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> pred_states)
+void LinearStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states)
 {
-    pred_states = getStateTransitionMatrix() * cur_states;
+    if (getSkipState() && (have_exogenous_model() && exogenous_model().getSkipState()))
+    {
+        prop_states = cur_states;
+    }
+    else if (!getSkipState() && (have_exogenous_model() && !exogenous_model().getSkipState()))
+    {
+        MatrixXd exogenous_state(cur_states.rows(), cur_states.cols());
+
+        exogenous_model().propagate(cur_states, exogenous_state);
+
+        prop_states = getStateTransitionMatrix() * cur_states + exogenous_state;
+    }
+    else if (!getSkipState())
+    {
+        prop_states = getStateTransitionMatrix() * cur_states;
+    }
+    else if (have_exogenous_model() && !exogenous_model().getSkipState())
+    {
+        exogenous_model().propagate(cur_states, prop_states);
+    }
 }

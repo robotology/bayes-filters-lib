@@ -8,25 +8,41 @@
 #ifndef EXOGENOUSMODEL_H
 #define EXOGENOUSMODEL_H
 
-#include <Eigen/Dense>
+#include <BayesFilters/ExogenousProcess.h>
+#include <BayesFilters/Skippable.h>
 
 namespace bfl {
     class ExogenousModel;
 }
 
 
-class bfl::ExogenousModel
+class bfl::ExogenousModel : public ExogenousProcess, public Skippable
 {
 public:
     virtual ~ExogenousModel() noexcept = default;
 
-    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
+    bool skip(const std::string& what_step, const bool status) override;
 
-    virtual Eigen::MatrixXd getExogenousMatrix() = 0;
+    bool getSkipState() override;
 
-    virtual bool setProperty(const std::string& property) = 0;
 
-    virtual std::pair<std::size_t, std::size_t> getOutputSize() const = 0;
+protected:
+    ExogenousModel() noexcept = default;
+
+    ExogenousModel(const ExogenousModel& exogenous_model) noexcept = delete;
+
+    ExogenousModel& operator=(const ExogenousModel& exogenous_model) noexcept = delete;
+
+    ExogenousModel(ExogenousModel&& exogenous_model) noexcept = default;
+
+    ExogenousModel& operator=(ExogenousModel&& exogenous_model) noexcept = default;
+
+
+private:
+    /**
+     * Skip status.
+     */
+    bool skip_ = false;
 };
 
 #endif /* EXOGENOUSMODEL_H */

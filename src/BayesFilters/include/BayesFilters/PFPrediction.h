@@ -13,6 +13,7 @@
 #include <BayesFilters/StateModel.h>
 
 #include <Eigen/Dense>
+
 #include <memory>
 #include <string>
 
@@ -32,11 +33,7 @@ public:
 
     bool getSkipState();
 
-    bool getSkipExogenous();
-
     virtual StateModel& getStateModel() noexcept = 0;
-
-    virtual ExogenousModel& getExogenousModel();
 
 
 protected:
@@ -54,11 +51,7 @@ protected:
 
 
 private:
-    bool skip_prediction_ = false;
-
-    bool skip_state_ = false;
-
-    bool skip_exogenous_ = false;
+    bool skip_ = false;
 };
 
 #endif /* PFPREDICTION_H */

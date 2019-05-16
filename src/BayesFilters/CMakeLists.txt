@@ -24,8 +24,10 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/BootstrapCorrection.h
         include/BayesFilters/DrawParticles.h
         include/BayesFilters/ExogenousModel.h
+        include/BayesFilters/ExogenousProcess.h
         include/BayesFilters/GaussianCorrection.h
         include/BayesFilters/GaussianLikelihood.h
+        include/BayesFilters/GaussianMixturePrediction.h
         include/BayesFilters/GaussianInitialization.h
         include/BayesFilters/GaussianPrediction.h
         include/BayesFilters/GPFCorrection.h
@@ -49,6 +51,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/SimulatedStateModel.h
         include/BayesFilters/Skippable.h
         include/BayesFilters/StateModel.h
+        include/BayesFilters/StateProcess.h
         include/BayesFilters/SUKFCorrection.h
         # include/BayesFilters/TimeDecreasingDynamics.h
         include/BayesFilters/UKFCorrection.h
@@ -89,6 +92,7 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/Agent.cpp
         src/BootstrapCorrection.cpp
         src/DrawParticles.cpp
+        src/ExogenousModel.cpp
         src/GaussianCorrection.cpp
         src/GaussianLikelihood.cpp
         src/GaussianPrediction.cpp
