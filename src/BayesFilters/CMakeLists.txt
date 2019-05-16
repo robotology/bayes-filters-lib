@@ -49,6 +49,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedLinearSensor.h
         include/BayesFilters/SimulatedStateModel.h
+        include/BayesFilters/Skipper.h
         include/BayesFilters/Skippable.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateProcess.h

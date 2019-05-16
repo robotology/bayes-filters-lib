@@ -5,20 +5,20 @@
  * BSD 3-Clause license. See the accompanying LICENSE file for details.
  */
 
-#ifndef SKIPPABLE_H
-#define SKIPPABLE_H
+#ifndef SKIPPER_H
+#define SKIPPER_H
 
-#include <BayesFilters/Skipper.h>
+#include <string>
 
 namespace bfl {
-    class Skippable;
+    class Skipper;
 }
 
 
-class bfl::Skippable : public Skipper
+class bfl::Skipper
 {
 public:
-    virtual bool is_skipping() = 0;
+    virtual bool skip(const std::string& what_step, const bool status) = 0;
 };
 
-#endif /* SKIPPABLE_H */
+#endif /* SKIPPER_H */

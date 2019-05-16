@@ -79,7 +79,7 @@ bfl::StateModel& UKFPrediction::getStateModel() noexcept
 
 void UKFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {
-    if (getStateModel().getSkipState())
+    if (getStateModel().is_skipping())
     {
         pred_state = prev_state;
 

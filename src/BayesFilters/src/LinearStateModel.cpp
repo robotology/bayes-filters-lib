@@ -15,11 +15,11 @@ using namespace Eigen;
 
 void LinearStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states)
 {
-    if (getSkipState() && (have_exogenous_model() && exogenous_model().getSkipState()))
+    if (is_skipping() && (have_exogenous_model() && exogenous_model().is_skipping()))
     {
         prop_states = cur_states;
     }
-    else if (!getSkipState() && (have_exogenous_model() && !exogenous_model().getSkipState()))
+    else if (!is_skipping() && (have_exogenous_model() && !exogenous_model().is_skipping()))
     {
         MatrixXd exogenous_state(cur_states.rows(), cur_states.cols());
 
@@ -27,11 +27,11 @@ void LinearStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_st
 
         prop_states = getStateTransitionMatrix() * cur_states + exogenous_state;
     }
-    else if (!getSkipState())
+    else if (!is_skipping())
     {
         prop_states = getStateTransitionMatrix() * cur_states;
     }
-    else if (have_exogenous_model() && !exogenous_model().getSkipState())
+    else if (have_exogenous_model() && !exogenous_model().is_skipping())
     {
         exogenous_model().propagate(cur_states, prop_states);
     }

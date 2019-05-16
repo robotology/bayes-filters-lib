@@ -23,7 +23,7 @@ public:
 
     bool skip(const std::string& what_step, const bool status) override;
 
-    bool getSkipState() override;
+    bool is_skipping() override;
 
 
 protected:

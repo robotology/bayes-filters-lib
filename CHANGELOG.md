@@ -37,6 +37,9 @@
 - Added method `bfl::utils::diff_quaternion()` that evaluates the colwise difference between a set of quaternions and a given unitary quaternion (right operand). The i-th difference is obtained as the logarithm of the quaternion product between the i-th quaternion and the conjugated right operand, i.e it is a rotation vector.
 - Added method `bfl::utils::mean_quaternion()` that evaluates the weighted mean of a set of unitary quaternions.
 - utils.h is now a template header-only utility file.
+- Add `Skipper` interface class to model skipping functionalities.
+- Add `Skippable` interface class to model a functionality that can be skipped on command.
+- Rename `Skippable::getSkipState()` in `Skippable::is_skipping()`.
 
 ##### `Filtering functions`
 - Added pure public virtual method GaussianPrediction::getStateModel() (required to properly implement GPFPrediction::getStateModel()).
@@ -66,7 +69,6 @@
 - Made `skip`-related variable value in `*Prediction` classes coherent with assigned values.
 - Removed setters from `*Prediction` and derived classes. All the required data to create an object are passed to the constructor.
 - Removed setters from `*Correction` and derived classes. All the required data to create an object are passed to the constructor.
-- Add `Skippable` interface class to model a functionality that can be skipped on command.
 - Add `StateProcess` interface class to describe state model functionalities.
 - Add `ExogenousProcess` interface class to describe exogenous model functionalities.
 - Add `GaussianMixturePrediction` interface class to describe Gaussian mixture-based prediction functionalities.
