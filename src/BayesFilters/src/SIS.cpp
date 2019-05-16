@@ -49,48 +49,20 @@ SIS::SIS
 { }
 
 
-SIS::SIS(SIS&& sir_pf) noexcept :
-    ParticleFilter(std::move(sir_pf)),
-    num_particle_(sir_pf.num_particle_),
-    state_size_(sir_pf.state_size_),
-    pred_particle_(std::move(sir_pf.pred_particle_)),
-    cor_particle_(std::move(sir_pf.cor_particle_))
-{ }
-
-
-SIS& SIS::operator=(SIS&& sir_pf) noexcept
+bool SIS::initialization_step()
 {
-    if (this == &sir_pf)
-        return *this;
-
-    ParticleFilter::operator=(std::move(sir_pf));
-
-    num_particle_ = sir_pf.num_particle_;
-
-    state_size_ = sir_pf.state_size_;
-
-    pred_particle_ = std::move(sir_pf.pred_particle_);
-
-    cor_particle_ = std::move(sir_pf.cor_particle_);
-
-    return *this;
+    return initialization().initialize(pred_particle_);
 }
 
 
-bool SIS::initialization()
+void SIS::filtering_step()
 {
-    return initialization_->initialize(pred_particle_);
-}
+    if (step_number() != 0)
+        prediction().predict(cor_particle_, pred_particle_);
 
-
-void SIS::filteringStep()
-{
-    if (getFilteringStep() != 0)
-        prediction_->predict(cor_particle_, pred_particle_);
-
-    if (correction_->freeze_measurements())
+    if (correction().freeze_measurements())
     {
-        correction_->correct(pred_particle_, cor_particle_);
+        correction().correct(pred_particle_, cor_particle_);
 
         /* Normalize weights using LogSumExp. */
         cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
@@ -100,21 +72,30 @@ void SIS::filteringStep()
 
     log();
 
-    if (resampling_->neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
+    if (resampling().neff(cor_particle_.weight()) < static_cast<double>(num_particle_)/3.0)
     {
         ParticleSet res_particle(num_particle_, state_size_);
         VectorXi res_parent(num_particle_, 1);
 
-        resampling_->resample(cor_particle_, res_particle, res_parent);
+        resampling().resample(cor_particle_, res_particle, res_parent);
 
         cor_particle_ = res_particle;
     }
 }
 
 
-bool SIS::runCondition()
+bool SIS::run_condition()
 {
     return true;
+}
+
+
+std::vector<std::string> SIS::log_file_names(const std::string& folder_path, const std::string& file_name_prefix)
+{
+    return { folder_path + "/" + file_name_prefix + "_pred_particles",
+             folder_path + "/" + file_name_prefix + "_pred_weights",
+             folder_path + "/" + file_name_prefix + "_cor_particles",
+             folder_path + "/" + file_name_prefix + "_cor_weights" };
 }
 
 

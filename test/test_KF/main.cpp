@@ -39,22 +39,22 @@ public:
     { }
 
 protected:
-    bool runCondition() override
+    bool run_condition() override
     {
-        if (getFilteringStep() < simulation_steps_)
+        if (step_number() < simulation_steps_)
             return true;
         else
             return false;
     }
 
 
-    bool initialization() override
+    bool initialization_step() override
     {
         return true;
     }
 
 
-    void filteringStep() override
+    void filtering_step() override
     {
         prediction_->predict(corrected_state_, predicted_state_);
 

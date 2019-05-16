@@ -73,6 +73,13 @@
 - Add `ExogenousProcess` interface class to describe exogenous model functionalities.
 - Add `GaussianMixturePrediction` interface class to describe Gaussian mixture-based prediction functionalities.
 - Move `ExogenousModel` inside `StateModel`. Consequently, the prediction classes only need to handle a `StateModel` that in turns will handle the `ExogenousModel` properly, if present.
+- Add `Filter` interface class to describe Bayes filter functionalities.
+- Rename `FilteringAlgorithm::getFilteringStep()` in `FilteringAlgorithm::step_number()`.
+- Rename `FilteringAlgorithm::isRunning()` in `FilteringAlgorithm::is_running()`.
+- Rename `FilteringAlgorithm::filteringRecursion()` in `FilteringAlgorithm::filtering_recursion()`.
+- Rename `FilteringAlgorithm::initialization()` in `FilteringAlgorithm::initialization_step()`.
+- Rename `FilteringAlgorithm::filteringStep()` in `FilteringAlgorithm::filtering_step()`.
+- Rename `FilteringAlgorithm::runCondition()` in `FilteringAlgorithm::run_condition()`.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.

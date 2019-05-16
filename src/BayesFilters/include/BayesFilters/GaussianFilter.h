@@ -21,18 +21,28 @@ namespace bfl {
 class bfl::GaussianFilter : public bfl::FilteringAlgorithm
 {
 public:
-    GaussianFilter(std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
-
-    GaussianFilter(GaussianFilter&& kf) noexcept;
-
-    GaussianFilter& operator=(GaussianFilter&& gf) noexcept;
-
     virtual ~GaussianFilter() noexcept = default;
 
     bool skip(const std::string& what_step, const bool status) override;
 
 
 protected:
+    GaussianFilter(std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept;
+
+    GaussianFilter(const GaussianFilter& filter) noexcept = delete;
+
+    GaussianFilter& operator=(const GaussianFilter& filter) noexcept = delete;
+
+    GaussianFilter(GaussianFilter&& filter) noexcept = delete;
+
+    GaussianFilter& operator=(GaussianFilter&& filter) noexcept = delete;
+
+    GaussianPrediction& prediction();
+
+    GaussianCorrection& correction();
+
+
+private:
     std::unique_ptr<GaussianPrediction> prediction_;
 
     std::unique_ptr<GaussianCorrection> correction_;
