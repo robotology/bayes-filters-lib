@@ -196,6 +196,34 @@ Eigen::VectorXd multivariate_gaussian_density(const Eigen::MatrixBase<Derived>& 
 
 
 /**
+ * Evaluate the logarithm of a multivariate Gaussian probability density function
+ * using the Sherman–Morrison–Woodbury formula.
+ *
+ * It is assumed that the covariance matrix S can be written in the form S = UV + R
+ * where R is an invertible block diagonal matrix. Each block R_{i} is square and has
+ * dimension M such that N * M is the size of the input for some positive integer N.
+ *
+ * This version is much faster than the standard gaussian density evaluation
+ * if U.cols() << U.rows().
+ *
+ * @param input Input representing the argument of the function as a vector or matrix.
+ * @param mean The mean of the associated Gaussian distribution as a vector.
+ * @param U The U factor within the covariance matrix S = UV + R of the associated Gaussian distribution as a matrix.
+ * @param V The V factor within the covariance matrix S = UV + R of the associated Gaussian distribution as a matrix.
+ * @param R The R summand within the covariance matrix S = UV + R of the associated Gaussian distribuion as a matrix.
+ *          The matrix R has size M * (N * M) and consists in the concatenation of all the diagonal blocks R_{i}.
+ *          If the diagonal blocks are all equal, it is possible to provide a single M * M block matrix.
+ *
+ * @return The value of the density function evaluated on the input data as a vector.
+ */
+template<typename Derived>
+Eigen::VectorXd multivariate_gaussian_density_UVR(const Eigen::MatrixBase<Derived>& input, const Eigen::Ref<const Eigen::VectorXd>& mean, const Eigen::Ref<const Eigen::MatrixXd>& U, const Eigen::Ref<const Eigen::MatrixXd>& V, const Eigen::Ref<const Eigen::MatrixXd>& R)
+{
+    return multivariate_gaussian_log_density_UVR(input, mean, U, V, R).array().exp();
+}
+
+
+/**
  * This template class provides methods to keep track of time. The default time unit is milliseconds,
  * but can be changed during object creation using a different std::chrono::duration type.
  * See https://en.cppreference.com/w/cpp/chrono/duration for reference.
