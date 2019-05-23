@@ -113,7 +113,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     MatrixXd prop_sigma_points = bfl::any::any_cast<MatrixXd&&>(std::move(fun_data));
 
     /* Initialize transformed gaussian. */
-    GaussianMixture output(input.components, prop_sigma_points.rows());
+    GaussianMixture output(input.components, output_size.first, output_size.second);
 
     /* Initialize cross covariance matrix. */
     MatrixXd cross_covariance(input.dim, output.dim * output.components);
