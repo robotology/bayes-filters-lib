@@ -14,6 +14,8 @@
 - Implemented method ParticleSet::resize().
 - Implemented evaluation of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_density.
 - Implemented evaluation of the logarithm of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_log_density.
+- Implemented evaluation of a multivariate Gaussian probability density function with UVR factorized covariance matrix in method `utils::multivariate_gaussian_density_UVR()`.
+- Implemented evaluation of the logarithm of a multivariate Gaussian probability density function with UVR factorized covariance matrix in method `utils::multivariate_gaussian_log_density_UVR()`.
 - Methods EstimatesExtraction::extract() return a std::pair containing a boolean indicating if the estimate is valid and the estracted estimate.
 - Methods EstimatesExtraction::extract() assume that particle weights are in the log space.
 - Constructor HistoryBuffer::HistoryBuffer() takes the state size.
@@ -28,6 +30,7 @@
 - Implemented method KFCorrection::getLikelihood().
 - Implemented method UKFPrediction::getStateModel().
 - Implemented method UKFCorrection::getLikelihood().
+- Implemented method `SUKFCorrection::getLikelihood()`.
 - Changed implementation of GaussianLikelihood::likelihood().
 - Changed implementation of GPFPrediction::getStateModel().
 - Changed implementation of GPFCorrection::getLikelihood().
@@ -42,6 +45,7 @@
 - Add mean extraction and logging in test_SIS to simplify inspection of the algorithm outcome.
 - Reduce number of particles in test_SIS to reduce testing computation time in Debug.
 - Add testUPF_MAP testing MAP (maximum a posteriori) estimate extraction within a UPF particle filter.
+- Add `test_Gaussian_Density_UVR` testing the method `utils::multivariate_gaussian_density_UVR()`.
 - Change test_Gaussian in order to test resizing.
 
 ## 🔖 Version 0.8.101

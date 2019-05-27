@@ -7,6 +7,7 @@
 
 #include <BayesFilters/SUKFCorrection.h>
 #include <BayesFilters/directional_statistics.h>
+#include <BayesFilters/utils.h>
 
 using namespace bfl;
 using namespace bfl::directional_statistics;
@@ -45,6 +46,35 @@ MeasurementModel& SUKFCorrection::getMeasurementModel()
 }
 
 
+std::pair<bool, VectorXd> SUKFCorrection::getLikelihood()
+{
+    /* This method uses the member variable propagated_sigma_points_.
+       After each call to correctStep(), that variable contains a matrix Y
+       such that the predicted covariance of measurement is S = Y * Y^{T} + R */
+
+    if ((innovations_.rows() == 0) || (innovations_.cols() == 0))
+        return std::make_pair(false, VectorXd());
+
+    /* Evaluate the matrix containing the measurement noise covariance for each submeasurement. */
+    MatrixXd R(measurement_sub_size_, innovations_.rows());
+    for (std::size_t i = 0; i < innovations_.rows() / measurement_sub_size_; i++)
+    {
+        R.middleCols(i * measurement_sub_size_, measurement_sub_size_) = getNoiseCovarianceMatrix(i);
+    }
+
+    /* Evaluate the likelihoods. */
+    VectorXd likelihood(innovations_.cols());
+    std::size_t size_sigma_points = propagated_sigma_points_.cols() / innovations_.cols();
+    for (std::size_t i = 0; i < innovations_.cols(); i++)
+    {
+        Ref<MatrixXd> Y = propagated_sigma_points_.middleCols(size_sigma_points * i, size_sigma_points);
+        likelihood(i) = utils::multivariate_gaussian_density_UVR(innovations_.col(i), VectorXd::Zero(innovations_.rows()), Y, Y.transpose(), R).coeff(0);
+    }
+
+    return std::make_pair(true, likelihood);
+}
+
+
 void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state)
 {
     /* Get the current measurement if available. */
@@ -78,14 +108,14 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
     }
 
     /* Cast data to MatrixXd. */
-    MatrixXd prop_sigma_points = bfl::any::any_cast<MatrixXd&&>(std::move(pred));
+    propagated_sigma_points_ = bfl::any::any_cast<MatrixXd&&>(std::move(pred));
 
     /* Evaluate the predicted mean. */
     std::size_t size_sigmas = (pred_state.dim * 2) + 1;
     MatrixXd pred_mean(meas_size, pred_state.components);
     for (size_t i = 0; i < pred_state.components; i++)
     {
-        Ref<MatrixXd> prop_sp = prop_sigma_points.middleCols(size_sigmas * i, size_sigmas);
+        Ref<MatrixXd> prop_sp = propagated_sigma_points_.middleCols(size_sigmas * i, size_sigmas);
 
         /* Evaluate the mean. */
         pred_mean.col(i).noalias() = prop_sp * ut_weight_.mean;
@@ -103,7 +133,7 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
     }
 
     /* Cast innovations once for all. */
-    MatrixXd innovations = any::any_cast<MatrixXd&&>(std::move(innovation));
+    innovations_ = any::any_cast<MatrixXd&&>(std::move(innovation));
 
     /* From now on using equations from the paper:
        Barfoot, T., McManus, C. (2011),
@@ -117,7 +147,7 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
     {
         /* Compose square root of the measurement covariance matrix.
            IV.C.2.b */
-        Ref<MatrixXd> Y = prop_sigma_points.middleCols(size_sigmas * i, size_sigmas);
+        Ref<MatrixXd> Y = propagated_sigma_points_.middleCols(size_sigmas * i, size_sigmas);
 
         /* Shift w.r.t. the mean. */
         Y.colwise() -= pred_mean.col(i);
@@ -137,7 +167,7 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
 
             C_inv += tmp * Y.middleRows(measurement_sub_size_ *j, measurement_sub_size_);
 
-            d += tmp * innovations.col(i).middleRows(measurement_sub_size_ *j, measurement_sub_size_);
+            d += tmp * innovations_.col(i).middleRows(measurement_sub_size_ *j, measurement_sub_size_);
         }
 
         /* Process input sigma points.
