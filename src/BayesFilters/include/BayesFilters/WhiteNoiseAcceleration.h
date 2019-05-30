@@ -21,11 +21,16 @@ namespace bfl {
 class bfl::WhiteNoiseAcceleration : public LinearStateModel
 {
 public:
-    WhiteNoiseAcceleration() noexcept;
+    enum class Dim
+    {
+        OneD,
+        TwoD,
+        ThreeD
+    };
 
-    WhiteNoiseAcceleration(double T, double tilde_q) noexcept;
+    WhiteNoiseAcceleration(const Dim dim, const double sampling_interval, const double tilde_q) noexcept;
 
-    WhiteNoiseAcceleration(double T, double tilde_q, unsigned int seed) noexcept;
+    WhiteNoiseAcceleration(const Dim dim, const double sampling_interval, const double tilde_q, const unsigned int seed) noexcept;
 
     WhiteNoiseAcceleration(const WhiteNoiseAcceleration& state_model) noexcept = delete;
 
@@ -35,7 +40,7 @@ public:
 
     WhiteNoiseAcceleration& operator=(WhiteNoiseAcceleration&& state_model) noexcept;
 
-    virtual ~WhiteNoiseAcceleration() noexcept = default;
+    virtual ~WhiteNoiseAcceleration() noexcept;
 
     bool setProperty(const std::string& property) override;
 
@@ -51,42 +56,12 @@ public:
 
 
 private:
-    std::mt19937_64 generator_;
-
-    std::normal_distribution<double> distribution_;
-
-
-protected:
     /**
-     * Sampling interval in [time].
+     * The stored content of an object.
      */
-    double T_;
+    struct ImplData;
 
-    /**
-     * State transition matrix.
-     */
-    Eigen::Matrix4d F_;
-
-    /**
-     * Convariance matrix of the additive white noise of the state model.
-     */
-    Eigen::Matrix4d Q_;
-
-    /**
-     * Power spectral density [length]^2/[time]^3.
-     */
-    double tilde_q_;
-
-    /**
-     * Square root matrix of R_.
-     */
-    Eigen::Matrix4d sqrt_Q_;
-
-    /**
-     * Random number generator function from a Normal distribution.
-     * A call to `gauss_rnd_sample_()` returns a double-precision floating point random number.
-     */
-    std::function<double()> gauss_rnd_sample_;
+    std::unique_ptr<ImplData> pimpl_;
 };
 
 #endif /* WHITENOISEACCELERATION_H */
