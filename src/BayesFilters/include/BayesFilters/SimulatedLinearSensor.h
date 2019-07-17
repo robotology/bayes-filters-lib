@@ -21,13 +21,11 @@ namespace bfl {
 class bfl::SimulatedLinearSensor : public LinearModel
 {
 public:
-    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const double sigma_x, const double sigma_y, const unsigned int seed);
+    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const LinearMatrixComponent& linear_matrix_component, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix, const unsigned int seed);
 
-    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const double sigma_x, const double sigma_y);
+    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model, const LinearMatrixComponent& linear_matrix_component, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
 
-    SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model);
-
-    virtual ~SimulatedLinearSensor() noexcept = default;
+    virtual ~SimulatedLinearSensor() noexcept;
 
     bool freeze(const Data& data = Data()) override;
 

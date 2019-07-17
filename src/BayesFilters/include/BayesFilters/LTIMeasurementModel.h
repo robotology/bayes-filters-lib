@@ -17,6 +17,9 @@ namespace bfl {
 }
 
 
+/**
+ * This class represent an linear measurement model Hx + w, where H is a time-invariant measurement matrix, x is a state vector and w is random noise.
+ */
 class bfl::LTIMeasurementModel : public bfl::LinearMeasurementModel
 {
 public:
@@ -30,10 +33,14 @@ public:
 
 
 protected:
-    /* Measurement matrix. */
+    /**
+     * Measurement matrix.
+     */
     Eigen::MatrixXd H_;
 
-    /* Matrix covariance of the zero mean additive white measurement noise. */
+    /**
+     * Convariance matrix of the additive white noise of the measurements.
+     */
     Eigen::MatrixXd R_;
 };
 

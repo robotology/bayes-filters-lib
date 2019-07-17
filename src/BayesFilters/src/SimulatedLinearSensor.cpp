@@ -11,31 +11,35 @@ using namespace bfl;
 using namespace Eigen;
 
 
+SimulatedLinearSensor::~SimulatedLinearSensor() noexcept = default;
+
+
 SimulatedLinearSensor::SimulatedLinearSensor
 (
     std::unique_ptr<SimulatedStateModel> simulated_state_model,
-    const double sigma_x,
-    const double sigma_y,
+    const LinearMatrixComponent& linear_matrix_component,
+    const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix,
     const unsigned int seed
 ) :
-    LinearModel(sigma_x, sigma_y, seed),
+    LinearModel(linear_matrix_component, noise_covariance_matrix, seed),
     simulated_state_model_(std::move(simulated_state_model))
 {
     /* Since a LinearSensor is intended as a sensor that measure
-       the state directly (i.e. no linear combination of the states),
-       then it is possible to extract the output size from the
-       output size of the simulated state model. */
+     * the state directly (i.e. no linear combination of the states),
+     * then it is possible to extract the output size from the
+     * output size of the simulated state model.
+     */
     std::size_t dim_linear_state;
-    std::size_t dim_circular_state;
-    std::tie(dim_linear_state, dim_circular_state) = simulated_state_model_->getStateModel().getOutputSize();
+    std::tie(dim_linear_state, std::ignore) = simulated_state_model_->getStateModel().getOutputSize();
 
     dim_linear_ = 0;
     dim_circular_ = 0;
 
-    for (std::size_t i = 0; i < H_.rows(); i++)
+    for (std::size_t i = 0; i < H_.rows(); ++i)
     {
         Eigen::MatrixXf::Index state_index;
         H_.row(i).array().abs().maxCoeff(&state_index);
+
         if (state_index < dim_linear_state)
             dim_linear_++;
         else
@@ -47,15 +51,10 @@ SimulatedLinearSensor::SimulatedLinearSensor
 SimulatedLinearSensor::SimulatedLinearSensor
 (
     std::unique_ptr<SimulatedStateModel> simulated_state_model,
-    const double sigma_x,
-    const double sigma_y
+    const LinearMatrixComponent& linear_matrix_component,
+    const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix
 ) :
-    SimulatedLinearSensor(std::move(simulated_state_model), sigma_x, sigma_y, 1)
-{ }
-
-
-SimulatedLinearSensor::SimulatedLinearSensor(std::unique_ptr<SimulatedStateModel> simulated_state_model) :
-    SimulatedLinearSensor(std::move(simulated_state_model), 10.0, 10.0, 1)
+    SimulatedLinearSensor(std::move(simulated_state_model), linear_matrix_component, noise_covariance_matrix, 1)
 { }
 
 
