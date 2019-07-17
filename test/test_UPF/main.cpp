@@ -175,7 +175,13 @@ int main(int argc, char* argv[])
         simulated_state_model->enable_log("./", "testUPF");
 
     /* Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
+    double sigma_x = 10.0;
+    double sigma_y = 10.0;
+    Eigen::MatrixXd R(2, 2);
+    R << std::pow(sigma_x, 2.0),                    0.0,
+                            0.0, std::pow(sigma_y, 2.0);
+
+    std::unique_ptr<AdditiveMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model), SimulatedLinearSensor::LinearMatrixComponent{ 4, std::vector<std::size_t>{ 0, 2 } }, R);
 
     if (write_to_file)
         simulated_linear_sensor->enable_log("./", "testUPF");
