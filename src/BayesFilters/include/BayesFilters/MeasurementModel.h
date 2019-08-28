@@ -27,7 +27,7 @@ class bfl::MeasurementModel : public Logger
 public:
     virtual ~MeasurementModel() noexcept;
 
-    virtual bool freeze() = 0;
+    virtual bool freeze(const Data& data = Data()) = 0;
 
     virtual std::pair<bool, Data> measure(const Data& data = Data()) const = 0;
 
