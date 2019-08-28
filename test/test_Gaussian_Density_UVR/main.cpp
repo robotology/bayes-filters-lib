@@ -27,7 +27,7 @@ public:
     { }
 
 
-    bool freeze() override
+    bool freeze(const Data& data) override
     {
         return true;
     }

@@ -63,7 +63,7 @@ SimulatedLinearSensor::~SimulatedLinearSensor() noexcept
 { }
 
 
-bool SimulatedLinearSensor::freeze()
+bool SimulatedLinearSensor::freeze(const Data& data)
 {
     if (!simulated_state_model_->bufferData())
         return false;

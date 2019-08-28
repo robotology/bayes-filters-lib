@@ -39,6 +39,7 @@
 - Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability().
 - Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability().
 - SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.
+- Method MeasurementModel::freeze() takes an input argument of type Data.
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.
