@@ -30,7 +30,7 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-    bool freeze() override;
+    bool freeze(const Data& data = Data()) override;
 
     std::pair<std::size_t, std::size_t> getOutputSize() const override;
 
