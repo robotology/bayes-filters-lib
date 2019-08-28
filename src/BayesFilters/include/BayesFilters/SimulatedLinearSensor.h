@@ -29,7 +29,7 @@ public:
 
     virtual ~SimulatedLinearSensor() noexcept;
 
-    bool freeze() override;
+    bool freeze(const Data& data = Data()) override;
 
     std::pair<bool, bfl::Data> measure(const Data& data = Data()) const override;
 
