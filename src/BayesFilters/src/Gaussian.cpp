@@ -13,17 +13,22 @@ using namespace bfl;
 using namespace Eigen;
 
 Gaussian::Gaussian() noexcept :
-    GaussianMixture(1, 1)
+    GaussianMixture(1, 1, 0, false)
 { }
 
 
 Gaussian::Gaussian(const std::size_t dim_linear) noexcept :
-    GaussianMixture(1, dim_linear)
+    GaussianMixture(1, dim_linear, 0, false)
 { }
 
 
-Gaussian::Gaussian(const std::size_t dim_linear, const std::size_t dim_circular) noexcept :
-    GaussianMixture(1, dim_linear, dim_circular)
+Gaussian::Gaussian
+(
+    const std::size_t dim_linear,
+    const std::size_t dim_circular,
+    const bool use_quaternion
+) noexcept :
+    GaussianMixture(1, dim_linear, dim_circular, use_quaternion)
 { }
 
 
