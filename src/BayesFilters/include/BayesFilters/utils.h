@@ -8,11 +8,8 @@
 /**
  * Header-only utility library implementing missing features.
  *
- * What: Possible implementation of std::make_unique.
- * Who:  Contributed by Claudio Fantacci.
- * When: July 2001, April 2013 - May 2013, September 2018.
- * Doc:  See https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.
- *       See also: https://herbsutter.com/gotw/_102/.
+ * Who:  Contributed by Claudio Fantacci, Nicola Piga.
+ * When: July 2001, April 2013 - May 2013, September 2018, February 2020
  *
  */
 #ifndef UTILS_H
@@ -40,6 +37,9 @@ namespace utils
  * allocate_unique would be required to invent the deleter type D for the
  * unique_ptr<T,D> it returns which would contain an allocator object and invoke
  * both destroy and deallocate in its operator().
+ *
+ * See https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.
+ * See also: https://herbsutter.com/gotw/_102/.
  *
  * @param args list of arguments with which an instance of T will be constructed.
  *
