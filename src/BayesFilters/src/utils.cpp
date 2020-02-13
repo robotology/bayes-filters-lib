@@ -38,3 +38,25 @@ MatrixXd bfl::utils::quaternion_to_rotation_vector(const Ref<const MatrixXd>& qu
 
     return rotation_vectors;
 }
+
+
+MatrixXd bfl::utils::rotation_vector_to_quaternion(const Ref<const MatrixXd>& rotation_vector)
+{
+    MatrixXd quaternions(4, rotation_vector.cols());
+    for (std::size_t i = 0; i < rotation_vector.cols(); ++i)
+    {
+        const double norm_r = rotation_vector.col(i).norm();
+        if (norm_r > 0)
+        {
+            quaternions.col(i)(0) = std::cos(norm_r / 2.0);
+            quaternions.col(i).tail<3>() = std::sin(norm_r / 2.0) * rotation_vector.col(i) / norm_r;
+        }
+        else
+        {
+            quaternions.col(i)(0) = 1.0;
+            quaternions.col(i).tail<3>() = Vector3d::Zero();
+        }
+    }
+
+    return quaternions;
+}

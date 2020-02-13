@@ -79,6 +79,24 @@ Eigen::MatrixXd quaternion_to_rotation_vector(const Eigen::Ref<const Eigen::Matr
 
 
 /**
+ *
+ * Convert a matrix of rotation vectors in the tangent space (in the form (rx, ry, rz))
+ * to their unitary quaternionic representation.
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ *
+ * @return a 4 x N matrix each column of which is the unit quaternion associated to the input rotation vector
+ *
+ */
+Eigen::MatrixXd rotation_vector_to_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+
+
+/**
  * Evaluate the logarithm of a multivariate Gaussian probability density function.
  *
  * @param input Input representing the argument of the function as a vector or matrix.
