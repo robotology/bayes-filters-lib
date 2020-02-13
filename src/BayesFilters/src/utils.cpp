@@ -103,3 +103,19 @@ MatrixXd bfl::utils::diff_quaternion(const Ref<const MatrixXd>& quaternion_left,
     /* Express displacements in the tangent space. */
     return quaternion_to_rotation_vector(products);
 }
+
+
+VectorXd bfl::utils::mean_quaternion(const Ref<const MatrixXd>& weight, const Ref<const MatrixXd>& quaternion)
+{
+    /* Weighted outer product of quaternions. */
+    MatrixXd outer_product_mean = Matrix4d::Zero();
+    for (std::size_t i = 0; i < weight.rows(); ++i)
+        outer_product_mean.noalias() += weight.col(0)(i) * quaternion.col(i) * quaternion.col(i).transpose();
+
+    /* Take the weighted mean as the eigenvector corresponding to the maximum eigenvalue. */
+    EigenSolver<Matrix4d> eigen_solver(outer_product_mean);
+    Matrix<std::complex<double>, 4, 1> eigenvalues(eigen_solver.eigenvalues());
+    int maximum_index;
+    eigenvalues.real().maxCoeff(&maximum_index);
+    return eigen_solver.eigenvectors().real().block(0, maximum_index, 4, 1);
+}

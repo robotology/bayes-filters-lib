@@ -135,6 +135,24 @@ Eigen::MatrixXd diff_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& quatern
 
 
 /**
+ *
+ * Evaluate the weighted mean of a set of unit quaternions (in the form (w, x, y, z) = (w, n))
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param weight, a M x 1 matrix containing M weights
+ * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
+ *
+ * @return a 4-vector representing the weighted mean of the input quaternion set
+ *
+ */
+Eigen::VectorXd mean_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& weight, const Eigen::Ref<const Eigen::MatrixXd>& quaternion);
+
+
+/**
  * Evaluate the logarithm of a multivariate Gaussian probability density function.
  *
  * @param input Input representing the argument of the function as a vector or matrix.
