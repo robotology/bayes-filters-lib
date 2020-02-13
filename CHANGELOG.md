@@ -40,6 +40,16 @@
 - Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability().
 - SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.
 - Method MeasurementModel::freeze() takes an input argument of type Data.
+- `PFCorrection::correct()` now does not perform measurements freeze before calling `PFCorrection::correctStep()`.
+- `GaussianCorrection::correct()` now does not perform measurements freeze before calling `GaussianCorrection::correctStep()`.
+- `GPFPrediction::predictStep()` calls `predict()` instead of `predictStep()` on the underlying `GaussianPrediction`.
+- `GPFPrediction::correctStep()` calls `correct()` instead of `correctStep()` on the underlying `GaussianCorrection`.
+- `GaussianPrediction` is not a friend of `GPFPrediction` anymore.
+- `GaussianCorrection` is not a friend of `GPFCorrection` anymore.
+
+##### `Filtering algorithms`
+- `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
+
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.
@@ -48,6 +58,7 @@
 - Add testUPF_MAP testing MAP (maximum a posteriori) estimate extraction within a UPF particle filter.
 - Add `test_Gaussian_Density_UVR` testing the method `utils::multivariate_gaussian_density_UVR()`.
 - Change test_Gaussian in order to test resizing.
+- Update `test_KF`, `test_UKF`, `test_mixed_KF_UKF`, `test_mixed_UKF_KF`, `test_mixed_KF_SUKF` to account for the removed measurements freeze within `GaussianCorrection::correct()`.
 
 ## 🔖 Version 0.8.101
 ##### `Bugfix`
