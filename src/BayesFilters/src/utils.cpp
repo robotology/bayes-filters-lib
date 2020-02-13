@@ -81,3 +81,25 @@ MatrixXd bfl::utils::sum_quaternion_rotation_vector(const Ref<const MatrixXd>& q
 
     return quaternions;
 }
+
+
+MatrixXd bfl::utils::diff_quaternion(const Ref<const MatrixXd>& quaternion_left, const Ref<const MatrixXd>& quaternion_right)
+{
+    MatrixXd products(4, quaternion_left.cols());
+
+    Quaterniond q_right(quaternion_right.col(0)(0), quaternion_right.col(0)(1), quaternion_right.col(0)(2), quaternion_right.col(0)(3));
+    Quaterniond q_right_conj = q_right.conjugate();
+
+    /* Products between each left quaternion and the conjugated right quaternion. */
+    for (std::size_t i = 0; i < quaternion_left.cols(); ++i)
+    {
+        Quaterniond q_left(quaternion_left.col(i)(0), quaternion_left.col(i)(1), quaternion_left.col(i)(2), quaternion_left.col(i)(3));
+        Quaterniond product = q_left * q_right_conj;
+
+        products.col(i)(0) = product.w();
+        products.col(i).tail<3>() = product.vec();
+    }
+
+    /* Express displacements in the tangent space. */
+    return quaternion_to_rotation_vector(products);
+}

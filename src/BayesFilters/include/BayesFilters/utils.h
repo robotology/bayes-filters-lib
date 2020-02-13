@@ -116,6 +116,25 @@ Eigen::MatrixXd sum_quaternion_rotation_vector(const Eigen::Ref<const Eigen::Mat
 
 
 /**
+ *
+ * Evaluate the colwise difference between a set of unit quaternions and a unit quaternion (in the form (w, x, y, z) = (w, n))
+ * in terms of rotation vectors representing the displacements in the tangent space
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param quaternion_left, a 4 x N matrix each column of which is a unit quaternion
+ * @param quaternion_right, a 4 x 1 matrix representing a unit quaternion
+ *
+ * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion in the tangent space
+ *
+ */
+Eigen::MatrixXd diff_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& quaternion_left, const Eigen::Ref<const Eigen::MatrixXd>& quaternion_right);
+
+
+/**
  * Evaluate the logarithm of a multivariate Gaussian probability density function.
  *
  * @param input Input representing the argument of the function as a vector or matrix.
