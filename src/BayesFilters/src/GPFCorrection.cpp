@@ -86,7 +86,7 @@ std::pair<bool, Eigen::VectorXd> GPFCorrection::getLikelihood()
 void GPFCorrection::correctStep(const bfl::ParticleSet& pred_particles, bfl::ParticleSet& corr_particles)
 {
     /* Propagate Gaussian belief associated to each particle. */
-    gaussian_correction_->correctStep(pred_particles, corr_particles);
+    gaussian_correction_->correct(pred_particles, corr_particles);
 
     /* Sample from the proposal distribution. */
     for (std::size_t i = 0; i < pred_particles.components; i++)
