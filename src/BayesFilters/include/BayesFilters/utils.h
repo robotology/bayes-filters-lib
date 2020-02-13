@@ -97,6 +97,25 @@ Eigen::MatrixXd rotation_vector_to_quaternion(const Eigen::Ref<const Eigen::Matr
 
 
 /**
+ *
+ * Evaluate the colwise sum between a unit quaternion (in the form (w, x, y, z) = (w, n))
+ * and a set of rotation vectors (in the form (rx, ry, rz))
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param quaternion, a 4 x 1 matrix representing a unit quaternion
+ * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ *
+ * @return a 4 x N matrix where the i-th column is the sum between the unit quaternion and the i-th rotation vector
+ *
+ */
+Eigen::MatrixXd sum_quaternion_rotation_vector(const Eigen::Ref<const Eigen::MatrixXd>& quaternion, const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+
+
+/**
  * Evaluate the logarithm of a multivariate Gaussian probability density function.
  *
  * @param input Input representing the argument of the function as a vector or matrix.

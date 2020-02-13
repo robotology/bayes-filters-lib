@@ -60,3 +60,24 @@ MatrixXd bfl::utils::rotation_vector_to_quaternion(const Ref<const MatrixXd>& ro
 
     return quaternions;
 }
+
+
+MatrixXd bfl::utils::sum_quaternion_rotation_vector(const Ref<const MatrixXd>& quaternion, const Ref<const MatrixXd>& rotation_vector)
+{
+    /* Move rotation vectors to their quaternionic representation. */
+    MatrixXd vector_as_quaternion = rotation_vector_to_quaternion(rotation_vector);
+
+    Quaterniond q_right(quaternion.col(0)(0), quaternion.col(0)(1), quaternion.col(0)(2), quaternion.col(0)(3));
+
+    MatrixXd quaternions(4, rotation_vector.cols());
+    for (std::size_t i = 0; i < rotation_vector.cols(); ++i)
+    {
+        Quaterniond q_left(vector_as_quaternion.col(i)(0), vector_as_quaternion.col(i)(1), vector_as_quaternion.col(i)(2), vector_as_quaternion.col(i)(3));
+        Quaterniond sum = q_left * q_right;
+
+        quaternions.col(i)(0) = sum.w();
+        quaternions.col(i).tail<3>() = sum.vec();
+    }
+
+    return quaternions;
+}
