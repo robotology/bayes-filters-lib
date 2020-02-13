@@ -24,7 +24,7 @@ public:
 
     GaussianMixture(const std::size_t components, const std::size_t dim) noexcept;
 
-    GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular) noexcept;
+    GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
     virtual ~GaussianMixture() noexcept;
 
@@ -66,6 +66,10 @@ public:
 
     std::size_t components;
 
+    bool use_quaternion;
+
+    std::size_t dim_circular_component;
+
     std::size_t dim;
 
     std::size_t dim_linear;
@@ -73,6 +77,8 @@ public:
     std::size_t dim_circular;
 
     std::size_t dim_noise;
+
+    std::size_t dim_covariance;
 
 protected:
     Eigen::MatrixXd mean_;

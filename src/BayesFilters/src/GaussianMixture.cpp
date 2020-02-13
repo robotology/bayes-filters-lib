@@ -12,12 +12,12 @@ using namespace Eigen;
 
 
 GaussianMixture::GaussianMixture() noexcept:
-    GaussianMixture(1, 1, 0)
+    GaussianMixture(1, 1, 0, false)
 { }
 
 
 GaussianMixture::GaussianMixture(const std::size_t components, const std::size_t dim) noexcept :
-    GaussianMixture(components, dim, 0)
+    GaussianMixture(components, dim, 0, false)
 { }
 
 
@@ -25,19 +25,39 @@ GaussianMixture::GaussianMixture
 (
     const std::size_t components,
     const std::size_t dim_linear,
-    const std::size_t dim_circular
+    const std::size_t dim_circular,
+    const bool use_quaternion
 ) noexcept :
     components(components),
-    dim(dim_linear + dim_circular),
+    use_quaternion(use_quaternion),
+    dim_circular_component(use_quaternion ? 4 : 1),
+    dim(dim_linear + dim_circular * dim_circular_component),
     dim_linear(dim_linear),
     dim_circular(dim_circular),
     dim_noise(0),
+    dim_covariance(use_quaternion ? dim_linear + dim_circular * (dim_circular_component - 1) : dim),
     mean_(dim, components),
-    covariance_(dim, dim * components),
+    covariance_(dim_covariance, dim_covariance * components),
     weight_(components)
 {
     for (int i = 0; i < this->components; ++i)
         weight_(i) = 1.0 / this->components;
+
+    /* Note:
+       When using use_quaternion == false, the hypothesis is that there are dim_circular
+       independent states each belonging to the manifold S1 (i.e. dim_circular angles).
+       In this implementation they are treated as belonging to R^(dim_circular).
+       Hence, the size of the covariance matrix is dim_covariance x (dim_covariance * components)
+       where dim_covariance = dim.
+
+       When using use_quaternion == true, instead the hypothesis is that there are dim_circular
+       quaternions in the state, each belonging to the manifold S3.
+       In this case, dim_circular_component = 4, since they are represented using 4 numbers.
+       However, the covariance is represented using rotation vectors in R^3 that belong to the tangent
+       space of the quaternion manifold. Hence, the size of the covariance matrix is
+       dim_covariance x (dim_covariance * components) where dim_covariance = dim_linear + dim_circular * 3.
+    */
+
 }
 
 
@@ -47,14 +67,15 @@ GaussianMixture::~GaussianMixture() noexcept
 
 void GaussianMixture::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
 {
-    std::size_t new_dim = dim_linear + dim_circular;
+    std::size_t new_dim = dim_linear + dim_circular * dim_circular_component;
+    std::size_t new_dim_covariance = use_quaternion ? dim_linear + dim_circular * (dim_circular_component - 1) : new_dim;
 
     if ((this->dim_linear == dim_linear) && (this->dim_circular == dim_circular) && (this->components == components))
         return;
     else if ((this->dim == new_dim) && (this->components != components))
     {
         mean_.conservativeResize(NoChange, components);
-        covariance_.conservativeResize(NoChange, dim * components);
+        covariance_.conservativeResize(NoChange, dim_covariance * components);
         weight_.conservativeResize(components);
     }
     else
@@ -62,12 +83,13 @@ void GaussianMixture::resize(const std::size_t components, const std::size_t dim
         // In any other case, it does not make sense to do conservative resize
         // since either old data is truncated or new data is incomplete
         mean_.resize(new_dim, components);
-        covariance_.resize(new_dim, new_dim * components);
+        covariance_.resize(new_dim_covariance, new_dim_covariance * components);
         weight_.resize(components);
     }
 
     this->components = components;
     this->dim = new_dim;
+    this->dim_covariance = new_dim_covariance;
     this->dim_linear = dim_linear;
     this->dim_circular = dim_circular;
 }
@@ -117,13 +139,13 @@ Ref<MatrixXd> GaussianMixture::covariance()
 
 Ref<MatrixXd> GaussianMixture::covariance(const std::size_t i)
 {
-    return covariance_.middleCols(this->dim * i, this->dim);
+    return covariance_.middleCols(this->dim_covariance * i, this->dim_covariance);
 }
 
 
 double& GaussianMixture::covariance(const std::size_t i, const std::size_t j, const std::size_t k)
 {
-    return covariance_(j, (this->dim * i) + k);
+    return covariance_(j, (this->dim_covariance * i) + k);
 }
 
 
@@ -135,13 +157,13 @@ const Ref<const MatrixXd> GaussianMixture::covariance() const
 
 const Ref<const MatrixXd> GaussianMixture::covariance(const std::size_t i) const
 {
-    return covariance_.middleCols(this->dim * i, this->dim);
+    return covariance_.middleCols(this->dim_covariance * i, this->dim_covariance);
 }
 
 
 const double& GaussianMixture::covariance(const std::size_t i, const std::size_t j, const std::size_t k) const
 {
-    return covariance_(j, (this->dim * i) + k);
+    return covariance_(j, (this->dim_covariance * i) + k);
 }
 
 
@@ -180,13 +202,14 @@ bool GaussianMixture::augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& 
 
     dim_noise = noise_covariance_matrix.rows();
     dim += dim_noise;
+    dim_covariance += dim_noise;
 
     /* Add zero mean noise to each mean. */
     mean_.conservativeResize(dim, NoChange);
     mean_.bottomRows(dim_noise) = MatrixXd::Zero(dim_noise, components);
 
     /* Resize covariance matrix. */
-    covariance_.conservativeResizeLike(MatrixXd::Zero(dim, dim * components));
+    covariance_.conservativeResizeLike(MatrixXd::Zero(dim_covariance, dim_covariance * components));
 
     /* Move old covariance matrices from right to left to avoid aliasing.
 
@@ -194,12 +217,12 @@ bool GaussianMixture::augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& 
      i.e. in the top-left corner of the matrix covariance_,
      is already in the correct place.
     */
-    std::size_t dim_old = dim_linear + dim_circular;
+    std::size_t dim_old = use_quaternion ? dim_linear + dim_circular * (dim_circular_component - 1) : dim_linear + dim_circular;
     for (std::size_t i = 0; i < (components - 1); i++)
     {
         std::size_t i_index = components - 1 - i;
 
-        Ref<MatrixXd> new_block = covariance_.block(0, i_index * dim,     dim_old, dim_old);
+        Ref<MatrixXd> new_block = covariance_.block(0, i_index * dim_covariance, dim_old, dim_old);
         Ref<MatrixXd> old_block = covariance_.block(0, i_index * dim_old, dim_old, dim_old);
 
         /* Swap columns from to right to left to avoid aliasing. */
@@ -213,12 +236,15 @@ bool GaussianMixture::augmentWithNoise(const Eigen::Ref<const Eigen::MatrixXd>& 
 
     for (std::size_t i = 0; i < components; i++)
     {
-        /* Copy the noise covariance matrix in the bottom-right block of
-           each covariance matrix. */
-        covariance_.block(dim_old, i * dim + dim_old, dim_noise, dim_noise) = noise_covariance_matrix;
+        /* Copy the noise covariance matrix in the bottom-right block of each covariance matrix. */
+        covariance_.block(dim_old, i * dim_covariance + dim_old, dim_noise, dim_noise) = noise_covariance_matrix;
 
         /* Clean part of the matrix that should be zero. */
-        covariance_.block(0, i * dim + dim_old, dim_old, dim_noise) = MatrixXd::Zero(dim_old, dim_noise);
+        covariance_.block(0, i * dim_covariance + dim_old, dim_old, dim_noise) = MatrixXd::Zero(dim_old, dim_noise);
+
+        /* The part in covariance_.block(dim_old, i * dim_covariance, dim_noise, dim_old) was set to 0 when doing
+           covariance_.conservativeResizeLike(MatrixXd::Zero(dim_covariance, dim_covariance * components));
+           since it is appended in order to expand the matrix. */
     }
 
     return true;
