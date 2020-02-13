@@ -17,7 +17,7 @@ GaussianCorrection::GaussianCorrection() noexcept { };
 void GaussianCorrection::correct(const GaussianMixture& pred_state, GaussianMixture& corr_state)
 {
     /* Perform correction if required and if measurements can be frozen. */
-    if ((!skip_) && getMeasurementModel().freeze())
+    if (!skip_)
         correctStep(pred_state, corr_state);
     else
         corr_state = pred_state;
