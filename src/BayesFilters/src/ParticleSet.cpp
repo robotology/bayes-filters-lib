@@ -11,12 +11,12 @@ using namespace bfl;
 using namespace Eigen;
 
 ParticleSet::ParticleSet() noexcept :
-    ParticleSet(1, 1, 0)
+    ParticleSet(1, 1, 0, false)
 { }
 
 
 ParticleSet::ParticleSet(const std::size_t components, const std::size_t dim) noexcept:
-    ParticleSet(components, dim, 0)
+    ParticleSet(components, dim, 0, false)
 { }
 
 
@@ -24,9 +24,10 @@ ParticleSet::ParticleSet
 (
     const std::size_t components,
     const std::size_t dim_linear,
-    const std::size_t dim_circular
+    const std::size_t dim_circular,
+    const bool use_quaternion
 ) noexcept :
-    GaussianMixture(components, dim_linear, dim_circular),
+    GaussianMixture(components, dim_linear, dim_circular, use_quaternion),
     state_(dim, components)
 { }
 
@@ -37,7 +38,7 @@ ParticleSet::~ParticleSet() noexcept
 
 void ParticleSet::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
 {
-    std::size_t new_dim = dim_linear + dim_circular;
+    std::size_t new_dim = dim_linear + dim_circular * dim_circular_component;
 
     if ((this->dim_linear == dim_linear) && (this->dim_circular = dim_circular) && (this->components == components))
         return;
@@ -66,8 +67,8 @@ ParticleSet& ParticleSet::operator+=(const ParticleSet& rhs)
     mean_.conservativeResize(NoChange,  new_components);
     mean_.rightCols(rhs.components) = rhs.mean_;
 
-    covariance_.conservativeResize(NoChange, dim * new_components);
-    covariance_.rightCols(dim * rhs.components) = rhs.covariance_;
+    covariance_.conservativeResize(NoChange, dim_covariance * new_components);
+    covariance_.rightCols(dim_covariance * rhs.components) = rhs.covariance_;
 
     weight_.conservativeResize(new_components);
     weight_.tail(rhs.components) = rhs.weight_;
