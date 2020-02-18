@@ -8,11 +8,8 @@
 /**
  * Header-only utility library implementing missing features.
  *
- * What: Possible implementation of std::make_unique.
- * Who:  Contributed by Claudio Fantacci.
- * When: July 2001, April 2013 - May 2013, September 2018.
- * Doc:  See https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.
- *       See also: https://herbsutter.com/gotw/_102/.
+ * Who:  Contributed by Claudio Fantacci, Nicola Piga.
+ * When: July 2001, April 2013 - May 2013, September 2018, February 2020
  *
  */
 #ifndef UTILS_H
@@ -41,6 +38,9 @@ namespace utils
  * unique_ptr<T,D> it returns which would contain an allocator object and invoke
  * both destroy and deallocate in its operator().
  *
+ * See https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique.
+ * See also: https://herbsutter.com/gotw/_102/.
+ *
  * @param args list of arguments with which an instance of T will be constructed.
  *
  * @exeption May throw std::bad_alloc or any exception thrown by the constructor
@@ -59,6 +59,97 @@ std::unique_ptr<T> make_unique(Args&& ...args)
  * Return the logarithm of the sum of exponentials.
  */
 double log_sum_exp(const Eigen::Ref<const Eigen::VectorXd>& arguments);
+
+
+/**
+ *
+ * Convert a matrix of unit quaternions (in the form (w, x, y ,z) = (w, n))
+ * to their rotation vector representation in the tangent space.
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
+ *
+ * @return a 3 x N matrix each column of which is the rotation vector associated to the input unit quaternion
+ */
+Eigen::MatrixXd quaternion_to_rotation_vector(const Eigen::Ref<const Eigen::MatrixXd>& quaternion);
+
+
+/**
+ *
+ * Convert a matrix of rotation vectors in the tangent space (in the form (rx, ry, rz))
+ * to their unitary quaternionic representation.
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ *
+ * @return a 4 x N matrix each column of which is the unit quaternion associated to the input rotation vector
+ *
+ */
+Eigen::MatrixXd rotation_vector_to_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+
+
+/**
+ *
+ * Evaluate the colwise sum between a unit quaternion (in the form (w, x, y, z) = (w, n))
+ * and a set of rotation vectors (in the form (rx, ry, rz))
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param quaternion, a 4 x 1 matrix representing a unit quaternion
+ * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ *
+ * @return a 4 x N matrix where the i-th column is the sum between the unit quaternion and the i-th rotation vector
+ *
+ */
+Eigen::MatrixXd sum_quaternion_rotation_vector(const Eigen::Ref<const Eigen::MatrixXd>& quaternion, const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+
+
+/**
+ *
+ * Evaluate the colwise difference between a set of unit quaternions and a unit quaternion (in the form (w, x, y, z) = (w, n))
+ * in terms of rotation vectors representing the displacements in the tangent space
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param quaternion_left, a 4 x N matrix each column of which is a unit quaternion
+ * @param quaternion_right, a 4 x 1 matrix representing a unit quaternion
+ *
+ * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion in the tangent space
+ *
+ */
+Eigen::MatrixXd diff_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& quaternion_left, const Eigen::Ref<const Eigen::MatrixXd>& quaternion_right);
+
+
+/**
+ *
+ * Evaluate the weighted mean of a set of unit quaternions (in the form (w, x, y, z) = (w, n))
+ *
+ * Taken from
+ * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
+ * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
+ * Sensors, 19(10), 2372.
+ *
+ * @param weight, a M x 1 matrix containing M weights
+ * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
+ *
+ * @return a 4-vector representing the weighted mean of the input quaternion set
+ *
+ */
+Eigen::VectorXd mean_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& weight, const Eigen::Ref<const Eigen::MatrixXd>& quaternion);
 
 
 /**

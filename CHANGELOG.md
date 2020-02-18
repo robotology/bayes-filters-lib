@@ -23,6 +23,11 @@
 - Renamed Logger::get_prefix_path() in Logger::get_folder_path().
 - Renamed Logger::get_prefix_name() in Logger::get_file_name_prefix().
 - Logger::enable_log() now requires absolute or relative paths as input.
+- Added method `bfl::utils::quaternion_to_rotation_vector()` that takes the logarithm of a unitary quaternion and return its imaginary part belonging to the tangent space, i.e. it is a rotation vector.
+- Added method `bfl::utils::rotation_vector_to_quaternion()` that takes the exponential of rotation vector, i.e. the associated unitary quaternion.
+- Added method `bfl::utils::sum_quaternion_rotation_vector()` that evaluates the colwise sum between a unitary quaternion and a set of rotation vectors. The i-th sum is obtained as the quaternion product between the exponential of the i-th rotation vector and the quaternion.
+- Added method `bfl::utils::diff_quaternion()` that evaluates the colwise difference between a set of quaternions and a given unitary quaternion (right operand). The i-th difference is obtained as the logarithm of the quaternion product between the i-th quaternion and the conjugated right operand, i.e it is a rotation vector.
+- Added method `bfl::utils::mean_quaternion()` that evaluates the weighted mean of a set of unitary quaternions.
 
 ##### `Filtering functions`
 - Added pure public virtual method GaussianPrediction::getStateModel() (required to properly implement GPFPrediction::getStateModel()).
