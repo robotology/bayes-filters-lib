@@ -89,10 +89,15 @@ void SIS::filteringStep()
     if (getFilteringStep() != 0)
         prediction_->predict(cor_particle_, pred_particle_);
 
-    correction_->correct(pred_particle_, cor_particle_);
+    if (correction_->getMeasurementModel().freeze())
+    {
+        correction_->correct(pred_particle_, cor_particle_);
 
-    /* Normalize weights using LogSumExp. */
-    cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
+        /* Normalize weights using LogSumExp. */
+        cor_particle_.weight().array() -= utils::log_sum_exp(cor_particle_.weight());
+    }
+    else
+        cor_particle_ = pred_particle_;
 
     log();
 

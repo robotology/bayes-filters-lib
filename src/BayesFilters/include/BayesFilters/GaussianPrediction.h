@@ -49,10 +49,6 @@ private:
     bool skip_state_ = false;
 
     bool skip_exogenous_ = false;
-
-    friend class GaussianPredictionDecorator;
-
-    friend class GPFPrediction;
 };
 
 #endif /* GAUSSIANPREDICTION_H */

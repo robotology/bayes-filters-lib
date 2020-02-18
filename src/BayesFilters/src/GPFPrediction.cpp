@@ -43,7 +43,7 @@ void GPFPrediction::predictStep(const bfl::ParticleSet& prev_particles, bfl::Par
     gaussian_prediction_->skip("exogenous", getSkipExogenous());
 
     /* Propagate Gaussian belief associated to each particle. */
-    gaussian_prediction_->predictStep(prev_particles, pred_particles);
+    gaussian_prediction_->predict(prev_particles, pred_particles);
 
     /* Copy particles weights since they do not change. */
     pred_particles.weight() = prev_particles.weight();

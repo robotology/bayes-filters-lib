@@ -58,7 +58,10 @@ protected:
     void filteringStep() override
     {
         prediction_->predict(corrected_state_, predicted_state_);
-        correction_->correct(predicted_state_, corrected_state_);
+        if (correction_->getMeasurementModel().freeze())
+            correction_->correct(predicted_state_, corrected_state_);
+        else
+            corrected_state_ = predicted_state_;
 
         log();
     }
