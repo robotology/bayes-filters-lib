@@ -10,8 +10,10 @@
 - Implemented MAP (maximum a posteriori) estimate extraction within method EstimatesExtraction::map().
 - Implemented overloaded version of EstimatesExtraction::extract() taking extra arguments (particle weights at the previous time step, likelihoods at the current step and matrix of Markov transition probabilities between previous and current states) required to expose MAP extraction utiliy to the user.
 - Implemented method GaussianMixture::resize().
+- Implemented method `GaussianMixture::augmentWithNoise()`.
 - Implemented method Gaussian::resize().
 - Implemented method ParticleSet::resize().
+- Added support for quaternions in classes `Gaussian`, `GaussianMixture` and `ParticleSet`.
 - Implemented evaluation of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_density.
 - Implemented evaluation of the logarithm of a multivariate Gaussian probability density function in method utils::multivariate_gaussian_log_density.
 - Implemented evaluation of a multivariate Gaussian probability density function with UVR factorized covariance matrix in method `utils::multivariate_gaussian_density_UVR()`.
@@ -62,7 +64,7 @@
 - Reduce number of particles in test_SIS to reduce testing computation time in Debug.
 - Add testUPF_MAP testing MAP (maximum a posteriori) estimate extraction within a UPF particle filter.
 - Add `test_Gaussian_Density_UVR` testing the method `utils::multivariate_gaussian_density_UVR()`.
-- Change test_Gaussian in order to test resizing.
+- Change `test_Gaussian` in order to test resizing, noise augmentation and support for quaternions.
 - Update `test_KF`, `test_UKF`, `test_mixed_KF_UKF`, `test_mixed_UKF_KF`, `test_mixed_KF_SUKF` to account for the removed measurements freeze within `GaussianCorrection::correct()`.
 
 ## 🔖 Version 0.8.101

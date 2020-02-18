@@ -26,7 +26,7 @@ public:
 
     Gaussian(const std::size_t dim_linear) noexcept;
 
-    Gaussian(const std::size_t dim_linear, const std::size_t dim_circular) noexcept;
+    Gaussian(const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
     virtual ~Gaussian() noexcept;
 

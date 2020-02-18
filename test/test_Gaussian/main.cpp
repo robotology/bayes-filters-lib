@@ -659,5 +659,156 @@ int main()
         std::cout << "done!\n" << std::endl;
     }
 
+    std::cout << "[Test 7] Gaussian Mixture with noise augmentation (using quaternions)" << std::endl;
+    {
+        std::cout << "Constructing a Gaussian mixture..." << std::endl;
+
+        GaussianMixture mixture(2, 1, 1, true);
+
+        if (mixture.dim != 5)
+        {
+            std::cerr << "Dim is " << mixture.dim << ", should be 5" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_linear != 1)
+        {
+            std::cerr << "Dim_linear is " << mixture.dim_linear << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_circular != 1)
+        {
+            std::cerr << "Dim_circular is " << mixture.dim_circular << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_circular_component != 4)
+        {
+            std::cerr << "Dim_circular_component is " << mixture.dim_circular_component << ", should be 4" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_covariance != 4)
+        {
+            std::cerr << "Dim_covariance is " << mixture.dim_covariance << ", should be 4" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_noise != 0)
+        {
+            std::cerr << "Dim_noise is " << mixture.dim_noise << ", should be 0" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!mixture.use_quaternion)
+        {
+            std::cerr << "Use_quaternion is " << (mixture.use_quaternion ? "true" : "false") << ", should be true" << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        std::cout << "Assign values to the Gaussian mixture..." << std::endl;
+
+        mixture.mean(0) << 1, 2, 3, 4, 5;
+
+        mixture.covariance(0) << 11, 12, 13, 14,
+                                 21, 22, 23, 24,
+                                 31, 32, 33, 34,
+                                 41, 42, 43, 44;
+
+        mixture.mean(1) << 6, 7, 8, 9, 10;
+        mixture.covariance(1) << 51, 52, 53, 54,
+                                 61, 62, 63, 64,
+                                 71, 72, 73, 74,
+                                 81, 82, 83, 84;
+
+        std::cout << "Augment gaussian with noise..." << std::endl;
+
+        Eigen:: MatrixXd noise_covariance_matrix(2, 2);
+        noise_covariance_matrix << 91, 92,
+                                   101, 102;
+
+        mixture.augmentWithNoise(noise_covariance_matrix);
+
+        if (mixture.dim != 7)
+        {
+            std::cerr << "Dim is " << mixture.dim << ", should be 7" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_linear != 1)
+        {
+            std::cerr << "Dim_linear is " << mixture.dim_linear << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_circular != 1)
+        {
+            std::cerr << "Dim_circular is " << mixture.dim_circular << ", should be 1" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_circular_component != 4)
+        {
+            std::cerr << "Dim_circular_component is " << mixture.dim_circular_component << ", should be 4" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_covariance != 6)
+        {
+            std::cerr << "Dim_covariance is " << mixture.dim_covariance << ", should be 6" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (mixture.dim_noise != 2)
+        {
+            std::cerr << "Dim_noise is " << mixture.dim_noise << ", should be 2" << std::endl;
+            return EXIT_FAILURE;
+        }
+        if (!mixture.use_quaternion)
+        {
+            std::cerr << "Use_quaternion is " << (mixture.use_quaternion ? "true" : "false") << ", should be true" << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        if (!(
+              /* Mean of first component. */
+              (mixture.mean(0, 0) == 1) &&
+              (mixture.mean(0, 1) == 2) &&
+              (mixture.mean(0, 2) == 3) &&
+              (mixture.mean(0, 3) == 4) &&
+              (mixture.mean(0, 4) == 5) &&
+              (mixture.mean(0, 5) == 0) &&
+              (mixture.mean(0, 6) == 0) &&
+
+              /* Mean of second component. */
+              (mixture.mean(1, 0) == 6) &&
+              (mixture.mean(1, 1) == 7) &&
+              (mixture.mean(1, 2) == 8) &&
+              (mixture.mean(1, 3) == 9) &&
+              (mixture.mean(1, 4) == 10) &&
+              (mixture.mean(1, 5) == 0) &&
+              (mixture.mean(1, 6) == 0)))
+        {
+            std::cerr << "Mean of augmented gaussian mixture is wrong, it is\n" << mixture.mean() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Mean of augmented gaussian mixture evaluated succesfully:\n" << mixture.mean() << std::endl;
+
+        if (!(
+              /* Covariance of first component. */
+              (mixture.covariance(0, 0, 0) == 11) && (mixture.covariance(0, 0, 1) == 12) && (mixture.covariance(0, 0, 2) == 13) && (mixture.covariance(0, 0, 3) == 14) && (mixture.covariance(0, 0, 4) == 0) && (mixture.covariance(0, 0, 5) == 0) &&
+              (mixture.covariance(0, 1, 0) == 21) && (mixture.covariance(0, 1, 1) == 22) && (mixture.covariance(0, 1, 2) == 23) && (mixture.covariance(0, 1, 3) == 24) && (mixture.covariance(0, 1, 4) == 0) && (mixture.covariance(0, 1, 5) == 0) &&
+              (mixture.covariance(0, 2, 0) == 31) && (mixture.covariance(0, 2, 1) == 32) && (mixture.covariance(0, 2, 2) == 33) && (mixture.covariance(0, 2, 3) == 34) && (mixture.covariance(0, 2, 4) == 0) && (mixture.covariance(0, 2, 5) == 0) &&
+              (mixture.covariance(0, 3, 0) == 41) && (mixture.covariance(0, 3, 1) == 42) && (mixture.covariance(0, 3, 2) == 43) && (mixture.covariance(0, 3, 3) == 44) && (mixture.covariance(0, 3, 4) == 0) && (mixture.covariance(0, 3, 5) == 0) &&
+              (mixture.covariance(0, 4, 0) == 0) && (mixture.covariance(0, 4, 1) == 0) && (mixture.covariance(0, 4, 2) == 0) && (mixture.covariance(0, 4, 3) == 0) && (mixture.covariance(0, 4, 4) == 91) && (mixture.covariance(0, 4, 5) == 92) &&
+              (mixture.covariance(0, 5, 0) == 0) && (mixture.covariance(0, 5, 1) == 0) && (mixture.covariance(0, 5, 2) == 0) && (mixture.covariance(0, 5, 3) == 0) && (mixture.covariance(0, 5, 4) == 101) && (mixture.covariance(0, 5, 5) == 102) &&
+
+              /* Covariance of second component. */
+              (mixture.covariance(1, 0, 0) == 51) && (mixture.covariance(1, 0, 1) == 52) && (mixture.covariance(1, 0, 2) == 53) && (mixture.covariance(1, 0, 3) == 54) && (mixture.covariance(1, 0, 4) == 0) && (mixture.covariance(1, 0, 5) == 0) &&
+              (mixture.covariance(1, 1, 0) == 61) && (mixture.covariance(1, 1, 1) == 62) && (mixture.covariance(1, 1, 2) == 63) && (mixture.covariance(1, 1, 3) == 64) && (mixture.covariance(1, 1, 4) == 0) && (mixture.covariance(1, 1, 5) == 0) &&
+              (mixture.covariance(1, 2, 0) == 71) && (mixture.covariance(1, 2, 1) == 72) && (mixture.covariance(1, 2, 2) == 73) && (mixture.covariance(1, 2, 3) == 74) && (mixture.covariance(1, 2, 4) == 0) && (mixture.covariance(1, 2, 5) == 0) &&
+              (mixture.covariance(1, 3, 0) == 81) && (mixture.covariance(1, 3, 1) == 82) && (mixture.covariance(1, 3, 2) == 83) && (mixture.covariance(1, 3, 3) == 84) && (mixture.covariance(1, 3, 4) == 0) && (mixture.covariance(1, 3, 5) == 0) &&
+              (mixture.covariance(1, 4, 0) == 0) && (mixture.covariance(1, 4, 1) == 0) && (mixture.covariance(1, 4, 2) == 0) && (mixture.covariance(1, 4, 3) == 0) && (mixture.covariance(1, 4, 4) == 91) && (mixture.covariance(1, 4, 5) == 92) &&
+              (mixture.covariance(1, 5, 0) == 0) && (mixture.covariance(1, 5, 1) == 0) && (mixture.covariance(1, 5, 2) == 0) && (mixture.covariance(1, 5, 3) == 0) && (mixture.covariance(1, 5, 4) == 101) && (mixture.covariance(1, 5, 5) == 102)))
+        {
+            std::cerr << "Covariance of augmented gaussian is wrong, it is\n" << mixture.covariance() << std::endl;
+            return EXIT_FAILURE;
+        }
+        else
+            std::cout << "Covariance of augmented gaussian evaluated successful:\n" << mixture.covariance() << std::endl;
+        std::cout << "done!\n" << std::endl;
+    }
+
     return EXIT_SUCCESS;
 }

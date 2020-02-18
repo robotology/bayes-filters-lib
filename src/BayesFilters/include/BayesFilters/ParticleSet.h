@@ -24,7 +24,7 @@ public:
 
     ParticleSet(const std::size_t components, const std::size_t dim) noexcept;
 
-    ParticleSet(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular) noexcept;
+    ParticleSet(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
     virtual ~ParticleSet() noexcept;
 
