@@ -8,11 +8,11 @@
 #ifndef SIGMAPOINT_H
 #define SIGMAPOINT_H
 
+#include <BayesFilters/AdditiveMeasurementModel.h>
 #include <BayesFilters/AdditiveStateModel.h>
 #include <BayesFilters/Data.h>
 #include <BayesFilters/ExogenousModel.h>
 #include <BayesFilters/GaussianMixture.h>
-#include <BayesFilters/AdditiveMeasurementModel.h>
 #include <BayesFilters/MeasurementModel.h>
 #include <BayesFilters/StateModel.h>
 
