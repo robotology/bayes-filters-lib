@@ -15,6 +15,7 @@
 #include <BayesFilters/GaussianMixture.h>
 #include <BayesFilters/MeasurementModel.h>
 #include <BayesFilters/StateModel.h>
+#include <BayesFilters/VectorDescription.h>
 
 #include <functional>
 
@@ -29,11 +30,9 @@ namespace sigma_point
      * A FunctionEvaluation return
      * - a boolean indicating if the evaluation was successful
      * - the output data in the form of bfl::Data
-     * - the output size as a pair of std::size_t indicating linear and circular size
+     * - the description of the output in the form of bfl::VectorDescription
      */
-    using OutputSize = std::pair<std::size_t, std::size_t>;
-
-    using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, OutputSize>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
+    using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, bfl::VectorDescription>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
 
     struct UTWeight
     {
