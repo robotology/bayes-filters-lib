@@ -45,7 +45,16 @@ namespace sigma_point
          */
         double c;
 
-        UTWeight(std::size_t n, const double alpha, const double beta, const double kappa);
+        /**
+         * Constructs the weights from number of degrees of freedom of the input space and UT parameters alpha, beta and kappa.
+         */
+        UTWeight(std::size_t dof, const double alpha, const double beta, const double kappa);
+
+        /**
+         * Constructs the weights from a bfl::VectorDescription and UT parameters alpha, beta and kappa.
+         * The number of degress of freedom of the input space is determined from the vector description.
+         */
+        UTWeight(const VectorDescription& vector_description, const double alpha, const double beta, const double kappa);
     };
 
     void unscented_weights(const std::size_t n, const double alpha, const double beta, const double kappa, Eigen::Ref<Eigen::VectorXd> weight_mean, Eigen::Ref<Eigen::VectorXd> weight_covariance, double& c);

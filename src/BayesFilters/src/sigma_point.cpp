@@ -18,15 +18,33 @@ using namespace Eigen;
 
 bfl::sigma_point::UTWeight::UTWeight
 (
-    std::size_t n,
+    std::size_t dof,
     const double alpha,
     const double beta,
     const double kappa
 ) :
-    mean((2 * n) + 1),
-    covariance((2 * n) + 1)
+    mean((2 * dof) + 1),
+    covariance((2 * dof) + 1)
 {
-    unscented_weights(n, alpha, beta, kappa, mean, covariance, c);
+    unscented_weights(dof, alpha, beta, kappa, mean, covariance, c);
+}
+
+
+bfl::sigma_point::UTWeight::UTWeight
+(
+    const VectorDescription& vector_description,
+    const double alpha,
+    const double beta,
+    const double kappa
+)
+{
+    /* Degree of freedom associated to input space. */
+    std::size_t dof = vector_description.total_size();
+
+    mean.resize((2 * dof) + 1);
+    covariance.resize((2 * dof) + 1);
+
+    unscented_weights(dof, alpha, beta, kappa, mean, covariance, c);
 }
 
 
