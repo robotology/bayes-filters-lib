@@ -8,6 +8,8 @@
 #ifndef EXOGENOUSPROCESS_H
 #define EXOGENOUSPROCESS_H
 
+#include <BayesFilters/VectorDescription.h>
+
 #include <Eigen/Dense>
 
 namespace bfl {
@@ -23,9 +25,9 @@ public:
     virtual bool setProperty(const std::string& property) = 0;
 
     /**
-     * Returns the linear and circular size of the output of the state equation.
+     * Returns the vector description of the output of the state equation.
      */
-    virtual std::pair<std::size_t, std::size_t> getOutputSize() const = 0;
+    virtual VectorDescription getStateDescription() const = 0;
 };
 
 #endif /* EXOGENOUSPROCESS_H */
