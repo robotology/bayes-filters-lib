@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
     /* Step 2.2 - Define the prediction step. */
 
     /* Initialize the unscented Kalman filter prediction step and pass the ownership of the state model */
-    std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
+    std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), alpha, beta, kappa);
 
 
     /* Step 3 - Correction */
@@ -158,7 +158,7 @@ int main(int argc, char* argv[])
         simulated_linear_sensor->enable_log("./", "testUKF");
 
     /* Step 3.3 - Initialize the unscented Kalman filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
+    std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), alpha, beta, kappa);
 
 
     /* Step 4 - Assemble the unscented Kalman filter. */
