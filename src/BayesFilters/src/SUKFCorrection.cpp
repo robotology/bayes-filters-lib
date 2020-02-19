@@ -18,7 +18,6 @@ using namespace Eigen;
 SUKFCorrection::SUKFCorrection
 (
     std::unique_ptr<AdditiveMeasurementModel> measurement_model,
-    const size_t n,
     const double alpha,
     const double beta,
     const double kappa,
@@ -26,7 +25,7 @@ SUKFCorrection::SUKFCorrection
     const bool use_reduced_noise_covariance_matrix
 ) noexcept :
     measurement_model_(std::move(measurement_model)),
-    ut_weight_(n, alpha, beta, kappa),
+    ut_weight_(measurement_model_->getInputDescription().noiseless_description(), alpha, beta, kappa),
     measurement_sub_size_(measurement_sub_size),
     use_reduced_noise_covariance_matrix_(use_reduced_noise_covariance_matrix)
 { }
@@ -82,9 +81,10 @@ void SUKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixt
     Data measurement;
     std::tie(valid_measurement, measurement) = measurement_model_->measure();
 
+    VectorDescription meas_description = measurement_model_->getMeasurementDescription();
+
     /* Check if the size of the measurement is compatible with measurement_sub_size. */
-    std::pair<std::size_t, std::size_t> sizes = measurement_model_->getOutputSize();
-    std::size_t meas_size = sizes.first + sizes.second;
+    std::size_t meas_size = meas_description.total_size();
     valid_measurement &= (((meas_size) % measurement_sub_size_ ) == 0);
 
     if (!valid_measurement)
