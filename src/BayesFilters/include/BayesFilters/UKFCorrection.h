@@ -24,7 +24,7 @@ namespace bfl {
 class bfl::UKFCorrection : public GaussianCorrection
 {
 public:
-    UKFCorrection(std::unique_ptr<MeasurementModel> meas_model, const double alpha, const double beta, const double kappa) noexcept;
+    UKFCorrection(std::unique_ptr<MeasurementModel> meas_model, const double alpha, const double beta, const double kappa, const bool update_weights_online = false) noexcept;
 
     UKFCorrection(std::unique_ptr<AdditiveMeasurementModel> meas_model, const double alpha, const double beta, const double kappa) noexcept;
 
@@ -55,6 +55,21 @@ protected:
      * Unscented transform weight.
      */
     sigma_point::UTWeight ut_weight_;
+
+    /**
+     * The unscented transform for a generic non-additive measurement model requires the computation of 2 * n + 1 sigma points
+     * where n depends not only on the size of the input state but also on the size of the noise.
+     * While the state size is fixed, the noise size might depend on the number of measurements available, hence n might change online.
+     * Since the unscented transform weights, stored in ut_weight_, depend on n the user can specify, using the ctor input parameter
+     * update_weights_online, that the weights have to be re-computed at each iteration.
+     */
+    const bool update_weights_online_ = false;
+
+    const double ut_alpha_;
+
+    const double ut_beta_;
+
+    const double ut_kappa_;
 
     Eigen::MatrixXd innovations_;
 
