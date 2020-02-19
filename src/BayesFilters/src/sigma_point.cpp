@@ -7,12 +7,14 @@
 
 #include <BayesFilters/sigma_point.h>
 #include <BayesFilters/directional_statistics.h>
+#include <BayesFilters/utils.h>
 
 #include <Eigen/SVD>
 
 using namespace bfl;
 using namespace bfl::directional_statistics;
 using namespace bfl::sigma_point;
+using namespace bfl::utils;
 using namespace Eigen;
 
 
@@ -81,7 +83,7 @@ void bfl::sigma_point::unscented_weights
 
 MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const double c)
 {
-    MatrixXd sigma_points(state.dim, ((state.dim * 2) + 1) * state.components);
+    MatrixXd sigma_points(state.dim, ((state.dim_covariance * 2) + 1) * state.components);
 
     for (std::size_t i = 0; i < state.components; i++)
     {
@@ -89,18 +91,31 @@ MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const doubl
 
         MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
 
-        Ref<MatrixXd> sp = sigma_points.middleCols(((state.dim * 2) + 1) * i, ((state.dim * 2) + 1));
+        Ref<MatrixXd> sp = sigma_points.middleCols(((state.dim_covariance * 2) + 1) * i, ((state.dim_covariance * 2) + 1));
 
-        sp << VectorXd::Zero(state.dim), std::sqrt(c) * A, -std::sqrt(c) * A;
+        MatrixXd perturbations(state.dim_covariance, (state.dim_covariance * 2) + 1);
+        perturbations << VectorXd::Zero(state.dim_covariance), std::sqrt(c) * A, -std::sqrt(c) * A;
 
         if (state.dim_linear > 0)
-            sp.topRows(state.dim_linear).colwise() += state.mean(i).topRows(state.dim_linear);
+            sp.topRows(state.dim_linear) = perturbations.topRows(state.dim_linear).colwise() + state.mean(i).topRows(state.dim_linear);
 
         if (state.dim_circular > 0)
-            sp.middleRows(state.dim_linear, state.dim_circular) = directional_add(sp.middleRows(state.dim_linear, state.dim_circular), state.mean(i).middleRows(state.dim_linear, state.dim_circular));
+        {
+            if (state.use_quaternion)
+                for (std::size_t j = 0; j < state.dim_circular; j++)
+                {
+                    /* Enforce first sigma point to be the mean quaternion. */
+                    sp.middleRows(state.dim_linear + j * 4, 4).col(0) = state.mean(i).middleRows(state.dim_linear + j * 4, 4);
+
+                    /* Evaluate the remaining sigma points as perturbation of the mean quaternion. */
+                    sp.middleRows(state.dim_linear + j * 4, 4).rightCols(2 * state.dim_covariance) = sum_quaternion_rotation_vector(state.mean(i).middleRows(state.dim_linear + j * 4, 4), perturbations.middleRows(state.dim_linear + j * 3, 3).rightCols(2 * state.dim_covariance));
+                }
+            else
+                sp.middleRows(state.dim_linear, state.dim_circular) = directional_add(perturbations.middleRows(state.dim_linear, state.dim_circular), state.mean(i).middleRows(state.dim_linear, state.dim_circular));
+        }
 
         if (state.dim_noise > 0)
-            sp.bottomRows(state.dim_noise).colwise() += state.mean(i).bottomRows(state.dim_noise);
+            sp.bottomRows(state.dim_noise) = perturbations.bottomRows(state.dim_noise).colwise() + state.mean(i).bottomRows(state.dim_noise);
     }
 
     return sigma_points;
