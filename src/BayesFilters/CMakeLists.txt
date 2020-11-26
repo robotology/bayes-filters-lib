@@ -40,20 +40,16 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/LTIMeasurementModel.h
         include/BayesFilters/LTIStateModel.h
         include/BayesFilters/MeasurementModel.h
-        include/BayesFilters/MeasurementModelDecorator.h
         include/BayesFilters/ParticleSetInitialization.h
         include/BayesFilters/PFCorrection.h
-        include/BayesFilters/PFCorrectionDecorator.h
         include/BayesFilters/PFPrediction.h
-        include/BayesFilters/PFPredictionDecorator.h
         include/BayesFilters/Resampling.h
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedLinearSensor.h
         include/BayesFilters/SimulatedStateModel.h
         include/BayesFilters/StateModel.h
-        include/BayesFilters/StateModelDecorator.h
         include/BayesFilters/SUKFCorrection.h
-        include/BayesFilters/TimeDecreasingDynamics.h
+        # include/BayesFilters/TimeDecreasingDynamics.h
         include/BayesFilters/UKFCorrection.h
         include/BayesFilters/UKFPrediction.h
         include/BayesFilters/WhiteNoiseAcceleration.h
@@ -107,19 +103,15 @@ set(${LIBRARY_TARGET_NAME}_FF_SRC
         src/LTIMeasurementModel.cpp
         src/LTIStateModel.cpp
         src/MeasurementModel.cpp
-        src/MeasurementModelDecorator.cpp
         src/PFCorrection.cpp
-        src/PFCorrectionDecorator.cpp
         src/PFPrediction.cpp
-        src/PFPredictionDecorator.cpp
         src/Resampling.cpp
         src/ResamplingWithPrior.cpp
         src/SimulatedLinearSensor.cpp
         src/SimulatedStateModel.cpp
         src/StateModel.cpp
-        src/StateModelDecorator.cpp
         src/SUKFCorrection.cpp
-        src/TimeDecreasingDynamics.cpp
+        # src/TimeDecreasingDynamics.cpp
         src/UKFCorrection.cpp
         src/UKFPrediction.cpp
         src/WhiteNoiseAcceleration.cpp
