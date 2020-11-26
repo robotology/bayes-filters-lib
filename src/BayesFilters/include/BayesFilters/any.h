@@ -11,14 +11,15 @@
  *   + https://cplusplus.github.io/LWG/lwg-active.html#2509
  *
  * Copyright Kevlin Henney, 2000, 2001, 2002. All rights reserved.
- * Copyright Claudio Fantacci, 2018. All rights reserved.
+ * Copyright Antony Polukhin, 2013-2019. All rights reserved.
+ * Copyright Claudio Fantacci, 2018-2019. All rights reserved.
  *
  * What: Variant type boost::any.
  * Who:  Contributed by Kevlin Henney,
  *       with features contributed and bugs found by Antony Polukhin, Ed Brey,
  *           Mark Rodgers, Peter Dimov and James Curran,
  *       with C++11 compiler port by Claudio Fantacci.
- * When: July 2001, April 2013 - May 2013, September 2018.
+ * When: July 2001, April 2013 - 2019.
  *
  * Distributed under the Boost Software License, Version 1.0.
  * See the following license or copy at http://www.boost.org/LICENSE_1_0.txt
