@@ -55,8 +55,6 @@ private:
     bool skip_state_ = false;
 
     bool skip_exogenous_ = false;
-
-    friend class PFPredictionDecorator;
 };
 
 #endif /* PFPREDICTION_H */

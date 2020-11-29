@@ -126,7 +126,6 @@ set(${LIBRARY_TARGET_NAME}_FU_SRC
         src/Logger.cpp
         src/ParticleSet.cpp
         src/sigma_point.cpp
-        src/utils.cpp
 )
 
 set(${LIBRARY_TARGET_NAME}_SRC

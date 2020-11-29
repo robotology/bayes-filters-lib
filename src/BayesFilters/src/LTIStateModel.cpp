@@ -14,7 +14,8 @@ using namespace Eigen;
 
 
 LTIStateModel::LTIStateModel(const Ref<const MatrixXd>& transition_matrix, const Ref<const MatrixXd>& noise_covariance_matrix) :
-    F_(transition_matrix), Q_(noise_covariance_matrix)
+    F_(transition_matrix),
+    Q_(noise_covariance_matrix)
 {
     if ((F_.rows() == 0) || (F_.cols() == 0))
         throw std::runtime_error("ERROR::LTISTATEMODEL::CTOR\nERROR:\n\tState transition matrix dimensions cannot be 0.");

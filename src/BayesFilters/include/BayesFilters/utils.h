@@ -18,6 +18,7 @@
 #include <Eigen/Dense>
 
 #include <chrono>
+#include <cmath>
 #include <memory>
 
 namespace bfl
@@ -56,9 +57,22 @@ std::unique_ptr<T> make_unique(Args&& ...args)
 
 
 /**
- * Return the logarithm of the sum of exponentials.
+ * Return the element-wise logarithm of the sum of exponentials of the input data.
+ *
+ * To learn more about logsumexp, read https://en.wikipedia.org/wiki/LogSumExp.
+ *
+ * @param data Input numbers as a vector or a matrix.
+ *
+ * @return The element-wise logsumexp of the input data.
  */
-double log_sum_exp(const Eigen::Ref<const Eigen::VectorXd>& arguments);
+template<typename Derived>
+double log_sum_exp(const Eigen::MatrixBase<Derived>& data)
+{
+    double max = static_cast<double>(data.maxCoeff());
+
+    return max + std::log(static_cast<double>((data.array() - max).exp().sum()));
+}
+
 
 
 /**
