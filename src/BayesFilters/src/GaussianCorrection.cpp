@@ -24,15 +24,21 @@ void GaussianCorrection::correct(const GaussianMixture& pred_state, GaussianMixt
 }
 
 
-std::pair<bool, VectorXd> GaussianCorrection::getLikelihood()
-{
-    return std::make_pair(false, VectorXd::Zero(1));
-}
-
-
 bool GaussianCorrection::skip(const bool status)
 {
     skip_ = status;
 
     return true;
+}
+
+
+bool GaussianCorrection::freeze_measurements()
+{
+    return getMeasurementModel().freeze();
+}
+
+
+std::pair<bool, VectorXd> GaussianCorrection::getLikelihood()
+{
+    throw std::runtime_error("ERROR::GAUSSIANCORRECTION::GETLIKELIHOOD\nERROR:\n\tCall to unimplemented base class method.");
 }

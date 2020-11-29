@@ -39,6 +39,8 @@ public:
 
     virtual MeasurementModel& getMeasurementModel() = 0;
 
+    bool freeze_measurements();
+
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood() = 0;
 
 protected:
@@ -48,8 +50,6 @@ protected:
 
 private:
     bool skip_ = false;
-
-    friend class PFCorrectionDecorator;
 };
 
 #endif /* PFCORRECTION_H */

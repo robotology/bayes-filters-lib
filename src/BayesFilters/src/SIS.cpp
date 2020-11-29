@@ -89,7 +89,7 @@ void SIS::filteringStep()
     if (getFilteringStep() != 0)
         prediction_->predict(cor_particle_, pred_particle_);
 
-    if (correction_->getMeasurementModel().freeze())
+    if (correction_->freeze_measurements())
     {
         correction_->correct(pred_particle_, cor_particle_);
 

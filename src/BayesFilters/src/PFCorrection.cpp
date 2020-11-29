@@ -30,3 +30,9 @@ bool PFCorrection::skip(const bool status)
 
     return true;
 }
+
+
+bool PFCorrection::freeze_measurements()
+{
+    return getMeasurementModel().freeze();
+}
