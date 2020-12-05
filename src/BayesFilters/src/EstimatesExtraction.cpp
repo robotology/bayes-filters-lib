@@ -42,21 +42,21 @@ EstimatesExtraction::EstimatesExtraction(EstimatesExtraction&& estimate_extracti
 
 EstimatesExtraction& EstimatesExtraction::operator=(EstimatesExtraction&& estimate_extraction) noexcept
 {
-    if (this != &estimate_extraction)
-    {
-        extraction_method_ = estimate_extraction.extraction_method_;
-        estimate_extraction.extraction_method_ = ExtractionMethod::emode;
+    if (this == &estimate_extraction)
+        return *this;
 
-        hist_buffer_ = std::move(estimate_extraction.hist_buffer_);
+    extraction_method_ = estimate_extraction.extraction_method_;
+    estimate_extraction.extraction_method_ = ExtractionMethod::emode;
 
-        sm_weights_ = std::move(estimate_extraction.sm_weights_);
-        wm_weights_ = std::move(estimate_extraction.wm_weights_);
-        em_weights_ = std::move(estimate_extraction.em_weights_);
+    hist_buffer_ = std::move(estimate_extraction.hist_buffer_);
 
-        linear_size_ = estimate_extraction.linear_size_;
-        circular_size_ = estimate_extraction.circular_size_;
-        state_size_ = estimate_extraction.state_size_;
-    }
+    sm_weights_ = std::move(estimate_extraction.sm_weights_);
+    wm_weights_ = std::move(estimate_extraction.wm_weights_);
+    em_weights_ = std::move(estimate_extraction.em_weights_);
+
+    linear_size_ = estimate_extraction.linear_size_;
+    circular_size_ = estimate_extraction.circular_size_;
+    state_size_ = estimate_extraction.state_size_;
 
     return *this;
 }

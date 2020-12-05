@@ -11,9 +11,6 @@ using namespace bfl;
 using namespace Eigen;
 
 
-PFCorrection::PFCorrection() noexcept { };
-
-
 void PFCorrection::correct(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
     /* Perform correction if required and if measurements can be frozen. */
@@ -24,7 +21,7 @@ void PFCorrection::correct(const ParticleSet& pred_particles, ParticleSet& cor_p
 }
 
 
-bool PFCorrection::skip(const bool status)
+bool PFCorrection::skip(const bool status) noexcept
 {
     skip_ = status;
 

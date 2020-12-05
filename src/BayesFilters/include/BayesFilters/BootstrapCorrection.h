@@ -22,26 +22,33 @@ namespace bfl {
 class bfl::BootstrapCorrection : public PFCorrection
 {
 public:
-    BootstrapCorrection() noexcept;
+    BootstrapCorrection(std::unique_ptr<MeasurementModel> measurement_model, std::unique_ptr<LikelihoodModel> likelihood_model) noexcept;
 
-    virtual ~BootstrapCorrection() noexcept;
+    BootstrapCorrection(const BootstrapCorrection& correction) noexcept = delete;
 
-    void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
+    BootstrapCorrection& operator=(const BootstrapCorrection& correction) noexcept = delete;
 
-    void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) override;
+    BootstrapCorrection(BootstrapCorrection&& correction) noexcept;
 
-    LikelihoodModel& getLikelihoodModel() override;
+    BootstrapCorrection& operator=(BootstrapCorrection&& correction) noexcept;
 
-    MeasurementModel& getMeasurementModel() override;
+    virtual ~BootstrapCorrection() noexcept = default;
+
+    MeasurementModel& getMeasurementModel() noexcept override;
+
+    LikelihoodModel& getLikelihoodModel() noexcept override;
 
     std::pair<bool, Eigen::VectorXd> getLikelihood() override;
 
-protected:
-    std::unique_ptr<LikelihoodModel> likelihood_model_;
 
+protected:
+    void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) override;
+
+
+private:
     std::unique_ptr<MeasurementModel> measurement_model_;
 
-    void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) override;
+    std::unique_ptr<LikelihoodModel> likelihood_model_;
 
     bool valid_likelihood_ = false;
 

@@ -11,31 +11,37 @@
 #include <BayesFilters/ParticleSet.h>
 #include <BayesFilters/PFPrediction.h>
 
-#include <random>
-#include <memory>
-
 namespace bfl {
     class DrawParticles;
 }
 
 
-class bfl::DrawParticles: public PFPrediction
+class bfl::DrawParticles : public PFPrediction
 {
 public:
-    DrawParticles() noexcept;
+    DrawParticles(std::unique_ptr<StateModel> state_model) noexcept;
 
-    DrawParticles(DrawParticles&& draw_particles) noexcept;
+    DrawParticles(std::unique_ptr<StateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model) noexcept;
 
-    virtual ~DrawParticles() noexcept;
+    DrawParticles(const DrawParticles& prediction) noexcept = delete;
 
-    virtual StateModel& getStateModel() override;
+    DrawParticles& operator=(const DrawParticles& prediction) noexcept = delete;
 
-    virtual void setStateModel(std::unique_ptr<StateModel> state_model) override;
+    DrawParticles(DrawParticles&& prediction) noexcept;
+
+    DrawParticles& operator=(DrawParticles&& prediction) noexcept;
+
+    virtual ~DrawParticles() noexcept = default;
+
+    StateModel& getStateModel() noexcept override;
+
 
 protected:
     void predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles) override;
 
     std::unique_ptr<StateModel> state_model_;
+
+    std::unique_ptr<ExogenousModel> exogenous_model_;
 };
 
 #endif /* DRAWPARTICLES_H */

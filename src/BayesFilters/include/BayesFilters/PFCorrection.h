@@ -25,28 +25,34 @@ namespace bfl {
 class bfl::PFCorrection
 {
 public:
-    virtual ~PFCorrection() noexcept { };
+    virtual ~PFCorrection() noexcept = default;
 
     void correct(const ParticleSet& pred_particles, ParticleSet& cor_particles);
 
-    bool skip(const bool status);
-
-    virtual void setLikelihoodModel(std::unique_ptr<LikelihoodModel> observation_model) = 0;
-
-    virtual void setMeasurementModel(std::unique_ptr<MeasurementModel> measurement_model) = 0;
-
-    virtual LikelihoodModel& getLikelihoodModel() = 0;
-
-    virtual MeasurementModel& getMeasurementModel() = 0;
+    bool skip(const bool status) noexcept;
 
     bool freeze_measurements();
 
+    virtual MeasurementModel& getMeasurementModel() noexcept = 0;
+
+    virtual LikelihoodModel& getLikelihoodModel() noexcept = 0;
+
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood() = 0;
 
+
 protected:
+    PFCorrection() noexcept = default;
+
+    PFCorrection(const PFCorrection& correction) noexcept = delete;
+
+    PFCorrection& operator=(const PFCorrection& correction) noexcept = delete;
+
+    PFCorrection(PFCorrection&& correction) noexcept = default;
+
+    PFCorrection& operator=(PFCorrection&& correction) noexcept = default;
+
     virtual void correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles) = 0;
 
-    PFCorrection() noexcept;
 
 private:
     bool skip_ = false;

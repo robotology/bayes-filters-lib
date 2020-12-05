@@ -31,7 +31,7 @@ public:
 
     WhiteNoiseAcceleration(WhiteNoiseAcceleration&& wna) noexcept;
 
-    virtual ~WhiteNoiseAcceleration() noexcept;
+    virtual ~WhiteNoiseAcceleration() noexcept = default;
 
     WhiteNoiseAcceleration& operator=(const WhiteNoiseAcceleration& wna);
 
@@ -49,10 +49,12 @@ public:
 
     std::pair<std::size_t, std::size_t> getOutputSize() const override;
 
+
 private:
     std::mt19937_64 generator_;
 
     std::normal_distribution<double> distribution_;
+
 
 protected:
     /**

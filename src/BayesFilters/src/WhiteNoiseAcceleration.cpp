@@ -57,10 +57,6 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration() noexcept :
 { }
 
 
-WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept
-{ }
-
-
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
     generator_(wna.generator_),
     distribution_(wna.distribution_),
@@ -99,6 +95,9 @@ WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(const WhiteNoiseAccele
 
 WhiteNoiseAcceleration& WhiteNoiseAcceleration::operator=(WhiteNoiseAcceleration&& wna) noexcept
 {
+    if (this == &wna)
+        return *this;
+
     T_       = wna.T_;
     F_       = std::move(wna.F_);
     Q_       = std::move(wna.Q_);

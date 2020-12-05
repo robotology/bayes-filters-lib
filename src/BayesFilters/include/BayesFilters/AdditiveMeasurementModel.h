@@ -18,7 +18,7 @@ namespace bfl {
 class bfl::AdditiveMeasurementModel : public bfl::MeasurementModel
 {
 public:
-    virtual ~AdditiveMeasurementModel() noexcept;
+    virtual ~AdditiveMeasurementModel() noexcept = default;
 };
 
 #endif /* ADDITIVEMEASUREMENTMODEL_H */

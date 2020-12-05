@@ -32,10 +32,6 @@ Gaussian::Gaussian
 { }
 
 
-Gaussian::~Gaussian() noexcept
-{ }
-
-
 void Gaussian::resize(const std::size_t dim_linear, const std::size_t dim_circular)
 {
     GaussianMixture::resize(1, dim_linear, dim_circular);

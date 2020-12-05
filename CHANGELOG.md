@@ -4,6 +4,9 @@
 ##### `CMake`
 - Minor version increases since API compatibility is broken.
 
+##### `Bugfix`
+- Fixed missing self-assignment check in move assignment operators.
+
 ##### `General improvements`
 - Changed any::any default pointer value to nullptr.
 
@@ -60,10 +63,12 @@
 - Removed decorator classes. Using decorator was an easy way of extending functionalities, but at the cost of writing erroneous behavior in the filters.
 - Removed friendships from `*Prediction` and `*Correction` classes.
 - Implemented `freeze_measurments` for `*Correction` classes.
+- Made `skip`-related variable value in `*Prediction` classes coherent with assigned values.
+- Removed setters from `*Prediction` and derived classes. All the required data to create an object are passed to the constructor.
+- Removed setters from `*Correction` and derived classes. All the required data to create an object are passed to the constructor.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
-
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.

@@ -29,11 +29,12 @@ public:
 
     KFPrediction(KFPrediction&& kf_prediction) noexcept;
 
-    virtual ~KFPrediction() noexcept;
+    virtual ~KFPrediction() noexcept = default;
 
     StateModel& getStateModel() noexcept override;
 
     ExogenousModel& getExogenousModel() override;
+
 
 protected:
     void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;

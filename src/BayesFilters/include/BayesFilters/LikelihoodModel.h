@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::LikelihoodModel
 {
 public:
-    virtual ~LikelihoodModel() noexcept { };
+    virtual ~LikelihoodModel() noexcept = default;
 
     virtual std::pair<bool, Eigen::VectorXd> likelihood(const MeasurementModel& measurement_model, const Eigen::Ref<const Eigen::MatrixXd>& pred_states) = 0;
 };

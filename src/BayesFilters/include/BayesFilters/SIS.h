@@ -33,9 +33,10 @@ public:
 
     SIS(SIS&& sir_pf) noexcept;
 
-    virtual ~SIS() noexcept;
+    virtual ~SIS() noexcept = default;
 
     SIS& operator=(SIS&& sir_pf) noexcept;
+
 
 protected:
     unsigned int num_particle_;

@@ -26,7 +26,7 @@ public:
 
     ParticleSet(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
-    virtual ~ParticleSet() noexcept;
+    virtual ~ParticleSet() noexcept = default;
 
     void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0) override;
 
@@ -44,9 +44,11 @@ public:
 
     const double& state(const std::size_t i, const std::size_t j) const;
 
+
 protected:
     Eigen::MatrixXd state_;
 };
+
 
 bfl::ParticleSet operator+(bfl::ParticleSet lhs, const bfl::ParticleSet& rhs);
 

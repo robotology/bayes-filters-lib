@@ -13,30 +13,34 @@ using namespace bfl;
 using namespace Eigen;
 
 
-GPFPrediction::GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_pred) noexcept :
-    gaussian_prediction_(std::move(gauss_pred))
+GPFPrediction::GPFPrediction(std::unique_ptr<GaussianPrediction> gauss_prediction) noexcept :
+    gaussian_prediction_(std::move(gauss_prediction))
 { }
 
 
-GPFPrediction::GPFPrediction(GPFPrediction&& gpf_prediction) noexcept :
-    PFPrediction(std::move(gpf_prediction)),
-    gaussian_prediction_(std::move(gpf_prediction.gaussian_prediction_))
+GPFPrediction::GPFPrediction(GPFPrediction&& prediction) noexcept :
+    PFPrediction(std::move(prediction)),
+    gaussian_prediction_(std::move(prediction.gaussian_prediction_))
 { }
 
 
-StateModel& GPFPrediction::getStateModel()
+GPFPrediction& GPFPrediction::operator=(GPFPrediction&& prediction) noexcept
+{
+    PFPrediction::operator=(std::move(prediction));
+
+    gaussian_prediction_ = std::move(prediction.gaussian_prediction_);
+
+    return *this;
+}
+
+
+StateModel& GPFPrediction::getStateModel() noexcept
 {
     return gaussian_prediction_->getStateModel();
 }
 
 
-void GPFPrediction::setStateModel(std::unique_ptr<StateModel> state_model)
-{
-    throw std::runtime_error("ERROR::GPFPREDICTION::GETSTATEMODEL\nERROR:\n\tCall to unimplemented base class method.");
-}
-
-
-void GPFPrediction::predictStep(const bfl::ParticleSet& prev_particles, bfl::ParticleSet& pred_particles)
+void GPFPrediction::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)
 {
     /* Set skip flags within the Gaussian prediction. */
     gaussian_prediction_->skip("state", getSkipState());

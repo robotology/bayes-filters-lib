@@ -23,10 +23,6 @@ Resampling::Resampling() noexcept :
 { }
 
 
-Resampling::~Resampling() noexcept
-{ }
-
-
 Resampling::Resampling(const Resampling& resampling) noexcept :
     generator_(resampling.generator_)
 { }
@@ -48,6 +44,9 @@ Resampling& Resampling::operator=(const Resampling& resampling)
 
 Resampling& Resampling::operator=(Resampling&& resampling) noexcept
 {
+    if (this == &resampling)
+        return *this;
+
     generator_ = std::move(resampling.generator_);
 
     return *this;
@@ -56,6 +55,9 @@ Resampling& Resampling::operator=(Resampling&& resampling) noexcept
 
 Resampling& Resampling::operator=(const Resampling&& resampling) noexcept
 {
+    if (this == &resampling)
+        return *this;
+
     generator_ = std::move(resampling.generator_);
 
     return *this;

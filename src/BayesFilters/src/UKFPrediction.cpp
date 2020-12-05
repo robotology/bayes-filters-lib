@@ -80,10 +80,6 @@ UKFPrediction::UKFPrediction(UKFPrediction&& ukf_prediction) noexcept:
 { }
 
 
-UKFPrediction::~UKFPrediction() noexcept
-{ }
-
-
 bfl::StateModel& UKFPrediction::getStateModel() noexcept
 {
     if (type_ == UKFPredictionType::Additive)
@@ -106,7 +102,7 @@ void UKFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixtu
 {
     bool skip_exogenous = getSkipExogenous() || (exogenous_model_ == nullptr);
 
-    if ( getSkipState() && skip_exogenous )
+    if (getSkipState() && skip_exogenous)
     {
         /* Skip prediction step entirely. */
         pred_state = prev_state;

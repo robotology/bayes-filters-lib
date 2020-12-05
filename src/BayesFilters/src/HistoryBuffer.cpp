@@ -28,16 +28,16 @@ HistoryBuffer::HistoryBuffer(HistoryBuffer&& history_buffer) noexcept :
 
 HistoryBuffer& HistoryBuffer::operator=(HistoryBuffer&& history_buffer) noexcept
 {
-    if (this != &history_buffer)
-    {
-        window_ = history_buffer.window_;
-        history_buffer.window_ = 0;
+    if (this == &history_buffer)
+        return *this;
 
-        state_size_ = history_buffer.state_size_;
-        history_buffer.state_size_ = 0;
+    window_ = history_buffer.window_;
+    history_buffer.window_ = 0;
 
-        history_buffer_ = std::move(history_buffer.history_buffer_);
-    }
+    state_size_ = history_buffer.state_size_;
+    history_buffer.state_size_ = 0;
+
+    history_buffer_ = std::move(history_buffer.history_buffer_);
 
     return *this;
 }

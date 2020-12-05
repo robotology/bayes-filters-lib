@@ -26,7 +26,7 @@ public:
 
     HistoryBuffer& operator=(HistoryBuffer&& history_buffer) noexcept;
 
-    ~HistoryBuffer() noexcept { };
+    ~HistoryBuffer() noexcept = default;
 
     void addElement(const Eigen::Ref<const Eigen::VectorXd>& element);
 
@@ -41,6 +41,7 @@ public:
     bool increaseHistorySize();
 
     bool clear();
+
 
 private:
     unsigned int window_ = 5;

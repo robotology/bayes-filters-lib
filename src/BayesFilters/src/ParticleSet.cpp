@@ -32,10 +32,6 @@ ParticleSet::ParticleSet
 { }
 
 
-ParticleSet::~ParticleSet() noexcept
-{ }
-
-
 void ParticleSet::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
 {
     std::size_t new_dim = dim_linear + dim_circular * dim_circular_component;
@@ -80,6 +76,7 @@ ParticleSet& ParticleSet::operator+=(const ParticleSet& rhs)
 ParticleSet operator+(ParticleSet lhs, const ParticleSet& rhs)
 {
     lhs += rhs;
+
     return lhs;
 }
 

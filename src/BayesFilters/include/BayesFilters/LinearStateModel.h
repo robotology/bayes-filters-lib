@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::LinearStateModel : public bfl::AdditiveStateModel
 {
 public:
-    virtual ~LinearStateModel() noexcept { };
+    virtual ~LinearStateModel() noexcept = default;
 
     virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override;
 

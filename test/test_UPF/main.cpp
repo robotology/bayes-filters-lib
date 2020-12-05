@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
     /* Initialize the particle filter correction step that wraps a Guassian correction step,
        in this case an unscented kalman filter correction step. */
     std::unique_ptr<GaussianCorrection> upf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
-    std::unique_ptr<PFCorrection> gpf_correction = utils::make_unique<GPFCorrection>(std::move(upf_correction), std::move(exp_likelihood), std::move(transition_probability_model));
+    std::unique_ptr<PFCorrection> gpf_correction = utils::make_unique<GPFCorrection>(std::move(exp_likelihood), std::move(upf_correction), std::move(transition_probability_model));
 
 
     /* Step 4 - Resampling */

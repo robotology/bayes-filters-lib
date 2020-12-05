@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::AdditiveStateModel : public bfl::StateModel
 {
 public:
-    virtual ~AdditiveStateModel() noexcept { };
+    virtual ~AdditiveStateModel() noexcept = default;
 
     virtual void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override;
 };

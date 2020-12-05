@@ -21,7 +21,7 @@ namespace bfl {
 class bfl::GaussianCorrection
 {
 public:
-    virtual ~GaussianCorrection() noexcept { };
+    virtual ~GaussianCorrection() noexcept = default;
 
     void correct(const GaussianMixture& pred_state, GaussianMixture& corr_state);
 
@@ -33,12 +33,20 @@ public:
 
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood();
 
-protected:
-    GaussianCorrection() noexcept;
 
-    GaussianCorrection(GaussianCorrection&& gaussian_correction) noexcept;
+protected:
+    GaussianCorrection() noexcept = default;
+
+    GaussianCorrection(const GaussianCorrection& correction) noexcept = delete;
+
+    GaussianCorrection& operator=(const GaussianCorrection& correction) noexcept = delete;
+
+    GaussianCorrection(GaussianCorrection&& correction) noexcept = default;
+
+    GaussianCorrection& operator=(GaussianCorrection&& correction) noexcept = default;
 
     virtual void correctStep(const GaussianMixture& pred_state, GaussianMixture& corr_state) = 0;
+
 
 private:
     bool skip_ = false;

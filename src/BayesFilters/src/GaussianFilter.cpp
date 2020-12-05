@@ -10,11 +10,7 @@
 using namespace bfl;
 
 
-GaussianFilter::GaussianFilter
-(
-    std::unique_ptr<GaussianPrediction> prediction,
-    std::unique_ptr<GaussianCorrection> correction
-) noexcept :
+GaussianFilter::GaussianFilter(std::unique_ptr<GaussianPrediction> prediction, std::unique_ptr<GaussianCorrection> correction) noexcept :
     prediction_(std::move(prediction)),
     correction_(std::move(correction))
 { }
@@ -26,8 +22,16 @@ GaussianFilter::GaussianFilter(GaussianFilter&& gf) noexcept :
 { }
 
 
-GaussianFilter::~GaussianFilter() noexcept
-{ }
+GaussianFilter& GaussianFilter::operator=(GaussianFilter&& gf) noexcept
+{
+    if (this == &gf)
+        return *this;
+
+    prediction_ = std::move(gf.prediction_);
+    correction_ = std::move(gf.correction_);
+
+    return *this;
+}
 
 
 bool GaussianFilter::skip(const std::string& what_step, const bool status)

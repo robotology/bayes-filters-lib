@@ -30,10 +30,6 @@ SimulatedStateModel::SimulatedStateModel
 }
 
 
-SimulatedStateModel::~SimulatedStateModel() noexcept
-{ }
-
-
 bool SimulatedStateModel::bufferData()
 {
     ++current_simulation_time_;

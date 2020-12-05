@@ -49,10 +49,6 @@ SIS::SIS
 { }
 
 
-SIS::~SIS() noexcept
-{ }
-
-
 SIS::SIS(SIS&& sir_pf) noexcept :
     ParticleFilter(std::move(sir_pf)),
     num_particle_(sir_pf.num_particle_),
@@ -64,6 +60,9 @@ SIS::SIS(SIS&& sir_pf) noexcept :
 
 SIS& SIS::operator=(SIS&& sir_pf) noexcept
 {
+    if (this == &sir_pf)
+        return *this;
+
     ParticleFilter::operator=(std::move(sir_pf));
 
     num_particle_ = sir_pf.num_particle_;

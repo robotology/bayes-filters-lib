@@ -22,10 +22,6 @@ KFCorrection::KFCorrection(KFCorrection&& kf_correction) noexcept :
 { }
 
 
-KFCorrection::~KFCorrection() noexcept
-{ }
-
-
 MeasurementModel& KFCorrection::getMeasurementModel()
 {
     return *measurement_model_;

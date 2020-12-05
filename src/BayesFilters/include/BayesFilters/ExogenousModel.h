@@ -18,7 +18,7 @@ namespace bfl {
 class bfl::ExogenousModel
 {
 public:
-    virtual ~ExogenousModel() noexcept { };
+    virtual ~ExogenousModel() noexcept = default;
 
     virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
 

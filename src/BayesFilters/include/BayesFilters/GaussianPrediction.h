@@ -22,7 +22,7 @@ namespace bfl {
 class bfl::GaussianPrediction
 {
 public:
-    virtual ~GaussianPrediction() noexcept;
+    virtual ~GaussianPrediction() noexcept = default;
 
     void predict(const GaussianMixture& prev_state, GaussianMixture& pred_state);
 
@@ -36,12 +36,20 @@ public:
 
     virtual ExogenousModel& getExogenousModel();
 
-protected:
-    GaussianPrediction() noexcept;
 
-    GaussianPrediction(GaussianPrediction&& g_prediction) noexcept;
+protected:
+    GaussianPrediction() noexcept = default;
+
+    GaussianPrediction(const GaussianPrediction& prediction) noexcept = delete;
+
+    GaussianPrediction& operator=(const GaussianPrediction& prediction) noexcept = delete;
+
+    GaussianPrediction(GaussianPrediction&& prediction) noexcept = default;
+
+    GaussianPrediction& operator=(GaussianPrediction&& prediction) noexcept = default;
 
     virtual void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) = 0;
+
 
 private:
     bool skip_prediction_ = false;

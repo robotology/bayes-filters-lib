@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::ParticleSetInitialization
 {
 public:
-    virtual ~ParticleSetInitialization() noexcept { };
+    virtual ~ParticleSetInitialization() noexcept = default;
 
     virtual bool initialize(ParticleSet& particles) = 0;
 };

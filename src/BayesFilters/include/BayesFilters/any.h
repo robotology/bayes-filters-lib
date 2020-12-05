@@ -167,8 +167,12 @@ public:
      */
     any& operator=(any&& rhs) noexcept
     {
+        if (this == &rhs)
+            return *this;
+
         rhs.swap(*this);
         any().swap(rhs);
+
         return *this;
     }
 
@@ -188,6 +192,7 @@ public:
     any& operator=(ValueType&& rhs)
     {
         any(static_cast<ValueType&&>(rhs)).swap(*this);
+
         return *this;
     }
 
@@ -218,6 +223,7 @@ public:
     any& swap(any& rhs) noexcept
     {
         std::swap(content, rhs.content);
+
         return *this;
     }
 

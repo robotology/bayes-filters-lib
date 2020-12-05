@@ -7,11 +7,10 @@
 
 #include <BayesFilters/GaussianCorrection.h>
 
+#include <exception>
+
 using namespace bfl;
 using namespace Eigen;
-
-
-GaussianCorrection::GaussianCorrection() noexcept { };
 
 
 void GaussianCorrection::correct(const GaussianMixture& pred_state, GaussianMixture& corr_state)

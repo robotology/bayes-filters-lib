@@ -28,7 +28,7 @@ public:
 
     Gaussian(const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
-    virtual ~Gaussian() noexcept;
+    virtual ~Gaussian() noexcept = default;
 
     void resize(const std::size_t dim_linear, const std::size_t dim_circular = 0);
 

@@ -28,10 +28,6 @@ KFPrediction::KFPrediction(KFPrediction&& kf_prediction) noexcept:
 { }
 
 
-KFPrediction::~KFPrediction() noexcept
-{ }
-
-
 bfl::StateModel& KFPrediction::getStateModel() noexcept
 {
     return *state_model_;
