@@ -18,9 +18,6 @@ GaussianPrediction::GaussianPrediction() noexcept
 { }
 
 
-GaussianPrediction::~GaussianPrediction() noexcept
-{ }
-
 
 GaussianPrediction::GaussianPrediction(GaussianPrediction&& g_prediction) noexcept
 { }

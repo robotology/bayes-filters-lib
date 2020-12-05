@@ -33,7 +33,7 @@ public:
 
     LinearModel(LinearModel&& lin_sense) noexcept;
 
-    virtual ~LinearModel() noexcept;
+    virtual ~LinearModel() noexcept = default;
 
     LinearModel& operator=(const LinearModel& lin_sense) noexcept;
 

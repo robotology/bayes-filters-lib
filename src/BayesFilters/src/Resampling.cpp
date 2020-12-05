@@ -23,10 +23,6 @@ Resampling::Resampling() noexcept :
 { }
 
 
-Resampling::~Resampling() noexcept
-{ }
-
-
 Resampling::Resampling(const Resampling& resampling) noexcept :
     generator_(resampling.generator_)
 { }

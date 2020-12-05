@@ -28,7 +28,7 @@ public:
 
     GPFPrediction(GPFPrediction&& gpf_prediction) noexcept;
 
-    virtual ~GPFPrediction() noexcept { };
+    virtual ~GPFPrediction() noexcept = default;
 
     void setStateModel(std::unique_ptr<StateModel> state_model) override;
 

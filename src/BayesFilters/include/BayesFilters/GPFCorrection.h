@@ -33,7 +33,7 @@ public:
 
     GPFCorrection(GPFCorrection&& gpf_correction) noexcept;
 
-    virtual ~GPFCorrection() noexcept { };
+    virtual ~GPFCorrection() noexcept = default;
 
     void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
 

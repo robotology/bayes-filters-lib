@@ -21,7 +21,7 @@ namespace bfl {
 class bfl::GaussianCorrection
 {
 public:
-    virtual ~GaussianCorrection() noexcept { };
+    virtual ~GaussianCorrection() noexcept = default;
 
     void correct(const GaussianMixture& pred_state, GaussianMixture& corr_state);
 

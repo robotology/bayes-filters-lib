@@ -24,7 +24,7 @@ public:
     InitSurveillanceAreaGrid(const double surv_x, const double surv_y,
                              const unsigned int num_particle_x, const unsigned int num_particle_y) noexcept;
 
-    virtual ~InitSurveillanceAreaGrid() noexcept { };
+    virtual ~InitSurveillanceAreaGrid() noexcept = default;
 
     bool initialize(bfl::ParticleSet& particles) override;
 

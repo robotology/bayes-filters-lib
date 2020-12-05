@@ -31,7 +31,7 @@ public:
 
     EstimatesExtraction& operator=(EstimatesExtraction&& estimate_extraction) noexcept;
 
-    ~EstimatesExtraction() noexcept { };
+    ~EstimatesExtraction() noexcept =default;
 
 
     enum class ExtractionMethod

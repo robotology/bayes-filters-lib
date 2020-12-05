@@ -18,10 +18,6 @@ BootstrapCorrection::BootstrapCorrection() noexcept
 { }
 
 
-BootstrapCorrection::~BootstrapCorrection() noexcept
-{ }
-
-
 void BootstrapCorrection::correctStep(const ParticleSet& pred_particles, ParticleSet& cor_particles)
 {
     std::tie(valid_likelihood_, likelihood_) = likelihood_model_->likelihood(*measurement_model_, pred_particles.state());

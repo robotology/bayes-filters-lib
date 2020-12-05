@@ -29,7 +29,7 @@ public:
 
     KFPrediction(KFPrediction&& kf_prediction) noexcept;
 
-    virtual ~KFPrediction() noexcept;
+    virtual ~KFPrediction() noexcept = default;
 
     StateModel& getStateModel() noexcept override;
 

@@ -23,7 +23,7 @@ namespace bfl {
 class bfl::Agent
 {
 public:
-    virtual ~Agent() noexcept;
+    virtual ~Agent() noexcept = default;
 
     virtual bool bufferData() = 0;
 

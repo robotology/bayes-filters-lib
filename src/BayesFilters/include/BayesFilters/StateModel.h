@@ -18,7 +18,7 @@ namespace bfl {
 class bfl::StateModel
 {
 public:
-    virtual ~StateModel() noexcept { };
+    virtual ~StateModel() noexcept = default;
 
     virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
 

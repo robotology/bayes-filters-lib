@@ -22,7 +22,7 @@ class bfl::LTIMeasurementModel : public bfl::LinearMeasurementModel
 public:
     LTIMeasurementModel(const Eigen::Ref<const Eigen::MatrixXd>& measurement_matrix, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
 
-    virtual ~LTIMeasurementModel() noexcept { };
+    virtual ~LTIMeasurementModel() noexcept = default;
 
     std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const override;
 

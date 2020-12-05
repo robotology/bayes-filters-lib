@@ -26,7 +26,7 @@ public:
 
     GaussianMixture(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
-    virtual ~GaussianMixture() noexcept;
+    virtual ~GaussianMixture() noexcept = default;
 
     virtual void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0);
 

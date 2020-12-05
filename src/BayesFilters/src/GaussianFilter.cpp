@@ -38,10 +38,6 @@ GaussianFilter& GaussianFilter::operator=(GaussianFilter&& gf) noexcept
 }
 
 
-GaussianFilter::~GaussianFilter() noexcept
-{ }
-
-
 bool GaussianFilter::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction" ||

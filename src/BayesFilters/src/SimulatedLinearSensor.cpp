@@ -59,10 +59,6 @@ SimulatedLinearSensor::SimulatedLinearSensor(std::unique_ptr<SimulatedStateModel
 { }
 
 
-SimulatedLinearSensor::~SimulatedLinearSensor() noexcept
-{ }
-
-
 bool SimulatedLinearSensor::freeze(const Data& data)
 {
     if (!simulated_state_model_->bufferData())

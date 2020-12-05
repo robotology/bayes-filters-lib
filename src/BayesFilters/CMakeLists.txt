@@ -84,7 +84,6 @@ set(${LIBRARY_TARGET_NAME}_FA_SRC
 )
 
 set(${LIBRARY_TARGET_NAME}_FF_SRC
-        src/AdditiveMeasurementModel.cpp
         src/AdditiveStateModel.cpp
         src/Agent.cpp
         src/BootstrapCorrection.cpp

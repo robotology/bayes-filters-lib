@@ -26,7 +26,7 @@ public:
 
     KFCorrection(KFCorrection&& kf_prediction) noexcept;
 
-    virtual ~KFCorrection() noexcept;
+    virtual ~KFCorrection() noexcept = default;
 
     MeasurementModel& getMeasurementModel() override;
 

@@ -45,10 +45,6 @@ ResamplingWithPrior::ResamplingWithPrior(ResamplingWithPrior&& resampling) noexc
 }
 
 
-ResamplingWithPrior::~ResamplingWithPrior() noexcept
-{ }
-
-
 ResamplingWithPrior& ResamplingWithPrior::operator=(ResamplingWithPrior&& resampling) noexcept
 {
     if (this == &resampling)

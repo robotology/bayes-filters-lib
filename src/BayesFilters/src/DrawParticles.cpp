@@ -17,10 +17,8 @@ DrawParticles::DrawParticles() noexcept { }
 
 
 DrawParticles::DrawParticles(DrawParticles&& draw_particles) noexcept :
-    PFPrediction(std::move(draw_particles)) { };
-
-
-DrawParticles::~DrawParticles() noexcept { }
+    PFPrediction(std::move(draw_particles))
+{ };
 
 
 void DrawParticles::predictStep(const ParticleSet& prev_particles, ParticleSet& pred_particles)

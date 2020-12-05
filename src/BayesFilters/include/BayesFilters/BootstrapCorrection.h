@@ -22,9 +22,7 @@ namespace bfl {
 class bfl::BootstrapCorrection : public PFCorrection
 {
 public:
-    BootstrapCorrection() noexcept;
-
-    virtual ~BootstrapCorrection() noexcept;
+    virtual ~BootstrapCorrection() noexcept = default;
 
     void setLikelihoodModel(std::unique_ptr<LikelihoodModel> likelihood_model) override;
 

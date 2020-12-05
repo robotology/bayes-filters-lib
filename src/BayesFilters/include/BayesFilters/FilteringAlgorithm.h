@@ -27,7 +27,7 @@ namespace bfl {
 class bfl::FilteringAlgorithm : public Logger
 {
 public:
-    virtual ~FilteringAlgorithm() noexcept { };
+    virtual ~FilteringAlgorithm() noexcept = default;
 
     bool boot();
 

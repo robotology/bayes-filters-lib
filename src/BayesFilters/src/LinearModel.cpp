@@ -49,10 +49,6 @@ LinearModel::LinearModel() noexcept :
 { }
 
 
-LinearModel::~LinearModel() noexcept
-{ }
-
-
 LinearModel::LinearModel(const LinearModel& lin_sense) :
     sigma_x_(lin_sense.sigma_x_),
     sigma_y_(lin_sense.sigma_y_),

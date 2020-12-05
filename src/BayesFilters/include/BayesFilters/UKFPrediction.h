@@ -35,7 +35,7 @@ public:
 
     UKFPrediction(UKFPrediction&& ukf_prediction) noexcept;
 
-    virtual ~UKFPrediction() noexcept;
+    virtual ~UKFPrediction() noexcept = default;
 
     StateModel& getStateModel() noexcept override;
 

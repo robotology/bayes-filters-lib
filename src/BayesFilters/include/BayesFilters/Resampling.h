@@ -30,7 +30,7 @@ public:
 
     Resampling(Resampling&& resampling) noexcept;
 
-    virtual ~Resampling() noexcept;
+    virtual ~Resampling() noexcept = default;
 
     Resampling& operator=(const Resampling& resampling);
 

@@ -47,7 +47,7 @@ public:
 
     SUKFCorrection(SUKFCorrection&& sukf_correction) noexcept;
 
-    virtual ~SUKFCorrection() noexcept { };
+    virtual ~SUKFCorrection() noexcept = default;
 
     MeasurementModel& getMeasurementModel() override;
 

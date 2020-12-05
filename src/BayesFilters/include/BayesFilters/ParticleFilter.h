@@ -26,7 +26,8 @@ class bfl::ParticleFilter : public FilteringAlgorithm
 public:
     virtual bool skip(const std::string& what_step, const bool status) override;
 
-    virtual ~ParticleFilter() noexcept;
+    virtual ~ParticleFilter() noexcept = default;
+
 
 protected:
     ParticleFilter(std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;

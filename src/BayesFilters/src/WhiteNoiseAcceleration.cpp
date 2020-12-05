@@ -57,10 +57,6 @@ WhiteNoiseAcceleration::WhiteNoiseAcceleration() noexcept :
 { }
 
 
-WhiteNoiseAcceleration::~WhiteNoiseAcceleration() noexcept
-{ }
-
-
 WhiteNoiseAcceleration::WhiteNoiseAcceleration(const WhiteNoiseAcceleration& wna) :
     generator_(wna.generator_),
     distribution_(wna.distribution_),

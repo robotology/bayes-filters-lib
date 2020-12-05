@@ -24,7 +24,7 @@ namespace bfl {
 class bfl::PFPrediction
 {
 public:
-    virtual ~PFPrediction() noexcept { };
+    virtual ~PFPrediction() noexcept = default;
 
     void predict(const ParticleSet& prev_particles, ParticleSet& pred_particles);
 

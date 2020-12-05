@@ -25,7 +25,7 @@ class bfl::SimulatedStateModel : public Agent, public Logger
 public:
     SimulatedStateModel(std::unique_ptr<StateModel> state_model, const Eigen::Ref<const Eigen::VectorXd>& initial_state, const unsigned int simulation_time);
 
-    virtual ~SimulatedStateModel() noexcept;
+    virtual ~SimulatedStateModel() noexcept = default;
 
     bool bufferData() override;
 

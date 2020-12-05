@@ -30,7 +30,7 @@ public:
 
     UKFCorrection(UKFCorrection&& ukf_prediction) noexcept;
 
-    virtual ~UKFCorrection() noexcept;
+    virtual ~UKFCorrection() noexcept = default;
 
     MeasurementModel& getMeasurementModel() override;
 

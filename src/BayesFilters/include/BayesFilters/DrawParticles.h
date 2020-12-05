@@ -26,7 +26,7 @@ public:
 
     DrawParticles(DrawParticles&& draw_particles) noexcept;
 
-    virtual ~DrawParticles() noexcept;
+    virtual ~DrawParticles() noexcept = default;
 
     virtual StateModel& getStateModel() override;
 

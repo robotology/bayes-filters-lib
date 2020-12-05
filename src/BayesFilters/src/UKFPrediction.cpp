@@ -80,10 +80,6 @@ UKFPrediction::UKFPrediction(UKFPrediction&& ukf_prediction) noexcept:
 { }
 
 
-UKFPrediction::~UKFPrediction() noexcept
-{ }
-
-
 bfl::StateModel& UKFPrediction::getStateModel() noexcept
 {
     if (type_ == UKFPredictionType::Additive)

@@ -25,7 +25,7 @@ namespace bfl {
 class bfl::MeasurementModel : public Logger
 {
 public:
-    virtual ~MeasurementModel() noexcept;
+    virtual ~MeasurementModel() noexcept = default;
 
     virtual bool freeze(const Data& data = Data()) = 0;
 

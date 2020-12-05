@@ -26,7 +26,7 @@ public:
 
     ParticleSet(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular, const bool use_quaternion = false) noexcept;
 
-    virtual ~ParticleSet() noexcept;
+    virtual ~ParticleSet() noexcept = default;
 
     void resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular = 0) override;
 

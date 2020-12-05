@@ -25,7 +25,7 @@ namespace bfl {
 class bfl::PFCorrection
 {
 public:
-    virtual ~PFCorrection() noexcept { };
+    virtual ~PFCorrection() noexcept = default;
 
     void correct(const ParticleSet& pred_particles, ParticleSet& cor_particles);
 

@@ -33,7 +33,7 @@ public:
 
     ResamplingWithPrior(ResamplingWithPrior&& resampling) noexcept;
 
-    virtual ~ResamplingWithPrior() noexcept;
+    virtual ~ResamplingWithPrior() noexcept = default;
 
     ResamplingWithPrior& operator=(ResamplingWithPrior&& resampling) noexcept;
 

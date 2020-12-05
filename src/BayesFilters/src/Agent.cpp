@@ -12,10 +12,6 @@
 using namespace bfl;
 
 
-Agent::~Agent() noexcept
-{ }
-
-
 bool Agent::setProperty(const std::string& property)
 {
     static_cast<void>(property);

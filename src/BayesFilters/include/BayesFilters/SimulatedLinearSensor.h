@@ -27,7 +27,7 @@ public:
 
     SimulatedLinearSensor(std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model);
 
-    virtual ~SimulatedLinearSensor() noexcept;
+    virtual ~SimulatedLinearSensor() noexcept = default;
 
     bool freeze(const Data& data = Data()) override;
 

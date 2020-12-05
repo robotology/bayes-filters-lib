@@ -49,10 +49,6 @@ UKFCorrection::UKFCorrection(UKFCorrection&& ukf_correction) noexcept :
 { }
 
 
-UKFCorrection::~UKFCorrection() noexcept
-{ }
-
-
 MeasurementModel& UKFCorrection::getMeasurementModel()
 {
     if (type_ == UKFCorrectionType::Additive)

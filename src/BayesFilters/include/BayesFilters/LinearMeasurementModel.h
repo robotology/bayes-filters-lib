@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::LinearMeasurementModel : public bfl::AdditiveMeasurementModel
 {
 public:
-    virtual ~LinearMeasurementModel() noexcept { };
+    virtual ~LinearMeasurementModel() noexcept = default;
 
     virtual Eigen::MatrixXd getMeasurementMatrix() const = 0;
 

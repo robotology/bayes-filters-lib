@@ -61,10 +61,6 @@ GaussianMixture::GaussianMixture
 }
 
 
-GaussianMixture::~GaussianMixture() noexcept
-{ }
-
-
 void GaussianMixture::resize(const std::size_t components, const std::size_t dim_linear, const std::size_t dim_circular)
 {
     std::size_t new_dim = dim_linear + dim_circular * dim_circular_component;

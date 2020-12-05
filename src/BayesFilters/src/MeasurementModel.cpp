@@ -13,10 +13,6 @@ using namespace bfl;
 using namespace Eigen;
 
 
-MeasurementModel::~MeasurementModel() noexcept
-{ }
-
-
 std::pair<bool, MatrixXd> MeasurementModel::getNoiseCovarianceMatrix() const
 {
     return std::make_pair(false, MatrixXd::Zero(1, 1));

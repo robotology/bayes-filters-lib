@@ -20,7 +20,7 @@ namespace bfl {
 class bfl::GaussianInitialization
 {
 public:
-    virtual ~GaussianInitialization() noexcept { };
+    virtual ~GaussianInitialization() noexcept = default;
 
     virtual void initialize(Gaussian& state) = 0;
 };
