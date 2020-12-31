@@ -78,6 +78,7 @@
 - Add `test_Gaussian_Density_UVR` testing the method `utils::multivariate_gaussian_density_UVR()`.
 - Change `test_Gaussian` in order to test resizing, noise augmentation and support for quaternions.
 - Update `test_KF`, `test_UKF`, `test_mixed_KF_UKF`, `test_mixed_UKF_KF`, `test_mixed_KF_SUKF` to account for the removed measurements freeze within `GaussianCorrection::correct()`.
+- Add `test_QuaternionUtils` testing quaterion utilities in the `utils` namespace
 
 ## 🔖 Version 0.8.101
 ##### `Bugfix`
