@@ -27,6 +27,15 @@ namespace utils
 {
 
 /**
+ * Helper type 'enable_if_t'.
+ *
+ * Reference: https://en.cppreference.com/w/cpp/types/enable_if#Helper_types
+ */
+template<bool B, class T = void >
+using enable_if_t = typename std::enable_if<B,T>::type;
+
+
+/**
  * Constructs an object of type T and wraps it in a std::unique_ptr.
  * Constructs a non-array type T. The arguments args are passed to the
  * constructor of T. This overload only participates in overload resolution if
@@ -76,7 +85,6 @@ double log_sum_exp(const Eigen::MatrixBase<Derived>& data)
 
 
 /**
- *
  * Convert a matrix of unit quaternions (in the form (w, x, y ,z) = (w, n))
  * to their rotation vector representation in the tangent space.
  *
@@ -89,11 +97,31 @@ double log_sum_exp(const Eigen::MatrixBase<Derived>& data)
  *
  * @return a 3 x N matrix each column of which is the rotation vector associated to the input unit quaternion
  */
-Eigen::MatrixXd quaternion_to_rotation_vector(const Eigen::Ref<const Eigen::MatrixXd>& quaternion);
+template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> quaternion_to_rotation_vector(const Eigen::MatrixBase<Derived>& quaternion)
+{
+    Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> rotation_vectors(3, quaternion.cols());
+
+    for (std::size_t i = 0; i < quaternion.cols(); ++i)
+    {
+        const DerivedScalar norm_n = quaternion.col(i).tail(3).norm();
+        if (norm_n > 1e-4)
+        {
+            const DerivedScalar w = quaternion.col(i)(0);
+            if (w < 0)
+                rotation_vectors.col(i) = - 2.0 * std::acos(-w) * quaternion.col(i).tail(3) / norm_n;
+            else
+                rotation_vectors.col(i) = 2.0 * std::acos(w) * quaternion.col(i).tail(3) / norm_n;
+        }
+        else
+            rotation_vectors.col(i) = Eigen::Matrix<DerivedScalar, 3, 1>::Zero();
+    }
+
+    return rotation_vectors;
+}
 
 
 /**
- *
  * Convert a matrix of rotation vectors in the tangent space (in the form (rx, ry, rz))
  * to their unitary quaternionic representation.
  *
@@ -105,13 +133,31 @@ Eigen::MatrixXd quaternion_to_rotation_vector(const Eigen::Ref<const Eigen::Matr
  * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
  *
  * @return a 4 x N matrix each column of which is the unit quaternion associated to the input rotation vector
- *
  */
-Eigen::MatrixXd rotation_vector_to_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> rotation_vector_to_quaternion(const Eigen::MatrixBase<Derived>& rotation_vector)
+{
+    Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> quaternions(4, rotation_vector.cols());
+    for (std::size_t i = 0; i < rotation_vector.cols(); ++i)
+    {
+        const DerivedScalar norm_r = rotation_vector.col(i).norm();
+        if (norm_r > 1e-4)
+        {
+            quaternions.col(i)(0) = std::cos(norm_r / 2.0);
+            quaternions.col(i).tail(3) = std::sin(norm_r / 2.0) * rotation_vector.col(i) / norm_r;
+        }
+        else
+        {
+            quaternions.col(i)(0) = 1.0;
+            quaternions.col(i).tail(3) = Eigen::Matrix<DerivedScalar, 3, 1>::Zero();
+        }
+    }
+
+    return quaternions;
+}
 
 
 /**
- *
  * Evaluate the colwise sum between a unit quaternion (in the form (w, x, y, z) = (w, n))
  * and a set of rotation vectors (in the form (rx, ry, rz))
  *
@@ -124,13 +170,30 @@ Eigen::MatrixXd rotation_vector_to_quaternion(const Eigen::Ref<const Eigen::Matr
  * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
  *
  * @return a 4 x N matrix where the i-th column is the sum between the unit quaternion and the i-th rotation vector
- *
  */
-Eigen::MatrixXd sum_quaternion_rotation_vector(const Eigen::Ref<const Eigen::MatrixXd>& quaternion, const Eigen::Ref<const Eigen::MatrixXd>& rotation_vector);
+template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> sum_quaternion_rotation_vector(const Eigen::MatrixBase<Derived>& quaternion, const Eigen::MatrixBase<Derived>& rotation_vector)
+{
+    /* Move rotation vectors to their quaternionic representation. */
+    Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> vector_as_quaternion = rotation_vector_to_quaternion(rotation_vector);
+
+    Eigen::Quaternion<DerivedScalar> q_right(quaternion.col(0)(0), quaternion.col(0)(1), quaternion.col(0)(2), quaternion.col(0)(3));
+
+    Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> quaternions(4, rotation_vector.cols());
+    for (std::size_t i = 0; i < rotation_vector.cols(); ++i)
+    {
+        Eigen::Quaternion<DerivedScalar> q_left(vector_as_quaternion.col(i)(0), vector_as_quaternion.col(i)(1), vector_as_quaternion.col(i)(2), vector_as_quaternion.col(i)(3));
+        Eigen::Quaternion<DerivedScalar> sum = q_left * q_right;
+
+        quaternions.col(i)(0) = sum.w();
+        quaternions.col(i).tail(3) = sum.vec();
+    }
+
+    return quaternions;
+}
 
 
 /**
- *
  * Evaluate the colwise difference between a set of unit quaternions and a unit quaternion (in the form (w, x, y, z) = (w, n))
  * in terms of rotation vectors representing the displacements in the tangent space
  *
@@ -143,13 +206,31 @@ Eigen::MatrixXd sum_quaternion_rotation_vector(const Eigen::Ref<const Eigen::Mat
  * @param quaternion_right, a 4 x 1 matrix representing a unit quaternion
  *
  * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion in the tangent space
- *
  */
-Eigen::MatrixXd diff_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& quaternion_left, const Eigen::Ref<const Eigen::MatrixXd>& quaternion_right);
+template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::MatrixBase<Derived>& quaternion_left, const Eigen::MatrixBase<Derived>& quaternion_right)
+{
+    Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> products(4, quaternion_left.cols());
+
+    Eigen::Quaternion<DerivedScalar> q_right(quaternion_right.col(0)(0), quaternion_right.col(0)(1), quaternion_right.col(0)(2), quaternion_right.col(0)(3));
+    Eigen::Quaternion<DerivedScalar> q_right_conj = q_right.conjugate();
+
+    /* Products between each left quaternion and the conjugated right quaternion. */
+    for (std::size_t i = 0; i < quaternion_left.cols(); ++i)
+    {
+        Eigen::Quaternion<DerivedScalar> q_left(quaternion_left.col(i)(0), quaternion_left.col(i)(1), quaternion_left.col(i)(2), quaternion_left.col(i)(3));
+        Eigen::Quaternion<DerivedScalar> product = q_left * q_right_conj;
+
+        products.col(i)(0) = product.w();
+        products.col(i).tail(3) = product.vec();
+    }
+
+    /* Express displacements in the tangent space. */
+    return quaternion_to_rotation_vector(products);
+}
 
 
 /**
- *
  * Evaluate the weighted mean of a set of unit quaternions (in the form (w, x, y, z) = (w, n))
  *
  * Taken from
@@ -157,13 +238,26 @@ Eigen::MatrixXd diff_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& quatern
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param weight, a M x 1 matrix containing M weights
+ * @param weight, a N x 1 matrix containing N weights
  * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
  *
  * @return a 4-vector representing the weighted mean of the input quaternion set
- *
  */
-Eigen::VectorXd mean_quaternion(const Eigen::Ref<const Eigen::MatrixXd>& weight, const Eigen::Ref<const Eigen::MatrixXd>& quaternion);
+template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 4, 1> mean_quaternion(const Eigen::MatrixBase<Derived>& weight, const Eigen::MatrixBase<Derived>& quaternion)
+{
+    /* Weighted outer product of quaternions. */
+    Eigen::Matrix<DerivedScalar, 4, 4> outer_product_mean = Eigen::Matrix<DerivedScalar, 4, 4>::Zero();
+    for (std::size_t i = 0; i < weight.rows(); ++i)
+        outer_product_mean.noalias() += weight.col(0)(i) * quaternion.col(i) * quaternion.col(i).transpose();
+
+    /* Take the weighted mean as the eigenvector corresponding to the maximum eigenvalue. */
+    Eigen::EigenSolver<Eigen::Matrix<DerivedScalar, 4, 4>> eigen_solver(outer_product_mean);
+    Eigen::Matrix<std::complex<DerivedScalar>, 4, 1> eigenvalues(eigen_solver.eigenvalues());
+    int maximum_index;
+    eigenvalues.real().maxCoeff(&maximum_index);
+    return eigen_solver.eigenvectors().real().block(0, maximum_index, 4, 1);
+}
 
 
 /**
@@ -218,7 +312,7 @@ Eigen::VectorXd multivariate_gaussian_log_density_UVR(const Eigen::MatrixBase<De
 
     const auto diff = input.colwise() - mean;
 
-    // Evaluate inv(R)
+    /* Evaluate inv(R) */
     Eigen::MatrixXd inv_R(block_size, input_size);
     if (R.cols() == block_size)
     {
@@ -238,33 +332,37 @@ Eigen::VectorXd multivariate_gaussian_log_density_UVR(const Eigen::MatrixBase<De
         }
     }
 
-    // Evaluate V * inv(R)
+    /* Evaluate V * inv(R) */
     Eigen::MatrixXd V_inv_R(V.rows(), V.cols());
     for (std::size_t i = 0; i < V.cols() / block_size; i++)
     {
         V_inv_R.middleCols(i * block_size, block_size) = V.middleCols(i * block_size, block_size) * inv_R.block(0, block_size * i, block_size, block_size);
     }
 
-    // Evaluate diff^{T} * inv(R)
+    /* Evaluate diff^{T} * inv(R) */
     Eigen::MatrixXd diff_T_inv_R(input.cols(), input.rows());
     for (std::size_t i = 0; i < num_blocks; i++)
     {
         diff_T_inv_R.middleCols(i * block_size, block_size) = diff.middleRows(i * block_size, block_size).transpose() * inv_R.block(0, block_size * i, block_size, block_size);
     }
 
-    // Evaluate I + V * inv(R) * U
+    /* Evaluate I + V * inv(R) * U */
     Eigen::MatrixXd I_V_inv_R_U = Eigen::MatrixXd::Identity(V.rows(), V.rows()) + V_inv_R * U;
 
-    // Evaluate diff ^{T} * inv(S) * diff
-    // According to Sherman–Morrison–Woodbury formula inv(S) = inv(UV + R) = inv(R)(I - U inv(I + V inv(R) U) V inv(R))
-    // See https://en.wikipedia.org/wiki/Woodbury_matrix_identity
+    /**
+     * Evaluate diff ^{T} * inv(S) * diff
+     * According to Sherman–Morrison–Woodbury formula inv(S) = inv(UV + R) = inv(R)(I - U inv(I + V inv(R) U) V inv(R))
+     * See https://en.wikipedia.org/wiki/Woodbury_matrix_identity
+     */
     Eigen::VectorXd weighted_diffs(input.cols());
     for (std::size_t i = 0; i < weighted_diffs.size(); i++)
         weighted_diffs(i) = diff_T_inv_R.row(i) * (Eigen::MatrixXd::Identity(U.rows(), U.rows()) - U * I_V_inv_R_U.inverse() * V_inv_R) * diff.col(i);
 
-    // Evalute determinant(S)
-    // According to Generalized matrix determinant lemma det(S) = det(UV + R) = det(R) det(I + V inv(R) U)
-    // See https://en.wikipedia.org/wiki/Matrix_determinant_lemma#Generalization
+    /**
+     * Evalute determinant(S)
+     * According to Generalized matrix determinant lemma det(S) = det(UV + R) = det(R) det(I + V inv(R) U)
+     * See https://en.wikipedia.org/wiki/Matrix_determinant_lemma#Generalization
+     */
     double det_S;
     double det_R = 1.0;
     if (R.cols() == block_size)
@@ -275,7 +373,7 @@ Eigen::VectorXd multivariate_gaussian_log_density_UVR(const Eigen::MatrixBase<De
 
     det_S = det_R * I_V_inv_R_U.determinant();
 
-    // Evaluate the full logarithm density
+    /* Evaluate the full logarithm density */
     Eigen::VectorXd values(input.cols());
     for (std::size_t i = 0; i < input.cols(); i++)
         values(i) = - 0.5 * (static_cast<double>(diff.rows()) * std::log(2.0 * M_PI) + std::log(det_S) + weighted_diffs(i));
