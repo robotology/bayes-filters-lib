@@ -42,6 +42,8 @@ public:
 protected:
     void predictStep(const ParticleSet& previous_particles, ParticleSet& predicted_particles) override;
 
+
+private:
     std::unique_ptr<GaussianPrediction> gaussian_prediction_;
 };
 

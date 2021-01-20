@@ -8,21 +8,31 @@
 #ifndef STATEMODEL_H
 #define STATEMODEL_H
 
-#include <Eigen/Dense>
+#include <BayesFilters/ExogenousModel.h>
+#include <BayesFilters/Skippable.h>
+#include <BayesFilters/StateProcess.h>
+
+#include <memory>
 
 namespace bfl {
     class StateModel;
 }
 
 
-class bfl::StateModel
+class bfl::StateModel : public StateProcess, public Skippable
 {
 public:
     virtual ~StateModel() noexcept = default;
 
-    virtual void propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states) = 0;
+    bool skip(const std::string& what_step, const bool status) override;
 
-    virtual void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) = 0;
+    bool getSkipState() override;
+
+    bool add_exogenous_model(std::unique_ptr<ExogenousModel> exogenous_model);
+
+    bool have_exogenous_model() noexcept;
+
+    ExogenousModel& exogenous_model();
 
     virtual Eigen::MatrixXd getJacobian();
 
@@ -32,12 +42,29 @@ public:
 
     virtual Eigen::MatrixXd getNoiseSample(const std::size_t num);
 
-    virtual bool setProperty(const std::string& property) = 0;
+
+protected:
+    StateModel() noexcept = default;
+
+    StateModel(const StateModel& state_model) noexcept = delete;
+
+    StateModel& operator=(const StateModel& state_model) noexcept = delete;
+
+    StateModel(StateModel&& state_model) noexcept = default;
+
+    StateModel& operator=(StateModel&& state_model) noexcept = default;
+
+
+private:
+    /**
+     * Skip status.
+     */
+    bool skip_ = false;
 
     /**
-     * Returns the linear and circular size of the output of the state equation.
+     * Exogenous model.
      */
-    virtual std::pair<std::size_t, std::size_t> getOutputSize() const = 0;
+    std::unique_ptr<ExogenousModel> exogenous_model_;
 };
 
 #endif /* STATEMODEL_H */

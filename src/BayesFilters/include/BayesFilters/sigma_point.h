@@ -32,12 +32,15 @@ namespace sigma_point
      * - the output size as a pair of std::size_t indicating linear and circular size
      */
     using OutputSize = std::pair<std::size_t, std::size_t>;
+
     using FunctionEvaluation = std::function<std::tuple<bool, bfl::Data, OutputSize>(const Eigen::Ref<const Eigen::MatrixXd>&)>;
 
     struct UTWeight
     {
         Eigen::VectorXd mean;
+
         Eigen::VectorXd covariance;
+
         /**
          * c = sqrt(n + lambda) with lambda a ut parameter.
          */
@@ -54,13 +57,7 @@ namespace sigma_point
 
     std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, StateModel& state_model);
 
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, StateModel& state_model, ExogenousModel& exogenous_model);
-
     std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveStateModel& state_model);
-
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, AdditiveStateModel& state_model, ExogenousModel& exogenous_model);
-
-    std::pair<GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, ExogenousModel& exogenous_model);
 
     std::tuple<bool, GaussianMixture, Eigen::MatrixXd> unscented_transform(const GaussianMixture& state, const UTWeight& weight, MeasurementModel& meas_model);
 

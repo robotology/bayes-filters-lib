@@ -66,6 +66,11 @@
 - Made `skip`-related variable value in `*Prediction` classes coherent with assigned values.
 - Removed setters from `*Prediction` and derived classes. All the required data to create an object are passed to the constructor.
 - Removed setters from `*Correction` and derived classes. All the required data to create an object are passed to the constructor.
+- Add `Skippable` interface class to model a functionality that can be skipped on command.
+- Add `StateProcess` interface class to describe state model functionalities.
+- Add `ExogenousProcess` interface class to describe exogenous model functionalities.
+- Add `GaussianMixturePrediction` interface class to describe Gaussian mixture-based prediction functionalities.
+- Move `ExogenousModel` inside `StateModel`. Consequently, the prediction classes only need to handle a `StateModel` that in turns will handle the `ExogenousModel` properly, if present.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.

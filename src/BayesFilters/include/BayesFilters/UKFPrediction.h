@@ -25,37 +25,37 @@ namespace bfl {
 class bfl::UKFPrediction : public GaussianPrediction
 {
 public:
-    UKFPrediction(std::unique_ptr<StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
-
-    UKFPrediction(std::unique_ptr<StateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
-
-    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
-
-    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, std::unique_ptr<ExogenousModel> exogenous_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
-
-    UKFPrediction(UKFPrediction&& ukf_prediction) noexcept;
-
-    virtual ~UKFPrediction() noexcept = default;
-
-    StateModel& getStateModel() noexcept override;
-
-    ExogenousModel& getExogenousModel() override;
-
-
-protected:
-    void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
-
-    std::unique_ptr<StateModel> state_model_;
-
-    std::unique_ptr<AdditiveStateModel> add_state_model_;
-
-    std::unique_ptr<ExogenousModel> exogenous_model_;
-
     enum class UKFPredictionType
     {
         Generic,
         Additive
     };
+
+    UKFPrediction(std::unique_ptr<StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+
+    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+
+    UKFPrediction(const UKFPrediction& prediction) noexcept = delete;
+
+    UKFPrediction& operator=(const UKFPrediction& prediction) noexcept = delete;
+
+    UKFPrediction(UKFPrediction&& prediction) noexcept;
+
+    UKFPrediction& operator=(UKFPrediction&& prediction) noexcept;
+
+    virtual ~UKFPrediction() noexcept = default;
+
+    StateModel& getStateModel() noexcept override;
+
+
+protected:
+    void predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state) override;
+
+
+private:
+    std::unique_ptr<StateModel> state_model_;
+
+    std::unique_ptr<AdditiveStateModel> add_state_model_;
 
     /**
      * Distinguish between a UKFPrediction using a generic StateModel

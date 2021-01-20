@@ -7,8 +7,6 @@
 
 #include <BayesFilters/LTIStateModel.h>
 
-#include <Eigen/Dense>
-
 using namespace bfl;
 using namespace Eigen;
 
@@ -30,21 +28,22 @@ LTIStateModel::LTIStateModel(const Ref<const MatrixXd>& transition_matrix, const
 }
 
 
-void LTIStateModel::propagate(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> prop_states)
+LTIStateModel::LTIStateModel(LTIStateModel&& state_model) noexcept :
+    F_(std::move(state_model.F_)),
+    Q_(std::move(state_model.Q_))
+{ }
+
+
+LTIStateModel& LTIStateModel::operator=(LTIStateModel&& state_model) noexcept
 {
-    prop_states = F_ * cur_states;
-}
+    if (this == &state_model)
+        return *this;
 
+    F_ = std::move(state_model.F_);
 
-Eigen::MatrixXd LTIStateModel::getNoiseCovarianceMatrix()
-{
-    return Q_;
-}
+    Q_ = std::move(state_model.Q_);
 
-
-Eigen::MatrixXd LTIStateModel::getStateTransitionMatrix()
-{
-    return F_;
+    return *this;
 }
 
 
@@ -54,7 +53,19 @@ bool LTIStateModel::setProperty(const std::string& property)
 }
 
 
-Eigen::MatrixXd LTIStateModel::getJacobian()
+MatrixXd LTIStateModel::getNoiseCovarianceMatrix()
+{
+    return Q_;
+}
+
+
+MatrixXd LTIStateModel::getStateTransitionMatrix()
+{
+    return F_;
+}
+
+
+MatrixXd LTIStateModel::getJacobian()
 {
     return F_;
 }
