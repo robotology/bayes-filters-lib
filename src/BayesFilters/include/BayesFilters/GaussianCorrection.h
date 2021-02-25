@@ -29,7 +29,7 @@ public:
 
     virtual MeasurementModel& getMeasurementModel() = 0;
 
-    bool freeze_measurements();
+    bool freeze_measurements(const Data& data = Data());
 
     virtual std::pair<bool, Eigen::VectorXd> getLikelihood();
 

@@ -31,7 +31,7 @@ public:
 
     bool skip(const bool status) noexcept;
 
-    bool freeze_measurements();
+    bool freeze_measurements(const Data& data = Data());
 
     virtual MeasurementModel& getMeasurementModel() noexcept = 0;
 

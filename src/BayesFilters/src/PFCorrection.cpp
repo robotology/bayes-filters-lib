@@ -29,7 +29,7 @@ bool PFCorrection::skip(const bool status) noexcept
 }
 
 
-bool PFCorrection::freeze_measurements()
+bool PFCorrection::freeze_measurements(const Data& data)
 {
-    return getMeasurementModel().freeze();
+    return getMeasurementModel().freeze(data);
 }
