@@ -80,9 +80,17 @@
 - Rename `FilteringAlgorithm::initialization()` in `FilteringAlgorithm::initialization_step()`.
 - Rename `FilteringAlgorithm::filteringStep()` in `FilteringAlgorithm::filtering_step()`.
 - Rename `FilteringAlgorithm::runCondition()` in `FilteringAlgorithm::run_condition()`.
+- Method `PFCorrection::freeze_measurements()` takes an input argument of type `Data`.
+- Method `GaussianCorrection::freeze_measurements()` takes an input argument of type `Data` such that it can be passed to the underlying `MeasurementModel::freeze(const bfl::Data&)`.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
+- Add method `GaussianFilter::prediction()` returning reference to the underlying `GaussianPrediction` `prediction_` (now private).
+- Add method `GaussianFilter::correction()` returning reference to the underlying `GaussianCorrection` `correction_` (now private).
+- Add method `ParticleFilter::initialization()` returning reference to the underlying `ParticleSetInitialization` `initialization_`.
+- Add method `ParticleFilter::prediction()` returning reference to the underlying `PFPrediction` `prediction_` (now private).
+- Add method `ParticleFilter::correction()` returning reference to the underlying `PFCorrection``correction_` (now private).
+- Add method `ParticleFilter::resampling()` returning reference to the underlying `Resampling` `resampling_`.
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.
