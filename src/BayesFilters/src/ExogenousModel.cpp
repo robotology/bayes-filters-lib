@@ -22,7 +22,7 @@ bool ExogenousModel::skip(const std::string& what_step, const bool status)
 }
 
 
-bool ExogenousModel::getSkipState()
+bool ExogenousModel::is_skipping()
 {
     return skip_;
 }

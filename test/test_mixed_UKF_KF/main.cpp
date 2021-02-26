@@ -40,29 +40,26 @@ public:
     { }
 
 protected:
-    bool runCondition() override
+    bool run_condition() override
     {
-        if (getFilteringStep() < simulation_steps_)
+        if (step_number() < simulation_steps_)
             return true;
         else
             return false;
     }
 
 
-    bool initialization() override
+    bool initialization_step() override
     {
         return true;
     }
 
 
-    void filteringStep() override
+    void filtering_step() override
     {
-        prediction_->predict(corrected_state_, predicted_state_);
-
-        if (correction_->freeze_measurements())
-            correction_->correct(predicted_state_, corrected_state_);
-        else
-            corrected_state_ = predicted_state_;
+        prediction().predict(corrected_state_, predicted_state_);
+        correction().freeze_measurements();
+        correction().correct(predicted_state_, corrected_state_);
 
         log();
     }

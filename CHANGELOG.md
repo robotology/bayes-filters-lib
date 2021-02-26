@@ -37,6 +37,9 @@
 - Added method `bfl::utils::diff_quaternion()` that evaluates the colwise difference between a set of quaternions and a given unitary quaternion (right operand). The i-th difference is obtained as the logarithm of the quaternion product between the i-th quaternion and the conjugated right operand, i.e it is a rotation vector.
 - Added method `bfl::utils::mean_quaternion()` that evaluates the weighted mean of a set of unitary quaternions.
 - utils.h is now a template header-only utility file.
+- Add `Skipper` interface class to model skipping functionalities.
+- Add `Skippable` interface class to model a functionality that can be skipped on command.
+- Rename `Skippable::getSkipState()` in `Skippable::is_skipping()`.
 
 ##### `Filtering functions`
 - Added pure public virtual method GaussianPrediction::getStateModel() (required to properly implement GPFPrediction::getStateModel()).
@@ -66,14 +69,28 @@
 - Made `skip`-related variable value in `*Prediction` classes coherent with assigned values.
 - Removed setters from `*Prediction` and derived classes. All the required data to create an object are passed to the constructor.
 - Removed setters from `*Correction` and derived classes. All the required data to create an object are passed to the constructor.
-- Add `Skippable` interface class to model a functionality that can be skipped on command.
 - Add `StateProcess` interface class to describe state model functionalities.
 - Add `ExogenousProcess` interface class to describe exogenous model functionalities.
 - Add `GaussianMixturePrediction` interface class to describe Gaussian mixture-based prediction functionalities.
 - Move `ExogenousModel` inside `StateModel`. Consequently, the prediction classes only need to handle a `StateModel` that in turns will handle the `ExogenousModel` properly, if present.
+- Add `Filter` interface class to describe Bayes filter functionalities.
+- Rename `FilteringAlgorithm::getFilteringStep()` in `FilteringAlgorithm::step_number()`.
+- Rename `FilteringAlgorithm::isRunning()` in `FilteringAlgorithm::is_running()`.
+- Rename `FilteringAlgorithm::filteringRecursion()` in `FilteringAlgorithm::filtering_recursion()`.
+- Rename `FilteringAlgorithm::initialization()` in `FilteringAlgorithm::initialization_step()`.
+- Rename `FilteringAlgorithm::filteringStep()` in `FilteringAlgorithm::filtering_step()`.
+- Rename `FilteringAlgorithm::runCondition()` in `FilteringAlgorithm::run_condition()`.
+- Method `PFCorrection::freeze_measurements()` takes an input argument of type `Data`.
+- Method `GaussianCorrection::freeze_measurements()` takes an input argument of type `Data` such that it can be passed to the underlying `MeasurementModel::freeze(const bfl::Data&)`.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
+- Add method `GaussianFilter::prediction()` returning reference to the underlying `GaussianPrediction` `prediction_` (now private).
+- Add method `GaussianFilter::correction()` returning reference to the underlying `GaussianCorrection` `correction_` (now private).
+- Add method `ParticleFilter::initialization()` returning reference to the underlying `ParticleSetInitialization` `initialization_`.
+- Add method `ParticleFilter::prediction()` returning reference to the underlying `PFPrediction` `prediction_` (now private).
+- Add method `ParticleFilter::correction()` returning reference to the underlying `PFCorrection``correction_` (now private).
+- Add method `ParticleFilter::resampling()` returning reference to the underlying `Resampling` `resampling_`.
 
 ##### `Test`
 - Mean extraction is performed using EstimatesExtraction utilities in test_UPF.

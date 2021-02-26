@@ -24,17 +24,32 @@ namespace bfl{
 class bfl::ParticleFilter : public FilteringAlgorithm
 {
 public:
-    virtual bool skip(const std::string& what_step, const bool status) override;
-
     virtual ~ParticleFilter() noexcept = default;
+
+    bool skip(const std::string& what_step, const bool status) override;
 
 
 protected:
     ParticleFilter(std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    ParticleFilter(ParticleFilter&& pf) noexcept;
+    ParticleFilter(const ParticleFilter& filter) noexcept = delete;
 
-    ParticleFilter& operator=(ParticleFilter&& pf) noexcept;
+    ParticleFilter& operator=(const ParticleFilter& filter) noexcept = delete;
+
+    ParticleFilter(ParticleFilter&& filter) noexcept = delete;
+
+    ParticleFilter& operator=(ParticleFilter&& filter) noexcept = delete;
+
+    ParticleSetInitialization& initialization();
+
+    PFPrediction& prediction();
+
+    PFCorrection& correction();
+
+    Resampling& resampling();
+
+
+private:
 
     std::unique_ptr<ParticleSetInitialization> initialization_;
 

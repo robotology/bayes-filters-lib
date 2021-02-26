@@ -31,9 +31,9 @@ bool GaussianCorrection::skip(const bool status)
 }
 
 
-bool GaussianCorrection::freeze_measurements()
+bool GaussianCorrection::freeze_measurements(const Data& data)
 {
-    return getMeasurementModel().freeze();
+    return getMeasurementModel().freeze(data);
 }
 
 

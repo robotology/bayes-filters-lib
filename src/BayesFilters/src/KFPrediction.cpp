@@ -43,7 +43,7 @@ bfl::StateModel& KFPrediction::getStateModel() noexcept
 
 void KFPrediction::predictStep(const GaussianMixture& prev_state, GaussianMixture& pred_state)
 {
-    if (getStateModel().getSkipState())
+    if (getStateModel().is_skipping())
     {
         pred_state = prev_state;
 

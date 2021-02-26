@@ -11,6 +11,7 @@ set(LIBRARY_TARGET_NAME BayesFilters)
 
 # List of library header files
 set(${LIBRARY_TARGET_NAME}_FA_HDR
+        include/BayesFilters/Filter.h
         include/BayesFilters/FilteringAlgorithm.h
         include/BayesFilters/GaussianFilter.h
         include/BayesFilters/ParticleFilter.h
@@ -49,6 +50,7 @@ set(${LIBRARY_TARGET_NAME}_FF_HDR
         include/BayesFilters/ResamplingWithPrior.h
         include/BayesFilters/SimulatedLinearSensor.h
         include/BayesFilters/SimulatedStateModel.h
+        include/BayesFilters/Skipper.h
         include/BayesFilters/Skippable.h
         include/BayesFilters/StateModel.h
         include/BayesFilters/StateProcess.h

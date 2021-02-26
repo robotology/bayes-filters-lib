@@ -38,13 +38,13 @@ bool GaussianPrediction::skip(const std::string& what_step, const bool status)
     {
         getStateModel().skip("state", status);
 
-        skip_ = getStateModel().getSkipState() & getStateModel().exogenous_model().getSkipState();
+        skip_ = getStateModel().is_skipping() & getStateModel().exogenous_model().is_skipping();
     }
     else if (what_step == "exogenous")
     {
         getStateModel().skip("exogenous", status);
 
-        skip_ = getStateModel().getSkipState() & getStateModel().exogenous_model().getSkipState();
+        skip_ = getStateModel().is_skipping() & getStateModel().exogenous_model().is_skipping();
     }
     else
         return false;
@@ -53,7 +53,7 @@ bool GaussianPrediction::skip(const std::string& what_step, const bool status)
 }
 
 
-bool GaussianPrediction::getSkipState()
+bool GaussianPrediction::is_skipping()
 {
     return skip_;
 }

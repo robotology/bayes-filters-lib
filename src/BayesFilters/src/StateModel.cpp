@@ -24,7 +24,7 @@ bool StateModel::skip(const std::string& what_step, const bool status)
 }
 
 
-bool StateModel::getSkipState()
+bool StateModel::is_skipping()
 {
     return skip_;
 }
@@ -52,7 +52,7 @@ ExogenousModel& StateModel::exogenous_model()
     if (exogenous_model_)
         return *exogenous_model_;
 
-    throw std::runtime_error("ERROR::LTISTATEMODEL::GET_EXOGENOUS_MODEL\nERROR:\n\tNo valid ExogenousModel object present in LTIStateModel object. Use LTIStateModel::add_exogenous_model() to add one.");
+    throw std::runtime_error("ERROR::STATEMODEL::GET_EXOGENOUS_MODEL\nERROR:\n\tNo valid ExogenousModel object present in LTIStateModel object. Use LTIStateModel::add_exogenous_model() to add one.");
 }
 
 

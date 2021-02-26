@@ -17,8 +17,6 @@
 #include <fstream>
 #include <memory>
 
-#include <Eigen/Dense>
-
 namespace bfl {
     class SIS;
 }
@@ -31,14 +29,28 @@ public:
 
     SIS(unsigned int num_particle, std::size_t state_size_linear, std::unique_ptr<ParticleSetInitialization> initialization, std::unique_ptr<PFPrediction> prediction, std::unique_ptr<PFCorrection> correction, std::unique_ptr<Resampling> resampling) noexcept;
 
-    SIS(SIS&& sir_pf) noexcept;
+    SIS(const SIS& filter) noexcept = delete;
+
+    SIS& operator=(const SIS& filter) noexcept = delete;
+
+    SIS(SIS&& filter) noexcept = delete;
+
+    SIS& operator=(SIS&& filter) noexcept = delete;
 
     virtual ~SIS() noexcept = default;
 
-    SIS& operator=(SIS&& sir_pf) noexcept;
-
 
 protected:
+    bool initialization_step() override;
+
+    void filtering_step() override;
+
+    bool run_condition() override;
+
+    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override;
+
+    void log() override;
+
     unsigned int num_particle_;
 
     std::size_t state_size_;
@@ -46,22 +58,6 @@ protected:
     ParticleSet pred_particle_;
 
     ParticleSet cor_particle_;
-
-    bool initialization() override;
-
-    void filteringStep() override;
-
-    bool runCondition() override;
-
-    std::vector<std::string> log_file_names(const std::string& folder_path, const std::string& file_name_prefix) override
-    {
-        return {folder_path + "/" + file_name_prefix + "_pred_particles",
-                folder_path + "/" + file_name_prefix + "_pred_weights",
-                folder_path + "/" + file_name_prefix + "_cor_particles",
-                folder_path + "/" + file_name_prefix + "_cor_weights"};
-    }
-
-    void log() override;
 };
 
 #endif /* SIS_H */

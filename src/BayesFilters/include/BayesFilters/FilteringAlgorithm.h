@@ -8,7 +8,9 @@
 #ifndef FILTERINGALGORITHM_H
 #define FILTERINGALGORITHM_H
 
+#include <BayesFilters/Filter.h>
 #include <BayesFilters/Logger.h>
+#include <BayesFilters/Skipper.h>
 
 #include <condition_variable>
 #include <mutex>
@@ -26,44 +28,52 @@ namespace bfl {
 }
 
 
-class bfl::FilteringAlgorithm : public Logger
+class bfl::FilteringAlgorithm : public Filter, public Skipper, public Logger
 {
 public:
     virtual ~FilteringAlgorithm() noexcept = default;
 
-    bool boot();
+    bool boot() override;
 
-    void run();
+    void run() override;
 
-    bool wait();
+    bool wait() override;
 
-    void reset();
+    void reset() override;
 
-    void reboot();
+    void reboot() override;
 
-    bool teardown();
+    bool teardown() override;
 
-    unsigned int getFilteringStep();
+    unsigned int step_number() override;
 
-    bool isRunning();
-
-    virtual bool skip(const std::string& what_step, const bool status) = 0;
+    bool is_running() override;
 
 
 protected:
-    virtual bool initialization() = 0;
+    FilteringAlgorithm() = default;
 
-    virtual void filteringStep() = 0;
+    FilteringAlgorithm(const FilteringAlgorithm& filter) noexcept = delete;
 
-    virtual bool runCondition() = 0;
+    FilteringAlgorithm& operator=(const FilteringAlgorithm& filter) noexcept = delete;
+
+    FilteringAlgorithm(FilteringAlgorithm&& filter) noexcept = delete;
+
+    FilteringAlgorithm& operator=(FilteringAlgorithm&& filter) noexcept = delete;
+
+    virtual bool initialization_step() = 0;
+
+    virtual void filtering_step() = 0;
+
+    virtual bool run_condition() = 0;
 
 
 private:
+    void filtering_recursion();
+
     unsigned int filtering_step_ = 0;
 
     std::thread filtering_thread_;
-
-    void filteringRecursion();
 
     std::mutex mtx_run_;
 

@@ -31,7 +31,7 @@ public:
 
     bool skip(const std::string& what_step, const bool status);
 
-    bool getSkipState();
+    bool is_skipping();
 
     virtual StateModel& getStateModel() noexcept = 0;
 

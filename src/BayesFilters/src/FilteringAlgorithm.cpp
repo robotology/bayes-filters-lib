@@ -16,7 +16,7 @@ bool FilteringAlgorithm::boot()
 {
     try
     {
-        filtering_thread_ = std::thread(&FilteringAlgorithm::filteringRecursion, this);
+        filtering_thread_ = std::thread(&FilteringAlgorithm::filtering_recursion, this);
     }
     catch (const std::system_error& e)
     {
@@ -87,19 +87,19 @@ bool FilteringAlgorithm::teardown()
 }
 
 
-unsigned int FilteringAlgorithm::getFilteringStep()
+unsigned int FilteringAlgorithm::step_number()
 {
     return filtering_step_;
 }
 
 
-bool FilteringAlgorithm::isRunning()
+bool FilteringAlgorithm::is_running()
 {
     return run_;
 }
 
 
-void FilteringAlgorithm::filteringRecursion()
+void FilteringAlgorithm::filtering_recursion()
 {
     do
     {
@@ -120,16 +120,16 @@ void FilteringAlgorithm::filteringRecursion()
             teardown_ = true;
         }
 
-        initialization();
+        initialization_step();
 
-        while (runCondition() && !teardown_ && !reset_)
+        while (run_condition() && !teardown_ && !reset_)
         {
-            filteringStep();
+            filtering_step();
 
             ++filtering_step_;
         }
     }
-    while (runCondition() && (run_ || reset_) && !teardown_);
+    while (run_condition() && (run_ || reset_) && !teardown_);
 
     run_ = false;
 }

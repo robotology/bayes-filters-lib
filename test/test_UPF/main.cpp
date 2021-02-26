@@ -52,9 +52,9 @@ public:
     { }
 
 protected:
-    bool runCondition() override
+    bool run_condition() override
     {
-        if (getFilteringStep() < simulation_steps_)
+        if (step_number() < simulation_steps_)
             return true;
         else
             return false;
@@ -70,11 +70,11 @@ protected:
         return  sis_filenames;
     }
 
-    bool initialization() override
+    bool initialization_step() override
     {
         estimates_extraction_.setMethod(EstimatesExtraction::ExtractionMethod::mean);
 
-        if (!SIS::initialization())
+        if (!SIS::initialization_step())
             return false;
 
         /* Initialize initial mean and covariance for each particle. */

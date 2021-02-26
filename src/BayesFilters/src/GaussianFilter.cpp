@@ -16,28 +16,10 @@ GaussianFilter::GaussianFilter(std::unique_ptr<GaussianPrediction> prediction, s
 { }
 
 
-GaussianFilter::GaussianFilter(GaussianFilter&& gf) noexcept :
-    prediction_(std::move(gf.prediction_)),
-    correction_(std::move(gf.correction_))
-{ }
-
-
-GaussianFilter& GaussianFilter::operator=(GaussianFilter&& gf) noexcept
-{
-    if (this == &gf)
-        return *this;
-
-    prediction_ = std::move(gf.prediction_);
-    correction_ = std::move(gf.correction_);
-
-    return *this;
-}
-
-
 bool GaussianFilter::skip(const std::string& what_step, const bool status)
 {
     if (what_step == "prediction" ||
-        what_step == "state"      ||
+        what_step == "state" ||
         what_step == "exogenous")
         return prediction_->skip(what_step, status);
 
@@ -49,8 +31,6 @@ bool GaussianFilter::skip(const std::string& what_step, const bool status)
         bool return_status = true;
 
         return_status &= prediction_->skip("prediction", status);
-        return_status &= prediction_->skip("state", status);
-        return_status &= prediction_->skip("exogenous", status);
 
         return_status &= correction_->skip(status);
 
@@ -58,4 +38,16 @@ bool GaussianFilter::skip(const std::string& what_step, const bool status)
     }
 
     return false;
+}
+
+
+GaussianPrediction& GaussianFilter::prediction()
+{
+    return *prediction_;
+}
+
+
+GaussianCorrection& GaussianFilter::correction()
+{
+    return *correction_;
 }
