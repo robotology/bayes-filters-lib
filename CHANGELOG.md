@@ -52,7 +52,7 @@
 - Changed implementation of GPFPrediction::getStateModel().
 - Changed implementation of GPFCorrection::getLikelihood().
 - Changed implementation of GPFCorrection::evaluateProposal().
-- Changed implementation of WhiteNoiseAcceleration::getTransitionProbability().
+- Changed implementation of WhiteNoiseAcceleration.
 - Fixed missing const(s) keywords in signature of method StateModel::getTransitionProbability().
 - Fixed missing const(s) keywords in signature of method WhiteNoiseAcceleration::getTransitionProbability().
 - SUKFCorrection::getNoiseCovarianceMatrix() is now virtual.
@@ -82,6 +82,7 @@
 - Rename `FilteringAlgorithm::runCondition()` in `FilteringAlgorithm::run_condition()`.
 - Method `PFCorrection::freeze_measurements()` takes an input argument of type `Data`.
 - Method `GaussianCorrection::freeze_measurements()` takes an input argument of type `Data` such that it can be passed to the underlying `MeasurementModel::freeze(const bfl::Data&)`.
+- `LinearModel` now inherits from `LTIMeasurementModel`.
 
 ##### `Filtering algorithms`
 - `SIS::filteringStep()` performs measurements freeze before performing the actual correction. The correction is skipped if the freeze fails. The user might want to re-implement this method (or provide their own algorithm) if they need to handle the measurements freeze differently.
