@@ -18,13 +18,8 @@
 #include <thread>
 #include <unordered_map>
 
-
 namespace bfl {
     class FilteringAlgorithm;
-
-    typedef typename std::unordered_map<std::string, double> FilteringParamtersD;
-
-    typedef typename std::unordered_map<std::string, std::string> FilteringParamtersS;
 }
 
 
