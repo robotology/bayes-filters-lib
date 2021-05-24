@@ -21,10 +21,10 @@ LinearModel::LinearModel
     const double sigma_y,
     const unsigned int seed
 ) noexcept :
-    generator_(std::mt19937_64(seed)),
-    distribution_(std::normal_distribution<double>(0.0, 1.0)),
     sigma_x_(sigma_x),
     sigma_y_(sigma_y),
+    generator_(std::mt19937_64(seed)),
+    distribution_(std::normal_distribution<double>(0.0, 1.0)),
     gauss_rnd_sample_([&] { return (distribution_)(generator_); })
 {
     H_.resize(2, 4);
