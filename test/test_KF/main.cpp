@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
     double T = 1.0f;
     double tilde_q = 10.0f;
 
-    std::unique_ptr<LinearStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+    std::unique_ptr<LinearStateModel> wna = utils::make_unique<WhiteNoiseAcceleration>(WhiteNoiseAcceleration::Dim::TwoD, T, tilde_q);
 
     /* Step 2.2 - Define the prediction step. */
 
@@ -133,14 +133,20 @@ int main(int argc, char* argv[])
     /* Step 3.1 - Define where the measurement are originated from (simulated in this case). */
 
     /* Initialize simulated target model with a white noise acceleration. */
-    std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(T, tilde_q);
+    std::unique_ptr<StateModel> target_model = utils::make_unique<WhiteNoiseAcceleration>(WhiteNoiseAcceleration::Dim::TwoD, T, tilde_q);
     std::unique_ptr<SimulatedStateModel> simulated_state_model = utils::make_unique<SimulatedStateModel>(std::move(target_model), initial_simulated_state, simulation_time);
 
     if (write_to_file)
         simulated_state_model->enable_log("./", "testKF");
 
     /* Step 3.2 - Initialize a measurement model (a linear sensor reading x and y coordinates). */
-    std::unique_ptr<LinearMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model));
+    double sigma_x = 10.0;
+    double sigma_y = 10.0;
+    Eigen::MatrixXd R(2, 2);
+    R << std::pow(sigma_x, 2.0),                    0.0,
+                            0.0, std::pow(sigma_y, 2.0);
+
+    std::unique_ptr<LinearMeasurementModel> simulated_linear_sensor = utils::make_unique<SimulatedLinearSensor>(std::move(simulated_state_model), SimulatedLinearSensor::LinearMatrixComponent{ 4, std::vector<std::size_t>{ 0, 2 } }, R);
 
     if (write_to_file)
         simulated_linear_sensor->enable_log("./", "testKF");

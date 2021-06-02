@@ -8,8 +8,9 @@
 #ifndef LINEARMODEL_H
 #define LINEARMODEL_H
 
-#include <BayesFilters/LinearMeasurementModel.h>
+#include <BayesFilters/LTIMeasurementModel.h>
 
+#include <initializer_list>
 #include <fstream>
 #include <functional>
 #include <random>
@@ -20,24 +21,26 @@ namespace bfl {
 }
 
 
-class bfl::LinearModel : public LinearMeasurementModel
+class bfl::LinearModel : public LTIMeasurementModel
 {
 public:
-    LinearModel(const double sigma_x, const double sigma_y, const unsigned int seed) noexcept;
+    /**
+     * Pair of data representing
+     *  - first: the dimension of the state vector
+     *  - second: the 0-based row number of the state vector that we want to measure.
+     * 
+     * Example:
+     * LinearMatrixComponent{4, {0, 2}} results in the following measurement matrix
+     * H = [ 1.0 0   0 0 ]
+     *     [   0 0 1.0 0 ]
+     */
+    using LinearMatrixComponent = std::pair<std::size_t, std::vector<std::size_t>>;
 
-    LinearModel(const double sigma_x, const double sigma_y) noexcept;
+    LinearModel(const LinearMatrixComponent& linear_matrix_component, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix, const unsigned int seed);
 
-    LinearModel() noexcept;
-
-    LinearModel(const LinearModel& lin_sense);
-
-    LinearModel(LinearModel&& lin_sense) noexcept;
+    LinearModel(const LinearMatrixComponent& linear_matrix_component, const Eigen::Ref<const Eigen::MatrixXd>& noise_covariance_matrix);
 
     virtual ~LinearModel() noexcept = default;
-
-    LinearModel& operator=(const LinearModel& lin_sense) noexcept;
-
-    LinearModel& operator=(LinearModel&& lin_sense) noexcept;
 
     std::pair<bool, Eigen::MatrixXd> getNoiseCovarianceMatrix() const override;
 
@@ -53,29 +56,9 @@ protected:
     double T_;
 
     /**
-     * x-axis measurement noise std deviation in [length].
-     */
-    double sigma_x_;
-
-    /**
-     * y-axis measurement noise std deviation in [length].
-     */
-    double sigma_y_;
-
-    /**
-     * Measurement matrix.
-     */
-    Eigen::MatrixXd H_;
-
-    /**
-     * Convariance matrix of the additive white noise of the measurements.
-     */
-    Eigen::Matrix2d R_;
-
-    /**
      * Square root matrix of R_.
      */
-    Eigen::Matrix2d sqrt_R_;
+    Eigen::MatrixXd sqrt_R_;
 
     /**
      * Random number generator function from a Normal distribution.

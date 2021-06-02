@@ -14,16 +14,18 @@ using namespace Eigen;
 
 
 LTIMeasurementModel::LTIMeasurementModel(const Ref<const MatrixXd>& measurement_matrix, const Ref<const MatrixXd>& noise_covariance_matrix)
-    : H_(measurement_matrix), R_(noise_covariance_matrix)
 {
-    if ((H_.rows() == 0) || (H_.cols() == 0))
+    if ((measurement_matrix.rows() == 0) || (measurement_matrix.cols() == 0))
         throw std::runtime_error("ERROR::LTIMEASUREMENTMODEL::CTOR\nERROR:\n\tMeasurement matrix dimensions cannot be 0.");
-    else if ((R_.rows() == 0) || (R_.cols() == 0))
+    else if ((noise_covariance_matrix.rows() == 0) || (noise_covariance_matrix.cols() == 0))
         throw std::runtime_error("ERROR::LTIMEASUREMENTMODEL::CTOR\nERROR:\n\tNoise covariance matrix dimensions cannot be 0.");
-    else if (R_.rows() != R_.cols())
+    else if (noise_covariance_matrix.rows() != noise_covariance_matrix.cols())
         throw std::runtime_error("ERROR::LTIMEASUREMENTMODEL::CTOR\nERROR:\n\tNoise covariance matrix must be a square matrix.");
-    else if (H_.rows() != R_.rows())
+    else if (measurement_matrix.rows() != noise_covariance_matrix.rows())
         throw std::runtime_error("ERROR::LTIMEASUREMENTMODEL::CTOR\nERROR:\n\tNumber of rows of the measurement matrix must be the same as the size of the noise covariance matrix.");
+
+    H_ = measurement_matrix;
+    R_ = noise_covariance_matrix;
 }
 
 

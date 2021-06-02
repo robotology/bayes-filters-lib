@@ -15,6 +15,9 @@ namespace bfl {
 }
 
 
+/**
+ * This class represent an linear measurement model Hx + w, where H is a time-variant measurement matrix, x is a state vector and w is random noise.
+ */
 class bfl::LinearMeasurementModel : public bfl::AdditiveMeasurementModel
 {
 public:

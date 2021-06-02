@@ -15,6 +15,9 @@ namespace bfl {
 }
 
 
+/**
+ * This class represent an additive measurement model f(x) + w, where x is a state vector and w is random noise.
+ */
 class bfl::AdditiveMeasurementModel : public bfl::MeasurementModel
 {
 public:

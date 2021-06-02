@@ -71,7 +71,7 @@ public:
 
     std::pair<std::size_t, std::size_t> getOutputSize() const override
     {
-        return std::pair<int, int>(measurement_.size(), 0);
+        return std::pair<std::size_t, std::size_t>(measurement_.size(), 0);
     }
 
 private:

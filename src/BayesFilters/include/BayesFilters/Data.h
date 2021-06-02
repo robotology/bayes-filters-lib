@@ -14,7 +14,7 @@
 namespace bfl
 {
 
-typedef any::any Data;
+using Data = any::any;
 
 }
 

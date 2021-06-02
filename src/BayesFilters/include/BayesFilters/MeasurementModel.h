@@ -22,6 +22,9 @@ namespace bfl {
 }
 
 
+/**
+ * This class represent a generic measurement model f(x, w), where x is a state vector and w is random noise.
+ */
 class bfl::MeasurementModel : public Logger
 {
 public:

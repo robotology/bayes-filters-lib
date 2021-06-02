@@ -15,7 +15,7 @@ using namespace Eigen;
 
 std::pair<bool, MatrixXd> MeasurementModel::getNoiseCovarianceMatrix() const
 {
-    return std::make_pair(false, MatrixXd::Zero(1, 1));
+    throw std::runtime_error("ERROR::MEASUREMENTMODEL::GETNOISECOVARIANCEMATRIX\nERROR:\n\tMethod not implemented.");
 }
 
 
