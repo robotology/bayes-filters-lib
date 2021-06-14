@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(BayesFilters
         LANGUAGES CXX
-        VERSION 0.9.100)
+        VERSION 0.9.0)
 
 set(CMAKE_CXX_STANDARD 11)
 

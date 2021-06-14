@@ -1,6 +1,6 @@
 # 📜 BayesFilters changelog
 
-## 🔖 Version 0.9.100
+## 🔖 Version 0.9.0
 ##### `CMake`
 - Minor version increases since API compatibility is broken.
 
