@@ -1,5 +1,10 @@
 # 📜 BayesFilters changelog
 
+## 🔖 Version 0.9.101
+##### `Filtering utilities`
+- Improve documentation of methods `bfl::utils::quaternion_to_rotation_vector()`, `bfl::utils::rotation_vector_to_quaternion()`, `bfl::utils::sum_quaternion_rotation_vector()`, `bfl::utils::diff_quaternion()`,`bfl::utils::mean_quaternion()`.
+
+
 ## 🔖 Version 0.9.0
 ##### `CMake`
 - Minor version increases since API compatibility is broken.

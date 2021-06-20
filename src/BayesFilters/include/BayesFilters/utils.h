@@ -79,15 +79,19 @@ double log_sum_exp(const Eigen::MatrixBase<Derived>& data)
 
 
 /**
- * Convert a matrix of unit quaternions (in the form (w, x, y ,z) = (w, n))
- * to their rotation vector representation in the tangent space.
+ * Convert a matrix of unit quaternions \f$ q_i \f$ to their rotation vector representation
+ * \f$ r_i \in \mathbb{R}^{3} \f$ in the tangent space at the identity.
+ *
+ * The convention adopted for the quaternion representation is \f$ q = (a, b, c, d) \f$
+ * where \f$ a \f$ is the real part.
+ *
  *
  * Taken from
  * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
+ * @param quaternion a 4 x N matrix each column of which is a unit quaternion
  *
  * @return a 3 x N matrix each column of which is the rotation vector associated to the input unit quaternion
  */
@@ -116,15 +120,18 @@ Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> quaternion_to_rotation_vector(co
 
 
 /**
- * Convert a matrix of rotation vectors in the tangent space (in the form (rx, ry, rz))
- * to their unitary quaternionic representation.
+ * Convert a matrix of rotation vectors \f$ r_i \in \mathbb{R}^{3} \f$
+ * in the tangent space at the identity to their unitary quaternionic representation \f$ q_i \f$.
+ *
+ * The convention adopted for the quaternion representation is \f$ q = (a, b, c, d) \f$
+ * where \f$ a \f$ is the real part.
  *
  * Taken from
  * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ * @param rotation_vector a 3 x N matrix each column of which is a rotation vector
  *
  * @return a 4 x N matrix each column of which is the unit quaternion associated to the input rotation vector
  */
@@ -152,16 +159,23 @@ Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> rotation_vector_to_quaternion(co
 
 
 /**
- * Evaluate the colwise sum between a unit quaternion (in the form (w, x, y, z) = (w, n))
- * and a set of rotation vectors (in the form (rx, ry, rz))
+ * Evaluate the colwise sum between a unit quaternion \f$ q \f$ and a set of rotation vectors
+ * \f$ r_i \in \mathbb{R}^{3} \f$ in the tangent space at the identity.
+ *
+ * The convention adopted for the quaternion representation is \f$ q = (a, b, c, d) \f$
+ * where \f$ a \f$ is the real part.
+ *
+ * Each summation takes the form \f$ q_{i, sum} = \mathrm{exp}(\hat{\frac{r_i}{2}}) \, q \f$
+ * where \f$ r_i = \omega t \in \mathbb{R}^{3} \f$ is the tangent increment expressed in the \a global frame
+ * (i.e. the left convention is used.)
  *
  * Taken from
  * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param quaternion, a 4 x 1 matrix representing a unit quaternion
- * @param rotation_vector, a 3 x N matrix each column of which is a rotation vector
+ * @param quaternion a 4 x 1 matrix representing a unit quaternion
+ * @param rotation_vector a 3 x N matrix each column of which is a rotation vector
  *
  * @return a 4 x N matrix where the i-th column is the sum between the unit quaternion and the i-th rotation vector
  */
@@ -188,18 +202,24 @@ Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> sum_quaternion_rotation_vector(c
 
 
 /**
- * Evaluate the colwise difference between a set of unit quaternions and a unit quaternion (in the form (w, x, y, z) = (w, n))
- * in terms of rotation vectors representing the displacements in the tangent space
+ * Evaluate the colwise difference between a set of unit quaternions \f$ q_i \f$
+ * and a unit quaternion \f$ q \f$.
+ *
+ * The convention adopted for the quaternion representation is \f$ q = (a, b, c, d) \f$
+ * where \f$ a \f$ is the real part.
+ *
+ * Each subtraction takes the form \f$ r_{i, diff} = 2\,\mathrm{log}(q_{i}\,q^{*})^{\vee} \f$
+ * expressed in the \a global frame (i.e. the left convention is used).
  *
  * Taken from
  * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param quaternion_left, a 4 x N matrix each column of which is a unit quaternion
- * @param quaternion_right, a 4 x 1 matrix representing a unit quaternion
+ * @param quaternion_left a 4 x N matrix each column of which is a unit quaternion
+ * @param quaternion_right a 4 x 1 matrix representing a unit quaternion
  *
- * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion in the tangent space
+ * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion
  */
 template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
 Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::MatrixBase<Derived>& quaternion_left, const Eigen::MatrixBase<Derived>& quaternion_right)
@@ -225,15 +245,22 @@ Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::Mat
 
 
 /**
- * Evaluate the weighted mean of a set of unit quaternions (in the form (w, x, y, z) = (w, n))
+ * Evaluate the weighted mean of a set of unit quaternions \f$ q_i \f$ given a set of weights \f$ w_i \f$.
+ *
+ * The convention adopted for the quaternion representation is \f$ q = (a, b, c, d) \f$
+ * where \f$ a \f$ is the real part.
+ *
+ * The mean quaternion is evaluated as the eigenvector of the matrix \f$ M = \sum_i w_i\, q_i\, q_i^{T} \f$
+ * corresponding to the maximum eigenvalue.
+ *
  *
  * Taken from
  * Chiella, A. C., Teixeira, B. O., & Pereira, G. A. (2019).
  * Quaternion-Based Robust Attitude Estimation Using an Adaptive Unscented Kalman Filter.
  * Sensors, 19(10), 2372.
  *
- * @param weight, a N x 1 matrix containing N weights
- * @param quaternion, a 4 x N matrix each column of which is a unit quaternion
+ * @param weight a N x 1 matrix containing N weights
+ * @param quaternion a 4 x N matrix each column of which is a unit quaternion
  *
  * @return a 4-vector representing the weighted mean of the input quaternion set
  */
