@@ -24,3 +24,18 @@ bool MeasurementModel::setProperty(const std::string& property)
     static_cast<void>(property);
     return false;
 }
+
+
+
+VectorDescription MeasurementModel::getInputDescription() const
+{
+    /* Not all measurement model have a vector-valued input. */
+    throw std::runtime_error("ERROR::MEASUREMENTMODEL::GETSTATEDESCRIPTION\nERROR:\n\tMethod not implemented.");
+}
+
+
+VectorDescription MeasurementModel::getMeasurementDescription() const
+{
+    /* Not all measurement model have a vector-valued output. */
+    throw std::runtime_error("ERROR::MEASUREMENTMODEL::GETMEASUREMENTDESCRIPTION\nERROR:\n\tMethod not implemented.");
+}
