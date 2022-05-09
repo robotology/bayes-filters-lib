@@ -9,6 +9,7 @@
 #define ADDITIVESTATEMODEL_H
 
 #include <BayesFilters/StateModel.h>
+#include <BayesFilters/VectorDescription.h>
 
 namespace bfl {
     class AdditiveStateModel;
@@ -22,6 +23,7 @@ public:
 
     virtual void motion(const Eigen::Ref<const Eigen::MatrixXd>& cur_states, Eigen::Ref<Eigen::MatrixXd> mot_states) override;
 
+    virtual VectorDescription getInputDescription();
 
 protected:
     AdditiveStateModel() noexcept = default;
