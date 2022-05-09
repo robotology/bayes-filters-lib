@@ -9,6 +9,7 @@
 #define WHITENOISEACCELERATION_H
 
 #include <BayesFilters/LinearStateModel.h>
+#include <BayesFilters/VectorDescription.h>
 
 #include <functional>
 #include <random>
@@ -44,7 +45,7 @@ public:
 
     bool setProperty(const std::string& property) override;
 
-    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+    VectorDescription getStateDescription() override;
 
     Eigen::MatrixXd getNoiseSample(const std::size_t num) override;
 
