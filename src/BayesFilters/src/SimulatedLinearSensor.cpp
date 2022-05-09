@@ -6,6 +6,7 @@
  */
 
 #include <BayesFilters/SimulatedLinearSensor.h>
+#include <BayesFilters/VectorDescription.h>
 
 using namespace bfl;
 using namespace Eigen;
@@ -26,25 +27,40 @@ SimulatedLinearSensor::SimulatedLinearSensor
 {
     /* Since a LinearSensor is intended as a sensor that measure
      * the state directly (i.e. no linear combination of the states),
-     * then it is possible to extract the output size from the
-     * output size of the simulated state model.
+     * then it is possible to extract input and measurement descriptions
+     * from the state description of the simulated state model.
      */
-    std::size_t dim_linear_state;
-    std::tie(dim_linear_state, std::ignore) = simulated_state_model_->getStateModel().getOutputSize();
 
-    dim_linear_ = 0;
-    dim_circular_ = 0;
+    /* Input description. */
+    input_description_ = simulated_state_model_->getStateModel().getStateDescription();
+
+    /* The number of noise components depend on the size of the noise covariance matrix. */
+    MatrixXd noise_covariance;
+    bool valid_noise_covariance;
+    std::tie(valid_noise_covariance, noise_covariance) = getNoiseCovarianceMatrix();
+    if (!valid_noise_covariance)
+        throw(std::runtime_error("ERROR:SIMULATEDLINEARSENSOR::CTOR. A valid noise covariance matrix from getNoiseCovarianceMatrix() is required."));
+    input_description_.add_noise_components(noise_covariance.rows());
+
+    /* Measurement description.
+     *
+     * FIXME:
+     * Check if this works in presence of quaternions too.
+     */
+    std::size_t meas_linear_size = 0;
+    std::size_t meas_circular_size = 0;
 
     for (std::size_t i = 0; i < H_.rows(); ++i)
     {
         Eigen::MatrixXf::Index state_index;
         H_.row(i).array().abs().maxCoeff(&state_index);
 
-        if (state_index < dim_linear_state)
-            dim_linear_++;
+        if (state_index < input_description_.linear_size())
+            meas_linear_size++;
         else
-            dim_circular_++;
+            meas_circular_size++;
     }
+    measurement_description_ = VectorDescription(meas_linear_size, meas_circular_size);
 }
 
 
@@ -82,9 +98,15 @@ std::pair<bool, Data> SimulatedLinearSensor::measure(const Data& data) const
 }
 
 
-std::pair<std::size_t, std::size_t> SimulatedLinearSensor::getOutputSize() const
+VectorDescription SimulatedLinearSensor::getInputDescription() const
 {
-    return std::make_pair(dim_linear_, dim_circular_);
+    return input_description_;
+}
+
+
+VectorDescription SimulatedLinearSensor::getMeasurementDescription() const
+{
+    return measurement_description_;
 }
 
 
