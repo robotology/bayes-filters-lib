@@ -24,9 +24,9 @@ namespace bfl {
 class bfl::UKFCorrection : public GaussianCorrection
 {
 public:
-    UKFCorrection(std::unique_ptr<MeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFCorrection(std::unique_ptr<MeasurementModel> meas_model, const double alpha, const double beta, const double kappa) noexcept;
 
-    UKFCorrection(std::unique_ptr<AdditiveMeasurementModel> meas_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFCorrection(std::unique_ptr<AdditiveMeasurementModel> meas_model, const double alpha, const double beta, const double kappa) noexcept;
 
     UKFCorrection(UKFCorrection&& ukf_prediction) noexcept;
 

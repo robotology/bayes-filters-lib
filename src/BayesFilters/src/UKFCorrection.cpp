@@ -16,28 +16,26 @@ using namespace Eigen;
 UKFCorrection::UKFCorrection
 (
     std::unique_ptr<MeasurementModel> measurement_model,
-    const size_t n,
     const double alpha,
     const double beta,
     const double kappa
 ) noexcept :
     measurement_model_(std::move(measurement_model)),
     type_(UKFCorrectionType::Generic),
-    ut_weight_(n, alpha, beta, kappa)
+    ut_weight_(measurement_model_->getInputDescription(), alpha, beta, kappa)
 { }
 
 
 UKFCorrection::UKFCorrection
 (
     std::unique_ptr<AdditiveMeasurementModel> measurement_model,
-    const size_t n,
     const double alpha,
     const double beta,
     const double kappa
 ) noexcept :
     additive_measurement_model_(std::move(measurement_model)),
     type_(UKFCorrectionType::Additive),
-    ut_weight_(n, alpha, beta, kappa)
+    ut_weight_(additive_measurement_model_->getInputDescription().noiseless_description(), alpha, beta, kappa)
 { }
 
 
@@ -89,11 +87,8 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
         return;
     }
 
-    /* Initialize predicted measurement GaussianMixture. */
-    std::pair<std::size_t, std::size_t> meas_sizes = model.getOutputSize();
-    std::size_t meas_size = meas_sizes.first + meas_sizes.second;
-    /* GaussianMixture will effectively resize only if it needs to. */
-    predicted_meas_.resize(pred_state.components, meas_size);
+    /* Extract measurement size. */
+    std::size_t meas_size = model.getMeasurementDescription().total_size();
 
     /* Evaluate the joint state-measurement statistics, if possible. */
     bool valid = false;
