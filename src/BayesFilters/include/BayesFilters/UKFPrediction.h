@@ -31,9 +31,9 @@ public:
         Additive
     };
 
-    UKFPrediction(std::unique_ptr<StateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFPrediction(std::unique_ptr<StateModel> state_model, const double alpha, const double beta, const double kappa) noexcept;
 
-    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, const size_t n, const double alpha, const double beta, const double kappa) noexcept;
+    UKFPrediction(std::unique_ptr<AdditiveStateModel> state_model, const double alpha, const double beta, const double kappa) noexcept;
 
     UKFPrediction(const UKFPrediction& prediction) noexcept = delete;
 
