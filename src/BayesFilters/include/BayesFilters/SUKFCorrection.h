@@ -43,7 +43,7 @@ public:
      * The input argument meas_sub_size is the sub-size, J, of the
      * measurement vector y in R^M such that M = k * J for some positive integer k.
      */
-    SUKFCorrection(std::unique_ptr<AdditiveMeasurementModel> measurement_model, const std::size_t state_size, const double alpha, const double beta, const double kappa, const std::size_t measurement_sub_size, const bool use_reduced_noise_covariance_matrix) noexcept;
+    SUKFCorrection(std::unique_ptr<AdditiveMeasurementModel> measurement_model, const double alpha, const double beta, const double kappa, const std::size_t measurement_sub_size, const bool use_reduced_noise_covariance_matrix) noexcept;
 
     SUKFCorrection(SUKFCorrection&& sukf_correction) noexcept;
 

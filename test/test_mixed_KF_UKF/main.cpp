@@ -157,7 +157,7 @@ int main(int argc, char* argv[])
         simulated_linear_sensor->enable_log("./", "testKF_UKF");
 
     /* Step 3.3 - Initialize the unscented Kalman filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
+    std::unique_ptr<UKFCorrection> ukf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), alpha, beta, kappa);
 
 
     /* Step 4 - Assemble the mixed Kalman filter. */

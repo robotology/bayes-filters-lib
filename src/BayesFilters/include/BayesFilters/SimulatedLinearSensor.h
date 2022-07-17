@@ -10,6 +10,7 @@
 
 #include <BayesFilters/LinearModel.h>
 #include <BayesFilters/SimulatedStateModel.h>
+#include <BayesFilters/VectorDescription.h>
 
 #include <memory>
 
@@ -31,17 +32,18 @@ public:
 
     std::pair<bool, bfl::Data> measure(const Data& data = Data()) const override;
 
-    std::pair<std::size_t, std::size_t> getOutputSize() const override;
+    VectorDescription getInputDescription() const override;
 
+    VectorDescription getMeasurementDescription() const override;
 
 protected:
     std::unique_ptr<bfl::SimulatedStateModel> simulated_state_model_;
 
     Eigen::MatrixXd measurement_;
 
-    std::size_t dim_linear_;
+    VectorDescription input_description_;
 
-    std::size_t dim_circular_;
+    VectorDescription measurement_description_;
 
     void log() override;
 };

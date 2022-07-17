@@ -17,3 +17,12 @@ void AdditiveStateModel::motion(const Ref<const MatrixXd>& cur_states, Ref<Matri
 
     mot_states += getNoiseSample(mot_states.cols());
 }
+
+
+VectorDescription AdditiveStateModel::getInputDescription()
+{
+    VectorDescription input_description = getStateDescription();
+    input_description.add_noise_components(getNoiseCovarianceMatrix().rows());
+
+    return input_description;
+}

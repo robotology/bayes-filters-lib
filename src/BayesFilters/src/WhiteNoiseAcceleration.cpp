@@ -52,6 +52,8 @@ struct WhiteNoiseAcceleration::ImplData
 
                 Q_ = Q;
 
+                state_description_ = VectorDescription(2);
+
                 break;
             }
 
@@ -64,6 +66,8 @@ struct WhiteNoiseAcceleration::ImplData
                 Q_ = MatrixXd(4, 4);
                 Q_ << Q, Matrix2d::Zero(),
                       Matrix2d::Zero(), Q;
+
+                state_description_ = VectorDescription(4);
 
                 break;
             }
@@ -79,6 +83,8 @@ struct WhiteNoiseAcceleration::ImplData
                 Q_ << Q, Matrix2d::Zero(), Matrix2d::Zero(),
                       Matrix2d::Zero(), Q, Matrix2d::Zero(),
                       Matrix2d::Zero(), Matrix2d::Zero(), Q;
+
+                state_description_ = VectorDescription(6);
 
                 break;
             }
@@ -99,6 +105,11 @@ struct WhiteNoiseAcceleration::ImplData
      * Power spectral density [length]^2/[time]^3.
      */
     double tilde_q_;
+
+    /**
+     * State description.
+     */
+    VectorDescription state_description_;
 
     /**
      * State transition matrix.
@@ -174,9 +185,9 @@ bool WhiteNoiseAcceleration::setProperty(const std::string& property)
 }
 
 
-std::pair<std::size_t, std::size_t> WhiteNoiseAcceleration::getOutputSize() const
+VectorDescription WhiteNoiseAcceleration::getStateDescription()
 {
-    return std::make_pair(4, 0);
+    return pimpl_->state_description_;
 }
 
 

@@ -191,7 +191,7 @@ int main(int argc, char* argv[])
 
     /* Initialize the kalman particle filter prediction step that wraps a Gaussian prediction step,
        in this case an unscented kalman filter prediction step. */
-    std::unique_ptr<GaussianPrediction> upf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
+    std::unique_ptr<GaussianPrediction> upf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), alpha, beta, kappa);
     std::unique_ptr<PFPrediction> gpf_prediction = utils::make_unique<GPFPrediction>(std::move(upf_prediction));
 
 
@@ -232,7 +232,7 @@ int main(int argc, char* argv[])
 
     /* Initialize the particle filter correction step that wraps a Guassian correction step,
        in this case an unscented kalman filter correction step. */
-    std::unique_ptr<GaussianCorrection> upf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa);
+    std::unique_ptr<GaussianCorrection> upf_correction = utils::make_unique<UKFCorrection>(std::move(simulated_linear_sensor), alpha, beta, kappa);
     std::unique_ptr<PFCorrection> gpf_correction = utils::make_unique<GPFCorrection>(std::move(exp_likelihood), std::move(upf_correction), std::move(transition_probability_model));
 
 

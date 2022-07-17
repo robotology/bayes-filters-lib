@@ -8,6 +8,8 @@
 #ifndef STATEPROCESS_H
 #define STATEPROCESS_H
 
+#include <BayesFilters/VectorDescription.h>
+
 #include <Eigen/Dense>
 
 namespace bfl {
@@ -25,9 +27,14 @@ public:
     virtual bool setProperty(const std::string& property) = 0;
 
     /**
-     * Returns the linear and circular size of the output of the state equation.
+     * Returns the vector description of the input to the state equation.
      */
-    virtual std::pair<std::size_t, std::size_t> getOutputSize() const = 0;
+    virtual VectorDescription getInputDescription() = 0;
+
+    /**
+     * Returns the vector description of the output of the state equation.
+     */
+    virtual VectorDescription getStateDescription() = 0;
 };
 
 #endif /* STATEPROCESS_H */

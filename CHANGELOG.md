@@ -1,9 +1,34 @@
 # 📜 BayesFilters changelog
 
-## 🔖 Version 0.9.101
+## 🔖 Version 0.10.100
 ##### `Filtering utilities`
 - Improve documentation of methods `bfl::utils::quaternion_to_rotation_vector()`, `bfl::utils::rotation_vector_to_quaternion()`, `bfl::utils::sum_quaternion_rotation_vector()`, `bfl::utils::diff_quaternion()`,`bfl::utils::mean_quaternion()`.
+- Implemented class `VectorDescription` which describes the size of the inner components of a state/measurement vector (linear, rotational and noise parts).
+- Updated the `FunctionEvaluation` alias within `sigma_point.h` in order to use a `VectorDescription` as one of the outputs.
+- Updated implementation of variants of the `unscented_transform()` transforms within `sigma_point.h` taking into account the new definition of the `FunctionEvaluation` alias.
+- Added a constructor to the `UTWeight` struct such that it can be constructed starting from a `VectorDescription` description.
 
+##### `Filtering functions`
+- Substituted `ExogenousProcess::getOutputSize()` with `ExogenousProcess::getStateDescription()` which uses the `VectorDescription` class to describe the size of the output of the exogenous process.
+- Substituted `StateProcess::getOutputSize()` with pure virtual `StateProcess::getStateDescription()` which uses the `VectorDescription` class to describe the size of the state of the state model.
+- Added pure virtual method `StateProcess::getInputDescription()` which uses the `VectorDescription` class to describe the size of the input to the state model.
+- Substituted `MeasurementModel::getOutputSize()` with `MeasuremnetModel::getMeasurementDescription()` which uses the `VectorDescription` class to describe the size of the measurement of the measurement model. This method is not mandatory and a default implementation (raising an exception) is provided as not all measurements are provided with a vectorial description.
+- Added method `MeasurementModel::getInputDescription()` which uses the `VectorDescription` class to describe the size of the input to the measurement model. This method is not mandatory and a default implementation (raising an exception) is provided as not all measurements are provided with a vectorial description.
+- Updated implementation of class `WhiteNoiseAcceleration` to take into account changes in the `StateModel` interface.
+- Updated implementation of class `AdditiveStateModel` to take into account changes in the `StateModel` interface.
+- Updated implementation of class `SimulatedLinearSensor` to take into account changes in the `StateModel` and `MeasurementModel` interfaces.
+
+##### `Filtering algorithms`
+- Updated implementation of `SUKFCorrection` in order to extract relevant information on the measurement size using the `VectorDescription` of the adopted measurement model.
+- Updated implementation of `UKFCorrection` in order to extract relevant information on the measurement size using the `VectorDescription` of the adopted measurement model.
+- Updated implementation of `UKFPrediction` in order to extract relevant information on state size using the `VectorDescription` of the adopted state model.
+- Added support for measurement models having a time-varying input `VectorDescription` in `UKFCorrection`. The feature is enabled using a boolean argument in the constructor.
+
+##### `Test`
+- Updated tests 'test_Gaussian_Density_UVR`, `test_UKF`, `test_UPF`, `test_UPF_MAP`, `test_mixed_KF_SUKF`, `test_mixed_KF_UKF` and `test_mixed_UKF_KF` to account for the changes in the interface of the `AdditiveMeasurementModel`, `UKFPrediction`, `UKFCorrection` and `SUKFCorrection` classes.
+
+##### `CMake`
+- Minor version increases since API compatibility is broken.
 
 ## 🔖 Version 0.9.0
 ##### `CMake`

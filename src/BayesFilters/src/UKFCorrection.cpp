@@ -16,28 +16,34 @@ using namespace Eigen;
 UKFCorrection::UKFCorrection
 (
     std::unique_ptr<MeasurementModel> measurement_model,
-    const size_t n,
     const double alpha,
     const double beta,
-    const double kappa
+    const double kappa,
+    const bool update_weights_online
 ) noexcept :
     measurement_model_(std::move(measurement_model)),
     type_(UKFCorrectionType::Generic),
-    ut_weight_(n, alpha, beta, kappa)
+    ut_weight_(measurement_model_->getInputDescription(), alpha, beta, kappa),
+    update_weights_online_(update_weights_online),
+    ut_alpha_(alpha),
+    ut_beta_(beta),
+    ut_kappa_(kappa)
 { }
 
 
 UKFCorrection::UKFCorrection
 (
     std::unique_ptr<AdditiveMeasurementModel> measurement_model,
-    const size_t n,
     const double alpha,
     const double beta,
     const double kappa
 ) noexcept :
     additive_measurement_model_(std::move(measurement_model)),
     type_(UKFCorrectionType::Additive),
-    ut_weight_(n, alpha, beta, kappa)
+    ut_weight_(additive_measurement_model_->getInputDescription().noiseless_description(), alpha, beta, kappa),
+    ut_alpha_(alpha),
+    ut_beta_(beta),
+    ut_kappa_(kappa)
 { }
 
 
@@ -45,7 +51,11 @@ UKFCorrection::UKFCorrection(UKFCorrection&& ukf_correction) noexcept :
     measurement_model_(std::move(ukf_correction.measurement_model_)),
     additive_measurement_model_(std::move(ukf_correction.additive_measurement_model_)),
     type_(ukf_correction.type_),
-    ut_weight_(ukf_correction.ut_weight_)
+    ut_weight_(ukf_correction.ut_weight_),
+    update_weights_online_(ukf_correction.update_weights_online_),
+    ut_alpha_(ukf_correction.ut_alpha_),
+    ut_beta_(ukf_correction.ut_beta_),
+    ut_kappa_(ukf_correction.ut_kappa_)
 { }
 
 
@@ -89,11 +99,8 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
         return;
     }
 
-    /* Initialize predicted measurement GaussianMixture. */
-    std::pair<std::size_t, std::size_t> meas_sizes = model.getOutputSize();
-    std::size_t meas_size = meas_sizes.first + meas_sizes.second;
-    /* GaussianMixture will effectively resize only if it needs to. */
-    predicted_meas_.resize(pred_state.components, meas_size);
+    /* Extract measurement size. */
+    std::size_t meas_size = model.getMeasurementDescription().total_size();
 
     /* Evaluate the joint state-measurement statistics, if possible. */
     bool valid = false;
@@ -106,6 +113,9 @@ void UKFCorrection::correctStep(const GaussianMixture& pred_state, GaussianMixtu
         MatrixXd noise_covariance_matrix;
         std::tie(std::ignore, noise_covariance_matrix) = model.getNoiseCovarianceMatrix();
         pred_state_augmented.augmentWithNoise(noise_covariance_matrix);
+
+        if (update_weights_online_)
+            ut_weight_ = UTWeight(measurement_model_->getInputDescription(), ut_alpha_, ut_beta_, ut_kappa_);
 
         std::tie(valid, predicted_meas_, Pxy) = sigma_point::unscented_transform(pred_state_augmented, ut_weight_, *measurement_model_);
     }

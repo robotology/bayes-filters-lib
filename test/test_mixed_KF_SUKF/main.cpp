@@ -156,7 +156,7 @@ int main(int argc, char* argv[])
         simulated_linear_sensor->enable_log("./", "testKF_SUKF");
 
     /* Step 3.3 - Initialize the serial unscented Kalman filter correction step and pass the ownership of the measurement model. */
-    std::unique_ptr<GaussianCorrection> sukf_correction = utils::make_unique<SUKFCorrection>(std::move(simulated_linear_sensor), state_size, alpha, beta, kappa, 2, true);
+    std::unique_ptr<GaussianCorrection> sukf_correction = utils::make_unique<SUKFCorrection>(std::move(simulated_linear_sensor), alpha, beta, kappa, 2, true);
 
 
     /* Step 4 - Assemble the serial unscented Kalman filter */

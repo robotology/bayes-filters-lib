@@ -18,15 +18,33 @@ using namespace Eigen;
 
 bfl::sigma_point::UTWeight::UTWeight
 (
-    std::size_t n,
+    std::size_t dof,
     const double alpha,
     const double beta,
     const double kappa
 ) :
-    mean((2 * n) + 1),
-    covariance((2 * n) + 1)
+    mean((2 * dof) + 1),
+    covariance((2 * dof) + 1)
 {
-    unscented_weights(n, alpha, beta, kappa, mean, covariance, c);
+    unscented_weights(dof, alpha, beta, kappa, mean, covariance, c);
+}
+
+
+bfl::sigma_point::UTWeight::UTWeight
+(
+    const VectorDescription& vector_description,
+    const double alpha,
+    const double beta,
+    const double kappa
+)
+{
+    /* Degree of freedom associated to input space. */
+    std::size_t dof = vector_description.total_size();
+
+    mean.resize((2 * dof) + 1);
+    covariance.resize((2 * dof) + 1);
+
+    unscented_weights(dof, alpha, beta, kappa, mean, covariance, c);
 }
 
 
@@ -100,10 +118,10 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     MatrixXd input_sigma_points = sigma_point::sigma_point(input, weight.c);
 
     /* Propagate sigma points */
-    Data fun_data;
     bool valid_fun_data;
-    bfl::sigma_point::OutputSize output_size;
-    std::tie(valid_fun_data, fun_data, output_size) = function(input_sigma_points);
+    Data fun_data;
+    VectorDescription output_description;
+    std::tie(valid_fun_data, fun_data, output_description) = function(input_sigma_points);
 
     /* Stop here if function evaluation failed. */
     if (!valid_fun_data)
@@ -113,7 +131,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     MatrixXd prop_sigma_points = bfl::any::any_cast<MatrixXd&&>(std::move(fun_data));
 
     /* Initialize transformed gaussian. */
-    GaussianMixture output(input.components, output_size.first, output_size.second);
+    GaussianMixture output(input.components, output_description.linear_components(), output_description.circular_components());
 
     /* Initialize cross covariance matrix. */
     MatrixXd cross_covariance(input.dim, output.dim * output.components);
@@ -126,12 +144,12 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
         Ref<MatrixXd> prop_sigma_points_i = prop_sigma_points.middleCols(base * i, base);
 
         /* Evaluate the mean. */
-        output.mean(i).topRows(output_size.first).noalias() = prop_sigma_points_i.topRows(output_size.first) * weight.mean;
-        output.mean(i).bottomRows(output_size.second) = directional_mean(prop_sigma_points_i.bottomRows(output_size.second), weight.mean);
+        output.mean(i).topRows(output.dim_linear).noalias() = prop_sigma_points_i.topRows(output.dim_linear) * weight.mean;
+        output.mean(i).bottomRows(output.dim_circular) = directional_mean(prop_sigma_points_i.bottomRows(output.dim_circular), weight.mean);
 
         /* Evaluate the covariance. */
-        prop_sigma_points_i.topRows(output_size.first).colwise() -= output.mean(i).topRows(output_size.first);
-        prop_sigma_points_i.bottomRows(output_size.second) = directional_sub(prop_sigma_points_i.bottomRows(output_size.second), output.mean(i).bottomRows(output_size.second));
+        prop_sigma_points_i.topRows(output.dim_linear).colwise() -= output.mean(i).topRows(output.dim_linear);
+        prop_sigma_points_i.bottomRows(output.dim_circular) = directional_sub(prop_sigma_points_i.bottomRows(output.dim_circular), output.mean(i).bottomRows(output.dim_circular));
         output.covariance(i).noalias() = prop_sigma_points_i * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
 
         /* Evaluate the input-output cross covariance matrix
@@ -155,11 +173,11 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
 {
     FunctionEvaluation f = [&state_model](const Ref<const MatrixXd>& state)
                            {
-                               MatrixXd tmp(state.rows(), state.cols());
+                               MatrixXd tmp(state_model.getStateDescription().total_size(), state.cols());
 
                                state_model.motion(state, tmp);
 
-                               return std::make_tuple(true, std::move(tmp), state_model.getOutputSize());
+                               return std::make_tuple(true, std::move(tmp), state_model.getStateDescription());
                            };
     MatrixXd cross_covariance;
     GaussianMixture output;
@@ -182,7 +200,7 @@ std::pair<GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transform
 
                                state_model.propagate(state, tmp);
 
-                               return std::make_tuple(true, std::move(tmp), state_model.getOutputSize());
+                               return std::make_tuple(true, std::move(tmp), state_model.getStateDescription());
                            };
 
     MatrixXd cross_covariance;
@@ -212,7 +230,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 
                                std::tie(valid_prediction, prediction) = meas_model.predictedMeasure(state);
 
-                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getOutputSize());
+                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getMeasurementDescription());
                            };
 
     bool valid;
@@ -238,7 +256,7 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
 
                                std::tie(valid_prediction, prediction) = meas_model.predictedMeasure(state);
 
-                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getOutputSize());
+                               return std::make_tuple(valid_prediction, std::move(prediction), meas_model.getMeasurementDescription());
                            };
 
     bool valid;

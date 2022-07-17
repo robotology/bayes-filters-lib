@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
     /* Step 2.2 - Define the prediction step. */
 
     /* Initialize the unscented Kalman filter prediction step and pass the ownership of the state model. */
-    std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), state_size, alpha, beta, kappa);
+    std::unique_ptr<UKFPrediction> ukf_prediction = utils::make_unique<UKFPrediction>(std::move(wna), alpha, beta, kappa);
 
 
     /* Step 3 - Correction */

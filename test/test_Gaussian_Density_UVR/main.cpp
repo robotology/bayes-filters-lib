@@ -69,9 +69,15 @@ public:
     }
 
 
-    std::pair<std::size_t, std::size_t> getOutputSize() const override
+    VectorDescription getInputDescription() const override
     {
-        return std::pair<std::size_t, std::size_t>(measurement_.size(), 0);
+        return VectorDescription(3, 0, measurement_.size());
+    }
+
+
+    VectorDescription getMeasurementDescription() const override
+    {
+        return VectorDescription(measurement_.size());
     }
 
 private:
@@ -86,12 +92,6 @@ int main()
     std::cout << "[Test] " << std::endl;
     {
         std::cout << "Constructing a simulated scenario..." << std::endl;
-
-        // Unscented Transform parameters
-        double alpha = 1.0;
-        double beta = 2.0;
-        double kappa = 0.0;
-        sigma_point::UTWeight ut_weight(3, alpha, beta, kappa);
 
         // Predicted state
         Gaussian predicted_state(3);
@@ -120,6 +120,12 @@ int main()
         predicted(5) = 1.0;
 
         SimulatedMeasurement measurement_model(measurement, predicted);
+
+        // Unscented Transform parameters
+        double alpha = 1.0;
+        double beta = 2.0;
+        double kappa = 0.0;
+        sigma_point::UTWeight ut_weight(measurement_model.getInputDescription().noiseless_description(), alpha, beta, kappa);
 
         // Propagate belief
         GaussianMixture predicted_measurement(1, 6);
