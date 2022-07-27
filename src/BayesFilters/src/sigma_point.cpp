@@ -39,7 +39,7 @@ bfl::sigma_point::UTWeight::UTWeight
 )
 {
     /* Degree of freedom associated to input space. */
-    std::size_t dof = vector_description.total_size();
+    std::size_t dof = vector_description.dof_size();
 
     mean.resize((2 * dof) + 1);
     covariance.resize((2 * dof) + 1);
