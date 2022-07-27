@@ -69,6 +69,19 @@ std::size_t VectorDescription::total_size() const
 }
 
 
+std::size_t VectorDescription::dof_size() const
+{
+    if (circular_type == CircularType::Quaternion)
+    {
+        /* If quaternions are used, the number of degrees of freedom for the evaluation of the sigma points
+           depends on the dimensions of the tangent space that is R^3. */
+        return linear_size() + circular_components() * 3 + noise_size();
+    }
+    else
+        return total_size();
+}
+
+
 void VectorDescription::add_noise_components(const std::size_t& components)
 {
     noise_components_ += components;

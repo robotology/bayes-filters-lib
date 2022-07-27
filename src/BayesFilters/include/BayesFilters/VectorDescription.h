@@ -40,6 +40,8 @@ public:
 
     std::size_t total_size() const;
 
+    std::size_t dof_size() const;
+
     void add_noise_components(const std::size_t& components);
 
     VectorDescription noiseless_description() const;
