@@ -7,6 +7,11 @@
 - Updated the `FunctionEvaluation` alias within `sigma_point.h` in order to use a `VectorDescription` as one of the outputs.
 - Updated implementation of variants of the `unscented_transform()` transforms within `sigma_point.h` taking into account the new definition of the `FunctionEvaluation` alias.
 - Added a constructor to the `UTWeight` struct such that it can be constructed starting from a `VectorDescription` description.
+- Added support for quaternions in `bfl::sigma_point::sigma_point()` method.
+- Added support for quaternions in `bfl::sigma_point::unscented_transform()` method.
+- Implemented method `VectorDescription::dof_size()` providing  the number of degrees of freedom associated to the vector (which might be different from `VectorDescription::total_size()`).
+- Fixed implementation of `bfl::sigma_points::UTWeight` constructor such that it uses the number of degrees of fredom of the vector to decide the number of sigma points to be initialized.
+- Added support for arguments inheriting from `Eigen::MatrixBase<T>` with different instances of `T` within the constructors of methods `bfl::utils::sum_quaternion_rotation_vector()`, `bfl::utils::diff_quaternion` and `bfl::utils::mean_quaternion()`.
 
 ##### `Filtering functions`
 - Substituted `ExogenousProcess::getOutputSize()` with `ExogenousProcess::getStateDescription()` which uses the `VectorDescription` class to describe the size of the output of the exogenous process.
@@ -17,6 +22,7 @@
 - Updated implementation of class `WhiteNoiseAcceleration` to take into account changes in the `StateModel` interface.
 - Updated implementation of class `AdditiveStateModel` to take into account changes in the `StateModel` interface.
 - Updated implementation of class `SimulatedLinearSensor` to take into account changes in the `StateModel` and `MeasurementModel` interfaces.
+- Added method `StateModel::setSamplingTime()` that sets the sampling time of the state model.
 
 ##### `Filtering algorithms`
 - Updated implementation of `SUKFCorrection` in order to extract relevant information on the measurement size using the `VectorDescription` of the adopted measurement model.
