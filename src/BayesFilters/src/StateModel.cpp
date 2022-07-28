@@ -79,3 +79,11 @@ Eigen::MatrixXd StateModel::getNoiseSample(const std::size_t num)
 {
     throw std::runtime_error("ERROR::STATEMODEL::GETNOISESAMPLE\nERROR:\n\tMethod not implemented.");
 }
+
+
+bool StateModel::setSamplingTime(const double& time)
+{
+    /* Does nothing by default. */
+
+    return true;
+}

@@ -42,6 +42,7 @@ public:
 
     virtual Eigen::MatrixXd getNoiseSample(const std::size_t num);
 
+    virtual bool setSamplingTime(const double& time);
 
 protected:
     StateModel() noexcept = default;

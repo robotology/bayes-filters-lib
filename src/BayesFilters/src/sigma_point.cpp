@@ -7,12 +7,14 @@
 
 #include <BayesFilters/sigma_point.h>
 #include <BayesFilters/directional_statistics.h>
+#include <BayesFilters/utils.h>
 
 #include <Eigen/SVD>
 
 using namespace bfl;
 using namespace bfl::directional_statistics;
 using namespace bfl::sigma_point;
+using namespace bfl::utils;
 using namespace Eigen;
 
 
@@ -39,7 +41,7 @@ bfl::sigma_point::UTWeight::UTWeight
 )
 {
     /* Degree of freedom associated to input space. */
-    std::size_t dof = vector_description.total_size();
+    std::size_t dof = vector_description.dof_size();
 
     mean.resize((2 * dof) + 1);
     covariance.resize((2 * dof) + 1);
@@ -81,7 +83,7 @@ void bfl::sigma_point::unscented_weights
 
 MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const double c)
 {
-    MatrixXd sigma_points(state.dim, ((state.dim * 2) + 1) * state.components);
+    MatrixXd sigma_points(state.dim, ((state.dim_covariance * 2) + 1) * state.components);
 
     for (std::size_t i = 0; i < state.components; i++)
     {
@@ -89,18 +91,31 @@ MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const doubl
 
         MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
 
-        Ref<MatrixXd> sp = sigma_points.middleCols(((state.dim * 2) + 1) * i, ((state.dim * 2) + 1));
+        Ref<MatrixXd> sp = sigma_points.middleCols(((state.dim_covariance * 2) + 1) * i, ((state.dim_covariance * 2) + 1));
 
-        sp << VectorXd::Zero(state.dim), std::sqrt(c) * A, -std::sqrt(c) * A;
+        MatrixXd perturbations(state.dim_covariance, (state.dim_covariance * 2) + 1);
+        perturbations << VectorXd::Zero(state.dim_covariance), std::sqrt(c) * A, -std::sqrt(c) * A;
 
         if (state.dim_linear > 0)
-            sp.topRows(state.dim_linear).colwise() += state.mean(i).topRows(state.dim_linear);
+            sp.topRows(state.dim_linear) = perturbations.topRows(state.dim_linear).colwise() + state.mean(i).topRows(state.dim_linear);
 
         if (state.dim_circular > 0)
-            sp.middleRows(state.dim_linear, state.dim_circular) = directional_add(sp.middleRows(state.dim_linear, state.dim_circular), state.mean(i).middleRows(state.dim_linear, state.dim_circular));
+        {
+            if (state.use_quaternion)
+                for (std::size_t j = 0; j < state.dim_circular; j++)
+                {
+                    /* Enforce first sigma point to be the mean quaternion. */
+                    sp.middleRows(state.dim_linear + j * 4, 4).col(0) = state.mean(i).middleRows(state.dim_linear + j * 4, 4);
+
+                    /* Evaluate the remaining sigma points as perturbation of the mean quaternion. */
+                    sp.middleRows(state.dim_linear + j * 4, 4).rightCols(2 * state.dim_covariance) = sum_quaternion_rotation_vector(state.mean(i).middleRows(state.dim_linear + j * 4, 4), perturbations.middleRows(state.dim_linear + j * 3, 3).rightCols(2 * state.dim_covariance));
+                }
+            else
+                sp.middleRows(state.dim_linear, state.dim_circular) = directional_add(perturbations.middleRows(state.dim_linear, state.dim_circular), state.mean(i).middleRows(state.dim_linear, state.dim_circular));
+        }
 
         if (state.dim_noise > 0)
-            sp.bottomRows(state.dim_noise).colwise() += state.mean(i).bottomRows(state.dim_noise);
+            sp.bottomRows(state.dim_noise) = perturbations.bottomRows(state.dim_noise).colwise() + state.mean(i).bottomRows(state.dim_noise);
     }
 
     return sigma_points;
@@ -127,37 +142,61 @@ std::tuple<bool, GaussianMixture, MatrixXd> bfl::sigma_point::unscented_transfor
     if (!valid_fun_data)
         return std::make_tuple(false, GaussianMixture(), MatrixXd(0, 0));
 
-    /* For now casting Data to MatrixXd. */
+    /* Unscented transforms are available only for vector-valued functions. Hence, casting Data to MatrixXd. */
     MatrixXd prop_sigma_points = bfl::any::any_cast<MatrixXd&&>(std::move(fun_data));
 
     /* Initialize transformed gaussian. */
-    GaussianMixture output(input.components, output_description.linear_components(), output_description.circular_components());
+    GaussianMixture output(input.components, output_description.linear_components(), output_description.circular_components(), output_description.circular_type == VectorDescription::CircularType::Quaternion);
 
-    /* Initialize cross covariance matrix. */
-    MatrixXd cross_covariance(input.dim, output.dim * output.components);
+    /* Initialize cross covariance matrix (noise components in the input are not considered). */
+    MatrixXd cross_covariance(input.dim_covariance - input.dim_noise, output.dim_covariance * output.components);
 
     /* Process all the components of the mixture. */
-    std::size_t base = ((input.dim * 2) + 1);
+    std::size_t base = ((input.dim_covariance * 2) + 1);
     for (std::size_t i = 0; i < input.components; i++)
     {
-        Ref<MatrixXd> input_sigma_points_i = input_sigma_points.middleCols(base * i, base);
-        Ref<MatrixXd> prop_sigma_points_i = prop_sigma_points.middleCols(base * i, base);
+        const Ref<MatrixXd> input_sigma_points_i = input_sigma_points.middleCols(base * i, base);
+        const Ref<MatrixXd> prop_sigma_points_i = prop_sigma_points.middleCols(base * i, base);
 
         /* Evaluate the mean. */
         output.mean(i).topRows(output.dim_linear).noalias() = prop_sigma_points_i.topRows(output.dim_linear) * weight.mean;
-        output.mean(i).bottomRows(output.dim_circular) = directional_mean(prop_sigma_points_i.bottomRows(output.dim_circular), weight.mean);
+
+        if (output.dim_circular > 0)
+        {
+            if (output.use_quaternion)
+                for (std::size_t j = 0; j < output.dim_circular; j++)
+                    output.mean(i).middleRows(output.dim_linear + j * 4, 4) = mean_quaternion(weight.mean, prop_sigma_points_i.middleRows(output.dim_linear + j * 4, 4));
+            else
+                output.mean(i).bottomRows(output.dim_circular) = directional_mean(prop_sigma_points_i.bottomRows(output.dim_circular), weight.mean);
+        }
 
         /* Evaluate the covariance. */
-        prop_sigma_points_i.topRows(output.dim_linear).colwise() -= output.mean(i).topRows(output.dim_linear);
-        prop_sigma_points_i.bottomRows(output.dim_circular) = directional_sub(prop_sigma_points_i.bottomRows(output.dim_circular), output.mean(i).bottomRows(output.dim_circular));
-        output.covariance(i).noalias() = prop_sigma_points_i * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
+        MatrixXd offsets_from_mean(output.dim_covariance, input_sigma_points_i.cols());
 
-        /* Evaluate the input-output cross covariance matrix
-           (noise components in the input are not considered). */
-        Ref<MatrixXd> cross_covariance_i = cross_covariance.middleCols(output.dim * i, output.dim);
-        input_sigma_points_i.topRows(input.dim_linear).colwise() -= input.mean(i).topRows(input.dim_linear);
-        input_sigma_points_i.middleRows(input.dim_linear, input.dim_circular) = directional_sub(input_sigma_points_i.middleRows(input.dim_linear, input.dim_circular), input.mean(i).middleRows(input.dim_linear, input.dim_circular));
-        cross_covariance_i.noalias() = input_sigma_points_i.topRows(input.dim_linear + input.dim_circular) * weight.covariance.asDiagonal() * prop_sigma_points_i.transpose();
+        offsets_from_mean.topRows(output.dim_linear) = prop_sigma_points_i.topRows(output.dim_linear).colwise() - output.mean(i).topRows(output.dim_linear);
+        if (output.dim_circular > 0)
+        {
+            if (output.use_quaternion)
+                for (std::size_t j = 0; j < output.dim_circular; j++)
+                    offsets_from_mean.middleRows(output.dim_linear + j * 3, 3) = diff_quaternion(prop_sigma_points_i.middleRows(output.dim_linear + j * 4, 4), output.mean(i).middleRows(output.dim_linear + j * 4, 4));
+            else
+                offsets_from_mean.bottomRows(output.dim_circular) = directional_sub(prop_sigma_points_i.bottomRows(output.dim_circular), output.mean(i).bottomRows(output.dim_circular));
+        }
+        output.covariance(i).noalias() = offsets_from_mean * weight.covariance.asDiagonal() * offsets_from_mean.transpose();
+
+        /* Evaluate the input-output cross covariance matrix (noise components in the input are not considered). */
+        Ref<MatrixXd> cross_covariance_i = cross_covariance.middleCols(output.dim_covariance * i, output.dim_covariance);
+        MatrixXd input_offsets_from_mean(input.dim_covariance - input.dim_noise, input_sigma_points_i.cols());
+        input_offsets_from_mean.topRows(input.dim_linear) = input_sigma_points_i.topRows(input.dim_linear).colwise() - input.mean(i).topRows(input.dim_linear);
+        if (input.dim_circular > 0)
+        {
+            if (input.use_quaternion)
+                for (std::size_t j = 0; j < input.dim_circular; j++)
+                    input_offsets_from_mean.middleRows(input.dim_linear + j * 3, 3) = diff_quaternion(input_sigma_points_i.middleRows(input.dim_linear + j * 4, 4), input.mean(i).middleRows(input.dim_linear + j * 4, 4));
+            else
+                input_offsets_from_mean.bottomRows(input.dim_circular) = directional_sub(input_sigma_points_i.middleRows(input.dim_linear, input.dim_circular), input.mean(i).middleRows(input.dim_linear, input.dim_circular));
+        }
+        cross_covariance_i.noalias() = input_offsets_from_mean * weight.covariance.asDiagonal() * offsets_from_mean.transpose();
     }
 
     return std::make_tuple(true, output, cross_covariance);

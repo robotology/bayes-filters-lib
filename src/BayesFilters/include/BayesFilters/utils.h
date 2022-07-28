@@ -179,8 +179,9 @@ Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> rotation_vector_to_quaternion(co
  *
  * @return a 4 x N matrix where the i-th column is the sum between the unit quaternion and the i-th rotation vector
  */
-template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
-Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> sum_quaternion_rotation_vector(const Eigen::MatrixBase<Derived>& quaternion, const Eigen::MatrixBase<Derived>& rotation_vector)
+template<typename Derived, typename DerivedArg2, typename DerivedScalar = typename Derived::Scalar, typename DerivedArg2Scalar = typename DerivedArg2::Scalar,
+         bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value && std::is_same<DerivedScalar, DerivedArg2Scalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> sum_quaternion_rotation_vector(const Eigen::MatrixBase<Derived>& quaternion, const Eigen::MatrixBase<DerivedArg2>& rotation_vector)
 {
     /* Move rotation vectors to their quaternionic representation. */
     Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> vector_as_quaternion = rotation_vector_to_quaternion(rotation_vector);
@@ -221,8 +222,9 @@ Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> sum_quaternion_rotation_vector(c
  *
  * @return a 3 x N matrix where the i-th column is the difference between the i-th left quaternion and the right quaternion
  */
-template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
-Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::MatrixBase<Derived>& quaternion_left, const Eigen::MatrixBase<Derived>& quaternion_right)
+template<typename Derived, typename DerivedArg2, typename DerivedScalar = typename Derived::Scalar, typename DerivedArg2Scalar = typename DerivedArg2::Scalar,
+         bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value && std::is_same<DerivedScalar, DerivedArg2Scalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::MatrixBase<Derived>& quaternion_left, const Eigen::MatrixBase<DerivedArg2>& quaternion_right)
 {
     Eigen::Matrix<DerivedScalar, 4, Eigen::Dynamic> products(4, quaternion_left.cols());
 
@@ -264,8 +266,9 @@ Eigen::Matrix<DerivedScalar, 3, Eigen::Dynamic> diff_quaternion(const Eigen::Mat
  *
  * @return a 4-vector representing the weighted mean of the input quaternion set
  */
-template<typename Derived, typename DerivedScalar = typename Derived::Scalar, bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value, bool> = true>
-Eigen::Matrix<DerivedScalar, 4, 1> mean_quaternion(const Eigen::MatrixBase<Derived>& weight, const Eigen::MatrixBase<Derived>& quaternion)
+template<typename Derived, typename DerivedArg2, typename DerivedScalar = typename Derived::Scalar, typename DerivedArg2Scalar = typename DerivedArg2::Scalar,
+         bfl::utils::enable_if_t<std::is_floating_point<DerivedScalar>::value && std::is_same<DerivedScalar, DerivedArg2Scalar>::value, bool> = true>
+Eigen::Matrix<DerivedScalar, 4, 1> mean_quaternion(const Eigen::MatrixBase<Derived>& weight, const Eigen::MatrixBase<DerivedArg2>& quaternion)
 {
     /* Weighted outer product of quaternions. */
     Eigen::Matrix<DerivedScalar, 4, 4> outer_product_mean = Eigen::Matrix<DerivedScalar, 4, 4>::Zero();
