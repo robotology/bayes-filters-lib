@@ -1,6 +1,6 @@
 # 📜 BayesFilters changelog
 
-## 🔖 Version 0.10.100
+## 🔖 Version 0.10.0
 ##### `Filtering utilities`
 - Improve documentation of methods `bfl::utils::quaternion_to_rotation_vector()`, `bfl::utils::rotation_vector_to_quaternion()`, `bfl::utils::sum_quaternion_rotation_vector()`, `bfl::utils::diff_quaternion()`,`bfl::utils::mean_quaternion()`.
 - Implemented class `VectorDescription` which describes the size of the inner components of a state/measurement vector (linear, rotational and noise parts).
