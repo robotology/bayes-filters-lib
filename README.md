@@ -8,6 +8,7 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 # Overview
 - [⚠️ About versioning](#️-about-versioning)
 - [📖 Background](#-background)
+- [Installing with conda](#installing-with-conda)
 - [🎛 Dependencies](#-dependencies)
 - [🔨 Build and link the library](#-build-and-link-the-library)
 - [🔬 Test the library](#-test-the-library)
@@ -37,13 +38,20 @@ Popular Bayes filters are the **Kalman** [1]-[4] and **particle filters** [5]-[7
 
 The aim of this library is to provide _interfaces_ and _implementations_ for new and existing recursive Bayesian filters!
 
+# Installing with conda
+You can install the binaries with conda. All the dependencies will be automatically installed in the conda environment.
+```bash
+conda install -c conda-forge libbayes-filters-lib
+```
 
-# 🎛 Dependencies
+# Building from sources
+If you want to build the project from sources you need to follow the following passages
+## 🎛 Dependencies
 Bayes Filters Library depends on
  - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3 (no beta)`
 
 
-# 🔨 Build and link the library
+## 🔨 Build and link the library
 Use the following commands to build, install and link the library.
 
 ### Build
@@ -70,7 +78,7 @@ $ [sudo] ninja install
 You can also generate IDE project (e.g. Visual Studio and Xcode) to use their
 build tool facilities.
 
-### Link
+# Link
 Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your project `CMakeLists.txt`:
 ```cmake
 ...
