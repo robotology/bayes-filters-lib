@@ -5,18 +5,19 @@ A flexible, modern, cross-platform C++ recursive Bayesian estimation library.
 [![BayesFilters home](https://img.shields.io/badge/BayesFilters-Home%20%26%20Doc-E0C57F.svg?style=flat-square)](https://robotology.github.io/bayes-filters-lib/doc/html/index.html) [![Latest Release](https://img.shields.io/github/release/robotology/bayes-filters-lib.svg?style=flat-square&label=Latest%20Release)](https://github.com/robotology/bayes-filters-lib/releases) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-brightgreen.svg?style=flat-square)](http://semver.org/) [![ZenHub](https://img.shields.io/badge/Shipping_faster_with-ZenHub-blue.svg?style=flat-square)](https://zenhub.com)
 
 
-# Overview
+## Overview
 - [⚠️ About versioning](#️-about-versioning)
 - [📖 Background](#-background)
-- [Installing with conda](#installing-with-conda)
+- [📦Installing with conda](#-installing-with-conda)
 - [🎛 Dependencies](#-dependencies)
-- [🔨 Build and link the library](#-build-and-link-the-library)
+- [🔨 Build and test the library](#-build-and-test-the-library)
 - [🔬 Test the library](#-test-the-library)
-- [📝 API documentation and example code](#-api-documentaion-and-example-code)
+- [🔗 Link the library](#-link-the-library)
+- [📝 API documentation and example code](#-api-documentation-and-example-code)
 - [📑 Reference](#-reference)
 
 
-# ⚠️ About versioning
+## ⚠️ About versioning
 The project is undergoing _heavy_ development: APIs will be subject to changes quite often.
 To be able to understand API compatibility during development, the project will follow [SemVer](http://semver.org/) specs.
 
@@ -27,7 +28,7 @@ In particular, the library will have **zero major version**, i.e. **0.MINOR.PATC
  4. Additional labels for pre-release and build metadata are available as extensions to the 0.MINOR.PATCH format.
 
 
-# 📖 Background
+## 📖 Background
 The main interest of the present library is estimation, which refers to inferring the values of a set of unknown variables from information provided by a set of noisy measurements whose values depend on such unknown variables.
 Estimation theory dates back to the work of Gauss on determining the orbit of celestial bodies from their observations.
 These studies led to the technique known as _Least Squares_.
@@ -38,23 +39,23 @@ Popular Bayes filters are the **Kalman** [1]-[4] and **particle filters** [5]-[7
 
 The aim of this library is to provide _interfaces_ and _implementations_ for new and existing recursive Bayesian filters!
 
-# Installing with conda
+## 📦 Installing with conda
 You can install the binaries with conda. All the dependencies will be automatically installed in the conda environment.
 ```bash
 conda install -c conda-forge libbayes-filters-lib
 ```
 
-# Building from sources
+## Building from sources
 If you want to build the project from sources you need to follow the following passages
-## 🎛 Dependencies
+### 🎛 Dependencies
 Bayes Filters Library depends on
  - [Eigen3](https://bitbucket.org/eigen/eigen/) - `version >= 3.3 (no beta)`
 
 
-## 🔨 Build and link the library
+### 🔨 Build and test the library
 Use the following commands to build, install and link the library.
 
-### Build
+#### Build
 With `make` facilities:
 ```bash
 $ git clone https://github.com/robotology/bayes-filters-lib
@@ -78,7 +79,16 @@ $ [sudo] ninja install
 You can also generate IDE project (e.g. Visual Studio and Xcode) to use their
 build tool facilities.
 
-# Link
+### 🔬 Test the library
+We have designed some test to run with `CMake` to see whether everything run smoothly or not. Simply use
+```cmake
+$ ctest [-VV]
+```
+to run all the tests.
+
+Tests are also a nice **starting points** to learn how to use the library and how to implement your own filters! _Just have a look at them!_
+
+## 🔗 Link the library
 Once the library is installed, you can link it using `CMake` with as little effort as writing the following line of code in your project `CMakeLists.txt`:
 ```cmake
 ...
@@ -88,22 +98,11 @@ target_link_libraries(<target> BayesFilters::BayesFilters)
 ...
 ```
 
-
-# 🔬 Test the library
-We have designed some test to run with `CMake` to see whether everything run smoothly or not. Simply use
-```cmake
-$ ctest [-VV]
-```
-to run all the tests.
-
-Tests are also a nice **starting points** to learn how to use the library and how to implement your own filters! _Just have a look at them!_
-
-
-# 📝 API documentation and example code
+## 📝 API documentation and example code
 Doxygen-generated documentation is available [here](https://robotology.github.io/bayes-filters-lib/doc/html/index.html).
 
 
-# 📑 Reference
+## 📑 Reference
 [1] R. E. Kalman, “A new approach to linear filtering and prediction problems,” Trans. _Trans. ASME - Journal of Basic Engineering_, vol. 82 (Series D), no. 1, pp. 35– 45, 1960.  
 [2] R. E. Kalman and R. S. Bucy, “New results in linear filtering and prediction theory,” _Trans. ASME - Journal of Basic Engineering_, vol. 83 (Series D), no. 1, pp. 95–108, 1961.  
 [3] L. A. McGee, S. F. Schmidt and G. L. Smith, “Applications of statistical filter theory to the optimal estimation of position and velocity on board a circumlunar vehicle”, _NASA Technical Report R-135_, Tech. Rep., 1962.  
