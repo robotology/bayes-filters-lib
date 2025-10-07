@@ -87,8 +87,11 @@ MatrixXd bfl::sigma_point::sigma_point(const GaussianMixture& state, const doubl
 
     for (std::size_t i = 0; i < state.components; i++)
     {
+#if EIGEN_VERSION_AT_LEAST(5,0,0)
+        JacobiSVD<MatrixXd, Eigen::ComputeThinU> svd = state.covariance(i).jacobiSvd<Eigen::ComputeThinU>();
+#else
         JacobiSVD<MatrixXd> svd = state.covariance(i).jacobiSvd(ComputeThinU);
-
+#endif
         MatrixXd A = svd.matrixU() * svd.singularValues().cwiseSqrt().asDiagonal();
 
         Ref<MatrixXd> sp = sigma_points.middleCols(((state.dim_covariance * 2) + 1) * i, ((state.dim_covariance * 2) + 1));
