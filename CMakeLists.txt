@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(BayesFilters
         LANGUAGES CXX
-        VERSION 0.10.0)
+        VERSION 0.10.1)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -77,7 +77,7 @@ install_basic_package_files(${PROJECT_NAME}
                             NO_SET_AND_CHECK_MACRO
                             VARS_PREFIX ${PROJECT_NAME}
                             NO_CHECK_REQUIRED_COMPONENTS_MACRO
-                            DEPENDENCIES Threads)
+                            DEPENDENCIES Eigen3 Threads)
 
 # Add the uninstall target
 include(AddUninstallTarget)

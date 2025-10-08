@@ -155,7 +155,7 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJEC
 
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                                                          "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
-if(NOT TARGET Eigen3)
+if(NOT TARGET Eigen3::Eigen)
     target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC ${EIGEN3_INCLUDE_DIR})
 
     target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC Threads::Threads ${CMAKE_THREAD_LIBS_INIT})
